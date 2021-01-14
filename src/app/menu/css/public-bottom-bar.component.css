@@ -1,0 +1,22 @@
+.navbar-bottom {
+  z-index: 1030;
+  position: fixed;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align:center;
+  display: block;
+  padding-bottom: .2rem;
+}
+
+.navbar-bottom .navbar-brand {
+  font-size: 1rem;
+  padding-bottom: 0.1rem;
+}
+
+@media (max-width: 767px) {
+  .navbar-bottom {
+    display:none;
+  }
+}

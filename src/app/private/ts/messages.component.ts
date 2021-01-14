@@ -1,0 +1,215 @@
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Socket } from '../../../services/socketio.service';
+
+import { environment } from './../../../environments/environment';
+
+@Component({
+  templateUrl: '../html/messages.component.html',
+  styleUrls: ['../css/messages.component.css']
+})
+
+export class Messages {
+  public answerText: string;
+  public currentPage: number;
+  public msgToUser: string;
+  public msgTitle: string;
+  public msgText: string;
+  
+  private currentCategory: number;
+  private msgList: any;
+  private msgPageNb: number;
+  private currentMsg: any;
+  private deleteMode: number;
+  private destList: any;
+  
+  constructor(private http: HttpClient, private socket: Socket) {
+    this.answerText = '';
+    this.currentPage = 1;
+    this.msgToUser = '';
+    this.msgTitle = '';
+    this.msgText = '';
+    
+    this.currentCategory = 0;
+    this.msgList = [];
+    this.msgPageNb = 1;
+    this.currentMsg = {
+      id: 0,
+      content: '',
+      msg_type: 0
+    };
+    this.deleteMode = 0;
+    this.destList = [];
+    
+    this.socket.socket.on('msgPage', (newMsgList:any) => {
+      this.msgList   = newMsgList.list;
+      this.msgPageNb = newMsgList.nb;
+      
+      if(this.currentPage > newMsgList.nb) {
+        this.currentPage = parseInt(newMsgList.nb);
+        
+        //If the requested page was too high
+        this.setPage(this.currentPage);
+      }
+    });
+    
+    this.socket.socket.on('msgInfo', (msgInfo:any) => {
+      this.currentMsg = msgInfo;
+      //TODO: remove that and change on the server side
+      if(this.currentMsg.msg) {
+        this.currentMsg.msg = this.currentMsg.msg.reverse();
+      }
+    });
+    
+    this.socket.socket.on('msgRefresh', () => {
+      this.setPage(this.currentPage);
+      this.messageLoad(this.currentMsg.id);
+    });
+  }
+  
+  ngOnInit() {
+    setTimeout(() => {
+      this.setPage(this.currentPage);
+    }, 0);
+  }
+  
+  addDest(username:string, callback:any=null) {
+    if(username.length == 0) {
+      if(callback) {
+        callback();
+      }
+      return;
+    }
+    let _url = environment.SOCKET_ENDPOINT+'/api/playerProfile/'+username+'.json';
+    
+    this.http.get(_url).subscribe((res:any) => {
+      if(res && res.membre_id) {
+        this.removeDest(res.membre_id);
+        this.destList.push({
+          'id': res.membre_id,
+          'username': res.username
+        });
+      }
+      if(callback) {
+        callback();
+      }
+    });
+    
+    this.msgToUser = '';
+  }
+  
+  getCurrentMsg() {
+    return this.currentMsg;
+  }
+  getDeleteMode() {
+    return this.deleteMode;
+  }
+  getDestList() {
+    return this.destList;
+  }
+  getMsgPageNb() {
+    return this.msgPageNb;
+  }
+  getMsgList() {
+    return this.msgList;
+  }
+  
+  answer() {
+    if(this.answerText && this.answerText.length > 0) {
+      let msg = {
+        'id': this.currentMsg.id,
+        'text': this.answerText.trim()
+      };
+      this.socket.emit('msgAnswer', msg);
+      this.answerText = '';
+    }
+  };
+  
+  messageLoad(id:number) {
+    if(id > 0) {
+      this.socket.emit('msgInfo', id);
+    }
+    else {
+      this.currentMsg = {
+        id: 0,
+        content: '',
+        msg_type: 0
+      };
+      
+      //Reinit inputs
+      this.msgToUser = '';
+      this.msgTitle = '';
+      this.msgText = '';
+      this.destList = [];
+    }
+    this.answerText = '';
+  }
+  
+  pageLoad(event:any) {
+    let id = event.target.value;
+    
+    if(id >= 1) {
+      this.currentPage = id;
+      this.socket.emit("msgPage", {
+        'page': this.currentPage,
+        'category': this.currentCategory
+      });
+    }
+  }
+  
+  removeDest(id:number) {
+    for(let i in this.destList) {
+      if(this.destList[i].id == id) {
+        this.destList.splice(i, 1); 
+      }
+    }
+  }
+  
+  send() {
+    this.addDest(this.msgToUser, () => {
+      let list = new Array();
+      for(let i in this.destList){
+        list.push(this.destList[i].id)
+      }
+      
+      if(this.msgTitle && this.msgText) {
+        let title  = this.msgTitle.trim();
+        let content= this.msgText.trim();
+        
+        if(title.length > 0 && content.length > 0 && list.length > 0) {
+          let msg = {
+            'list': list,
+            'title': title,
+            'content': content
+          };
+          this.socket.emit('msgNew', msg);
+          this.msgTitle = '';
+          this.msgText = '';
+          this.destList = [];
+        }
+      }
+    });
+  }
+  
+  setAllRead() {
+  }
+  
+  setPage(id:number, i:number=0) {
+    id += i;
+    if(id >= 1 && id <= this.getMsgPageNb()) {
+      this.currentPage = id;
+      this.socket.emit("msgPage", {
+        'page': this.currentPage,
+        'category': this.currentCategory
+      });
+    }
+  }
+  
+  share() {
+    this.socket.emit("msgShare", this.currentMsg.id);
+  }
+  
+  switchDeleteMode() {
+    this.deleteMode = (this.deleteMode+1)%2;
+  }
+}

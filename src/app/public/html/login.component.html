@@ -1,0 +1,16 @@
+<common-top-bar active="login"></common-top-bar>
+
+<div class="text-center">
+  <form method="POST" action="/login" 
+        [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <input class="form-control" type="text" 
+           placeholder="{{'Login'|translate}}" name="username" 
+           formControlName="username" required="required" />
+    <input class="form-control" type="password" 
+           placeholder="{{'Password'|translate}}" name="password" 
+           formControlName="password" required="required" />
+    <button class="btn btn-success btn-outline-primary" type="submit" translate="">Connect</button>
+  </form>
+</div>
+
+<app-bottom-bar></app-bottom-bar>

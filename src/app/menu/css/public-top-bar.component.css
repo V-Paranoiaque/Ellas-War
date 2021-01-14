@@ -1,0 +1,32 @@
+.navbar-menu {
+  background-color: red;
+  z-index: 1030;
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link:focus{
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: grey;
+}
+
+@media (max-width: 767px) {
+  .navbar-menu {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: blue;
+  }
+}
+
+.navbar-menu .d-flex button {
+  white-space: nowrap;
+  color: white;
+}

@@ -1,0 +1,11 @@
+.btn {
+  color: white;
+}
+
+.messages {
+  cursor: pointer;
+}
+
+.msgContent {
+  margin-top: 5px;
+}

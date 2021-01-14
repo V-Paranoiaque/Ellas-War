@@ -1,0 +1,5 @@
+<div [ngSwitch]="user.info.mstatus">
+  <public-top-bar    *ngSwitchCase="0" active="{{ active }}"></public-top-bar>
+  <connected-top-bar *ngSwitchCase="1" active="{{ active }}"></connected-top-bar>
+</div>
+

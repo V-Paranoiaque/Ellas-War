@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light navbar-menu">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']" translate="">Ellas War</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" attr.aria-label="{{'Toggle navigation'|translate}}">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/discoverthegame']"
+             [ngClass]="{'active': active == 'discoverthegame'}"
+             translate="">Discover the Game</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']"
+             [ngClass]="{'active': active == 'login'}"
+             translate="">Connection</a>
+        </li>
+      </ul>
+      <form method="POST" action="/login" class="d-flex" 
+            [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <input class="form-control me-2" type="text" 
+               placeholder="{{'Login'|translate}}" name="username" 
+               formControlName="username" required="required" />
+        <input class="form-control me-2" type="password" 
+               placeholder="{{'Password'|translate}}" name="password" 
+               formControlName="password" required="required" />
+        <button class="btn btn-success btn-outline-primary" type="submit" translate="">Connect</button>
+      </form>
+    </div>
+  </div>
+</nav>

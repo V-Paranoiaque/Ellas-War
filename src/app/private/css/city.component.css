@@ -1,0 +1,5 @@
+.col-xl-6 .card {
+  width:100%;
+  margin-top: calc(var(--bs-gutter-x)/ 2);
+  margin-bottom: calc(var(--bs-gutter-x)/ 2);
+}

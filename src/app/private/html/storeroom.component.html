@@ -1,0 +1,108 @@
+<common-top-bar active="storeroom"></common-top-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card col-xl-6">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <table class="table table-middle">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" translate="">Resources</th>
+                <th scope="col" translate="">Rate</th>
+                <th scope="col" translate="">Quantity</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let trade of getStoreroomList();let id=index;">
+                <ng-container *ngIf="(id > 0 &&
+                                      ((trade.resource_id == 1 && user.getLevel() >= user.getDatas().ress_lvl.food) ||
+                                      (trade.resource_id == 2 && user.getLevel() >= user.getDatas().ress_lvl.water) ||
+                                      (trade.resource_id == 3 && user.getLevel() >= user.getDatas().ress_lvl.wood) ||
+                                      (trade.resource_id == 4 && user.getLevel() >= user.getDatas().ress_lvl.iron) ||
+                                      (trade.resource_id == 5 && user.getLevel() >= user.getDatas().ress_lvl.stone) ||
+                                      (trade.resource_id == 6 && user.getLevel() >= user.getDatas().ress_lvl.marble) ||
+                                      (trade.resource_id == 7 && user.getLevel() >= user.getDatas().ress_lvl.grapes) ||
+                                      (trade.resource_id == 8 && user.getLevel() >= user.getDatas().ress_lvl.wine) ||
+                                      (trade.resource_id == 9 && user.getLevel() >= user.getDatas().ress_lvl.gold) ||
+                                      (trade.resource_id ==10 && user.getLevel() >= user.getDatas().ress_lvl.favor)) &&
+                                      (trade.remaining > 0 || trade.mremaining > 0))"
+                              [ngClass]="{'bg-red': trade.mrate > trade.rate && trade.rate > 0,
+                                          'grey': trade.mrate == trade.rate && trade.rate > 0,
+                                          'bg-green': (trade.mrate > 0 && trade.mrate < trade.rate) || trade.remaining == 0}">
+                  <td>
+                    <button class="btn btn-primary" *ngIf="trade.remaining > 0">
+                      <span class="glyphicon glyphicon-plus"
+                            title="{{'Select all the resources'|translate}}"></span>
+                    </button>
+                  </td>
+                  <td>
+                    <span *ngIf="trade.remaining > 0">{{trade.remaining}}</span>
+                    <span *ngIf="trade.remaining == 0">{{trade.mremaining}}</span>
+                    <id-to-ress [ress_id]="trade.resource_id"></id-to-ress>
+                  </td>
+                  <td>
+                    <span *ngIf="trade.remaining > 0">{{trade.rate}}</span>
+                    <span *ngIf="trade.remaining == 0">{{trade.mrate}}</span>
+                  </td>
+                  <td>
+                    <input type="number" class="form-control"
+                           [(ngModel)]="storeroom_ress[trade.resource_id]" min="0"
+                           max="trade.remaining" placeholder="0" step="1" 
+                           ng-change="storeroomCheck(idToRess(trade.resource_id), trade.remaining, storeroom_ress[trade.resource_id], trade.rate)" 
+                           ng-hide="trade.remaining == 0" />
+                  </td>
+                  <td class="center">
+                    <button class="btn btn-success"
+                      (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
+                      title="{{'Buy'|translate}}" ng-hide="trade.remaining == 0">
+                      <span class="fa flaticon-jar-with-handle-in-a-museum"></span>
+                      <span class="sr-only" translate="">Buy</span>
+                    </button>
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card col-xl-6">
+        <div class="card-header">
+          <h3 id="titleLastWeek" translate="">Last week</h3>
+        </div>
+        <div class="card-body">
+          <table class="table table-middle" aria-describedby="titleLastWeek">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" translate="">Average rate</th>
+                <th scope="col" translate="">Deposits</th>
+                <th scope="col" translate="">Sales</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let batch of getStoreroomStats();let id=index;">
+              <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
+                <td><id-to-ress [ress_id]="id"></id-to-ress></td>
+                <td>{{batch.rate}}</td>
+                <td>{{batch.quantity}}</td>
+                <td>{{batch.solded}}</td>
+              </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bottom-bar></app-bottom-bar>
