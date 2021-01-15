@@ -37,13 +37,13 @@
                                           'bg-green': (trade.mrate > 0 && trade.mrate < trade.rate) || trade.remaining == 0}">
                   <td>
                     <button class="btn btn-primary" *ngIf="trade.remaining > 0">
-                      <span class="glyphicon glyphicon-plus"
-                            title="{{'Select all the resources'|translate}}"></span>
+                      <i-bs name="plus" title="{{'Select all the resources'|translate}}"></i-bs>
                     </button>
                   </td>
                   <td>
                     <span *ngIf="trade.remaining > 0">{{trade.remaining}}</span>
                     <span *ngIf="trade.remaining == 0">{{trade.mremaining}}</span>
+                    &nbsp;
                     <id-to-ress [ress_id]="trade.resource_id"></id-to-ress>
                   </td>
                   <td>
@@ -61,8 +61,8 @@
                     <button class="btn btn-success"
                       (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
                       title="{{'Buy'|translate}}" ng-hide="trade.remaining == 0">
-                      <span class="fa flaticon-jar-with-handle-in-a-museum"></span>
-                      <span class="sr-only" translate="">Buy</span>
+                      <i-bs name="bag"></i-bs>
+                      <span class="visually-hidden" translate="">Buy</span>
                     </button>
                   </td>
                 </ng-container>
@@ -90,12 +90,12 @@
             </thead>
             <tbody>
               <tr *ngFor="let batch of getStoreroomStats();let id=index;">
-              <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
-                <td><id-to-ress [ress_id]="id"></id-to-ress></td>
-                <td>{{batch.rate}}</td>
-                <td>{{batch.quantity}}</td>
-                <td>{{batch.solded}}</td>
-              </ng-container>
+                <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
+                  <td><id-to-ress [ress_id]="id"></id-to-ress></td>
+                  <td>{{batch.rate}}</td>
+                  <td>{{batch.quantity}}</td>
+                  <td>{{batch.solded}}</td>
+                </ng-container>
               </tr>
             </tbody>
           </table>
