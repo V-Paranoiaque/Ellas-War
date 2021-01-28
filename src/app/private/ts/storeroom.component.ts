@@ -20,7 +20,6 @@ export class Storeroom {
     this.storeroomStats = [],
     
     this.socket.socket.on('storeroomList', (data:any) => {
-      console.log(data);
       this.storeroomList = data;
     });
     this.socket.socket.on('storeroomListReload', () => {
