@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  SOCKET_ENDPOINT: 'https://ewnext.ellaswar.com'
+  SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com'
 };
 
 /*
