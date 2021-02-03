@@ -1,0 +1,77 @@
+<common-top-bar active="options"></common-top-bar>
+
+
+<div class="modal fade" id="ChangeUsername" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate="">Change your username</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" role="alert" *ngIf="getRenameError() > 0">
+          <div [ngSwitch]="getRenameError()">
+            <div *ngSwitchCase="1" translate="">
+              Your username must be at least 6 characters.
+            </div>
+            <div *ngSwitchCase="2" translate="">
+              This username is already used
+            </div>
+            <div *ngSwitchCase="3" translate="">
+              Username modified successfully
+            </div>
+            <div *ngSwitchCase="4" translate="">
+              You don't have enough favors
+            </div>
+          </div>
+        </div>
+        <div translate="">At each change the cost is increased, 
+                          it is reset every 6 months.</div>
+        <div>
+          <strong translate="">Cost:</strong> {{ getAccountRenameCost() }} <id-to-ress [ress_id]="10"></id-to-ress>
+        </div>
+        
+        <div *ngIf="user.getLevel() == 0"
+             translate="">From level 1 starting cost passes to one Favor</div>
+        
+        <div>
+          <input type="text" class="form-control"  [(ngModel)]="newusername" 
+                 placeholder="{{'New username'|translate}}" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                translate>Close</button>
+        <button type="button" class="btn btn-primary" (click)="accountRename()" 
+                translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6">
+      <div class="card" translate>
+        <div class="card-body" *ngIf="getAccountRenameCost() == 0" translate>
+          Choose a new Username for your account. While you stay level 0, 
+          your first modification is free!
+        </div>
+        <div class="card-body" *ngIf="getAccountRenameCost() == 1" translate>
+         {{'Choose a new Username for your account. It will cost you 1 favor.'}}
+        </div>
+        <div class="card-body" *ngIf="getAccountRenameCost() > 1">
+         {{'Choose a new Username for your account. It will cost you { value } 
+            favor(s).' | translate: { value: getAccountRenameCost() } }}
+        </div>
+        <div class="card-footer" data-bs-toggle="modal" 
+             data-bs-target="#ChangeUsername" translate>
+          Change your username
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-bottom-bar></app-bottom-bar>

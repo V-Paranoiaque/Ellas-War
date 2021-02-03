@@ -1,4 +1,6 @@
 {
+  ":": " : ",
+  
   "Access to the army >>": "Accéder à l'armée >>",
   "Access to the attacks >>": "Accéder aux attaques >>",
   "Access to the buildings >>": "Accéder aux bâtiments >>",
@@ -14,17 +16,30 @@
   "Access to the sanctuaries >>": "Accéder aux sanctuaires >>",
   "Access to the strategies >>": "Accéder aux stratégies >>",
   "Access to the treasure >>": "Accéder au trésor >>",
+  "At each change the cost is increased, it is reset every 6 months.": "A chaque changement le coût augmente, il est réinitialisé tous les 6 mois.",
   "Attack { value } sanctuaries": "Attaquez {{ value }} sanctuaires",
   "Attack 1 sanctuary": "Attaquez 1 sanctuaire",
   "Author": "Auteur",
+  
+  "Build a total of 4 mints.": "Construisez un total de 4 ateliers monétaires.",
   "Builder": "Bâtisseur",
   "Buy { value } lotto tickets": "Achetez {{ value }} tickets de loto",
   "By { value }": "Par {{ value }}",
+  
+  "Confirm": "Confirmer",
   "Conquest { value } sanctuaries": "Remportez {{ value }} sanctuaires",
   "Conquest 1 sanctuary": "Remportez 1 sanctuaire",
   "Connect": "Se connecter",
   "Construct { value } buildings": "Construisez {{ value }} bâtiments",
+  "Cost:": "Prix :",
+  "Change your username": "Changer votre nom",
+  "Choose a new Username for your account. While you stay level 0, your first modification is free!": "Choisissez un nouveau nom pour votre compte. Tant que vous restez niveau 0 le premier changement est gratuit !",
+  "Choose a new Username for your account. It will cost you 1 favor.": "Choisissez un nouveau nom pour votre compte. Cela vous coutera 1 faveur.",
+  "Choose a new Username for your account. It will cost you { value } favor(s).": "Choisissez un nouveau nom pour votre compte. Cela vous coutera {{ value }} faveur(s).",
+  "Close": "Fermer",
+  
   "Date": "Date",
+  "Daily": "Journalière",
   "Delete all the selected messages": "Supprimer tous les messages séléctionnés",
   "Diamond Keeper": "Gardien de diamants",
   "Diamond of the Gods": "Diamant des Dieux",
@@ -32,27 +47,44 @@
   "Discover the Game": "Découvrir le jeu",
   "Drachmas": "Drachmes",
   "Drought on your city": "La sécheresse s'abat sur votre cité",
+  
   "Earthquake near your city": "Éruption volcanique près de votre cité",
   "Engage { value } Units": "Engagez {{ value }} unités",
+  
   "Faithful of the Gods": "Fidèle des Dieux",
   "Flood on your city": "Innondation dans votre cité",
   "Food of the Gods": "Nourriture des Dieux",
+  "From level 1 starting cost passes to one Favor": "A partir du niveau 1 le coût de départ passe à une Faveur",
   "Future millionaire": "Futur millionnaire",
+  
   "Great conqueror": "Grand conquérant",
+  
   "Hail on your city": "Grèle sur votre cité",
   "Home": "Accueil",
   "Honorary Warrior": "Guerrier honoré",
+  
   "Invasion of insects on your city": "Invasion d'insectes sur votre cité",
+  
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
   "Login": "Identifiant",
+  
   "Message": "Message",
+  "Mints produce Drachmas. Through them you can construct buildings and raise armies.": "Les Ateliers monétaires produisent des Drachmes. Grâce à eux vous pourrez construire des bâtiments et lever des armées.",
+  "Missions": "Missions",
   "Monster Hunter": " Chasseur de monstres",
   "Monster killer": "Tueur de monstres",
+  
+  "New username": "Nouveau nom",
+  
   "Password": "Mot de passe",
   "Player": "Joueur",
   "Precision launcher": "Lanceur de précision",
+  
+  "Quests": "Quêtes",
+  
   "Recruiter": "Recruteur",
   "Reward:": "Récompense : ",
+  
   "Scraper winner": "Gratteur vainqueur",
   "Scratch { value } tickets": "Grattez {{ value }} tickets",
   "Scratch { value } winning tickets": "Grattez {{ value }} tickets gagnants",
@@ -62,18 +94,25 @@
   "Spend { value } Ambrosia": "Dépenser {{ value }} d'Ambroisie",
   "Storm near your city": "Tempête près de votre cité",
   "Strenuous attacker": "Attaquant acharné",
+  
   "Take the Diamond": "Prenez le Diamant",
   "Take the Diamond { value } times": "Prenez le Diamant {{ value }} fois",
   "There is no news published for the moment": "Il n'y a pas de news publiées pour le moment",
+  "This username is already used": "Ce nom est déjà utilisé",
   "Tickler": "Gratteur de tickets",
   "Title": "Titre",
   "To:": "À :",
+  
   "You have won the diamond challenge": "Vous avez remporté le défi du diamant",
+  
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",
   "Use { value } Divine powers": "Utilisez {{ value }} Pouvoirs divins",
+  "Username modified successfully": "Nom modifié avec succès",
+  
   "Validate": "Valider",
   "Volcanic eruption near your city": "Éruption volcanique près de votre cité",
+  
   "Win { value } times in the javelin game": "Gagnez {{ value }} fois au jeu du Javelot",
   "Win { value } victories": "Remportez {{ value }} victoires",
   "Win { value } wars": "Gagnez {{ value }} guerres",
@@ -82,5 +121,8 @@
   "Win the Diamond challenge { value } times": "Remportez le concours du Diamant  {{ value }} fois",
   "Win the Honnor challenge": "Remportez le concours de l'honneur",
   "Win the Honnor challenge { value } times": "Remportez le concours de l'honneur  {{ value }} fois",
-  "Worshiper of the Gods": "Adorateur des Dieux"
+  "Worshiper of the Gods": "Adorateur des Dieux",
+  
+  "You don't have enough favors": "Vous n'avez pas assez de faveurs",
+  "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères."
 }

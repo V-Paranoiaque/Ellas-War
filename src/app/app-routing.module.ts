@@ -11,6 +11,7 @@ import { PublicHome } from './public/ts/public-home.component';
 import { Attack } from './private/ts/attack.component';
 import { City } from './private/ts/city.component';
 import { Messages } from './private/ts/messages.component';
+import { Options } from './private/ts/options.component';
 import { Quests } from './private/ts/quests.component';
 import { Storeroom } from './private/ts/storeroom.component';
 
@@ -30,6 +31,7 @@ routes = [
   { path: 'attack', component: Attack },
   { path: 'city', component: City },
   { path: 'messages', component: Messages },
+  { path: 'options', component: Options },
   { path: 'quests', component: Quests },
   { path: 'storeroom', component: Storeroom },
   
