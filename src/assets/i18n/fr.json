@@ -24,7 +24,9 @@
   "Author": "Auteur",
   
   "Build": "Construire",
+  "Build a total of 10 wells.": "Construisez un total de 10 puits.",
   "Build a total of 4 mints.": "Construisez un total de 4 ateliers monétaires.",
+  "Build a total of { value } iron mines.": "Construisez un total de {{ value }} mines de fer.",
   "Builder": "Bâtisseur",
   "Buy { value } lotto tickets": "Achetez {{ value }} tickets de loto",
   "By { value }": "Par {{ value }}",
@@ -90,6 +92,7 @@
   "Invasion of insects on your city": "Invasion d'insectes sur votre cité",
   "Iron mine": "Mine de fer",
   "Iron mines": "Mines de fer",
+  "Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.": "Les mines de fer produisent du fer. Elles vous permettront de produire des drachmes et à armer votre cité.",
   
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
   "Login": "Identifiant",
@@ -150,6 +153,8 @@
   "Tickler": "Gratteur de tickets",
   "Title": "Titre",
   "To:": "À :",
+  "To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.": "Pour construire vos bâtiments vous aurez besoin de bois. Construisez un total de 6 scieries pour couvrir vos futurs besoins en bois.",
+   
   
   "You have won the diamond challenge": "Vous avez remporté le défi du diamant",
   
@@ -163,6 +168,7 @@
   
   "Watchtower": "Tour de guet",
   "Watchtowers": "Tours de guet",
+  "Water is used by your buildings and your army.": "L'eau est utilisée par vos bâtiment et votre armée.",
   "Well": "Puit",
   "Wells": "Puits",
   "Win { value } times in the javelin game": "Gagnez {{ value }} fois au jeu du Javelot",
@@ -178,5 +184,6 @@
   "Worshiper of the Gods": "Adorateur des Dieux",
   
   "You don't have enough favors": "Vous n'avez pas assez de faveurs",
+  "You will need more Iron for your city.": "Vous allez avoir besoin de plus de fer pour votre cité.",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères."
 }
