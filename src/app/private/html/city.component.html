@@ -1,5 +1,10 @@
 <common-top-bar active="city"></common-top-bar>
 
+<div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
+  <construction-popup [info]="buildingInfo"></construction-popup>
+</div>
+
+
 <div class="container">
   <div class="row">
     <div class="col-xl-6">
@@ -17,27 +22,7 @@
       </div>
     </div>
     
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-header">
-          Buildings
-        </div>
-        <div class="card-body">
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-header">
-          Army
-        </div>
-        <div class="card-body">
-          
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-6">
+    <div class="col-xl-6" *ngIf="user.getLevel() >= 3">
       <div class="card">
         <div class="card-header">
           Temples
@@ -47,6 +32,42 @@
         </div>
       </div>
     </div>
+    
+    <div class="col-xl-6" *ngIf="user.getLevel() >= 1">
+      <div class="card">
+        <div class="card-header">
+          Army
+        </div>
+        <div class="card-body no-padding">
+          <div *ngFor="let army of user.getArmy()" class="frame">
+            <img src="assets/img/army/{{army.code}}.png"
+                 title="{{ army.name | translate }}" 
+                 alt="{{army.name | translate }}" />
+            <div>{{ user.getPropertyNb(army.code) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          Buildings
+          - All - Military - Prod - 
+        </div>
+        <div class="card-body no-padding">
+          <div *ngFor="let building of user.getBuildings()" class="frame"
+               data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+               (click)="selectBuilding(building.code)">
+            <img src="assets/img/buildings/{{building.code}}.png"
+                 title="{{ building.name | translate }}" 
+                 alt="{{building.name | translate }}" />
+            <div>{{ user.getPropertyNb(building.code) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="col-xl-6">
       <div class="card">
         <div class="card-header">

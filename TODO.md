@@ -1,3 +1,8 @@
+# Buildings
+* Barracks
+* Build/Destruct on key
+* Message when the building is (not) constructed/destruct, too much field
+
 # Messages
 * Delete all the selected messages
 * Delete messages one by one
@@ -14,3 +19,4 @@
 
 # Server
 * Possiblity to buy/sell everyday
+* Rename Military camp to Barracks

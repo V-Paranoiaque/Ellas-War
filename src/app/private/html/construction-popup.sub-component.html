@@ -1,0 +1,126 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ info.name | translate }}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" 
+              aria-label="Close"></button>
+    </div>
+    <div class="modal-body container-fluid">
+      <div class="row">
+        <div class="col-4 offset-4">
+          <img src="assets/img/buildings/{{info?.code}}.png"
+               title="{{ info?.name | translate }}" 
+               alt="{{info?.name | translate }}" />
+        </div>
+        
+        <div class="col-6">
+          <div *ngIf="info.cost">
+            <strong translate>Construction cost</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.cost | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info.cost">
+            <strong translate>Recovered resources</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.destruct | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info.production">
+            <strong translate>Production</strong><strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.production | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info.consumption">
+            <strong translate>Consumption</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.consumption | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info?.placen">
+            <strong>{{"Spots:"|translate}}</strong>
+            {{ info?.placen }} {{"Normales"|translate}}
+          </div>
+          <div *ngIf="info?.placel">
+            <strong>{{"Spots:"|translate}}</strong>
+            {{ info?.placel }} {{"Luxurious"|translate}}
+          </div>
+          <div *ngIf="info?.placec">
+            <strong>{{"Spots:"|translate}}</strong>
+            {{ info?.placec }} {{"Cave"|translate}}
+          </div>
+        </div>
+        
+        <div class="col-6">
+          <div>
+            <strong translate>Currently</strong>
+            <strong translate>:</strong>
+            {{ user.getPropertyNb(info.code) }}
+            <span *ngIf="info.nbmax">
+              / {{ info.nbmax }}
+            </span>
+          </div>
+          
+          <div>
+            <strong translate>Field</strong>
+            <strong translate>:</strong>
+            {{ info?.field }}
+          </div>
+          
+          <div *ngIf="info.rBuildPossible">
+            <strong>{{"Max possible"|translate}}{{":"}}</strong>
+            {{ info.rBuildPossible }}
+          </div>
+          
+          <div class="input-group">
+            <input type="number" placeholder="0" min="0" step="1"
+                   [(ngModel)]="buildnb" class="form-control" >
+            <span class="input-group-addon btn btn-primary"
+                  (click)="buildingBuild()" translate>Build</span>
+          </div>
+          
+          <div class="input-group">
+            <input type="number" placeholder="0" min="0" step="1"
+                   [(ngModel)]="destructnb" class="form-control" >
+            <span class="input-group-addon btn btn-danger"
+                  (click)="buildingDestruct" translate>Destruct</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <div *ngIf="info.code == 'ironmine'" translate>
+        This mine will produce iron for use by your craftsmen or your army.
+      </div>
+      <div *ngIf="info.code == 'mint'" translate>
+        The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.
+      </div>
+      <div *ngIf="info.code == 'sawmill'" translate>
+        The sawmill will produce wood for your archers and your buildings.
+      </div>
+      <div *ngIf="info.code == 'watchtower'" translate="">
+        The watchtower is a modest wooden tower with a few units, its low strength and limited range make it a very poor defense.
+      </div>
+      <div *ngIf="info.code == 'well'" translate>
+        The wells will allow you to irrigate your crops and quench the thirst of your population.
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,12 +5,42 @@ export class User {
     this.info = {
       'id': 0,
       'mstatus': 0,
-      'level': 0
+      'level': 0,
+      'datas': {}
     }
   }
   
   setUser(user: any) {
     this.info = user;
+  }
+  
+  getArmy() {
+    let list = [];
+    
+    for(let i in this.info.datas.army) {
+      //Only if we have the required level or if we have the unit
+      if(this.info.level >= this.info.datas.army[i].lvlmini ||
+         this.info[i] >= 0) {
+        this.info.datas.army[i].code = i;
+        list.push(this.info.datas.army[i]);
+      }
+    }
+    
+    return list;
+  }
+  
+  getBuildings() {
+    let list = [];
+    
+    for(let i in this.info.datas.building) {
+      //Only if we have the required level
+      if(this.info.level >= this.info.datas.building[i].lvlmini) {
+        this.info.datas.building[i].code = i;
+        list.push(this.info.datas.building[i]);
+      }
+    }
+    
+    return list;
   }
   
   getDatas() {
@@ -23,6 +53,15 @@ export class User {
   
   getLevel() {
     return this.info.level;
+  }
+  
+  getPropertyNb(name:string) {
+    if(this.info[name]) {
+      return this.info[name];
+    }
+    else {
+      return 0;
+    }
   }
   
   getQuest() {

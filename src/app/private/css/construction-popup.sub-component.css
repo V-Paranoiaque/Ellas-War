@@ -1,0 +1,8 @@
+.row .col-4 {
+  padding-right: calc(var(--bs-gutter-x)/ 4);
+  padding-left: calc(var(--bs-gutter-x)/ 4);
+}
+
+.row .col-4 img {
+  width: 100%;
+}

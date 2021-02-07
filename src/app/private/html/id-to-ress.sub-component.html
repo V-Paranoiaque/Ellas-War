@@ -1,45 +1,45 @@
-<span [ngSwitch]="ress_id">
-  <span *ngSwitchCase="0">
+<span [ngSwitch]="true">
+  <span *ngSwitchCase="ress_id == 0 || ress_id == 'drachma'">
     <img src="assets/img/ress/drachma.png" title="{{'Drachmas'|translate}}"
          alt="{{'Drachmas'|translate}}" />
   </span>
-  <span *ngSwitchCase="1">
+  <span *ngSwitchCase="ress_id == 1 || ress_id == 'food'">
     <img src="assets/img/ress/food.png" title="{{'Food'|translate}}"
          alt="{{'Food'|translate}}" />
   </span>
-  <span *ngSwitchCase="2">
+  <span *ngSwitchCase="ress_id == 2 || ress_id == 'water'">
     <img src="assets/img/ress/water.png"
          title="{{'Water'|translate}}" alt="{{'Water'|translate}}" />
   </span>
-  <span *ngSwitchCase="3">
+  <span *ngSwitchCase="ress_id == 3 || ress_id == 'wood'">
   <img src="assets/img/ress/wood.png"
       title="{{'Wood'|translate}}" alt="{{'Wood'|translate}}" />
   </span>
-  <span *ngSwitchCase="4">
+  <span *ngSwitchCase="ress_id == 4 || ress_id == 'iron'">
     <img src="assets/img/ress/iron.png"
          title="{{'Iron'|translate}}" alt="{{'Iron'|translate}}" />
   </span>
-  <span *ngSwitchCase="5">
+  <span *ngSwitchCase="ress_id == 5 || ress_id == 'stone'">
     <img src="assets/img/ress/stone.png"
          title="{{'Stone'|translate}}" alt="{{'Stone'|translate}}" />
   </span>
-  <span *ngSwitchCase="6">
+  <span *ngSwitchCase="ress_id == 6 || ress_id == 'marble'">
     <img src="assets/img/ress/marble.png" title="{{'Marble'|translate}}"
          alt="{{'Marble'|translate}}" />
   </span>
-  <span *ngSwitchCase="7">
+  <span *ngSwitchCase="ress_id == 7 || ress_id == 'grapes'">
     <img src="assets/img/ress/grapes.png" title="{{'Grapes'|translate}}"
          alt="{{'Grapes'|translate}}" />
   </span>
-  <span *ngSwitchCase="8">
+  <span *ngSwitchCase="ress_id == 8 || ress_id == 'wine'">
     <img src="assets/img/ress/wine.png"
          title="{{'Wine'|translate}}" alt="{{'Wine'|translate}}" />
   </span>
-  <span *ngSwitchCase="9">
+  <span *ngSwitchCase="ress_id == 9 || ress_id == 'gold'">
     <img src="assets/img/ress/gold.png"
          title="{{'Gold'|translate}}" alt="{{'Gold'|translate}}" />
   </span>
-  <span *ngSwitchCase="10">
+  <span *ngSwitchCase="ress_id == 10 || ress_id == 'favor'">
     <img src="assets/img/ress/favor.png" title="{{'Favor'|translate}}"
          alt="{{'Favor'|translate}}" />
   </span>
