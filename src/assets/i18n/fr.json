@@ -79,6 +79,7 @@
   "From level 1 starting cost passes to one Favor": "A partir du niveau 1 le coût de départ passe à une Faveur",
   "Future millionaire": "Futur millionnaire",
   
+  "Go to City and validate a Divine Bonus to get spartans.": "Allez dans cité et validez un Bonus divin pour obtenir des spartiates.",
   "Gold mine": "Mine d'or",
   "Gold mines": "Mines d'or",
   "Great conqueror": "Grand conquérant",
@@ -149,6 +150,7 @@
   
   "Take the Diamond": "Prenez le Diamant",
   "Take the Diamond { value } times": "Prenez le Diamant {{ value }} fois",
+  "The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.":"Les Bonus divins vous apportent des avantages temporaires. Vous pouvez en gagner en étant actif sur le jeu ou en participant aux animations proposées sur la page Facebook.",
   "The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.": "Les ateliers monétaires sont très importants, ils vous permettront de battre votre monnaie afin de payer vos troupes, ériger des bâtiments et de faire du commerce.",
   "The sawmill will produce wood for your archers and your buildings.": "La scierie produira du bois pour vos archers et vos bâtiments.",
   "The watchtower is a modest wooden tower with a few units, its low strength and limited range make it a very poor defense.": "La tour de guet est une modeste tour en bois où siègent quelques unités, sa faible résistance et sa portée limitée en font une bien piètre défense.",
@@ -160,8 +162,6 @@
   "Title": "Titre",
   "To:": "À :",
   "To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.": "Pour construire vos bâtiments vous aurez besoin de bois. Construisez un total de 6 scieries pour couvrir vos futurs besoins en bois.",
-   
-  
   
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",

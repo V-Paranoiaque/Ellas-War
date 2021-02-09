@@ -76,6 +76,18 @@
         Access to the buildings &gt;&gt;
       </a>
     </span>
+    
+    <span *ngSwitchCase="8">
+      <p translate="">The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.</p>
+      <p translate="">Go to City and validate a Divine Bonus to get spartans.</p>
+      <strong translate="">Reward:</strong> 
+      10000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      10000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+        Access to the divins bonus &gt;&gt;
+      </a>
+    </span>
   </span>
 </span>
 
