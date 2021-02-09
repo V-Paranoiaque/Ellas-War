@@ -1,6 +1,10 @@
 {
   ":": " : ",
   
+  "2 bonus attacks": "2 attaques bonus",
+  "200 units of your third temple": "200 unités de votre troisième temple",
+  "6 hours of withdrawal without taxes in your treasure": "6 heures de retrait sans taxe dans votre trésor",
+  
   "Academies": "Académies",
   "Academy": "Académie",
   "Access to the army >>": "Accéder à l'armée >>",
@@ -137,6 +141,8 @@
   "Send": "Envoyer",
   "Set all messages as read": "Marquer tous les messages comme lus",
   "Share link:": "Lien :",
+  "Spartan": "Spartiate",
+  "Spartans": "Spartiates",
   "Spend { value } Ambrosia": "Dépenser {{ value }} d'Ambroisie",
   "Storm near your city": "Tempête près de votre cité",
   "Strenuous attacker": "Attaquant acharné",
@@ -156,11 +162,11 @@
   "To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.": "Pour construire vos bâtiments vous aurez besoin de bois. Construisez un total de 6 scieries pour couvrir vos futurs besoins en bois.",
    
   
-  "You have won the diamond challenge": "Vous avez remporté le défi du diamant",
   
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",
   "Use { value } Divine powers": "Utilisez {{ value }} Pouvoirs divins",
+  "Use the Divine Bonus": "Utiliser le bonus divin",
   "Username modified successfully": "Nom modifié avec succès",
   
   "Validate": "Valider",

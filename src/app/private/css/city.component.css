@@ -16,7 +16,6 @@
 }
 
 .card-body.no-padding .frame {
-  width: 20%;
   float: left;
   position: relative;
 }
@@ -34,4 +33,11 @@
   bottom: 2px;
   right: 8px;
   font-weight: 500;
+}
+
+.card-body.no-padding .frame.frame-10 {
+  width: 10%;
+}
+.card-body.no-padding .frame.frame-20 {
+  width: 20%;
 }

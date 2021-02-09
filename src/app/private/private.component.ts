@@ -6,6 +6,8 @@ import { Quests } from './ts/quests.component';
 import { Storeroom } from './ts/storeroom.component';
 
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
+import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
+import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
 import { IdToRess } from './ts/id-to-ress.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
@@ -19,6 +21,8 @@ export const PrivateComponent = [
   Storeroom,
   
   ConstructionPopup,
+  DivineBonusInfoPopup,
+  DivineBonusListPopup,
   IdToRess,
   MessagesTitle,
   QuestsMissions

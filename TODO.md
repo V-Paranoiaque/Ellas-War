@@ -3,6 +3,10 @@
 * Build/Destruct on key
 * Message when the building is (not) constructed/destruct, too much field
 
+# Divine Bonus
+* Display a message when a bonus is used
+* Use bonus from the list
+
 # Messages
 * Delete all the selected messages
 * Delete messages one by one
