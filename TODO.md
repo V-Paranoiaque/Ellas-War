@@ -1,3 +1,10 @@
+# Attacks
+* Display a message when the list is empty
+* Display the history when no player selected
+* No attack if not enough hostings
+* No attack if not enough resources
+* Search feature
+
 # Buildings
 * Barracks
 * Build/Destruct on key
@@ -19,6 +26,7 @@
 * Some titles and texts are missing
 
 # Quests
+* Add a new quest to discover spies
 * Remove the quest 0.2
 
 # Server

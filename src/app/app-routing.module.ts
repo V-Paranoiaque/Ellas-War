@@ -8,7 +8,7 @@ import { News } from './public/ts/news.component';
 import { PublicHome } from './public/ts/public-home.component';
 
 //Connected
-import { Attack } from './private/ts/attack.component';
+import { Attacks } from './private/ts/attacks.component';
 import { City } from './private/ts/city.component';
 import { Messages } from './private/ts/messages.component';
 import { Options } from './private/ts/options.component';
@@ -28,7 +28,7 @@ routes = [
   
   { path: 'sitemap', component: SiteMap },
   
-  { path: 'attack', component: Attack },
+  { path: 'attacks', component: Attacks },
   { path: 'city', component: City },
   { path: 'messages', component: Messages },
   { path: 'options', component: Options },

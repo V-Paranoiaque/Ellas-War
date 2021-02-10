@@ -25,6 +25,7 @@
   "At each change the cost is increased, it is reset every 6 months.": "A chaque changement le coût augmente, il est réinitialisé tous les 6 mois.",
   "Attack { value } sanctuaries": "Attaquez {{ value }} sanctuaires",
   "Attack 1 sanctuary": "Attaquez 1 sanctuaire",
+  "Attacks": "Attaques",
   "Author": "Auteur",
   
   "Build": "Construire",
@@ -46,6 +47,7 @@
   "Choose a new Username for your account. While you stay level 0, your first modification is free!": "Choisissez un nouveau nom pour votre compte. Tant que vous restez niveau 0 le premier changement est gratuit !",
   "Choose a new Username for your account. It will cost you 1 favor.": "Choisissez un nouveau nom pour votre compte. Cela vous coutera 1 faveur.",
   "Choose a new Username for your account. It will cost you { value } favor(s).": "Choisissez un nouveau nom pour votre compte. Cela vous coutera {{ value }} faveur(s).",
+  "City": "Cité",
   "Close": "Fermer",
   "Construction cost": "Coût de construction",
   "Currently": "Actuellement",

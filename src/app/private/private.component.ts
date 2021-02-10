@@ -1,4 +1,4 @@
-import { Attack } from './ts/attack.component';
+import { Attacks } from './ts/attacks.component';
 import { City } from './ts/city.component';
 import { Messages } from './ts/messages.component';
 import { Options } from './ts/options.component';
@@ -13,7 +13,7 @@ import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
 
 export const PrivateComponent = [
-  Attack,
+  Attacks,
   City,
   Messages,
   Options,
