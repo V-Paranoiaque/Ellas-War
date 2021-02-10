@@ -1,0 +1,87 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ info.name | translate }}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" 
+              aria-label="Close"></button>
+    </div>
+    <div class="modal-body container-fluid">
+      <div class="row">
+        <div class="col-4 offset-4">
+          <img src="assets/img/army/{{info?.code}}.png"
+               title="{{ info?.name | translate }}" 
+               alt="{{info?.name | translate }}" />
+        </div>
+        
+        <div class="col-6">
+          <div *ngIf="info.cost">
+            <strong translate>Commitment</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.cost | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info.cost">
+            <strong translate>Liberation</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.resale | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+          <div *ngIf="info.consumption">
+            <strong translate>Consumption</strong>
+            <strong translate>:</strong>
+            <br/>
+            <span *ngFor="let resource of info.consumption | keyvalue">
+              {{ resource.value }}
+              <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            </span>
+          </div>
+          
+        </div>
+        
+        <div class="col-6">
+          <div>
+            <strong translate>Currently</strong>
+            <strong translate>:</strong>
+            {{ user.getPropertyNb(info.code) }}
+            <span *ngIf="info.nbmax">
+              / {{ info.nbmax }}
+            </span>
+          </div>
+          
+          <div *ngIf="info.rEngagePossible">
+            <strong>{{"Max possible"|translate}}{{":"}}</strong>
+            {{ info.rEngagePossible }}
+          </div>
+          
+          <div class="input-group">
+            <input type="number" placeholder="0" min="0" step="1"
+                   [(ngModel)]="engagenb" class="form-control" >
+            <span class="input-group-addon btn btn-primary"
+                  (click)="armyEngage()" translate>Engage</span>
+          </div>
+          
+          <div class="input-group">
+            <input type="number" placeholder="0" min="0" step="1"
+                   [(ngModel)]="liberatenb" class="form-control" >
+            <span class="input-group-addon btn btn-danger"
+                  (click)="armyLiberate()" translate>Liberate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <div *ngIf="info.code == 'spartan'" translate>
+        The Spartans are warriors without fear or pity. It is a race of fierce and ascetic warriors, capable of sacrificing themselves by patriotism to save your city. Their strength will increase proportionally to your level.
+      </div>
+    </div>
+  </div>
+</div>

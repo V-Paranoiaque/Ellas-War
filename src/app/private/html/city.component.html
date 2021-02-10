@@ -1,5 +1,8 @@
 <common-top-bar active="city"></common-top-bar>
 
+<div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
+  <army-popup [info]="armyInfo"></army-popup>
+</div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <construction-popup [info]="buildingInfo"></construction-popup>
 </div>
@@ -60,14 +63,17 @@
       </div>
     </div>
     
-    <div class="col-xl-6" *ngIf="user.getLevel() >= 1">
+    <div class="col-xl-6"
+         *ngIf="user.getLevel() >= 1 || user.getPropertyNb('spartan') > 0">
       <div class="card">
         <div class="card-header">
           Army
         </div>
         <div class="card-body no-padding">
           <div *ngFor="let army of user.getArmy()"
-               class="frame frame-20">
+               class="frame frame-20"
+               data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+               (click)="selectArmy(army.code)">
             <img src="assets/img/army/{{army.code}}.png"
                  title="{{ army.name | translate }}" 
                  alt="{{army.name | translate }}" />

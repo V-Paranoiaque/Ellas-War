@@ -9,7 +9,8 @@ import { User } from '../../../services/user.service';
 
 export class City {
 
-  @Output() public buildingInfo:any
+  @Output() public armyInfo:any
+            public buildingInfo:any
             public divinBonusSelected:any;
   
   public divineBonus:any;
@@ -34,6 +35,14 @@ export class City {
     }, 0);
   }
   
+  selectArmy(name:string) {
+    this.armyInfo = this.user.info.datas.army[name];
+    this.armyInfo.resale = {};
+    
+    for(let res in this.armyInfo.cost) {
+      this.armyInfo.resale[res] = this.armyInfo.cost[res]*0.6;
+    }
+  }
   selectBuilding(name:string) {
     this.buildingInfo = this.user.info.datas.building[name];
     this.buildingInfo.destruct = {};

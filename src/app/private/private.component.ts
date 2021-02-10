@@ -5,6 +5,7 @@ import { Options } from './ts/options.component';
 import { Quests } from './ts/quests.component';
 import { Storeroom } from './ts/storeroom.component';
 
+import { ArmyPopup } from './ts/army-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
@@ -20,6 +21,7 @@ export const PrivateComponent = [
   Quests,
   Storeroom,
   
+  ArmyPopup,
   ConstructionPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
