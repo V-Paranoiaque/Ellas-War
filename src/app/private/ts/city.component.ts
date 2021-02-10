@@ -19,6 +19,7 @@ export class City {
   constructor(private socket: Socket, public user: User) {
     //We set a default building to avoid errors
     this.buildingInfo = { code: 'mint' };
+    this.armyInfo = { code: 'spartan' };
     this.divineBonusNb = 0;
     this.divineBonus = [];
     this.divinBonusSelected = 0;
