@@ -20,7 +20,7 @@ export class User {
     for(let i in this.info.datas.army) {
       //Only if we have the required level or if we have the unit
       if(this.info.level >= this.info.datas.army[i].lvlmini ||
-         this.info[i] >= 0) {
+         this.info[i] > 0) {
         this.info.datas.army[i].code = i;
         list.push(this.info.datas.army[i]);
       }
