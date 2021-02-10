@@ -168,7 +168,7 @@
   "Title": "Titre",
   "To:": "À :",
   "To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.": "Pour construire vos bâtiments vous aurez besoin de bois. Construisez un total de 6 scieries pour couvrir vos futurs besoins en bois.",
-  
+  "To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.": "Pour protéger votre cité, vous pouvez aussi construire des tours. Elles ont comme avantage sur les unités de ne pas avoir de consomation. cependant elles ne peuvent pas attaquer. Allez dans votr cité et construisez un total de 5 tours.",
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",
   "Use { value } Divine powers": "Utilisez {{ value }} Pouvoirs divins",
