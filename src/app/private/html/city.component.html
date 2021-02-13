@@ -95,7 +95,8 @@
         </div>
         <div class="card-body no-padding">
           <div class="frame frame-20"
-               data-bs-toggle="modal" data-bs-target="#TreasureInfo">
+               data-bs-toggle="modal" data-bs-target="#TreasureInfo"
+               *ngIf="user.getLevel() >= 1 || user.getQuest() >= 12">
             <img src="assets/img/buildings/treasure.png"
                  title="{{ 'Treasure' | translate }}" 
                  alt="{{ 'Treasure' | translate }}" />
