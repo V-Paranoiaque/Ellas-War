@@ -39,6 +39,10 @@ export class Options {
     this.newusername = '';
   }
   
+  reset() {
+    this.socket.emit('reset');
+  }
+  
   getAccountRenameCost() {
     return this.accountRenameCost;
   }
