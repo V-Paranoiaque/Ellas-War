@@ -114,7 +114,7 @@
     
     <span *ngSwitchCase="11">
       <p translate="">To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.</p>
-      <strong translate="">Reward:</strong> 
+      <strong translate="">Reward:</strong>
       20000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       20000 <id-to-ress [ress_id]="'iron'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -122,7 +122,19 @@
         Access to the buildings &gt;&gt;
       </a>
     </span>
+    
+    <span *ngSwitchCase="12">
+      <p translate="">The treasure will allow you to protect your Drachmas, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your Drachmas. Go to City and put 20,000 Drachmas into your treasure.</p>
+      <strong translate="">Reward:</strong>
+      25000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      25000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the treasure &gt;&gt;
+      </a>
+    </span>
               
+    
   </span>
 </span>
 

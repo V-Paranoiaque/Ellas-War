@@ -1,0 +1,89 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" translate>Treasure</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" 
+              aria-label="Close"></button>
+      <br/>
+    </div>
+    <div class="modal-body container-fluid">
+      <div>
+        <strong translate="">Current funds:</strong>
+        
+        <span *ngIf="user.getLevel() > 5"> {{ user.getPropertyNb('treasure') }}/2000000</span>
+        <span *ngIf="user.getLevel() == 5"> {{ user.getPropertyNb('treasure') }}/2000000</span>
+        <span *ngIf="user.getLevel() < 5"> {{ user.getPropertyNb('treasure') }}/{{ (user.getLevel()+1)*200000 }}</span>
+        <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      </div>
+      
+      <div>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td translate="">Amount</td>
+              <td colspan="2">
+                <input type="number" required="required" min="0"
+                       class="form-control" placeholder="0" name="amount"
+                       [(ngModel)]="amount">
+              </td>
+            </tr>
+            <tr>
+              <td translate="">Action</td>
+              <td> 
+                <input type="radio" [checked]="true" 
+                       value="deposit" name="mod"
+                       [(ngModel)]="deposit">
+                <span translate>Depose</span>
+              </td>
+              <td> 
+                <input type="radio" value="pull" name="mod"
+                       [(ngModel)]="deposit">
+                <span translate>Pull</span>
+              </td>
+            </tr>
+            <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
+              <td translate="">Computation</td>
+              <td>
+                <input type="radio" id="computation" checked="checked" 
+                       value="2" [(ngModel)]="computation" name="computation"> 
+                <span translate="">Relative</span>
+              </td>
+              <td> 
+                <input type="radio" value="3" 
+                       [(ngModel)]="computation" name="computation"> 
+                <span translate="">Absolute</span>
+              </td>
+            </tr>
+            <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
+              <td translate="">Tax:</td>
+              <td>
+                <span *ngIf="user.getPropertyNb('bonus_treasure') == 0">
+                  {{15-0.5*user.getLevel()}}%
+                  (<a class="nolink" ui-sref="favors" 
+                     href="/favors">
+                    0% taxes?
+                  </a>)
+                </span>
+                <span *ngIf="user.getPropertyNb('bonus_treasure') > 0">
+                  0%
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <button type="button" class="btn btn-success" translate="" 
+                        (click)="treasureAction()">
+                  Validate
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      The treasure will allow you to shelter your wealth, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your drachmas. The absolute calculation allows you to get exactly the amount you want to remove. During a relative withdrawal you have to deduct taxes from the amount you withdraw.
+    </div>
+  </div>
+</div>

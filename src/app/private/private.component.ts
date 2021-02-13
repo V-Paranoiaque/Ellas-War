@@ -12,6 +12,7 @@ import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component'
 import { IdToRess } from './ts/id-to-ress.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
+import { TreasurePopup } from './ts/treasure-popup.sub-component';
 
 export const PrivateComponent = [
   Attacks,
@@ -27,5 +28,6 @@ export const PrivateComponent = [
   DivineBonusListPopup,
   IdToRess,
   MessagesTitle,
-  QuestsMissions
+  QuestsMissions,
+  TreasurePopup
 ];

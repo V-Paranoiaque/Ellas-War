@@ -32,3 +32,6 @@
 # Server
 * Possiblity to buy/sell everyday
 * Rename Military camp to Barracks
+
+# Treasure
+* History

@@ -6,6 +6,9 @@
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <construction-popup [info]="buildingInfo"></construction-popup>
 </div>
+<div class="modal fade" id="TreasureInfo" tabindex="-1" aria-hidden="true">
+  <treasure-popup></treasure-popup>
+</div>
 
 <div class="modal fade" id="DivineBonusInfo" tabindex="-1" aria-hidden="true">
   <divinebonus-info-popup [divineBonus]="divinBonusSelected"></divinebonus-info-popup>
@@ -90,6 +93,13 @@
           - All - Military - Prod - 
         </div>
         <div class="card-body no-padding">
+          <div class="frame frame-20"
+               data-bs-toggle="modal" data-bs-target="#TreasureInfo">
+            <img src="assets/img/buildings/treasure.png"
+                 title="{{ 'Treasure' | translate }}" 
+                 alt="{{ 'Treasure' | translate }}" />
+          </div>
+          
           <div *ngFor="let building of user.getBuildings()"
                class="frame frame-20"
                data-bs-toggle="modal" data-bs-target="#BuildingInfo"
