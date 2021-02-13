@@ -1,141 +1,139 @@
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 [ngSwitch]="divineBonus.bonus_id" class="modal-title">
-        <span *ngSwitchCase="1">
-          10000 <id-to-ress ress_id="iron"></id-to-ress>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 [ngSwitch]="divineBonus.bonus_id" class="modal-title">
+      <span *ngSwitchCase="1">
+        10000 <id-to-ress ress_id="iron"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="2">
+        10000 <id-to-ress ress_id="wood"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="3">
+        2000 <id-to-ress ress_id="grapes"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="4">
+        2000 <id-to-ress ress_id="stone"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="5">
+        2000 <id-to-ress ress_id="marble"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="6">
+        2000
+        <id-to-ress ress_id="wine"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="7">
+        2000
+        <id-to-ress ress_id="gold"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="8">
+        1
+        <id-to-ress ress_id="favor"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="9">
+        80
+        <span translate>Spartans</span>
+      </span>
+      <span *ngSwitchCase="10" translate>
+        200 units of your third temple
+      </span>
+      <span *ngSwitchCase="11" translate>
+        6 hours of withdrawal without taxes in your treasure
+      </span>
+      <span *ngSwitchCase="12">
+        <span ng-if="user.hermes == 0" translate>
+          You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
         </span>
-        <span *ngSwitchCase="2">
-          10000 <id-to-ress ress_id="wood"></id-to-ress>
+        <span ng-if="user.hermes == 1" translate>
+          You are allowed to sell in the Agora today, even if it's Sunday
         </span>
-        <span *ngSwitchCase="3">
-          2000 <id-to-ress ress_id="grapes"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="4">
-          2000 <id-to-ress ress_id="stone"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="5">
-          2000 <id-to-ress ress_id="marble"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="6">
-          2000
-          <id-to-ress ress_id="wine"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="7">
-          2000
-          <id-to-ress ress_id="gold"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="8">
-          1
-          <id-to-ress ress_id="favor"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="9">
-          80
-          <span translate>Spartans</span>
-        </span>
-        <span *ngSwitchCase="10" translate>
-          200 units of your third temple
-        </span>
-        <span *ngSwitchCase="11" translate>
-          6 hours of withdrawal without taxes in your treasure
-        </span>
-        <span *ngSwitchCase="12">
-          <span ng-if="user.hermes == 0" translate>
-            You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
-          </span>
-          <span ng-if="user.hermes == 1" translate>
-            You are allowed to sell in the Agora today, even if it's Sunday
-          </span>
-        </span>
-        <span *ngSwitchCase="13" translate>
-          2 bonus attacks
-        </span>
-        <span *ngSwitchCase="14">
-          20000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="15">
-          100000
-          <id-to-ress ress_id="iron"></id-to-ress>
-          100000
-          <id-to-ress ress_id="wood"></id-to-ress>
-          100000
-          <id-to-ress ress_id="food"></id-to-ress>
-          100000
-          <id-to-ress ress_id="grapes"></id-to-ress>
-          1000
-          <id-to-ress ress_id="stone"></id-to-ress>
-          1000
-          <id-to-ress ress_id="marble"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="16">
-          500000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="17">
-          1000000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="18">
-          25000
-          <id-to-ress ress_id="iron"></id-to-ress>
-          25000
-          <id-to-ress ress_id="wood"></id-to-ress>
-          25000
-          <id-to-ress ress_id="food"></id-to-ress>
-          25000
-          <id-to-ress ress_id="grapes"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="19">
-          50000
-          <id-to-ress ress_id="iron"></id-to-ress>
-          50000
-          <id-to-ress ress_id="wood"></id-to-ress>
-          50000
-          <id-to-ress ress_id="food"></id-to-ress>
-          50000
-          <id-to-ress ress_id="grapes"></id-to-ress>
-          1000
-          <id-to-ress ress_id="stone"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="20">
-          5000000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="21">
-          10000000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="22">
-          20000000
-          <id-to-ress ress_id="drachma"></id-to-ress>
-        </span>
-        <span *ngSwitchCase="23">
-          10000
-          <id-to-ress ress_id="grapes"></id-to-ress>
-          10000
-          <id-to-ress ress_id="marble"></id-to-ress>
-          2500
-          <id-to-ress ress_id="wine"></id-to-ress>
-          2500
-          <id-to-ress ress_id="gold"></id-to-ress>
-        </span>
-      </h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" 
-              aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <span translate>Currently</span>
-      <span translate>:</span> {{ divineBonus.nb }}
-    </div>
-    
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary"
-              data-bs-dismiss="modal" translate>Close</button>
-      <button type="button" class="btn btn-primary"
-              *ngIf="divineBonus.nb > 0"
-              (click)="divineBonusUse()"
-              translate>Use the Divine Bonus</button>
-    </div>
+      </span>
+      <span *ngSwitchCase="13" translate>
+        2 bonus attacks
+      </span>
+      <span *ngSwitchCase="14">
+        20000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="15">
+        100000
+        <id-to-ress ress_id="iron"></id-to-ress>
+        100000
+        <id-to-ress ress_id="wood"></id-to-ress>
+        100000
+        <id-to-ress ress_id="food"></id-to-ress>
+        100000
+        <id-to-ress ress_id="grapes"></id-to-ress>
+        1000
+        <id-to-ress ress_id="stone"></id-to-ress>
+        1000
+        <id-to-ress ress_id="marble"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="16">
+        500000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="17">
+        1000000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="18">
+        25000
+        <id-to-ress ress_id="iron"></id-to-ress>
+        25000
+        <id-to-ress ress_id="wood"></id-to-ress>
+        25000
+        <id-to-ress ress_id="food"></id-to-ress>
+        25000
+        <id-to-ress ress_id="grapes"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="19">
+        50000
+        <id-to-ress ress_id="iron"></id-to-ress>
+        50000
+        <id-to-ress ress_id="wood"></id-to-ress>
+        50000
+        <id-to-ress ress_id="food"></id-to-ress>
+        50000
+        <id-to-ress ress_id="grapes"></id-to-ress>
+        1000
+        <id-to-ress ress_id="stone"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="20">
+        5000000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="21">
+        10000000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="22">
+        20000000
+        <id-to-ress ress_id="drachma"></id-to-ress>
+      </span>
+      <span *ngSwitchCase="23">
+        10000
+        <id-to-ress ress_id="grapes"></id-to-ress>
+        10000
+        <id-to-ress ress_id="marble"></id-to-ress>
+        2500
+        <id-to-ress ress_id="wine"></id-to-ress>
+        2500
+        <id-to-ress ress_id="gold"></id-to-ress>
+      </span>
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <span translate>Currently</span>
+    <span translate>:</span> {{ divineBonus.nb }}
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button type="button" class="btn btn-primary"
+            *ngIf="divineBonus.nb > 0"
+            (click)="divineBonusUse()"
+            translate>Use the Divine Bonus</button>
   </div>
 </div>

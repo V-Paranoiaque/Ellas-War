@@ -1,21 +1,31 @@
 <common-top-bar active="city"></common-top-bar>
 
 <div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
-  <army-popup [info]="armyInfo"></army-popup>
+  <div class="modal-dialog">
+    <army-popup [info]="armyInfo"></army-popup>
+  </div>
 </div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
-  <construction-popup [info]="buildingInfo"></construction-popup>
+  <div class="modal-dialog">
+    <construction-popup [info]="buildingInfo"></construction-popup>
+  </div>
 </div>
 <div class="modal fade" id="TreasureInfo" tabindex="-1" aria-hidden="true">
-  <treasure-popup></treasure-popup>
+  <div class="modal-dialog">
+    <treasure-popup></treasure-popup>
+  </div>
 </div>
 
 <div class="modal fade" id="DivineBonusInfo" tabindex="-1" aria-hidden="true">
-  <divinebonus-info-popup [divineBonus]="divinBonusSelected">
-  </divinebonus-info-popup>
+  <div class="modal-dialog">
+    <divinebonus-info-popup [divineBonus]="divinBonusSelected">
+    </divinebonus-info-popup>
+  </div>
 </div>
 <div class="modal fade" id="DivineBonusList" tabindex="-1" aria-hidden="true">
-  <divinebonus-list-popup></divinebonus-list-popup>
+  <div class="modal-dialog">
+    <divinebonus-list-popup></divinebonus-list-popup>
+  </div>
 </div>
 
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
