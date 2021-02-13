@@ -31,7 +31,7 @@ import { PrivateComponent } from './private/private.component';
     HttpClientJsonpModule,
     FormsModule, ReactiveFormsModule,
     ClipboardModule,
-    NgxBootstrapIconsModule.pick(allIcons),
+    NgxBootstrapIconsModule.forRoot(allIcons),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
