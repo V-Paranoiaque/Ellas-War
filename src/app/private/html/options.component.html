@@ -71,39 +71,42 @@
   </div>
 </div>
 
-
-<div class="container">
-  <div class="row">
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-body" *ngIf="getAccountRenameCost() == 0" translate>
-          Choose a new Username for your account. While you stay level 0, 
-          your first modification is free!
-        </div>
-        <div class="card-body" *ngIf="getAccountRenameCost() == 1" translate>
-         {{'Choose a new Username for your account. It will cost you 1 favor.'}}
-        </div>
-        <div class="card-body" *ngIf="getAccountRenameCost() > 1">
-         {{'Choose a new Username for your account. It will cost you { value } 
-            favor(s).' | translate: { value: getAccountRenameCost() } }}
-        </div>
-        <div class="card-footer" data-bs-toggle="modal" 
-             data-bs-target="#ChangeUsername" translate>
-          Change your username
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="card">
+          <div class="card-body" *ngIf="getAccountRenameCost() == 0" translate>
+            Choose a new Username for your account. While you stay level 0, 
+            your first modification is free!
+          </div>
+          <div class="card-body" *ngIf="getAccountRenameCost() == 1" translate>
+           {{'Choose a new Username for your account. It will cost you 1 favor.'}}
+          </div>
+          <div class="card-body" *ngIf="getAccountRenameCost() > 1">
+           {{'Choose a new Username for your account. It will cost you { value } 
+              favor(s).' | translate: { value: getAccountRenameCost() } }}
+          </div>
+          <div class="card-footer" data-bs-toggle="modal" 
+               data-bs-target="#ChangeUsername" translate>
+            Change your username
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xl-6">
-      <div class="card">
-        <div class="card-body" translate>
-          Reset your account and start a new adventure.
+      <div class="col-xl-6">
+        <div class="card">
+          <div class="card-body" translate>
+            Reset your account and start a new adventure.
+          </div>
+          <div class="card-footer" data-bs-toggle="modal" 
+               data-bs-target="#ResetAccount" translate>
+            Reinitialize your account
+          </div>
         </div>
-        <div class="card-footer" data-bs-toggle="modal" 
-             data-bs-target="#ResetAccount" translate>
-          Reinitialize your account
-        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<connected-right-menu></connected-right-menu>
 <app-bottom-bar></app-bottom-bar>

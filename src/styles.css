@@ -5,3 +5,7 @@ a {
 .invisible {
   opacity: 0;
 }
+
+.main {
+  float: left;
+}

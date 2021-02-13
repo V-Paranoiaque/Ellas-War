@@ -1,0 +1,9 @@
+div.col-lg-2, div.col-md-2, div.col-sm-3 {
+  float:right;
+}
+
+@media (max-width: 575px) {
+  div.col-xs-0 {
+    display: none;
+  }
+}
