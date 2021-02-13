@@ -30,6 +30,8 @@
   "Author": "Auteur",
   
   "Build": "Construire",
+  "Build a maximum of mints.": "Construisez un maximum d'ateliers monétaires.",
+  "Build a total of 10 towers, this will be your first defense.": "Construisez un total de 10 tours, ce sera votre première défense.",
   "Build a total of 10 wells.": "Construisez un total de 10 puits.",
   "Build a total of 4 mints.": "Construisez un total de 4 ateliers monétaires.",
   "Build a total of { value } iron mines.": "Construisez un total de {{ value }} mines de fer.",
@@ -107,6 +109,10 @@
   "Iron mine": "Mine de fer",
   "Iron mines": "Mines de fer",
   "Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.": "Les mines de fer produisent du fer. Elles vous permettront de produire des drachmes et à armer votre cité.",
+  
+  "Join the Ellas War's Facebook Page. You'll find advice and answers to your questions.": "Rejoignez la page Facebook d'Ellàs War. Vous y trouverez des conseils et des réponses à vos questions.",
+  
+  "Keep an eye on your resources to optimize your production and your defense.": "Gardez vos yeux sur vos ressources pour optimiser votre production et votre défense.",
   
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
   "Login": "Identifiant",
@@ -200,7 +206,9 @@
   "Winery": "Atelier de pressage",
   "Worshiper of the Gods": "Adorateur des Dieux",
   
+  "You can now go level 1. Before doing so, a few tips from an old warrior:": "Vous pouvez passer maintenant niveau 1. Avant de le faire, quelques conseils de la part d'un vieux guerrier :",
   "You don't have enough favors": "Vous n'avez pas assez de faveurs",
   "You will need more Iron for your city.": "Vous allez avoir besoin de plus de fer pour votre cité.",
+  "Your city will need more drachmas to expand, build a total of 10 mints.": "Votre cité aura besoin de plus de drachmes pour se développer, construisez un total de 10 ateliers monétaires.",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères."
 }
