@@ -1,0 +1,1 @@
+* Games have been removed
