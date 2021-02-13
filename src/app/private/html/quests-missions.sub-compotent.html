@@ -3,7 +3,7 @@
 <span [ngSwitch]="user.getLevel()">
   <span *ngSwitchCase="0" [ngSwitch]="user.getQuest()">
     <span *ngSwitchCase="1">
-      <p translate>If you wish to change your username, you can go into the <strong>Options</strong> menu at the top, then <strong>"Username"</strong>. The first change is free as long as you level 0.</p>
+      <p [innerHTML]="'If you wish to change your username, you can go into the <strong>Option</strong> menu at the top, then <strong>Change your username</strong>. The first change is free as long as you level 0.' | translate"></p>
       <a class="btn" [routerLink]="['/options']" translate>
         Change your username &gt;&gt;
       </a>
