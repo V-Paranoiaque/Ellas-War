@@ -9,9 +9,9 @@
     <div>
       <strong translate>Current funds:</strong>
       
-      <span *ngIf="user.getLevel() > 5"> {{ user.getPropertyNb('treasure') }}/2000000</span>
-      <span *ngIf="user.getLevel() == 5"> {{ user.getPropertyNb('treasure') }}/2000000</span>
-      <span *ngIf="user.getLevel() < 5"> {{ user.getPropertyNb('treasure') }}/{{ (user.getLevel()+1)*200000 }}</span>
+      <span *ngIf="user.getLevel() > 5"> {{ user.getPropertyNb('treasure') | number}}</span>
+      <span *ngIf="user.getLevel() == 5"> {{ user.getPropertyNb('treasure') | number}}/2000000</span>
+      <span *ngIf="user.getLevel() < 5"> {{ user.getPropertyNb('treasure') | number}}/{{ (user.getLevel()+1)*200000 }}</span>
       <id-to-ress [ress_id]="'drachma'"></id-to-ress>
     </div>
     
