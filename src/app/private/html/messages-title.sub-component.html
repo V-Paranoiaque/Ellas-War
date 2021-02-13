@@ -1,18 +1,18 @@
 <span [ngSwitch]="msg.msg_type">
-  <span *ngSwitchCase="19" translate="">
+  <span *ngSwitchCase="19" translate>
     <span [ngSwitch]="msg.title.type">
-      <span *ngSwitchCase="1" translate="">Drought on your city</span>
-      <span *ngSwitchCase="2" translate="">Flood on your city</span>
-      <span *ngSwitchCase="3" translate="">Volcanic eruption near your city</span>
-      <span *ngSwitchCase="4" translate="">Earthquake near your city</span>
-      <span *ngSwitchCase="5" translate="">Storm near your city</span>
-      <span *ngSwitchCase="6" translate="">Lightning falls on your city</span>
-      <span *ngSwitchCase="7" translate="">Invasion of insects on your city</span>
-      <span *ngSwitchCase="8" translate="">Hail on your city</span>
-      <span *ngSwitchCase="9" translate="">Snow storm on your city</span>
+      <span *ngSwitchCase="1" translate>Drought on your city</span>
+      <span *ngSwitchCase="2" translate>Flood on your city</span>
+      <span *ngSwitchCase="3" translate>Volcanic eruption near your city</span>
+      <span *ngSwitchCase="4" translate>Earthquake near your city</span>
+      <span *ngSwitchCase="5" translate>Storm near your city</span>
+      <span *ngSwitchCase="6" translate>Lightning falls on your city</span>
+      <span *ngSwitchCase="7" translate>Invasion of insects on your city</span>
+      <span *ngSwitchCase="8" translate>Hail on your city</span>
+      <span *ngSwitchCase="9" translate>Snow storm on your city</span>
     </span>
   </span>
-  <span *ngSwitchCase="23" translate="">You have won the diamond challenge</span>
+  <span *ngSwitchCase="23" translate>You have won the diamond challenge</span>
   <span *ngSwitchDefault>
     <span *ngIf="msg.msg_type > 0">{{ 'Unsupported message type: { value }' | translate: { value: msg.msg_type } }}</span>
     <span *ngIf="msg.msg_type == 0">{{ msg.title }}</span>

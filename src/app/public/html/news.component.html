@@ -1,11 +1,10 @@
 <common-top-bar active="news"></common-top-bar>
 
-<h1 class="text-center" id="newsTitle" translate="">News</h1>
+<h1 class="text-center" id="newsTitle" translate>News</h1>
 
 <div class="container">
   <div class="row">
-    <div class="text-center fw-bold" translate=""
-         *ngIf="getNews().length == 0">
+    <div *ngIf="getNews().length == 0" class="text-center fw-bold" translate>
       <br/>
       There is no news published for the moment
     </div>
@@ -14,9 +13,9 @@
            *ngIf="getNews().length > 0">
       <thead>
         <tr>
-          <th scope="col" translate="">Title</th>
-          <th scope="col" translate="">Author</th>
-          <th scope="col" translate="">Date</th>
+          <th scope="col" translate>Title</th>
+          <th scope="col" translate>Author</th>
+          <th scope="col" translate>Date</th>
         </tr>
       </thead>
       <tbody>

@@ -3,121 +3,121 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-6">
-      <h1 translate="">Missions</h1>
+      <h1 translate>Missions</h1>
       <quests-missions></quests-missions>
     </div>
     <div class="col-xl-6">
-      <h1 translate="">Daily</h1>
+      <h1 translate>Daily</h1>
       
       <div *ngFor="let quest of getMyQuestList()">
         <div [ngSwitch]="quest.quest_type">
           <div *ngSwitchCase="1">
-            <h2 translate="">Strenuous attacker</h2>
+            <h2 translate>Strenuous attacker</h2>
             <div>
               {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
               <a class="btn" [routerLink]="['/attacks']"
-                 translate="">
+                 translate>
                 Access to the attacks &gt;&gt;
               </a>
               <div>{{quest.quest_current}}/{{quest.quest_goal}}</div>
             </div>
           </div>
           <div *ngSwitchCase="2">
-            <h2 translate="">Worshiper of the Gods</h2>
+            <h2 translate>Worshiper of the Gods</h2>
             <div>
               {{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
               <a class="btn" [routerLink]="['/divinepower']"
-                 translate="">
+                 translate>
                 Access to the Divine powers &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="3">
-            <h2 translate="">Precision launcher</h2>
+            <h2 translate>Precision launcher</h2>
             <div>
               {{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
               <a class="btn" [routerLink]="['/javelin']"
-               translate="">
+               translate>
                 Access to the Divine powers &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="4">
-            <h2 translate="">Faithful of the Gods</h2>
+            <h2 translate>Faithful of the Gods</h2>
             <div>
               {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/divinebonus']" translate="">
+              <a class="btn" [routerLink]="['/divinebonus']" translate>
                 Access to the Divine powers &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="5">
-            <h2 translate="">Builder</h2>
+            <h2 translate>Builder</h2>
             <div>
               {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/constructions']" translate="">
+              <a class="btn" [routerLink]="['/constructions']" translate>
                 Access to the Divine powers &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="6">
-            <h2 translate="">Recruiter</h2>
+            <h2 translate>Recruiter</h2>
             <div>
               {{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/constructions']" translate="">
+              <a class="btn" [routerLink]="['/constructions']" translate>
                 Access to the buildings &gt;&gt;
               </a>
-              <a class="btn" [routerLink]="['/army']" translate="">
+              <a class="btn" [routerLink]="['/army']" translate>
                 Access to the army &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="7">
-            <h2 translate="">Monster Hunter</h2>
+            <h2 translate>Monster Hunter</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Attack 1 sanctuary
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -125,20 +125,20 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/sanctuaries']" translate="">
+              <a class="btn" [routerLink]="['/sanctuaries']" translate>
                 Access to the sanctuaries &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="8">
-            <h2 translate="">Monster killer</h2>
+            <h2 translate>Monster killer</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Conquest 1 sanctuary
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -146,20 +146,20 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/sanctuaries']" translate="">
+              <a class="btn" [routerLink]="['/sanctuaries']" translate>
                 Access to the sanctuaries &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="9">
-            <h2 translate="">Great conqueror</h2>
+            <h2 translate>Great conqueror</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Win 1 war
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -167,23 +167,23 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/strategies']" translate="">
+              <a class="btn" [routerLink]="['/strategies']" translate>
                 Access to the strategies &gt;&gt;
               </a>
-              <a class="btn" [routerLink]="['/attackswars']" translate="">
+              <a class="btn" [routerLink]="['/attackswars']" translate>
                 Access to the attacks &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="10">
-            <h2 translate="">Honorary Warrior</h2>
+            <h2 translate>Honorary Warrior</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Win the Honnor challenge
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -191,23 +191,23 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/attacks']" translate="">
+              <a class="btn" [routerLink]="['/attacks']" translate>
                 Access to the attacks &gt;&gt;
               </a>
-              <a class="btn" [routerLink]="['/honnor']" translate="">
+              <a class="btn" [routerLink]="['/honnor']" translate>
                 Access to the ranking &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="11">
-            <h2 translate="">Diamond thief</h2>
+            <h2 translate>Diamond thief</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Take the Diamond
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -215,23 +215,23 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/attacks']" translate="">
+              <a class="btn" [routerLink]="['/attacks']" translate>
                 Access to the attacks &gt;&gt;
               </a>
-              <a class="btn" [routerLink]="['/diamond']" translate="">
+              <a class="btn" [routerLink]="['/diamond']" translate>
                 Access to the diamond &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="12">
-            <h2 translate="">Diamond Keeper</h2>
+            <h2 translate>Diamond Keeper</h2>
             <div>
-              <span *ngIf="quest.quest_goal == 1" translate="">
+              <span *ngIf="quest.quest_goal == 1" translate>
                 Win the Diamond challenge
               </span>
               <span *ngIf="quest.quest_goal > 1">
@@ -239,86 +239,86 @@
               </span>
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/attacks']" translate="">
+              <a class="btn" [routerLink]="['/attacks']" translate>
                 Access to the attacks &gt;&gt;
               </a>
-              <a class="btn" [routerLink]="['/diamond']" translate="">
+              <a class="btn" [routerLink]="['/diamond']" translate>
                 Access to the diamond &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="13">
-            <h2 translate="">Future millionaire</h2>
+            <h2 translate>Future millionaire</h2>
             <div>
               {{ 'Buy { value } lotto tickets' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/lotto']" translate="">
+              <a class="btn" [routerLink]="['/lotto']" translate>
                 Access to the lotto &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="14">
-            <h2 translate="">Food of the Gods</h2>
+            <h2 translate>Food of the Gods</h2>
             <div>
               {{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/divinepower']" translate="">
+              <a class="btn" [routerLink]="['/divinepower']" translate>
                 Access to the Divine powers &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="15">
-            <h2 translate="">Tickler</h2>
+            <h2 translate>Tickler</h2>
             <div>
               {{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/tickets']" translate="">
+              <a class="btn" [routerLink]="['/tickets']" translate>
                 Access to the tickets &gt;&gt;
               </a>
             </div>
           </div>
           <div *ngSwitchCase="16">
-            <h2 translate="">Scraper winner</h2>
+            <h2 translate>Scraper winner</h2>
             <div>
               {{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}
             </div>
             <div>
-              <strong translate="">Reward:</strong>
+              <strong translate>Reward:</strong>
               {{ quest.reward_quantity }}
               <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
             </div>
             <div *ngIf="quest.quest_validated == 0">
-              <a class="btn" [routerLink]="['/tickets']" translate="">
+              <a class="btn" [routerLink]="['/tickets']" translate>
                 Access to the tickets &gt;&gt;
               </a>
             </div>
           </div>
         </div>
         <div>{{quest.quest_current}}/{{quest.quest_goal}}</div>
-        <div *ngIf="quest.quest_validated == 1" (click)="myQuestValidate(quest.quest_id)" translate="">
+        <div *ngIf="quest.quest_validated == 1" (click)="myQuestValidate(quest.quest_id)" translate>
           Validate
         </div>
       </div>

@@ -4,7 +4,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate="">Set all messages as read</h5>
+        <h5 class="modal-title" translate>Set all messages as read</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 aria-label="Close"></button>
       </div>
@@ -21,7 +21,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate="">
+        <h5 class="modal-title" translate>
           Delete all the selected messages
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
@@ -83,7 +83,7 @@
         <span class="input-group-text" role="button" (click)="setPage(currentPage, -1)">&lt;</span>
         <select class="form-control" (change)="pageLoad($event)" [(ngModel)]="currentPage">
           <option *ngFor="let item of [].constructor(getMsgPageNb()); let i = index"
-                  value="{{ i +1 }}" translate="">Page {{ i +1 }}</option>
+                  value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
         </select>
         <span class="input-group-text" role="button" (click)="setPage(currentPage, 1)">&gt;</span>
         <span class="input-group-text" role="button" (click)="setPage(getMsgPageNb())">&gt;&gt;</span>
@@ -103,7 +103,7 @@
         </button>
       </h2>
       <div *ngIf="getCurrentMsg().msg_shared == 1" class="text-center">
-        <strong translate="">Share link:</strong>
+        <strong translate>Share link:</strong>
         {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
         <span class="badge bg-primary">
           <i-bs [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
@@ -117,12 +117,12 @@
           <textarea class="form-control" placeholder="{{'Message'|translate}}"
                     [(ngModel)]="answerText"></textarea>
           <span class="input-group-addon btn btn-primary"
-                (click)="answer()" translate="">Send</span>
+                (click)="answer()" translate>Send</span>
         </div>
         <div *ngFor="let msg of getCurrentMsg().msg" class="msgContent">
           {{ msg.content }}
           <div class="text-end fw-lighter">
-            <strong translate="">{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
+            <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
           </div>
         </div>
       </div>
@@ -135,7 +135,7 @@
       </span>
       
       <div class="input-group">
-        <span class="input-group-text" translate="">To: </span>
+        <span class="input-group-text" translate>To: </span>
         <input type="text" class="form-control" aria-label="Player" 
                placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
                (keydown.enter)="addDest(msgToUser)" >
@@ -152,7 +152,7 @@
         <textarea class="form-control" placeholder="{{'Message'|translate}}"
                   [(ngModel)]="msgText"></textarea>
         <span class="input-group-addon btn btn-primary" 
-              role="button" (click)="send()" translate="">Send</span>
+              role="button" (click)="send()" translate>Send</span>
       </div>
     </div>
   </div>

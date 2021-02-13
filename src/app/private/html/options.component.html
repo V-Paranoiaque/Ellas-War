@@ -5,35 +5,35 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate="">Change your username</h5>
+        <h5 class="modal-title" translate>Change your username</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-danger" role="alert" *ngIf="getRenameError() > 0">
           <div [ngSwitch]="getRenameError()">
-            <div *ngSwitchCase="1" translate="">
+            <div *ngSwitchCase="1" translate>
               Your username must be at least 6 characters.
             </div>
-            <div *ngSwitchCase="2" translate="">
+            <div *ngSwitchCase="2" translate>
               This username is already used
             </div>
-            <div *ngSwitchCase="3" translate="">
+            <div *ngSwitchCase="3" translate>
               Username modified successfully
             </div>
-            <div *ngSwitchCase="4" translate="">
+            <div *ngSwitchCase="4" translate>
               You don't have enough favors
             </div>
           </div>
         </div>
-        <div translate="">At each change the cost is increased, 
+        <div translate>At each change the cost is increased, 
                           it is reset every 6 months.</div>
         <div>
-          <strong translate="">Cost:</strong> {{ getAccountRenameCost() }} <id-to-ress [ress_id]="10"></id-to-ress>
+          <strong translate>Cost:</strong> {{ getAccountRenameCost() }} <id-to-ress [ress_id]="10"></id-to-ress>
         </div>
         
         <div *ngIf="user.getLevel() == 0"
-             translate="">From level 1 starting cost passes to one Favor</div>
+             translate>From level 1 starting cost passes to one Favor</div>
         
         <div>
           <input type="text" class="form-control"  [(ngModel)]="newusername" 

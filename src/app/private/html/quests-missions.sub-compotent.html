@@ -1,17 +1,17 @@
-<strong translate="">Missions</strong><strong translate="">:</strong> {{ user.getQuest() }}/{{ user.getQuestMax() }}
+<strong translate>Missions</strong><strong translate>:</strong> {{ user.getQuest() }}/{{ user.getQuestMax() }}
 
 <span [ngSwitch]="user.getLevel()">
   <span *ngSwitchCase="0" [ngSwitch]="user.getQuest()">
     <span *ngSwitchCase="1">
-      <p translate="">If you wish to change your username, you can go into the <strong>Options</strong> menu at the top, then <strong>"Username"</strong>. The first change is free as long as you level 0.</p>
-      <a class="btn" [routerLink]="['/options']" translate="">
+      <p translate>If you wish to change your username, you can go into the <strong>Options</strong> menu at the top, then <strong>"Username"</strong>. The first change is free as long as you level 0.</p>
+      <a class="btn" [routerLink]="['/options']" translate>
         Change your username &gt;&gt;
       </a>
     </span>
     <span *ngSwitchCase="2">
-      <p translate="">Did you show it? You have a new message.</p> 
-      <p translate="">Read it and you will be able to go to the next mission.</p>
-      <strong translate="">Reward:</strong> 
+      <p translate>Did you show it? You have a new message.</p> 
+      <p translate>Read it and you will be able to go to the next mission.</p>
+      <strong translate>Reward:</strong> 
       5000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       10000 <id-to-ress [ress_id]="'food'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -20,9 +20,9 @@
       </a>
     </span>
     <span *ngSwitchCase="3">
-      <p translate="">Mints produce Drachmas. Through them you can construct buildings and raise armies.</p>
-      <p translate="">Build a total of 4 mints.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>Mints produce Drachmas. Through them you can construct buildings and raise armies.</p>
+      <p translate>Build a total of 4 mints.</p>
+      <strong translate>Reward:</strong>
       5000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       5000 <id-to-ress [ress_id]="'water'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -32,9 +32,9 @@
     </span>
     
     <span *ngSwitchCase="4">
-      <p translate="">Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.</p>
+      <p translate>Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.</p>
       <p>{{'Build a total of { value } iron mines.'| translate: { value: 4} }}</p>
-      <strong translate="">Reward:</strong>
+      <strong translate>Reward:</strong>
       4000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       2000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -44,9 +44,9 @@
     </span>
     
     <span *ngSwitchCase="5">
-      <p translate="">Water is used by your buildings and your army.</p>
-      <p translate="">Build a total of 10 wells.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>Water is used by your buildings and your army.</p>
+      <p translate>Build a total of 10 wells.</p>
+      <strong translate>Reward:</strong>
       5000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
          [routerLink]="['/city']" translate>
@@ -55,8 +55,8 @@
     </span>
     
     <span *ngSwitchCase="6">
-      <p translate="">To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.</p>
+      <strong translate>Reward:</strong>
       8000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       5000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -66,9 +66,9 @@
     </span>
     
     <span *ngSwitchCase="7">
-      <p translate="">You will need more Iron for your city.</p> 
+      <p translate>You will need more Iron for your city.</p> 
       <p>{{'Build a total of { value } iron mines.'| translate: { value: 10} }}</p>
-      <strong translate="">Reward:</strong>
+      <strong translate>Reward:</strong>
       10000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       10000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -78,9 +78,9 @@
     </span>
     
     <span *ngSwitchCase="8">
-      <p translate="">The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.</p>
-      <p translate="">Go to City and validate a Divine Bonus to get spartans.</p>
-      <strong translate="">Reward:</strong> 
+      <p translate>The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.</p>
+      <p translate>Go to City and validate a Divine Bonus to get spartans.</p>
+      <strong translate>Reward:</strong> 
       10000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       10000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -90,8 +90,8 @@
     </span>
     
     <span *ngSwitchCase="9">
-      <p translate="">I offered to you my terrible Spartans, go to the attack page and engage the fight against our common enemy, the Persian city of Hagmatana.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>I offered to you my terrible Spartans, go to the attack page and engage the fight against our common enemy, the Persian city of Hagmatana.</p>
+      <strong translate>Reward:</strong>
       4000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       10000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       
@@ -102,8 +102,8 @@
     </span>
     
     <span *ngSwitchCase="10">
-      <p translate="">Go to City, and liberate the Spartans. You can again engage them if you build the temple of Ares, level 6.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>Go to City, and liberate the Spartans. You can again engage them if you build the temple of Ares, level 6.</p>
+      <strong translate>Reward:</strong>
       20000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       20000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -113,8 +113,8 @@
     </span>
     
     <span *ngSwitchCase="11">
-      <p translate="">To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.</p>
+      <strong translate>Reward:</strong>
       20000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       20000 <id-to-ress [ress_id]="'iron'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -124,8 +124,8 @@
     </span>
     
     <span *ngSwitchCase="12">
-      <p translate="">The treasure will allow you to protect your Drachmas, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your Drachmas. Go to City and put 20,000 Drachmas into your treasure.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>The treasure will allow you to protect your Drachmas, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your Drachmas. Go to City and put 20,000 Drachmas into your treasure.</p>
+      <strong translate>Reward:</strong>
       25000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       25000 <id-to-ress [ress_id]="'wood'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -135,8 +135,8 @@
     </span>
     
     <span *ngSwitchCase="13">
-      <p translate="">Your city will need more drachmas to expand, build a total of 10 mints.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>Your city will need more drachmas to expand, build a total of 10 mints.</p>
+      <strong translate>Reward:</strong>
       25000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
          [routerLink]="['/city']" translate>
@@ -145,8 +145,8 @@
     </span>
     
     <span *ngSwitchCase="14">
-      <p translate="">Build a total of 10 towers, this will be your first defense.</p>
-      <strong translate="">Reward:</strong>
+      <p translate>Build a total of 10 towers, this will be your first defense.</p>
+      <strong translate>Reward:</strong>
       25000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
          [routerLink]="['/city']" translate>
@@ -155,17 +155,17 @@
     </span>
     
     <div *ngSwitchCase="15">
-      <span translate="">You can now go level 1. Before doing so, a few tips from an old warrior:</span>
-      <br/>- <span translate="">Build a maximum of mints.</span>
-      <br/>- <span translate="">Keep an eye on your resources to optimize your production and your defense.</span>
-      <br/>- <span translate="">Join the Ellas War's Facebook Page. You'll find advice and answers to your questions.</span>
+      <span translate>You can now go level 1. Before doing so, a few tips from an old warrior:</span>
+      <br/>- <span translate>Build a maximum of mints.</span>
+      <br/>- <span translate>Keep an eye on your resources to optimize your production and your defense.</span>
+      <br/>- <span translate>Join the Ellas War's Facebook Page. You'll find advice and answers to your questions.</span>
       <br/>
-      <strong translate="">Reward:</strong>
+      <strong translate>Reward:</strong>
       50000 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
     </div>
   </span>
 </span>
 
 <div *ngIf="user.getQuestValidate() == 1">
-  <button class="btn" (click)="questValidate()" translate="">Validate</button>
+  <button class="btn" (click)="questValidate()" translate>Validate</button>
 </div>
