@@ -29,7 +29,7 @@
           <div class="card-body">
             <div *ngIf="user.getLevel() < 10">
               <a [routerLink]="['/quests']">
-                <strong translate>Missions:</strong> 
+                <strong translate>Missions</strong><strong translate>:</strong> 
                 {{ user.getQuest() }}/{{ user.getQuestMax() }}
               </a>
             </div>
