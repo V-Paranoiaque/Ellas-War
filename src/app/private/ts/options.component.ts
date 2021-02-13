@@ -14,7 +14,12 @@ export class Options {
   public newusername: string;
   
   constructor(private socket: Socket, public user: User) {
-    this.accountRenameCost = 0;
+    if(user.getLevel() >= 1) {
+      this.accountRenameCost = 1;
+    }
+    else {
+      this.accountRenameCost = 0;
+    }
     this.renameError = 0;
     this.newusername = '';
     
