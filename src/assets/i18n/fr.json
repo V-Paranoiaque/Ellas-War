@@ -62,6 +62,7 @@
   
   "Date": "Date",
   "Daily": "Journalière",
+  "Defeat against { value }": "Défaite contre {{ value }}",
   "Delete all the selected messages": "Supprimer tous les messages séléctionnés",
   "Depose": "Déposer",
   "Destruct": "Détruire",
@@ -195,6 +196,7 @@
   "Username modified successfully": "Nom modifié avec succès",
   
   "Validate": "Valider",
+  "Victory against { value }": "Victoire contre {{ value }}",
   "Volcanic eruption near your city": "Éruption volcanique près de votre cité",
   
   "Warning, in case of confirmation your account will be reset definitively. This action can not be undone.": "Attention en cas de confirmation votre compte sera remis à zéro de façon définitive. Cette action ne peut etre annulée.",
@@ -215,6 +217,8 @@
   "Winery": "Atelier de pressage",
   "Worshiper of the Gods": "Adorateur des Dieux",
   
+  "Your city has resisted against { value }": "Votre cité a résistée contre {{ value }}",
+  "Your city was sacked by { value }": "Votre cité a été pillée par {{ value }}",
   "You can now go level 1. Before doing so, a few tips from an old warrior:": "Vous pouvez passer maintenant niveau 1. Avant de le faire, quelques conseils de la part d'un vieux guerrier :",
   "You don't have enough favors": "Vous n'avez pas assez de faveurs",
   "You will need more Iron for your city.": "Vous allez avoir besoin de plus de fer pour votre cité.",

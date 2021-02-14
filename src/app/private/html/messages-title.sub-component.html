@@ -1,4 +1,13 @@
 <span [ngSwitch]="msg.msg_type">
+  <div *ngSwitchCase="1">
+  <div [ngSwitch]="msg.title.winer">
+    <div *ngSwitchCase="1">{{ 'Victory against { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchCase="2">{{ 'Defeat against { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchCase="3">{{ 'Your city was sacked by { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchCase="4">{{ 'Your city has resisted against { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchDefault>{{ msg.title.winer }}</div>
+  </div>
+  </div>
   <span *ngSwitchCase="19" translate>
     <span [ngSwitch]="msg.title.type">
       <span *ngSwitchCase="1" translate>Drought on your city</span>
