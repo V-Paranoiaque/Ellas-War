@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class Options {
   
   public newusername: string;
   
-  constructor(private socket: Socket, public user: User) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     if(user.getLevel() >= 1) {
       this.accountRenameCost = 1;
     }

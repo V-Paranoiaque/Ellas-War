@@ -18,7 +18,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.cost | keyvalue">
-            {{ resource.value }}
+            {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
             <id-to-ress [ress_id]="resource.key"></id-to-ress>
           </span>
         </div>
@@ -28,7 +28,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.resale | keyvalue">
-            {{ resource.value }}
+            {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
             <id-to-ress [ress_id]="resource.key"></id-to-ress>
           </span>
         </div>
@@ -38,7 +38,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.consumption | keyvalue">
-            {{ resource.value }}
+            {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
             <id-to-ress [ress_id]="resource.key"></id-to-ress>
           </span>
         </div>
@@ -49,15 +49,15 @@
         <div>
           <strong translate>Currently</strong>
           <strong translate>:</strong>
-          {{ user.getPropertyNb(info.code) }}
+          {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
           <span *ngIf="info.nbmax">
-            / {{ info.nbmax }}
+            / {{ info.nbmax | number:'': this.translate.currentLang }}
           </span>
         </div>
         
         <div *ngIf="info.rEngagePossible">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
-          {{ info.rEngagePossible }}
+          {{ info.rEngagePossible | number:'': this.translate.currentLang }}
         </div>
         
         <div class="input-group">

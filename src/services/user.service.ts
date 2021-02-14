@@ -6,7 +6,10 @@ export class User {
       'id': 0,
       'mstatus': 0,
       'level': 0,
-      'datas': {}
+      'datas': {},
+      
+      'army': {},
+      'building': {}
     }
   }
   

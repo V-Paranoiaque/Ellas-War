@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class DivineBonusInfoPopup {
   @Input() divineBonus: any;
   
   
-  constructor(private socket: Socket) {
+  constructor(private socket: Socket, public translate: TranslateService) {
   
   }
   

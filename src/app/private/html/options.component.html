@@ -29,7 +29,7 @@
         <div translate>At each change the cost is increased, 
                           it is reset every 6 months.</div>
         <div>
-          <strong translate>Cost:</strong> {{ getAccountRenameCost() }} <id-to-ress [ress_id]="10"></id-to-ress>
+          <strong translate>Cost:</strong> {{ getAccountRenameCost() | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="10"></id-to-ress>
         </div>
         
         <div *ngIf="user.getLevel() == 0"

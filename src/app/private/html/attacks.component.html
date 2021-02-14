@@ -16,14 +16,14 @@
               </span>
             </td>
             <td>
-              {{player.victory}}
+              {{player.victory | number:'': this.translate.currentLang}}
             </td>
             <td *ngIf="user.getDatas() && user.getDatas().attack && 
                        user.getLevel() >= user.getDatas().attack.level_xp_min">
-              {{player.xp}}
+              {{player.xp | number:'': this.translate.currentLang}}
             </td>
             <td>
-              {{ player.field }}
+              {{ player.field | number:'': this.translate.currentLang}}
             </td>
           <td>
             Spy - Observe - Fury - Lightning - 

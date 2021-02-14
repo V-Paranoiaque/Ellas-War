@@ -1,5 +1,6 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output  } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class City {
   public divineBonus:any;
   public divineBonusNb:number;
 
-  constructor(private socket: Socket, public user: User) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     //We set a default building to avoid errors
     this.buildingInfo = { code: 'mint' };
     this.armyInfo = { code: 'spartan' };

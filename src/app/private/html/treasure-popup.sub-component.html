@@ -9,9 +9,9 @@
     <div>
       <strong translate>Current funds:</strong>
       
-      <span *ngIf="user.getLevel() > 5"> {{ user.getPropertyNb('treasure') | number}}</span>
-      <span *ngIf="user.getLevel() == 5"> {{ user.getPropertyNb('treasure') | number}}/2000000</span>
-      <span *ngIf="user.getLevel() < 5"> {{ user.getPropertyNb('treasure') | number}}/{{ (user.getLevel()+1)*200000 }}</span>
+      <span *ngIf="user.getLevel() > 5"> {{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}</span>
+      <span *ngIf="user.getLevel() == 5"> {{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ 2000000 | number:'': this.translate.currentLang }}</span>
+      <span *ngIf="user.getLevel() < 5"> {{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ (user.getLevel()+1)*200000 | number:'': this.translate.currentLang }}</span>
       <id-to-ress [ress_id]="'drachma'"></id-to-ress>
     </div>
     
@@ -57,7 +57,7 @@
             <td translate>Tax:</td>
             <td>
               <span *ngIf="user.getPropertyNb('bonus_treasure') == 0">
-                {{15-0.5*user.getLevel()}}%
+                {{15-0.5*user.getLevel() | number:'': this.translate.currentLang }}%
                 (<a class="nolink" ui-sref="favors" 
                    href="/favors">
                   0% taxes?

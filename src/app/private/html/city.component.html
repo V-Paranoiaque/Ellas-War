@@ -94,7 +94,7 @@
               <img src="assets/img/army/{{army.code}}.png"
                    title="{{ army.name | translate }}" 
                    alt="{{army.name | translate }}" />
-              <div>{{ user.getPropertyNb(army.code) }}</div>
+              <div>{{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}</div>
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@
               <img src="assets/img/buildings/{{building.code}}.png"
                    title="{{ building.name | translate }}" 
                    alt="{{building.name | translate }}" />
-              <div>{{ user.getPropertyNb(building.code) }}</div>
+              <div>{{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}</div>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class Attacks {
   public targetProfile:any;
   public targetPossible:any;
   
-  constructor(private socket: Socket, public user: User) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.attackPage = 1;
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;

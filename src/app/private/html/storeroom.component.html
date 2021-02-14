@@ -42,14 +42,14 @@
                       </button>
                     </td>
                     <td>
-                      <span *ngIf="trade.remaining > 0">{{trade.remaining}}</span>
-                      <span *ngIf="trade.remaining == 0">{{trade.mremaining}}</span>
+                      <span *ngIf="trade.remaining > 0">{{trade.remaining | number:'': this.translate.currentLang }}</span>
+                      <span *ngIf="trade.remaining == 0">{{trade.mremaining | number:'': this.translate.currentLang }}</span>
                       &nbsp;
                       <id-to-ress [ress_id]="trade.resource_id"></id-to-ress>
                     </td>
                     <td>
-                      <span *ngIf="trade.remaining > 0">{{trade.rate}}</span>
-                      <span *ngIf="trade.remaining == 0">{{trade.mrate}}</span>
+                      <span *ngIf="trade.remaining > 0">{{trade.rate | number:'': this.translate.currentLang }}</span>
+                      <span *ngIf="trade.remaining == 0">{{trade.mrate | number:'': this.translate.currentLang }}</span>
                     </td>
                     <td>
                       <input type="number" class="form-control"
@@ -93,9 +93,9 @@
                 <tr *ngFor="let batch of getStoreroomStats();let id=index;">
                   <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
                     <td><id-to-ress [ress_id]="id"></id-to-ress></td>
-                    <td>{{batch.rate}}</td>
-                    <td>{{batch.quantity}}</td>
-                    <td>{{batch.solded}}</td>
+                    <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
+                    <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
+                    <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
                   </ng-container>
                 </tr>
               </tbody>

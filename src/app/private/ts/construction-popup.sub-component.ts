@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class ConstructionPopup {
   public rDestructNb:any;
   public errorBuilding:number;
   
-  constructor(private socket: Socket, public user: User) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.buildnb = '';
     this.destructnb = '';
     this.errorBuilding = 0;

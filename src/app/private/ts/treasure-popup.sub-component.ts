@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class TreasurePopup {
   public deposit:any;
   public computation:any;
   
-  constructor(private socket: Socket, public user: User) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.amount = '';
     
     setTimeout(() => {

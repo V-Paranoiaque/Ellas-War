@@ -70,21 +70,21 @@
         <div>
           <strong translate>Currently</strong>
           <strong translate>:</strong>
-          {{ user.getPropertyNb(info.code) }}
+          {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
           <span *ngIf="info.nbmax">
-            / {{ info.nbmax }}
+            / {{ info.nbmax | number:'': this.translate.currentLang }}
           </span>
         </div>
         
         <div>
           <strong translate>Field</strong>
           <strong translate>:</strong>
-          {{ info?.field }}
+          {{ info?.field | number:'': this.translate.currentLang }}
         </div>
         
         <div *ngIf="info.rBuildPossible">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
-          {{ info.rBuildPossible }}
+          {{ info.rBuildPossible | number:'': this.translate.currentLang }}
         </div>
         
         <div class="input-group">
@@ -98,7 +98,7 @@
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="destructnb" class="form-control" >
           <span class="input-group-addon btn btn-danger"
-                (click)="buildingDestruct" translate>Destruct</span>
+                (click)="buildingDestruct()" translate>Destruct</span>
         </div>
       </div>
     </div>
