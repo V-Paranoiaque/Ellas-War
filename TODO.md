@@ -31,7 +31,6 @@
 * Remove the quest 0.2
 
 # Server
-* Possiblity to buy/sell everyday
 
 # Treasure
 * History
