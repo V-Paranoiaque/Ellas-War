@@ -25,8 +25,13 @@ export class City {
     this.divinBonusSelected = 0;
     
     this.socket.socket.on('divineBonus', (data:any) => {
-      this.divineBonus   = data.list;
       this.divineBonusNb = data.nb;
+      if(this.divineBonusNb > 0) {
+        this.divineBonus   = data.list;
+      }
+      else {
+        this.divineBonus = [];
+      }
     });
   }
   
