@@ -23,7 +23,7 @@
             <td colspan="2">
               <input type="number" required="required" min="0"
                      class="form-control" placeholder="0" name="amount"
-                     [(ngModel)]="amount">
+                     [(ngModel)]="amount" (keydown.enter)="treasureAction()">
             </td>
           </tr>
           <tr>
