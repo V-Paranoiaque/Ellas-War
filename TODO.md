@@ -1,3 +1,6 @@
+# Army
+* Format numbers
+
 # Attacks
 * Display a message when the list is empty
 * Display the history when no player selected
@@ -8,6 +11,7 @@
 # Buildings
 * Barracks
 * Build/Destruct on key
+* Format numbers
 * Message when the building is (not) constructed/destruct, too much field
 
 # Divine Bonus
