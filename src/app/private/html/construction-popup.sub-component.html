@@ -89,14 +89,16 @@
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="buildnb" class="form-control" >
+                 [(ngModel)]="buildnb" class="form-control"
+                 (keydown.enter)="buildingBuild()">
           <span class="input-group-addon btn btn-primary"
                 (click)="buildingBuild()" translate>Build</span>
         </div>
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="destructnb" class="form-control" >
+                 [(ngModel)]="destructnb" class="form-control"
+                 (keydown.enter)="buildingDestruct()">
           <span class="input-group-addon btn btn-danger"
                 (click)="buildingDestruct()" translate>Destruct</span>
         </div>

@@ -9,7 +9,6 @@
 * Search feature
 
 # Buildings
-* Build/Destruct on key
 * Format numbers
 * Message when the building is (not) constructed/destruct, too much field
 

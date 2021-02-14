@@ -62,14 +62,16 @@
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="engagenb" class="form-control" >
+                 [(ngModel)]="engagenb" class="form-control"
+                 (keydown.enter)="armyEngage()">
           <span class="input-group-addon btn btn-primary"
                 (click)="armyEngage()" translate>Engage</span>
         </div>
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="liberatenb" class="form-control" >
+                 [(ngModel)]="liberatenb" class="form-control"
+                 (keydown.enter)="armyLiberate()">
           <span class="input-group-addon btn btn-danger"
                 (click)="armyLiberate()" translate>Liberate</span>
         </div>
