@@ -9,7 +9,6 @@
 * Search feature
 
 # Buildings
-* Barracks
 * Build/Destruct on key
 * Format numbers
 * Message when the building is (not) constructed/destruct, too much field
@@ -34,7 +33,6 @@
 
 # Server
 * Possiblity to buy/sell everyday
-* Rename Military camp to Barracks
 
 # Treasure
 * History
