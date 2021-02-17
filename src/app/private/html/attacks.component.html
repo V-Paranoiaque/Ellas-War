@@ -29,10 +29,14 @@
             </td>
           <td>
             
-            <ic-icon [icon]="fistRaised"></ic-icon>
-            <ic-icon [icon]="eyeIcon"></ic-icon>
-            <ic-icon [icon]="fireIcon"></ic-icon>
-            <ic-icon [icon]="boltIcon"></ic-icon>
+            <ic-icon [icon]="fistRaised"
+                     *ngIf="user.getPropertyNb('apollo') == 0"></ic-icon>
+            <ic-icon [icon]="eyeIcon"
+                     *ngIf="user.getPropertyNb('apollo') == 1"></ic-icon>
+            <ic-icon [icon]="fireIcon"
+                     *ngIf="user.getPropertyNb('demeter') == 1"></ic-icon>
+            <ic-icon [icon]="boltIcon"
+                     *ngIf="user.getPropertyNb('zeus') == 1"></ic-icon>
             
             
             <button class="btn btn-outline-primary"
