@@ -11,7 +11,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
+import { IconModule } from '@visurel/iconify-angular';
+
 
 import { MenuComponent } from './menu/menu.component';
 import { PublicComponent } from './public/public.component';
@@ -31,7 +32,7 @@ import { PrivateComponent } from './private/private.component';
     HttpClientJsonpModule,
     FormsModule, ReactiveFormsModule,
     ClipboardModule,
-    NgxBootstrapIconsModule.forRoot(allIcons),
+    IconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

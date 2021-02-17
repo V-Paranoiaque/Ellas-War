@@ -58,6 +58,15 @@ export class User {
     return this.info.level;
   }
   
+  getProperty(name:string) {
+    if(this.info[name]) {
+      return this.info[name];
+    }
+    else {
+      return '';
+    }
+  }
+  
   getPropertyNb(name:string) {
     if(this.info[name]) {
       return this.info[name];

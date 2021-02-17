@@ -28,6 +28,7 @@
 
 # Quests
 * Add a new quest to discover spies
+* Display the defense for the quest 1.11
 * Remove the quest 0.2
 
 # Server

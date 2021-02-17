@@ -4,6 +4,13 @@ import { Socket } from '../../../services/socketio.service';
 
 import { environment } from './../../../environments/environment';
 
+import brushIcon from '@iconify/icons-bi/brush';
+import envelopeFill from '@iconify/icons-bi/envelope-fill';
+import plusIcon from '@iconify/icons-bi/plus';
+import trash2Icon from '@iconify/icons-bi/trash2';
+import trashIcon from '@iconify/icons-bi/trash';
+import xIcon from '@iconify/icons-bi/x';
+
 @Component({
   templateUrl: '../html/messages.component.html',
   styleUrls: ['../css/messages.component.css']
@@ -22,6 +29,14 @@ export class Messages {
   private currentMsg: any;
   private deleteMode: number;
   private destList: any;
+  
+  //Icons
+  brushIcon    = brushIcon;
+  envelopeFill = envelopeFill;
+  plusIcon     = plusIcon;
+  trash2Icon   = trash2Icon;
+  trashIcon    = trashIcon;
+  xIcon        = xIcon;
   
   constructor(private http: HttpClient, private socket: Socket) {
     this.answerText = '';

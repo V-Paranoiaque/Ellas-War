@@ -38,7 +38,8 @@
                                             'bg-green': (trade.mrate > 0 && trade.mrate < trade.rate) || trade.remaining == 0}">
                     <td>
                       <button class="btn btn-primary" *ngIf="trade.remaining > 0">
-                        <i-bs name="plus" title="{{'Select all the resources'|translate}}"></i-bs>
+                        <ic-icon title="{{'Select all the resources'|translate}}"
+                                 [icon]="plusIcon"></ic-icon>
                       </button>
                     </td>
                     <td>
@@ -62,7 +63,7 @@
                       <button class="btn btn-success"
                         (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
                         title="{{'Buy'|translate}}" ng-hide="trade.remaining == 0">
-                        <i-bs name="bag"></i-bs>
+                        <ic-icon [icon]="bagIcon"></ic-icon>
                         <span class="visually-hidden" translate>Buy</span>
                       </button>
                     </td>

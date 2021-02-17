@@ -6,6 +6,7 @@ import { DiscoverTheGame } from './public/ts/discoverthegame.component';
 import { Login } from './public/ts/login.component';
 import { News } from './public/ts/news.component';
 import { PublicHome } from './public/ts/public-home.component';
+import { Register } from './public/ts/register.component';
 
 //Connected
 import { Attacks } from './private/ts/attacks.component';
@@ -25,6 +26,7 @@ routes = [
   { path: 'discoverthegame', component: DiscoverTheGame },
   { path: 'login', component: Login },
   { path: 'news', component: News },
+  { path: 'register', component: Register },
   
   { path: 'sitemap', component: SiteMap },
   

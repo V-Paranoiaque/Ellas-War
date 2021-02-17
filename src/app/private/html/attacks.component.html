@@ -9,7 +9,9 @@
             <td>
               {{ player.username }}
               <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
-              <i-bs name="gem" *ngIf="player.diamond_begin > 0"></i-bs>
+              
+              <ic-icon [icon]="gemIcon"
+                       *ngIf="player.diamond_begin > 0"></ic-icon>
               
               <span *ngIf="player.alliance > 0">
                 {{ player.alliance_name }}
@@ -26,11 +28,16 @@
               {{ player.field | number:'': this.translate.currentLang}}
             </td>
           <td>
-            Spy - Observe - Fury - Lightning - 
             
-            <button class="btn btn-primary"
+            <ic-icon [icon]="fistRaised"></ic-icon>
+            <ic-icon [icon]="eyeIcon"></ic-icon>
+            <ic-icon [icon]="fireIcon"></ic-icon>
+            <ic-icon [icon]="boltIcon"></ic-icon>
+            
+            
+            <button class="btn btn-outline-primary"
                     (click)="prepareAttack(player.membre_id)">
-              <i-bs name="scissors"></i-bs>
+              <ic-icon [icon]="swordIcon"></ic-icon>
             </button>
           </td>
           </tr>
@@ -42,7 +49,7 @@
           
             <button class="btn btn-primary"
                     (click)="launchAttack(targetProfile.membre_id)">
-              <i-bs name="scissors"></i-bs>
+              <ic-icon [icon]="swordIcon"></ic-icon>
             </button>
         </div>
       </div>

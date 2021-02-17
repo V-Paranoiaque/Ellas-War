@@ -1,3 +1,21 @@
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-0">
-  Resources
+  {{ user.getProperty('username') }} ({{ user.getPropertyNb('level') }})
+  
+  <br/>
+  <br/>
+  
+  <strong translate>Resources</strong><strong translate>:</strong>
+  <br/>Drachmas: {{ user.getPropertyNb('drachma') | number:'': this.translate.currentLang }}
+  <br/>Food: {{ user.getPropertyNb('food') | number:'': this.translate.currentLang }}
+  <br/>Water: {{ user.getPropertyNb('water') | number:'': this.translate.currentLang }}
+  <br/>Wood: {{ user.getPropertyNb('wood') | number:'': this.translate.currentLang }}
+  <br/>Iron: {{ user.getPropertyNb('iron') | number:'': this.translate.currentLang }}
+  <br/>Stone: {{ user.getPropertyNb('stone') | number:'': this.translate.currentLang }}
+  <br/>Marble: {{ user.getPropertyNb('marble') | number:'': this.translate.currentLang }}
+  <br/>Grapes: {{ user.getPropertyNb('grapes') | number:'': this.translate.currentLang }}
+  <br/>Wine: {{ user.getPropertyNb('wine') | number:'': this.translate.currentLang }}
+  <br/>Gold: {{ user.getPropertyNb('gold') | number:'': this.translate.currentLang }}
+  <br/>Favors: {{ user.getPropertyNb('favor') | number:'': this.translate.currentLang }}
+  <br/>Ambrosia: {{ user.getPropertyNb('ambrosia') | number:'': this.translate.currentLang }}
+  
 </div>

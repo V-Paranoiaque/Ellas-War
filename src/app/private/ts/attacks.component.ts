@@ -3,6 +3,15 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import boltIcon from '@iconify/icons-fa-solid/bolt';
+import eyeIcon from '@iconify/icons-fa-solid/eye';
+import fireIcon from '@iconify/icons-fa-solid/fire';
+import fistRaised from '@iconify/icons-fa-solid/fist-raised';
+import gemIcon from '@iconify/icons-fa-regular/gem';
+import swordIcon from '@iconify/icons-vaadin/sword';
+
+
+
 @Component({
   templateUrl: '../html/attacks.component.html'
 })
@@ -16,6 +25,14 @@ export class Attacks {
   
   public targetProfile:any;
   public targetPossible:any;
+  
+  //Icons
+  boltIcon   = boltIcon;
+  eyeIcon    = eyeIcon;
+  fireIcon   = fireIcon;
+  fistRaised = fistRaised;
+  gemIcon    = gemIcon;
+  swordIcon  = swordIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.attackPage = 1;

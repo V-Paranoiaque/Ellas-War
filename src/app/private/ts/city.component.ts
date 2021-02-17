@@ -12,7 +12,8 @@ export class City {
 
   @Output() public armyInfo:any
             public buildingInfo:any
-            public divinBonusSelected:any;
+            public divinBonusSelected:any
+            public successSelected:number;
   
   public divineBonus:any;
   public divineBonusNb:number;
@@ -24,6 +25,7 @@ export class City {
     this.divineBonusNb = 0;
     this.divineBonus = [];
     this.divinBonusSelected = 0;
+    this.successSelected = 0;
     
     this.socket.socket.on('divineBonus', (data:any) => {
       this.divineBonusNb = data.nb;
@@ -60,5 +62,8 @@ export class City {
   }
   selectDivinBonus(bonus:any) {
     this.divinBonusSelected = bonus;
+  }
+  selectSuccess(id:number) {
+    this.successSelected = id;
   }
 }

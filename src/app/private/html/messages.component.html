@@ -42,22 +42,22 @@
       <div class="col-xl-6">
         <div class="text-center">
           <button class="btn btn-primary" (click)="messageLoad(0)">
-            <i-bs name="brush"></i-bs>
+            <ic-icon [icon]="brushIcon"></ic-icon>
           </button>
           &nbsp;
           <button class="btn btn-info" data-bs-toggle="modal" 
                   data-bs-target="#MsgSetRead">
-            <i-bs name="envelope-fill"></i-bs>
+            <ic-icon [icon]="envelopeFill"></ic-icon>
           </button>
           &nbsp;
           <button class="btn btn-warning" (click)="switchDeleteMode()">
-            <i-bs name="trash"></i-bs>
+            <ic-icon [icon]="trashIcon"></ic-icon>
           </button>
           <span [ngClass]="{'invisible': getDeleteMode() == 0}">
             &nbsp;
             <button class="btn btn-danger" data-bs-toggle="modal" 
                     data-bs-target="#DeleteMultipleMsg">
-              <i-bs name="trash2"></i-bs>
+              <ic-icon [icon]="trash2Icon"></ic-icon>
             </button>
           </span>
         </div>
@@ -96,19 +96,19 @@
           <messages-title [msg]="getCurrentMsg()"></messages-title>
           &nbsp;
           <button class="btn btn-warning" (click)="share()">
-            <i-bs name="share"></i-bs>
+            <ic-icon [icon]="share"></ic-icon>
           </button>
           &nbsp;
           <button class="btn btn-danger">
-            <i-bs name="trash"></i-bs>
+            <ic-icon [icon]="trashIcon"></ic-icon>
           </button>
         </h2>
         <div *ngIf="getCurrentMsg().msg_shared == 1" class="text-center">
           <strong translate>Share link:</strong>
           {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
           <span class="badge bg-primary">
-            <i-bs [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
-                  name="clipboard-check" role="button" ngxClipboard></i-bs>
+            <ic-icon [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
+                  name="clipboard-check" role="button" ngxClipboard></ic-icon>
           </span>
         </div>
         
@@ -132,7 +132,7 @@
         
         <span class="badge bg-primary" *ngFor="let user of getDestList()">
           {{ user.username }}
-          <i-bs name="x" role="button" (click)="removeDest(user.id)"></i-bs>
+          <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
         </span>
         
         <div class="input-group">
@@ -142,7 +142,7 @@
                  (keydown.enter)="addDest(msgToUser)" >
           <span class="input-group-text text-center" role="button" 
                 (click)="addDest(msgToUser)">
-            <i-bs name="plus"></i-bs>
+            <ic-icon [icon]="plusIcon"></ic-icon>
           </span>
         </div>
         <br/>

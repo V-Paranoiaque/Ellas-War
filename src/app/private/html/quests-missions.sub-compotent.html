@@ -1,6 +1,7 @@
 <strong translate>Missions</strong><strong translate>:</strong> {{ user.getQuest() }}/{{ user.getQuestMax() }}
 
 <span [ngSwitch]="user.getLevel()">
+  <!-- Level 0 -->
   <span *ngSwitchCase="0" [ngSwitch]="user.getQuest()">
     <span *ngSwitchCase="1">
       <p [innerHTML]="'If you wish to change your username, you can go into the <strong>Option</strong> menu at the top, then <strong>Change your username</strong>. The first change is free as long as you level 0.' | translate"></p>
@@ -21,7 +22,7 @@
     </span>
     <span *ngSwitchCase="3">
       <p translate>Mints produce Drachmas. Through them you can construct buildings and raise armies.</p>
-      <p translate>Build a total of 4 mints.</p>
+      <p>{{'Build a total of { value } mints.'| translate: { value: 4  | number:"": this.translate.currentLang } }}</p>
       <strong translate>Reward:</strong>
       {{5000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       {{5000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'water'"></id-to-ress>
@@ -154,7 +155,7 @@
       </a>
     </span>
     
-    <div *ngSwitchCase="15">
+    <span *ngSwitchCase="15">
       <span translate>You can now go level 1. Before doing so, a few tips from an old warrior:</span>
       <br/>- <span translate>Build a maximum of mints.</span>
       <br/>- <span translate>Keep an eye on your resources to optimize your production and your defense.</span>
@@ -162,8 +163,231 @@
       <br/>
       <strong translate>Reward:</strong>
       {{50000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
-    </div>
+    </span>
   </span>
+  
+  <!-- Level 1 -->
+  <span *ngSwitchCase="1" [ngSwitch]="user.getQuest()">
+    <span *ngSwitchCase="1">
+      <p translate>To have a strong city, you will need brave men. Engage at least 50 men in your ranks and return to me. Remember that you must build huts to house them.</p>
+      <strong translate>Reward:</strong>
+      {{25000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+        Access to the city &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="2">
+      <p translate>You are still there?</p>
+      <p translate>You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the faibles. Win 5 victories and return to me.</p>
+      <strong translate>Reward:</strong>
+      {{25000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="3">
+      <p translate>You will have to drachmas to build your city. Build a total of 15 mints. If you lack resources, have a look on the Agora.</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="4">
+      <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 100000  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      {{20000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'wood'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the treasure &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="5">
+      <p translate>Build a total of 10 huts to house your army.</p>
+      <strong translate>Reward:</strong>
+      {{40000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="6">
+      <p>{{'Win { value } victories'| translate: { value: 10  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{20000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      {{20000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'wood'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="7">
+      <p translate>You will need food for your people, build a total of 10 farms.</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="8">
+      <p>{{'Build a total of { value } mints.'| translate: { value: 20  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="9">
+      <p>{{'Win { value } victories'| translate: { value: 15  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{25000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="10">
+      <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 200000  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the treasure &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="11">
+      <p translate>Engage a stronger defense than 6,000.</p>
+      <strong translate="">Reward:</strong> 
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the city &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="12">
+      <p>{{'Win { value } victories'| translate: { value: 20  | number:"": this.translate.currentLang } }}</p>
+      <strong translate>Reward:</strong>
+      {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="13">
+      <p>{{'You can now go level { value }.' | translate: { value: 2 } }}</p>
+    </span>
+  </span>
+  
+  <!-- Level 2 -->
+  <span *ngSwitchCase="2" [ngSwitch]="user.getQuest()">
+    <span *ngSwitchCase="1">
+      <p>{{'Win { value } victories'| translate: { value: 30  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="2">
+      <p translate>You will need stone and marble to build your temples. Build a total of 5 quarries.</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="3">
+      <p>{{'Build a total of { value } mints.'| translate: { value: 25  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="4">
+      <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 300000  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the treasure &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="5">
+      <p>{{'Win { value } victories'| translate: { value: 40  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="6">
+      <p translate>You will need more stone and marble to build your temples. Build a total of 10 quarries.</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="7">
+      <p>{{'Win { value } victories'| translate: { value: 50  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="8">
+      <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 400000  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the treasure &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="9">
+      <p translate>To engage new units, you will need to train them. Build a military camp.</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="10">
+      <p translate>Engage 500 Peltasts</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the city &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="11">
+      <p translate>This is the last step. Go to City, Temple and build your first temple.</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the city &gt;&gt;
+      </a>
+    </span>
+  </span>
+  
 </span>
 
 <div *ngIf="user.getQuestValidate() == 1">

@@ -3,6 +3,9 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import bagIcon from '@iconify/icons-bi/bag';
+import plusIcon from '@iconify/icons-bi/plus';
+
 @Component({
   templateUrl: '../html/storeroom.component.html',
   styleUrls: ['../css/storeroom.component.css']
@@ -13,6 +16,9 @@ export class Storeroom {
   
   private storeroomList:any;
   private storeroomStats:any;
+  
+  bagIcon  = bagIcon;
+  plusIcon = plusIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.storeroom_ress = [].constructor(10);
