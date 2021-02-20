@@ -45,6 +45,7 @@
   "Buy { value } lotto tickets": "Achetez {{ value }} tickets de loto",
   "By { value }": "Par {{ value }}",
   
+  "Change game settings": "Modifier les paramètres du jeu",
   "Collect information about your enemies before sending your troops to battle. But beware, your spies can get caught and even denounce you.": "Récupérez des informations sur vos ennemis avant d'envoyer vos troupes à la bataille. Mais attention, vos espions peuvent se faire attraper et même vous dénoncer.",
   "Commitment": "Engagement",
   "Confirm": "Confirmer",
@@ -55,6 +56,7 @@
   "Consumption": "Consommation",
   "Construct { value } buildings": "Construisez {{ value }} bâtiments",
   "Cost:": "Prix :",
+  "Change your email": "Changez votre adresse mail",
   "Change your username": "Changez votre nom",
   "Choose a new Username for your account. While you stay level 0, your first modification is free!": "Choisissez un nouveau nom pour votre compte. Tant que vous restez niveau 0 le premier changement est gratuit !",
   "Choose a new Username for your account. It will cost you 1 favor.": "Choisissez un nouveau nom pour votre compte. Ce changement vous coûtera 1 faveur.",
@@ -141,15 +143,18 @@
   "Mirror tower": "Tour à miroir",
   "Mirror towers": "Tours à miroir",
   "Missions": "Missions",
+  "Modify your email connected to your account.": "Modifiez l'adresse mail connectée à votre compte.",
   "Monster Hunter": " Chasseur de monstres",
   "Monster killer": "Tueur de monstres",
   "Mythology": "Mythologie",
   
+  "New email": "Nouvelle addresse mail",
   "New username": "Nouveau nom",
   "No temple": "Pas de temple",
   
   "Observation tower": "Tour d'observation",
   "Observation towers": "Tours d'observation",
+  "Old email": "Ancien email",
   
   "Palace": "Palais",
   "Palaces": "Palais",
@@ -181,6 +186,7 @@
   "Share link:": "Lien :",
   "Silverman": "Homme d'argent",
   "Silvermen": "Hommes d'argent",
+  "Sound": "Son",
   "Spartan": "Spartiate",
   "Spartans": "Spartiates",
   "Spend { value } Ambrosia": "Dépenser {{ value }} d'Ambroisie",
@@ -259,6 +265,7 @@
   "Your city has resisted against { value }": "Votre cité a résistée contre {{ value }}",
   "Your city was sacked by { value }": "Votre cité a été pillée par {{ value }}",
   "Your city will need more drachmas to expand, build a total of 10 mints.": "Votre cité aura besoin de plus de drachmes pour se développer, construisez un total de 10 ateliers monétaires.",
+  "Your email is empty or invalid": "Votre adresse mail est vide ou invalide",
   "Your huts will allow you to house the base of your army.": "Vos huttes vous permettront de loger la base de votre armée.",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères."
 }

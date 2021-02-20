@@ -1,5 +1,6 @@
 export class User {
   info: any;
+  newMsg: number;
   
   constructor() {
     this.info = {
@@ -11,6 +12,7 @@ export class User {
       'army': {},
       'building': {}
     }
+    this.newMsg = 0;
   }
   
   setUser(user: any) {
@@ -98,5 +100,12 @@ export class User {
     }
     
     return 0;
+  }
+  
+  setNewMsg(nb:number) {
+    this.newMsg = nb;
+  }
+  getNewMsg() {
+    return this.newMsg;
   }
 }

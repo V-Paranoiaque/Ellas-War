@@ -10,9 +10,13 @@ import { User } from '../../../services/user.service';
 
 export class Options {
   private accountRenameCost:number;
-  private renameError: number;
   
+  private renameError: number;
+  public emailError: number;
+  
+  public newEmail: string;
   public newusername: string;
+  public sound: number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     if(user.getLevel() >= 1) {
@@ -21,8 +25,13 @@ export class Options {
     else {
       this.accountRenameCost = 0;
     }
+    
     this.renameError = 0;
+    this.emailError = 0;
+    
+    this.newEmail = '';
     this.newusername = '';
+    this.sound = user.getPropertyNb('sound');
     
     this.socket.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
@@ -32,12 +41,33 @@ export class Options {
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
+      
+    this.socket.socket.on('soundModify', (sound:number) => {
+      this.sound = sound;
+    });
   }
   
   ngOnInit() {
     setTimeout(() => {
       this.socket.emit('accountRenameCost');
     }, 0);
+  }
+  
+  getAccountRenameCost() {
+    return this.accountRenameCost;
+  }
+  getRenameError() {
+    return this.renameError;
+  }
+  
+  accountEmail() {
+    this.emailError = 0;
+    if(this.newEmail) {
+      this.socket.socket.emit('accountEmail', this.newEmail);
+    }
+    else {
+      this.emailError = 1;
+    }
   }
   
   accountRename() {
@@ -49,10 +79,7 @@ export class Options {
     this.socket.emit('reset');
   }
   
-  getAccountRenameCost() {
-    return this.accountRenameCost;
-  }
-  getRenameError() {
-    return this.renameError;
-  }
+  soundModify() {
+    this.socket.emit('soundModify', this.sound);
+  };
 }

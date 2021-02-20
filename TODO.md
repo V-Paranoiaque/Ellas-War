@@ -26,6 +26,10 @@
 * Set all the messages as read
 * Some titles and texts are missing
 
+# Options
+* Description for the game settings
+* When changing email, add a warning if the facebook connection is used
+
 # Quests
 * Add a new quest to discover spies
 * Display the defense for the quest 1.11

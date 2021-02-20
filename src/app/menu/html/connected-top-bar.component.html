@@ -20,7 +20,14 @@
             *ngIf="user.getLevel() >= 1 || user.getQuest() >= 2">
           <a class="nav-link" [routerLink]="['/messages']"
              [ngClass]="{'active': active == 'messages'}"
+             *ngIf="user.getNewMsg() == 0"
              translate>Messages</a>
+          <a class="nav-link" [routerLink]="['/messages']"
+             [ngClass]="{'active': active == 'messages'}"
+             *ngIf="user.getNewMsg() > 0">
+            <span translate>Messages</span>
+            ({{user.getNewMsg()}})
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/quests']"
