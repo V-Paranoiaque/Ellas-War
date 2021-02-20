@@ -1,3 +1,4 @@
+import { Alliance } from './ts/alliance.component';
 import { Attacks } from './ts/attacks.component';
 import { City } from './ts/city.component';
 import { Messages } from './ts/messages.component';
@@ -9,6 +10,7 @@ import { ArmyPopup } from './ts/army-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
+import { IdToDivineBonus } from './ts/id-to-divinebonus.sub-component';
 import { IdToRess } from './ts/id-to-ress.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
@@ -20,6 +22,7 @@ import { Temple4Popup } from './ts/temple4-popup.sub-component';
 import { TreasurePopup } from './ts/treasure-popup.sub-component';
 
 export const PrivateComponent = [
+  Alliance,
   Attacks,
   City,
   Messages,
@@ -31,6 +34,7 @@ export const PrivateComponent = [
   ConstructionPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
+  IdToDivineBonus,
   IdToRess,
   MessagesTitle,
   QuestsMissions,

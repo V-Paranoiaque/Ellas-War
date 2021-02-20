@@ -9,6 +9,7 @@ import { PublicHome } from './public/ts/public-home.component';
 import { Register } from './public/ts/register.component';
 
 //Connected
+import { Alliance } from './private/ts/alliance.component';
 import { Attacks } from './private/ts/attacks.component';
 import { City } from './private/ts/city.component';
 import { Messages } from './private/ts/messages.component';
@@ -30,6 +31,7 @@ routes = [
   
   { path: 'sitemap', component: SiteMap },
   
+  { path: 'alliance', component: Alliance },
   { path: 'attacks', component: Attacks },
   { path: 'city', component: City },
   { path: 'messages', component: Messages },
