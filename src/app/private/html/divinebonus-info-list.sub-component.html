@@ -1,12 +1,27 @@
 <div class="modal-content">
   <div class="modal-header">
-  
+    <h5 id="divinebonusDesc" translate>Divine Bonus</h5>
   </div>
   <div class="modal-body">
-    
+    <table class="table" aria-describedby="divinebonusDesc">
+      <tr *ngFor="let bonus of divineBonus">
+        <td>
+          <img src="assets/img/divinebonus/base.png" alt="test"/>
+          {{ bonus.nb }}
+        </td>
+        <th scope="row">
+          <id-to-divinebonus [id]="bonus.bonus_id"></id-to-divinebonus>
+        </th>
+        <td>
+          <button (click)="divineBonusUse(bonus.bonus_id)"
+                  class="btn btn-primary">Use</button>
+        </td>
+      </tr>
+    </table>
   </div>
   
   <div class="modal-footer">
-    
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
   </div>
 </div>

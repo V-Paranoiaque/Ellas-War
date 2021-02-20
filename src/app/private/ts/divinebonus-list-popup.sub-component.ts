@@ -8,8 +8,19 @@ import { Socket } from '../../../services/socketio.service';
 
 export class DivineBonusListPopup {
   
-  constructor(private socket: Socket) {
+  public divineBonus:any;
   
+  constructor(private socket: Socket) {
+    this.divineBonus = [];
+  
+    this.socket.socket.on('divineBonus', (data:any) => {
+      if(data.nb > 0) {
+        this.divineBonus   = data.list;
+      }
+      else {
+        this.divineBonus = [];
+      }
+    });
   }
   
   divineBonusUse(bonus_id:number) {
