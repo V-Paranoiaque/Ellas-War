@@ -13,6 +13,7 @@ export class City {
   @Output() public armyInfo:any
             public buildingInfo:any
             public divinBonusSelected:any
+            public divinBonusListSelected:any;
             public successSelected:number;
   
   public divineBonus:any;
@@ -24,7 +25,8 @@ export class City {
     this.armyInfo = { code: 'spartan' };
     this.divineBonusNb = 0;
     this.divineBonus = [];
-    this.divinBonusSelected = {'error': 0};
+    this.divinBonusSelected = {'error': 0 };
+    this.divinBonusListSelected = {'error': 0 };
     this.successSelected = 0;
     
     this.socket.socket.on('divineBonus', (data:any) => {
@@ -42,6 +44,10 @@ export class City {
     setTimeout(() => {
       this.socket.emit('divineBonus');
     }, 0);
+  }
+  
+  divineBonusReset() {
+    this.divinBonusListSelected.error = 0;
   }
   
   selectArmy(name:string) {

@@ -222,7 +222,9 @@
   "To engage new units, you will need to train them. Build a military camp.": "Pour engager de nouvelles unités, vous aurez besoin de les entrainer. Construisez un camp militaire.",
   "To have a strong city, you will need brave men. Engage at least 50 men in your ranks and return to me. Remember that you must build huts to house them.": "Pour avoir une cité forte, il lui faut des hommes valeureux. Engagez au moins 50 hommes dans vos rangs et revenez me voir. N'oubliez pas qu'il vous faudra des huttes pour les loger.",
   "To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.": "Pour protéger votre cité, vous pouvez aussi construire des tours. Elles ont comme avantage sur les unités de ne pas avoir de consomation. cependant elles ne peuvent pas attaquer. Allez dans votr cité et construisez un total de 5 tours.",
+  
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
+  "Use": "Utiliser",
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",
   "Use { value } Divine powers": "Utilisez {{ value }} Pouvoirs divins",
   "Use the Divine Bonus": "Utiliser le bonus divin",

@@ -1,24 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
   selector: 'divinebonus-list-popup',
-  templateUrl: '../html/divinebonus-info-list.sub-component.html'
+  templateUrl: '../html/divinebonus-info-list.sub-component.html',
+  styleUrls: ['../css/divinebonus-info-list.sub-component.css']
 })
 
 export class DivineBonusListPopup {
+  @Input() divineBonus: any;
   
-  public divineBonus:any;
+  public divineBonusList:any;
   
   constructor(private socket: Socket) {
     this.divineBonus = [];
   
     this.socket.socket.on('divineBonus', (data:any) => {
       if(data.nb > 0) {
-        this.divineBonus   = data.list;
+        this.divineBonusList   = data.list;
       }
       else {
-        this.divineBonus = [];
+        this.divineBonusList = [];
       }
     });
   }
@@ -27,6 +29,7 @@ export class DivineBonusListPopup {
     let msg = {
       'bonus_id': bonus_id
     };
-    this.socket.emit("divineBonusUse", msg);
+    //this.socket.emit("divineBonusUse", msg);
+    this.divineBonus.error = 1;
   }
 }

@@ -24,7 +24,8 @@
 </div>
 <div class="modal fade" id="DivineBonusList" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <divinebonus-list-popup></divinebonus-list-popup>
+    <divinebonus-list-popup [divineBonus]="divinBonusListSelected">
+    </divinebonus-list-popup>
   </div>
 </div>
 
@@ -81,7 +82,8 @@
           <div class="card-header">
             <span translate>Divine Bonus</span> - 
             <span data-bs-toggle="modal"
-                  data-bs-target="#DivineBonusList">All</span> -
+                  data-bs-target="#DivineBonusList"
+                  (click)="divineBonusReset()">All</span> -
              <span translate>Help</span>
           </div>
           <div class="card-body no-padding">

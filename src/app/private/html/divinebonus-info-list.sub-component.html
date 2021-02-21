@@ -3,18 +3,26 @@
     <h5 id="divinebonusDesc" translate>Divine Bonus</h5>
   </div>
   <div class="modal-body">
+    <div class="alert alert-success" role="alert"
+         *ngIf="divineBonus.error > 0" translate>
+      Divine Bonus validated
+    </div>
+    
     <table class="table" aria-describedby="divinebonusDesc">
-      <tr *ngFor="let bonus of divineBonus">
-        <td>
-          <img src="assets/img/divinebonus/base.png" alt="test"/>
-          {{ bonus.nb }}
+      <tr *ngFor="let bonus of divineBonusList">
+        <td class="col-2">
+          <div>
+            <img src="assets/img/divinebonus/base.png" alt="test"/>
+            <div>{{ bonus.nb }}</div>
+          </div>
         </td>
         <th scope="row">
           <id-to-divinebonus [id]="bonus.bonus_id"></id-to-divinebonus>
         </th>
         <td>
           <button (click)="divineBonusUse(bonus.bonus_id)"
-                  class="btn btn-primary">Use</button>
+                  class="btn btn-outline-primary"
+                  translate>Use</button>
         </td>
       </tr>
     </table>
