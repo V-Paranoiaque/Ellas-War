@@ -24,7 +24,7 @@ export class City {
     this.armyInfo = { code: 'spartan' };
     this.divineBonusNb = 0;
     this.divineBonus = [];
-    this.divinBonusSelected = 0;
+    this.divinBonusSelected = {'error': 0};
     this.successSelected = 0;
     
     this.socket.socket.on('divineBonus', (data:any) => {
@@ -62,6 +62,7 @@ export class City {
   }
   selectDivinBonus(bonus:any) {
     this.divinBonusSelected = bonus;
+    this.divinBonusSelected.error = 0;
   }
   selectSuccess(id:number) {
     this.successSelected = id;

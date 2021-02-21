@@ -10,9 +10,7 @@ import { Socket } from '../../../services/socketio.service';
 export class DivineBonusInfoPopup {
   @Input() divineBonus: any;
   
-  
   constructor(private socket: Socket, public translate: TranslateService) {
-  
   }
   
   divineBonusUse() {
@@ -22,7 +20,11 @@ export class DivineBonusInfoPopup {
     
     if(this.divineBonus.nb > 0) {
       this.divineBonus.nb--;
+      this.socket.emit("divineBonusUse", msg);
+      this.divineBonus.error = 1;
     }
-    this.socket.emit("divineBonusUse", msg);
+    else {
+      this.divineBonus.error = 0;
+    }
   }
 }

@@ -7,6 +7,12 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body">
+    
+    <div class="alert alert-danger" role="alert"
+         *ngIf="divineBonus.error > 0" translate>
+      Divine Bonus validated
+    </div>
+    
     <span translate>Currently</span>
     <span translate>:</span> {{ divineBonus.nb | number:'': this.translate.currentLang }}
   </div>
