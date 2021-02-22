@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //Public
+import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
 import { Login } from './public/ts/login.component';
 import { News } from './public/ts/news.component';
@@ -24,6 +25,7 @@ import { PageNotFound } from './public/ts/pagenotfound.component';
 let routes: Routes = [];
 
 routes = [
+  { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
   { path: 'login', component: Login },
   { path: 'news', component: News },
