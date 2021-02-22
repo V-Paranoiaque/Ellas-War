@@ -19,6 +19,31 @@ export class User {
     this.info = user;
   }
   
+  buildTemple1Allowed() {
+    return this.getPropertyNb('hermes') + this.getPropertyNb('apollo') +
+           this.getPropertyNb('demeter');
+  }
+  buildTemple2Allowed() {
+    if(this.getLevel() < 6) {
+      return 1;
+    }
+    return this.getPropertyNb('ares') + this.getPropertyNb('athena');
+  }
+  buildTemple3Allowed() {
+    if(this.getLevel() < 8) {
+      return 1;
+    }
+    return this.getPropertyNb('artemis') + this.getPropertyNb('dionysus') +
+           this.getPropertyNb('hephaestus');
+  }
+  buildTemple4Allowed() {
+    if(this.getLevel() < 10) {
+      return 1;
+    }
+    return this.getPropertyNb('zeus') + this.getPropertyNb('hades') +
+           this.getPropertyNb('poseidon');
+  }
+  
   getArmy() {
     let list = [];
     

@@ -1,0 +1,63 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 *ngIf="temple == 0" translate>Choose your first temple</h5>
+    <h5 *ngIf="temple == 1" translate>Hermes</h5>
+    <h5 *ngIf="temple == 2" translate>Apollo</h5>
+    <h5 *ngIf="temple == 3" translate>Demeter</h5>
+  </div>
+  <div class="modal-header">
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 1}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(1)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 2}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(2)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 3}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(3)" />
+  </div>
+  <div class="modal-body">
+    <strong translate>Price</strong><strong translate>:</strong>
+    
+    <span *ngFor="let res of price">
+      <span [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < res.quantity}">
+        {{ res.quantity | number:'': this.translate.currentLang }}
+      </span>
+      <id-to-ress [ress_id]=res.resource></id-to-ress>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="user.getLevel() < 2"
+         class="alert alert-danger" translate>
+      Available at level 2
+    </div>
+    <div>
+      <ul *ngIf="temple == 1">
+        <li translate>TODO</li>
+      </ul>
+      <ul *ngIf="temple == 2">
+        <li translate>Free and safe spying</li>
+      </ul>
+      <ul *ngIf="temple == 3">
+        <li translate>+30% food production</li>
+        <li translate>+30% grapes production</li>
+        <li translate>The fury can destroy farms and growers and reserves of grapes and food of your opponents.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button *ngIf="temple > 0 && canBuild()"
+            type="button" class="btn btn-primary"
+            data-bs-dismiss="modal" (click)="build()"
+            translate>Build</button>
+  </div>
+</div>

@@ -55,6 +55,11 @@
     <temple4-popup></temple4-popup>
   </div>
 </div>
+<div class="modal fade" id="TempleInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <temple-info-popup></temple-info-popup>
+  </div>
+</div>
 
 
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
@@ -153,11 +158,57 @@
             Temples
           </div>
           <div class="card-body no-padding" id="templesBlock">
+            <!-- Frames to build temples -->
             <div class="frame frame-20"
+                 *ngIf="user.buildTemple1Allowed() == 0"
                  data-bs-toggle="modal" data-bs-target="#Temple1Info">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'No temple' | translate}}" 
                    title="{{'Build a new temple' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.buildTemple2Allowed() == 0"
+                 data-bs-toggle="modal" data-bs-target="#Temple2Info">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'No temple' | translate}}" 
+                   title="{{'Build a new temple' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.buildTemple3Allowed() == 0"
+                 data-bs-toggle="modal" data-bs-target="#Temple3Info">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'No temple' | translate}}" 
+                   title="{{'Build a new temple' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.buildTemple4Allowed() == 0"
+                 data-bs-toggle="modal" data-bs-target="#Temple4Info">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'No temple' | translate}}" 
+                   title="{{'Build a new temple' | translate}}" />
+            </div>
+            
+            <!-- Temple informations -->
+            <div class="frame frame-20"
+                 *ngIf="user.getPropertyNb('hermes') == 1"
+                 data-bs-toggle="modal" data-bs-target="#TempleInfo">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'Hermes' | translate}}" 
+                   title="{{'Hermes' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.getPropertyNb('apollo') == 1"
+                 data-bs-toggle="modal" data-bs-target="#TempleInfo">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'Apollo' | translate}}" 
+                   title="{{'Apollo' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.getPropertyNb('demeter') == 1"
+                 data-bs-toggle="modal" data-bs-target="#TempleInfo">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'Demeter' | translate}}" 
+                   title="{{'Demeter' | translate}}" />
             </div>
           </div>
         </div>

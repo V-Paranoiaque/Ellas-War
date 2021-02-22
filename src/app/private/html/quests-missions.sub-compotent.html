@@ -22,7 +22,7 @@
     </span>
     <span *ngSwitchCase="3">
       <p translate>Mints produce Drachmas. Through them you can construct buildings and raise armies.</p>
-      <p>{{'Build a total of { value } mints.'| translate: { value: 4  | number:"": this.translate.currentLang } }}</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 4, building: 'mints' | translate } }}</p>
       <strong translate>Reward:</strong>
       {{5000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       {{5000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'water'"></id-to-ress>
@@ -34,7 +34,7 @@
     
     <span *ngSwitchCase="4">
       <p translate>Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.</p>
-      <p>{{'Build a total of { value } iron mines.'| translate: { value: 4} }}</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 4, building: 'iron mines' | translate } }}</p>
       <strong translate>Reward:</strong>
       {{4000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       {{2000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'wood'"></id-to-ress>
@@ -46,7 +46,7 @@
     
     <span *ngSwitchCase="5">
       <p translate>Water is used by your buildings and your army.</p>
-      <p translate>Build a total of 10 wells.</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'wells' | translate } }}</p>
       <strong translate>Reward:</strong>
       {{5000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -67,8 +67,8 @@
     </span>
     
     <span *ngSwitchCase="7">
-      <p translate>You will need more Iron for your city.</p> 
-      <p>{{'Build a total of { value } iron mines.'| translate: { value: 10} }}</p>
+      <p translate>You will need more Iron for your city.</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'iron mines' | translate } }}</p>
       <strong translate>Reward:</strong>
       {{10000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       {{10000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'wood'"></id-to-ress>
@@ -242,7 +242,7 @@
     </span>
     
     <span *ngSwitchCase="8">
-      <p>{{'Build a total of { value } mints.'| translate: { value: 20  | number:"": this.translate.currentLang } }}</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 20, building: 'mints' | translate } }}</p>
       <strong translate>Reward:</strong>
       {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -273,7 +273,7 @@
     
     <span *ngSwitchCase="11">
       <p translate>Engage a stronger defense than 6,000.</p>
-      <strong translate="">Reward:</strong> 
+      <strong translate>Reward:</strong> 
       {{30000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
       
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
@@ -316,7 +316,7 @@
     </span>
     
     <span *ngSwitchCase="3">
-      <p>{{'Build a total of { value } mints.'| translate: { value: 25  | number:"": this.translate.currentLang } }}</p>
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 25, building: 'mints' | translate } }}</p>
       <a *ngIf="user.getQuestValidate() == 0" class="btn" 
          [routerLink]="['/city']" translate>
        Access to the buildings &gt;&gt;
@@ -386,6 +386,54 @@
        Access to the city &gt;&gt;
       </a>
     </span>
+    
+    <span *ngSwitchCase="12">
+      <p>{{'You can now go level { value }.' | translate: { value: 3 } }}</p>
+    </span>
+  </span>
+  
+  <!-- Level 3 -->
+  <span *ngSwitchCase="3" [ngSwitch]="user.getQuest()">
+    <span *ngSwitchCase="1">
+      <p>{{'Win { value } victories'| translate: { value: 60  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="2">
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 25, building: 'Observation towers' | translate } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="3">
+      <p>{{'Build a total of { value } { building }.'| translate: { value: 30, building: 'mints' | translate } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
+    <span *ngSwitchCase="4">
+      <p>{{'Win { value } victories'| translate: { value: 80  | number:"": this.translate.currentLang } }}</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/attack']" translate>
+        Access to the attacks &gt;&gt;
+      </a>
+    </span>
+    
+    <span ng-switch-when="5">
+      <p translate>To recruit archers you will need to train them. Update your military camp.</p>
+      <a *ngIf="user.getQuestValidate() == 0" class="btn" 
+         [routerLink]="['/city']" translate>
+       Access to the buildings &gt;&gt;
+      </a>
+    </span>
+    
   </span>
   
 </span>

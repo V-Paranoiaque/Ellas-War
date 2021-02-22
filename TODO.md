@@ -37,5 +37,8 @@
 
 # Server
 
+# Temples
+* New power for Hermes
+
 # Treasure
 * History
