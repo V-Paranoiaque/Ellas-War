@@ -1,5 +1,6 @@
 div.col-lg-2, div.col-md-2, div.col-sm-3 {
   float:right;
+  margin-top: 0.75rem;
 }
 
 @media (max-width: 575px) {
