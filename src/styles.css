@@ -10,3 +10,8 @@ a {
   float: left;
   padding-bottom: 40px;
 }
+
+.card-header {
+  font-weight: bold;
+  text-align: center;
+}

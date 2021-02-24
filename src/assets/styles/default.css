@@ -16,3 +16,7 @@ body {
   background-color: #dcd1b1;
   background-image: url('../img/styles/default/white-texture.png');
 }
+
+.card-header:first-letter {
+  color: var(--color-menu-dark);
+}
