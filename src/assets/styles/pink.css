@@ -37,3 +37,7 @@ connected-right-menu {
 .card-header:first-letter {
   color: white;
 }
+
+.navbar-light a.navbar-brand {
+  color: white;
+}
