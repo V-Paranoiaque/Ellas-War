@@ -17,6 +17,10 @@ body {
   background-image: url('../img/styles/default/white-texture.png');
 }
 
+.card-header {
+  background-color: var();
+}
+
 .card-header:first-letter {
   color: var(--color-menu-dark);
 }

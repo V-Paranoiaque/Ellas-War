@@ -25,6 +25,15 @@ body {
   background-color: #4d2347;
   background-repeat: repeat;
 }
+
 connected-right-menu {
   color:white;
+}
+
+.card-header {
+  background-color: #ff99de;
+}
+
+.card-header:first-letter {
+  color: white;
 }

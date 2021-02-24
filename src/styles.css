@@ -14,4 +14,7 @@ a {
 .card-header {
   font-weight: bold;
   text-align: center;
+  padding: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5) inset;
+  height: 30px;
 }
