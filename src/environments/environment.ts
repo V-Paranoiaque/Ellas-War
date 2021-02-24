@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  style: 'pink',
   SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com'
 };
 

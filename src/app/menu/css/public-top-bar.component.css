@@ -1,6 +1,11 @@
 .navbar-menu {
-  background-color: red;
   z-index: 1030;
+  padding: 0;
+  font-size: 17px;
+}
+
+.navbar-menu {
+  background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));
 }
 
 .navbar-light .navbar-nav .nav-link.active,

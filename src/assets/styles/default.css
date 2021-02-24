@@ -1,0 +1,7 @@
+:root {
+  --color-menu-dark: rgb(182, 47, 33);
+  --color-menu-clear: rgb(251, 96, 80);
+  --color-menu-text: white;
+  --color-menu-text-active: white;
+  --color-menu-text-hover: grey;
+}
