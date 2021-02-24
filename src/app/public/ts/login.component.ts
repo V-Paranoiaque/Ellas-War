@@ -30,6 +30,12 @@ export class Login implements OnInit {
       username: '',
       password: ''
     });
+    
+    setInterval(() => {
+      if(this.user.getPropertyNb('mstatus') == 1) {
+        document.location.href="/city";
+      }
+    }, 1000);
   }
   
   onSubmit(data:object) {
