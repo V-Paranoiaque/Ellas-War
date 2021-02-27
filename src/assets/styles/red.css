@@ -17,6 +17,10 @@ body {
   background-image: url('../img/styles/red/white-texture.png');
 }
 
+a {
+  color: black;
+}
+
 .card-header, .card-footer {
   background-color: var();
 }
