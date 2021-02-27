@@ -74,4 +74,8 @@ export class ConstructionPopup {
       this.socket.emit("destruct", msg);
     }
   }
+  
+  setDestruct() {
+    this.destructnb = this.user.getPropertyNb(this.info.code);
+  }
 }

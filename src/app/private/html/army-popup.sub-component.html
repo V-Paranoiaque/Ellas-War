@@ -50,7 +50,7 @@
           <strong translate>Currently</strong>
           <strong translate>:</strong>
           <span role="button" (click)="setLiberate()">
-          {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
+            {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
           </span>
           <span *ngIf="info.nbmax">
             / {{ info.nbmax | number:'': this.translate.currentLang }}
