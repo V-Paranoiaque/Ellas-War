@@ -6,7 +6,7 @@
     <div class="progress">
       <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
            aria-valuemin="0" aria-valuemax="100"
-           [ngStyle]="{'width.px': 100*user.getQuest()/user.getQuestMax() }"></div>
+           [ngStyle]="{'width.%': 100*user.getQuest()/user.getQuestMax() }"></div>
       <div class="progress-text">
         <span translate>Progress:</span>
         {{ user.getQuest() }}/{{ user.getQuestMax() }}
