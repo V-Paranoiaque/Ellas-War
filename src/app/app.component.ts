@@ -36,7 +36,10 @@ export class AppComponent implements OnInit {
     registerLocaleData(localeFr, 'fr');
     
     this.socket.socket.on('user', () => {
-      this.cssUrl = this.setStyle();
+      let newStyle = this.setStyle();
+      if(this.cssUrl != newStyle) {
+        this.cssUrl = this.setStyle();
+      }
     });
   }
   
