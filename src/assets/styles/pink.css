@@ -26,6 +26,10 @@ body {
   background-repeat: repeat;
 }
 
+a {
+  color: black;
+}
+
 .card-header, .card-footer {
   background-color: #ff99de;
 }
