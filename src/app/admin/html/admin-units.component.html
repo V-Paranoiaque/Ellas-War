@@ -1,0 +1,42 @@
+<common-top-bar active="alliance"></common-top-bar>
+
+<div class="col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      
+      <table class="table">
+        <thead>
+          <tr>
+           <td translate>Name</td>
+           <td translate>Attack</td>
+           <td translate>Defense</td>
+           <td translate>Price</td>
+           <td translate>Consu</td>
+           <td translate>P by A</td>
+           <td translate>P by D</td>
+           <td translate>C by A</td>
+           <td translate>C by D</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let unit of armyArray">
+            <td>{{ unit.name | translate }}</td>
+            <td>{{ unit.attack | number:'': this.translate.currentLang }}</td>
+            <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
+            <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
+            <td>{{ unit.globalConsu | number:'': this.translate.currentLang }}</td>
+            
+            <td *ngIf="unit.attack > 0">{{ unit.globalCost/unit.attack | number:'': this.translate.currentLang }}</td>
+            <td *ngIf="unit.attack == 0"></td>
+            
+            <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
+            <td>{{ unit.globalConsu/unit.attack | number:'': this.translate.currentLang }}</td>
+            <td>{{ unit.globalConsu/unit.defense | number:'': this.translate.currentLang  }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-bottom-bar></app-bottom-bar>

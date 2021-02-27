@@ -19,6 +19,9 @@ import { Options } from './private/ts/options.component';
 import { Quests } from './private/ts/quests.component';
 import { Storeroom } from './private/ts/storeroom.component';
 
+//Admin
+import { AdminUnits } from './admin/ts/admin-units.component';
+
 //General
 import { SiteMap } from './public/ts/sitemap.component';
 import { PageNotFound } from './public/ts/pagenotfound.component';
@@ -43,6 +46,15 @@ routes = [
   { path: 'quests', component: Quests },
   { path: 'storeroom', component: Storeroom },
   
+  { path: 'admin',
+    children: [
+      {
+        path: 'units',
+        component: AdminUnits
+      }
+    ]
+  },
+    
   { path: '', component: PublicHome },
   { path: '**', component: PageNotFound },
 ];

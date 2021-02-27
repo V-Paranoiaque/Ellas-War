@@ -13,13 +13,14 @@ import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@visurel/iconify-angular';
 
-
+import { AdminComponent } from './admin/admin.component';
 import { MenuComponent } from './menu/menu.component';
 import { PublicComponent } from './public/public.component';
 import { PrivateComponent } from './private/private.component';
 
 @NgModule({
   declarations: [
+    AdminComponent,
     MenuComponent,
     PublicComponent,
     PrivateComponent,
