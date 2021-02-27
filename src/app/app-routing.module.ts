@@ -13,6 +13,7 @@ import { Register } from './public/ts/register.component';
 import { Alliance } from './private/ts/alliance.component';
 import { Attacks } from './private/ts/attacks.component';
 import { City } from './private/ts/city.component';
+import { Details } from './private/ts/details.component';
 import { Messages } from './private/ts/messages.component';
 import { Options } from './private/ts/options.component';
 import { Quests } from './private/ts/quests.component';
@@ -36,6 +37,7 @@ routes = [
   { path: 'alliance', component: Alliance },
   { path: 'attacks', component: Attacks },
   { path: 'city', component: City },
+  { path: 'details', component: Details },
   { path: 'messages', component: Messages },
   { path: 'options', component: Options },
   { path: 'quests', component: Quests },

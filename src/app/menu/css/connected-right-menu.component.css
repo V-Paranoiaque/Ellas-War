@@ -8,3 +8,8 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
     display: none;
   }
 }
+
+.card-button.card-button-primary .btn {
+  width: 100%;
+  font-weight: bold;
+}

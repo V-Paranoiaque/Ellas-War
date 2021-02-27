@@ -1,6 +1,7 @@
 import { Alliance } from './ts/alliance.component';
 import { Attacks } from './ts/attacks.component';
 import { City } from './ts/city.component';
+import { Details } from './ts/details.component';
 import { Messages } from './ts/messages.component';
 import { Options } from './ts/options.component';
 import { Quests } from './ts/quests.component';
@@ -26,6 +27,7 @@ export const PrivateComponent = [
   Alliance,
   Attacks,
   City,
+  Details,
   Messages,
   Options,
   Quests,
