@@ -169,6 +169,11 @@ export class Messages {
     this.answerText = '';
   }
   
+  messageDelete() {
+    this.socket.emit('msgDelete', this.currentMsg.id);
+    this.messageLoad(0);
+  }
+  
   pageLoad(event:any) {
     let id = event.target.value;
     

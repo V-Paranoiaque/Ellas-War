@@ -38,6 +38,27 @@
   </div>
 </div>
 
+<div class="modal fade" id="DeleteMsg" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>
+          Delete the selected messages
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" 
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary" 
+                data-bs-dismiss="modal" (click)="messageDelete()"
+                translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
@@ -101,7 +122,8 @@
             <ic-icon [icon]="share"></ic-icon>
           </button>
           &nbsp;
-          <button class="btn btn-danger">
+          <button class="btn btn-danger" data-bs-toggle="modal"
+                  data-bs-target="#DeleteMsg">
             <ic-icon [icon]="trashIcon"></ic-icon>
           </button>
         </h2>
