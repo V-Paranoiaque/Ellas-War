@@ -92,6 +92,7 @@
   "Duty towers": "Tours de garde",
   
   "Earthquake near your city": "Éruption volcanique près de votre cité",
+  "Email": "Email",
   "Engage": "Engager",
   "Engage { value } Units": "Engagez {{ value }} unités",
   "Engage 500 Peltasts": "Engagez 500 Peltasts",
@@ -169,6 +170,7 @@
   
   "Palace": "Palais",
   "Palaces": "Palais",
+  "Parameters": "Paramètres",
   "Password": "Mot de passe",
   "Peltast": "Peltast",
   "Player": "Joueur",
@@ -186,6 +188,7 @@
   "Recovered resources": "Ressources récupérées",
   "Recruiter": "Recruteur",
   "Reinitialize your account": "Réinitialisez votre compte",
+  "Reset": "Réinitialiser",
   "Reset your account and start a new adventure.": "Réinitialisez votre compte et commencez une nouvelle aventure.",
   "Reward:": "Récompense : ",
   
@@ -246,6 +249,7 @@
   "Use { value } Divine bonus": "Utilisez {{ value }} Bonus divins",
   "Use { value } Divine powers": "Utilisez {{ value }} Pouvoirs divins",
   "Use the Divine Bonus": "Utiliser le bonus divin",
+  "Username": "Nom de joueur",
   "Username modified successfully": "Nom modifié avec succès",
   
   "Validate": "Valider",
