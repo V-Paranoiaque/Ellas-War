@@ -20,7 +20,6 @@
 * Delete all the selected messages
 * Delete messages one by one
 * Show the new messages in a different color
-* Error message when the player doesn't exist
 * Error message when the message is sent
 * Notification when copy the url
 * Some titles and texts are missing

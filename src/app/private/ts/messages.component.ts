@@ -18,6 +18,7 @@ import xIcon from '@iconify/icons-bi/x';
 })
 
 export class Messages {
+  public addDestError: number;
   public answerText: string;
   public currentPage: number;
   public msgToUser: string;
@@ -41,6 +42,7 @@ export class Messages {
   xIcon        = xIcon;
   
   constructor(private http: HttpClient, private socket: Socket) {
+    this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;
     this.msgToUser = '';
@@ -91,6 +93,7 @@ export class Messages {
   }
   
   addDest(username:string, callback:any=null) {
+    this.addDestError = 0;
     if(username.length == 0) {
       if(callback) {
         callback();
@@ -107,6 +110,10 @@ export class Messages {
           'username': res.username
         });
       }
+      else if(!callback) {
+        this.addDestError = 1;
+      }
+      
       if(callback) {
         callback();
       }

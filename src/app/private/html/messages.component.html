@@ -31,8 +31,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" 
-                data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary" translate>Confirm</button>
       </div>
     </div>
   </div>
@@ -148,6 +148,9 @@
           </span>
         </div>
         <br/>
+        <div *ngIf="addDestError > 0" class="alert alert-danger"
+             translate>This player doesn't exist</div>
+        
         <input type="text" class="form-control" 
                placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
         <br/>
