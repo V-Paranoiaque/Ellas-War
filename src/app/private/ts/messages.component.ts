@@ -7,6 +7,7 @@ import { environment } from './../../../environments/environment';
 import brushIcon from '@iconify/icons-bi/brush';
 import envelopeFill from '@iconify/icons-bi/envelope-fill';
 import plusIcon from '@iconify/icons-bi/plus';
+import share from '@iconify/icons-bi/share';
 import trash2Icon from '@iconify/icons-bi/trash2';
 import trashIcon from '@iconify/icons-bi/trash';
 import xIcon from '@iconify/icons-bi/x';
@@ -34,6 +35,7 @@ export class Messages {
   brushIcon    = brushIcon;
   envelopeFill = envelopeFill;
   plusIcon     = plusIcon;
+  share        = share;
   trash2Icon   = trash2Icon;
   trashIcon    = trashIcon;
   xIcon        = xIcon;
@@ -220,7 +222,7 @@ export class Messages {
     }
   }
   
-  share() {
+  shareMsg() {
     this.socket.emit("msgShare", this.currentMsg.id);
   }
   
