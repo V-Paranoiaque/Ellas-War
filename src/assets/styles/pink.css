@@ -26,10 +26,6 @@ body {
   background-repeat: repeat;
 }
 
-connected-right-menu {
-  color:white;
-}
-
 .card-header, .card-footer {
   background-color: #ff99de;
 }
@@ -40,5 +36,23 @@ connected-right-menu {
 }
 
 .navbar-light a.navbar-brand {
+  color: white;
+}
+
+.btn-primary, 
+.card-button-primary {
+    color: #fff;
+    background-color: #74335f;
+    border-color: #ad4b81;
+}
+
+.btn-primary:hover,
+.card-button-primary:hover {
+  background-color: #ad4b81;
+  border-color: #4d2347;
+}
+
+.card-button-primary a,
+.card-button-primary a:hover {
   color: white;
 }
