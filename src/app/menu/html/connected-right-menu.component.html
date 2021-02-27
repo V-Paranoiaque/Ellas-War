@@ -18,7 +18,8 @@
       <br/>Ambrosia: {{ user.getPropertyNb('ambrosia') | number:'': this.translate.currentLang }}
     </div>
     <div class="card-button card-button-primary">
-      <a class="btn" [routerLink]="['/details']">Details</a>
+      <a class="btn" [routerLink]="['/details']"
+         translate>Details</a>
     </div>
   </div>
 </div>
