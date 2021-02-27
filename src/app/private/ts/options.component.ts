@@ -14,6 +14,7 @@ export class Options {
   private renameError: number;
   public emailError: number;
   
+  public currentStyle:string;
   public newEmail: string;
   public newusername: string;
   public sound: number;
@@ -32,6 +33,9 @@ export class Options {
     this.newEmail = '';
     this.newusername = '';
     this.sound = user.getPropertyNb('sound');
+    
+    //TODO: load from the user's info
+    this.currentStyle = 'default';
     
     this.socket.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
@@ -81,5 +85,10 @@ export class Options {
   
   soundModify() {
     this.socket.emit('soundModify', this.sound);
-  };
+  }
+  
+  styleChange(event:any) {
+    let style = event.target.value;
+    this.socket.emit('styleModify', style);
+  }
 }

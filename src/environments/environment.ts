@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  style: 'pink',
+  style: {
+    default: 'pink',
+    allowed: ['pink', 'red']
+  },
   SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com'
 };
 

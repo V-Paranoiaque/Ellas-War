@@ -7,12 +7,21 @@
         <h5 class="modal-title" translate>Change game settings</h5>
       </div>
       <div class="modal-body">
-        <div class="form-check form-switch">
-          <input id="gameSound" class="form-check-input" 
-                 type="checkbox" 
-                 (change)="soundModify()" [checked]="sound" >
-          <label class="form-check-label"
-                 for="gameSound" translate>Sound</label>
+        <div class="mb-3">
+          <select class="form-control" (change)="styleChange($event)" [(ngModel)]="currentStyle">
+            <option value="default" translate>Default Style</option>
+            <option value="red" translate>Red Style</option>
+            <option value="pink" translate>Pink Style</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <div class="form-check form-switch">
+            <input id="gameSound" class="form-check-input" 
+                   type="checkbox" 
+                   (change)="soundModify()" [checked]="sound" >
+            <label class="form-check-label"
+                   for="gameSound" translate>Sound</label>
+          </div>
         </div>
       </div>
       <div class="modal-footer">

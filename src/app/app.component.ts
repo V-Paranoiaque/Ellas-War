@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from '../services/user.service';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
@@ -15,19 +16,37 @@ import localeFr from '@angular/common/locales/fr';
 
 export class AppComponent implements OnInit {
   title = 'Ellas War';
-  cssUrl: string;
   
-  constructor(private socket: Socket, public translate: TranslateService,
+  public cssUrl: string;
+  private cssBase: string;
+  
+  constructor(private socket: Socket, public user: User,
+              public translate: TranslateService,
               public sanitizer: DomSanitizer) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
     
-    this.cssUrl = '/assets/styles/'+environment.style+'.css';
+    this.cssBase = '/assets/styles/';
+    this.cssUrl = this.setStyle();
   }
   
   ngOnInit() {
     this.socket.setupSocketConnection();
     this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
+    
+    this.socket.socket.on('user', () => {
+      this.cssUrl = this.setStyle();
+    });
+  }
+  
+  setStyle() {
+    let style = this.user.getProperty('style');
+    
+    if(!(style in environment.style.allowed)) {
+      style = environment.style.default;
+    }
+    
+    return this.cssBase+style + '.css';
   }
 }

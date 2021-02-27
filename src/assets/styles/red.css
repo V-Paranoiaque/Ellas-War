@@ -7,20 +7,21 @@
 }
 
 .mosaic {
-  background-image: url('../img/styles/default/mosaic.png');
+  background-image: url('../img/styles/red/mosaic.png');
   width: 100%;
   height: 24px;
 }
 
 body {
   background-color: #dcd1b1;
-  background-image: url('../img/styles/default/white-texture.png');
+  background-image: url('../img/styles/red/white-texture.png');
 }
 
-.card-header {
+.card-header, .card-footer {
   background-color: var();
 }
 
-.card-header:first-letter {
+.card-header:first-letter,
+.card-footer:first-letter {
   color: var(--color-menu-dark);
 }

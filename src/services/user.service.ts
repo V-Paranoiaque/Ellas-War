@@ -8,6 +8,7 @@ export class User {
       'mstatus': 0,
       'level': 0,
       'datas': {},
+      'style': 'default',
       
       'army': {},
       'building': {}

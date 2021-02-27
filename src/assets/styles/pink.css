@@ -30,11 +30,12 @@ connected-right-menu {
   color:white;
 }
 
-.card-header {
+.card-header, .card-footer {
   background-color: #ff99de;
 }
 
-.card-header:first-letter {
+.card-header:first-letter,
+.card-footer:first-letter {
   color: white;
 }
 
