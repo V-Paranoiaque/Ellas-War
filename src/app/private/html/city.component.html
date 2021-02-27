@@ -68,12 +68,12 @@
       <div class="col-xl-6">
         <div class="card">
           <div class="card-header" translate>
-            Quests
+            General
           </div>
           <div class="card-body">
             <div *ngIf="user.getLevel() < 10">
               <a [routerLink]="['/quests']">
-                <strong translate>Missions</strong><strong translate>:</strong> 
+                <strong translate>Quests</strong><strong translate>:</strong> 
                 {{ user.getQuest() }}/{{ user.getQuestMax() }}
               </a>
             </div>
@@ -81,7 +81,7 @@
         </div>
       </div>
       
-      <div *ngIf="user.getLevel() >= 1 || user.getQuest() >= 8"
+      <div *ngIf="user.getLevel() >= 1 || user.getQuest() >= 7"
            class="col-xl-6">
         <div class="card">
           <div class="card-header">
@@ -132,7 +132,7 @@
           <div class="card-body no-padding">
             <div class="frame frame-20"
                  data-bs-toggle="modal" data-bs-target="#TreasureInfo"
-                 *ngIf="user.getLevel() >= 1 || user.getQuest() >= 12">
+                 *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11">
               <img src="assets/img/buildings/treasure.png"
                    title="{{ 'Treasure' | translate }}" 
                    alt="{{ 'Treasure' | translate }}" />

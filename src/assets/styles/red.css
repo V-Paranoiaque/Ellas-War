@@ -25,3 +25,34 @@ body {
 .card-footer:first-letter {
   color: var(--color-menu-dark);
 }
+
+.card-button.card-button-success {
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.card-button.card-button-success button.btn {
+  color: white;
+}
+
+.card-body .progress, .btn {
+  border-radius: 0px;
+}
+
+.btn-primary, 
+.card-button-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.btn-primary:hover,
+.card-button-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.card-button-primary a,
+.card-button-primary a:hover {
+  color: white;
+}

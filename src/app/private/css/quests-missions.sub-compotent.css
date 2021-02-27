@@ -1,0 +1,28 @@
+.card-body .progress {
+  height: 30px;
+  margin-bottom: 12px;
+  background-color: grey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .7) inset;
+  color: white;
+}
+
+.card-body .progress .progress-text {
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  font-weight: bold;
+  right: 0;
+  left: 0;
+}
+
+.card-body a.btn {
+  width: 100%;
+  color: #fff;
+}
+
+.card-button.card-button-success button,
+.card-button.card-button-primary .btn {
+  width: 100%;
+  font-weight: bold;
+}

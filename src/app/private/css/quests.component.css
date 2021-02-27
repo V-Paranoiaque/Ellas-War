@@ -2,8 +2,20 @@
   margin-bottom: var(--bs-gutter-x);
 }
 
+
 @media (max-width: 767px) {
   .card {
     margin-bottom: calc(var(--bs-gutter-x)/2);
   }
+}
+
+.card-body a.btn {
+  width: 100%;
+  color: #fff;
+}
+
+.card-button.card-button-success button,
+.card-button.card-button-primary .btn {
+  width: 100%;
+  font-weight: bold;
 }

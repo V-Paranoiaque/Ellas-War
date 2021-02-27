@@ -33,7 +33,7 @@
           </span>
         </div>
         
-        <div *ngIf="info.consumption">
+        <div *ngIf="info.consumption && info.consumption.length > 0">
           <strong translate>Consumption</strong>
           <strong translate>:</strong>
           <br/>
@@ -49,7 +49,9 @@
         <div>
           <strong translate>Currently</strong>
           <strong translate>:</strong>
+          <span role="button" (click)="setLiberate()">
           {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
+          </span>
           <span *ngIf="info.nbmax">
             / {{ info.nbmax | number:'': this.translate.currentLang }}
           </span>

@@ -113,6 +113,7 @@
   "Go to City and validate a Divine Bonus to get spartans.": "Allez dans cité et validez un Bonus divin pour obtenir des spartiates.",
   "Go to City, and liberate the Spartans. You can again engage them if you build the temple of Ares, level 6.": "Allez dans votre cité et liberez les Spartiates. Vous pourrez les engager de nouveau au niveau 6 si vous contruisez le temple d'Arès",
   
+  "General": "Général",
   "Gold mine": "Mine d'or",
   "Gold mines": "Mines d'or",
   "Great conqueror": "Grand conquérant",
@@ -132,6 +133,7 @@
   "If you wish to change your username, you can go into the <strong>Option</strong> menu at the top, then <strong>Change your username</strong>. The first change is free as long as you level 0.": "Si vous desirez changer votre identifiant, vous pouvez aller dans le menu <strong>Options</strong> situé en haut, puis dans <strong>Changez votre nom</strong>. Le premier changement est gratuit tant que vous restez niveau 0.",
   "Invasion of insects on your city": "Invasion d'insectes sur votre cité",
   "Iron mine": "Mine de fer",
+  "iron mines": "mines de fer",
   "Iron mines": "Mines de fer",
   "Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.": "Les mines de fer produisent du fer. Elles vous permettront de produire des drachmes et à armer votre cité.",
   
@@ -139,6 +141,7 @@
   
   "Keep an eye on your resources to optimize your production and your defense.": "Gardez vos yeux sur vos ressources pour optimiser votre production et votre défense.",
   
+  "Level quests": "Quêtes de niveau",
   "Liberate": "Libérer",
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
   "Login": "Identifiant",
@@ -151,7 +154,6 @@
   "Mints produce Drachmas. Through them you can construct buildings and raise armies.": "Les Ateliers monétaires produisent des Drachmes. Grâce à eux vous pourrez construire des bâtiments et lever des armées.",
   "Mirror tower": "Tour à miroir",
   "Mirror towers": "Tours à miroir",
-  "Missions": "Missions",
   "Modify your email connected to your account.": "Modifiez l'adresse mail connectée à votre compte.",
   "Monster Hunter": " Chasseur de monstres",
   "Monster killer": "Tueur de monstres",
@@ -173,6 +175,7 @@
   "Precision launcher": "Lanceur de précision",
   "Price": "Prix",
   "Production": "Production",
+  "Progress:": "Progression :",
   "Pull": "Retirer",
   "Put a total of { value } Drachmas into your treasure.": "Mettez un total de {{ value }} Drachmes dans votre trésor.",
   
@@ -257,6 +260,7 @@
   "Water is used by your buildings and your army.": "L'eau est utilisée par vos bâtiment et votre armée.",
   "Welcome on Ellas War": "Bienvenue sur Ellàs War",
   "Well": "Puit",
+  "wells": "puits",
   "Wells": "Puits",
   "Win { value } times in the javelin game": "Gagnez {{ value }} fois au jeu du Javelot",
   "Win { value } victories": "Remportez {{ value }} victoires",

@@ -50,4 +50,8 @@ export class ArmyPopup {
       this.socket.emit("liberate", msg);
     }
   }
+  
+  setLiberate() {
+    this.liberatenb = this.user.getPropertyNb(this.info.code);
+  }
 }

@@ -113,7 +113,7 @@ export class User {
   
   getQuestMax() {
     switch(this.info.level) {
-      case 0: return 15;
+      case 0: return 14;
       case 1: return 13;
       case 2: return 12;
       case 3: return 9;
