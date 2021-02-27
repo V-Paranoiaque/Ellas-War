@@ -209,6 +209,7 @@ export class Messages {
   }
   
   setAllRead() {
+    this.socket.emit('msgSetRead');
   }
   
   setPage(id:number, i:number=0) {
