@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   setStyle() {
     let style = this.user.getProperty('style');
     
-    if(!(style in environment.style.allowed)) {
+    if(!environment.style.allowed.includes(style)) {
       style = environment.style.default;
     }
     
