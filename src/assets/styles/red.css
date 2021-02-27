@@ -61,3 +61,12 @@ input.form-control, textarea.form-control {
 .card-button-primary a:hover {
   color: white;
 }
+
+.card-body.selected {
+  background-color: #337ab7;
+  color: white;
+}
+
+.card-body.selected a {
+  color: white;
+}

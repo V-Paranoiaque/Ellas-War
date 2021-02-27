@@ -60,3 +60,7 @@ a {
 .card-button-primary a:hover {
   color: white;
 }
+
+.card-body.selected {
+  background-color: #ff99de;
+}

@@ -82,7 +82,7 @@ export class Messages {
     
     this.socket.socket.on('msgRefresh', () => {
       this.setPage(this.currentPage);
-      this.messageLoad(this.currentMsg.id);
+      this.messageLoad({'id': this.currentMsg});
     });
   }
   
@@ -149,8 +149,13 @@ export class Messages {
     }
   };
   
-  messageLoad(id:number) {
+  messageLoad(msg:any) {
+    let id = msg.msg_id;
+    
     if(id > 0) {
+      if(!msg.msg_read) {
+        msg.msg_read = 1;
+      }
       this.socket.emit('msgInfo', id);
     }
     else {
@@ -171,7 +176,7 @@ export class Messages {
   
   messageDelete() {
     this.socket.emit('msgDelete', this.currentMsg.id);
-    this.messageLoad(0);
+    this.messageLoad({'msg_id': 0});
   }
   
   pageLoad(event:any) {

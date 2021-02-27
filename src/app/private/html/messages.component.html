@@ -63,41 +63,40 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-6">
-        <div class="text-center">
-          <button class="btn btn-primary" (click)="messageLoad(0)">
-            <ic-icon [icon]="brushIcon"></ic-icon>
-          </button>
-          &nbsp;
-          <button class="btn btn-info" data-bs-toggle="modal" 
-                  data-bs-target="#MsgSetRead">
-            <ic-icon [icon]="envelopeFill"></ic-icon>
-          </button>
-          &nbsp;
-          <button class="btn btn-warning" (click)="switchDeleteMode()">
-            <ic-icon [icon]="trashIcon"></ic-icon>
-          </button>
-          <span [ngClass]="{'invisible': getDeleteMode() == 0}">
-            &nbsp;
-            <button class="btn btn-danger" data-bs-toggle="modal" 
-                    data-bs-target="#DeleteMultipleMsg">
-              <ic-icon [icon]="trash2Icon"></ic-icon>
+        <div class="card">
+          <div class="card-flex text-center">
+            <button class="btn btn-primary" (click)="messageLoad(0)">
+              <ic-icon [icon]="brushIcon"></ic-icon>
             </button>
-          </span>
-        </div>
-        <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight messages"
-             (click)="messageLoad(msg.msg_id)">
-          <div class="p-2 bd-highlight" *ngIf="getDeleteMode() == 1">
-            <input type="checkbox" checked="checked" />
+            <button class="btn btn-info" data-bs-toggle="modal" 
+                    data-bs-target="#MsgSetRead">
+              <ic-icon [icon]="envelopeFill"></ic-icon>
+            </button>
+            <button class="btn btn-warning" (click)="switchDeleteMode()">
+              <ic-icon [icon]="trashIcon"></ic-icon>
+            </button>
+            <button [ngClass]="{'d-none': getDeleteMode() == 0}"
+                    class="btn btn-danger" data-bs-toggle="modal" 
+                    data-bs-target="#DeleteMultipleMsg">
+                <ic-icon [icon]="trash2Icon"></ic-icon>
+              </button>
           </div>
-          <div class="p-2 flex-grow-1 bd-highlight">
-            <messages-title [msg]="msg"></messages-title>
-            <div class="fw-lighter">
-              {{ msg.last_date | date:'dd/MM/yyyy, HH:mm' }}
+          <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight card-body"
+               [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
+               role="button" (click)="messageLoad(msg)">
+            <div class="p-2 bd-highlight" *ngIf="getDeleteMode() == 1">
+              <input type="checkbox" checked="checked" />
             </div>
-          </div>
-          <div class="p-2 bd-highlight">
-            <div *ngFor="let u of msg.mb_list">
-              <a href="profile/{{u.id}}">{{u.username}}</a>
+            <div class="p-2 flex-grow-1 bd-highlight">
+              <messages-title [msg]="msg"></messages-title>
+              <div class="fw-lighter">
+                {{ msg.last_date | date:'dd/MM/yyyy, HH:mm' }}
+              </div>
+            </div>
+            <div class="p-2 bd-highlight">
+              <div *ngFor="let u of msg.mb_list">
+                <a href="profile/{{u.id}}">{{u.username}}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -115,72 +114,85 @@
       </div>
       
       <div class="col-xl-6 text-center" *ngIf="getCurrentMsg().id > 0">
-        <h2>
-          <messages-title [msg]="getCurrentMsg()"></messages-title>
-          &nbsp;
-          <button class="btn btn-warning" (click)="shareMsg()">
-            <ic-icon [icon]="share"></ic-icon>
-          </button>
-          &nbsp;
-          <button class="btn btn-danger" data-bs-toggle="modal"
-                  data-bs-target="#DeleteMsg">
-            <ic-icon [icon]="trashIcon"></ic-icon>
-          </button>
-        </h2>
-        <div *ngIf="getCurrentMsg().msg_shared == 1" class="text-center">
-          <strong translate>Share link:</strong>
-          {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
-          <span class="badge bg-primary">
-            <ic-icon [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
-                  name="clipboard-check" role="button" ngxClipboard></ic-icon>
-          </span>
-        </div>
-        
-        <div *ngIf="getCurrentMsg().msg_type == 0">
-          <br/>
-          <div class="input-group">
-            <textarea class="form-control" placeholder="{{'Message'|translate}}"
-                      [(ngModel)]="answerText"></textarea>
-            <span class="input-group-addon btn btn-primary"
-                  (click)="answer()" translate>Send</span>
+        <div class="card">
+          <div class="card-body">
+            <h2>
+              <messages-title [msg]="getCurrentMsg()"></messages-title>
+              &nbsp;
+              <button class="btn btn-warning" (click)="shareMsg()">
+                <ic-icon [icon]="share"></ic-icon>
+              </button>
+              &nbsp;
+              <button class="btn btn-danger" data-bs-toggle="modal"
+                      data-bs-target="#DeleteMsg">
+                <ic-icon [icon]="trashIcon"></ic-icon>
+              </button>
+            </h2>
           </div>
-          <div *ngFor="let msg of getCurrentMsg().msg" class="msgContent">
-            {{ msg.content }}
-            <div class="text-end fw-lighter">
-              <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
+          <div *ngIf="getCurrentMsg().msg_shared == 1" class="card-body text-center">
+            <strong translate>Share link:</strong>
+            {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
+            <span class="badge bg-primary">
+              <ic-icon [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
+                    name="clipboard-check" role="button" ngxClipboard></ic-icon>
+            </span>
+          </div>
+          
+          <div *ngIf="getCurrentMsg().msg_type == 0">
+            <div class="card-body">
+              <div class="input-group">
+                <textarea class="form-control" placeholder="{{'Message'|translate}}"
+                          [(ngModel)]="answerText"></textarea>
+                <span class="input-group-addon btn btn-primary"
+                      (click)="answer()" translate>Send</span>
+              </div>
             </div>
+            <div *ngFor="let msg of getCurrentMsg().msg" class="card-body">
+              {{ msg.content }}
+              <div class="text-end fw-lighter">
+                <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="getCurrentMsg().msg_type > 0">
+            TODO
           </div>
         </div>
       </div>
+      
       <div class="col-xl-6 text-center" *ngIf="getCurrentMsg().id == 0">
-        
-        <span class="badge bg-primary" *ngFor="let user of getDestList()">
-          {{ user.username }}
-          <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
-        </span>
-        
-        <div class="input-group">
-          <span class="input-group-text" translate>To: </span>
-          <input type="text" class="form-control" aria-label="Player" 
-                 placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
-                 (keydown.enter)="addDest(msgToUser)" >
-          <span class="input-group-text text-center" role="button" 
-                (click)="addDest(msgToUser)">
-            <ic-icon [icon]="plusIcon"></ic-icon>
-          </span>
-        </div>
-        <br/>
-        <div *ngIf="addDestError > 0" class="alert alert-danger"
-             translate>This player doesn't exist</div>
-        
-        <input type="text" class="form-control" 
-               placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
-        <br/>
-        <div class="input-group">
-          <textarea class="form-control" placeholder="{{'Message'|translate}}"
-                    [(ngModel)]="msgText"></textarea>
-          <span class="input-group-addon btn btn-primary" 
-                role="button" (click)="send()" translate>Send</span>
+        <div class="card">
+          <div class="card-body">
+            <span class="badge bg-primary" *ngFor="let user of getDestList()">
+              {{ user.username }}
+              <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+            </span>
+            
+            <div class="input-group">
+              <span class="input-group-text" translate>To: </span>
+              <input type="text" class="form-control" aria-label="Player" 
+                     placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
+                     (keydown.enter)="addDest(msgToUser)" >
+              <span class="input-group-text text-center" role="button" 
+                    (click)="addDest(msgToUser)">
+                <ic-icon [icon]="plusIcon"></ic-icon>
+              </span>
+            </div>
+            <div *ngIf="addDestError > 0" class="alert alert-danger"
+                 translate>This player doesn't exist</div>
+          </div>
+          <div class="card-body">
+            <input type="text" class="form-control" 
+                   placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
+            <br/>
+            <div class="input-group">
+              <textarea class="form-control" placeholder="{{'Message'|translate}}"
+                        [(ngModel)]="msgText"></textarea>
+              <span class="input-group-addon btn btn-primary" 
+                    role="button" (click)="send()" translate>Send</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

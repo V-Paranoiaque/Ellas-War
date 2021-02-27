@@ -18,7 +18,6 @@
 
 # Messages
 * Delete all the selected messages
-* Show the new messages in a different color
 * Error message when the message is sent
 * Notification when copy the url
 * Some titles and texts are missing
