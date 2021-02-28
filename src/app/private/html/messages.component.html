@@ -95,7 +95,7 @@
             </div>
             <div class="p-2 bd-highlight border-top">
               <div *ngFor="let u of msg.mb_list">
-                <a href="profile/{{u.id}}">{{u.username}}</a>
+                <a [routerLink]="['/profile', u.id]">{{u.username}}</a>
               </div>
             </div>
           </div>
