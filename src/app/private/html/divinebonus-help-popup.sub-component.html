@@ -1,0 +1,116 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      Divine Bonus
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div translate>The Divine Bonus are awarded when you sign in on the game and reward your loyalty. You can also earn through the activities offered on the facebook page. A bonus with similar effects to see its effect favors accumulate than the favor.</div>
+    <br/>
+    <div class="text-center">
+      <div>
+        <strong translate>Ongoing streak:</strong>
+        {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+      </div>
+      <div>{{ 'Next goal: { value } Days, possible bonus:' | translate: { value: goalDays | translate } }}</div>
+      
+      <div [ngSwitch]="nb">
+        <ul *ngSwitchCase="3">
+          <li>
+            {{ 10000 | number:'': this.translate.currentLang }}
+            <id-to-ress [ress_id]="'iron'"></id-to-ress>
+          </li>
+          <li>
+            {{ 10000 | number:'': this.translate.currentLang }}
+            <id-to-ress [ress_id]="'wood'"></id-to-ress>
+          </li>
+          <li *ngIf="user.getLevel() >= user.getProperty('datas').ress_lvl.grapes">
+            {{ 2000 | number:'': this.translate.currentLang }}
+            <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+          </li>
+        </ul>
+        <ul *ngSwitchCase="7">
+          <li *ngIf="user.getLevel() < user.getProperty('datas').ress_lvl.stone">
+            {{ 10000 | number:'': this.translate.currentLang }} 
+            <id-to-ress [ress_id]="'iron'"></id-to-ress>
+          </li>
+          <li *ngIf="user.getLevel() < user.getProperty('datas').ress_lvl.stone">
+            {{ 10000 | number:'': this.translate.currentLang }} 
+            <id-to-ress [ress_id]="'wood'"></id-to-ress>
+          </li>
+          <li *ngIf="user.getLevel() < user.getProperty('datas').ress_lvl.stone">
+            {{ 2000 | number:'': this.translate.currentLang }} 
+            <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+          </li>
+          <li *ngIf="user.getLevel() >= user.getProperty('datas').ress_lvl.stone">
+            {{ 2000 | number:'': this.translate.currentLang }} 
+            <id-to-ress [ress_id]="'stone'"></id-to-ress>
+          </li>
+          <li *ngIf="user.getLevel() >= user.getProperty('datas').ress_lvl.marble">
+            {{ 250 | number:'': this.translate.currentLang }} 
+            <id-to-ress [ress_id]="'marble'"></id-to-ress>
+          </li>
+        </ul>
+        <ul *ngSwitchCase="14">
+          <li ng-if="user.getLevel() < 9">
+            {{80}} 
+            <span translate>Spartans</span>
+          </li>
+          <li ng-if="user.getLevel() >= 9" translate>
+            200 units of your third temple
+          </li>
+        </ul>
+        <ul *ngSwitchCase="30">
+          <li translate>
+            6 hours of withdrawal without taxes in your treasure
+          </li>
+          <li>
+            <span ng-if="user.hermes == 0" translate>
+              You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
+            </span>
+            <span ng-if="user.hermes == 1" translate>
+              You are allowed to sell in the Agora today, even if it's Sunday
+            </span>
+          </li>
+          <li translate>
+            2 bonus attacks
+          </li>
+        </ul>
+        <ul *ngSwitchCase="50">
+          <li>
+            {{1}} <id-to-ress [ress_id]="'favor'"></id-to-ress>
+            <img src="img/ress/favor.jpg" title="{{'Favors'|translate}}" alt="{{'Favors'|translate}}" />
+          </li>
+        </ul>
+        <ul *ngSwitchCase="70">
+          <li translate>
+            6 hours of withdrawal without taxes in your treasure
+          </li>
+          <li>
+            <span ng-if="user.hermes == 0" translate>
+              You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
+            </span>
+            <span ng-if="user.hermes == 1" translate>
+              You are allowed to sell in the Agora today, even if it's Sunday
+            </span>
+          </li>
+          <li translate>
+            2 bonus attacks
+          </li>
+        </ul>
+        <ul *ngSwitchCase="99">
+          <li>
+            {{1}} <id-to-ress [ress_id]="'favor'"></id-to-ress>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+  </div>
+</div>

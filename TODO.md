@@ -14,7 +14,6 @@
 # Divine Bonus
 * Display next bonus on the city when the list is empty
 * Display next bonus in the list
-* Help popup
 
 # Messages
 * Delete all the selected messages

@@ -9,6 +9,7 @@ import { Storeroom } from './ts/storeroom.component';
 
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
+import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
 import { IdToDivineBonus } from './ts/id-to-divinebonus.sub-component';
@@ -35,6 +36,7 @@ export const PrivateComponent = [
   
   ArmyPopup,
   ConstructionPopup,
+  DivineBonusHelpPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
   IdToDivineBonus,

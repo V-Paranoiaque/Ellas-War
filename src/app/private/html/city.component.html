@@ -28,6 +28,11 @@
     </divinebonus-list-popup>
   </div>
 </div>
+<div class="modal fade" id="DivineBonusHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <divinebonus-help-popup></divinebonus-help-popup>
+  </div>
+</div>
 
 <div class="modal fade" id="SuccessInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -89,7 +94,9 @@
             <span data-bs-toggle="modal"
                   data-bs-target="#DivineBonusList"
                   (click)="divineBonusReset()">All</span> -
-             <span translate>Help</span>
+             <span data-bs-toggle="modal"
+                   data-bs-target="#DivineBonusHelp"
+                   translate>Help</span>
           </div>
           <div class="card-body no-padding">
             <div *ngFor="let bonus of divineBonus"

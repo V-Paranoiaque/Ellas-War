@@ -117,6 +117,7 @@
   
   "Date": "Date",
   "Daily": "Journalière",
+  "Day(s)": "Jour(s)",
   "Defeat against { value }": "Défaite contre {{ value }}",
   "Delete all the selected messages": "Supprimer tous les messages séléctionnés",
   "Delete the selected messages": "Supprimer le message séléctionné",
@@ -247,11 +248,13 @@
   "New powers": "Nouveaux pouvoirs",
   "New unity: { unit }": "Nouvelle unité : {{ unit }}",
   "New username": "Nouveau nom",
+  "Next goal: { value } Days, possible bonus:": "Prochain objectif : {{ value }} jours, bonus possibles :",
   "No temple": "Pas de temple",
   
   "Observation tower": "Tour d'observation",
   "Observation towers": "Tours d'observation",
   "Old email": "Ancien email",
+  "Ongoing streak:": "Série en cours :",
   
   "Palace": "Palais",
   "Palaces": "Palais",
@@ -314,6 +317,7 @@
   "The Amazons were a race of warrior women who were descended from Ares, god of war and Harmony nymph. Living without a man, they had some relations with neighboring countries, but only kept the female children, boys were returned to their father or killed. They manipulated the arc, as we burned their right breast to facilitate this, hence their name of an Amazon in Greek meaning \"without breast\". This manipulation of the arc also returns to the worship of the Goddess of the hunt, Artemis.": "Les Amazones étaient un peuple de femmes guerrières qui descendaient d'Arès, dieu de la Guerre et de la nymphe Harmonie. Vivant sans homme, elles avaient quelques relations avec ceux des pays voisins, mais ne gardaient que les enfants de sexe féminin, les garçons étaient renvoyés à leur père ou tués. Elles manipulaient l'arc, aussi leur brûlait-on le sein droit pour faciliter cet exercice, d'où leur nom d'amazone signifiant en grec «sans poitrine». Cette manipulation de l'arc renvoit aussi au culte de la Deesse de la chasse, Artemis.",
   "The archer on horseback keeps the advantage of the infantry at a distance while having those of your cavalry.": "L'archer à cheval garde l'avantage de l'infanterie à distance tout en ayant ceux de votre cavalerie.",
   "The automata are humanoids made of bronze. They were forged and assembled by the great Hephaestus himself to ensure the defense of your city.": "Les automates sont des humanoïdes faits de bronze. Ils ont été forgés et assemblés par le grand Héphaïstos lui-même pour assurer la défense de votre cité.",
+  "The Divine Bonus are awarded when you sign in on the game and reward your loyalty. You can also earn through the activities offered on the facebook page. A bonus with similar effects to see its effect favors accumulate than the favor.":"Les bonus divins vous sont octroyés lors de votre connexion sur le jeu et récompensent votre fidélité. Vous pouvez aussi en gagner grâce aux animations proposées sur la page facebook du jeu. Un bonus ayant des effets similaires à une faveurs voit son effet se cumuler à celui de la faveur.",
   "The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.":"Les Bonus divins vous apportent des avantages temporaires. Vous pouvez en gagner en étant actif sur le jeu ou en participant aux animations proposées sur la page Facebook.",
   "The farms produce food for your soldiers and for export.": "Les fermes produisent de la nourriture pour vos soldats et pour l'exportation.",
   "The fury can destroy farms and growers and reserves of grapes and food of your opponents.": "Les furies peuvent détruire les fermes, les Métairies ainsi que les réserves de raisin et de nourriture de vos ennemis.",
