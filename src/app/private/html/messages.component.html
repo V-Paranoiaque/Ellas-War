@@ -84,16 +84,16 @@
           <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight card-body"
                [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
                role="button" (click)="messageLoad(msg)">
-            <div class="p-2 bd-highlight" *ngIf="getDeleteMode() == 1">
+            <div class="p-2 bd-highlight border-top" *ngIf="getDeleteMode() == 1">
               <input type="checkbox" checked="checked" />
             </div>
-            <div class="p-2 flex-grow-1 bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight border-top">
               <messages-title [msg]="msg"></messages-title>
               <div class="fw-lighter">
                 {{ msg.last_date | date:'dd/MM/yyyy, HH:mm' }}
               </div>
             </div>
-            <div class="p-2 bd-highlight">
+            <div class="p-2 bd-highlight border-top">
               <div *ngFor="let u of msg.mb_list">
                 <a href="profile/{{u.id}}">{{u.username}}</a>
               </div>
