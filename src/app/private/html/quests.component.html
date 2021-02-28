@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div [ngClass]="{'col-xl-6 col-xs-12': user.getLevel() > 0, 'col-xs-12': user.getLevel() == 0}">
-        <quests-missions></quests-missions>
+        <quests-missions *ngIf="user.getLevel() < 10"></quests-missions>
       </div>
       <div class="col-xl-6" *ngIf="user.getLevel() > 0">
         <div *ngFor="let quest of getMyQuestList()" class="card">

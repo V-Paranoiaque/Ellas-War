@@ -1,0 +1,78 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 *ngIf="temple == 0" translate>Choose your third temple</h5>
+    <h5 *ngIf="temple == 6" translate>Artemis</h5>
+    <h5 *ngIf="temple == 7" translate>Hephaestus</h5>
+    <h5 *ngIf="temple == 8" translate>Dionysus</h5>
+  </div>
+  <div class="modal-header">
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 6}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(6)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 7}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(7)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 8}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(8)" />
+  </div>
+  <div class="modal-body">
+    <strong translate>Price</strong><strong translate>:</strong>
+    
+    <span *ngFor="let res of price">
+      <span [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < res.quantity}">
+        {{ res.quantity | number:'': this.translate.currentLang }}
+      </span>
+      <id-to-ress [ress_id]=res.resource></id-to-ress>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="user.getLevel() < 8"
+         class="alert alert-danger" translate>
+      Available at level 8
+    </div>
+    <div *ngIf="temple > 0">
+      <strong translate>New powers</strong>
+      <ul *ngIf="temple == 6">
+        <li translate>+30% wood production</li>
+        <li translate>{{'New unity: { unit }'| translate: { unit: 'Amazons' | translate } }}</li>
+      </ul>
+      <ul *ngIf="temple == 7">
+        <li translate>+30% Drachmas production</li>
+        <li translate>{{'New unity: { unit }'| translate: { unit: 'Automatons' | translate } }}</li>
+      </ul>
+      <ul *ngIf="temple == 8">
+        <li translate>+30% wine production</li>
+        <li translate>{{'New unity: { unit }'| translate: { unit: 'Centaurs' | translate } }}</li>
+      </ul>
+      <strong translate>With four temples</strong>
+      <ul *ngIf="temple == 6">
+        <li translate>Looting is increased by 5 to 15% for 2 hours.</li>
+        <li translate>Your city can not be attacked for 20 min thanks to the immense forest that covers the city.</li>
+      </ul>
+      <ul *ngIf="temple == 7">
+        <li translate>Hephaestus improves the defensive power of the automatons by 200% for 2 hours.</li>
+        <li translate>The lava falls on the enemies preventing them from building buildings for 20 min.</li>
+      </ul>
+      <ul *ngIf="temple == 8">
+        <li translate>Dionysus increases grape production by 60% for 6 hours.</li>
+        <li translate>Dionysus offers 500 satyrs to help you destroy your enemies.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button *ngIf="temple > 0 && canBuild()"
+            type="button" class="btn btn-primary"
+            data-bs-dismiss="modal" (click)="build()"
+            translate>Build</button>
+  </div>
+</div>

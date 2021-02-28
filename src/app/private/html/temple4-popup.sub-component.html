@@ -1,0 +1,79 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 *ngIf="temple == 0" translate>Choose your fourth temple</h5>
+    <h5 *ngIf="temple == 9" translate>Zeus</h5>
+    <h5 *ngIf="temple == 10" translate>Hades</h5>
+    <h5 *ngIf="temple == 11" translate>Poseidon</h5>
+  </div>
+  <div class="modal-header">
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 9}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(9)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 10}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(10)" />
+    <img src="assets/img/temples/temple-no.png" role="button"
+         [ngClass]="{'grey': temple > 0 && temple != 11}"
+         alt="{{'No temple' | translate}}" 
+         title="{{'Build a new temple' | translate}}"
+         (click)="setTemple(11)" />
+  </div>
+  <div class="modal-body">
+    <strong translate>Price</strong><strong translate>:</strong>
+    
+    <span *ngFor="let res of price">
+      <span [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < res.quantity}">
+        {{ res.quantity | number:'': this.translate.currentLang }}
+      </span>
+      <id-to-ress [ress_id]=res.resource></id-to-ress>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="user.getLevel() < 10"
+         class="alert alert-danger" translate>
+      Available at level 10
+    </div>
+    <div *ngIf="temple > 0">
+      <strong translate>New powers</strong>
+      <ul *ngIf="temple == 9">
+        <li translate>You will be able to send lightning of Zeus to destroy buildings of your Enemies.</li>
+        <li translate>{{'New unity: { unit }'| translate: { unit: 'Myrmidons' | translate } }}</li>
+        <li translate>You receive 1000 units at random.</li>
+        <li translate>Heavy black clouds invade the targeted enemy city which can no longer engage units</li>
+        <li translate>Infantry units gain 25% attack power for 1 hour.</li>
+      </ul>
+      <ul *ngIf="temple == 10">
+        <li translate>+30% gold production</li>
+        <li translate>+30% iron production</li>
+        <li translate>+30% marble production</li>
+        <li translate>+30% stone production</li>
+        <li translate>{{'New unity: { unit }'| translate: { unit: 'Tormented souls' | translate } }}</li>
+        <li translate>Hades launches an epidemic on the enemy city causing the immediate death of 5 to 15% of his army.</li>
+        <li translate>Hades returns 5 to 10% of your dead units in battle.</li>
+        <li translate>Hades gives you marble and stone to defeat your enemies.</li>
+      </ul>
+      <ul *ngIf="temple == 11">
+        <li translate>+30% water production</li>
+        <li translate>-40% cavalry cost</li>
+        <li translate>-30% cavalry consumption</li>
+        <li translate>Possibility of building Poseidon wall to defend your city.</li>
+        <li translate>Poseidon rebuilt your wall to protect your city.</li>
+        <li translate>Poseidon shakes the earth and blocks the resources production of an enemy for 2 hours.</li>
+        <li translate>The wall gains 20% defensive power for 2h, 200 Cyclops join you to resist the invader.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button *ngIf="temple > 0 && canBuild()"
+            type="button" class="btn btn-primary"
+            data-bs-dismiss="modal" (click)="build()"
+            translate>Build</button>
+  </div>
+</div>

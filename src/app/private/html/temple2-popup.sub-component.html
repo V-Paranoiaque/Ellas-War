@@ -34,20 +34,20 @@
     <div *ngIf="temple > 0">
       <strong translate>New powers</strong>
       <ul *ngIf="temple == 4">
-        <li class="justify" translate>+15% offensive power</li>
-        <li class="justify">{{'New unity: { unit }'| translate: { unit: 'Spartan' | translate } }}</li>
+        <li translate>+15% offensive power</li>
+        <li>{{'New unity: { unit }'| translate: { unit: 'Spartan' | translate } }}</li>
       </ul>
       <ul *ngIf="temple == 5">
-        <li class="justify" translate>+15% defensive power</li>
-        <li class="justify" translate>-20% infanterie cost</li>
-        <li class="justify" translate>-20% infanterie consumption</li>
+        <li translate>+15% defensive power</li>
+        <li translate>-20% infanterie cost</li>
+        <li translate>-20% infanterie consumption</li>
       </ul>
       <strong translate>With four temples</strong>
       <ul *ngIf="temple == 4">
-        <li class="justify" translate>Athena temporarily increases the defense of units in your city by 25%.</li>
+        <li translate>Athena temporarily increases the defense of units in your city by 25%.</li>
       </ul>
       <ul *ngIf="temple == 5">
-        <li class="justify" translate>You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.</li>
+        <li translate>You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.</li>
       </ul>
     </div>
   </div>
