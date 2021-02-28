@@ -2,7 +2,6 @@
 * Format numbers
 
 # Attacks
-* Display a message when the list is empty
 * Display the history when no player selected
 * No attack if not enough hostings
 * No attack if not enough resources

@@ -386,6 +386,7 @@
   "You will need more Iron for your city.": "Vous allez avoir besoin de plus de fer pour votre cité.",
   "You will need more stone and marble to build your temples. Build a total of 10 quarries.": "Vous allez avoir besoin de plus de pierre et de marbre pour construire vos temples. Construisez un total de 10 carrieres.",
   "You will need stone and marble to build your temples. Build a total of 5 quarries.": "Vous allez avoir besoin de pierre et de marbre pour construire vos temples. Construisez un total de 5 carrières.",
+  "Your attack list is empty. You can only see cities who have between 50% and 200% of your field.": "Votre liste d'attaque est vide. Vous pouvez voir uniquement les cités qui ont entre 50% et 200% de votre terrain.",
   "Your city can not be attacked for 20 min thanks to the immense forest that covers the city.": "Votre cité ne peut être attaquée pendant 20 min, protégée par l'immense forêt qui la recouvre.",
   "Your city has resisted against { value }": "Votre cité a résistée contre {{ value }}",
   "Your city was sacked by { value }": "Votre cité a été pillée par {{ value }}",
