@@ -13,7 +13,8 @@
 * Message when the building is (not) constructed/destruct, too much field
 
 # Divine Bonus
-* Display next bonus
+* Display next bonus on the city when the list is empty
+* Display next bonus in the list
 * Help popup
 
 # Messages
