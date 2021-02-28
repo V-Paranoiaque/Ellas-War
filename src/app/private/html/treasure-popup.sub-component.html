@@ -19,7 +19,7 @@
       <table class="table">
         <tbody>
           <tr>
-            <td translate>Amount</td>
+            <th scope="row" translate>Amount</th>
             <td colspan="2">
               <input type="number" required="required" min="0"
                      class="form-control" placeholder="0" name="amount"
@@ -27,7 +27,7 @@
             </td>
           </tr>
           <tr>
-            <td translate>Action</td>
+            <th scope="row" translate>Action</th>
             <td> 
               <input type="radio" [checked]="true" 
                      value="deposit" name="mod"
@@ -41,7 +41,7 @@
             </td>
           </tr>
           <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
-            <td translate>Computation</td>
+            <th scope="row" translate>Computation</th>
             <td>
               <input type="radio" id="computation" checked="checked" 
                      value="2" [(ngModel)]="computation" name="computation"> 
@@ -54,7 +54,7 @@
             </td>
           </tr>
           <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
-            <td translate>Tax:</td>
+            <th scope="row" translate>Tax:</th>
             <td>
               <span *ngIf="user.getPropertyNb('bonus_treasure') == 0">
                 {{15-0.5*user.getLevel() | number:'': this.translate.currentLang }}%
