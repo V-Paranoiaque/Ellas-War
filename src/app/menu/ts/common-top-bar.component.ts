@@ -34,6 +34,11 @@ export class CommonTopBar implements OnInit {
         this.user.setUser(data)
       }
     });
+    this.socket.socket.on('ress', (data: any) => {
+      if(data) {
+        this.user.setUserRess(data)
+      }
+    });
     this.socket.socket.on('redirect', function() {
       document.location.href="/";
     });

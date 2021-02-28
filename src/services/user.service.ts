@@ -20,6 +20,12 @@ export class User {
     this.info = user;
   }
   
+  setUserRess(ress: any) {
+    for(let i in ress) {
+      this.info[i] = ress[i];
+    }
+  }
+  
   buildTemple1Allowed() {
     return this.getPropertyNb('hermes') + this.getPropertyNb('apollo') +
            this.getPropertyNb('demeter');
