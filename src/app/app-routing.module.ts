@@ -6,6 +6,7 @@ import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
 import { Login } from './public/ts/login.component';
 import { News } from './public/ts/news.component';
+import { Profile } from './public/ts/profile.component';
 import { PublicHome } from './public/ts/public-home.component';
 import { Register } from './public/ts/register.component';
 
@@ -33,6 +34,7 @@ routes = [
   { path: 'discoverthegame', component: DiscoverTheGame },
   { path: 'login', component: Login },
   { path: 'news', component: News },
+  { path: 'profile/:id', component: Profile },
   { path: 'register', component: Register },
   
   { path: 'sitemap', component: SiteMap },

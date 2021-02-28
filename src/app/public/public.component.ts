@@ -5,8 +5,9 @@ import { PublicHome } from './ts/public-home.component';
 import { Register } from './ts/register.component';
 
 import { Credits } from './ts/credits.component';
-import { SiteMap } from './ts/sitemap.component';
 import { PageNotFound } from './ts/pagenotfound.component';
+import { Profile } from './ts/profile.component';
+import { SiteMap } from './ts/sitemap.component';
 
 export const PublicComponent = [
     DiscoverTheGame,
@@ -16,6 +17,7 @@ export const PublicComponent = [
     Register,
     
     Credits,
-    SiteMap,
-    PageNotFound
+    PageNotFound,
+    Profile,
+    SiteMap
 ];
