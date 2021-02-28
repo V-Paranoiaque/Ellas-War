@@ -29,7 +29,6 @@
 
 # Quests
 * Add a new quest to discover spies
-* Display the defense for the quest 1.11
 * Fix links in the daily quests
 
 # Server

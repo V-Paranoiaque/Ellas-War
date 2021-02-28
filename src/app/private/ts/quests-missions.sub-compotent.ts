@@ -14,7 +14,24 @@ export class QuestsMissions {
     
   }
   
- questValidate() {
+  getDefenseCurrent() {
+    let def = 0;
+    
+    for(let i in this.user.info.datas.army) {
+      if(this.user.info.datas.army[i].defense) {
+        def += this.user.getPropertyNb(i)*this.user.info.datas.army[i].defense;
+      }
+    }
+    for(let i in this.user.info.datas.building) {
+      if(this.user.info.datas.building[i].defense && this.user.info.datas.building[i].type == 2) {
+        def += this.user.getPropertyNb(i)*this.user.info.datas.building[i].defense;
+      }
+    }
+    
+    return def;
+  }
+  
+  questValidate() {
     this.socket.emit("questValidate");
   }
 }
