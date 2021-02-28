@@ -22,3 +22,7 @@ a {
   font-weight: bold;
   height: 30px;
 }
+
+.card-header-flexible {
+  height: auto;
+}

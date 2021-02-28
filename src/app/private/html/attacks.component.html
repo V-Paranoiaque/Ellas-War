@@ -4,57 +4,75 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-6">
-        <table class="table">
-          <tr *ngFor="let player of getAttackList()">
-            <td>
-              {{ player.username }}
-              <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
-              
-              <ic-icon [icon]="gemIcon"
-                       *ngIf="player.diamond_begin > 0"></ic-icon>
-              
-              <span *ngIf="player.alliance > 0">
-                {{ player.alliance_name }}
-              </span>
-            </td>
-            <td>
-              {{player.victory | number:'': this.translate.currentLang}}
-            </td>
-            <td *ngIf="user.getDatas() && user.getDatas().attack && 
-                       user.getLevel() >= user.getDatas().attack.level_xp_min">
-              {{player.xp | number:'': this.translate.currentLang}}
-            </td>
-            <td>
-              {{ player.field | number:'': this.translate.currentLang}}
-            </td>
-          <td>
-            
-            <ic-icon [icon]="fistRaised"
-                     *ngIf="user.getPropertyNb('apollo') == 0"></ic-icon>
-            <ic-icon [icon]="eyeIcon"
-                     *ngIf="user.getPropertyNb('apollo') == 1"></ic-icon>
-            <ic-icon [icon]="fireIcon"
-                     *ngIf="user.getPropertyNb('demeter') == 1"></ic-icon>
-            <ic-icon [icon]="boltIcon"
-                     *ngIf="user.getPropertyNb('zeus') == 1"></ic-icon>
-            
-            
-            <button class="btn btn-outline-primary"
-                    (click)="prepareAttack(player.membre_id)">
-              <ic-icon [icon]="swordIcon"></ic-icon>
-            </button>
-          </td>
-          </tr>
-        </table>
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <tr *ngFor="let player of getAttackList()">
+                <td>
+                  {{ player.username }}
+                  <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                  
+                  <ic-icon [icon]="gemIcon"
+                           *ngIf="player.diamond_begin > 0"></ic-icon>
+                  
+                  <span *ngIf="player.alliance > 0">
+                    {{ player.alliance_name }}
+                  </span>
+                </td>
+                <td class="text-start">
+                  {{player.victory | number:'': this.translate.currentLang}}
+                </td>
+                <td *ngIf="user.getDatas() && user.getDatas().attack && 
+                           user.getLevel() >= user.getDatas().attack.level_xp_min"
+                    class="text-start">
+                  {{player.xp | number:'': this.translate.currentLang}}
+                </td>
+                <td class="text-start">
+                  {{ player.field | number:'': this.translate.currentLang}}
+                </td>
+                <td>
+                  
+                  <ic-icon [icon]="fistRaised"
+                           *ngIf="user.getPropertyNb('apollo') == 0"></ic-icon>
+                  <ic-icon [icon]="eyeIcon"
+                           *ngIf="user.getPropertyNb('apollo') == 1"></ic-icon>
+                  <ic-icon [icon]="fireIcon"
+                           *ngIf="user.getPropertyNb('demeter') == 1"></ic-icon>
+                  <ic-icon [icon]="boltIcon"
+                           *ngIf="user.getPropertyNb('zeus') == 1"></ic-icon>
+                  
+                  
+                  <button class="btn btn-outline-primary"
+                          (click)="prepareAttack(player.membre_id)">
+                    <ic-icon [icon]="swordIcon"></ic-icon>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="col-xl-6">
-        <div *ngIf="targetProfile">
-          <h2>{{ targetProfile?.username }}</h2>
-          
-            <button class="btn btn-primary"
-                    (click)="launchAttack(targetProfile.membre_id)">
-              <ic-icon [icon]="swordIcon"></ic-icon>
-            </button>
+        <div class="card" *ngIf="targetProfile">
+          <div class="card-header card-header-flexible">
+            <h2>{{ targetProfile?.username }}</h2>
+          </div>
+          <div class="card-body">
+            <div class="text-center">
+              <button class="btn btn-primary"
+                      (click)="launchAttack(targetProfile.membre_id)">
+                <ic-icon [icon]="swordIcon"></ic-icon>
+                &nbsp;<span translate>Attack</span>
+              </button>
+            </div>
+            <div *ngIf="getArmy().length > 0" class="text-center">
+              <br/>
+              <strong translate>Army summary</strong>
+              <div *ngFor="let i of getArmy()">
+                {{ i.nb | number:'': this.translate.currentLang }} {{ user.info.datas.army[i.unit].names | translate }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

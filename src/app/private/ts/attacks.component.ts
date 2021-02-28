@@ -13,7 +13,8 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 
 
 @Component({
-  templateUrl: '../html/attacks.component.html'
+  templateUrl: '../html/attacks.component.html',
+  styleUrls: ['../css/attacks.component.css']
 })
 
 export class Attacks {
@@ -25,6 +26,7 @@ export class Attacks {
   
   public targetProfile:any;
   public targetPossible:any;
+  public waveAttackSum:any;
   
   //Icons
   boltIcon   = boltIcon;
@@ -38,6 +40,8 @@ export class Attacks {
     this.attackPage = 1;
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
+    
+    this.waveAttackSum = {};
   }
 
   ngOnInit(){
@@ -63,6 +67,9 @@ export class Attacks {
     this.socket.socket.on('attackPossible',(data:any) => {
       this.targetPossible = data;
     });
+    this.socket.socket.on('waveAttackSum',(data:any) => {
+      this.waveAttackSum = data;
+    });
   }
   
   getAttackList() {
@@ -74,9 +81,25 @@ export class Attacks {
     }
   }
   
+  getArmy() {
+    let list:any = [];
+    
+    for(let i in this.waveAttackSum) {
+      if(this.waveAttackSum[i] > 0) {
+        list.push({
+          'unit': i,
+          'nb': this.waveAttackSum[i]
+        })
+      }
+    }
+    
+    return list;
+  }
+  
   prepareAttack(id:number) {
-    this.socket.socket.emit("profile", id);
-    this.socket.socket.emit("attackPossible", id);
+    this.socket.emit("profile", id);
+    this.socket.emit("attackPossible", id);
+    this.socket.emit('waveAttackSum');
   }
   
   launchAttack(id:number) {
