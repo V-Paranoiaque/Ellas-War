@@ -1,5 +1,22 @@
 <common-top-bar active="options"></common-top-bar>
 
+<div class="modal fade" id="AccountInformation" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Change account information</h5>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="GameSettings" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -23,6 +40,23 @@
                    for="gameSound" translate>Sound</label>
           </div>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="AccountPause" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Pause your account</h5>
+      </div>
+      <div class="modal-body">
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
@@ -138,6 +172,20 @@
       <div class="col-xl-6">
         <div class="card">
           <div class="card-header" translate>
+            Account
+          </div>
+          <div class="card-body" translate>
+            Upload an avatar and add information about your self.
+          </div>
+          <div class="card-button card-button-primary" data-bs-toggle="modal" 
+               role="button" data-bs-target="#AccountInformation" translate>
+            Change account information
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="card">
+          <div class="card-header" translate>
             Parameters
           </div>
           <div class="card-body" translate>
@@ -146,6 +194,20 @@
           <div class="card-button card-button-primary" data-bs-toggle="modal" 
                role="button" data-bs-target="#GameSettings" translate>
             Change game settings
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <div class="card">
+          <div class="card-header" translate>
+            Pause
+          </div>
+          <div class="card-body" translate>
+            Pause your account and come back later on Ellas War.
+          </div>
+          <div class="card-button card-button-primary" data-bs-toggle="modal" 
+               role="button" data-bs-target="#AccountPause" translate>
+            Pause your account
           </div>
         </div>
       </div>

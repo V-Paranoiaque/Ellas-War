@@ -23,7 +23,9 @@
 * Some titles and texts are missing
 
 # Options
+* Account information
 * Description for the game settings
+* Pause
 * When changing email, add a warning if the facebook connection is used
 
 # Quests
