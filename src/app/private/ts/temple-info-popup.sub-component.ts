@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
@@ -9,6 +9,7 @@ import { User } from '../../../services/user.service';
 })
 
 export class TempleInfoPopup {
+  @Input() temple: any;
   
   constructor(private socket: Socket, public user: User) {
   }

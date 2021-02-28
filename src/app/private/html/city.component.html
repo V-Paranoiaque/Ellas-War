@@ -57,7 +57,7 @@
 </div>
 <div class="modal fade" id="TempleInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple-info-popup></temple-info-popup>
+    <temple-info-popup [temple]="templeSelected"></temple-info-popup>
   </div>
 </div>
 
@@ -161,6 +161,7 @@
             <!-- Temple informations -->
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('hermes') == 1"
+                 (click)="selectTemples(1)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Hermes' | translate}}" 
@@ -168,6 +169,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('apollo') == 1"
+                 (click)="selectTemples(2)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Apollo' | translate}}" 
@@ -175,6 +177,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('demeter') == 1"
+                 (click)="selectTemples(3)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Demeter' | translate}}" 
@@ -183,6 +186,7 @@
             
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('ares') == 1"
+                 (click)="selectTemples(4)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Ares' | translate}}" 
@@ -190,6 +194,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('athena') == 1"
+                 (click)="selectTemples(5)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Athena' | translate}}" 
@@ -198,6 +203,7 @@
             
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('artemis') == 1"
+                 (click)="selectTemples(6)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Artemis' | translate}}" 
@@ -205,6 +211,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('dionysus') == 1"
+                 (click)="selectTemples(7)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Dionysus' | translate}}" 
@@ -212,6 +219,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('hephaestus') == 1"
+                 (click)="selectTemples(8)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Hephaestus' | translate}}" 
@@ -220,6 +228,7 @@
             
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('zeus') == 1"
+                 (click)="selectTemples(9)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Zeus' | translate}}" 
@@ -227,6 +236,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('hades') == 1"
+                 (click)="selectTemples(10)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Hades' | translate}}" 
@@ -234,6 +244,7 @@
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('poseidon') == 1"
+                 (click)="selectTemples(11)"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo">
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'Poseidon' | translate}}" 
