@@ -1,7 +1,11 @@
 {
   ":": " : ",
+  "+15% defensive power": "+15% de force défensive",
+  "+15% offensive power": "+15% de force offensive",
   "+30% food production": "+30% à la production de nourriture",
   "+30% grapes production": "+30% à la production de raisin",
+  "-20% infanterie consumption": "-20% sur la consomation de l'infanterie",
+  "-20% infanterie cost": "-20% pour engager votre infanterie",
   
   "2 bonus attacks": "2 attaques bonus",
   "200 units of your third temple": "200 unités de votre troisième temple",
@@ -33,6 +37,8 @@
   "Army": "Armée",
   "Army summary": "Votre armée",
   "At each change the cost is increased, it is reset every 6 months.": "A chaque changement le coût augmente, il est réinitialisé tous les 6 mois.",
+  "Athena": "Athéna",
+  "Athena temporarily increases the defense of units in your city by 25%.": "Athéna augmente temporairement la défense des unités de votre cité de 25%.",
   "Attack { value } sanctuaries": "Attaquez {{ value }} sanctuaires",
   "Attack 1 sanctuary": "Attaquez 1 sanctuaire",
   "Attack": "Attaquer",
@@ -40,7 +46,10 @@
   "Author": "Auteur",
   "Automaton": "Automate",
   "Automatons": "Automates",
+  "Available at level 10": "Disponible au niveau 10",
   "Available at level 2": "Disponible au niveau 2",
+  "Available at level 6": "Disponible au niveau 6",
+  "Available at level 8": "Disponible au niveau 8",
   
   "Barracks": "Caserne",
   "Build": "Construire",
@@ -74,6 +83,7 @@
   "Choose a new Username for your account. It will cost you 1 favor.": "Choisissez un nouveau nom pour votre compte. Ce changement vous coûtera 1 faveur.",
   "Choose a new Username for your account. It will cost you { value } favor(s).": "Choisissez un nouveau nom pour votre compte. Ce changement vous coûtera {{ value }} faveurs.",
   "Choose your first temple": "Choisissez votre premier temple",
+  "Choose your second temple": "Choisissez votre deuxième temple",
   "City": "Cité",
   "Close": "Fermer",
   "Construction cost": "Coût de construction",
@@ -200,6 +210,8 @@
   "Mythology": "Mythologie",
   
   "New email": "Nouvelle addresse mail",
+  "New powers": "Nouveaux pouvoirs",
+  "New unity: { unit }": "Nouvelle unité : {{ unit }}",
   "New username": "Nouveau nom",
   "No temple": "Pas de temple",
   
@@ -314,6 +326,7 @@
   "Well": "Puit",
   "wells": "puits",
   "Wells": "Puits",
+  "With four temples": "Avec quatre temples",
   "Win { value } times in the javelin game": "Gagnez {{ value }} fois au jeu du Javelot",
   "Win { value } victories": "Remportez {{ value }} victoires",
   "Win { value } wars": "Gagnez {{ value }} guerres",
@@ -326,6 +339,7 @@
   "Winery": "Atelier de pressage",
   "Worshiper of the Gods": "Adorateur des Dieux",
   
+  "You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.": "Vous pouvez attaquer une seconde fois un ennemi afin de l'affaiblir. Ne compte pas dans le score des guerres.",
   "You are still there?": "Vous êtes toujours là ?",
   "You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the faibles. Win 5 victories and return to me.": "Vous êtes plus résistant que je ne le pensais. Montrez moi vos aptitudes aux combats. Maintenant que vous avez recruté une armée, passez à l'attaque. Je vous conseille d'utiliser des espions afin de trouver les cités faibles. Remportez 5 victoires et revenez me voir.",
   "You can now go level 1. Before doing so, a few tips from an old warrior:": "Vous pouvez passer maintenant niveau 1. Avant de le faire, quelques conseils de la part d'un vieux guerrier :",
