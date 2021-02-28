@@ -7,21 +7,19 @@
         <quests-missions></quests-missions>
       </div>
       <div class="col-xl-6" *ngIf="user.getLevel() > 0">
-        <h1 translate>Daily</h1>
-        
         <div *ngFor="let quest of getMyQuestList()" class="card">
           <div [ngSwitch]="quest.quest_type">
             <div *ngSwitchCase="1">
               <div class="card-header" translate>Strenuous attacker</div>
-              <div>
+              <div class="card-body">
                 {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
               </div>
-              <div>
+              <div class="card-body">
                 <strong translate>Reward:</strong>
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-footer" *ngIf="quest.quest_validated == 0">
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
                 <a class="btn" [routerLink]="['/attacks']"
                    translate>
                   Access to the attacks &gt;&gt;
@@ -31,16 +29,16 @@
             </div>
             <div *ngSwitchCase="2">
               <div class="card-header" translate>Worshiper of the Gods</div>
-              <div>
+              <div class="card-body">
                 {{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}
               </div>
-              <div>
+              <div class="card-body">
                 <strong translate>Reward:</strong>
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-footer" *ngIf="quest.quest_validated == 0">
-                <a class="btn" [routerLink]="['/divinepower']"
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
+                <a class="btn" [routerLink]="['/city']"
                    translate>
                   Access to the Divine powers &gt;&gt;
                 </a>
@@ -56,8 +54,8 @@
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-footer" *ngIf="quest.quest_validated == 0">
-                <a class="btn" [routerLink]="['/javelin']"
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
+                <a class="btn" [routerLink]="['/city']"
                  translate>
                   Access to the Divine powers &gt;&gt;
                 </a>
@@ -65,16 +63,16 @@
             </div>
             <div *ngSwitchCase="4">
               <div class="card-header" translate>Faithful of the Gods</div>
-              <div>
+              <div class="card-body">
                 {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
               </div>
-              <div>
+              <div class="card-body">
                 <strong translate>Reward:</strong>
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-footer" *ngIf="quest.quest_validated == 0">
-                <a class="btn" [routerLink]="['/divinebonus']" translate>
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
+                <a class="btn" [routerLink]="['/city']" translate>
                   Access to the Divine powers &gt;&gt;
                 </a>
               </div>
@@ -89,8 +87,8 @@
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-button" *ngIf="quest.quest_validated == 0">
-                <a class="btn" [routerLink]="['/constructions']" translate>
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
+                <a class="btn" [routerLink]="['/city']" translate>
                   Access to the Divine powers &gt;&gt;
                 </a>
               </div>
@@ -137,7 +135,7 @@
             </div>
             <div *ngSwitchCase="8">
               <div class="card-header" translate>Monster killer</div>
-              <div>
+              <div class="card-body">
                 <span *ngIf="quest.quest_goal == 1" translate>
                   Conquest 1 sanctuary
                 </span>
@@ -145,12 +143,12 @@
                   {{ 'Conquest { value } sanctuaries' | translate: { value: quest.quest_goal } }}
                 </span>
               </div>
-              <div>
+              <div class="card-body">
                 <strong translate>Reward:</strong>
                 {{ quest.reward_quantity | number:'': this.translate.currentLang }}
                 <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
               </div>
-              <div class="card-footer" *ngIf="quest.quest_validated == 0">
+              <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
                 <a class="btn" [routerLink]="['/sanctuaries']" translate>
                   Access to the sanctuaries &gt;&gt;
                 </a>
