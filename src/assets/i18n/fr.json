@@ -49,6 +49,7 @@
   "Build a total of { value } { building }.": "Construisez un total de {{ value }} {{ building }}.",
   "Build a total of 10 huts to house your army.": "Construisez un total de 10 huttes pour loger votre armée.",
   "Build a total of 10 towers, this will be your first defense.": "Construisez un total de 10 tours, ce sera votre première défense.",
+  "Build your third temple. Choose between Artemis, Dionysus and Hephaestus.": "Construisez votre troisième temple. Choisissez entre Artémis, Dionysos et Héphaistos.",
   "Builder": "Bâtisseur",
   "Buildings": "Bâtiments",
   "Buy { value } lotto tickets": "Achetez {{ value }} tickets de loto",
