@@ -40,6 +40,7 @@
     "@angular-devkit/build-angular": "~0.1102.1",
     "@angular/cli": "~11.2.1",
     "@angular/compiler-cli": "~11.2.3",
+    "@iconify-icons/mdi": "^1.1.11",
     "@types/jasmine": "~3.6.4",
     "@types/node": "^14.14.31",
     "codelyzer": "^6.0.1",

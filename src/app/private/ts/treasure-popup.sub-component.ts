@@ -3,6 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import treasureChest from '@iconify-icons/mdi/treasure-chest';
+
 @Component({
   selector: 'treasure-popup',
   templateUrl: '../html/treasure-popup.sub-component.html',
@@ -14,13 +16,31 @@ export class TreasurePopup {
   public amount:any;
   public deposit:any;
   public computation:any;
+  public treasureHistory:any;
+  public treasureMode:number;
+  
+  //Icons
+  treasureChest = treasureChest;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.amount = '';
+    this.treasureHistory = [];
+    this.treasureMode = 0;
+    
+    this.socket.socket.on('treasureHistory', (datas:any) => {
+      this.treasureHistory = datas;
+    });
     
     setTimeout(() => {
       this.deposit = 'deposit';
+      this.computation = '2';
+      
+      this.socket.emit('treasureHistory');
     }, 0);
+  }
+  
+  setTreasureMode(mode:number) {
+    this.treasureMode = mode;
   }
   
   treasureAction() {
