@@ -124,6 +124,7 @@
   "Demeter": "Demeter",
   "Demeter increase the production of your wine farms and farms. You can thanks to the furies, destroying farms, wine farms and reserves grape and food of your opponents.": "Déméter augmente la production de vos fermes et fermes vinicoles. Vous pourrez grâce aux furies, détruire fermes, fermes vinicoles ainsi que les réserves de raisin et de nourriture de vos adversaires.",
   "Depose": "Déposer",
+  "Deposits": "Dépôts",
   "Destruct": "Détruire",
   "Details": "Détails",
   "Diamond Keeper": "Gardien de diamants",
@@ -216,6 +217,7 @@
   
   "Lampad": "Lampade",
   "Lampads": "Lampades",
+  "Last mouvements": "Derniers mouvements",
   "Level quests": "Quêtes de niveau",
   "Liberate": "Libérer",
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
@@ -229,6 +231,7 @@
   "Manticore": "Manticore",
   "Manticores": "Manticores",
   "Message": "Message",
+  "Message sent": "Message envoyé",
   "Mint": "Atelier monétaire",
   "mints": "ateliers monétaires",
   "Mints": "Ateliers monétaires",
@@ -283,6 +286,7 @@
   "Reinitialize your account": "Réinitialisez votre compte",
   "Reset": "Réinitialiser",
   "Reset your account and start a new adventure.": "Réinitialisez votre compte et commencez une nouvelle aventure.",
+  "Return to the treasure": "Retourner au trésor",
   "Reward:": "Récompense : ",
   
   "Satyr": "Satyre",
@@ -372,6 +376,8 @@
   "To recruit archers you will need to train them. Update your military camp.": "Pour recruter des archers, vous allez devoir les entrainer. Mettez à jour votre caserne.",
   "Tormented soul": "Âme tourmentée",
   "Tormented souls": "Âmes tourmentées",
+  "Treasure": "Trésor",
+  "Treasure history": "Historique du trésor",
   
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
   "Upload an avatar and add information about your self.": "Envoyez un avatar et ajoutez des informations sur vous-mêmes.",
@@ -407,6 +413,7 @@
   "Win the Honnor challenge { value } times": "Remportez le concours de l'honneur  {{ value }} fois",
   "Wineries": "Ateliers de pressage",
   "Winery": "Atelier de pressage",
+  "Withdrawals": "Retraits",
   "Worshiper of the Gods": "Adorateur des Dieux",
   
   "You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.": "Vous pouvez attaquer une seconde fois un ennemi afin de l'affaiblir. Ne compte pas dans le score des guerres.",

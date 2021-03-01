@@ -16,8 +16,6 @@
 * Display next bonus in the list
 
 # Messages
-* Delete all the selected messages
-* Error message when the message is sent
 * Notification when copy the url
 * Some titles and texts are missing
 
@@ -35,6 +33,3 @@
 
 # Temples
 * New power for Hermes
-
-# Treasure
-* History
