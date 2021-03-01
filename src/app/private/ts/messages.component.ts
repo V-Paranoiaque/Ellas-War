@@ -21,6 +21,7 @@ export class Messages {
   public addDestError: number;
   public answerText: string;
   public currentPage: number;
+  public msgSent: number;
   public msgToUser: string;
   public msgTitle: string;
   public msgText: string;
@@ -45,6 +46,7 @@ export class Messages {
     this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;
+    this.msgSent = 0;
     this.msgToUser = '';
     this.msgTitle = '';
     this.msgText = '';
@@ -61,6 +63,9 @@ export class Messages {
     this.destList = [];
     
     this.socket.socket.on('msgPage', (newMsgList:any) => {
+      for(let i in newMsgList.list) {
+        newMsgList.list[i].isChecked = true;
+      }
       this.msgList   = newMsgList.list;
       this.msgPageNb = newMsgList.nb;
       
@@ -151,6 +156,7 @@ export class Messages {
   
   messageLoad(msg:any) {
     let id = msg.msg_id;
+    this.msgSent = 0;
     
     if(id > 0) {
       if(!msg.msg_read) {
@@ -176,6 +182,19 @@ export class Messages {
   
   messageDelete() {
     this.socket.emit('msgDelete', this.currentMsg.id);
+    this.messageLoad({'msg_id': 0});
+  }
+  
+  messageDeleteMultiple() {
+    let list:any = {};
+    
+    for(let i in this.msgList) {
+      if(this.msgList[i].isChecked) {
+        list['id_'+this.msgList[i].msg_id] = 1;
+      }
+    }
+    
+    this.socket.emit('msgDeleteMultiple', list);
     this.messageLoad({'msg_id': 0});
   }
   
@@ -220,6 +239,7 @@ export class Messages {
           this.msgTitle = '';
           this.msgText = '';
           this.destList = [];
+          this.msgSent = 1;
         }
       }
     });

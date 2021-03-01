@@ -32,7 +32,9 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" 
                 data-bs-dismiss="modal" translate>Close</button>
-        <button type="button" class="btn btn-primary" translate>Confirm</button>
+        <button type="button" class="btn btn-primary" 
+                data-bs-dismiss="modal" (click)="messageDeleteMultiple()"
+                translate>Confirm</button>
       </div>
     </div>
   </div>
@@ -85,7 +87,8 @@
                [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
                role="button" (click)="messageLoad(msg)">
             <div class="p-2 bd-highlight border-top" *ngIf="getDeleteMode() == 1">
-              <input type="checkbox" checked="checked" />
+              <input type="checkbox" [checked]="msg.isChecked" 
+                     [(ngModel)]="msg.isChecked" />
             </div>
             <div class="p-2 flex-grow-1 bd-highlight border-top">
               <messages-title [msg]="msg"></messages-title>
@@ -162,6 +165,9 @@
       </div>
       
       <div class="col-xl-6 text-center" *ngIf="getCurrentMsg().id == 0">
+        <div class="alert alert-success" *ngIf="msgSent > 0" translate>
+          Message sent
+        </div>
         <div class="card">
           <div class="card-body">
             <span class="badge bg-primary" *ngFor="let user of getDestList()">
