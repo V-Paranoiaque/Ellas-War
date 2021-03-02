@@ -101,7 +101,7 @@ export class User {
     }
   }
   
-  getPropertyNb(name:string) {
+  getPropertyNb(name:any) {
     if(this.info[name]) {
       return this.info[name];
     }
@@ -132,6 +132,34 @@ export class User {
     }
     
     return 0;
+  }
+  
+  getLevelRess(ress:any) {
+    if(this.info.datas && this.info.datas.ress_lvl && this.info.datas.ress_lvl[ress]) {
+      return this.info.datas.ress_lvl[ress];
+    }
+    else {
+      return 0;
+    }
+  }
+  getSanctuary(sanctuary:any) {
+    if(this.info.sanctuary && this.info.sanctuary[sanctuary]) {
+      return this.info.sanctuary[sanctuary];
+    }
+    else {
+      return 0;
+    }
+  }
+  getTaxes(ress:any) {
+    return this.getPropertyNb('tax_'+ress);
+  }
+  getVarRess(ress:any) {
+    if(this.info.var_ress && this.info.var_ress[ress]) {
+      return this.info.var_ress[ress];
+    }
+    else {
+      return 0;
+    }
   }
   
   setNewMsg(nb:number) {
