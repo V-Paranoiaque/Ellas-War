@@ -3,6 +3,19 @@
     <div class="card-header">
       {{ user.getProperty('username') }} ({{ user.getPropertyNb('level') }})
     </div>
+    
+    <div class="card-body">
+      Field: {{ user.getProperty('field') }}
+      <br/>
+      Weather:
+    </div>
+    
+    <div class="card-body">
+      Victories: {{ user.getProperty('victory') }}<br/>
+      XP: {{ user.getProperty('xp') }}<br/>
+      Honnor: {{ user.getProperty('honnor') }}<br/>
+    </div>
+    
     <div class="card-body">
            Drachmas: {{ user.getPropertyNb('drachma') | number:'': this.translate.currentLang }}
       <br/>Food: {{ user.getPropertyNb('food') | number:'': this.translate.currentLang }}
