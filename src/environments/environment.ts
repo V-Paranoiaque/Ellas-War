@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
+  resources: ['drachma', 'food', 'water', 'wood', 'iron', 'stone', 'marble', 'grapes', 'wine', 'gold'],
   style: {
     default: 'pink',
     allowed: ['pink', 'red']
   },
-  SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com'
+  SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com',
 };
 
 /*

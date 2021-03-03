@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import boltIcon from '@iconify/icons-fa-solid/bolt';
+import dotCircle from '@iconify/icons-fa-solid/dot-circle';
 import eyeIcon from '@iconify/icons-fa-solid/eye';
 import fireIcon from '@iconify/icons-fa-solid/fire';
 import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
 import swordIcon from '@iconify/icons-vaadin/sword';
-
-
 
 @Component({
   templateUrl: '../html/attacks.component.html',
@@ -24,12 +24,20 @@ export class Attacks {
   private attackOrderReverse:number;
   private attackPage:number;
   
+  public attackMode:number;
+  public furyInfo:any;
+  public furyPossible:any;
+  public lightningPossible:any;
+  public lightningInfo:any;
+  public ressList:any;
+  public spyInfo:any;
   public targetProfile:any;
-  public targetPossible:any;
+  public attackPossible:any;
   public waveAttackSum:any;
   
   //Icons
   boltIcon   = boltIcon;
+  dotCircle  = dotCircle;
   eyeIcon    = eyeIcon;
   fireIcon   = fireIcon;
   fistRaised = fistRaised;
@@ -40,10 +48,37 @@ export class Attacks {
     this.attackPage = 1;
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
+    this.ressList = environment.resources;
+    
+    /* Mode
+     * 0: History
+     * 1: Observe with Apollo
+     * 2: Spy
+     * 3: Prepare to attack
+     * 4: Attack
+     * 5: Prepare fury
+     * 6: Fury
+     * 7: Prepare lightning
+     * 8: Lightning
+     */
+    this.attackMode = 0;
+    this.furyInfo = {
+      'lost_build': {
+        'farm': 0,
+        'growers': 0
+      },
+      'lost_ress': {
+        'food': 0,
+        'grapes': 0
+      }
+    };
+    this.lightningInfo = {'lost_build':[]}
+    this.spyInfo = {};
+    this.targetProfile = {};
     
     this.waveAttackSum = {};
   }
-
+  
   ngOnInit(){
     setTimeout(() => {
       this.socket.socket.emit("attackList", {
@@ -65,8 +100,40 @@ export class Attacks {
       this.targetProfile = data;
     });
     this.socket.socket.on('attackPossible',(data:any) => {
-      this.targetPossible = data;
+      this.attackPossible = data.result;
     });
+    this.socket.socket.on('furyPossible',(data:any) => {
+      this.furyPossible = data;
+    });
+    this.socket.socket.on('lightningPossible',(data:any) => {
+      this.lightningPossible = data;
+    });
+    this.socket.socket.on('eye',(data:any) => {
+      this.spyInfo = data;
+    });
+    
+    this.socket.socket.on('fury', (data:any) => {
+      this.attackMode = 6;
+      
+      this.furyInfo = data;
+    });
+    
+    this.socket.socket.on('lightning', (data:any) => {
+      this.attackMode = 8;
+      this.lightningInfo = {'lost_build':[]}
+      console.log(data);
+      for(let building in data.lost_build) {
+        this.lightningInfo.lost_build.push({
+          'code': building,
+          'nb': data.lost_build[building]
+        });
+      }
+    });
+    
+    this.socket.socket.on('spyInfo',(data:any) => {
+      this.spyInfo = data;
+    });
+    
     this.socket.socket.on('waveAttackSum',(data:any) => {
       this.waveAttackSum = data;
     });
@@ -97,13 +164,52 @@ export class Attacks {
   }
   
   prepareAttack(id:number) {
-    this.socket.emit("profile", id);
-    this.socket.emit("attackPossible", id);
+    this.attackMode = 3;
+    
+    this.socket.emit('profile', id);
+    this.socket.emit('attackPossible', id);
     this.socket.emit('waveAttackSum');
+  }
+  prepareFury(id:number) {
+    this.attackMode = 5;
+    
+    this.socket.emit('profile', id);
+  }
+  prepareLightning(id:number) {
+    this.attackMode = 7;
+    
+    this.socket.emit('profile', id);
   }
   
   launchAttack(id:number) {
-    this.targetProfile = null;
-    this.socket.emit("attack", id);
+    this.socket.emit('attackPossible', id);
+    this.socket.emit('attack', id);
+  }
+  
+  launchFury(id:number) {
+    this.socket.emit('fury', id);
+  }
+  
+  launchLightning(id:number) {
+    this.socket.emit('lightning', id);
+  }
+  
+  observe(id:number) {
+    this.attackMode = 1;
+    
+    this.socket.emit('profile', id);
+    this.socket.emit('furyPossible', id);
+    this.socket.emit('lightningPossible', id);
+    this.socket.emit('attackPossible', id);
+    this.socket.emit('eye', id);
+  }
+  spy(id:number) {
+    this.attackMode = 2;
+    
+    this.socket.emit('profile', id);
+    this.socket.emit('furyPossible', id);
+    this.socket.emit('lightningPossible', id);
+    this.socket.emit('attackPossible', id);
+    this.socket.emit('spyInfo', id);
   }
 }

@@ -36,12 +36,16 @@
                 <td>
                   
                   <ic-icon [icon]="fistRaised"
+                           (click)="spy(player.membre_id)"
                            *ngIf="user.getPropertyNb('apollo') == 0"></ic-icon>
                   <ic-icon [icon]="eyeIcon"
+                           (click)="observe(player.membre_id)"
                            *ngIf="user.getPropertyNb('apollo') == 1"></ic-icon>
                   <ic-icon [icon]="fireIcon"
+                           (click)="prepareFury(player.membre_id)"
                            *ngIf="user.getPropertyNb('demeter') == 1"></ic-icon>
                   <ic-icon [icon]="boltIcon"
+                           (click)="prepareLightning(player.membre_id)"
                            *ngIf="user.getPropertyNb('zeus') == 1"></ic-icon>
                   
                   
@@ -55,18 +59,257 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6">
-        <div class="card" *ngIf="targetProfile">
+      
+      <div class="col-xl-6" *ngIf="attackMode > 0">
+        <div class="card">
           <div class="card-header card-header-flexible">
-            <h2>{{ targetProfile?.username }}</h2>
+            <h2 id="playerDesc">{{ targetProfile?.username }}</h2>
           </div>
-          <div class="card-body">
+          
+          <!-- Observe/Spy -->
+          <div class="card-body" *ngIf="attackMode == 1 || attackMode == 2">
+            <table aria-describedby="playerDesc">
+              <tr *ngIf="targetProfile.alliance > 0">
+                <th scope="row" translate>Alliance</th>
+                <td>{{targetProfile.alliance_name}}&nbsp;</td>
+              </tr>
+              <tr *ngIf="targetProfile.alliance > 0">
+                <th scope="row" translate>Rank</th>
+                <td>{{targetProfile.rank_name}}&nbsp;</td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Level</th>
+                <td>{{targetProfile.level}}&nbsp;</td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Field</th>
+                <td>{{targetProfile.field| number:'': this.translate.currentLang}}</td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Victories</th>
+                <td>{{targetProfile.victory| number:'': this.translate.currentLang}}</td>
+              </tr>
+              <tr>
+                <th scope="row" translate>XP</th>
+                <td>{{targetProfile.xp| number:'': this.translate.currentLang}}</td>
+              </tr>
+            </table>
+            
+            <span [ngSwitch]="spyInfo.error" class="text-center">
+              <br/>
+              <div *ngSwitchCase="1"translate>
+                Your espionage team was caught and executed in a public place.
+              </div>
+              <div *ngSwitchCase="2" translate>
+                Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.
+              </div>
+              <div *ngSwitchCase="4" class="text-center" translate>
+                You do not have spies.
+              </div>
+            </span>
+            
+            <div class="text-center" translate
+                 *ngIf="spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1">
+              The wall of Poseidon protects this city.
+            </div>
+            
+            <div class="text-center">
+              <div  *ngIf="!spyInfo.error || spyInfo.error >= 3">
+                <strong translate>Unities</strong><strong translate>:</strong> {{spyInfo.unitiesNb| number:'': this.translate.currentLang}}
+                <br/>
+                <strong translate>Towers</strong><strong translate>:</strong> {{spyInfo.defenseNb| number:'': this.translate.currentLang}}
+                <br/>
+              </div>
+              <br/>
+              
+              <div *ngIf="spyInfo.buildings && spyInfo.buildings.length > 0">
+                <strong translate>Buildings</strong><strong translate>:</strong>
+                <div *ngFor="let build of spyInfo.buildings">
+                  {{user.info.datas.building[build].name|translate}}
+                </div>
+              </div>
+              
+              <div *ngIf="spyInfo.unities && spyInfo.unities.length > 0">
+                <strong translate>Unities</strong><strong translate>:</strong>
+                <div *ngFor="let unit of spyInfo.unities">
+                  {{user.info.datas.army[unit].name|translate}}
+                </div>
+                <br/>
+              </div>
+              <div class="col-table center" *ngIf="spyInfo && spyInfo.ress && spyInfo.ress.food">
+                <br/>
+                <strong id="resourcesDesc" translate>Resources</strong>
+                <strong translate>:</strong>
+                <br/>
+                <table class="table" aria-describedby="resourcesDesc">
+                <tr>
+                  <td>
+                    <id-to-ress [ress_id]="'food'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
+                                         'low': spyInfo.ress.food    == 2,
+                                         'middle': spyInfo.ress.food == 3,
+                                         'high': spyInfo.ress.food   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'water'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
+                                         'low': spyInfo.ress.water    == 2,
+                                         'middle': spyInfo.ress.water == 3,
+                                         'high': spyInfo.ress.water   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
+                                         'low': spyInfo.ress.wood    == 2,
+                                         'middle': spyInfo.ress.wood == 3,
+                                         'high': spyInfo.ress.wood   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
+                                         'low': spyInfo.ress.iron    == 2,
+                                         'middle': spyInfo.ress.iron == 3,
+                                         'high': spyInfo.ress.iron   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
+                                         'low': spyInfo.ress.stone    == 2,
+                                         'middle': spyInfo.ress.stone == 3,
+                                         'high': spyInfo.ress.stone   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
+                                         'low': spyInfo.ress.marble    == 2,
+                                         'middle': spyInfo.ress.marble == 3,
+                                         'high': spyInfo.ress.marble   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
+                                         'low': spyInfo.ress.grapes    == 2,
+                                         'middle': spyInfo.ress.grapes == 3,
+                                         'high': spyInfo.ress.grapes   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'wine'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
+                                         'low': spyInfo.ress.wine    == 2,
+                                         'middle': spyInfo.ress.wine == 3,
+                                         'high': spyInfo.ress.wine   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                  <td>
+                    <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                    <ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
+                                         'low': spyInfo.ress.gold    == 2,
+                                         'middle': spyInfo.ress.gold == 3,
+                                         'high': spyInfo.ress.gold   == 4}"
+                             [icon]="dotCircle"></ic-icon>
+                  </td>
+                </tr>
+              </table>
+              </div>
+              
+              <br/>
+              <button class="btn btn-info"
+                      (click)="spy(targetProfile.membre_id)"
+                      title="{{'Send a spy to the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="fistRaised"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Send a spy to the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              
+              <button class="btn btn-info"
+                      *ngIf="user.getPropertyNb('apollo') == 1" 
+                      (click)="observe(targetProfile.membre_id)"
+                      title="{{'Observe the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="eyeIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Observe the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              
+              <button class="btn btn-success"
+                      *ngIf="user.getPropertyNb('demeter') == 1 && furyPossible == 1" 
+                      (click)="prepareFury(targetProfile.membre_id)"
+                      title="{{'Launch a fury on the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="fireIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Launch a fury on the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              <button class="btn btn-danger"
+                      *ngIf="user.getPropertyNb('demeter') == 1 && furyPossible == 0"
+                      title="{{'Impossible to launch a fury on the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="fireIcon"></ic-icon>
+                <span class="visually-hidden">
+                  Impossible to launch a fury on the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              
+              <button class="btn btn-success" 
+                      *ngIf="user.getPropertyNb('zeus') == 1 && lightningPossible == 1" 
+                      (click)="prepareLightning(targetProfile.membre_id)" 
+                      title="{{'Launch a lightning on the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="boltIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Launch a lightning on the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              <button class="btn btn-danger"
+                      *ngIf="user.getPropertyNb('zeus') == 1 && lightningPossible == 0" 
+                      title="{{'Impossible to launch a lightning on the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="boltIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Impossible to launch a lightning on the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              <button class="btn btn-success"
+                      *ngIf="attackPossible > 0" 
+                      (click)="prepareAttack(targetProfile.membre_id)" 
+                      title="{{'Attack the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="swordIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Attack the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+              <button class="btn btn-danger"
+                      *ngIf="attackPossible == 0"
+                      title="{{'Impossible to attack the city:'|translate}} {{targetProfile.username}}">
+                <ic-icon [icon]="swordIcon"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Impossible to attack the city:'|translate}} {{targetProfile.username}}
+                </span>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Prepare to attack -->
+          <div class="card-body" *ngIf="attackMode == 3">
             <div class="text-center">
               <button class="btn btn-primary"
+                      *ngIf="attackPossible > 0"
                       (click)="launchAttack(targetProfile.membre_id)">
                 <ic-icon [icon]="swordIcon"></ic-icon>
                 &nbsp;<span translate>Attack</span>
               </button>
+              <div translate>
+                You can't attack this city
+              </div>
             </div>
             <div *ngIf="getArmy().length > 0" class="text-center">
               <br/>
@@ -75,6 +318,93 @@
                 {{ i.nb | number:'': this.translate.currentLang }} {{ user.info.datas.army[i.unit].names | translate }}
               </div>
             </div>
+          </div>
+          
+          <!-- Result from an attack -->
+          <div class="card-body text-center" *ngIf="attackMode == 4">
+            
+          </div>
+          
+          <!-- Prepare to send a fury -->
+          <div class="card-body text-center" *ngIf="attackMode == 5">
+            <div translate>
+              The fury can destroy farms and growers and reserves of grapes and food of your opponents.
+            </div>
+            <br/>
+            <br/>
+            <button class="btn btn-primary"
+                    *ngIf="user.getPropertyNb('fury') > 0"
+                    (click)="launchFury(targetProfile.membre_id)">
+              <ic-icon [icon]="fireIcon"></ic-icon>
+              &nbsp;<span translate>Send</span>
+            </button>
+            <div class="fw-bold text-danger" *ngIf="user.getPropertyNb('fury') == 0" translate>
+              You have no furies in stock. Go to the Temple of Demeter to get some.
+            </div>
+          </div>
+          
+          <!-- Result from a fury -->
+          <div class="card-body text-center" *ngIf="attackMode == 6">
+            <div *ngIf="furyInfo.lost_ress.food == 0 && furyInfo.lost_ress.grapes == 0 && furyInfo.lost_build.farm == 0 && furyInfo.lost_build.growers == 0" class="center" translate="">
+              No loss in the city
+            </div>
+            <div *ngIf="furyInfo.lost_ress.food > 0 || furyInfo.lost_ress.grapes > 0 || furyInfo.lost_build.farm > 0 || furyInfo.lost_build.growers > 0" class="col-table">
+              <table>
+                <tr>
+                  <th scope="column" colspan="2" translate>Losses</th>
+                </tr>
+                <tr *ngIf="furyInfo.lost_ress.food > 0">
+                  <td>{{furyInfo.lost_ress.food| number:'': this.translate.currentLang}}</td>
+                  <td>
+                    <id-to-ress [ress_id]="'food'"></id-to-ress>
+                  </td>
+                </tr>
+                <tr *ngIf="furyInfo.lost_ress.grapes > 0">
+                  <td>{{furyInfo.lost_ress.grapes| number:'': this.translate.currentLang}}</td>
+                  <td>
+                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                  </td>
+                </tr>
+                <tr *ngIf="furyInfo.lost_build.farm > 0">
+                  <td>{{furyInfo.lost_build.farm| number:'': this.translate.currentLang}}</td>
+                  <td>{{user.info.datas.building.farm.names|translate}}</td>
+                </tr>
+                <tr *ngIf="furyInfo.lost_build.growers > 0">
+                  <td>{{furyInfo.lost_build.growers| number:'': this.translate.currentLang}}</td>
+                  <td>{{user.info.datas.building.growers.names|translate}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          
+          <!-- Prepare to send a lightning -->
+          <div class="card-body text-center" *ngIf="attackMode == 7">
+            <div translate>
+              The lightning can destroy the buildings of your opponents, including mints.
+            </div>
+            <br/>
+            <br/>
+            <button class="btn btn-primary"
+                    *ngIf="user.getPropertyNb('lightning') > 0"
+                    (click)="launchLightning(targetProfile.membre_id)">
+              <ic-icon [icon]="fireIcon"></ic-icon>
+              &nbsp;<span translate>Send</span>
+            </button>
+            <div class="fw-bold text-danger" *ngIf="user.getPropertyNb('lightning') == 0" translate>
+              You have no lightnings in stock. Go to the Temple of Zeus to get some.
+            </div>
+          </div>
+          
+          <!-- Result from a lightning -->
+          <div class="card-body text-center" *ngIf="attackMode == 8">
+            <strong translate>Lost buildings</strong><strong translate>:</strong>
+            <ul>
+              <li *ngFor="let building of lightningInfo.lost_build">
+                {{ building.nb | number:'': this.translate.currentLang}} 
+                <span *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</span>
+                <span *ngIf="building.nb > 1">{{user.info.datas.building[building.code].names|translate}}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

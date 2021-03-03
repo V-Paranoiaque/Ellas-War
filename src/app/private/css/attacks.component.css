@@ -2,3 +2,23 @@
   margin-top: calc(var(--bs-gutter-x)/ 2);
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
+
+.card-body table {
+  margin:auto;
+}
+
+.vlow {
+  color: #417dea;
+}
+
+.low {
+  color: #fd9942;
+}
+
+.middle {
+  color: #ffa03c;
+}
+
+.high {
+  color: #dc3f3f;
+}

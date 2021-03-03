@@ -8,6 +8,18 @@
     <div *ngSwitchDefault>{{ msg.title.winer }}</div>
   </div>
   </div>
+  <div *ngSwitchCase="3">
+  <div [ngSwitch]="msg.title.winer">
+    <div *ngSwitchCase="1">{{ 'Fury against { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchCase="2">{{ 'Fury from { value }' | translate: { value: msg.title.opponent } }}</div>
+  </div>
+  </div>
+  <div *ngSwitchCase="8">
+  <div [ngSwitch]="msg.title.winer">
+    <div *ngSwitchCase="1">{{ 'Lightning against { value }' | translate: { value: msg.title.opponent } }}</div>
+    <div *ngSwitchCase="2">{{ 'Lightning from { value }' | translate: { value: msg.title.opponent } }}</div>
+  </div>
+  </div>
   <div *ngSwitchCase="9" translate>Welcome on Ellas War</div>
   <span *ngSwitchCase="19">
     <span [ngSwitch]="msg.title.type">
@@ -23,6 +35,7 @@
     </span>
   </span>
   <span *ngSwitchCase="13" translate>You have won the Honnor challenge!</span>
+  <span *ngSwitchCase="14" translate>Spy Archives</span>
   <span *ngSwitchCase="23" translate>You have won the diamond challenge</span>
   <span *ngSwitchDefault>
     <span *ngIf="msg.msg_type > 0">{{ 'Unsupported message type: { value }' | translate: { value: msg.msg_type } }}</span>
