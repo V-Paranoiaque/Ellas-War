@@ -264,6 +264,7 @@ export class Messages {
   
   shareMsg() {
     this.socket.emit("msgShare", this.currentMsg.id);
+    this.currentMsg.msg_shared = (this.currentMsg.msg_shared+1)%2;
   }
   
   switchDeleteMode() {
