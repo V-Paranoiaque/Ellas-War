@@ -4,6 +4,7 @@ import { Socket } from '../../../services/socketio.service';
 
 import { environment } from './../../../environments/environment';
 
+import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
 import brushIcon from '@iconify/icons-bi/brush';
 import envelopeFill from '@iconify/icons-bi/envelope-fill';
 import plusIcon from '@iconify/icons-bi/plus';
@@ -35,6 +36,7 @@ export class Messages {
   
   //Icons
   brushIcon    = brushIcon;
+  clipboardCheck = clipboardCheck;
   envelopeFill = envelopeFill;
   plusIcon     = plusIcon;
   share        = share;

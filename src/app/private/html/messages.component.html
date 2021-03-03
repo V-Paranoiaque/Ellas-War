@@ -137,7 +137,7 @@
             {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
             <span class="badge bg-primary">
               <ic-icon [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
-                    name="clipboard-check" role="button" ngxClipboard></ic-icon>
+                       [icon]="clipboardCheck" role="button" ngxClipboard></ic-icon>
             </span>
           </div>
           
