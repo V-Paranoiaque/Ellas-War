@@ -35,6 +35,17 @@ export class AppComponent implements OnInit {
     this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
     
+    this.socket.socket.on('ewAuth', (data: any) => {
+      if(data) {
+        this.user.setUser(data);
+        
+        let newStyle = this.setStyle();
+        if(this.cssUrl != newStyle) {
+          this.cssUrl = this.setStyle();
+        }
+      }
+    });
+    
     this.socket.socket.on('user', () => {
       let newStyle = this.setStyle();
       if(this.cssUrl != newStyle) {

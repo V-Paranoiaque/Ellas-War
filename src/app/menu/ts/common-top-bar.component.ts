@@ -24,11 +24,6 @@ export class CommonTopBar implements OnInit {
     if(localToken) {
       this.socket.emit('ewAuth', {'token': localToken});
     }
-    this.socket.socket.on('ewAuth', (data: any) => {
-      if(data) {
-        this.user.setUser(data)
-      }
-    });
     this.socket.socket.on('user', (data: any) => {
       if(data) {
         this.user.setUser(data)
