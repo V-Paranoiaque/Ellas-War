@@ -235,6 +235,7 @@
   "Lightning against { value }": "Foudre envoyée sur {{ value }}",
   "Lightning from { value }": "Foudre reçue de  {{ value }}",
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
+  "Link saved to clipboard": "Lien copié dans le presse-papier",
   "Lion": "Lion",
   "Lions": "Lions",
   "Login": "Identifiant",

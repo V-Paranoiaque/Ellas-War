@@ -22,6 +22,7 @@ export class Messages {
   public addDestError: number;
   public answerText: string;
   public currentPage: number;
+  public linkSaved: number;
   public msgSent: number;
   public msgToUser: string;
   public msgTitle: string;
@@ -48,6 +49,7 @@ export class Messages {
     this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;
+    this.linkSaved = 0;
     this.msgSent = 0;
     this.msgToUser = '';
     this.msgTitle = '';
@@ -156,9 +158,18 @@ export class Messages {
     }
   };
   
+  copyLink() {
+    this.linkSaved = 1;
+    
+    setTimeout(() => {
+      this.linkSaved = 0;
+    }, 2000);
+  }
+  
   messageLoad(msg:any) {
     let id = msg.msg_id;
     this.msgSent = 0;
+    this.linkSaved = 0;
     
     if(id > 0) {
       if(!msg.msg_read) {

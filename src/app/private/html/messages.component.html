@@ -133,11 +133,15 @@
             </h2>
           </div>
           <div *ngIf="getCurrentMsg().msg_shared == 1" class="card-body text-center">
+            <div class="wg-bold text-danger"
+                 *ngIf="linkSaved == 1"
+                 translate>Link saved to clipboard</div>
             <strong translate>Share link:</strong>
             {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
-            <span class="badge bg-primary">
+            <span class="badge bg-primary" (click)="copyLink()">
               <ic-icon [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
-                       [icon]="clipboardCheck" role="button" ngxClipboard></ic-icon>
+                       [icon]="clipboardCheck" role="button" 
+                       ngxClipboard></ic-icon>
             </span>
           </div>
           

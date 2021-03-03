@@ -17,7 +17,6 @@
 * Display next bonus in the list
 
 # Messages
-* Notification when copy the url
 * Some titles and texts are missing
 
 # Options
