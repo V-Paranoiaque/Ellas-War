@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   templateUrl: '../html/register.component.html'
 })
 
-export class Register {
+export class Register implements OnInit {
   
-  constructor(socket: Socket) {
-    
+  registerForm: FormGroup;
+  
+  constructor(private socket: Socket, private formBuilder: FormBuilder) {
+    this.registerForm = this.formBuilder.group({});
   }
   
-  register() {
-    
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: '',
+      email: '',
+      password: ''
+    });
+  }
+  
+  onSubmit(data:object) {
+    this.socket.emit('register', data);
   }
 }
