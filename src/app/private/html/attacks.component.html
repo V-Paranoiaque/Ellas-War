@@ -63,7 +63,11 @@
       <div class="col-xl-6" *ngIf="attackMode > 0">
         <div class="card">
           <div class="card-header card-header-flexible">
-            <h2 id="playerDesc">{{ targetProfile?.username }}</h2>
+            <h2 id="playerDesc">
+              {{ targetProfile?.username }}
+                  <ic-icon [icon]="gemIcon"
+                           *ngIf="targetProfile?.diamond_begin > 0"></ic-icon>
+            </h2>
           </div>
           
           <!-- Observe/Spy -->
@@ -307,7 +311,7 @@
                 <ic-icon [icon]="swordIcon"></ic-icon>
                 &nbsp;<span translate>Attack</span>
               </button>
-              <div translate>
+              <div *ngIf="attackPossible == 0"translate>
                 You can't attack this city
               </div>
             </div>
@@ -322,7 +326,7 @@
           
           <!-- Result from an attack -->
           <div class="card-body text-center" *ngIf="attackMode == 4">
-            
+            <attacks-message [(info)]="attackInfo"></attacks-message>
           </div>
           
           <!-- Prepare to send a fury -->
@@ -345,36 +349,7 @@
           
           <!-- Result from a fury -->
           <div class="card-body text-center" *ngIf="attackMode == 6">
-            <div *ngIf="furyInfo.lost_ress.food == 0 && furyInfo.lost_ress.grapes == 0 && furyInfo.lost_build.farm == 0 && furyInfo.lost_build.growers == 0" class="center" translate="">
-              No loss in the city
-            </div>
-            <div *ngIf="furyInfo.lost_ress.food > 0 || furyInfo.lost_ress.grapes > 0 || furyInfo.lost_build.farm > 0 || furyInfo.lost_build.growers > 0" class="col-table">
-              <table>
-                <tr>
-                  <th scope="column" colspan="2" translate>Losses</th>
-                </tr>
-                <tr *ngIf="furyInfo.lost_ress.food > 0">
-                  <td>{{furyInfo.lost_ress.food| number:'': this.translate.currentLang}}</td>
-                  <td>
-                    <id-to-ress [ress_id]="'food'"></id-to-ress>
-                  </td>
-                </tr>
-                <tr *ngIf="furyInfo.lost_ress.grapes > 0">
-                  <td>{{furyInfo.lost_ress.grapes| number:'': this.translate.currentLang}}</td>
-                  <td>
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
-                  </td>
-                </tr>
-                <tr *ngIf="furyInfo.lost_build.farm > 0">
-                  <td>{{furyInfo.lost_build.farm| number:'': this.translate.currentLang}}</td>
-                  <td>{{user.info.datas.building.farm.names|translate}}</td>
-                </tr>
-                <tr *ngIf="furyInfo.lost_build.growers > 0">
-                  <td>{{furyInfo.lost_build.growers| number:'': this.translate.currentLang}}</td>
-                  <td>{{user.info.datas.building.growers.names|translate}}</td>
-                </tr>
-              </table>
-            </div>
+            <fury-message [(info)]="furyInfo"></fury-message>
           </div>
           
           <!-- Prepare to send a lightning -->
@@ -397,14 +372,7 @@
           
           <!-- Result from a lightning -->
           <div class="card-body text-center" *ngIf="attackMode == 8">
-            <strong translate>Lost buildings</strong><strong translate>:</strong>
-            <ul>
-              <li *ngFor="let building of lightningInfo.lost_build">
-                {{ building.nb | number:'': this.translate.currentLang}} 
-                <span *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</span>
-                <span *ngIf="building.nb > 1">{{user.info.datas.building[building.code].names|translate}}</span>
-              </li>
-            </ul>
+            <lightning-message [(info)]="lightningInfo"></lightning-message>
           </div>
         </div>
       </div>

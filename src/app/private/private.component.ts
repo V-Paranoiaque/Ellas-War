@@ -8,12 +8,15 @@ import { Quests } from './ts/quests.component';
 import { Storeroom } from './ts/storeroom.component';
 
 import { ArmyPopup } from './ts/army-popup.sub-component';
+import { AttacksMessage } from './ts/attacks-message.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
 import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
+import { FuryMessage } from './ts/fury-message.sub-component';
 import { IdToDivineBonus } from './ts/id-to-divinebonus.sub-component';
 import { IdToRess } from './ts/id-to-ress.sub-component';
+import { LightningMessage } from './ts/lightning-message.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
 import { SuccessInfoPopup } from './ts/success-info-popup.sub-component';
@@ -35,12 +38,15 @@ export const PrivateComponent = [
   Storeroom,
   
   ArmyPopup,
+  AttacksMessage,
   ConstructionPopup,
   DivineBonusHelpPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
+  FuryMessage,
   IdToDivineBonus,
   IdToRess,
+  LightningMessage,
   MessagesTitle,
   QuestsMissions,
   SuccessInfoPopup,

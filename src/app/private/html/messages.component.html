@@ -162,8 +162,13 @@
             </div>
           </div>
           
-          <div *ngIf="getCurrentMsg().msg_type > 0">
-            TODO
+          <div *ngIf="getCurrentMsg().msg_type > 0" class="container">
+            <span [ngSwitch]="getCurrentMsg().msg_type">
+              <span *ngSwitchCase="1"><attacks-message [(info)]="getCurrentMsg().msg[0].content"></attacks-message></span>
+              <span *ngSwitchCase="3"><fury-message [(info)]="getCurrentMsg().msg[0].content"></fury-message></span>
+              <span *ngSwitchCase="8"><lightning-message [(info)]="getCurrentMsg().msg[0].content"></lightning-message></span>
+              <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
+            </span>
           </div>
         </div>
       </div>

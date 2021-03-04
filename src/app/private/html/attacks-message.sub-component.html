@@ -1,0 +1,98 @@
+ <div *ngIf="info.xp_attack > 0 || info.xp_defense > 0" class="row">
+  <div class="col-6 text-center"
+       *ngIf="info.winer == 1 || info.winer == 2">
+    <strong translate>You</strong><strong translate>:</strong> 
+    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack}} 
+    <span translate>XP</span>
+  </div>
+  <div class="col-6 text-center"
+       *ngIf="info.winer == 1 || info.winer == 2">
+    <strong translate>Your opponent</strong><strong translate>:</strong> 
+    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense}} 
+    <span translate>XP</span>
+  </div>
+  <div class="col-6 text-center"
+       *ngIf="info.winer == 3 || info.winer == 4">
+    <strong translate>You</strong><strong translate>:</strong>
+    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense}} 
+    <span translate>XP</span>
+  </div>
+  <div class="col-6 text-center"
+       *ngIf="info.winer == 3 || info.winer == 4">
+    <strong translate>Your opponent</strong><strong translate>:</strong>
+    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack}} 
+    <span translate>XP</span>
+  </div>
+  <div class="clearfix"><br/></div>
+</div>
+
+<strong translate>Army sent</strong>
+<div *ngFor="let unit of getSentUnits()" class="col-xs-12">
+    {{unit.nb| number:'': this.translate.currentLang}} 
+    {{user.info.datas.army[unit.code].names|translate}} 
+</div>
+  <div class="clearfix"><br/></div>
+
+<div class="row">
+  <div *ngIf="getAttackLost().length > 0"  class="col-6">
+    <strong translate>Attacker losses</strong>
+    <div *ngFor="let unit of getAttackLost()">
+      {{unit.nb| number:'': this.translate.currentLang}} 
+      {{user.info.datas.army[unit.code].names|translate}} 
+    </div>
+    <div class="clearfix"><br/></div>
+  </div>
+  
+  <div *ngIf="getDefenseLost().length > 0"  class="col-6">
+    <strong translate>Defender losses</strong>
+    <div *ngFor="let unit of getDefenseLost()">
+      {{unit.nb| number:'': this.translate.currentLang}} 
+      {{user.info.datas.army[unit.code].names|translate}} 
+    </div>
+    <div class="clearfix"><br/></div>
+  </div>
+</div>
+
+<div class="col-table text-center" *ngIf="info.lost_ress">
+  <strong translate>Lost resources</strong>
+  <table class="table">
+    <tr *ngFor="let ress of resources">
+      <td *ngIf="info.lost_ress[ress] > 0"
+          class="col-6 text-end">
+        {{info.lost_ress[ress]| number:'': this.translate.currentLang}}
+      </td>
+      <td *ngIf="info.lost_ress[ress] > 0"
+          class="col-6 text-start">
+        <id-to-ress [ress_id]=ress></id-to-ress>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="col-table text-center" *ngIf="getLostBuildings().length > 0">
+  <strong translate>Lost buildings</strong>
+  <table class="table">
+    <tr *ngFor="let building of getLostBuildings()">
+      <td class="col-6 text-end">{{building.nb| number:'': this.translate.currentLang}}</td>
+      <td class="col-6 text-start" *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</td>
+      <td class="col-6 text-start" *ngIf="building.nb > 1">{{user.info.datas.building[building.code].names|translate}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="text-center" *ngIf="info.hades_saving > 0">
+  <br/>
+  <strong translate>Souls saved</strong>
+  <strong translate>:</strong>
+  {{info.hades_saving}}
+</div>
+
+<div class="col-table text-center" *ngIf="hasCorruptedRes()">
+  <strong translate>Corrupted resources</strong>
+  <table class="table">
+    <tr *ngFor="let ress of resources">
+      <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'': this.translate.currentLang}}</td>
+      <td *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></td>
+    </tr>
+  </table>
+</div>

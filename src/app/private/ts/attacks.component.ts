@@ -24,6 +24,7 @@ export class Attacks {
   private attackOrderReverse:number;
   private attackPage:number;
   
+  public attackInfo:any;
   public attackMode:number;
   public furyInfo:any;
   public furyPossible:any;
@@ -50,6 +51,7 @@ export class Attacks {
     this.attackOrderReverse = 0;
     this.ressList = environment.resources;
     
+    this.attackInfo = {};
     /* Mode
      * 0: History
      * 1: Observe with Apollo
@@ -87,6 +89,12 @@ export class Attacks {
         'reverse': this.attackOrderReverse
       });
     }, 0);
+    
+    
+    this.socket.socket.on('attack', (datas:any) => {
+      this.attackMode = 4;
+      this.attackInfo = datas;
+    });
     
     this.socket.socket.on('attackList', (datas:any) => {
       this.attackListInfo = Object.assign([], datas);
