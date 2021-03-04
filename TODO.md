@@ -27,7 +27,6 @@
 
 # Quests
 * Add a new quest to discover spies
-* Fix links in the daily quests
 
 # Server
 

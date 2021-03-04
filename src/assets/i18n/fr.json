@@ -48,6 +48,7 @@
   "Apollo": "Apollon",
   "Ares": "Arès",
   "Army": "Armée",
+  "Army sent": "Armée envoyée",
   "Army summary": "Votre armée",
   "Artemis": "Artémis",
   "At each change the cost is increased, it is reset every 6 months.": "A chaque changement le coût augmente, il est réinitialisé tous les 6 mois.",
@@ -56,6 +57,7 @@
   "Attack { value } sanctuaries": "Attaquez {{ value }} sanctuaires",
   "Attack 1 sanctuary": "Attaquez 1 sanctuaire",
   "Attack": "Attaquer",
+  "Attacker losses": "Pertes de l'attaquant",
   "Attacks": "Attaques",
   "Author": "Auteur",
   "Automaton": "Automate",
@@ -121,6 +123,7 @@
   "Day": "Jour",
   "Day(s)": "Jour(s)",
   "Defeat against { value }": "Défaite contre {{ value }}",
+  "Defender losses": "Pertes du défenseur",
   "Delete all the selected messages": "Supprimer tous les messages séléctionnés",
   "Delete the selected messages": "Supprimer le message séléctionné",
   "Demeter": "Demeter",
@@ -244,6 +247,7 @@
   "Looting is increased by 5 to 15% for 2 hours.": "Les pillages sont augmentés de 5 à 15% pendant 2h.",
   "Losses": "Pertes",
   "Lost buildings": "Bâtiments perdus",
+  "Lost resources": "Ressources perdues",
   
   "Manticore": "Manticore",
   "Manticores": "Manticores",
@@ -462,6 +466,7 @@
   
   "XP": "XP",
   
+  "You": "Vous",
   "You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.": "Vous pouvez attaquer une seconde fois un ennemi afin de l'affaiblir. Ne compte pas dans le score des guerres.",
   "You are still there?": "Vous êtes toujours là ?",
   "You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the faibles. Win 5 victories and return to me.": "Vous êtes plus résistant que je ne le pensais. Montrez moi vos aptitudes aux combats. Maintenant que vous avez recruté une armée, passez à l'attaque. Je vous conseille d'utiliser des espions afin de trouver les cités faibles. Remportez 5 victoires et revenez me voir.",
@@ -491,5 +496,6 @@
   "Your email is empty or invalid": "Votre adresse mail est vide ou invalide",
   "Your espionage team was caught and executed in a public place.": "Votre équipe d'espionnage a été attrapée et exécutée sur la place publique.",
   "Your huts will allow you to house the base of your army.": "Vos huttes vous permettront de loger la base de votre armée.",
+  "Your opponent": "Votre adversaire",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères."
 }
