@@ -94,9 +94,10 @@
             <span data-bs-toggle="modal"
                   data-bs-target="#DivineBonusList"
                   (click)="divineBonusReset()">All</span> -
-             <span data-bs-toggle="modal"
-                   data-bs-target="#DivineBonusHelp"
-                   translate>Help</span>
+             <span data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
+                   role="button" translate>
+               <ic-icon [icIcon]="questionCircle"></ic-icon>
+             </span>
           </div>
           <div class="card-body no-padding">
             <div *ngFor="let bonus of divineBonus"

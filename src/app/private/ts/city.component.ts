@@ -3,6 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
+
 @Component({
   templateUrl: '../html/city.component.html',
   styleUrls: ['../css/city.component.css']
@@ -19,7 +21,10 @@ export class City {
   
   public divineBonus:any;
   public divineBonusNb:number;
-
+  
+  //Icons
+  questionCircle = questionCircle;
+  
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     //We set a default building to avoid errors
     this.buildingInfo = { code: 'mint' };
