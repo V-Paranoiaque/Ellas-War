@@ -10,6 +10,15 @@
           </div>
           <div class="card-body" *ngIf="getAttackList().length > 0">
             <table class="table">
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" class="text-center" translate>V</th>
+                <th *ngIf="user.getDatas() && user.getDatas().attack && 
+                           user.getLevel() >= user.getDatas().attack.level_xp_min"
+                    scope="col" class="text-start" translate>XP</th>
+                <th scope="col" translate>Field</th>
+                <th scope="col"></th>
+              </tr>
               <tr *ngFor="let player of getAttackList()">
                 <td>
                   {{ player.username }}
@@ -19,6 +28,7 @@
                            *ngIf="player.diamond_begin > 0"></ic-icon>
                   
                   <span *ngIf="player.alliance > 0">
+                    <br/>
                     {{ player.alliance_name }}
                   </span>
                 </td>
