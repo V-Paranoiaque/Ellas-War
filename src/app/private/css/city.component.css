@@ -11,6 +11,10 @@
   flex:1;
 }
 
+.card-header [role="button"]  {
+  margin-left:5px;
+}
+
 .card-body.no-padding {
   padding: 0px;
 }

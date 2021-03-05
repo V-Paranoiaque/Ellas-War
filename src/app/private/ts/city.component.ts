@@ -3,6 +3,7 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import cloud from '@iconify/icons-fa-solid/cloud';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
@@ -23,6 +24,7 @@ export class City {
   public divineBonusNb:number;
   
   //Icons
+  cloud = cloud;
   questionCircle = questionCircle;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
@@ -61,6 +63,8 @@ export class City {
     this.armyInfo = this.user.info.datas.army[name];
     this.armyInfo.resale = {};
     
+    this.socket.emit('engagePossible', name);
+    
     for(let res in this.armyInfo.cost) {
       this.armyInfo.resale[res] = this.armyInfo.cost[res]*0.6;
     }
@@ -68,6 +72,8 @@ export class City {
   selectBuilding(name:string) {
     this.buildingInfo = this.user.info.datas.building[name];
     this.buildingInfo.destruct = {};
+    
+    this.socket.emit('buildPossible', name);
     
     for(let res in this.buildingInfo.cost) {
       this.buildingInfo.destruct[res] = this.buildingInfo.cost[res]*0.6;

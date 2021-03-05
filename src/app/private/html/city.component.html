@@ -90,16 +90,27 @@
            class="col-xl-6">
         <div class="card">
           <div class="card-header">
-            <span translate>Divine Bonus</span> - 
-            <span data-bs-toggle="modal"
-                  data-bs-target="#DivineBonusList"
-                  (click)="divineBonusReset()">All</span> -
-             <span data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
+            <span translate>Divine Bonus</span>
+            
+            <span data-bs-toggle="modal" data-bs-target="#DivineBonusList"
+                  role="button" *ngIf="divineBonus.length > 0"
+                  class="text-warning" (click)="divineBonusReset()">
+              <ic-icon [icIcon]="cloud"></ic-icon>
+            </span>
+            <span data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
                    role="button" translate>
-               <ic-icon [icIcon]="questionCircle"></ic-icon>
-             </span>
+              <ic-icon [icIcon]="questionCircle"></ic-icon>
+            </span>
           </div>
-          <div class="card-body no-padding">
+          <div class="card-body no-padding text-center" *ngIf="divineBonus.length == 0">
+            <br/>
+            <strong translate>Ongoing streak:</strong>
+            {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+            <div>
+              {{ 'Next goal: { value } Days' | translate: { value: user.getGoalDays() | number:'': this.translate.currentLang } }}
+            </div>
+          </div>
+          <div class="card-body no-padding" *ngIf="divineBonus.length > 0">
             <div *ngFor="let bonus of divineBonus"
                  class="frame frame-10"
                  data-bs-toggle="modal" data-bs-target="#DivineBonusInfo"
