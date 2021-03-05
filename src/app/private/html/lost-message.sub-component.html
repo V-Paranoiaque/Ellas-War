@@ -1,0 +1,34 @@
+<div *ngIf="getLostBuildingsNb()+getLostUnitsNb()+getLostResourcesNb() == 0" translate>
+  No loss in the city
+</div>
+
+<div *ngIf="getLostUnitsNb() > 0">
+  <strong translate>Lost units</strong><strong translate>:</strong>
+  <ul>
+    <li *ngFor="let unit of getLostUnits()">
+      {{unit.nb| number:'': this.translate.currentLang}}
+      <span *ngIf="info.lost_unit[unit.code] == 1">{{user.info.datas.army[unit.code].name|translate}}</span>
+      <span *ngIf="info.lost_unit[unit.code] > 1">{{user.info.datas.army[unit.code].names|translate}}</span>
+    </li>
+  </ul>
+</div>
+<div *ngIf="getLostBuildingsNb() > 0">
+  <strong translate>Lost buildings</strong><strong translate>:</strong>
+  <ul>
+    <li *ngFor="let building of getLostBuildings()">
+      {{building.nb| number:'': this.translate.currentLang}}
+      <span *ngIf="info.lost_build[building.code] == 1">{{user.info.datas.building[building.code].name|translate}}</span>
+      <span *ngIf="info.lost_build[building.code] > 1">{{user.info.datas.building[building.code].names|translate}}</span>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="getLostResourcesNb() > 0">
+  <strong translate>Lost resources</strong><strong translate>:</strong>
+  <ul>
+    <li *ngFor="let res of getLostResources()">
+      {{res.nb| number:'': this.translate.currentLang}}
+      <id-to-ress [ress_id]="res.code"></id-to-ress>
+    </li>
+  </ul>
+</div>

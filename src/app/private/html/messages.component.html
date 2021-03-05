@@ -155,7 +155,7 @@
               </div>
             </div>
             <div *ngFor="let msg of getCurrentMsg().msg" class="card-body">
-              {{ msg.content }}
+              {{ getCurrentMsg().msg[0].content }}
               <div class="text-end fw-lighter">
                 <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
               </div>
@@ -165,8 +165,214 @@
           <div *ngIf="getCurrentMsg().msg_type > 0" class="container">
             <span [ngSwitch]="getCurrentMsg().msg_type">
               <span *ngSwitchCase="1"><attacks-message [(info)]="getCurrentMsg().msg[0].content"></attacks-message></span>
+              <span *ngSwitchCase="2">
+                <br/><br/>
+                <span translate class="fw-bold">Jackpot:</span>
+                {{getCurrentMsg().msg[0].content.drachma| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              </span>
               <span *ngSwitchCase="3"><fury-message [(info)]="getCurrentMsg().msg[0].content"></fury-message></span>
-              <span *ngSwitchCase="8"><lightning-message [(info)]="getCurrentMsg().msg[0].content"></lightning-message></span>
+              <span *ngSwitchCase="4">{{'Attempted espionage from { value }' | translate: { value: getCurrentMsg().title.username } }}</span>
+              <span *ngSwitchCase="5">{{'Espionage from { value }' | translate: { value: getCurrentMsg().title.username} }}</span>
+              <span *ngSwitchCase="6">
+                  {{'{ value } has triggered the hostilities.' | translate: { value: getCurrentMsg().msg[0].content.player_name} }}
+                  <br/>
+                  {{'The alliances { value } and { name } will go to war in 24, stand ready!' | translate: { value: getCurrentMsg().msg[0].content.attacking_name, name: getCurrentMsg().msg[0].content.defender_name} }}
+              </span>
+              <span *ngSwitchCase="7">
+                  {{'{ value } has triggered the hostilities.' | translate: { value: getCurrentMsg().msg[0].content.player_name } }}
+                  <br/>
+                  {{'The alliances { value } and { name } will go to war in 24, stand ready!' | translate: { value: getCurrentMsg().msg[0].content.attacking_name, name: getCurrentMsg().msg[0].content.defender_name } }}
+              </span>
+              <span *ngSwitchCase="8"><lost-message [(info)]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchCase="9">
+                <div translate>Hello and welcome on Ellas War</div>
+                <br/>
+                <div translate>You have joined the hostile lands of Ellas War. You will find help symboles to guide you on the game. Drachmas are the sinews of war, honnor the Gods and don't forget to protect your city.</div>
+                <div translate>Join the Ellas War's Facebook Page. You'll find advice and answers to your questions.</div>
+                <div translate>In case of problems you can also ask for help on the contact page.</div>
+                <br/>
+                <div translate>Have a good game</div>
+                <br/>
+                <span translate>The Ellas War's team</span>
+              </span>
+              <span *ngSwitchCase="10"><lost-message [(info)]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchCase="11">
+                {{getCurrentMsg().msg[0].content.qtt| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="getCurrentMsg().msg[0].content.ress"></id-to-ress>
+                <span translate>for</span>
+                {{getCurrentMsg().msg[0].content.price| number:'': this.translate.currentLang}}
+                
+                <div *ngIf="getCurrentMsg().msg[0].content.buyer_id && getCurrentMsg().msg[0].content.buyer_id > 0">
+                  <span translate>Buyer</span>
+                  <span translate>:</span>
+                  {{getCurrentMsg().msg[0].content.buyer}}
+                </div>
+              </span>
+              <span *ngSwitchCase="12">
+                {{'{ value } has accepted your request for:' | translate: { value: getCurrentMsg().msg[0].content.user } }}
+                {{getCurrentMsg().msg[0].content.qtt| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="getCurrentMsg().msg[0].content.ress"></id-to-ress>
+              </span>
+              <span *ngSwitchCase="13">
+                <div  translate>You win the Honnor challenge!</div>
+                <br/>
+                <span translate>Reward:</span>
+                {{getCurrentMsg().msg[0].content.reward| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              </span>
+              <span *ngSwitchCase="14">
+                <h2>{{getCurrentMsg().msg[0].content.username}}</h2>
+                
+                <div class="col-table">
+                <table class="table">
+                  <tr *ngIf="getCurrentMsg().msg[0].content.alliance > 0">
+                    <th translate>Alliance</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.alliance_name}}&nbsp;</td>
+                  </tr>
+                  <tr *ngIf="getCurrentMsg().msg[0].content.alliance > 0">
+                    <th translate>Rank</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.rank_name}}&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <th translate>Level</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.level}}&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <th translate>Field</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.field| number:'': this.translate.currentLang}}</td>
+                  </tr>
+                  <tr>
+                    <th translate>Victories</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.victory| number:'': this.translate.currentLang}}</td>
+                  </tr>
+                  <tr>
+                    <th translate>Defeats</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.defeat| number:'': this.translate.currentLang}}</td>
+                  </tr>
+                  <tr>
+                    <th translate>XP</th>
+                    <td align="text-end">{{getCurrentMsg().msg[0].content.xp| number:'': this.translate.currentLang}}</td>
+                  </tr>
+                </table>
+                </div>
+                <br/>
+                <div translate
+                     *ngIf="getCurrentMsg().msg[0].content.poseidon_wall && getCurrentMsg().msg[0].content.poseidon_wall == 1">
+                  The wall of Poseidon protects this city.
+                </div>
+                <span [ngSwitch]="getCurrentMsg().msg[0].content.error">
+                  <span *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</span>
+                  <span *ngSwitchCase="2">
+                    <span translate>Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.</span>
+                    <br/><br/>
+                    <strong translate>Unities</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.unitiesNb| number:'': this.translate.currentLang}}
+                    <br/>
+                    <strong translate>Towers</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.defenseNb| number:'': this.translate.currentLang}}
+                  </span>
+                  <span *ngSwitchCase="3">
+                    <strong translate>Unities</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.unitiesNb| number:'': this.translate.currentLang}}
+                    <br/>
+                    <strong translate>Towers</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.defenseNb| number:'': this.translate.currentLang}}
+                  </span>
+                  <span *ngSwitchCase="4" translate>You do not have spies.</span>
+                </span>
+              
+                <br/>
+                
+                <div *ngIf="getCurrentMsg().msg[0].content.buildings.length > 0">
+                  <strong translate>Buildings</strong><strong translate>:</strong>
+                  <div *ngFor="let build of getCurrentMsg().msg[0].content.buildings">
+                    {{user.info.datas.building[build].name|translate}}
+                  </div>
+                </div>
+                
+                <div *ngIf="getCurrentMsg().msg[0].content.unities.length > 0">
+                  <strong translate>Unities</strong><strong translate>:</strong>
+                  <div *ngFor="let unit of getCurrentMsg().msg[0].content.unities">
+                    {{user.info.datas.army[unit].name|translate}}
+                  </div>
+                  <br/>
+                </div>
+              </span>
+              <span *ngSwitchCase="15">
+                <span translate>Hello</span>,<br/><br/>
+                <span translate>We inform you that a member of the staff has sent you a message via the contact page.</span>
+                <br/><br/>
+                <a [routerLink]="['/contact/'+getCurrentMsg().msg[0].content.id]"
+                   translate>
+                  Read the message
+                </a>
+              </span>
+              <span *ngSwitchCase="16"><sanctuary-message [(info)]="getCurrentMsg().msg[0].content"></sanctuary-message></span>
+              <span *ngSwitchCase="17">
+                <h3 translate>Result</h3>
+                <strong>{{getCurrentMsg().title.attacker}}</strong><strong translate>:</strong> 
+                {{getCurrentMsg().msg[0].content.attacker}}
+                <br/>
+                <strong>{{getCurrentMsg().title.defender}}</strong><strong translate>:</strong> 
+                {{getCurrentMsg().msg[0].content.defender}}
+                <br/>
+                <br/>
+                <strong translate>Reward:</strong> {{getCurrentMsg().msg[0].content.benefits| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              </span>
+              <span *ngSwitchCase="18">
+                <h3 translate>Result</h3>
+                <strong>{{getCurrentMsg().title.attacker}}</strong><strong translate>:</strong> 
+                {{getCurrentMsg().msg[0].content.attacker}}
+                <br/>
+                <strong>{{getCurrentMsg().title.defender}}</strong><strong translate>:</strong> 
+                {{getCurrentMsg().msg[0].content.defender}}
+                <br/>
+                <br/>
+                <strong translate>Reward:</strong> {{getCurrentMsg().msg[0].content.benefits/10| number:'': this.translate.currentLang}}
+                <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              </span>
+              <span *ngSwitchCase="19"><lost-message [(info)]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchCase="20">{{'Attempted espionage of your sanctuary from { value}' | translate: { value: getCurrentMsg().title.username } }}</span>
+              <span *ngSwitchCase="21">{{'Espionage of your sanctuary from { value}' | translate: { value: getCurrentMsg().title.username } }}</span>
+              <span *ngSwitchCase="22">
+                <h2>{{ getCurrentMsg().msg[0].content.sanctuaries_name | translate}}</h2>
+                
+                <span [ngSwitch]="getCurrentMsg().msg[0].content.error">
+                  <span *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</span>
+                  <span *ngSwitchCase="2">
+                    <span translate>Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.</span>
+                    <br/><br/>
+                    <strong translate>Unities</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.unitiesNb| number:'': this.translate.currentLang}}
+                    <div *ngIf="getCurrentMsg().msg[0].content.unities.length > 0">
+                      <br/>
+                      <div *ngFor="let unit of getCurrentMsg().msg[0].content.unities">
+                        {{user.info.datas.army[unit].name|translate}}
+                      </div>
+                      <br/>
+                    </div>
+                  </span>
+                  <span *ngSwitchCase="3">
+                    <strong translate>Unities</strong><strong translate>:</strong> {{getCurrentMsg().msg[0].content.unitiesNb| number:'': this.translate.currentLang}}
+                    <div *ngIf="getCurrentMsg().msg[0].content.unities.length > 0">
+                      <br/>
+                      <div *ngFor="let unit of getCurrentMsg().msg[0].content.unities">
+                        {{user.info.datas.army[unit].name|translate}}
+                      </div>
+                      <br/>
+                    </div>
+                  </span>
+                  <span *ngSwitchCase="4" translate>You do not have spies.</span>
+                </span>
+              </span>
+              <span *ngSwitchCase="23">
+                {{'You win { value } Drachmas' | translate: { value: getCurrentMsg().msg[0].content.reward| number:'': this.translate.currentLang} }}
+              </span>
+              <span *ngSwitchCase="24">
+                {{'Your alliance win { value } Drachmas' | translate: { value: getCurrentMsg().msg[0].content.reward| number:'': this.translate.currentLang} }}
+              </span>
+              <span *ngSwitchCase="25">{{'{ value } has destroyed the pact between { name1 } and { name2 }' | translate: { value: getCurrentMsg().msg[0].content.username, name1: getCurrentMsg().msg[0].content.dst_name, name2: getCurrentMsg().msg[0].content.ask_name } }}.
+              </span>
+              <span *ngSwitchCase="26">{{'{ value } has destroyed the pact between { name1 } and { name2 }' | translate: { value: getCurrentMsg().msg[0].content.username, name1: getCurrentMsg().msg[0].content.dst_name, name2: getCurrentMsg().msg[0].content.ask_name } }}.
+              </span>
+              <span *ngSwitchCase="27">{{'{ value } from the alliance { name } has requested a pact to your alliance.' | translate: { value: getCurrentMsg().msg[0].content.username, name: getCurrentMsg().msg[0].content.ask_name } }}</span>
               <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
             </span>
           </div>

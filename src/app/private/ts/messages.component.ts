@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
+import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
 
@@ -45,7 +47,7 @@ export class Messages {
   trashIcon    = trashIcon;
   xIcon        = xIcon;
   
-  constructor(private http: HttpClient, private socket: Socket) {
+  constructor(private http: HttpClient, public user: User, private socket: Socket, public translate: TranslateService) {
     this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;

@@ -1,26 +1,52 @@
 <span [ngSwitch]="msg.msg_type">
-  <div *ngSwitchCase="1">
-  <div [ngSwitch]="msg.title.winer">
-    <div *ngSwitchCase="1">{{ 'Victory against { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchCase="2">{{ 'Defeat against { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchCase="3">{{ 'Your city was sacked by { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchCase="4">{{ 'Your city has resisted against { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchDefault>{{ msg.title.winer }}</div>
-  </div>
-  </div>
-  <div *ngSwitchCase="3">
-  <div [ngSwitch]="msg.title.winer">
-    <div *ngSwitchCase="1">{{ 'Fury against { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchCase="2">{{ 'Fury from { value }' | translate: { value: msg.title.opponent } }}</div>
-  </div>
-  </div>
-  <div *ngSwitchCase="8">
-  <div [ngSwitch]="msg.title.winer">
-    <div *ngSwitchCase="1">{{ 'Lightning against { value }' | translate: { value: msg.title.opponent } }}</div>
-    <div *ngSwitchCase="2">{{ 'Lightning from { value }' | translate: { value: msg.title.opponent } }}</div>
-  </div>
-  </div>
-  <div *ngSwitchCase="9" translate>Welcome on Ellas War</div>
+  <span *ngSwitchCase="1">
+  <span [ngSwitch]="msg.title.winer">
+    <span *ngSwitchCase="1">{{ 'Victory against { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchCase="2">{{ 'Defeat against { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchCase="3">{{ 'Your city was sacked by { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchCase="4">{{ 'Your city has resisted against { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchDefault>{{ msg.title.winer }}</span>
+  </span>
+  </span>
+  <span *ngSwitchCase="2" translate>You win the lotto!</span>
+  <span *ngSwitchCase="3">
+  <span [ngSwitch]="msg.title.winer">
+    <span *ngSwitchCase="1">{{ 'Fury against { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchCase="2">{{ 'Fury from { value }' | translate: { value: msg.title.opponent } }}</span>
+  </span>
+  </span>
+  <span *ngSwitchCase="4">{{ 'Attempted espionage from { value }' | translate: { value: msg.title.username} }}</span>
+  <span *ngSwitchCase="5">{{ 'Espionage from { value }' | translate: { value: msg.title.username} }}</span>
+  <span *ngSwitchCase="6">{{ 'Declaration of war to the alliance { value }' | translate: { value: msg.title.defender_name} }}</span>
+  <span *ngSwitchCase="7">{{ 'Declaration of war from the alliance { value }' | translate: { value: msg.title.attacking_name} }}</span>
+  <span *ngSwitchCase="8">
+  <span [ngSwitch]="msg.title.winer">
+    <span *ngSwitchCase="1">{{ 'Lightning against { value }' | translate: { value: msg.title.opponent } }}</span>
+    <span *ngSwitchCase="2">{{ 'Lightning from { value }' | translate: { value: msg.title.opponent } }}</span>
+  </span>
+  </span>
+  <span *ngSwitchCase="9" translate>Welcome on Ellas War</span>
+  <span *ngSwitchCase="10">
+  <span [ngSwitch]="msg.title.winer">
+    <span *ngSwitchCase="1">{{'Peste against { value }' | translate: { value: msg.title.opponent} }}</span>
+    <span *ngSwitchCase="2">{{'Peste from { value }' | translate: { value: msg.title.opponent} }}</span>
+  </span>
+  </span>
+  <span *ngSwitchCase="11" translate>Lot sold at the agora</span>
+  <span *ngSwitchCase="12" translate>Resources request accepted</span>
+  <span *ngSwitchCase="13" translate>You have won the Honnor challenge!</span>
+  <span *ngSwitchCase="14" translate>Spy Archives</span>
+  <span *ngSwitchCase="15" translate>New message from the staff</span>
+  <span *ngSwitchCase="16">
+  <span [ngSwitch]="msg.title.winer">
+    <span *ngSwitchCase="1">{{'Victory against { value }' | translate: { value: msg.title.sanctuaries_name|translate} }}</span>
+    <span *ngSwitchCase="2">{{'Defeat against { value }' | translate: { value: msg.title.sanctuaries_name|translate} }}</span>
+    <span *ngSwitchCase="3">{{'Defeat of { value } against { player }' | translate: { value: msg.title.sanctuaries_name|translate, player: msg.title.opponent} }}</span>
+    <span *ngSwitchCase="4">{{'Victory of { value } against { player }' | translate: { value: msg.title.sanctuaries_name|translate, player: msg.title.opponent} }}</span>
+  </span>
+  </span>
+  <span *ngSwitchCase="17" translate>Victory of your alliance</span>
+  <span *ngSwitchCase="18" translate>Defeat of your alliance</span>
   <span *ngSwitchCase="19">
     <span [ngSwitch]="msg.title.type">
       <span *ngSwitchCase="1" translate>Drought on your city</span>
@@ -34,9 +60,21 @@
       <span *ngSwitchCase="9" translate>Snow storm on your city</span>
     </span>
   </span>
-  <span *ngSwitchCase="13" translate>You have won the Honnor challenge!</span>
-  <span *ngSwitchCase="14" translate>Spy Archives</span>
+  <span *ngSwitchCase="20">{{'Attempted espionage of your sanctuary from { value }' | translate: { value: msg.title.username} }}</span>
+  <span *ngSwitchCase="21">{{'Espionage of your sanctuary from { value }' | translate: { value: msg.title.username} }}</span>
+  <span *ngSwitchCase="22" translate>Sanctuary Spy Archives</span>
   <span *ngSwitchCase="23" translate>You have won the diamond challenge</span>
+  <span *ngSwitchCase="25">
+    <span *ngIf="msg.title.ask_id == msg.title.destroy"
+         translate>{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.dst_name} }}</span>
+    <span *ngIf="msg.title.dst_id == msg.title.destroy"
+         translate>{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.ask_name} }}</span>
+  </span>
+  <span *ngSwitchCase="26">
+    <span *ngIf="msg.title.dst_id == msg.title.destroy">{{'The pact with the alliance { value } has been destroyed' | translate: { value: msg.title.dst_name} }}</span>
+    <span *ngIf="msg.title.ask_id == msg.title.destroy">{{'The pact with the alliance { value } has been destroyed' | translate: { value: msg.title.ask_name} }}</span>
+  </span>
+  <span *ngSwitchCase="27">{{'{ value } has requested a pact to your alliance' | translate: { value: msg.title.ask_name} }}</span>
   <span *ngSwitchDefault>
     <span *ngIf="msg.msg_type > 0">{{ 'Unsupported message type: { value }' | translate: { value: msg.msg_type } }}</span>
     <span *ngIf="msg.msg_type == 0">{{ msg.title }}</span>

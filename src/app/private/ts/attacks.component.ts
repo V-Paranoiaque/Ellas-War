@@ -171,6 +171,20 @@ export class Attacks {
     return list;
   }
   
+  getOffensivePower() {
+    let result = 0;
+    
+    if(this.user.info && this.user.info.datas) {
+      for(let i in this.waveAttackSum) {
+        if(this.waveAttackSum[i] > 0) {
+          result += (this.user.info.datas.army[i].attack*this.waveAttackSum[i]);
+        }
+      }
+    }
+    
+    return result;
+  }
+  
   prepareAttack(id:number) {
     this.attackMode = 3;
     

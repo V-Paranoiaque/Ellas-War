@@ -331,6 +331,10 @@
               <div *ngFor="let i of getArmy()">
                 {{ i.nb | number:'': this.translate.currentLang }} {{ user.info.datas.army[i.unit].names | translate }}
               </div>
+              <br/>
+              <strong translate>Offensive power</strong>
+              <strong translate>:</strong>
+              {{ getOffensivePower() | number:'': this.translate.currentLang}}
             </div>
           </div>
           
@@ -382,7 +386,7 @@
           
           <!-- Result from a lightning -->
           <div class="card-body text-center" *ngIf="attackMode == 8">
-            <lightning-message [(info)]="lightningInfo"></lightning-message>
+            <lost-message [(info)]="lightningInfo"></lost-message>
           </div>
         </div>
       </div>
