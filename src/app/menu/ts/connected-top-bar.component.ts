@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
@@ -16,6 +16,8 @@ import powerOff from '@iconify/icons-fa-solid/power-off';
 })
 
 export class ConnectedTopBar extends CommonTopBar {
+  
+  @Input()
   
   cog      = cog;
   comments = comments;
@@ -39,6 +41,10 @@ export class ConnectedTopBar extends CommonTopBar {
   }
   
   ngOnInit() {
+    if(this.active == 'home' || this.active == 'login') {
+      this.router.navigate(['/city'])
+    }
+    
     setTimeout(() => {
       this.socket.emit('msgNewNb');
     }, 0);
