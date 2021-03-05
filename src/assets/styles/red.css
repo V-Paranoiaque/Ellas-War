@@ -33,6 +33,7 @@ a {
 .card-button.card-button-success {
   background-color: #449d44;
   border-color: #398439;
+  color: white;
 }
 
 .card-button.card-button-success button.btn {
