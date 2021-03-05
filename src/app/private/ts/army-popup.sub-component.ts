@@ -16,12 +16,30 @@ export class ArmyPopup {
   public liberatenb:any;
   public rBuildNb:any;
   public rDestructNb:any;
+  public rEngagePossible:number;
   public errorBuilding:number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.engagenb = '';
     this.liberatenb = '';
+    this.rEngagePossible = 0;
     this.errorBuilding = 0;
+    
+    this.socket.socket.on('engagePossible', (nb:number) => {
+      this.rEngagePossible = nb;
+    });
+    this.socket.socket.on('build', () => {
+      this.socket.emit('engagePossible', this.info.code);
+    });
+    this.socket.socket.on('destruct', () => {
+      this.socket.emit('engagePossible', this.info.code);
+    });
+    this.socket.socket.on('engage', () => {
+      this.socket.emit('engagePossible', this.info.code);
+    });
+    this.socket.socket.on('liberate', () => {
+      this.socket.emit('engagePossible', this.info.code);
+    });
   }
   
   armyEngage() {

@@ -57,9 +57,9 @@
           </span>
         </div>
         
-        <div *ngIf="info.rEngagePossible">
-          <strong>{{"Max possible"|translate}}{{":"}}</strong>
-          {{ info.rEngagePossible | number:'': this.translate.currentLang }}
+        <div *ngIf="rEngagePossible > 0">
+          <strong>{{"Max possible"|translate}}{{":"|translate}}</strong>
+          {{ rEngagePossible | number:'': this.translate.currentLang }}
         </div>
         
         <div class="input-group">

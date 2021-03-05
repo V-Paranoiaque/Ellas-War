@@ -36,9 +36,9 @@
         <div *ngIf="info.production">
           <strong translate>Production</strong><strong translate>:</strong>
           <br/>
-          <span *ngFor="let resource of info.production | keyvalue">
-            {{ resource.value }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+          <span *ngFor="let i of getProduction()">
+            {{ i.nb | number:'': this.translate.currentLang }}
+            <id-to-ress [ress_id]="i.code"></id-to-ress>
           </span>
         </div>
         
@@ -46,9 +46,9 @@
           <strong translate>Consumption</strong>
           <strong translate>:</strong>
           <br/>
-          <span *ngFor="let resource of info.consumption | keyvalue">
-            {{ resource.value }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+          <span *ngFor="let i of getConsumption()">
+            {{ i.nb | number:'': this.translate.currentLang }}
+            <id-to-ress [ress_id]="i.code"></id-to-ress>
           </span>
         </div>
         
@@ -62,7 +62,7 @@
         </div>
         <div *ngIf="info?.placec">
           <strong>{{"Spots:"|translate}}</strong>
-          {{ info?.placec }} {{"Cave"|translate}}
+          {{ info?.placec }} {{"Underground"|translate}}
         </div>
       </div>
       
@@ -73,20 +73,20 @@
           <span role="button" (click)="setDestruct()">
             {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
           </span>
-          <span *ngIf="info.nbmax">
+          <span *ngIf="info.nbmax" (click)="setBuild(info.nbmax)">
             / {{ info.nbmax | number:'': this.translate.currentLang }}
           </span>
+        </div>
+        
+        <div *ngIf="rBuildPossible > 0" (click)="setBuild(rBuildPossible)">
+          <strong>{{"Max possible"|translate}}{{":"}}</strong>
+          {{ rBuildPossible | number:'': this.translate.currentLang }}
         </div>
         
         <div>
           <strong translate>Field</strong>
           <strong translate>:</strong>
           {{ info?.field | number:'': this.translate.currentLang }}
-        </div>
-        
-        <div *ngIf="info.rBuildPossible">
-          <strong>{{"Max possible"|translate}}{{":"}}</strong>
-          {{ info.rBuildPossible | number:'': this.translate.currentLang }}
         </div>
         
         <div class="input-group">
