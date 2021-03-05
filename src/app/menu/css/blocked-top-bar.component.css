@@ -1,0 +1,45 @@
+img {
+  max-height: 43px;
+}
+
+.navbar {
+  min-height:43px;
+  border-width: 0px;
+}
+.navbar-menu {
+  z-index: 1030;
+  background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .navbar-brand {
+    display: none;
+  }
+}
+
+.navbar-fixed-top {
+  border-width: 0px;
+}
+
+.navbar-light .navbar-nav > li > a {
+    color: var(--color-menu-text);
+    font-size: 17px;
+    cursor:pointer;
+    padding-top:12px;
+    padding-bottom:11px;
+    line-height: 20px;
+}
+
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus {
+    background-color: var(--color-menu-clear);
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--color-menu-text-active);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--color-menu-text-active);
+}

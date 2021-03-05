@@ -1,5 +1,6 @@
 <div [ngSwitch]="user.info.mstatus">
   <public-top-bar    *ngSwitchCase="0" active="{{ active }}"></public-top-bar>
   <connected-top-bar *ngSwitchCase="1" active="{{ active }}"></connected-top-bar>
+  <blocked-top-bar   *ngSwitchCase="3" active="{{ active }}"></blocked-top-bar>
+  <paused-top-bar    *ngSwitchCase="4" active="{{ active }}"></paused-top-bar>
 </div>
-
