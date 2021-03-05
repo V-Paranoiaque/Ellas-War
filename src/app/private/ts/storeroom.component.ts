@@ -12,19 +12,27 @@ import plusIcon from '@iconify/icons-bi/plus';
 })
 
 export class Storeroom {
-  public storeroom_ress:any;
-  
   private storeroomList:any;
   private storeroomStats:any;
+  
+  public storeroom_ress:any;
+  public storeroomMin:any;
+  public storeroomQuantity:string;
+  public storeroomRate:string;
+  public storeroomRess:number;
   
   bagIcon  = bagIcon;
   plusIcon = plusIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.storeroom_ress = [].constructor(10);
-    
     this.storeroomList = [];
     this.storeroomStats = [],
+    
+    this.storeroom_ress = [].constructor(10);
+    this.storeroomMin = {'rate': 0, 'you': 0};
+    this.storeroomQuantity = '';
+    this.storeroomRate = '';
+    this.storeroomRess = 1;
     
     this.socket.socket.on('storeroomList', (data:any) => {
       this.storeroomList = data;
@@ -40,15 +48,27 @@ export class Storeroom {
   ngOnInit() {
     setTimeout(()=> {
       this.socket.emit("storeroomList");
+      this.socket.emit("storeroomMyList");
       this.socket.emit("storeroomStats");
-    });
+      this.socket.emit("storeroomMin", this.storeroomRess);
+    }, 0);
   }
   
   getStoreroomList() {
-    return this.storeroomList;
+    let list = [];
+    let length = this.storeroomList.length - 1;
+    for(let i=1;i<=length;i++) {
+      list.push(this.storeroomList[i]);
+    }
+    return list;
   }
+  
   getStoreroomStats() {
     return this.storeroomStats;
+  }
+  
+  selectResources(trade:any) {
+    this.storeroom_ress[trade.resource_id] = trade.remaining;
   }
   
   storeroomBuy(resource_id:any, quantity:any, rate:any) {
@@ -58,5 +78,16 @@ export class Storeroom {
       'ress_id': resource_id
     }
     this.socket.emit('storeroomBuy', msg);
+  }
+  
+  storeroomSell() {
+    let msg = {
+      'quantity': this.storeroomQuantity,
+      'rate': this.storeroomRate,
+      'ress_id': this.storeroomRess
+    }
+    this.socket.emit('storeroomSell', msg);
+    this.storeroomQuantity = '';
+    this.storeroomRate = '';
   }
 }

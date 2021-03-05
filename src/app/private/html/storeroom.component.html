@@ -3,10 +3,68 @@
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
-      <div class="col-xl-6">
-        <div class="card col-xl-6">
-          <div class="card-header">
+      <div class="col-6">
+        <div class="card col-12">
+          <div class="card-header" translate>
+            Drop resources to the Agora
+          </div>
+          <div class="card-body text-center">
+            <span *ngIf="storeroomMin.rate > 0">
+              <span translate>Current rate:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
+              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              <span *ngIf="storeroomMin.you > 0">-</span>
+            </span>
             
+            <span *ngIf="storeroomMin.you > 0">
+              <span translate>You</span><span translate>:</span> {{ storeroomMin.you| number:'': this.translate.currentLang}}
+              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+            </span>
+            
+            <div>
+              <div class="input-group">
+                <span class="input-group-text"
+                      id="name-quantity" translate>Quantity</span>
+                <input type="number" placeholder="0" step="1" min="0"
+                       class="form-control"
+                       [(ngModel)]="storeroomQuantity">
+              </div>
+              <div class="input-group tinybloc">
+                <span class="input-group-text"
+                      id="name-rate" translate>Rate</span>
+                <input type="number" placeholder="0" step="0.001" min="0"
+                       class="form-control" [(ngModel)]="storeroomRate">
+              </div>
+              <select class="form-control" [(ngModel)]="storeroomRess">
+                <option value="1" translate>Food</option>
+                <option value="2" translate>Water</option>
+                <option value="3" translate>Wood</option>
+                <option value="4" translate>Iron</option>
+                <option *ngIf="user.getLevel() >= user.getLevelRess('stone')"
+                        value="5" translate>Stone</option>
+                <option *ngIf="user.getLevel() >= user.getLevelRess('marble')"
+                        value="6" translate>Marble</option>
+                <option *ngIf="user.getLevel() >= user.getLevelRess('grapes')"
+                        value="7" translate>Grapes</option>
+                <option *ngIf="user.getLevel() >= user.getLevelRess('wine')"
+                        value="8" translate>Wine</option>
+                <option *ngIf="user.getLevel() >= user.getLevelRess('gold')"
+                        value="9" translate>Gold</option>
+                <option value="10" translate>Favor</option>
+              </select>
+              <br />
+              <button class="btn btn-success" (click)="storeroomSell()"
+                      translate>Depose</button>
+              <br />
+              <br />
+              <div translate>The lots remain on the market during 7 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card col-12">
+          <div class="card-header" translate>
+            Buy resources
           </div>
           <div class="card-body">
             <table class="table table-middle">
@@ -20,29 +78,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let trade of getStoreroomList();let id=index;">
-                  <ng-container *ngIf="(id > 0 &&
-                                        ((trade.resource_id == 1 && user.getLevel() >= user.getDatas().ress_lvl.food) ||
-                                        (trade.resource_id == 2 && user.getLevel() >= user.getDatas().ress_lvl.water) ||
-                                        (trade.resource_id == 3 && user.getLevel() >= user.getDatas().ress_lvl.wood) ||
-                                        (trade.resource_id == 4 && user.getLevel() >= user.getDatas().ress_lvl.iron) ||
-                                        (trade.resource_id == 5 && user.getLevel() >= user.getDatas().ress_lvl.stone) ||
-                                        (trade.resource_id == 6 && user.getLevel() >= user.getDatas().ress_lvl.marble) ||
-                                        (trade.resource_id == 7 && user.getLevel() >= user.getDatas().ress_lvl.grapes) ||
-                                        (trade.resource_id == 8 && user.getLevel() >= user.getDatas().ress_lvl.wine) ||
-                                        (trade.resource_id == 9 && user.getLevel() >= user.getDatas().ress_lvl.gold) ||
-                                        (trade.resource_id ==10 && user.getLevel() >= user.getDatas().ress_lvl.favor)) &&
-                                        (trade.remaining > 0 || trade.mremaining > 0))"
-                                [ngClass]="{'bg-red': trade.mrate > trade.rate && trade.rate > 0,
-                                            'grey': trade.mrate == trade.rate && trade.rate > 0,
-                                            'bg-green': (trade.mrate > 0 && trade.mrate < trade.rate) || trade.remaining == 0}">
+                <tr *ngFor="let trade of getStoreroomList();">
+                  <ng-container *ngIf="(((trade.resource_id == 1 && user.getLevel() >= user.getLevelRess('food')) ||
+                                        (trade.resource_id == 2 && user.getLevel() >= user.getLevelRess('water')) ||
+                                        (trade.resource_id == 3 && user.getLevel() >= user.getLevelRess('wood')) ||
+                                        (trade.resource_id == 4 && user.getLevel() >= user.getLevelRess('iron')) ||
+                                        (trade.resource_id == 5 && user.getLevel() >= user.getLevelRess('stone')) ||
+                                        (trade.resource_id == 6 && user.getLevel() >= user.getLevelRess('marble')) ||
+                                        (trade.resource_id == 7 && user.getLevel() >= user.getLevelRess('grapes')) ||
+                                        (trade.resource_id == 8 && user.getLevel() >= user.getLevelRess('wine')) ||
+                                        (trade.resource_id == 9 && user.getLevel() >= user.getLevelRess('gold')) ||
+                                        (trade.resource_id ==10 && user.getLevel() >= user.getLevelRess('favor'))) &&
+                                        (trade.remaining > 0 || trade.mremaining > 0))">
                     <td>
-                      <button class="btn btn-primary" *ngIf="trade.remaining > 0">
+                      <button class="btn btn-primary" *ngIf="trade.remaining > 0"
+                              (click)=selectResources(trade)>
                         <ic-icon title="{{'Select all the resources'|translate}}"
                                  [icon]="plusIcon"></ic-icon>
                       </button>
                     </td>
-                    <td>
+                    <td class="text-end">
                       <span *ngIf="trade.remaining > 0">{{trade.remaining | number:'': this.translate.currentLang }}</span>
                       <span *ngIf="trade.remaining == 0">{{trade.mremaining | number:'': this.translate.currentLang }}</span>
                       &nbsp;
@@ -62,7 +117,7 @@
                     <td class="center">
                       <button class="btn btn-success"
                         (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
-                        title="{{'Buy'|translate}}" ng-hide="trade.remaining == 0">
+                        title="{{'Buy'|translate}}" *ngIf="trade.remaining > 0">
                         <ic-icon [icon]="bagIcon"></ic-icon>
                         <span class="visually-hidden" translate>Buy</span>
                       </button>
@@ -74,10 +129,12 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col-xl-6">
-        <div class="card col-xl-6">
-          <div class="card-header">
-            <h3 id="titleLastWeek" translate>Last week</h3>
+        <div class="card col-12">
+          <div class="card-header" id="titleLastWeek" translate>
+            Last week
           </div>
           <div class="card-body">
             <table class="table table-middle" aria-describedby="titleLastWeek">
