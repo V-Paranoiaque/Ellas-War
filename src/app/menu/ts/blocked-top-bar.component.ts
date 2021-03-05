@@ -26,6 +26,12 @@ export class BlockedTopBar extends CommonTopBar {
     super(socket, router, user);
   }
   
+  ngOnInit() {
+    if(this.active == 'home' || this.active == 'login') {
+      this.router.navigate(['/blocked'])
+    }
+  }
+  
   disconnect() {
     localStorage.removeItem('token');
     this.socket.emit('deconnection');
