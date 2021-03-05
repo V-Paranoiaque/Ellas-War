@@ -37,10 +37,10 @@
     6 hours of withdrawal without taxes in your treasure
   </span>
   <span *ngSwitchCase="12">
-    <span ng-if="user.hermes == 0" translate>
+    <span *ngIf="user.getPropertyNb('hermes') == 0" translate>
       You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
     </span>
-    <span ng-if="user.hermes == 1" translate>
+    <span *ngIf="user.getPropertyNb('hermes') == 1" translate>
       You are allowed to sell in the Agora today, even if it's Sunday
     </span>
   </span>
