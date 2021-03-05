@@ -19,6 +19,13 @@ import { Messages } from './private/ts/messages.component';
 import { Options } from './private/ts/options.component';
 import { Quests } from './private/ts/quests.component';
 import { Storeroom } from './private/ts/storeroom.component';
+import { Support } from './private/ts/support.component';
+
+//Blocked
+import { Blocked } from './private/ts/blocked.component';
+
+//Paused
+import { Paused } from './private/ts/paused.component';
 
 //Admin
 import { AdminUnits } from './admin/ts/admin-units.component';
@@ -47,6 +54,11 @@ routes = [
   { path: 'options', component: Options },
   { path: 'quests', component: Quests },
   { path: 'storeroom', component: Storeroom },
+  { path: 'support', component: Support },
+  
+  { path: 'blocked', component: Blocked },
+  
+  { path: 'paused', component: Paused },
   
   { path: 'admin',
     children: [
