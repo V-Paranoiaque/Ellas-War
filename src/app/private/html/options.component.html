@@ -25,7 +25,9 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <select class="form-control" (change)="styleChange($event)" [(ngModel)]="currentStyle">
+         {{ currentStyle }}
+          <select class="form-control" (change)="styleChange($event)" 
+                  [(ngModel)]="currentStyle">
             <option value="default" translate>Default Style</option>
             <option value="red" translate>Red Style</option>
             <option value="pink" translate>Pink Style</option>
@@ -34,7 +36,7 @@
         <div class="mb-3">
           <div class="form-check form-switch">
             <input id="gameSound" class="form-check-input" 
-                   type="checkbox" 
+                   type="checkbox" [(ngModel)]="sound"
                    (change)="soundModify()" [checked]="sound" >
             <label class="form-check-label"
                    for="gameSound" translate>Sound</label>
@@ -189,10 +191,11 @@
             Parameters
           </div>
           <div class="card-body" translate>
-            TODO
+            Switch the style of the game and enable/disable the notifications.
           </div>
           <div class="card-button card-button-primary" data-bs-toggle="modal" 
-               role="button" data-bs-target="#GameSettings" translate>
+               role="button" data-bs-target="#GameSettings"
+               (click)="parametersLoad()" translate>
             Change game settings
           </div>
         </div>

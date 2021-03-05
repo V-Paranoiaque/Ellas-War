@@ -34,8 +34,7 @@ export class Options {
     this.newusername = '';
     this.sound = user.getPropertyNb('sound');
     
-    //TODO: load from the user's info
-    this.currentStyle = 'default';
+    this.currentStyle = this.user.getProperty('style');
     
     this.socket.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
@@ -77,6 +76,10 @@ export class Options {
   accountRename() {
     this.socket.emit('accountRename', this.newusername);
     this.newusername = '';
+  }
+  
+  parametersLoad() {
+    this.currentStyle = this.user.getProperty('style');
   }
   
   reset() {
