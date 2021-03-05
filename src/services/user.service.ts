@@ -162,6 +162,41 @@ export class User {
     }
   }
   
+  getGoalDays() {
+    let cDay = this.getPropertyNb('nbdays') % 100;
+    let nb = this.getGoalDaysNb();
+    return nb - cDay + this.getPropertyNb('nbdays');
+  }
+  
+  getGoalDaysNb() {
+    let nb;
+    let cDay = this.getPropertyNb('nbdays') % 100;
+    
+    if(cDay < 3) {
+      nb = 3;
+    }
+    else if(cDay < 7) {
+      nb = 7;
+    }
+    else if(cDay < 14) {
+      nb = 14;
+    }
+    else if(cDay < 30) {
+      nb = 30;
+    }
+    else if(cDay < 50) {
+      nb = 50;
+    }
+    else if(cDay < 70) {
+      nb = 70;
+    }
+    else{
+      nb = 99;
+    }
+    
+    return nb;
+  }
+  
   setNewMsg(nb:number) {
     this.newMsg = nb;
   }

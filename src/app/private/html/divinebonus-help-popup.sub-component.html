@@ -14,9 +14,9 @@
         <strong translate>Ongoing streak:</strong>
         {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
       </div>
-      <div>{{ 'Next goal: { value } Days, possible bonus:' | translate: { value: goalDays | number:'': this.translate.currentLang } }}</div>
+      <div>{{ 'Next goal: { value } Days, possible bonus:' | translate: { value: user.getGoalDays() | number:'': this.translate.currentLang } }}</div>
       
-      <div [ngSwitch]="nb">
+      <div [ngSwitch]="user.getGoalDaysNb()">
         <ul *ngSwitchCase="3">
           <li>
             {{ 10000 | number:'': this.translate.currentLang }}
@@ -54,11 +54,11 @@
           </li>
         </ul>
         <ul *ngSwitchCase="14">
-          <li ng-if="user.getLevel() < 9">
+          <li *ngIf="user.getLevel() < 9">
             {{80}} 
             <span translate>Spartans</span>
           </li>
-          <li ng-if="user.getLevel() >= 9" translate>
+          <li *ngIf="user.getLevel() >= 9" translate>
             200 units of your third temple
           </li>
         </ul>
@@ -67,10 +67,10 @@
             6 hours of withdrawal without taxes in your treasure
           </li>
           <li>
-            <span ng-if="user.hermes == 0" translate>
+            <span *ngIf="user.getPropertyNb('hermes') == 0" translate>
               You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
             </span>
-            <span ng-if="user.hermes == 1" translate>
+            <span *ngIf="user.getPropertyNb('hermes') == 1" translate>
               You are allowed to sell in the Agora today, even if it's Sunday
             </span>
           </li>
@@ -89,10 +89,10 @@
             6 hours of withdrawal without taxes in your treasure
           </li>
           <li>
-            <span ng-if="user.hermes == 0" translate>
+            <span *ngIf="user.getPropertyNb('hermes') == 0" translate>
               You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
             </span>
-            <span ng-if="user.hermes == 1" translate>
+            <span *ngIf="user.getPropertyNb('hermes') == 1" translate>
               You are allowed to sell in the Agora today, even if it's Sunday
             </span>
           </li>
