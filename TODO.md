@@ -1,5 +1,5 @@
 # Army
-* Format numbers
+* Message when engage/release
 
 # Attacks
 * Disable buttons in the player list
@@ -7,21 +7,20 @@
 * No attack if not enough hostings
 * No attack if not enough resources
 * Search feature
+* Statistics attack available (+? attack/defense)
 
 # Buildings
-* Format numbers
 * Message when the building is (not) constructed/destruct, too much field
 
-# Divine Bonus
-* Display next bonus on the city when the list is empty
-* Display next bonus in the list
-
-# Messages
-* Some titles and texts are missing
+# General
+* Chat
+* Contact page
+* Blocked player
+* Right menu
+* Ranking
 
 # Options
 * Account information
-* Description for the game settings
 * Pause
 * When changing email, add a warning if the facebook connection is used
 
