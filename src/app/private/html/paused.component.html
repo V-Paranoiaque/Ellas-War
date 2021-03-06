@@ -1,3 +1,35 @@
 <common-top-bar active="paused"></common-top-bar>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div clas="card-body">
+          <h2 class="text-center" translate>Your account is currently paused</h2>
+          <br/>
+        </div>
+        <div class="card-body">
+          <p>{{'You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.' | translate: {value : user.getPropertyNb('exit_hours') } }}</p>
+        </div>
+        <div *ngIf="user.getPropertyNb('freereturn') == 1"
+             class="card-button card-button-primary" (click)="pauseReturn()" role="button"
+             translate>
+          Return to the game
+        </div>
+        <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') > 0"
+             class="card-button card-button-primary" (click)="pauseReturn()" role="button"
+             translate>
+          Return to the game
+        </div>
+        <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') == 0"
+             class="card-button card-button-primary" [routerLink]="['/getfavors']" 
+             role="button" translate>
+          Get a favor and return to the game
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-bottom-bar></app-bottom-bar>

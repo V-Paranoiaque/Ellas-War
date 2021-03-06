@@ -17,6 +17,8 @@ export class Options {
   public currentStyle:string;
   public newEmail: string;
   public newusername: string;
+  public pauseAllowed: number;
+  public pauseNb: number;
   public sound: number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
@@ -32,6 +34,8 @@ export class Options {
     
     this.newEmail = '';
     this.newusername = '';
+    this.pauseAllowed = 0;
+    this.pauseNb = 4;
     this.sound = user.getPropertyNb('sound');
     
     this.currentStyle = this.user.getProperty('style');
@@ -44,6 +48,9 @@ export class Options {
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
+    this.socket.socket.on("pauseAllowed", (result:any) => {
+      this.pauseAllowed = result;
+    });
     this.socket.socket.on('reset', () => {
       document.location.href="/";
     });
@@ -55,6 +62,7 @@ export class Options {
   ngOnInit() {
     setTimeout(() => {
       this.socket.emit('accountRenameCost');
+      this.socket.emit('pauseAllowed');
     }, 0);
   }
   
@@ -72,6 +80,12 @@ export class Options {
     }
     else {
       this.emailError = 1;
+    }
+  }
+  
+  accountPause() {
+    if(this.pauseNb >= 4 && this.pauseNb <= 100) {
+      this.socket.emit('pause', this.pauseNb);
     }
   }
   

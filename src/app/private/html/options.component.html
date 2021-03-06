@@ -58,7 +58,24 @@
         <h5 class="modal-title" translate>Pause your account</h5>
       </div>
       <div class="modal-body">
-        
+        <p translate>
+          When you pause your account, you become unassailable for a fixed term but in return your resources and those of your alliance will not increase during this period.
+        </p>
+        <ul>
+          <li [ngClass]="{'text-danger': user.getPropertyNb('id') == user.getPropertyNb('chief')}"
+              translate>The leader of an alliance cannot pause.</li>
+          <li translate>You need to wait 11 hours after your last attack to use the pause feature.</li>
+        </ul>
+      </div>
+      <div class="modal-body text-center text-danger"
+           *ngIf="pauseAllowed == 0" translate>
+        Your are not allowed to put your account in pause.
+      </div>
+      <div class="modal-body text-center" *ngIf="pauseAllowed == 1">
+        <strong translate>Between 4 and 100 days including</strong>
+        <input type="number" min="4" max="100" class="form-control" [(ngModel)]="pauseNb" />
+        <button class="btn btn-warning" (click)="accountPause()"
+                translate>Put your account in pause</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"

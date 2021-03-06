@@ -22,7 +22,6 @@
 
 # Options
 * Account information
-* Pause
 
 # Quests
 * Add a new quest to discover spies
