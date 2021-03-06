@@ -47,6 +47,7 @@ routes = [
   { path: 'news', component: News },
   { path: 'profile/:id', component: Profile },
   { path: 'register', component: Register },
+  { path: 'rankingplayers', component: RankingPlayers },
   { path: 'rankingplayers/:id', component: RankingPlayers },
   
   { path: 'sitemap', component: SiteMap },
