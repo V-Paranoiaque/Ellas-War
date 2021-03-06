@@ -19,6 +19,7 @@
 * Blocked player
 * Ranking
 * Since your last connection popup
+* Success
 
 # Options
 * Account information
@@ -33,4 +34,5 @@
 # Temples
 * Info page
 * New power for Hermes
+* Switch temples
 * Use powers
