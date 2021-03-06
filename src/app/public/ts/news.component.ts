@@ -15,7 +15,6 @@ export class News implements OnInit {
   }
   
   ngOnInit() {
-    console.log(this._newsUrl);
     this.http.get(this._newsUrl)
       .subscribe(res => {
         this.newsList = res;
