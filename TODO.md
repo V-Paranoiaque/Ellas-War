@@ -24,7 +24,6 @@
 # Options
 * Account information
 * Pause
-* When changing email, add a warning if the facebook connection is used
 
 # Quests
 * Add a new quest to discover spies
