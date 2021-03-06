@@ -199,6 +199,7 @@
   "Engage a total of { value } { unit }.": "Engagez un total de {{ value }} {{ unit }}.",
   "Espionage from { value }": "Espionnage de {{ value }}",
   "Espionage of your sanctuary from { value }": "Espionnage de votre sanctuaire par {{ value }}",
+  "Every week, the player with the most honor earns a reward.": "Chaque semaine, le joueur ayant le plus d'honneur gagne une récompense.",
   "Evolution": "Évolution",
   
   "Farm": "Ferme",
@@ -255,6 +256,7 @@
   "Hippeus":"Hippeis",
   "Home": "Accueil",
   "Honnor": "Honneur",
+  "Honnor ranking": "Classement de l'honneur",
   "Honorary Warrior": "Guerrier honoré",
   "Hut": "Hutte",
   "Huts": "Huttes",
@@ -444,6 +446,7 @@
   "The griffin has the body of an eagle grafted on the back of a lion and equipped with horse ears. In spite of their imposing body they can fly and thanks to their attacks in piquet to make terrible ravages in your enemies.": "Le griffon possède le corps d'un aigle greffé sur l'arrière d'un lion et muni d'oreilles de cheval. Malgré sont corps imposant il peut voler et grâce à leurs attaques en piquet faire de terribles ravages chez vos ennemis.",
   "The growers produces grapes to allow your presses to produce wine, for your soldiers or for export.": "La métairies produit du raisin pour permettre à vos pressoirs de produire du vin, pour vos soldats ou pour l'exportation.",
   "The Hippeis is a knight with heavy armor, former glory of the Greek army, they lost their prestige with the rise of the hoplites but do everything to regain it.": "L'Hippeis est un chevalier à armure lourde, ancienne gloire de l'armée Grecque, ils ont perdu leur prestige avec la montée des hoplites mais font tout pour le regagner.",
+  "The honor is reset every Sunday morning at midnight.": "L'honneur est remis à zéro tous les dimanches matin à minuit.",
   "The hoplites constitute the heavy infantry of the ancient Greek cities, made up of citizens who could not support a horse but who had the means to equip themselves with armor and provide for their families when They were in campaign.": "Les hoplites constituent l'infanterie lourde des cités grecques antiques, formée de citoyens qui ne pouvaient subvenir à l'entretien d'un cheval, mais qui avaient les moyens de s'équiper d'une armure et de subvenir aux besoins de leur famille lorsqu'ils étaient en campagne.",
   "The lampades are the chtonian nymphs of the underworld. They accompany the goddess Hecate. They have light torches designed to guide men or to deceive them ...": "Les lampades sont les nymphes chtoniennes des Enfers. Elles accompagnent la déesse Hécate. Elles possèdent des torches lumineuses destinées à guider les hommes ou à les tromper...",
   "The lava falls on the enemies preventing them from building buildings for 20 min.": "La lave tombe sur les ennemis empêchant ces derniers de construire des batiments pendant 20 min.",

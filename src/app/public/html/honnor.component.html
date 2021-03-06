@@ -1,5 +1,52 @@
 <common-top-bar active="register"></common-top-bar>
 
-<div class="container"></div>
+<div class="container text-center">
+  <div class="card">
+    <div class="card-body">
+      <h1 id="honnorDesc" translate>Honnor ranking</h1>
+    
+      <p>
+        <span translate>Every week, the player with the most honor earns a reward.</span>
+        <span translate>The honor is reset every Sunday morning at midnight.</span>
+      </p>
+      
+      <nav>
+        <ul class="pagination justify-content-center">
+          <li class="page-item" [ngClass]="{'active': id == 0}">
+            <a class="page-link" [routerLink]="['/honnor']">#</a>
+          </li>
+          <li *ngFor="let j of levels; let i = index" class="page-item"
+              [ngClass]="{'active': id == (i+1)}">
+            <a class="page-link" [routerLink]="['/honnor/'+(i+1)]"
+               rel="nofollow">{{ i + 1 }}</a>
+          </li>
+        </ul>
+      </nav>
+      <table class="table table-striped table-middle" aria-describedby="honnorDesc">
+        <thead>
+          <tr>
+            <th scope="col" translate>Player</th>
+            <th scope="col" translate *ngIf="id == 10">XP</th>
+            <th scope="col" translate>Field</th>
+            <th scope="col" translate>Victories</th>
+            <th scope="col" translate>Honnor</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of list">
+            <td class="text-start">
+              <a [routerLink]="['/profile/'+p.membre_id]">
+                {{p.username}}
+              </a>
+            </td>
+            <td *ngIf="id == 10">{{p.xp}}</td>
+            <td>{{p.field | number:'': this.translate.currentLang}}</td>
+            <td>{{p.victory | number:'': this.translate.currentLang}}</td>
+            <td>{{p.honnor | number:'': this.translate.currentLang}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <app-bottom-bar></app-bottom-bar>

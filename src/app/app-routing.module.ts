@@ -41,6 +41,7 @@ let routes: Routes = [];
 routes = [
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
+  { path: 'honnor', component: Honnor },
   { path: 'honnor/:id', component: Honnor },
   { path: 'login', component: Login },
   { path: 'news', component: News },
