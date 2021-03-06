@@ -233,18 +233,13 @@
     </div>
     
     <div class="card-body">
-           Drachmas: {{ user.getPropertyNb('drachma') | number:'': this.translate.currentLang }}
-      <br/>Food: {{ user.getPropertyNb('food') | number:'': this.translate.currentLang }}
-      <br/>Water: {{ user.getPropertyNb('water') | number:'': this.translate.currentLang }}
-      <br/>Wood: {{ user.getPropertyNb('wood') | number:'': this.translate.currentLang }}
-      <br/>Iron: {{ user.getPropertyNb('iron') | number:'': this.translate.currentLang }}
-      <br/>Stone: {{ user.getPropertyNb('stone') | number:'': this.translate.currentLang }}
-      <br/>Marble: {{ user.getPropertyNb('marble') | number:'': this.translate.currentLang }}
-      <br/>Grapes: {{ user.getPropertyNb('grapes') | number:'': this.translate.currentLang }}
-      <br/>Wine: {{ user.getPropertyNb('wine') | number:'': this.translate.currentLang }}
-      <br/>Gold: {{ user.getPropertyNb('gold') | number:'': this.translate.currentLang }}
-      <br/>Favors: {{ user.getPropertyNb('favor') | number:'': this.translate.currentLang }}
-      <br/>Ambrosia: {{ user.getPropertyNb('ambrosia') | number:'': this.translate.currentLang }}
+      <div *ngFor="let res of ressList">
+        <ic-icon class="text-success" *ngIf="user.getProperty('var_ress')[res] > 0" [icIcon]="angleUp"></ic-icon>
+        <span *ngIf="user.getProperty('var_ress')[res] == 0">=</span>
+        <ic-icon class="text-danger" *ngIf="user.getProperty('var_ress')[res] < 0" [icIcon]="angleDown"></ic-icon>
+        {{ user.getPropertyNb(res) | number:'1.0-2': this.translate.currentLang }}
+        <id-to-ress [ress_id]="res"></id-to-ress>
+      </div>
     </div>
     <div class="card-button card-button-primary">
       <a class="btn" [routerLink]="['/details']"

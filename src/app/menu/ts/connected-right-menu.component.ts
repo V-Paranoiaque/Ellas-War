@@ -3,7 +3,12 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import { environment } from './../../../environments/environment';
+
+import angleDown from '@iconify/icons-fa-solid/angle-down';
+import angleUp from '@iconify/icons-fa-solid/angle-up';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+
 
 @Component({
   selector: 'connected-right-menu',
@@ -13,12 +18,16 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 export class ConnectedRightMenu {
   public selectedWeather:string;
+  public ressList:any;
   
   //Icons
+  angleDown      = angleDown;
+  angleUp        = angleUp;
   questionCircle = questionCircle;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.selectedWeather = user.getConfig().weather;
+    this.ressList = environment.resources;
   }
   
   selectWeather(name:string) {

@@ -10,14 +10,15 @@
 * Statistics attack available (+? attack/defense)
 
 # Buildings
+* Barracks update
 * Message when the building is (not) constructed/destruct, too much field
 
 # General
 * Chat
 * Contact page
 * Blocked player
-* Right menu
 * Ranking
+* Since your last connection popup
 
 # Options
 * Account information
@@ -30,4 +31,6 @@
 # Server
 
 # Temples
+* Info page
 * New power for Hermes
+* Use powers
