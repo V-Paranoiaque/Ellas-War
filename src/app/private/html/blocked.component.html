@@ -1,3 +1,52 @@
 <common-top-bar active="blocked"></common-top-bar>
 
+<div class="modal fade" id="ResetAccount" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Reinitialize your account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-danger" translate>
+        Warning, in case of confirmation your account will be reset 
+        definitively. This action can not be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                translate>Close</button>
+        <button type="button" class="btn btn-danger" (click)="reset()" 
+                translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div clas="card-body">
+          <h2 class="text-center" translate>Your account is currently blocked</h2>
+          <br/>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card-button card-button-primary" [routerLink]="['/support']"
+                 role="button" translate>
+              Contact support
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card-button card-button-primary" data-bs-toggle="modal" 
+                 role="button" data-bs-target="#ResetAccount" translate>
+              Reinitialize your account
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-bottom-bar></app-bottom-bar>

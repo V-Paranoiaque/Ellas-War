@@ -16,7 +16,6 @@
 # General
 * Chat
 * Contact page
-* Blocked player
 * Ranking
 * Since your last connection popup
 * Success

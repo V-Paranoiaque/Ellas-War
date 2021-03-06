@@ -44,7 +44,9 @@ export class Options {
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
-      
+    this.socket.socket.on('reset', () => {
+      document.location.href="/";
+    });
     this.socket.socket.on('soundModify', (sound:number) => {
       this.sound = sound;
     });
