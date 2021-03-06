@@ -1,8 +1,12 @@
 export class User {
+  config: any;
   info: any;
   newMsg: number;
   
   constructor() {
+    this.config = {
+      'weather': 'sun'
+    };
     this.info = {
       'id': 0,
       'mstatus': 0,
@@ -14,6 +18,10 @@ export class User {
       'building': {}
     }
     this.newMsg = 0;
+  }
+  
+  setConfig(data: any) {
+    this.config = data;
   }
   
   setUser(user: any) {
@@ -108,6 +116,10 @@ export class User {
     else {
       return 0;
     }
+  }
+  
+  getConfig() {
+    return this.config;
   }
   
   getQuest() {

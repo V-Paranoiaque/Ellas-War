@@ -1,3 +1,199 @@
+<div class="modal fade" id="weatherInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" [ngSwitch]="selectedWeather">
+        <h5>
+          <id-to-weather [weather]="user.getConfig().weather"></id-to-weather>
+          &nbsp;
+          <span *ngSwitchCase="'sun'" class="modal-title" translate>Sun</span>
+          <span *ngSwitchCase="'rain'" class="modal-title" translate>Rain</span>
+          <span *ngSwitchCase="'storm'" class="modal-title" translate>Storm</span>
+          <span *ngSwitchCase="'snow'" class="modal-title" translate>Snow</span>
+          <span *ngSwitchCase="'heatwave'" class="modal-title" translate>Heatwave</span>
+          <span *ngSwitchCase="'wind'" class="modal-title" translate>Wind</span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <strong translate>Cost:</strong>
+        <span *ngFor="let item of getPrice()"
+              [ngClass]="{'text-danger': user.getPropertyNb(item.res) < item.nb}">
+          {{ item.nb | number:'': this.translate.currentLang }}
+          <id-to-ress [ress_id]="item.res"></id-to-ress>
+        </span>
+        
+        <br/>
+        
+        <div *ngIf="user.getPropertyNb('active_weather') > 0">
+          <br/>
+          <span translate>End of immunity</span>
+          <span translate>:</span>
+          {{user.getPropertyNb('active_weather')*1000| date:'d/M, HH:mm'}}
+          (<a class="pointer" translate 
+              (click)="weatherDisableCancel()">Cancel</a>)
+          <br/>
+        </div>
+        
+        <div *ngIf="canEnable()">
+          <br/>
+          <button class="btn btn-success" (click)="weatherDisable()"
+                  *ngIf="canEnable()" translate>
+            Turn off the weather
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body text-center" [ngSwitch]="selectedWeather">
+        <strong translate>Effects</strong>
+        <strong translate>:</strong>
+        <div *ngSwitchCase="'sun'">
+          <ul>
+            <li translate>Nothing</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'rain'">
+          <ul>
+            <li translate>+20% food production</li>
+            <li translate>+20% grapes production</li>
+            <li translate>+20% wood production</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'storm'">
+          <ul>
+            <li translate>-5% to the attack</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'snow'">
+          <ul>
+            <li translate>-20% food production</li>
+            <li translate>-20% water production</li>
+            <li translate>-20% wood production</li>
+            <li translate>-20% iron production</li>
+            <li translate>-20% stone production</li>
+            <li translate>-20% marble production</li>
+            <li translate>-20% grapes production</li>
+            <li translate>-20% wine production</li>
+            <li translate>-20% gold production</li>
+            <li translate>-5% to the defense of the Poseidon Wall</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'heatwave'">
+          <ul>
+            <li translate>+20% wine production</li>
+            <li translate>+20% water consumption</li>
+            <li translate>+20% wine consumption</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'wind'">
+          <ul>
+            <li translate>-20% wood production</li>
+            <li translate>-5% to the defense</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <strong translate>The weather is the will of the gods. It will influence your city, your productions and your consumption. Thanks to it you will be able to win victories impossible but take care, everything can turn against you.</strong>
+        
+        <br/><br/>
+        
+        <p translate>If you are afraid that this will have a detrimental effect on your city, you can make an offering to the gods. After this offering your city will no longer suffer the weather for a week.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="weatherHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-row">
+        <id-to-weather [weather]="'sun'" (click)="selectWeather('sun')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'sun'}"></id-to-weather>
+        <id-to-weather [weather]="'rain'" (click)="selectWeather('rain')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'rain'}"></id-to-weather>
+        <id-to-weather [weather]="'storm'" (click)="selectWeather('storm')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'storm'}"></id-to-weather>
+        <id-to-weather [weather]="'snow'" (click)="selectWeather('snow')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'snow'}"></id-to-weather>
+        <id-to-weather [weather]="'heatwave'" (click)="selectWeather('heatwave')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'heatwave'}"></id-to-weather>
+        <id-to-weather [weather]="'wind'" (click)="selectWeather('wind')"
+                       role="button"
+                       [ngClass]="{'text-danger': selectedWeather == 'wind'}"></id-to-weather>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-header" [ngSwitch]="selectedWeather">
+        <h5 *ngSwitchCase="'sun'" class="modal-title" translate>Sun</h5>
+        <h5 *ngSwitchCase="'rain'" class="modal-title" translate>Rain</h5>
+        <h5 *ngSwitchCase="'storm'" class="modal-title" translate>Storm</h5>
+        <h5 *ngSwitchCase="'snow'" class="modal-title" translate>Snow</h5>
+        <h5 *ngSwitchCase="'heatwave'" class="modal-title" translate>Heatwave</h5>
+        <h5 *ngSwitchCase="'wind'" class="modal-title" translate>Wind</h5>
+      </div>
+      
+      <div class="modal-body" [ngSwitch]="selectedWeather">
+        <div *ngSwitchCase="'sun'">
+          <ul>
+            <li translate>Nothing</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'rain'">
+          <ul>
+            <li translate>+20% food production</li>
+            <li translate>+20% grapes production</li>
+            <li translate>+20% wood production</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'storm'">
+          <ul>
+            <li translate>-5% to the attack</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'snow'">
+          <ul>
+            <li translate>-20% food production</li>
+            <li translate>-20% water production</li>
+            <li translate>-20% wood production</li>
+            <li translate>-20% iron production</li>
+            <li translate>-20% stone production</li>
+            <li translate>-20% marble production</li>
+            <li translate>-20% grapes production</li>
+            <li translate>-20% wine production</li>
+            <li translate>-20% gold production</li>
+            <li translate>-5% to the defense of the Poseidon Wall</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'heatwave'">
+          <ul>
+            <li translate>+20% wine production</li>
+            <li translate>+20% water consumption</li>
+            <li translate>+20% wine consumption</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'wind'">
+          <ul>
+            <li translate>-20% wood production</li>
+            <li translate>-5% to the defense</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-0">
   <div class="card">
     <div class="card-header">
@@ -10,6 +206,13 @@
       <br/>
       <strong translate>Weather</strong>
       <strong translate>:</strong>
+      <id-to-weather [weather]="user.getConfig().weather"
+                     data-bs-toggle="modal" data-bs-target="#weatherInfo"
+                     role="button"></id-to-weather>
+      <span data-bs-toggle="modal" data-bs-target="#weatherHelp"
+            role="button" title="{{'Help'|translate}}" translate>
+        <ic-icon [icIcon]="questionCircle"></ic-icon>
+      </span>
     </div>
     
     <div class="card-body">

@@ -19,6 +19,7 @@ import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component'
 import { FuryMessage } from './ts/fury-message.sub-component';
 import { IdToDivineBonus } from './ts/id-to-divinebonus.sub-component';
 import { IdToRess } from './ts/id-to-ress.sub-component';
+import { IdToWeather } from './ts/id-to-weather.sub-component';
 import { LostMessage } from './ts/lost-message.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
@@ -54,6 +55,7 @@ export const PrivateComponent = [
   FuryMessage,
   IdToDivineBonus,
   IdToRess,
+  IdToWeather,
   LostMessage,
   MessagesTitle,
   QuestsMissions,

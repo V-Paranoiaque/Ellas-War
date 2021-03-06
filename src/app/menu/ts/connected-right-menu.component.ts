@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
+
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
   selector: 'connected-right-menu',
@@ -9,8 +12,46 @@ import { User } from '../../../services/user.service';
 })
 
 export class ConnectedRightMenu {
-  constructor(public user: User, public translate: TranslateService) {
-    
+  public selectedWeather:string;
+  
+  //Icons
+  questionCircle = questionCircle;
+  
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+    this.selectedWeather = user.getConfig().weather;
   }
   
+  selectWeather(name:string) {
+    this.selectedWeather = name;
+  }
+  
+  canEnable() {
+    for(let i in this.user.getDatas().weather_cost) {
+      if(this.user.getPropertyNb(i) < this.user.getDatas().weather_cost[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  getPrice() {
+    let list = [];
+    
+    for(let i in this.user.getDatas().weather_cost) {
+      list.push({
+        'res': i,
+        'nb': this.user.getDatas().weather_cost[i]
+      });
+    }
+    
+    return list;
+  }
+  
+  weatherDisable() {
+    this.socket.emit('weatherDisable');
+  }
+  
+  weatherDisableCancel() {
+    this.socket.emit('weatherDisableCancel');
+  }
 }

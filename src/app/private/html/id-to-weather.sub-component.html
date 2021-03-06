@@ -1,0 +1,14 @@
+<span [ngSwitch]="weather">
+  <ic-icon *ngSwitchCase="'sun'" [icIcon]="cloudSun"
+           title="{{'Sun'|translate}}"></ic-icon>
+  <ic-icon *ngSwitchCase="'rain'" [icIcon]="cloudRain"
+           title="{{'Rain'|translate}}"></ic-icon>
+  <ic-icon *ngSwitchCase="'storm'" [icIcon]="cloudShowersHeavy"
+           title="{{'Storm'|translate}}"></ic-icon>
+  <ic-icon *ngSwitchCase="'snow'" [icIcon]="snowflake"
+           title="{{'Snow'|translate}}"></ic-icon>
+  <ic-icon *ngSwitchCase="'heatwave'" [icIcon]="sun"
+           title="{{'Heatwave'|translate}}"></ic-icon>
+  <ic-icon *ngSwitchCase="'wind'" [icIcon]="wind">
+           title="{{'Wind'|translate}}"</ic-icon>
+</span>

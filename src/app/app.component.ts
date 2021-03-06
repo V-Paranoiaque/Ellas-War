@@ -34,6 +34,7 @@ export class AppComponent implements OnInit {
     this.socket.setupSocketConnection();
     this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
+    this.socket.emit('loadConfig');
     
     this.socket.socket.on('ewAuth', (data: any) => {
       if(data) {
@@ -51,6 +52,10 @@ export class AppComponent implements OnInit {
       if(this.cssUrl != newStyle) {
         this.cssUrl = this.setStyle();
       }
+    });
+    
+    this.socket.socket.on('config', (data:any) => {
+      this.user.setConfig(data);
     });
   }
   

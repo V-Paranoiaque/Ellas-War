@@ -13,3 +13,9 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
   width: 100%;
   font-weight: bold;
 }
+
+#weatherHelp .modal-header id-to-weather[role="button"] {
+  flex:1;
+  text-align: center;
+  font-size: 2em;
+}
