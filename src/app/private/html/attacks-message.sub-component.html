@@ -2,25 +2,25 @@
   <div class="col-6 text-center"
        *ngIf="info.winer == 1 || info.winer == 2">
     <strong translate>You</strong><strong translate>:</strong> 
-    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack}} 
+    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack| number:'1.0-0': this.translate.currentLang}} 
     <span translate>XP</span>
   </div>
   <div class="col-6 text-center"
        *ngIf="info.winer == 1 || info.winer == 2">
     <strong translate>Your opponent</strong><strong translate>:</strong> 
-    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense}} 
+    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense| number:'1.0-0': this.translate.currentLang}} 
     <span translate>XP</span>
   </div>
   <div class="col-6 text-center"
        *ngIf="info.winer == 3 || info.winer == 4">
     <strong translate>You</strong><strong translate>:</strong>
-    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense}} 
+    <span *ngIf="info.xp_defense > 0">+</span>{{info.xp_defense| number:'1.0-0': this.translate.currentLang}} 
     <span translate>XP</span>
   </div>
   <div class="col-6 text-center"
        *ngIf="info.winer == 3 || info.winer == 4">
     <strong translate>Your opponent</strong><strong translate>:</strong>
-    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack}} 
+    <span *ngIf="info.xp_attack > 0">+</span>{{info.xp_attack| number:'1.0-0': this.translate.currentLang}} 
     <span translate>XP</span>
   </div>
   <div class="clearfix"><br/></div>
@@ -60,7 +60,7 @@
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.lost_ress[ress] > 0"
           class="col-6 text-end">
-        {{info.lost_ress[ress]| number:'': this.translate.currentLang}}
+        {{info.lost_ress[ress]| number:'1.0-0': this.translate.currentLang}}
       </td>
       <td *ngIf="info.lost_ress[ress] > 0"
           class="col-6 text-start">
@@ -92,7 +92,7 @@
   <strong translate>Corrupted resources</strong>
   <table class="table">
     <tr *ngFor="let ress of resources">
-      <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'': this.translate.currentLang}}</td>
+      <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'1.0-0': this.translate.currentLang}}</td>
       <td *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></td>
     </tr>
   </table>
