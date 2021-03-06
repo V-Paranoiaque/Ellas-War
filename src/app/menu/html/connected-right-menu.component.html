@@ -218,10 +218,18 @@
     <div class="card-body">
       <strong translate>Victories</strong>
       <strong translate>:</strong> {{ user.getProperty('victory') }}<br/>
-      <strong translate>XP</strong>
-      <strong translate>:</strong> {{ user.getProperty('xp') }}<br/>
-      <strong translate>Honnor</strong>
-      <strong translate>:</strong> {{ user.getProperty('honnor') }}<br/>
+      
+      <a [routerLink]="['/rankingplayers']">
+        <strong translate>XP</strong>
+        <strong translate>:</strong> {{ user.getProperty('xp') }}
+      </a>
+      <br/>
+      
+      <a [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
+        <strong translate>Honnor</strong>
+        <strong translate>:</strong> {{ user.getProperty('honnor') }}
+      </a>
+      <br/>
     </div>
     
     <div class="card-body">

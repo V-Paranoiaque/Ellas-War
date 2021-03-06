@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 //Public
 import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
+import { Honnor } from './public/ts/honnor.component';
 import { Login } from './public/ts/login.component';
 import { News } from './public/ts/news.component';
 import { Profile } from './public/ts/profile.component';
 import { PublicHome } from './public/ts/public-home.component';
+import { RankingPlayers } from './public/ts/rankingplayers.component';
 import { Register } from './public/ts/register.component';
 
 //Connected
@@ -39,10 +41,12 @@ let routes: Routes = [];
 routes = [
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
+  { path: 'honnor/:id', component: Honnor },
   { path: 'login', component: Login },
   { path: 'news', component: News },
   { path: 'profile/:id', component: Profile },
   { path: 'register', component: Register },
+  { path: 'rankingplayers/:id', component: RankingPlayers },
   
   { path: 'sitemap', component: SiteMap },
   
