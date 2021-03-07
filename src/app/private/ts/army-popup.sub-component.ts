@@ -97,11 +97,12 @@ export class ArmyPopup {
   
   missingResource() {
     let list = [];
-    
-    for(let res in environment.resources) {
-      if(this.info.cost[res] && 
-         (this.info.cost[res] > this.user.getPropertyNb(res) || this.info.cost.drachma*this.engageNb > this.user.getPropertyNb(res))) {
-        list.push(res);
+    if(this.info.cost) {
+      for(let res in environment.resources) {
+        if(this.info.cost[res] && 
+           (this.info.cost[res] > this.user.getPropertyNb(res) || this.info.cost.drachma*this.engageNb > this.user.getPropertyNb(res))) {
+          list.push(res);
+        }
       }
     }
     return list;
