@@ -12,6 +12,83 @@
              alt="{{info?.name | translate }}" />
       </div>
       
+      <div class="col-12 text-center fw-bold text-danger">
+        <div *ngIf="rEngageNb == 1" translate>Unit engaged</div>
+        <div *ngIf="rEngageNb > 1" translate>Units engaged</div>
+        <div *ngIf="rLiberateNb == 1" translate>Unit liberated</div>
+        <div *ngIf="rLiberateNb > 1" translate>Units liberated</div>
+        <div *ngIf="engageNb > rEngagePossible" translate>
+          You can't engage as much of this unit
+        </div>
+        <div *ngIf="info.temple && info.temple.artemis && user.getPropertyNb('artemis') == 0"
+             translate>
+          You must have the temple of Artemis to engage this unit.
+        </div>
+        <div *ngIf="info.temple && info.temple.hephaestus && user.getPropertyNb('hephaestus') == 0"
+             translate>
+          You must have the temple of Hephaestus to engage this unit.
+        </div>
+        <div *ngIf="info.temple && info.temple.dionysus && user.getPropertyNb('dionysus') == 0"
+             translate>
+          You must have the temple of Dionysus to engage this unit.
+        </div>
+        
+        <div translate
+             *ngIf="info.temple && info.temple.ares && user.getPropertyNb('ares') == 0">
+          You must have the temple of Ares to engage this unit.
+        </div>
+        
+        <div translate
+             *ngIf="info.temple && info.temple.zeus && user.getPropertyNb('zeus') == 0">
+          You must have the temple of Zeus to engage this unit.
+        </div>
+        
+        <div translate
+             *ngIf="info.temple && info.temple.hades && user.getPropertyNb('hades') == 0">
+          You must have the temple of Hades to engage this unit.
+        </div>
+        
+        <div *ngIf="info.power && info.power == 'gaia_defender' && user.getPropertyNb('gaia_defender') == 0"
+             translate>
+          You must have the power of Gaia's defense to engage this unit.
+        </div>
+        
+        <div *ngIf="info.power && info.power == 'divine_units' && user.getPropertyNb('divine_units') < info.power_level"
+             translate>
+          You must have the power of the Divine units level {{ info.power_level }} to engage this unit.
+        </div>
+        
+        <div *ngIf="error == 1" translate>
+          You need to enter the number of units you would like to engage or liberate
+        </div>
+        <div *ngIf="info.camp_level && info.camp_level > user.getPropertyNb('camp_level') " translate>
+          You need to update your military camp to engage this unity
+        </div>
+        
+        <div *ngIf="missingResource().length > 0">
+          <span translate>Missing resources:</span>
+          <span *ngFor="let res of missingResource()">
+            <id-to-ress [ress_id]="res"></id-to-ress>
+          </span>
+        </div>
+        
+        <span *ngIf="(info.placen && 
+                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(engageNb * info.placen) < 0)) ||
+                       (info.placep && 
+                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(engageNb * info.placep) < 0)) ||
+                       (info.placec && 
+                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(engageNb * info.placec) < 0))"
+              class="bold red" translate>
+          You don't have enough empty homes
+        </span>
+        
+        <span *ngIf="((info.condition) && (
+                        ((info.condition.ranking) && user.getPropertyNb('ranking') > info.condition.ranking)))"
+              translate>
+          Only the first XP ranking can engage this unit
+        </span>
+      </div>
+      
       <div class="col-6">
         <div *ngIf="info.cost">
           <strong translate>Commitment</strong>
@@ -64,7 +141,7 @@
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="engagenb" class="form-control"
+                 [(ngModel)]="engageNb" class="form-control"
                  (keydown.enter)="armyEngage()">
           <span class="input-group-addon btn btn-primary"
                 (click)="armyEngage()" translate>Engage</span>
