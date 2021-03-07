@@ -12,6 +12,42 @@
              alt="{{info?.name | translate }}" />
       </div>
       
+      <div class="col-12 text-center fw-bold text-danger">
+        <div *ngIf="missingResource().length > 0">
+          <span translate>Missing resources:</span>
+          <span *ngFor="let res of missingResource()">
+            <id-to-ress [ress_id]="res"></id-to-ress>
+          </span>
+        </div>
+        <span *ngIf="(info.placen && 
+                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(destructNb * info.getPropertyNb('placen')) < 0)) ||
+                       (info.placep && 
+                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(destructNb * info.getPropertyNb('placep')) < 0)) ||
+                       (info.placec && 
+                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(destructNb * info.getPropertyNb('placec')) < 0))"
+              class="bold red" translate>
+          You can not destroy a home who is used
+        </span>
+        <div *ngIf="rBuildNb == -1">
+          {{'Your production field can\'t be over { value }'| translate: { value: user.getDatas().maxField } }}
+        </div>
+        <div *ngIf="rBuildNb == 1" translate>
+          Building built
+        </div>
+        <div *ngIf="rBuildNb > 1" translate>
+          Buildings built
+        </div>
+        <div *ngIf="rDestructNb == 1" translate>
+          Building destructed
+        </div>
+        <div *ngIf="rDestructNb > 1" translate>
+          Buildings destructed
+        </div>
+        <div *ngIf="errorBuilding == 1" translate>
+          You need to enter the number of buildings you would like to construct or destruct
+        </div>
+      </div>
+      
       <div class="col-6">
         <div *ngIf="info.cost">
           <strong translate>Construction cost</strong>
@@ -78,7 +114,8 @@
           </span>
         </div>
         
-        <div *ngIf="rBuildPossible > 0" (click)="setBuild(rBuildPossible)">
+        <div *ngIf="rBuildPossible > 0" role="button" 
+             (click)="setBuild(rBuildPossible)">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
           {{ rBuildPossible | number:'': this.translate.currentLang }}
         </div>
@@ -91,7 +128,7 @@
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="buildnb" class="form-control"
+                 [(ngModel)]="buildNb" class="form-control"
                  (keydown.enter)="buildingBuild()">
           <span class="input-group-addon btn btn-primary"
                 (click)="buildingBuild()" translate>Build</span>
@@ -99,7 +136,7 @@
         
         <div class="input-group">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="destructnb" class="form-control"
+                 [(ngModel)]="destructNb" class="form-control"
                  (keydown.enter)="buildingDestruct()">
           <span class="input-group-addon btn btn-danger"
                 (click)="buildingDestruct()" translate>Destruct</span>

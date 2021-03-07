@@ -3,6 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import { environment } from './../../../environments/environment';
+
 @Component({
   selector: 'construction-popup',
   templateUrl: '../html/construction-popup.sub-component.html',
@@ -12,26 +14,32 @@ import { User } from '../../../services/user.service';
 export class ConstructionPopup {
   @Input() info: any;
   
-  public buildnb:any;
-  public destructnb:any;
+  public buildNb:any;
+  public destructNb:any;
   public rBuildNb:any;
   public rDestructNb:any;
   public rBuildPossible:number;
   public errorBuilding:number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.buildnb = '';
-    this.destructnb = '';
+    this.buildNb = '';
+    this.destructNb = '';
     this.errorBuilding = 0;
     this.rBuildPossible = 0;
     
     this.socket.socket.on('buildPossible', (nb:number) => {
       this.rBuildPossible = nb;
     });
-    this.socket.socket.on('build', () => {
+    this.socket.socket.on('build', (nb:number) => {
+      this.rBuildNb = nb;
+      this.rDestructNb = '';
+      
       this.socket.emit('buildPossible', this.info.code);
     });
-    this.socket.socket.on('destruct', () => {
+    this.socket.socket.on('destruct', (nb:number) => {
+      this.rBuildNb = '';
+      this.rDestructNb = nb;
+    
       this.socket.emit('buildPossible', this.info.code);
     });
     this.socket.socket.on('engage', () => {
@@ -44,7 +52,7 @@ export class ConstructionPopup {
   
   buildingBuild() {
     let building = this.info.code;
-    let nb = this.buildnb;
+    let nb = this.buildNb;
     
     this.rBuildNb = '';
     this.rDestructNb = '';
@@ -68,7 +76,7 @@ export class ConstructionPopup {
   
   buildingDestruct() {
     let building = this.info.code;
-    let nb = this.destructnb;
+    let nb = this.destructNb;
     
     this.rBuildNb = '';
     this.rDestructNb = '';
@@ -111,10 +119,23 @@ export class ConstructionPopup {
     return list;
   }
   
+  missingResource() {
+    let list = [];
+    if(this.info.cost) {
+      for(let res in environment.resources) {
+        if(this.info.cost[res] && 
+           (this.info.cost[res] > this.user.getPropertyNb(res) || this.info.cost.drachma*this.buildNb > this.user.getPropertyNb(res))) {
+          list.push(res);
+        }
+      }
+    }
+    return list;
+  }
+  
   setBuild(nb:number) {
-    this.buildnb = nb;
+    this.buildNb = nb;
   }
   setDestruct() {
-    this.destructnb = this.user.getPropertyNb(this.info.code);
+    this.destructNb = this.user.getPropertyNb(this.info.code);
   }
 }

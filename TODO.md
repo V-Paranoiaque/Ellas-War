@@ -8,7 +8,6 @@
 
 # Buildings
 * Barracks update
-* Message when the building is (not) constructed/destruct, too much field
 
 # General
 * Chat
