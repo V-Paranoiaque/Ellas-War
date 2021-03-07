@@ -17,7 +17,7 @@ export class City {
             public buildingInfo:any
             public divinBonusSelected:any
             public divinBonusListSelected:any;
-            public successSelected:number;
+            public success:any;
             public templeSelected:number;
   
   public divineBonus:any;
@@ -35,7 +35,7 @@ export class City {
     this.divineBonus = [];
     this.divinBonusSelected = {'error': 0 };
     this.divinBonusListSelected = {'error': 0 };
-    this.successSelected = 0;
+    this.success = {'selected': 0};
     this.templeSelected = 0;
     
     this.socket.socket.on('divineBonus', (data:any) => {
@@ -84,7 +84,11 @@ export class City {
     this.divinBonusSelected.error = 0;
   }
   selectSuccess(id:number) {
-    this.successSelected = id;
+    this.success.selected = id;
+    
+    this.socket.emit('hfNext');
+    this.socket.emit('statsPlayer');
+    
   }
   selectTemples(id:number) {
     this.templeSelected = id;

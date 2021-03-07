@@ -1,0 +1,21 @@
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ title }}</h5>
+        <p class="card-text">{{ text }}</p>
+        <p class="card-text" *ngIf="currently">
+          <small class="text-muted">
+            <strong translate>Currently</strong>
+            <strong translate>:</strong>
+            {{ currently }}
+          </small>
+        </p>
+      </div>
+    </div>
+    <div class="col-4 text-center fw-bold">
+      <br/>
+      {{ point }}
+    </div>
+  </div>
+</div>

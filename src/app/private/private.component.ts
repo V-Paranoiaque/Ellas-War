@@ -24,6 +24,7 @@ import { LostMessage } from './ts/lost-message.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
 import { SanctuaryMessage } from './ts/sanctuary-message.sub-component';
+import { SuccessCard } from './ts/success-card.sub-component';
 import { SuccessInfoPopup } from './ts/success-info-popup.sub-component';
 import { Temple1Popup } from './ts/temple1-popup.sub-component';
 import { Temple2Popup } from './ts/temple2-popup.sub-component';
@@ -60,6 +61,7 @@ export const PrivateComponent = [
   MessagesTitle,
   QuestsMissions,
   SanctuaryMessage,
+  SuccessCard,
   SuccessInfoPopup,
   Temple1Popup,
   Temple2Popup,

@@ -18,13 +18,13 @@
 * Contact page
 * Ranking
 * Since your last connection popup
-* Success
 
 # Options
 * Account information
 
 # Quests
 * Add a new quest to discover spies
+* Give up on a quest
 
 # Server
 
