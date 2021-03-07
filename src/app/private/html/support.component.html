@@ -1,9 +1,74 @@
 <common-top-bar active="quests"></common-top-bar>
 
-<div class="col-xs-12 main">
+<div class="modal fade" id="SupportNewTopic" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Send a message to the staff</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="{{'Title'| translate}}" />
+        <textarea class="form-control" placeholder="{{'Message'| translate}}" ></textarea>
+        <div class="text-center">
+          <br/>
+          <button class="btn btn-success" translate>Send</button>
+        </div>
+      </div>
+      <div class="modal-footer" translate>
+        Our staff are volunteers however we will try to answer you as soon as possible.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-12 main">
   <div class="container">
     <div class="row">
-    
+      <div class="text-center" *ngIf="contactNb == 0">
+        <br/>
+        <div translate>You do not have message on the support page</div>
+        <br/>
+        <button class="btn btn-success" data-bs-toggle="modal"
+                data-bs-target="#SupportNewTopic" role="button" translate>
+          Send a message to the staff
+        </button>
+        <br/><br/>
+      </div>
+      
+      <div class="center" *ngIf="contactNb > 0">
+        <br/>
+        <div class="col-xs-12 right">
+          <button class="btn btn-success" ng-click="popupContactNew()"
+                  translate>
+            Send a message to the staff
+          </button>
+          <br/><br/>
+        </div>
+        
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let info of contactList">
+              <td class="left">
+                {{info.support_topic}}
+              </td>
+              <td>
+                {{info.last_username}}
+              </td>
+              <td class="center">
+                <a class="btn btn-info glyphicon glyphicon-eye-open pointer"
+                   href="/contact/{{info.support_id}}">
+                  <span class="sr-only" translate>Read and reply to the message:</span> 
+                  <span class="sr-only">{{info.support_id}}</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
