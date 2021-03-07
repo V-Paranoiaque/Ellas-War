@@ -367,7 +367,7 @@
   "Long bow archeries":"Archers à arc long",
   "Long bow archery":"Archer à arc long",
   "Looting is increased by 5 to 15% for 2 hours.": "Les pillages sont augmentés de 5 à 15% pendant 2h.",
-  "Losing { value } spies at espionage.": "Avoir perdu { value } espions lors d'espionnages.",
+  "Losing { value } spies at espionage.": "Avoir perdu {{ value }} espions lors d'espionnages.",
   "Losing a battle as the two protagonists had lost all their army":"Perdre une bataille alors que les deux protagonistes avaient perdu toute leur armée",
   "Losses": "Pertes",
   "Losses again { value }": "Pertes de l'attaquant contre {{ value }}",
