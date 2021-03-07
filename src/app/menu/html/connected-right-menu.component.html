@@ -202,7 +202,7 @@
     
     <div class="card-body">
       <strong translate>Field</strong>
-      <strong translate>:</strong> {{ user.getProperty('field') }}
+      <strong translate>:</strong> {{ user.getPropertyNb('field') }}
       <br/>
       <strong translate>Weather</strong>
       <strong translate>:</strong>
@@ -217,17 +217,17 @@
     
     <div class="card-body">
       <strong translate>Victories</strong>
-      <strong translate>:</strong> {{ user.getProperty('victory') }}<br/>
+      <strong translate>:</strong> {{ user.getPropertyNb('victory') }}<br/>
       
       <a [routerLink]="['/rankingplayers']">
         <strong translate>XP</strong>
-        <strong translate>:</strong> {{ user.getProperty('xp') }}
+        <strong translate>:</strong> {{ user.getPropertyNb('xp') }}
       </a>
       <br/>
       
       <a [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
         <strong translate>Honnor</strong>
-        <strong translate>:</strong> {{ user.getProperty('honnor') }}
+        <strong translate>:</strong> {{ user.getPropertyNb('honnor') }}
       </a>
       <br/>
     </div>
