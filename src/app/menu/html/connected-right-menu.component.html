@@ -240,6 +240,16 @@
         {{ user.getPropertyNb(res) | number:'1.0-2': this.translate.currentLang }}
         <id-to-ress [ress_id]="res"></id-to-ress>
       </div>
+      <div *ngIf="user.getDatas() && user.getDatas().ress_lvl && user.getDatas().ress_lvl.ambrosia">
+        <ic-icon class="text-success" [icIcon]="angleUp"></ic-icon>
+        {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
+        <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+      </div>
+      <div>
+        <span>=</span>
+        {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
+        <id-to-ress [ress_id]="'favor'"></id-to-ress>
+      </div>
     </div>
     <div class="card-button card-button-primary">
       <a class="btn" [routerLink]="['/details']"
