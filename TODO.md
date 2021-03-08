@@ -11,7 +11,6 @@
 
 # General
 * Chat
-* Contact page
 * Ranking
 * Since your last connection popup
 

@@ -61,6 +61,7 @@ routes = [
   { path: 'quests', component: Quests },
   { path: 'storeroom', component: Storeroom },
   { path: 'support', component: Support },
+  { path: 'support/:id', component: Support },
   
   { path: 'blocked', component: Blocked },
   
