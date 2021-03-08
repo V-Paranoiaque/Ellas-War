@@ -4,14 +4,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Change account information</h5>
+        <h5 class="modal-title" translate>Information</h5>
       </div>
       <div class="modal-body">
-        
+        <div *ngIf="errorAccountSave == 1"
+             class="text-center fw-bold text-danger" translate>
+          Information saved
+        </div>
+        <label for="localisation" translate>Location</label>
+        <input type="text" class="form-control" placeholder="{{'Location'|translate}}"
+               [(ngModel)]="location" />
+        <label for="description" translate>Description</label>
+        <textarea class="form-control" placeholder="{{'Your description'|translate}}"
+                  [(ngModel)]="description" ></textarea>
+        <br/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
                 data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary" (click)="accountSave()" 
+                translate>Save</button>
       </div>
     </div>
   </div>
@@ -155,6 +167,8 @@
                placeholder="{{'New email'|translate}}" id="newemail">
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
         <button class="btn btn-primary"
                 (click)="accountEmail()"
                 translate>Change your email</button>

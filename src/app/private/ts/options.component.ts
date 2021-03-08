@@ -13,8 +13,11 @@ export class Options {
   
   private renameError: number;
   public emailError: number;
+  public errorAccountSave: number;
   
   public currentStyle:string;
+  public description:string;
+  public location:string;
   public newEmail: string;
   public newusername: string;
   public pauseAllowed: number;
@@ -29,9 +32,12 @@ export class Options {
       this.accountRenameCost = 0;
     }
     
+    this.errorAccountSave = 0;
     this.renameError = 0;
     this.emailError = 0;
     
+    this.description = '';
+    this.location = '';
     this.newEmail = '';
     this.newusername = '';
     this.pauseAllowed = 0;
@@ -40,6 +46,10 @@ export class Options {
     
     this.currentStyle = this.user.getProperty('style');
     
+    this.socket.socket.on('accountInfo', (info:any) => {
+      this.location = info.location;
+      this.description = info.description;
+    });
     this.socket.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
     });
@@ -61,6 +71,7 @@ export class Options {
   
   ngOnInit() {
     setTimeout(() => {
+      this.socket.emit('accountInfo');
       this.socket.emit('accountRenameCost');
       this.socket.emit('pauseAllowed');
     }, 0);
@@ -92,6 +103,20 @@ export class Options {
   accountRename() {
     this.socket.emit('accountRename', this.newusername);
     this.newusername = '';
+  }
+  
+  accountSave() {
+    this.errorAccountSave = 1;
+    var msg = {
+      location: this.location,
+      description: this.description
+    };
+    
+    this.socket.emit('accountModify', msg);
+    
+    setTimeout(() => {
+      this.errorAccountSave = 0;
+    }, 3000);
   }
   
   parametersLoad() {

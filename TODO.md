@@ -15,7 +15,7 @@
 * Since your last connection popup
 
 # Options
-* Account information
+* Account image
 
 # Quests
 * Add a new quest to discover spies
