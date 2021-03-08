@@ -209,6 +209,16 @@ export class User {
     return nb;
   }
   
+  hasLevelRess(ress:string) {
+    if(this.info.datas && this.info.datas.ress_lvl && 
+       this.getPropertyNb('level') >= this.info.datas.ress_lvl[ress]) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
   setNewMsg(nb:number) {
     this.newMsg = nb;
   }
