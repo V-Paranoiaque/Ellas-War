@@ -139,7 +139,7 @@
           {{ rEngagePossible | number:'': this.translate.currentLang }}
         </div>
         
-        <div class="input-group">
+        <div class="input-group" *ngIf="user.getLevel() >= info.lvlmini">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="engageNb" class="form-control"
                  (keydown.enter)="armyEngage()">
