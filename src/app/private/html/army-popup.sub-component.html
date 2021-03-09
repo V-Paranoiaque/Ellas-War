@@ -129,12 +129,12 @@
           <span role="button" (click)="setLiberate()">
             {{ user.getPropertyNb(info.code) | number:'': this.translate.currentLang }}
           </span>
-          <span *ngIf="info.nbmax">
+          <span *ngIf="info.nbmax" role="button" (click)="setEngage(info.nbmax)">
             / {{ info.nbmax | number:'': this.translate.currentLang }}
           </span>
         </div>
         
-        <div *ngIf="rEngagePossible > 0">
+        <div *ngIf="rEngagePossible > 0" role="button" (click)="setEngage(rEngagePossible)">
           <strong>{{"Max possible"|translate}}{{":"|translate}}</strong>
           {{ rEngagePossible | number:'': this.translate.currentLang }}
         </div>

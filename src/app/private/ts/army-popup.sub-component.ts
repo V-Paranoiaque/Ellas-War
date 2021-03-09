@@ -71,6 +71,7 @@ export class ArmyPopup {
         'nb': nb
       };
       
+      this.engageNb = '';
       this.socket.emit("engage", msg);
     }
   }
@@ -106,6 +107,10 @@ export class ArmyPopup {
       }
     }
     return list;
+  }
+  
+  setEngage(nb:number) {
+    this.engageNb = nb;
   }
   
   setLiberate() {
