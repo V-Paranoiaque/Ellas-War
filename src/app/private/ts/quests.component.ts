@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -11,8 +11,9 @@ import { User } from '../../../services/user.service';
 export class Quests {
   
   private myQuestList:any;
+  public selectedQuest:any;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
     
     this.socket.socket.on('myQuestList', (data:any) => {
       this.myQuestList = data;
@@ -37,9 +38,5 @@ export class Quests {
   
   getMyQuestList() {
     return this.myQuestList;
-  }
-  
-  myQuestValidate(id:number) {
-    this.socket.emit('myQuestValidate', id);
   }
 }

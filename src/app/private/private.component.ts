@@ -22,6 +22,7 @@ import { IdToRess } from './ts/id-to-ress.sub-component';
 import { IdToWeather } from './ts/id-to-weather.sub-component';
 import { LostMessage } from './ts/lost-message.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
+import { QuestsDaily } from './ts/quests-daily.sub-compotent';
 import { QuestsMissions } from './ts/quests-missions.sub-compotent';
 import { SanctuaryMessage } from './ts/sanctuary-message.sub-component';
 import { SuccessCard } from './ts/success-card.sub-component';
@@ -59,6 +60,7 @@ export const PrivateComponent = [
   IdToWeather,
   LostMessage,
   MessagesTitle,
+  QuestsDaily,
   QuestsMissions,
   SanctuaryMessage,
   SuccessCard,

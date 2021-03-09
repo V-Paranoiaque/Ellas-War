@@ -253,6 +253,20 @@
       
       <span *ngSwitchCase="2">
         <div class="card-body">
+          <p translate>I like to know as much as possible about my enemies before fighting them. Hire 10 spies to gain information on other cities.</p>
+          <strong translate>Reward:</strong>
+          {{25000 | number:'': this.translate.currentLang }} <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+        </div>
+        <div class="card-button card-button-primary" *ngIf="user.getQuestValidate() == 0">
+          <a class="btn" 
+             [routerLink]="['/city']" translate>
+            Access to the city &gt;&gt;
+          </a>
+        </div>
+      </span>
+      
+      <span *ngSwitchCase="3">
+        <div class="card-body">
           <p translate>You are still there?</p>
           <p translate>You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the faibles. Win 5 victories and return to me.</p>
           <strong translate>Reward:</strong>
@@ -266,7 +280,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="3">
+      <span *ngSwitchCase="4">
         <div class="card-body">
           <p translate>You will have to drachmas to build your city. Build a total of 15 mints. If you lack resources, have a look on the Agora.</p>
           <strong translate>Reward:</strong>
@@ -280,7 +294,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="4">
+      <span *ngSwitchCase="5">
         <div class="card-body">
           <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 100000  | number:"": this.translate.currentLang } }}</p>
           <strong translate>Reward:</strong>
@@ -295,7 +309,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="5">
+      <span *ngSwitchCase="6">
         <div class="card-body">
           <p translate>Build a total of 10 huts to house your army.</p>
           <strong translate>Reward:</strong>
@@ -309,7 +323,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="6">
+      <span *ngSwitchCase="7">
         <div class="card-body">
           <p>{{'Win { value } victories'| translate: { value: 10  | number:"": this.translate.currentLang } }}</p>
           <strong translate>Reward:</strong>
@@ -324,7 +338,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="7">
+      <span *ngSwitchCase="8">
         <div class="card-body">
           <p translate>You will need food for your people, build a total of 10 farms.</p>
           <strong translate>Reward:</strong>
@@ -338,7 +352,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="8">
+      <span *ngSwitchCase="9">
         <div class="card-body">
           <p>{{'Build a total of { value } { building }.'| translate: { value: 20, building: 'mints' | translate } }}</p>
           <strong translate>Reward:</strong>
@@ -352,7 +366,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="9">
+      <span *ngSwitchCase="10">
         <div class="card-body">
           <p>{{'Win { value } victories'| translate: { value: 15  | number:"": this.translate.currentLang } }}</p>
           <strong translate>Reward:</strong>
@@ -366,7 +380,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="10">
+      <span *ngSwitchCase="11">
         <div class="card-body">
           <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 200000  | number:"": this.translate.currentLang } }}</p>
           <strong translate>Reward:</strong>
@@ -380,7 +394,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="11">
+      <span *ngSwitchCase="12">
         <div class="card-body">
           <p translate>Engage a stronger defense than 6,000.</p>
           <strong translate>Current defense:</strong> {{ getDefenseCurrent() }}
@@ -396,7 +410,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="12">
+      <span *ngSwitchCase="13">
         <div class="card-body">
           <p>{{'Win { value } victories'| translate: { value: 20  | number:"": this.translate.currentLang } }}</p>
           <strong translate>Reward:</strong>
@@ -410,7 +424,7 @@
         </div>
       </span>
       
-      <span *ngSwitchCase="13">
+      <span *ngSwitchCase="14">
         <div class="card-body">
           <p>{{'You can now go level { value }.' | translate: { value: 2 } }}</p>
         </div>

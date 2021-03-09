@@ -25,10 +25,6 @@
 # Options
 * Account image
 
-# Quests
-* Add a new quest to discover spies
-* Give up on a quest
-
 # Mythology
 * Altars
 * Form to use temples powers
