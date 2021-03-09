@@ -20,11 +20,11 @@
           </span>
         </div>
         <span *ngIf="(info.placen && 
-                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(destructNb * info.getPropertyNb('placen')) < 0)) ||
+                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(destructNb * info.placen) < 0)) ||
                        (info.placep && 
-                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(destructNb * info.getPropertyNb('placep')) < 0)) ||
+                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(destructNb * info.placep) < 0)) ||
                        (info.placec && 
-                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(destructNb * info.getPropertyNb('placec')) < 0))"
+                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(destructNb * info.placec) < 0))"
               class="bold red" translate>
           You can not destroy a home who is used
         </span>
