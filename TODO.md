@@ -17,7 +17,6 @@
 
 # General
 * Favors
-* Profiles
 * Ranking
 * Since your last connection popup
 
