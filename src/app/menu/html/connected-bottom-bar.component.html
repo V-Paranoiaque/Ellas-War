@@ -1,1 +1,86 @@
+<div class="chat-text" *ngIf="chatActive != ''">
+  <div class="chat-general row" *ngIf="chatActive == 'general'">
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 chat-inner">
+      <div *ngFor="let msg of chat_user_msgs">
+        <a [routerLink]="['/profile/'+msg.user_id]" 
+           [ngClass]="{'text-danger fw-bold': msg.rank == 5 }"
+           title="{{ msg.time*1000| date:'dd/MM, HH:mm'}}"
+           class="fw-bold">{{msg.username}}</a>
+        <span translate>:</span>
+        {{msg.msg}}<br/>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+      <div *ngFor="let user of chat_user_players">
+        <a [routerLink]="['/profile/'+user.user_id]" 
+           [ngClass]="{'text-danger': user.rank == 5,
+                      'text-warning': user.chat_allowed == 0}"
+           class="fw-bold">{{user.username}}</a><br/>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="input-group" *ngIf="user.getPropertyNb('chat_allowed') == 1">
+        <input type="text" aria-describedby="chat_user_input"
+               placeholder="{{'Message'|translate}}" class="form-control"
+               id="chatUserMsg" [(ngModel)]="chatUserMsg"
+               autcomplete="false" data-lpignore="true">
+        <span id="chat_user_input" class="input-group-addon btn btn-primary"
+              role="button" (click)="chatUserSend()" translate>Send</span>
+      </div>
+    </div>
+    <div *ngIf="user.getPropertyNb('chat_allowed') == 0"
+         class="text-center text-danger fw-bold">
+      <br/>
+      <span translate>
+        You are not allowed to write on the chat
+      </span>
+    </div>
+  </div>
+  <div class="chat-alliance row" *ngIf="user.getPropertyNb('alliance') > 0 && chatActive == 'alliance'">
+    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 chat-inner">
+      <div *ngFor="let msg of chat_alli_msgs">
+        <a [routerLink]="['/profile/'+msg.user_id]" 
+           [ngClass]="{'text-danger fw-bold': msg.rank == 5 }"
+           title="{{ msg.time*1000| date:'dd/MM, HH:mm'}}"
+           class="fw-bold">{{msg.username}}</a>
+        <span translate>:</span>
+        {{msg.msg}}<br/>
+      </div>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4">
+      <div *ngFor="let user of chat_alli_players">
+        <a [routerLink]="['/profile/'+user.user_id]" 
+           [ngClass]="{'text-danger': user.rank == 5,
+                      'text-warning': user.chat_allowed == 0}"
+           class="fw-bold">{{user.username}}</a><br/>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="input-group">
+        <input type="text" aria-describedby="chat_alliance_input"
+               placeholder="{{'Message'|translate}}" class="form-control"
+               id="chatAlliMsg" [(ngModel)]="chatAlliMsg"
+               autcomplete="false" data-lpignore="true">
+        <span id="chat_alliance_input" class="input-group-addon btn btn-success"
+              role="button" (click)="chatAlliSend()" translate>Send</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="chat-button">
+  <button *ngIf="user.getPropertyNb('alliance') > 0"
+          class="btn btn-success" (click)="toggle('alliance')">
+    <span translate>Alliance Chat</span>
+    <span *ngIf="chat_alli_nb > 0">
+      ({{chat_alli_nb}})
+    </span>
+  </button>
+  <button class="btn btn-primary" (click)="toggle('general')">
+    <span translate>General Chat</span>
+    <span *ngIf="chat_user_nb > 0">
+      ({{chat_user_nb}})
+    </span>
+  </button>
+</div>
 <div class="mosaic"></div>

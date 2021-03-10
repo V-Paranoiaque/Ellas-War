@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { User } from '../../../services/user.service';
 })
 
 export class CommonBottomBar {
-
-  constructor(public user: User) {
+  
+  constructor(protected socket: Socket, public user: User) {
   }
 }

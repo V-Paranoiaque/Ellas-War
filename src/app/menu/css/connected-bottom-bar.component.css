@@ -1,4 +1,43 @@
 .mosaic {
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  bottom: 0px;
+}
+
+.chat-text {
+  max-width: 800px;
+  width: 100%;
+  height: 230px;
+  background-color: white;
+  position: fixed;
+  bottom: 60px;
+  right: 0px;
+  font-size: 0.9em;
+  display: flex;
+}
+
+.chat-text .chat-general,
+.chat-text .chat-alliance {
+  height: inherit;
+  padding-top:2px;
+}
+
+.chat-text .chat-general .chat-inner,
+.chat-text .chat-alliance .chat-inner {
+  overflow-y: auto;
+  height: 191px;
+}
+
+.chat-text .chat-general .chat-inner > div,
+.chat-text .chat-alliance .chat-inner > div{
+  padding:2px;
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 22px;
+  right: 0px;
+}
+
+.chat-button .btn {
+  font-size: 1.2rem;
 }
