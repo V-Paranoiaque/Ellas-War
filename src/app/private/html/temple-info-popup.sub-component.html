@@ -61,12 +61,59 @@
       Hades will increase the production of your mines and quarries. It could also lend its invisibility helmet for you to visit the cities of friends and enemies. During your terrible battles, the souls of your men come back to fight for you.
     </p>
   </div>
-  <div class="modal-body" *ngIf="temple == 11">
-    <p translate>
-      With Poseidon, your cavalry units cost less. It will also build a wall around your city to repel enemies. The defense of your wall increases with your field. As the god of the oceans will increase the production of your wells.
-    </p>
-  </div>
-  
-  <div class="modal-footer">
+  <div *ngIf="temple == 11">
+    <div class="modal-body">
+      <p class="text-justify" translate>
+        With Poseidon, your cavalry units cost less. It will also build a wall around your city to repel enemies. The defense of your wall increases with your field. As the god of the oceans will increase the production of your wells.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <div class="text-center">
+        <strong id="WallDesc" translate>Poseidon's wall's defense</strong>
+        <strong translate>:</strong>
+        {{ wallDefense }}
+        <br/>
+        <div *ngIf="user.getPropertyNb('poseidon_wall') == 1" 
+             class="fw-bold text-danger"
+             translate>The Poseidon wall protects your city.</div>
+        
+        <table class="table" aria-describedby="WallDesc"
+               *ngIf="user.getPropertyNb('poseidon_wall') == 0">
+          <tr>
+            <th scope="row">
+              <span [ngClass]="{'text-danger': user.getPropertyNb('water') < user.info.datas.poseidon_wall.water}">
+                {{user.info.datas.poseidon_wall.water| number:'': this.translate.currentLang }}
+                <id-to-ress [ress_id]="'water'"></id-to-ress>
+              </span>
+              <span [ngClass]="{'text-danger': user.getPropertyNb('marble') < user.info.datas.poseidon_wall.marble}">
+                {{user.info.datas.poseidon_wall.marble| number:'': this.translate.currentLang }}
+                <id-to-ress [ress_id]="'marble'"></id-to-ress>
+              </span>
+              <span [ngClass]="{'text-danger': user.getPropertyNb('gold') < user.info.datas.poseidon_wall.gold}">
+                {{user.info.datas.poseidon_wall.gold| number:'': this.translate.currentLang }}
+                <id-to-ress [ress_id]="'gold'"></id-to-ress>
+              </span>
+            </th>
+            <td>
+              <button class="btn btn-outline-primary" (click)="wallErect()"
+                      translate>Build</button>
+            </td>
+          </tr>
+          <tr>
+            <td translate>Or</td><td></td>
+          </tr>
+          <tr>
+            <th scope="row"
+                [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 160}">
+              160 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            </th>
+            <td>
+              <button class="btn btn-outline-primary" (click)="powerUse(15, 0)"
+                      translate>Build</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
