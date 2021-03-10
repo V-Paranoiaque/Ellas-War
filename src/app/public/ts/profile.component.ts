@@ -1,16 +1,35 @@
-import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { User } from '../../../services/user.service';
+
+import { environment } from './../../../environments/environment';
 
 @Component({
-  templateUrl: '../html/profile.component.html'
+  templateUrl: '../html/profile.component.html',
+  styleUrls: ['../css/profile.component.css']
 })
 
-export class Profile {
+export class Profile implements OnInit {
   id: any;
+  profile: any;
   
-  constructor(private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, public user: User, private route: ActivatedRoute, public translate: TranslateService) {
+    this.profile = {
+      'username': ''
+    }
+  }
   
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id')
+    let userId = this.route.snapshot.paramMap.get('id');
+    
+    let _url = environment.SOCKET_ENDPOINT+'/api/playerProfile/'+userId+'.json';
+    
+    this.http.get(_url).subscribe((res:any) => {
+      if(res && res.membre_id) {
+        this.profile = res;
+      }
+    });
   }
 };

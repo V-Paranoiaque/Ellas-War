@@ -2,6 +2,10 @@ a {
   text-decoration: none;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .invisible {
   opacity: 0;
 }

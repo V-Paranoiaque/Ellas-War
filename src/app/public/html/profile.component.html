@@ -1,3 +1,63 @@
 <common-top-bar active="profile"></common-top-bar>
 
+<div class="container">
+  <div class="row card col-12">
+    <div class="card-body">
+      <h1 class="text-center">{{ profile.username }}</h1>
+      <br/>
+      <br/>
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-sm-6 col-xs-12">
+          <br/>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-xs-12">
+          <strong translate>Level</strong><strong translate>:</strong>
+          {{profile.level}}
+          <br/>
+          
+          <strong translate>XP</strong><strong translate>:</strong>
+          {{profile.xp| number:'': this.translate.currentLang}}
+          <br/>
+          
+          <strong translate>Victories</strong><strong translate>:</strong>
+          {{profile.victory| number:'': this.translate.currentLang}}
+          <br/>
+          
+          <strong translate>Field</strong><strong translate>:</strong>
+          {{profile.field| number:'': this.translate.currentLang}}
+          <br/>
+          
+          <strong translate>Feats of Strength</strong><strong translate>:</strong>
+          {{profile.featsofstrength| number:'': this.translate.currentLang}}
+          <br/>
+          
+          <div *ngIf="profile.alliance > 0">
+            <strong>{{'Alliance'|translate}}{{':'|translate}}</strong> 
+            <a href="allianceprofile/{{profile.alliance}}">{{profile.alliance_name}}</a>
+            <div *ngIf="profile.rank_name != ''">
+              <strong translate>Rank</strong><strong translate>:</strong> {{profile.rank_name}}
+            </div>
+          </div>
+          
+          <div *ngIf="profile.location != ''">
+            <strong translate>Location</strong><strong translate>:</strong>
+            {{profile.location}}
+          </div>
+          <div *ngIf="profile.inscription > 0">
+            <strong translate>Register date</strong><strong translate>:</strong>
+            {{profile.inscription*1000| date:'dd/MM/yyyy'}}
+          </div>
+        </div>
+        <div class="col-8 col-xs-12">
+          <br/><br/>
+          
+          <div class="text-justify">
+            {{profile.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <common-bottom-bar></common-bottom-bar>
