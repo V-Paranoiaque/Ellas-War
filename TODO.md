@@ -16,7 +16,6 @@
 * Barracks update
 
 # General
-* Chat
 * Favors
 * Profiles
 * Ranking
