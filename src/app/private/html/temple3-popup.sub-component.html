@@ -37,6 +37,10 @@
          class="alert alert-danger" translate>
       Available at level 8
     </div>
+    <div *ngIf="user.getLevel() >= 8 && temple == 0"
+         class="text-center text-danger" translate>
+      Click on a ? symbole to select a temple
+    </div>
     <div *ngIf="temple > 0">
       <strong translate>New powers</strong>
       <ul *ngIf="temple == 6">

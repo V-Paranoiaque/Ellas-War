@@ -38,6 +38,10 @@
       Available at level 2
     </div>
     <div>
+      <div *ngIf="user.getLevel() >= 2 && temple == 0"
+           class="text-center text-danger" translate>
+        Click on a ? symbole to select a temple
+      </div>
       <ul *ngIf="temple == 1">
         <li translate>TODO</li>
       </ul>
