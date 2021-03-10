@@ -129,7 +129,6 @@ export class Attacks {
     this.socket.socket.on('lightning', (data:any) => {
       this.attackMode = 8;
       this.lightningInfo = {'lost_build':[]}
-      console.log(data);
       for(let building in data.lost_build) {
         this.lightningInfo.lost_build.push({
           'code': building,
