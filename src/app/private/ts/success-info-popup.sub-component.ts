@@ -20,6 +20,7 @@ export class SuccessInfoPopup {
     this.hfDisplay = [];
     
     this.listDisplay = [];
+    this.statsPlayer = {};
     
     setTimeout(() => {
       this.socket.emit('hfNext');
