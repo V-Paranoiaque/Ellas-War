@@ -15,6 +15,7 @@ export class City {
 
   @Output() public armyInfo:any
             public buildingInfo:any
+            public dailyCo:any
             public divinBonusSelected:any
             public divinBonusListSelected:any;
             public success:any;
@@ -31,6 +32,7 @@ export class City {
     //We set a default building to avoid errors
     this.buildingInfo = { code: 'mint' };
     this.armyInfo = { code: 'spartan' };
+    this.dailyCo = {}
     this.divineBonusNb = 0;
     this.divineBonus = [];
     this.divinBonusSelected = {'error': 0 };
@@ -51,11 +53,21 @@ export class City {
         this.divineBonus = [];
       }
     });
+    
+    this.socket.socket.on('dailyCo', (result:any) => {
+      this.dailyCo = result;
+    });
+    this.socket.socket.on("dailyCoCheck", (r:number) => {
+      if(r == 1) {
+        this.socket.emit('dailyCo');
+      }
+    });
   }
   
   ngOnInit() {
     setTimeout(() => {
       this.socket.emit('divineBonus');
+      this.socket.emit('dailyCoCheck');
     }, 0);
   }
   

@@ -1,5 +1,10 @@
 <common-top-bar active="city"></common-top-bar>
 
+<div class="modal fade" id="DailyInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <daily-popup [info]="dailyCo"></daily-popup>
+  </div>
+</div>
 <div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <army-popup [info]="armyInfo"></army-popup>
@@ -66,14 +71,19 @@
   </div>
 </div>
 
-
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
       <div class="col-xl-6">
         <div class="card">
-          <div class="card-header" translate>
-            General
+          <div class="card-header">
+            <span translate>General</span>
+            
+            <span data-bs-toggle="modal" data-bs-target="#DailyInfo"
+                  *ngIf="dailyCo.length > 0"
+                  role="button" translate>
+              <ic-icon [icIcon]="questionCircle"></ic-icon>
+            </span>
           </div>
           <div class="card-body">
             <div *ngIf="user.getLevel() < 10">

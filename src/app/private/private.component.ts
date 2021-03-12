@@ -13,6 +13,7 @@ import { Support } from './ts/support.component';
 
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
+import { DailyPopup } from './ts/daily-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
 import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
@@ -53,6 +54,7 @@ export const PrivateComponent = [
   ArmyPopup,
   AttacksMessage,
   ConstructionPopup,
+  DailyPopup,
   DivineBonusHelpPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
