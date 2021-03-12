@@ -55,8 +55,8 @@
 </div>
 
 <div class="col-table text-center" *ngIf="info.lost_ress">
-  <strong translate>Lost resources</strong>
-  <table class="table">
+  <strong id="LostResDesc" translate>Lost resources</strong>
+  <table class="table" aria-describedby="LostResDesc">
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.lost_ress[ress] > 0"
           class="col-6 text-end">
@@ -71,8 +71,8 @@
 </div>
 
 <div class="col-table text-center" *ngIf="getLostBuildings().length > 0">
-  <strong translate>Lost buildings</strong>
-  <table class="table">
+  <strong id="LostBuildingDesc" translate>Lost buildings</strong>
+  <table class="table" aria-describedby="LostBuildingDesc">
     <tr *ngFor="let building of getLostBuildings()">
       <td class="col-6 text-end">{{building.nb| number:'': this.translate.currentLang}}</td>
       <td class="col-6 text-start" *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</td>
@@ -89,8 +89,8 @@
 </div>
 
 <div class="col-table text-center" *ngIf="hasCorruptedRes()">
-  <strong translate>Corrupted resources</strong>
-  <table class="table">
+  <strong id="CorruptedResDesc" translate>Corrupted resources</strong>
+  <table class="table"  aria-describedby="CorruptedResDesc">
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'1.0-0': this.translate.currentLang}}</td>
       <td *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></td>
