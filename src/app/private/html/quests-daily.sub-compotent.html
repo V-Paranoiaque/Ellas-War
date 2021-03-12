@@ -32,12 +32,12 @@
     <id-to-ress [ress_id]="quest.reward_ress"></id-to-ress>
   </div>
   <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">
-    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'attacks'" translate>Access to the attacks >></a>
-    <a class="btn" [routerLink]="['/city']"  *ngIf="link == 'divine'" translate>Access to the Divine powers >></a>
-    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'city'" translate>Access to the City >></a>
-    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'lotto'" translate>Access to the lotto >></a>
-    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'sanctuaries'" translate>Access to the sanctuaries >></a>
-    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'tickets'" translate>Access to the tickets >></a>
+    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'attacks'" translate>Access to the attacks &gt;&gt;</a>
+    <a class="btn" [routerLink]="['/city']"  *ngIf="link == 'divine'" translate>Access to the Divine powers &gt;&gt;</a>
+    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'city'" translate>Access to the city &gt;&gt;</a>
+    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'lotto'" translate>Access to the lotto &gt;&gt;</a>
+    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'sanctuaries'" translate>Access to the sanctuaries &gt;&gt;</a>
+    <a class="btn" [routerLink]="['/'+link]" *ngIf="link == 'tickets'" translate>Access to the tickets &gt;&gt;</a>
   </div>
   <div class="card-button card-button-success" role="button"
        *ngIf="quest.quest_validated == 1"
