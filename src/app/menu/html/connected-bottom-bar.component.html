@@ -23,7 +23,8 @@
         <input type="text" aria-describedby="chat_user_input"
                placeholder="{{'Message'|translate}}" class="form-control"
                id="chatUserMsg" [(ngModel)]="chatUserMsg"
-               autcomplete="false" data-lpignore="true">
+               autcomplete="false" data-lpignore="true"
+               (keydown.enter)="chatUserSend()">
         <span id="chat_user_input" class="input-group-addon btn btn-primary"
               role="button" (click)="chatUserSend()" translate>Send</span>
       </div>
@@ -60,7 +61,8 @@
         <input type="text" aria-describedby="chat_alliance_input"
                placeholder="{{'Message'|translate}}" class="form-control"
                id="chatAlliMsg" [(ngModel)]="chatAlliMsg"
-               autcomplete="false" data-lpignore="true">
+               autcomplete="false" data-lpignore="true"
+               (keydown.enter)="chatAlliSend()">
         <span id="chat_alliance_input" class="input-group-addon btn btn-success"
               role="button" (click)="chatAlliSend()" translate>Send</span>
       </div>
