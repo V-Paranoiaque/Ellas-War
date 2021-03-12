@@ -135,7 +135,12 @@ export class ConstructionPopup {
   setBuild(nb:number) {
     this.buildNb = nb;
   }
+  
   setDestruct() {
     this.destructNb = this.user.getPropertyNb(this.info.code);
+  }
+  
+  updateCamp(){
+    this.socket.emit('updateCamp');
   }
 }

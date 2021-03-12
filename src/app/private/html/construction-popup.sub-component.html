@@ -48,6 +48,12 @@
         </div>
       </div>
       
+      <div *ngIf="user.getPropertyNb('volcano') > 0" class="col-12 text-danger text-center">
+        <span translate>The lava falls on your city preventing you from building buildings for 20 min</span>
+        <br/>
+        <span translate>End:</span> {{user.getPropertyNb('volcano')*1000| date:'dd/MM, HH:mm'}}
+      </div>
+      
       <div class="col-6">
         <div *ngIf="info.cost">
           <strong translate>Construction cost</strong>
@@ -114,6 +120,12 @@
           </span>
         </div>
         
+        <div *ngIf="info.code == 'militarycamp' && user.getPropertyNb('camp_level') > 0">
+          <strong translate>Level</strong>
+          <strong translate>:</strong>
+          {{ user.getPropertyNb('camp_level') }}
+        </div>
+        
         <div *ngIf="rBuildPossible > 0" role="button" 
              (click)="setBuild(rBuildPossible)">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
@@ -126,7 +138,8 @@
           {{ info?.field | number:'': this.translate.currentLang }}
         </div>
         
-        <div class="input-group">
+        <div class="input-group"
+             *ngIf="(info.nbmax == 0 || user.getPropertyNb(info.code) < info.nbmax) && user.getPropertyNb('volcano') == 0">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="buildNb" class="form-control"
                  (keydown.enter)="buildingBuild()">
@@ -134,7 +147,8 @@
                 (click)="buildingBuild()" translate>Build</span>
         </div>
         
-        <div class="input-group">
+        <div class="input-group"
+             [hidden]="user.getPropertyNb(info.code) == 0 || (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="destructNb" class="form-control"
                  (keydown.enter)="buildingDestruct()">
@@ -143,6 +157,46 @@
         </div>
       </div>
     </div>
+  </div>
+  
+  <div class="modal-footer"
+       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 3 && user.getPropertyNb('camp_level') == 1">
+    <div class="col-12" translate>Update to recruit archers</div>
+    <strong translate>Cost:</strong><br/>
+    <span *ngFor="let resource of user.info.datas.building.archerschool.cost | keyvalue">
+      {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
+      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+    </span>
+    <br/>
+    <button class="btn btn-success" (click)="updateCamp()" translate>
+      Update
+    </button>
+  </div>
+  <div class="modal-footer"
+       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 6 && user.getPropertyNb('camp_level') == 2">
+    <div translate>Update to recruit cavalry</div>
+    <strong translate>Cost:</strong><br/>
+    <span *ngFor="let resource of user.info.datas.building.cavalryschool.cost | keyvalue">
+      {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
+      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+    </span>
+    <br/>
+    <button class="btn btn-success" (click)="updateCamp()" translate>
+      Update
+    </button>
+  </div>
+  <div class="modal-footer"
+       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 9 && user.getPropertyNb('camp_level') == 3">
+    <div translate>Update to recruit elit units</div>
+    <strong translate>Cost:</strong><br/>
+    <span *ngFor="let resource of user.info.datas.building.academy.cost | keyvalue">
+      {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
+      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+    </span>
+    <br/>
+    <button class="btn btn-success" (click)="updateCamp()" translate>
+      Update
+    </button>
   </div>
   
   <div class="modal-footer">

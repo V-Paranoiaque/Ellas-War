@@ -65,6 +65,15 @@
           You need to update your military camp to engage this unity
         </div>
         
+        
+        <div *ngIf="user.getPropertyNb('lord_lightning') > 0" class="text-danger text-center">
+          <span translate>
+            Heavy black clouds invaded your city, you can no longer engage units
+          </span>
+          <br/>
+          <span translate>End:</span> {{user.getPropertyNb('lord_lightning')*1000| date:'dd/MM, HH:mm'}}
+        </div>
+        
         <div *ngIf="missingResource().length > 0">
           <span translate>Missing resources:</span>
           <span *ngFor="let res of missingResource()">
@@ -139,7 +148,8 @@
           {{ rEngagePossible | number:'': this.translate.currentLang }}
         </div>
         
-        <div class="input-group" *ngIf="user.getLevel() >= info.lvlmini">
+        <div class="input-group"
+             *ngIf="user.getLevel() >= info.lvlmini && user.getPropertyNb('lord_lightning') == 0">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="engageNb" class="form-control"
                  (keydown.enter)="armyEngage()">
@@ -147,7 +157,10 @@
                 (click)="armyEngage()" translate>Engage</span>
         </div>
         
-        <div class="input-group">
+        <div class="input-group"
+             *ngIf="user.getPropertyNb('level') >= info.lvlmini || 
+                    user.getPropertyNb('quest') == 10 || 
+                    (user.getPropertyNb('level') > 0 && user.getPropertyNb(info.code) > 0)">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="liberatenb" class="form-control"
                  (keydown.enter)="armyLiberate()">
