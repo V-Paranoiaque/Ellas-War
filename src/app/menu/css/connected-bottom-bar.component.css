@@ -9,10 +9,16 @@
   height: 230px;
   background-color: white;
   position: fixed;
-  bottom: 60px;
+  bottom: 66px;
   right: 0px;
   font-size: 0.9em;
   display: flex;
+}
+
+@media (max-width:575px) {
+  .chat-text {
+    bottom: 109px;
+  }
 }
 
 .chat-text .chat-general,
