@@ -81,12 +81,7 @@
           </span>
         </div>
         
-        <span *ngIf="(info.placen && 
-                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(engageNb * info.placen) < 0)) ||
-                       (info.placep && 
-                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(engageNb * info.placep) < 0)) ||
-                       (info.placec && 
-                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(engageNb * info.placec) < 0))"
+        <span *ngIf="!hasHosting()"
               class="bold red" translate>
           You don't have enough empty homes
         </span>
