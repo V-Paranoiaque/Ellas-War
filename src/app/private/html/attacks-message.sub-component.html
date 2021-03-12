@@ -48,7 +48,7 @@
     <strong translate>Defender losses</strong>
     <div *ngFor="let unit of getDefenseLost()">
       {{unit.nb| number:'': this.translate.currentLang}} 
-      {{user.info.datas.army[unit.code].names|translate}} 
+      {{ (user.info.datas.army[unit.code]) ? (user.info.datas.army[unit.code].names | translate) : (user.info.datas.building[unit.code].names |translate) }} 
     </div>
     <div class="clearfix"><br/></div>
   </div>
