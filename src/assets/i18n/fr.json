@@ -797,6 +797,7 @@
   "You can spy on your enemies with the oracle of the Apollo's temple.":"Vous pourrez espionner vos ennemis grâce à l'oracle de son temple. ",
   "You can't attack this city": "Vous ne pouvez pas attaquer cette cité",
   "You can't engage as much of this unit": "Vous ne pouvez pas engager autant de cette unité",
+  "You can't have more than { value } buildings of this type": "Vous ne pouvez pas avoir plus de {{ value }} bâtiments de ce type",
   "You do not have message on the support page": "Vous n'avez aucun message sur le support",
   "You do not have spies.": "Vous n'avez pas d'espions.",
   "You don't have enough empty homes": "Vous n'avez pas assez de logements vides",

@@ -28,7 +28,11 @@
               class="bold red" translate>
           You can not destroy a home who is used
         </span>
-        <div *ngIf="rBuildNb == -1">
+        
+        <div *ngIf="info.nbmax && buildNb > 0 && (buildNb+user.getPropertyNb(info.code)) > info.nbmax">
+          {{'You can\'t have more than { value } buildings of this type'| translate: { value: info.nbmax } }}
+        </div>
+        <div *ngIf="rBuildNb == -1 && !(info.nbmax && buildNb > 0 && (buildNb+user.getPropertyNb(info.code)) > info.nbmax)">
           {{'Your production field can\'t be over { value }'| translate: { value: user.getDatas().maxField } }}
         </div>
         <div *ngIf="rBuildNb == 1" translate>
