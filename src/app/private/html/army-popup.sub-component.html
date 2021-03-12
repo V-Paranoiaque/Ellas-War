@@ -159,7 +159,7 @@
         
         <div class="input-group"
              *ngIf="user.getPropertyNb('level') >= info.lvlmini || 
-                    user.getPropertyNb('quest') == 10 || 
+                    user.getPropertyNb('quest') == 9 || 
                     (user.getPropertyNb('level') > 0 && user.getPropertyNb(info.code) > 0)">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="liberatenb" class="form-control"
