@@ -202,7 +202,7 @@
     
     <div class="card-body">
       <strong translate>Field</strong>
-      <strong translate>:</strong> {{ user.getPropertyNb('field') }}
+      <strong translate>:</strong> {{ user.getPropertyNb('field') | number:'': this.translate.currentLang }}
       <br/>
       <strong translate>Weather</strong>
       <strong translate>:</strong>
