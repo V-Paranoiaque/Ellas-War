@@ -219,6 +219,11 @@ export class User {
     }
   }
   
+  hasTemples() {
+    return this.getPropertyNb('zeus') + this.getPropertyNb('hades') +
+           this.getPropertyNb('poseidon');
+  }
+  
   setNewMsg(nb:number) {
     this.newMsg = nb;
   }
