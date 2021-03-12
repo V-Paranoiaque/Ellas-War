@@ -83,7 +83,7 @@
                       style="resize:none" [(ngModel)]="answerMsg"
                       placeholder="{{'Enter your message'|translate}}"></textarea>
             <span class="input-group-addon btn btn-primary"
-                  translate="" (click)="contactAnswer()">Send</span>
+                  (click)="contactAnswer()" translate>Send</span>
           </div>
           
           <div *ngFor="let msg of contactInfo.msg">
