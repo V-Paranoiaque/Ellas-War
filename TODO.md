@@ -12,12 +12,7 @@
 * Statistics attack available (+? attack/defense)
 * Strategies
 
-# Buildings
-* Barracks update
-
 # General
-* Favors
-* Ranking
 * Since your last connection popup
 
 # Options
@@ -25,6 +20,5 @@
 
 # Mythology
 * Altars
-* Form to use temples powers
 * New power for Hermes
 * Switch temples
