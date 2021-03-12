@@ -28,8 +28,9 @@
       </p>
     </div>
     <div class="modal-footer">
-      <strong translate>Fury</strong>
-      <br/>
+      <div class="col-12 text-end">
+        <strong translate>Fury</strong>
+      </div>
       <div>
         <span translate class="fw-bold" *ngIf="user.getPropertyNb('fury') <= 1">Fury owned</span>
         <span translate class="fw-bold" *ngIf="user.getPropertyNb('fury') > 1">Furies owned</span>
