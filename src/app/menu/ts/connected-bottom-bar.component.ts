@@ -68,7 +68,7 @@ export class ConnectedBottomBar extends CommonBottomBar {
     this.socket.socket.on('chatAlliPlayers', (players:any) => {
       this.chat_alli_players = players;
     });
-    this.socket.socket.on('chatAlliPlayersRefresh', (players:any) => {
+    this.socket.socket.on('chatAlliPlayersRefresh', () => {
       this.socket.emit("chatAlliPlayers");
     });
     this.socket.socket.on('chatAlliMsgs', (msgs:any) => {
