@@ -1,0 +1,125 @@
+<common-top-bar active="city"></common-top-bar>
+
+
+<div class="modal fade" id="FavorInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="favor.id == 1" translate>Support of Deimos</h5>
+        <h5 class="modal-title" *ngIf="favor.id == 2" translate>Support of Leonidas</h5>
+        <h5 class="modal-title" *ngIf="favor.id == 4" translate>Support of Hebe</h5>
+        <h5 class="modal-title" *ngIf="favor.id == 5" translate>Support of Plutus</h5>
+        <h5 class="modal-title" *ngIf="favor.id == 6" translate>Support of Helios</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-danger fw-bold text-center"
+           *ngIf="favor.error > 0" translate>
+        Favor validated
+      </div>
+      <div class="modal-body">
+        <strong translate>Cost:</strong>
+        1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary"
+                *ngIf="user.getPropertyNb('favor') > 0"
+                (click)="useFavor()"
+                translate>Validate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header" translate>Support of Deimos</div>
+        <div class="card-body">
+          <div translate>Won many victories!</div>
+          <div translate>Add 15 bonus attack. You can make a maximum of 5 per day.</div>
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          </div>
+        </div>
+        <div class="card-button card-button-primary" (click)="selectFavor(1)"
+             data-bs-toggle="modal" data-bs-target="#FavorInfo"
+             role="button" translate>Get</div>
+      </div>
+    </div>
+    
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header" translate>Support of Leonidas</div>
+        <div class="card-body">
+          <div translate>+40 Spartans</div>
+          <div translate>+200 Spies</div>
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          </div>
+        </div>
+        <div class="card-button card-button-primary" (click)="selectFavor(2)"
+             data-bs-toggle="modal" data-bs-target="#FavorInfo"
+             role="button" translate>Get</div>
+      </div>
+    </div>
+    
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header" translate>Support of Hebe</div>
+        <div class="card-body">
+          <div translate>You will not pay fee on your withdrawals in your treasure for 7 days</div>
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          </div>
+        </div>
+        <div class="card-button card-button-primary" (click)="selectFavor(4)"
+             data-bs-toggle="modal" data-bs-target="#FavorInfo"
+             role="button" translate>Get</div>
+      </div>
+    </div>
+    
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header" translate>Support of Plutus</div>
+        <div class="card-body">
+          <div translate>Have abundant resources!</div>
+          <div translate>+2,000,000 Wood, Iron, Food, Water</div>
+          <div translate>+800,000 Drachmas</div>
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          </div>
+        </div>
+        <div class="card-button card-button-primary" (click)="selectFavor(5)"
+             data-bs-toggle="modal" data-bs-target="#FavorInfo"
+             role="button" translate>Get</div>
+      </div>
+    </div>
+    
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header" translate>Support of Helios</div>
+        <div class="card-body">
+          <div translate>Your losses resources in the attacks will be reduced by 50% during 7 days</div>
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          </div>
+        </div>
+        <div class="card-button card-button-primary" (click)="selectFavor(6)"
+             data-bs-toggle="modal" data-bs-target="#FavorInfo"
+             role="button" translate>Get</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<connected-right-menu></connected-right-menu>
+<common-bottom-bar></common-bottom-bar>

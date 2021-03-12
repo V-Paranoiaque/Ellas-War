@@ -3,6 +3,7 @@ import { Attacks } from './ts/attacks.component';
 import { Blocked } from './ts/blocked.component';
 import { City } from './ts/city.component';
 import { Details } from './ts/details.component';
+import { Favors } from './ts/favors.component';
 import { Messages } from './ts/messages.component';
 import { Options } from './ts/options.component';
 import { Paused } from './ts/paused.component';
@@ -41,6 +42,7 @@ export const PrivateComponent = [
   Blocked,
   City,
   Details,
+  Favors,
   Messages,
   Options,
   Paused,

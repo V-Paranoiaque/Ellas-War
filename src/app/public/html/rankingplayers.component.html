@@ -1,5 +1,77 @@
 <common-top-bar active="register"></common-top-bar>
 
-<div class="container"></div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-striped table-middle">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" (click)="rankingChooseOrder('player')" role="button">
+              <span translate>Player</span>
+              <span class="fa fa-sort-asc" *ngIf="rankingOrder == 'player'"></span>
+            </th>
+            <th scope="col" (click)="rankingChooseOrder('level')" role="button" class="invisible-xs">
+              <span translate>Level</span>
+              <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'level'"></span>
+            </th>
+            <th scope="col" (click)="rankingChooseOrder('xp')" role="button">
+              <span translate>XP</span>
+              <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'xp'"></span>
+            </th>
+            <th scope="col" (click)="rankingChooseOrder('victory')" role="button">
+              <span translate>Victories</span>
+              <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'victory'"></span>
+            </th>
+            <th scope="col" (click)="rankingChooseOrder('field')" role="button" class="invisible-xs">
+              <span translate>Field</span>
+              <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'field'"></span>
+            </th>
+            <th scope="col" (click)="rankingChooseOrder('honnor')" role="button" class="invisible-xs">
+              <span translate>Honnor</span>
+              <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'honnor'"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of rankingList">
+            <td>
+                {{p.ranking}}
+            </td>
+            <td>
+              <a [routerLink]="['/profile/'+p.membre_id]">
+                {{p.username}}
+              </a>
+            </td>
+            <td class="invisible-xs">{{p.level}}</td>
+            <td>{{p.xp| number:'': this.translate.currentLang}}</td>
+            <td>{{p.victory| number:'': this.translate.currentLang}}</td>
+            <td class="invisible-xs">{{p.field| number:'': this.translate.currentLang}}</td>
+            <td class="invisible-xs">{{p.honnor| number:'': this.translate.currentLang}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="card-body" *ngIf="rankingMax > 1">
+      <div class="input-group">
+        <span class="input-group-text" role="button"
+              (click)="rankingPageChange(1)">&lt;&lt;</span>
+        <span class="input-group-text" role="button"
+              (click)="rankingPageChange(rankingPage-1)">&lt;</span>
+        <select class="form-control" #mySelect
+                (change)="rankingPageChange(mySelect.value)"
+                [ngModel]="rankingPage">
+          <option *ngFor="let id of range(1, rankingMax)"
+                  value="{{id}}" translate>Page {{id}}</option>
+        </select>
+        <span class="input-group-text" role="button"
+              (click)="rankingPageChange(rankingPage+1)">&gt;</span>
+        <span class="input-group-text" role="button"
+              (click)="rankingPageChange(rankingMax)">&gt;&gt;</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <common-bottom-bar></common-bottom-bar>

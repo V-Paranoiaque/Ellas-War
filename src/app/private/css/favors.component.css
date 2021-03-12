@@ -1,0 +1,8 @@
+.col-6 {
+  margin-top: calc(var(--bs-gutter-x)/ 2);
+  margin-bottom: calc(var(--bs-gutter-x)/ 2);
+}
+
+.col-6 .card {
+  height: 100%;
+}

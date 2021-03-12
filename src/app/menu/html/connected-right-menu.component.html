@@ -251,6 +251,8 @@
         <span>=</span>
         {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
         <id-to-ress [ress_id]="'favor'"></id-to-ress>
+        <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
+                 role="button"></ic-icon>
       </div>
     </div>
     <div class="card-button card-button-primary">
