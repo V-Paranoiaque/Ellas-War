@@ -75,7 +75,7 @@
         </div>
         
         <div *ngIf="missingResource().length > 0">
-          <span translate>Missing resources:</span>
+          <span translate>Missing resources:</span>&nbsp;
           <span *ngFor="let res of missingResource()">
             <id-to-ress [ress_id]="res"></id-to-ress>
           </span>

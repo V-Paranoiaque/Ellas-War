@@ -122,9 +122,11 @@ export class ConstructionPopup {
   missingResource() {
     let list = [];
     if(this.info.cost) {
-      for(let res in environment.resources) {
+      for(let id in environment.resources) {
+        let res = environment.resources[id];
         if(this.info.cost[res] && 
-           (this.info.cost[res] > this.user.getPropertyNb(res) || this.info.cost.drachma*this.buildNb > this.user.getPropertyNb(res))) {
+           (this.info.cost[res] > this.user.getPropertyNb(res) || 
+            this.info.cost[res]*this.buildNb > this.user.getPropertyNb(res))) {
           list.push(res);
         }
       }
