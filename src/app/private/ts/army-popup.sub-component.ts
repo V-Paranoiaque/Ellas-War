@@ -98,14 +98,14 @@ export class ArmyPopup {
   
   hasHosting() {
     if((this.info.placen && 
-       (this.user.getPropertyNb('placen')-this.user.getPropertyNb('placenactu')-(this.engageNb * this.info.placen) < 0) ||
-        this.user.getPropertyNb('placen') == this.user.getPropertyNb('placenactu')) ||
+       ((this.user.getPropertyNb('placen')-this.user.getPropertyNb('placenactu')-(this.engageNb * this.info.placen) < 0) ||
+         this.user.getPropertyNb('placen') == this.user.getPropertyNb('placenactu'))) ||
        (this.info.placep && 
-       (this.user.getPropertyNb('placep')-this.user.getPropertyNb('placepactu')-(this.engageNb * this.info.placep) < 0) ||
-        this.user.getPropertyNb('placep') == this.user.getPropertyNb('placepactu')) ||
+       ((this.user.getPropertyNb('placep')-this.user.getPropertyNb('placepactu')-(this.engageNb * this.info.placep) < 0) ||
+        this.user.getPropertyNb('placep') == this.user.getPropertyNb('placepactu'))) ||
        (this.info.placec && 
-       (this.user.getPropertyNb('placec')-this.user.getPropertyNb('placecactu')-(this.engageNb * this.info.placec) < 0) ||
-        this.user.getPropertyNb('placec') == this.user.getPropertyNb('placecactu'))) {
+       ((this.user.getPropertyNb('placec')-this.user.getPropertyNb('placecactu')-(this.engageNb * this.info.placec) < 0) ||
+        this.user.getPropertyNb('placec') == this.user.getPropertyNb('placecactu')))) {
       return false;
     }
     else {
