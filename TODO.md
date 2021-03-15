@@ -20,5 +20,4 @@
 
 # Mythology
 * Altars
-* New power for Hermes
 * Switch temples
