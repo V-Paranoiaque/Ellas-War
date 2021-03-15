@@ -51,25 +51,31 @@ export class Support {
       this.loadSupport();
     }, 0);
     
-    this.socket.socket.on('contactList', (data:any) => {
+    this.socket.on('contactList', (data:any) => {
       this.contactList = data.list;
       this.contactNb   = data.max;
       this.contactC    = data.cPage;
     });
     
-    this.socket.socket.on('contactListRefresh', () => {
-       this.socket.emit('contactList');
-    });
-    
-    this.socket.socket.on('contactNew', (data:number) => {
-      this.router.navigate(['/support', data])
-    });
-    this.socket.socket.on('contactInfo', (data:any) => {
-      this.contactInfo = data;
-    });
-    this.socket.socket.on('contactListRefresh', () => {
+    this.socket.on('contactListRefresh', () => {
+      this.socket.emit('contactList');
       this.loadSupport();
     });
+    
+    this.socket.on('contactNew', (data:number) => {
+      this.router.navigate(['/support', data])
+    });
+    
+    this.socket.on('contactInfo', (data:any) => {
+      this.contactInfo = data;
+    });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('contactList');
+    this.socket.removeListener('contactListRefresh');
+    this.socket.removeListener('contactNew');
+    this.socket.removeListener('contactInfo');
   }
   
   contactAnswer() {

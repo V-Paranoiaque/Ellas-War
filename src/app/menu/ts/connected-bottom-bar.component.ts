@@ -47,17 +47,17 @@ export class ConnectedBottomBar extends CommonBottomBar {
     });
     
     /*** General Chat ***/
-    this.socket.socket.on('chatUserPlayers', (players:any) => {
+    this.socket.on('chatUserPlayers', (players:any) => {
       this.chat_user_players = players;
     });
-    this.socket.socket.on('chatUserPlayersRefresh', () => {
+    this.socket.on('chatUserPlayersRefresh', () => {
       this.socket.emit("chatUserPlayers");
     });
-    this.socket.socket.on('chatUserMsgs', (msgs:any) => {
+    this.socket.on('chatUserMsgs', (msgs:any) => {
       this.chat_user_msgs = msgs;
     });
     
-    this.socket.socket.on('chatUserMsg', (msg:string) => {
+    this.socket.on('chatUserMsg', (msg:string) => {
       this.chat_user_msgs.push(msg[0]);
       if(this.chatActive != 'general') {
         this.chat_user_nb++;
@@ -65,21 +65,33 @@ export class ConnectedBottomBar extends CommonBottomBar {
     });
     
     /*** Alliance chat ***/
-    this.socket.socket.on('chatAlliPlayers', (players:any) => {
+    this.socket.on('chatAlliPlayers', (players:any) => {
       this.chat_alli_players = players;
     });
-    this.socket.socket.on('chatAlliPlayersRefresh', () => {
+    this.socket.on('chatAlliPlayersRefresh', () => {
       this.socket.emit("chatAlliPlayers");
     });
-    this.socket.socket.on('chatAlliMsgs', (msgs:any) => {
+    this.socket.on('chatAlliMsgs', (msgs:any) => {
       this.chat_alli_msgs = msgs;
     });
-    this.socket.socket.on('chatAlliMsg', (msg:string) => {
+    this.socket.on('chatAlliMsg', (msg:string) => {
       this.chat_alli_msgs.push(msg[0]);
       if(this.chatActive != 'alliance') {
         this.chat_alli_nb++;
       }
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('chatUserPlayers');
+    this.socket.removeListener('chatUserPlayersRefresh');
+    this.socket.removeListener('chatUserMsgs');
+    this.socket.removeListener('chatUserMsg');
+    
+    this.socket.removeListener('chatAlliPlayers');
+    this.socket.removeListener('chatAlliPlayersRefresh');
+    this.socket.removeListener('chatAlliMsgs');
+    this.socket.removeListener('chatAlliMsg');
   }
   
   chatUserSend() {

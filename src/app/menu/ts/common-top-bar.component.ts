@@ -24,19 +24,24 @@ export class CommonTopBar implements OnInit {
     if(localToken) {
       this.socket.emit('ewAuth', {'token': localToken});
     }
-    this.socket.socket.on('user', (data: any) => {
+    this.socket.on('user', (data: any) => {
       if(data) {
         this.user.setUser(data)
       }
     });
-    this.socket.socket.on('ress', (data: any) => {
+    this.socket.on('ress', (data: any) => {
       if(data) {
         this.user.setUserRess(data)
       }
     });
-    this.socket.socket.on('redirect', function() {
+    this.socket.on('redirect', function() {
       document.location.href="/";
     });
   }
   
+  ngOnDestroy() {
+    this.socket.removeListener('user');
+    this.socket.removeListener('ress');
+    this.socket.removeListener('redirect');
+  }
 }

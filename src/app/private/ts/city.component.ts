@@ -44,7 +44,7 @@ export class City {
       'error': 0
     };
     
-    this.socket.socket.on('divineBonus', (data:any) => {
+    this.socket.on('divineBonus', (data:any) => {
       this.divineBonusNb = data.nb;
       if(this.divineBonusNb > 0) {
         this.divineBonus   = data.list;
@@ -54,10 +54,10 @@ export class City {
       }
     });
     
-    this.socket.socket.on('dailyCo', (result:any) => {
+    this.socket.on('dailyCo', (result:any) => {
       this.dailyCo = result;
     });
-    this.socket.socket.on("dailyCoCheck", (r:number) => {
+    this.socket.on("dailyCoCheck", (r:number) => {
       if(r == 1) {
         this.socket.emit('dailyCo');
       }
@@ -69,6 +69,12 @@ export class City {
       this.socket.emit('divineBonus');
       this.socket.emit('dailyCoCheck');
     }, 0);
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('divineBonus');
+    this.socket.removeListener('dailyCo');
+    this.socket.removeListener('dailyCoCheck');
   }
   
   divineBonusReset() {

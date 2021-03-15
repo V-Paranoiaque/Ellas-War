@@ -83,7 +83,7 @@ export class Attacks {
   
   ngOnInit(){
     setTimeout(() => {
-      this.socket.socket.emit("attackList", {
+      this.socket.emit("attackList", {
         'page': this.attackPage,
         'order': this.attackOrderSort,
         'reverse': this.attackOrderReverse
@@ -91,12 +91,12 @@ export class Attacks {
     }, 0);
     
     
-    this.socket.socket.on('attack', (datas:any) => {
+    this.socket.on('attack', (datas:any) => {
       this.attackMode = 4;
       this.attackInfo = datas;
     });
     
-    this.socket.socket.on('attackList', (datas:any) => {
+    this.socket.on('attackList', (datas:any) => {
       this.attackListInfo = Object.assign([], datas);
       this.attackListInfo.list = [];
       for(let city in datas.list) {
@@ -104,29 +104,29 @@ export class Attacks {
       }
     });
     
-    this.socket.socket.on('profile',(data:any) => {
+    this.socket.on('profile',(data:any) => {
       this.targetProfile = data;
     });
-    this.socket.socket.on('attackPossible',(data:any) => {
+    this.socket.on('attackPossible',(data:any) => {
       this.attackPossible = data.result;
     });
-    this.socket.socket.on('furyPossible',(data:any) => {
+    this.socket.on('furyPossible',(data:any) => {
       this.furyPossible = data;
     });
-    this.socket.socket.on('lightningPossible',(data:any) => {
+    this.socket.on('lightningPossible',(data:any) => {
       this.lightningPossible = data;
     });
-    this.socket.socket.on('eye',(data:any) => {
+    this.socket.on('eye',(data:any) => {
       this.spyInfo = data;
     });
     
-    this.socket.socket.on('fury', (data:any) => {
+    this.socket.on('fury', (data:any) => {
       this.attackMode = 6;
       
       this.furyInfo = data;
     });
     
-    this.socket.socket.on('lightning', (data:any) => {
+    this.socket.on('lightning', (data:any) => {
       this.attackMode = 8;
       this.lightningInfo = {'lost_build':[]}
       for(let building in data.lost_build) {
@@ -137,13 +137,27 @@ export class Attacks {
       }
     });
     
-    this.socket.socket.on('spyInfo',(data:any) => {
+    this.socket.on('spyInfo',(data:any) => {
       this.spyInfo = data;
     });
     
-    this.socket.socket.on('waveAttackSum',(data:any) => {
+    this.socket.on('waveAttackSum',(data:any) => {
       this.waveAttackSum = data;
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('attack');
+    this.socket.removeListener('attackList');
+    this.socket.removeListener('profile');
+    this.socket.removeListener('attackPossible');
+    this.socket.removeListener('furyPossible');
+    this.socket.removeListener('lightningPossible');
+    this.socket.removeListener('eye');
+    this.socket.removeListener('fury');
+    this.socket.removeListener('lightning');
+    this.socket.removeListener('spyInfo');
+    this.socket.removeListener('waveAttackSum');
   }
   
   getAttackList() {

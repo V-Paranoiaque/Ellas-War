@@ -14,7 +14,7 @@ export class Login implements OnInit {
   constructor(private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});
     
-    this.socket.socket.on('connection', (data: string) => {
+    this.socket.on('connection', (data: string) => {
       if(data) {
         this.socket.emit('ewAuth', {'token': data});
         localStorage.setItem('token', data);
@@ -30,6 +30,10 @@ export class Login implements OnInit {
       username: '',
       password: ''
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('connection');
   }
   
   onSubmit(data:object) {

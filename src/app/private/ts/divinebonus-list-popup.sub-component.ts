@@ -15,7 +15,7 @@ export class DivineBonusListPopup {
   constructor(private socket: Socket) {
     this.divineBonus = [];
   
-    this.socket.socket.on('divineBonus', (data:any) => {
+    this.socket.on('divineBonus', (data:any) => {
       if(data.nb > 0) {
         this.divineBonusList   = data.list;
       }
@@ -23,6 +23,10 @@ export class DivineBonusListPopup {
         this.divineBonusList = [];
       }
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('divineBonus');
   }
   
   divineBonusUse(bonus_id:number) {

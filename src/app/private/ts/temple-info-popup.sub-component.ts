@@ -48,16 +48,22 @@ export class TempleInfoPopup {
       this.socket.emit('myAttacksList');
     }, 0);
     
-    this.socket.socket.on('wallDefense', (def:number) => {
+    this.socket.on('wallDefense', (def:number) => {
       this.wallDefense = def;
     });
-    this.socket.socket.on('myAttacksList', (result:any) => {
+    this.socket.on('myAttacksList', (result:any) => {
       this.preUseList = result;
     });
     
-    this.socket.socket.on('powersUse', (result:any) => {
+    this.socket.on('powersUse', (result:any) => {
       this.temple.error = result.error;
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('wallDefense');
+    this.socket.removeListener('myAttacksList');
+    this.socket.removeListener('powersUse');
   }
   
   furyBuy(nb:number) {

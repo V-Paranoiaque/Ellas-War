@@ -27,7 +27,7 @@ export class TreasurePopup {
     this.treasureHistory = [];
     this.treasureMode = 0;
     
-    this.socket.socket.on('treasureHistory', (datas:any) => {
+    this.socket.on('treasureHistory', (datas:any) => {
       this.treasureHistory = datas;
     });
     
@@ -37,6 +37,10 @@ export class TreasurePopup {
       
       this.socket.emit('treasureHistory');
     }, 0);
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('treasureHistory');
   }
   
   setTreasureMode(mode:number) {

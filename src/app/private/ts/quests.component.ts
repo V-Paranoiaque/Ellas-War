@@ -15,10 +15,10 @@ export class Quests {
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
     
-    this.socket.socket.on('myQuestList', (data:any) => {
+    this.socket.on('myQuestList', (data:any) => {
       this.myQuestList = data;
     });
-    this.socket.socket.on('myQuestListRefresh', () => {
+    this.socket.on('myQuestListRefresh', () => {
       this.socket.emit('myQuestList');
     });
   }
@@ -34,6 +34,11 @@ export class Quests {
       this.socket.emit("altarConditionHestia");
       this.socket.emit("altarConditionGaia");
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('myQuestList');
+    this.socket.removeListener('myQuestListRefresh');
   }
   
   getMyQuestList() {

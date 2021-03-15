@@ -34,13 +34,13 @@ export class Storeroom {
     this.storeroomRate = '';
     this.storeroomRess = 1;
     
-    this.socket.socket.on('storeroomList', (data:any) => {
+    this.socket.on('storeroomList', (data:any) => {
       this.storeroomList = data;
     });
-    this.socket.socket.on('storeroomListReload', () => {
+    this.socket.on('storeroomListReload', () => {
       this.socket.emit('storeroomList');
     });
-    this.socket.socket.on('storeroomStats', (data:any) => {
+    this.socket.on('storeroomStats', (data:any) => {
       this.storeroomStats = data;
     });
   }
@@ -52,6 +52,12 @@ export class Storeroom {
       this.socket.emit("storeroomStats");
       this.socket.emit("storeroomMin", this.storeroomRess);
     }, 0);
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('storeroomList');
+    this.socket.removeListener('storeroomListReload');
+    this.socket.removeListener('storeroomStats');
   }
   
   getStoreroomList() {

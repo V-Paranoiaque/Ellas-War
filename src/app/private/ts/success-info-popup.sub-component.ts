@@ -27,19 +27,25 @@ export class SuccessInfoPopup {
       this.socket.emit('statsPlayer');
     }, 0);
     
-    this.socket.socket.on('statsPlayer', (stats:any) => {
+    this.socket.on('statsPlayer', (stats:any) => {
       this.statsPlayer = stats;
     });
     
-    this.socket.socket.on("hfNext", (list:any) => {
+    this.socket.on("hfNext", (list:any) => {
       this.hfNext = list;
       socket.emit('hfDisplay');
     });
     
-    this.socket.socket.on("hfDisplay", (data:any) =>{
+    this.socket.on("hfDisplay", (data:any) =>{
       this.hfDisplay = data;
       this.calculate();
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('statsPlayer');
+    this.socket.removeListener('hfNext');
+    this.socket.removeListener('hfDisplay');
   }
   
   calculate() {

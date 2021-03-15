@@ -14,4 +14,12 @@ export class Socket {
   emit(socketName: string, data:any=[]) {
     this.socket.emit(socketName, data);
   }
+  on(socketName: string, callback:any) {
+    this.socket.on(socketName, (data:any) =>{
+      callback(data);
+    })
+  }
+  removeListener(socketName: string) {
+    this.socket.removeListener(socketName);
+  }
 }

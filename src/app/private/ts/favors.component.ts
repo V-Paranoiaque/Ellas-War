@@ -17,9 +17,13 @@ export class Favors {
       'error': 0
     }
     
-    this.socket.socket.on('favorUse', (id:number) => {
+    this.socket.on('favorUse', (id:number) => {
       this.favor.error = id;
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('favorUse');
   }
   
   selectFavor(id:number) {

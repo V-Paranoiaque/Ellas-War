@@ -27,27 +27,35 @@ export class ConstructionPopup {
     this.errorBuilding = 0;
     this.rBuildPossible = 0;
     
-    this.socket.socket.on('buildPossible', (nb:number) => {
+    this.socket.on('buildPossible', (nb:number) => {
       this.rBuildPossible = nb;
     });
-    this.socket.socket.on('build', (nb:number) => {
+    this.socket.on('build', (nb:number) => {
       this.rBuildNb = nb;
       this.rDestructNb = '';
       
       this.socket.emit('buildPossible', this.info.code);
     });
-    this.socket.socket.on('destruct', (nb:number) => {
+    this.socket.on('destruct', (nb:number) => {
       this.rBuildNb = '';
       this.rDestructNb = nb;
     
       this.socket.emit('buildPossible', this.info.code);
     });
-    this.socket.socket.on('engage', () => {
+    this.socket.on('engage', () => {
       this.socket.emit('buildPossible', this.info.code);
     });
-    this.socket.socket.on('liberate', () => {
+    this.socket.on('liberate', () => {
       this.socket.emit('buildPossible', this.info.code);
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('buildPossible');
+    this.socket.removeListener('build');
+    this.socket.removeListener('destruct');
+    this.socket.removeListener('engage');
+    this.socket.removeListener('liberate');
   }
   
   buildingBuild() {

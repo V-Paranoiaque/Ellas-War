@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     registerLocaleData(localeFr, 'fr');
     this.socket.emit('loadConfig');
     
-    this.socket.socket.on('ewAuth', (data: any) => {
+    this.socket.on('ewAuth', (data: any) => {
       if(data) {
         this.user.setUser(data);
         
@@ -47,16 +47,22 @@ export class AppComponent implements OnInit {
       }
     });
     
-    this.socket.socket.on('user', () => {
+    this.socket.on('user', () => {
       let newStyle = this.setStyle();
       if(this.cssUrl != newStyle) {
         this.cssUrl = this.setStyle();
       }
     });
     
-    this.socket.socket.on('config', (data:any) => {
+    this.socket.on('config', (data:any) => {
       this.user.setConfig(data);
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('ewAuth');
+    this.socket.removeListener('user');
+    this.socket.removeListener('config');
   }
   
   setStyle() {

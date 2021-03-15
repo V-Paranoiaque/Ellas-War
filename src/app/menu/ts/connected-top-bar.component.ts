@@ -31,7 +31,7 @@ export class ConnectedTopBar extends CommonTopBar {
     audio.src = "../../assets/audio/2042.mp3";
     audio.load();
     
-    this.socket.socket.on('msgNewNb', (nb:number) => {
+    this.socket.on('msgNewNb', (nb:number) => {
       this.user.setNewMsg(nb)
       
       if(user.getPropertyNb('sound') == 1) {
@@ -48,6 +48,10 @@ export class ConnectedTopBar extends CommonTopBar {
     setTimeout(() => {
       this.socket.emit('msgNewNb');
     }, 0);
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('msgNewNb');
   }
   
   disconnect() {

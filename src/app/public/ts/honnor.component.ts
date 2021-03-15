@@ -34,9 +34,13 @@ export class Honnor {
       this.load(id);
     }, 0);
     
-    this.socket.socket.on('rankingHonnorRefresh', () => {
+    this.socket.on('rankingHonnorRefresh', () => {
       this.load(this.id);
     });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('rankingHonnorRefresh');
   }
   
   load(level:any) {

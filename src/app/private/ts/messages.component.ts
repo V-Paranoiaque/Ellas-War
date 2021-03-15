@@ -68,7 +68,7 @@ export class Messages {
     this.deleteMode = 0;
     this.destList = [];
     
-    this.socket.socket.on('msgPage', (newMsgList:any) => {
+    this.socket.on('msgPage', (newMsgList:any) => {
       for(let i in newMsgList.list) {
         newMsgList.list[i].isChecked = true;
       }
@@ -83,7 +83,7 @@ export class Messages {
       }
     });
     
-    this.socket.socket.on('msgInfo', (msgInfo:any) => {
+    this.socket.on('msgInfo', (msgInfo:any) => {
       this.currentMsg = msgInfo;
       //TODO: remove that and change on the server side
       if(this.currentMsg.msg) {
@@ -91,7 +91,7 @@ export class Messages {
       }
     });
     
-    this.socket.socket.on('msgRefresh', () => {
+    this.socket.on('msgRefresh', () => {
       this.setPage(this.currentPage);
       this.messageLoad({'id': this.currentMsg});
     });
@@ -101,6 +101,12 @@ export class Messages {
     setTimeout(() => {
       this.setPage(this.currentPage);
     }, 0);
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('msgPage');
+    this.socket.removeListener('msgInfo');
+    this.socket.removeListener('msgRefresh');
   }
   
   addDest(username:string, callback:any=null) {

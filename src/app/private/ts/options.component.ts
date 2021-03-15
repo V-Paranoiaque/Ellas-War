@@ -46,25 +46,25 @@ export class Options {
     
     this.currentStyle = this.user.getProperty('style');
     
-    this.socket.socket.on('accountInfo', (info:any) => {
+    this.socket.on('accountInfo', (info:any) => {
       this.location = info.location;
       this.description = info.description;
     });
-    this.socket.socket.on('accountRenameCost', (result:number) => {
+    this.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
     });
     
-    this.socket.socket.on("accountRename", (result:any) => {
+    this.socket.on("accountRename", (result:any) => {
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
-    this.socket.socket.on("pauseAllowed", (result:any) => {
+    this.socket.on("pauseAllowed", (result:any) => {
       this.pauseAllowed = result;
     });
-    this.socket.socket.on('reset', () => {
+    this.socket.on('reset', () => {
       document.location.href="/";
     });
-    this.socket.socket.on('soundModify', (sound:number) => {
+    this.socket.on('soundModify', (sound:number) => {
       this.sound = sound;
     });
   }
@@ -77,6 +77,15 @@ export class Options {
     }, 0);
   }
   
+  ngOnDestroy() {
+    this.socket.removeListener('accountInfo');
+    this.socket.removeListener('accountRenameCost');
+    this.socket.removeListener('accountRename');
+    this.socket.removeListener('pauseAllowed');
+    this.socket.removeListener('reset');
+    this.socket.removeListener('soundModify');
+  }
+  
   getAccountRenameCost() {
     return this.accountRenameCost;
   }
@@ -87,7 +96,7 @@ export class Options {
   accountEmail() {
     this.emailError = 0;
     if(this.newEmail) {
-      this.socket.socket.emit('accountEmail', this.newEmail);
+      this.socket.emit('accountEmail', this.newEmail);
     }
     else {
       this.emailError = 1;
