@@ -12,9 +12,6 @@
 * Statistics attack available (+? attack/defense)
 * Strategies
 
-# General
-* Since your last connection popup
-
 # Options
 * Account image
 

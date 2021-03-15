@@ -16,6 +16,7 @@ export class City {
   @Output() public armyInfo:any
             public buildingInfo:any
             public dailyCo:any
+            public dailyCoCheck:number;
             public divinBonusSelected:any
             public divinBonusListSelected:any;
             public success:any;
@@ -33,6 +34,7 @@ export class City {
     this.buildingInfo = { code: 'mint' };
     this.armyInfo = { code: 'spartan' };
     this.dailyCo = {}
+    this.dailyCoCheck = 1;
     this.divineBonusNb = 0;
     this.divineBonus = [];
     this.divinBonusSelected = {'error': 0 };
@@ -58,8 +60,11 @@ export class City {
       this.dailyCo = result;
     });
     this.socket.on("dailyCoCheck", (r:number) => {
+      this.dailyCoCheck = r;
       if(r == 1) {
         this.socket.emit('dailyCo');
+        let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
+        element.click();
       }
     });
   }
