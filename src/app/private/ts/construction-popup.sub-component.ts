@@ -21,6 +21,8 @@ export class ConstructionPopup {
   public rBuildPossible:number;
   public errorBuilding:number;
   
+  Number =  Number;
+  
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.buildNb = '';
     this.destructNb = '';
