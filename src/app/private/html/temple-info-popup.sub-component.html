@@ -51,7 +51,7 @@
       <div>
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of furyCost | keyvalue">
-          {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
+          {{ Number(resource.value) | number:'': this.translate.currentLang }}	
           <id-to-ress [ress_id]="resource.key"></id-to-ress>
         </span>
       </div>
@@ -386,7 +386,7 @@
       <div>
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of lightningCost | keyvalue">
-          {{ resource.value ? resource.value : 0 | number:'': this.translate.currentLang }}
+          {{ Number(resource.value) | number:'': this.translate.currentLang }}	
           <id-to-ress [ress_id]="resource.key"></id-to-ress>
         </span>
       </div>

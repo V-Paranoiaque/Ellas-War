@@ -24,6 +24,8 @@ export class ArmyPopup {
   public errorBuilding:number;
   public error:number;
   
+  Number =  Number;
+  
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.engageNb = '';
     this.liberatenb = '';

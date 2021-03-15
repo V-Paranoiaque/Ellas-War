@@ -24,6 +24,8 @@ export class TempleInfoPopup {
   public lightningCost:any;
   public lightningNb:any;
   
+  Number = Number;
+  
   constructor(private http: HttpClient, private socket: Socket, public user: User, public translate: TranslateService) {
     this.wallDefense = 0;
     this.idToUser = '';
