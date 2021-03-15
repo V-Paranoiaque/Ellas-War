@@ -19,11 +19,6 @@ export class CommonTopBar implements OnInit {
   }
   
   ngOnInit() {
-    let localToken = localStorage.getItem('token');
-    
-    if(localToken) {
-      this.socket.emit('ewAuth', {'token': localToken});
-    }
     this.socket.on('user', (data: any) => {
       if(data) {
         this.user.setUser(data)

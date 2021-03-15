@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
     registerLocaleData(localeFr, 'fr');
     this.socket.emit('loadConfig');
     
+    let localToken = localStorage.getItem('token');
+    if(localToken) {
+      this.socket.emit('ewAuth', {'token': localToken});
+    }
+    
     this.socket.on('ewAuth', (data: any) => {
       if(data) {
         this.user.setUser(data);
