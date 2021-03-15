@@ -17,7 +17,7 @@ import localeFr from '@angular/common/locales/fr';
 export class AppComponent implements OnInit {
   title = 'Ellas War';
   
-  public cssUrl: string;
+  public cssUrl: any;
   private cssBase: string;
   
   constructor(private socket: Socket, public user: User,
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
     
     this.cssBase = '/assets/styles/';
-    this.cssUrl = this.setStyle();
+    this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
   }
   
   ngOnInit() {
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
         
         let newStyle = this.setStyle();
         if(this.cssUrl != newStyle) {
-          this.cssUrl = this.setStyle();
+          this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
         }
       }
     });
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
     this.socket.on('user', () => {
       let newStyle = this.setStyle();
       if(this.cssUrl != newStyle) {
-        this.cssUrl = this.setStyle();
+        this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
       }
     });
     
