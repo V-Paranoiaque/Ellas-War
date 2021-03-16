@@ -15,6 +15,12 @@ a {
   padding-bottom: 40px;
 }
 
+.main-full.container .card {
+  margin-top: calc(var(--bs-gutter-x)/ 2);
+  margin-bottom: calc(var(--bs-gutter-x)/ 2);
+}
+
+
 /*** Cards **/
 .card-header, .card-button, .card-footer {
   text-align: center;
