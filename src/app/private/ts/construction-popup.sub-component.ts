@@ -14,33 +14,21 @@ import { environment } from './../../../environments/environment';
 export class ConstructionPopup {
   @Input() info: any;
   
-  public buildNb:any;
-  public destructNb:any;
-  public rBuildNb:any;
-  public rDestructNb:any;
-  public rBuildPossible:number;
-  public errorBuilding:number;
-  
   Number =  Number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.buildNb = '';
-    this.destructNb = '';
-    this.errorBuilding = 0;
-    this.rBuildPossible = 0;
-    
     this.socket.on('buildPossible', (nb:number) => {
-      this.rBuildPossible = nb;
+      this.info.rBuildPossible = nb;
     });
     this.socket.on('build', (nb:number) => {
-      this.rBuildNb = nb;
-      this.rDestructNb = '';
+      this.info.rBuildNb = nb;
+      this.info.rDestructNb = '';
       
       this.socket.emit('buildPossible', this.info.code);
     });
     this.socket.on('destruct', (nb:number) => {
-      this.rBuildNb = '';
-      this.rDestructNb = nb;
+      this.info.rBuildNb = '';
+      this.info.rDestructNb = nb;
     
       this.socket.emit('buildPossible', this.info.code);
     });
@@ -62,16 +50,16 @@ export class ConstructionPopup {
   
   buildingBuild() {
     let building = this.info.code;
-    let nb = this.buildNb;
+    let nb = this.info.buildNb;
     
-    this.rBuildNb = '';
-    this.rDestructNb = '';
+    this.info.rBuildNb = '';
+    this.info.rDestructNb = '';
     
     if(!nb) {
-      this.errorBuilding = 1;
+      this.info.errorBuilding = 1;
     }
     else {
-      this.errorBuilding = 0;
+      this.info.errorBuilding = 0;
     }
     
     if(nb > 0) {
@@ -86,16 +74,16 @@ export class ConstructionPopup {
   
   buildingDestruct() {
     let building = this.info.code;
-    let nb = this.destructNb;
+    let nb = this.info.destructNb;
     
-    this.rBuildNb = '';
-    this.rDestructNb = '';
+    this.info.rBuildNb = '';
+    this.info.rDestructNb = '';
     
     if(!nb) {
-      this.errorBuilding = 1;
+      this.info.errorBuilding = 1;
     }
     else {
-      this.errorBuilding = 0;
+      this.info.errorBuilding = 0;
     }
     
     if(nb > 0) {
@@ -136,7 +124,7 @@ export class ConstructionPopup {
         let res = environment.resources[id];
         if(this.info.cost[res] && 
            (this.info.cost[res] > this.user.getPropertyNb(res) || 
-            this.info.cost[res]*this.buildNb > this.user.getPropertyNb(res))) {
+            this.info.cost[res]*this.info.buildNb > this.user.getPropertyNb(res))) {
           list.push(res);
         }
       }
@@ -145,11 +133,11 @@ export class ConstructionPopup {
   }
   
   setBuild(nb:number) {
-    this.buildNb = nb;
+    this.info.buildNb = nb;
   }
   
   setDestruct() {
-    this.destructNb = this.user.getPropertyNb(this.info.code);
+    this.info.destructNb = this.user.getPropertyNb(this.info.code);
   }
   
   updateCamp(){

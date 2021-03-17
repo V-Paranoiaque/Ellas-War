@@ -20,34 +20,34 @@
           </span>
         </div>
         <span *ngIf="(info.placen && 
-                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(destructNb * info.placen) < 0)) ||
+                       (user.getPropertyNb('placen')-user.getPropertyNb('placenactu')-(info.destructNb * info.placen) < 0)) ||
                        (info.placep && 
-                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(destructNb * info.placep) < 0)) ||
+                       (user.getPropertyNb('placep')-user.getPropertyNb('placepactu')-(info.destructNb * info.placep) < 0)) ||
                        (info.placec && 
-                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(destructNb * info.placec) < 0))"
+                       (user.getPropertyNb('placec')-user.getPropertyNb('placecactu')-(info.destructNb * info.placec) < 0))"
               class="bold red" translate>
           You can not destroy a home who is used
         </span>
         
-        <div *ngIf="info.nbmax && buildNb > 0 && (buildNb+user.getPropertyNb(info.code)) > info.nbmax">
+        <div *ngIf="info.nbmax && info.buildNb > 0 && (info.buildNb+user.getPropertyNb(info.code)) > info.nbmax">
           {{'You can\'t have more than { value } buildings of this type'| translate: { value: info.nbmax } }}
         </div>
-        <div *ngIf="rBuildNb == -1 && !(info.nbmax && buildNb > 0 && (buildNb+user.getPropertyNb(info.code)) > info.nbmax)">
+        <div *ngIf="info.rBuildNb == -1 && !(info.nbmax && info.buildNb > 0 && (info.buildNb+user.getPropertyNb(info.code)) > info.nbmax)">
           {{'Your production field can\'t be over { value }'| translate: { value: user.getDatas().maxField } }}
         </div>
-        <div *ngIf="rBuildNb == 1" translate>
+        <div *ngIf="info.rBuildNb == 1" translate>
           Building built
         </div>
-        <div *ngIf="rBuildNb > 1" translate>
+        <div *ngIf="info.rBuildNb > 1" translate>
           Buildings built
         </div>
-        <div *ngIf="rDestructNb == 1" translate>
+        <div *ngIf="info.rDestructNb == 1" translate>
           Building destructed
         </div>
-        <div *ngIf="rDestructNb > 1" translate>
+        <div *ngIf="info.rDestructNb > 1" translate>
           Buildings destructed
         </div>
-        <div *ngIf="errorBuilding == 1" translate>
+        <div *ngIf="info.errorBuilding == 1" translate>
           You need to enter the number of buildings you would like to construct or destruct
         </div>
       </div>
@@ -130,10 +130,10 @@
           {{ user.getPropertyNb('camp_level') }}
         </div>
         
-        <div *ngIf="rBuildPossible > 0" role="button" 
-             (click)="setBuild(rBuildPossible)">
+        <div *ngIf="info.rBuildPossible > 0" role="button" 
+             (click)="setBuild(info.rBuildPossible)">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
-          {{ rBuildPossible | number:'': this.translate.currentLang }}
+          {{ info.rBuildPossible | number:'': this.translate.currentLang }}
         </div>
         
         <div>
@@ -145,7 +145,7 @@
         <div class="input-group"
              *ngIf="(info.nbmax == 0 || user.getPropertyNb(info.code) < info.nbmax) && user.getPropertyNb('volcano') == 0">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="buildNb" class="form-control"
+                 [(ngModel)]="info.buildNb" class="form-control"
                  (keydown.enter)="buildingBuild()">
           <span class="input-group-addon btn btn-primary"
                 (click)="buildingBuild()" translate>Build</span>
@@ -154,7 +154,7 @@
         <div class="input-group"
              [hidden]="user.getPropertyNb(info.code) == 0 || (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="destructNb" class="form-control"
+                 [(ngModel)]="info.destructNb" class="form-control"
                  (keydown.enter)="buildingDestruct()">
           <span class="input-group-addon btn btn-danger"
                 (click)="buildingDestruct()" translate>Destruct</span>

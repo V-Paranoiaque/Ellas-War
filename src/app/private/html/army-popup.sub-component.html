@@ -13,11 +13,11 @@
       </div>
       
       <div class="col-12 text-center fw-bold text-danger">
-        <div *ngIf="rEngageNb == 1" translate>Unit engaged</div>
-        <div *ngIf="rEngageNb > 1" translate>Units engaged</div>
-        <div *ngIf="rLiberateNb == 1" translate>Unit liberated</div>
-        <div *ngIf="rLiberateNb > 1" translate>Units liberated</div>
-        <div *ngIf="engageNb > rEngagePossible" translate>
+        <div *ngIf="info.rEngageNb == 1" translate>Unit engaged</div>
+        <div *ngIf="info.rEngageNb > 1" translate>Units engaged</div>
+        <div *ngIf="info.rLiberateNb == 1" translate>Unit liberated</div>
+        <div *ngIf="info.rLiberateNb > 1" translate>Units liberated</div>
+        <div *ngIf="info.engageNb > info.rEngagePossible" translate>
           You can't engage as much of this unit
         </div>
         <div *ngIf="info.temple && info.temple.artemis && user.getPropertyNb('artemis') == 0"
@@ -58,7 +58,7 @@
           You must have the power of the Divine units level {{ info.power_level }} to engage this unit.
         </div>
         
-        <div *ngIf="error == 1" translate>
+        <div *ngIf="info.error == 1" translate>
           You need to enter the number of units you would like to engage or liberate
         </div>
         <div *ngIf="info.camp_level && info.camp_level > user.getPropertyNb('camp_level') " translate>
@@ -114,7 +114,7 @@
           </span>
         </div>
         
-        <div *ngIf="info.consumption && info.consumption.length > 0">
+        <div *ngIf="info.consumption && Object.keys(info.consumption).length > 0">
           <strong translate>Consumption</strong>
           <strong translate>:</strong>
           <br/>
@@ -138,15 +138,15 @@
           </span>
         </div>
         
-        <div *ngIf="rEngagePossible > 0" role="button" (click)="setEngage(rEngagePossible)">
+        <div *ngIf="info.rEngagePossible > 0" role="button" (click)="setEngage(info.rEngagePossible)">
           <strong>{{"Max possible"|translate}}{{":"|translate}}</strong>
-          {{ rEngagePossible | number:'': this.translate.currentLang }}
+          {{ info.rEngagePossible | number:'': this.translate.currentLang }}
         </div>
         
         <div class="input-group"
              *ngIf="user.getLevel() >= info.lvlmini && user.getPropertyNb('lord_lightning') == 0">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="engageNb" class="form-control"
+                 [(ngModel)]="info.engageNb" class="form-control"
                  (keydown.enter)="armyEngage()">
           <span class="input-group-addon btn btn-primary"
                 (click)="armyEngage()" translate>Engage</span>
@@ -157,7 +157,7 @@
                     user.getPropertyNb('quest') == 9 || 
                     (user.getPropertyNb('level') > 0 && user.getPropertyNb(info.code) > 0)">
           <input type="number" placeholder="0" min="0" step="1"
-                 [(ngModel)]="liberatenb" class="form-control"
+                 [(ngModel)]="info.liberatenb" class="form-control"
                  (keydown.enter)="armyLiberate()">
           <span class="input-group-addon btn btn-danger"
                 (click)="armyLiberate()" translate>Liberate</span>

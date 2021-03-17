@@ -1,25 +1,27 @@
 <div class="modal-content">
-  <div class="modal-header" *ngIf="treasureMode == 0">
+  <div class="modal-header" *ngIf="info.treasureMode == 0">
     <h5 class="modal-title" id="treasureDesc" translate>Treasure</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
     <br/>
   </div>
-  <div class="modal-header" *ngIf="treasureMode == 1">
+  <div class="modal-header" *ngIf="info.treasureMode == 1">
     <h5 class="modal-title" id="treasureHistoryDesc" translate>Treasure history</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
     <br/>
   </div>
   
-  <div class="modal-body container-fluid" *ngIf="treasureMode == 0">
+  <div class="modal-body container-fluid" *ngIf="info.treasureMode == 0">
     <table class="table" aria-describedby="treasureDesc">
       <thead>
         <td class="text-center" colspan="3">
           <strong translate>Current funds:</strong>
           <span *ngIf="user.getLevel() > 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}</span>
-          <span *ngIf="user.getLevel() == 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ 2000000 | number:'': this.translate.currentLang }}</span>
-          <span *ngIf="user.getLevel() < 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ (user.getLevel()+1)*200000 | number:'': this.translate.currentLang }}</span>
+          <span (click)="setTreasure(2000000-user.getPropertyNb('treasure'))" role="button"
+                *ngIf="user.getLevel() == 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ 2000000 | number:'': this.translate.currentLang }}</span>
+          <span (click)="setTreasure((user.getLevel()+1)*200000-user.getPropertyNb('treasure'))" role="button"
+                *ngIf="user.getLevel() < 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ (user.getLevel()+1)*200000 | number:'': this.translate.currentLang }}</span>
           <id-to-ress [ress_id]="'drachma'"></id-to-ress>
         </td>
       </thead>
@@ -29,7 +31,7 @@
           <td colspan="2">
             <input type="number" required="required" min="0"
                    class="form-control" placeholder="0" name="amount"
-                   [(ngModel)]="amount" (keydown.enter)="treasureAction()">
+                   [(ngModel)]="info.amount" (keydown.enter)="treasureAction()">
           </td>
         </tr>
         <tr>
@@ -92,7 +94,7 @@
     </div>
   </div>
   
-  <div class="modal-body container-fluid" *ngIf="treasureMode == 1">
+  <div class="modal-body container-fluid" *ngIf="info.treasureMode == 1">
     <table class="table" aria-describedby="treasureHistoryDesc">
       <thead>
         <tr>

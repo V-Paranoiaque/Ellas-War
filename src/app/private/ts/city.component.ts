@@ -21,6 +21,7 @@ export class City {
             public divinBonusListSelected:any;
             public success:any;
             public templeSelected:any;
+            public treasureInfo:any;
   
   public divineBonus:any;
   public divineBonusNb:number;
@@ -45,6 +46,7 @@ export class City {
       'power': 0,
       'error': 0
     };
+    this.selectTreasure();
     
     this.socket.on('divineBonus', (data:any) => {
       this.divineBonusNb = data.nb;
@@ -88,7 +90,13 @@ export class City {
   
   selectArmy(name:string) {
     this.armyInfo = this.user.info.datas.army[name];
-    this.armyInfo.resale = {};
+    this.buildingInfo.engageNb   = '';
+    this.buildingInfo.liberatenb = '';
+    this.buildingInfo.resale     = {};
+    this.buildingInfo.rEngageNb      = 0;
+    this.buildingInfo.rLiberateNb    = 0;
+    this.buildingInfo.rEngagePossible= 0;
+    this.buildingInfo.error          = 0; 
     
     this.socket.emit('engagePossible', name);
     
@@ -98,7 +106,13 @@ export class City {
   }
   selectBuilding(name:string) {
     this.buildingInfo = this.user.info.datas.building[name];
-    this.buildingInfo.destruct = {};
+    this.buildingInfo.buildNb    = '';
+    this.buildingInfo.destructNb = '';
+    this.buildingInfo.destruct   = {};
+    this.buildingInfo.rBuildNb       = 0;
+    this.buildingInfo.rDestructNb    = 0;
+    this.buildingInfo.rBuildPossible = 0;
+    this.buildingInfo.errorBuilding  = 0;
     
     this.socket.emit('buildPossible', name);
     
@@ -123,5 +137,11 @@ export class City {
       'power': 0,
       'error': 0
     };
+  }
+  selectTreasure() {
+    this.treasureInfo = {
+      'amount': '',
+      'treasureMode': 0
+    }
   }
 }

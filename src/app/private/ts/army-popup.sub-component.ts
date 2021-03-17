@@ -14,29 +14,12 @@ import { environment } from './../../../environments/environment';
 export class ArmyPopup {
   @Input() info: any;
   
-  public engageNb:any;
-  public liberatenb:any;
-  public rBuildNb:any;
-  public rDestructNb:any;
-  public rEngageNb:number;
-  public rEngagePossible:number;
-  public rLiberateNb:number;
-  public errorBuilding:number;
-  public error:number;
-  
-  Number =  Number;
+  Number = Number;
+  Object = Object;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.engageNb = '';
-    this.liberatenb = '';
-    this.rEngageNb = 0;
-    this.rEngagePossible = 0;
-    this.rLiberateNb = 0;
-    this.errorBuilding = 0;
-    this.error = 0;
-    
     this.socket.on('engagePossible', (nb:number) => {
-      this.rEngagePossible = nb;
+      this.info.rEngagePossible = nb;
     });
     this.socket.on('build', () => {
       this.socket.emit('engagePossible', this.info.code);
@@ -45,13 +28,13 @@ export class ArmyPopup {
       this.socket.emit('engagePossible', this.info.code);
     });
     this.socket.on('engage', (nb:number) => {
-      this.rEngageNb = nb;
-      this.rLiberateNb = 0;
+      this.info.rEngageNb = nb;
+      this.info.rLiberateNb = 0;
       this.socket.emit('engagePossible', this.info.code);
     });
     this.socket.on('liberate', (nb:number) => {
-      this.rEngageNb = 0;
-      this.rLiberateNb = nb;
+      this.info.rEngageNb = 0;
+      this.info.rLiberateNb = nb;
       this.socket.emit('engagePossible', this.info.code);
     });
   }
@@ -66,13 +49,13 @@ export class ArmyPopup {
   
   armyEngage() {
     let unit = this.info.code;
-    let nb = this.engageNb;
-    this.rEngageNb = 0;
-    this.rLiberateNb = 0;
-    this.error = 0;
+    let nb = this.info.engageNb;
+    this.info.rEngageNb = 0;
+    this.info.rLiberateNb = 0;
+    this.info.error = 0;
     
     if(nb == '' || nb == null) {
-      this.error = 1;
+      this.info.error = 1;
     }
     
     if(nb > 0) {
@@ -81,20 +64,20 @@ export class ArmyPopup {
         'nb': nb
       };
       
-      this.engageNb = '';
+      this.info.engageNb = '';
       this.socket.emit("engage", msg);
     }
   }
   
   armyLiberate() {
     let unit = this.info.code;
-    let nb = this.liberatenb;
-    this.rEngageNb = 0;
-    this.rLiberateNb = 0;
-    this.error = 0;
+    let nb = this.info.liberatenb;
+    this.info.rEngageNb = 0;
+    this.info.rLiberateNb = 0;
+    this.info.error = 0;
     
     if(nb == '' || nb == null) {
-      this.error = 1;
+      this.info.error = 1;
     }
     
     if(nb > 0) {
@@ -108,13 +91,13 @@ export class ArmyPopup {
   
   hasHosting() {
     if((this.info.placen && 
-       ((this.user.getPropertyNb('placen')-this.user.getPropertyNb('placenactu')-(this.engageNb * this.info.placen) < 0) ||
+       ((this.user.getPropertyNb('placen')-this.user.getPropertyNb('placenactu')-(this.info.engageNb * this.info.placen) < 0) ||
          this.user.getPropertyNb('placen') == this.user.getPropertyNb('placenactu'))) ||
        (this.info.placep && 
-       ((this.user.getPropertyNb('placep')-this.user.getPropertyNb('placepactu')-(this.engageNb * this.info.placep) < 0) ||
+       ((this.user.getPropertyNb('placep')-this.user.getPropertyNb('placepactu')-(this.info.engageNb * this.info.placep) < 0) ||
         this.user.getPropertyNb('placep') == this.user.getPropertyNb('placepactu'))) ||
        (this.info.placec && 
-       ((this.user.getPropertyNb('placec')-this.user.getPropertyNb('placecactu')-(this.engageNb * this.info.placec) < 0) ||
+       ((this.user.getPropertyNb('placec')-this.user.getPropertyNb('placecactu')-(this.info.engageNb * this.info.placec) < 0) ||
         this.user.getPropertyNb('placec') == this.user.getPropertyNb('placecactu')))) {
       return false;
     }
@@ -130,7 +113,7 @@ export class ArmyPopup {
         let res = environment.resources[id];
         if(this.info.cost[res] && 
            (this.info.cost[res] > this.user.getPropertyNb(res) || 
-            this.info.cost[res]*this.engageNb > this.user.getPropertyNb(res))) {
+            this.info.cost[res]*this.info.engageNb > this.user.getPropertyNb(res))) {
           list.push(res);
         }
       }
@@ -139,12 +122,12 @@ export class ArmyPopup {
   }
   
   setEngage(nb:number) {
-    this.engageNb = nb;
+    this.info.engageNb = nb;
   }
   
   setLiberate() {
-    this.rEngageNb = 0;
-    this.rLiberateNb = 0;
-    this.liberatenb = this.user.getPropertyNb(this.info.code);
+    this.info.rEngageNb = 0;
+    this.info.rLiberateNb = 0;
+    this.info.liberatenb = this.user.getPropertyNb(this.info.code);
   }
 }
