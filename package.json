@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~11.2.5",
     "@angular/platform-browser-dynamic": "~11.2.5",
     "@angular/router": "~11.2.5",
+    "@iconify-icons/akar-icons": "^1.1.4",
     "@iconify/icons-bi": "^1.1.2",
     "@iconify/icons-fa-regular": "^1.1.0",
     "@iconify/icons-fa-solid": "^1.1.0",
