@@ -3,7 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import bagIcon from '@iconify/icons-bi/bag';
+import bagIcon  from '@iconify/icons-bi/bag';
+import jarIcon  from '@iconify-icons/akar-icons/jar';
 import plusIcon from '@iconify/icons-bi/plus';
 
 @Component({
@@ -13,6 +14,7 @@ import plusIcon from '@iconify/icons-bi/plus';
 
 export class Storeroom {
   private storeroomList:any;
+  private storeroomMyList:any;
   private storeroomStats:any;
   
   public storeroom_ress:any;
@@ -22,10 +24,12 @@ export class Storeroom {
   public storeroomRess:number;
   
   bagIcon  = bagIcon;
+  jarIcon  = jarIcon;
   plusIcon = plusIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.storeroomList = [];
+    this.storeroomMyList = [];
     this.storeroomStats = [],
     
     this.storeroom_ress = [].constructor(10);
@@ -39,6 +43,16 @@ export class Storeroom {
     });
     this.socket.on('storeroomListReload', () => {
       this.socket.emit('storeroomList');
+    });
+    this.socket.on('storeroomMyList', (data:any) => {
+      this.storeroomMyList = data;
+    });
+    this.socket.on('storeroomMyListReload', () => {
+      this.socket.emit('storeroomMyList');
+      this.socket.emit("storeroomMin", 1);
+    });
+    this.socket.on('storeroomMin', (data:any) => {
+      this.storeroomMin = data;
     });
     this.socket.on('storeroomStats', (data:any) => {
       this.storeroomStats = data;
@@ -57,6 +71,9 @@ export class Storeroom {
   ngOnDestroy() {
     this.socket.removeListener('storeroomList');
     this.socket.removeListener('storeroomListReload');
+    this.socket.removeListener('storeroomMyList');
+    this.socket.removeListener('storeroomMyListReload');
+    this.socket.removeListener('storeroomMin');
     this.socket.removeListener('storeroomStats');
   }
   
@@ -67,6 +84,10 @@ export class Storeroom {
       list.push(this.storeroomList[i]);
     }
     return list;
+  }
+  
+  getStoreroomMyList() {
+    return this.storeroomMyList;
   }
   
   getStoreroomStats() {
@@ -84,6 +105,14 @@ export class Storeroom {
       'ress_id': resource_id
     }
     this.socket.emit('storeroomBuy', msg);
+  }
+  
+  storeroomRedeem(id:number, quantity:number) {
+    let msg = {
+      'ress_id' : id,
+      'quantity': quantity
+    };
+    this.socket.emit('storeroomRedeem', msg);
   }
   
   storeroomSell() {

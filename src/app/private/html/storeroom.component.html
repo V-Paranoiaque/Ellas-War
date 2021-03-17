@@ -10,7 +10,8 @@
           </div>
           <div class="card-body text-center">
             <span *ngIf="storeroomMin.rate > 0">
-              <span translate>Current rate:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
+              <span translate>Current rate</span>
+              <span translate>:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
               <id-to-ress [ress_id]="'drachma'"></id-to-ress>
               <span *ngIf="storeroomMin.you > 0">-</span>
             </span>
@@ -112,7 +113,7 @@
                              [(ngModel)]="storeroom_ress[trade.resource_id]" min="0"
                              max="trade.remaining" placeholder="0" step="1" 
                              ng-change="storeroomCheck(idToRess(trade.resource_id), trade.remaining, storeroom_ress[trade.resource_id], trade.rate)" 
-                             ng-hide="trade.remaining == 0" />
+                             [hidden]="trade.remaining == 0" />
                     </td>
                     <td class="center">
                       <button class="btn btn-success"
@@ -131,7 +132,79 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-6">
+      <div class="col-6">
+        <div class="card col-12">
+          <div class="card-header" id="MySalesDesc" translate>
+            Currently for sale
+          </div>
+          <div class="card-body">
+            <div class="fw-bold text-center">
+              <span class="bold" translate>Redemption rate:</span>
+              <span *ngIf="user.getPropertyNb('bonus_trade') == 0">
+                {{(80+user.getPropertyNb('hermes')*17.5)| number:'': this.translate.currentLang}}%
+              </span>
+              <span *ngIf="user.getPropertyNb('bonus_trade') > 0">
+                {{(80+user.getPropertyNb('hermes')*17.5)+((20-user.getPropertyNb('hermes')*17.5)/2)| number:'': this.translate.currentLang}}
+              </span>
+              <br/>
+              <span class="bold" translate>Return rate:</span>
+              <span *ngIf="user.getPropertyNb('bonus_trade') == 0">
+                {{(75+user.getPropertyNb('hermes')*17.5)| number:'': this.translate.currentLang}}%
+              </span>
+              <span *ngIf="user.getPropertyNb('bonus_trade') > 0">
+                {{(75+user.getPropertyNb('hermes')*17.5)+((25-user.getPropertyNb('hermes')*17.5)/2)| number:'': this.translate.currentLang}}
+              </span>
+            </div>
+            
+            <div class="text-center fw-bold"
+                 *ngIf="getStoreroomMyList().length == 0">
+              <br/>
+              <span translate>
+                You currently don't have any batch on sales
+              </span>
+            </div>
+            
+            <table class="table table-middle" aria-describedby="MySalesDesc"
+                   *ngIf="getStoreroomMyList().length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Resources</th>
+                  <th scope="col" translate>Rate</th>
+                  <th scope="col" translate>Price</th>
+                  <th scope="col" translate>Return</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let trade of getStoreroomMyList();let id=index;"
+                   [ngClass]="{'bg-red': trade.mrate < trade.rate && trade.mrate > 0,
+                               'grey': trade.mrate == trade.rate && trade.rate > 0,
+                               'bg-green': (trade.mrate > 0 && trade.mrate > trade.rate) || (trade.rate > 0 && trade.mrate == 0)}">
+                  <td>
+                    {{trade.remaining| number:'': this.translate.currentLang}}
+                    <id-to-ress [ress_id]=trade.resource_id></id-to-ress>
+                  </td>
+                  <td>{{trade.rate | number:'': this.translate.currentLang }}</td>
+                  <td>
+                    {{trade.rate*trade.remaining | number:'': this.translate.currentLang }}
+                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                  </td>
+                  <td class="center">{{trade.return_time*1000| date:'dd/MM, HH:mm'}}</td>
+                  <td class="center">
+                    <button class="btn btn-warning"
+                      (click)="storeroomRedeem(trade.storeroom_id, trade.remaining)"
+                      title="{{'Recover'|translate}}">
+                      <ic-icon [icon]="jarIcon"></ic-icon>
+                      <span class="visually-hidden" translate>Recover</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
         <div class="card col-12">
           <div class="card-header" id="titleLastWeek" translate>
             Last week
