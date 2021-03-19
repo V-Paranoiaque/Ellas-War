@@ -9,14 +9,24 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="row text-center">
+          <img src="{{ user.getConfig().url }}/pprofile/{{ imageProfile }}" *ngIf="imageProfile != ''"
+               class="img-responsive center-block" alt="Profile picture">
+        </div>
+        <div class="row text-center">
+          <span translate>Send a picture</span>
+          <input type="file" accept="image/*" (change)="uploadImage($event)"
+                 [(ngModel)]="image" />
+        </div>
+        
         <div *ngIf="errorAccountSave == 1"
              class="text-center fw-bold text-danger" translate>
           Information saved
         </div>
-        <label for="localisation" translate>Location</label>
+        <strong for="localisation" translate>Location</strong>
         <input type="text" class="form-control" placeholder="{{'Location'|translate}}"
                [(ngModel)]="location" />
-        <label for="description" translate>Description</label>
+        <strong for="description" translate>Description</strong>
         <textarea class="form-control" placeholder="{{'Your description'|translate}}"
                   [(ngModel)]="description" ></textarea>
         <br/>

@@ -12,9 +12,6 @@
 * Statistics attack available (+? attack/defense)
 * Strategies
 
-# Options
-* Account image
-
 # Mythology
 * Altars
 * Switch temples

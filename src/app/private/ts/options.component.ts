@@ -17,13 +17,15 @@ export class Options {
   
   public currentStyle:string;
   public description:string;
+  public image:any;
+  public imageProfile:any;
   public location:string;
   public newEmail: string;
   public newusername: string;
   public pauseAllowed: number;
   public pauseNb: number;
   public sound: number;
-  
+
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     if(user.getLevel() >= 1) {
       this.accountRenameCost = 1;
@@ -37,6 +39,7 @@ export class Options {
     this.emailError = 0;
     
     this.description = '';
+    this.imageProfile = '';
     this.location = '';
     this.newEmail = '';
     this.newusername = '';
@@ -46,9 +49,13 @@ export class Options {
     
     this.currentStyle = this.user.getProperty('style');
     
+    this.socket.on('accountImg', (name:any) => {
+      this.imageProfile = name;
+    });
     this.socket.on('accountInfo', (info:any) => {
-      this.location = info.location;
-      this.description = info.description;
+      this.imageProfile = info.membre_img;
+      this.location     = info.location;
+      this.description  = info.description;
     });
     this.socket.on('accountRenameCost', (result:number) => {
       this.accountRenameCost = result;
@@ -143,5 +150,22 @@ export class Options {
   styleChange(event:any) {
     let style = event.target.value;
     this.socket.emit('styleModify', style);
+  }
+  
+  uploadImage(event:any){
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      let name = event.target.files[0].name;
+      
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event:any) => {
+        let playerImage = {
+          'name': name,
+          'data': event.target.result
+        };
+        //this.socket.emit('accountImgUpload', playerImage)
+        this.image = '';
+      }
+    }
   }
 }
