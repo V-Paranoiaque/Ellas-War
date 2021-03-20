@@ -1,7 +1,7 @@
 <div class="text-center">
   <strong translate>Owner</strong>
   <strong translate>:</strong>
-  <a href="profile/{{diamondInfo.membre_id}}">
+  <a [routerLink]="['/profile/'+diamondInfo.membre_id]">
     {{diamondInfo.username}}
   </a>
   <br/>
@@ -83,7 +83,7 @@
             {{p.ranking}}
         </td>
         <td>
-          <a href="profile/{{p.membre_id}}">
+          <a [routerLink]="['/profile/'+p.membre_id]">
             {{p.username}}
           </a>
         </td>
@@ -130,7 +130,7 @@
             {{p.ranking}}
         </td>
         <td>
-          <a href="allianceprofile/{{p.alliance}}">
+          <a [routerLink]="['/allianceprofile/'+p.alliance]">
             {{p.alliance_name}}
           </a>
           <span *ngIf="p.alliance == 0" translate>None</span>
