@@ -1,0 +1,14 @@
+.frame-25 {
+  width:25%;
+  float:left;
+}
+.frame-25 img {
+  width:100%;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+.no-padding-right {
+  padding-right: 0;
+}

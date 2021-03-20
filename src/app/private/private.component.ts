@@ -33,6 +33,7 @@ import { Temple1Popup } from './ts/temple1-popup.sub-component';
 import { Temple2Popup } from './ts/temple2-popup.sub-component';
 import { Temple3Popup } from './ts/temple3-popup.sub-component';
 import { Temple4Popup } from './ts/temple4-popup.sub-component';
+import { TempleChangeInfoPopup } from './ts/temple-change-info-popup.sub-component';
 import { TempleInfoPopup } from './ts/temple-info-popup.sub-component';
 import { TreasurePopup } from './ts/treasure-popup.sub-component';
 
@@ -73,6 +74,7 @@ export const PrivateComponent = [
   Temple2Popup,
   Temple3Popup,
   Temple4Popup,
+  TempleChangeInfoPopup,
   TempleInfoPopup,
   TreasurePopup
 ];

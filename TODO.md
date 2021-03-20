@@ -14,4 +14,3 @@
 
 # Mythology
 * Altars
-* Switch temples

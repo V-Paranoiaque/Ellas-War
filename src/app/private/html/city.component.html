@@ -70,6 +70,11 @@
     <temple-info-popup [temple]="templeSelected"></temple-info-popup>
   </div>
 </div>
+<div class="modal fade" id="TempleChangeInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <temple-change-info-popup></temple-change-info-popup>
+  </div>
+</div>
 
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
@@ -308,6 +313,13 @@
               <img src="assets/img/temples/temple-no.png"
                    alt="{{'No temple' | translate}}" 
                    title="{{'Build a new temple' | translate}}" />
+            </div>
+            <div class="frame frame-20"
+                 *ngIf="user.hasTemples() > 0"
+                 data-bs-toggle="modal" data-bs-target="#TempleChangeInfo">
+              <img src="assets/img/temples/temple-no.png"
+                   alt="{{'Change a temple' | translate}}" 
+                   title="{{'Change a new temple' | translate}}" />
             </div>
           </div>
         </div>
