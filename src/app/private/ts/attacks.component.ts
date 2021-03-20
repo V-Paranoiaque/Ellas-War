@@ -26,6 +26,11 @@ export class Attacks {
   
   public attackInfo:any;
   public attackMode:number;
+  public attackStats:any;
+  public diamondInfo:any;
+  public diamondRankingPlayers:any;
+  public diamondRankingAlliance:any;
+  public menuMode:number;
   public furyInfo:any;
   public furyPossible:any;
   public lightningPossible:any;
@@ -45,7 +50,7 @@ export class Attacks {
   gemIcon    = gemIcon;
   swordIcon  = swordIcon;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
     this.attackPage = 1;
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
@@ -64,6 +69,8 @@ export class Attacks {
      * 8: Lightning
      */
     this.attackMode = 0;
+    this.menuMode = 0;
+    
     this.furyInfo = {
       'lost_build': {
         'farm': 0,
@@ -79,6 +86,42 @@ export class Attacks {
     this.targetProfile = {};
     
     this.waveAttackSum = {};
+    
+    this.attackStats = {
+      'normal': {
+        'done': 0,
+        'available': 0,
+        'unavailable': 0,
+        'time': 0
+      },
+      'war': {
+        'done': 0,
+        'available': 0,
+        'unavailable': 0,
+        'time': 0
+      },
+      'bonus': {
+        'done': 0,
+        'available': 0,
+        'unavailable': 0,
+        'time': 0
+      },
+      'receive_normal': {
+        'done': 0,
+        'available': 0,
+        'unavailable': 0,
+        'time': 0
+      },
+      'receive_war': {
+        'done': 0,
+        'available': 0,
+        'unavailable': 0,
+        'time': 0
+      }
+    };
+    this.diamondInfo = {};
+    this.diamondRankingPlayers = [];
+    this.diamondRankingAlliance = [];
   }
   
   ngOnInit(){
@@ -103,7 +146,18 @@ export class Attacks {
         this.attackListInfo.list.push(datas.list[city]);
       }
     });
-    
+    this.socket.on('attackStats', (datas:any) => {
+      this.attackStats = datas;
+    });
+    this.socket.on('diamondInfo', (info:any) => {
+      this.diamondInfo = info;
+    });
+    this.socket.on('diamondRankingPlayers', (info:any) => {
+      this.diamondRankingPlayers = info;
+    });
+    this.socket.on('diamondRankingAlliance', (info:any) => {
+      this.diamondRankingAlliance = info;
+    });
     this.socket.on('profile',(data:any) => {
       this.targetProfile = data;
     });
@@ -117,6 +171,8 @@ export class Attacks {
       this.lightningPossible = data;
     });
     this.socket.on('eye',(data:any) => {
+      this.attackMode = 1;
+      
       this.spyInfo = data;
     });
     
@@ -138,10 +194,13 @@ export class Attacks {
     });
     
     this.socket.on('spyInfo',(data:any) => {
+      this.attackMode = 1;
+      
       this.spyInfo = data;
     });
     
     this.socket.on('waveAttackSum',(data:any) => {
+      this.attackMode = 3;
       this.waveAttackSum = data;
     });
   }
@@ -238,6 +297,21 @@ export class Attacks {
     this.socket.emit('attackPossible', id);
     this.socket.emit('eye', id);
   }
+  
+  setMenuMode(id:number) {
+    switch(id) {
+      case 1: 
+        this.socket.emit("attackStats");
+      break;
+      case 2:
+        this.socket.emit('diamondInfo');
+        this.socket.emit('diamondRankingPlayers');
+        this.socket.emit('diamondRankingAlliance');
+      break;
+    }
+    this.menuMode = id;
+  }
+  
   spy(id:number) {
     this.attackMode = 2;
     
