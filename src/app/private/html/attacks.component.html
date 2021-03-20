@@ -79,21 +79,36 @@
                 </td>
                 <td>
                   
-                  <ic-icon [icon]="fistRaised"
-                           (click)="spy(player.membre_id)"
-                           *ngIf="user.getPropertyNb('apollo') == 0"></ic-icon>
-                  <ic-icon [icon]="eyeIcon"
-                           (click)="observe(player.membre_id)"
-                           *ngIf="user.getPropertyNb('apollo') == 1"></ic-icon>
-                  <ic-icon [icon]="fireIcon"
-                           (click)="prepareFury(player.membre_id)"
-                           *ngIf="user.getPropertyNb('demeter') == 1"></ic-icon>
-                  <ic-icon [icon]="boltIcon"
-                           (click)="prepareLightning(player.membre_id)"
-                           *ngIf="user.getPropertyNb('zeus') == 1"></ic-icon>
-                  
-                  
                   <button class="btn btn-outline-primary"
+                          *ngIf="user.getPropertyNb('apollo') == 0"
+                          (click)="spy(player.membre_id)">
+                    <ic-icon [icon]="fistRaised"></ic-icon>
+                  </button>
+                  <button class="btn btn-outline-primary"
+                          *ngIf="user.getPropertyNb('apollo') == 1"
+                          (click)="observe(player.membre_id)">
+                    <ic-icon [icon]="eyeIcon"></ic-icon>
+                  </button>
+                  
+                  <button class="btn"
+                          *ngIf="user.getPropertyNb('demeter') == 1"
+                          [ngClass]="{'btn-outline-danger': player.fury_allowed == 0,
+                                      'btn-outline-success': player.fury_allowed == 1}"
+                          (click)="prepareFury(player.membre_id)">
+                    <ic-icon [icon]="fireIcon"></ic-icon>
+                  </button>
+                  <button class="btn"
+                          *ngIf="user.getPropertyNb('zeus') == 1"
+                          [ngClass]="{'btn-outline-danger': player.lightning_allowed == 0,
+                                      'btn-outline-success': player.lightning_allowed == 1}"
+                          (click)="prepareLightning(player.membre_id)">
+                    <ic-icon [icon]="boltIcon"></ic-icon>
+                  </button>
+                  
+                  
+                  <button class="btn"
+                          [ngClass]="{'btn-outline-danger': player.attack_allowed == 0,
+                                      'btn-outline-success': player.attack_allowed == 1}"
                           (click)="prepareAttack(player.membre_id)">
                     <ic-icon [icon]="swordIcon"></ic-icon>
                   </button>
