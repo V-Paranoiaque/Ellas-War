@@ -30,6 +30,7 @@ export class Attacks {
   public diamondInfo:any;
   public diamondRankingPlayers:any;
   public diamondRankingAlliance:any;
+  public realWaveAttackCheck:any;
   public menuMode:number;
   public furyInfo:any;
   public furyPossible:any;
@@ -40,6 +41,8 @@ export class Attacks {
   public targetProfile:any;
   public attackPossible:any;
   public waveAttackSum:any;
+  
+  Object = Object;
   
   //Icons
   boltIcon   = boltIcon;
@@ -122,6 +125,10 @@ export class Attacks {
     this.diamondInfo = {};
     this.diamondRankingPlayers = [];
     this.diamondRankingAlliance = [];
+    this.realWaveAttackCheck = {
+      'ress': {},
+      'habitation': {}
+    };
   }
   
   ngOnInit(){
@@ -131,8 +138,8 @@ export class Attacks {
         'order': this.attackOrderSort,
         'reverse': this.attackOrderReverse
       });
+      this.socket.emit('realWaveAttackCheck');
     }, 0);
-    
     
     this.socket.on('attack', (datas:any) => {
       this.attackMode = 4;
@@ -202,6 +209,10 @@ export class Attacks {
     this.socket.on('waveAttackSum',(data:any) => {
       this.attackMode = 3;
       this.waveAttackSum = data;
+    });
+    
+    this.socket.on('realWaveAttackCheck', (data:any) => {
+      this.realWaveAttackCheck = data;
     });
   }
   
