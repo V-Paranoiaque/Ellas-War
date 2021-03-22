@@ -27,7 +27,6 @@ export class Attacks {
   
   public attackInfo:any;
   public attackMode:number;
-  public attackStats:any;
   public diamondInfo:any;
   public diamondRankingPlayers:any;
   public diamondRankingAlliance:any;
@@ -103,38 +102,6 @@ export class Attacks {
     
     this.waveAttackSum = {};
     
-    this.attackStats = {
-      'normal': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'war': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'bonus': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'receive_normal': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'receive_war': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      }
-    };
     this.diamondInfo = {};
     this.diamondRankingPlayers = [];
     this.diamondRankingAlliance = [];
@@ -171,9 +138,6 @@ export class Attacks {
       for(let city in datas.list) {
         this.attackListInfo.list.push(datas.list[city]);
       }
-    });
-    this.socket.on('attackStats', (datas:any) => {
-      this.attackStats = datas;
     });
     this.socket.on('diamondInfo', (info:any) => {
       this.diamondInfo = info;
@@ -275,6 +239,7 @@ export class Attacks {
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('attackStats');
     this.socket.removeListener('attack');
     this.socket.removeListener('attackList');
     this.socket.removeListener('profile');
@@ -418,8 +383,7 @@ export class Attacks {
   
   setMenuMode(id:number) {
     switch(id) {
-      case 1: 
-        this.socket.emit("attackStats");
+      case 1:
       break;
       case 2:
         this.socket.emit('diamondInfo');

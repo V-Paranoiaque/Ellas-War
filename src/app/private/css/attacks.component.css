@@ -35,3 +35,30 @@
 .col-md-4 img {
   width: 100%;
 }
+
+.done,
+.done-war
+.done-bonus,
+.receive-normal,
+.receive-war {
+  color: black;
+}
+
+.unavailable-normal
+.unavailable-war
+.unavailable-bonus
+.unavailable-receive-normal
+.unavailable-receive-war {
+  color: lightgray;
+}
+
+.available-war
+.available-normal 
+available-receive-normal
+available-receive-war {
+  color: olive;
+}
+
+.available-bonus {
+  color: gold;
+}

@@ -15,6 +15,7 @@ import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksDiamond } from './ts/attacks-diamond.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
 import { AttacksSanctuariesInfo } from './ts/attacks-sanctuaries-info.sub-component';
+import { AttacksStats } from './ts/attacks-stats.sub-component';
 import { DailyPopup } from './ts/daily-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
 import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
@@ -58,6 +59,7 @@ export const PrivateComponent = [
   AttacksDiamond,
   AttacksMessage,
   AttacksSanctuariesInfo,
+  AttacksStats,
   ConstructionPopup,
   DailyPopup,
   DivineBonusHelpPopup,

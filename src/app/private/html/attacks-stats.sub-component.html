@@ -1,0 +1,161 @@
+<h2 translate>Available attacks</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" class="text-center" translate>Done</th>
+      <th scope="col" class="text-center" translate>Available</th>
+      <th scope="col" class="text-center" translate>Back</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td translate>Out war</td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.normal.done)"
+                 [icon]="swordCross" class="done"
+                 title="{{'Attack done'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.normal.available)"
+                 [icon]="swordCross" class="available-normal"
+                 title="{{'Available attack'|translate}}"></ic-icon>
+        <ic-icon *ngFor="let i of range(1,attackStats.normal.unavailable)"
+                 [icon]="swordCross" class="unavailable-normal"
+                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <span *ngIf="attackStats.normal.time > 0">
+          {{attackStats.normal.time*1000 | date:'dd/MM, HH:mm'}}
+          <br/>
+          <span *ngIf="countdown.normal.hour > 0" translate>{{countdown.normal.hour}} h</span>
+          <span *ngIf="countdown.normal.min > 0"  translate>{{countdown.normal.min}} min</span>
+          <span *ngIf="countdown.normal.sec > 0"  translate>{{countdown.normal.sec}} s</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td translate>In war</td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.war.done)"
+                 [icon]="swordCross" class="done-war"
+                 title="{{'Attack done'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.war.available)"
+                 [icon]="swordCross" class="available-war"
+                 title="{{'Available attack'|translate}}"></ic-icon>
+        <ic-icon *ngFor="let i of range(1,attackStats.war.unavailable)"
+                 [icon]="swordCross" class="unavailable-war"
+                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <span *ngIf="attackStats.war.time > 0">
+          {{attackStats.war.time*1000 | date:'dd/MM, HH:mm'}}
+          <br/>
+          <span *ngIf="countdown.war.hour > 0" translate>{{countdown.war.hour}} h</span>
+          <span *ngIf="countdown.war.min > 0"  translate>{{countdown.war.min}} min</span>
+          <span *ngIf="countdown.war.sec > 0"  translate>{{countdown.war.sec}} s</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td translate>Bonus</td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.bonus.done)"
+                 [icon]="swordCross" class="done-bonus"
+                 title="{{'Attack done'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.bonus.available)"
+                 [icon]="swordCross" class="available-bonus"
+                 title="{{'Available attack'|translate}}"></ic-icon>
+        <ic-icon *ngFor="let i of range(1,attackStats.bonus.unavailable)"
+                 [icon]="swordCross" class="unavailable-bonus"
+                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <span *ngIf="attackStats.bonus.time > 0">
+          {{attackStats.bonus.time*1000 | date:'dd/MM, HH:mm'}}
+          <br/>
+          <span *ngIf="countdown.bonus.hour > 0" translate>{{countdown.bonus.hour}} h</span>
+          <span *ngIf="countdown.bonus.min > 0"  translate>{{countdown.bonus.min}} min</span>
+          <span *ngIf="countdown.bonus.sec > 0"  translate>{{countdown.bonus.sec}} s</span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 translate>Received attacks</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" class="text-center" translate>Done</th>
+      <th scope="col" class="text-center" translate>Available</th>
+      <th scope="col" class="text-center" translate>Back</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td translate>Out war</td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_normal.done)"
+                 [icon]="shieldShaded" class="receive-normal"
+                 title="{{'Received attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_normal.available)"
+                 [icon]="shieldShaded" class="available-receive-normal"
+                 title="{{'Available attack'|translate}}"></ic-icon>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_normal.unavailable)"
+                 [icon]="shieldShaded" class="unavailable-receive-normal"
+                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <span *ngIf="attackStats.receive_normal.time > 0">
+          {{attackStats.receive_normal.time*1000 | date:'dd/MM, HH:mm'}}
+          <br/>
+          <span *ngIf="countdown.receive_normal.hour > 0" translate>{{countdown.receive_normal.hour}} h</span>
+          <span *ngIf="countdown.receive_normal.min > 0"  translate>{{countdown.receive_normal.min}} min</span>
+          <span *ngIf="countdown.receive_normal.sec > 0"  translate>{{countdown.receive_normal.sec}} s</span>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td translate>In war</td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_war.done)"
+                 [icon]="shieldShaded" class="receive-war"
+                 title="{{'Received attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_war.available)"
+                 [icon]="shieldShaded" class="available-receive-war"
+                 title="{{'Available attack'|translate}}"></ic-icon>
+        <ic-icon *ngFor="let i of range(1,attackStats.receive_war.unavailable)"
+                 [icon]="shieldShaded" class="unavailable-receive-war"
+                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+      </td>
+      <td>
+        <span *ngIf="attackStats.receive_war.time > 0">
+          {{attackStats.receive_war.time*1000 | date:'dd/MM, HH:mm'}}
+          <br/>
+          <span *ngIf="countdown.receive_war.hour > 0" translate>{{countdown.receive_war.hour}} h</span>
+          <span *ngIf="countdown.receive_war.min > 0"  translate>{{countdown.receive_war.min}} min</span>
+          <span *ngIf="countdown.receive_war.sec > 0"  translate>{{countdown.receive_war.sec}} s</span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <br>
+  {{'You currently have { value } available bonus attacks' | translate: { value: user.getPropertyNb('bonus_attack') } }}
+  <br/>
+  <span translate>An attack bonus allows you to attack off war even if you no longer have attacks available in the limit of 5 per day.</span>
+  <br><br>
+</div>

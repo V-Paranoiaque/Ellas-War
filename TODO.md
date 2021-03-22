@@ -6,7 +6,6 @@
 * Display the history when no player selected
 * Pages
 * Search feature
-* Statistics attack available (+? attack/defense)
 
 ## Mythology
 * Altars
