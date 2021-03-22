@@ -1,0 +1,58 @@
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="assets/img/success.png" title="{{sanctuary.sanctuaries_name|translate}}"
+           alt="{{sanctuary.sanctuaries_name|translate}}">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title" translate>
+          {{ sanctuary.sanctuaries_name | translate }}
+        </h5>
+        <p class="card-text">
+          <strong translate>Controlled by</strong>
+          <strong translate>:</strong>
+          {{ sanctuary.username }}
+          <br/>
+          <strong translate>Power</strong>
+          <strong translate>:</strong>
+          <span *ngIf="sanctuary.sanctuaries_id == 1" translate>
+            Your city is protected against the fury of Demeter
+          </span>
+          <span *ngIf="sanctuary.sanctuaries_id == 2" translate>
+            The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
+          </span>
+          <span *ngIf="sanctuary.sanctuaries_id == 3" translate>
+            Your city produces 24 additional Ambrosia a day
+          </span>
+          <span *ngIf="sanctuary.sanctuaries_id == 4" translate>
+            Your city is protected against the Zeus lightning
+          </span>
+        </p>
+      </div>
+      <div class="card-body text-center" *ngIf="sanctuary.membre_id == user.getId()">
+        <button class="btn btn-outline-primary"
+                (click)="sanctuaryManage(sanctuary.sanctuaries_id)">
+          <ic-icon [icon]="twotoneFence"></ic-icon>
+        </button>
+      </div>
+      <div class="card-body text-center" *ngIf="sanctuary.membre_id != user.getId()">
+        <button class="btn btn-outline-primary"
+                (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
+                *ngIf="user.getPropertyNb('apollo') == 0">
+          <ic-icon [icon]="fistRaised"></ic-icon>
+        </button>
+        <button class="btn btn-outline-primary"
+                (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
+                *ngIf="user.getPropertyNb('apollo') == 1">
+          <ic-icon [icon]="eyeIcon"></ic-icon>
+        </button>
+        
+        <button class="btn"
+                (click)="sanctuariesPrepare(sanctuary.sanctuaries_id)">
+          <ic-icon [icon]="swordIcon"></ic-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import eyeIcon from '@iconify/icons-fa-solid/eye';
 import fireIcon from '@iconify/icons-fa-solid/fire';
 import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
+import plusIcon from '@iconify/icons-bi/plus';
 import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
@@ -41,8 +42,16 @@ export class Attacks {
   public targetProfile:any;
   public attackPossible:any;
   public waveAttackSum:any;
+  public sanctuariesAttackInfo:any;
+  public sanctuariesDefense:any;
+  public sanctuariesList:any;
+  public sanctuariesSpyInfo:any;
+  public sanctuariesInfo:any;
+  public sanctuariesWave:any[];
+  public sanctuariesWaveTab:any;
   
   Object = Object;
+  parseInt = parseInt;
   
   //Icons
   boltIcon   = boltIcon;
@@ -51,6 +60,7 @@ export class Attacks {
   fireIcon   = fireIcon;
   fistRaised = fistRaised;
   gemIcon    = gemIcon;
+  plusIcon   = plusIcon;
   swordIcon  = swordIcon;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
@@ -60,6 +70,7 @@ export class Attacks {
     this.ressList = environment.resources;
     
     this.attackInfo = {};
+    
     /* Mode
      * 0: History
      * 1: Observe with Apollo
@@ -70,6 +81,8 @@ export class Attacks {
      * 6: Fury
      * 7: Prepare lightning
      * 8: Lightning
+     * 9: Spy sanctuary
+     *10: Attack sanctuary
      */
     this.attackMode = 0;
     this.menuMode = 0;
@@ -129,6 +142,12 @@ export class Attacks {
       'ress': {},
       'habitation': {}
     };
+    this.sanctuariesList = [];
+    this.sanctuariesSpyInfo = {};
+    this.sanctuariesAttackInfo = {};
+    this.sanctuariesDefense = [];
+    this.sanctuariesWave = []
+    this.sanctuariesWaveTab = [];
   }
   
   ngOnInit(){
@@ -207,12 +226,51 @@ export class Attacks {
     });
     
     this.socket.on('waveAttackSum',(data:any) => {
-      this.attackMode = 3;
       this.waveAttackSum = data;
+      let newTab = [];
+      let j = 0;
+      for(let i in this.waveAttackSum) {
+        if(this.waveAttackSum[i] > 0) {
+          newTab.push(j)
+          j++;
+        }
+      }
+      if(this.sanctuariesWaveTab.length != newTab.length) {
+        this.sanctuariesWaveTab = newTab;
+      }
     });
     
     this.socket.on('realWaveAttackCheck', (data:any) => {
       this.realWaveAttackCheck = data;
+    });
+    
+    this.socket.on('sanctuariesList', (data:any) => {
+      this.sanctuariesList = data;
+    });
+    this.socket.on('sanctuariesAttack', (data:any) => {
+      this.attackMode = 11;
+      this.sanctuariesAttackInfo = data;
+    });
+    this.socket.on('sanctuariesEye', (data:any) => {
+      this.attackMode = 9;
+      this.sanctuariesSpyInfo = data;
+    });
+    this.socket.on('sanctuariesDefense', (data:any) => {
+      this.sanctuariesDefense = data;
+      this.socket.emit('waveAttackSum');
+    });
+    this.socket.on('sanctuariesSpy', (data:any) => {
+      this.attackMode = 9;
+      this.sanctuariesSpyInfo = data;
+    });
+    this.socket.on('sanctuariesInfo', (data:any) => {
+      this.sanctuariesInfo = data;
+      if(data.membre_id == this.user.getId()) {
+        this.attackMode = 12;
+      }
+      else {
+        this.attackMode = 9;
+      }
     });
   }
   
@@ -225,7 +283,13 @@ export class Attacks {
     this.socket.removeListener('lightningPossible');
     this.socket.removeListener('eye');
     this.socket.removeListener('fury');
-    this.socket.removeListener('lightning');
+    this.socket.removeListener('lightning'); 
+    this.socket.removeListener('sanctuariesAttack');
+    this.socket.removeListener('sanctuariesEye');
+    this.socket.removeListener('sanctuariesDefense');
+    this.socket.removeListener('sanctuariesInfo');
+    this.socket.removeListener('sanctuariesList');
+    this.socket.removeListener('sanctuariesSpy');
     this.socket.removeListener('spyInfo');
     this.socket.removeListener('waveAttackSum');
   }
@@ -268,6 +332,25 @@ export class Attacks {
     return result;
   }
   
+  getSanctuariesDefense() {
+    let list:any = [];
+    
+    for(let i in this.sanctuariesDefense) {
+      if(this.sanctuariesDefense[i]) {
+        for(let unit in this.sanctuariesDefense[i]) {
+          if(this.sanctuariesDefense[i][unit] > 0) {
+            list.push({
+              'unit': unit,
+              'nb': this.sanctuariesDefense[i][unit]
+            });
+          }
+        }
+      }
+    }
+    
+    return list;
+  }
+  
   prepareAttack(id:number) {
     this.attackMode = 3;
     
@@ -308,6 +391,30 @@ export class Attacks {
     this.socket.emit('attackPossible', id);
     this.socket.emit('eye', id);
   }
+  sanctuariesAttack(id:number) {
+    this.attackMode = 11;
+    this.socket.emit('sanctuariesAttack', id);
+  }
+  sanctuariesPrepareUnit(id:number, nb:number) {
+    this.sanctuariesWave[id] = nb;
+  }
+  sanctuariesEye(id:number) {
+    this.socket.emit('sanctuariesEye', id);
+  }
+  sanctuaryManage(id:number) {
+    this.socket.emit('realWaveAttackCheck');
+    this.socket.emit('sanctuariesInfo', id);
+    this.socket.emit('sanctuariesDefense', id);
+  }
+  
+  sanctuariesPrepare(id:number) {
+    this.attackMode = 10;
+    this.socket.emit('waveAttackSum');
+    this.socket.emit('sanctuariesInfo', id);
+  }
+  sanctuariesSpy(id:number) {
+    this.socket.emit('sanctuariesSpy', id);
+  }
   
   setMenuMode(id:number) {
     switch(id) {
@@ -318,6 +425,10 @@ export class Attacks {
         this.socket.emit('diamondInfo');
         this.socket.emit('diamondRankingPlayers');
         this.socket.emit('diamondRankingAlliance');
+      break;
+      case 3:
+        this.socket.emit('sanctuariesList');
+        this.socket.emit('waveAttackSum');
       break;
     }
     this.menuMode = id;
@@ -331,5 +442,20 @@ export class Attacks {
     this.socket.emit('lightningPossible', id);
     this.socket.emit('attackPossible', id);
     this.socket.emit('spyInfo', id);
+  }
+  
+  waveNew(i:number, nb:number) {
+    let army = this.getArmy()[i];
+    let unit = army.unit
+    if(nb > 0 && nb <= army.nb) {
+      var msg = {
+        'unit':unit,
+        'wave': 1,
+        'nb': nb,
+        'sanctuary': this.sanctuariesInfo.sanctuaries_id
+      };
+      this.socket.emit('sanctuariesWaveNew', msg);
+      this.sanctuariesWave[i] = '';
+    }
   }
 }

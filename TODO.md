@@ -5,7 +5,6 @@
 ## Attacks
 * Display the history when no player selected
 * Pages
-* Sanctuaries
 * Search feature
 * Statistics attack available (+? attack/defense)
 

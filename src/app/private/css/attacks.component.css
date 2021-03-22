@@ -31,3 +31,7 @@
 .high {
   color: #dc3f3f;
 }
+
+.col-md-4 img {
+  width: 100%;
+}

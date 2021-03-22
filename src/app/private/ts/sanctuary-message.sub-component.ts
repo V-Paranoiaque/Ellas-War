@@ -100,16 +100,13 @@ export class SanctuaryMessage {
     let list = []
     
     for(let i in this.info.sanctuary_lost) {
-      if(i) {
-        for(let j in this.info.sanctuary_lost[i]) {
-          if(!listUnits[j]) {
-            listUnits[j] = 0;
-          }
-          listUnits[j] += this.info.sanctuary_lost[i][j];
+      for(let j in this.info.sanctuary_lost[i]) {
+        if(!listUnits[j]) {
+          listUnits[j] = 0;
         }
+        listUnits[j] += this.info.sanctuary_lost[i][j];
       }
     }
-    
     for(let i in listUnits) {
       if(listUnits[i] > 0) {
         list.push({

@@ -36,6 +36,8 @@
             <button class="btn btn-primary" (click)="setMenuMode(1)" translate>Stats</button>
             <button class="btn btn-info"    (click)="setMenuMode(2)"
                     *ngIf="user.getLevel() >= 10"                    translate>Diamond</button>
+            <button class="btn btn-warning" (click)="setMenuMode(3)"
+                    *ngIf="user.getLevel() >= 10"                    translate>Sanctuaries</button>
           </div>
           <div class="card-body text-center" *ngIf="menuMode == 0 && getAttackList().length == 0">
             <p translate>
@@ -78,7 +80,6 @@
                   {{ player.field | number:'': this.translate.currentLang}}
                 </td>
                 <td>
-                  
                   <button class="btn btn-outline-primary"
                           *ngIf="user.getPropertyNb('apollo') == 0"
                           (click)="spy(player.membre_id)">
@@ -105,7 +106,6 @@
                     <ic-icon [icon]="boltIcon"></ic-icon>
                   </button>
                   
-                  
                   <button class="btn"
                           [ngClass]="{'btn-outline-danger': player.attack_allowed == 0,
                                       'btn-outline-success': player.attack_allowed == 1}"
@@ -122,16 +122,29 @@
           <div class="card-body" *ngIf="menuMode == 2">
             <attacks-diamond></attacks-diamond>
           </div>
+          <div class="card-body" *ngIf="menuMode == 3">
+            <div *ngFor="let sanctuaryInfo of sanctuariesList; let i = index">
+              <attacks-sanctuaries-info *ngIf="sanctuariesList[i]"
+                                        [(sanctuary)]="sanctuariesList[i]"></attacks-sanctuaries-info>
+            </div>
+          </div>
         </div>
       </div>
       
       <div class="col-xl-6" *ngIf="attackMode > 0">
         <div class="card">
-          <div class="card-header card-header-flexible">
+          <div class="card-header card-header-flexible"
+               *ngIf="targetProfile?.username">
             <h2 id="playerDesc">
               {{ targetProfile?.username }}
                   <ic-icon [icon]="gemIcon"
                            *ngIf="targetProfile?.diamond_begin > 0"></ic-icon>
+            </h2>
+          </div>
+          <div class="card-header card-header-flexible"
+               *ngIf="sanctuariesSpyInfo?.sanctuaries_name">
+            <h2 id="playerDesc">
+              {{ sanctuariesSpyInfo?.sanctuaries_name | translate }}
             </h2>
           </div>
           
@@ -442,6 +455,151 @@
           <!-- Result from a lightning -->
           <div class="card-body text-center" *ngIf="attackMode == 8">
             <lost-message [(info)]="lightningInfo"></lost-message>
+          </div>
+          
+          <div class="card-body text-center" *ngIf="attackMode == 9">
+            <span [ngSwitch]="sanctuariesSpyInfo.error">
+              <div *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</div>
+              <div *ngSwitchCase="2" translate>
+                Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.
+              </div>
+              <div *ngSwitchCase="4" translate>You do not have spies.</div>
+            </span>
+            
+            <div *ngIf="sanctuariesSpyInfo.error == 0 || sanctuariesSpyInfo.error == 2">
+              <div *ngIf="sanctuariesSpyInfo.unitiesNb > 0">
+                <strong translate>Unities</strong><strong translate>:</strong> 
+                {{sanctuariesSpyInfo.unitiesNb| number:'': this.translate.currentLang}}
+              </div>
+              <div *ngIf="sanctuariesSpyInfo.unities.length > 0">
+                <strong translate>Unities</strong><strong translate>:</strong>
+                <div *ngFor="let unit of sanctuariesSpyInfo.unities">
+                  {{user.info.datas.army[unit].name|translate}}
+                </div>
+                <br/>
+              </div>
+              <div *ngIf="sanctuariesSpyInfo.unitiesNb == 0 && sanctuariesSpyInfo.unities.length == 0"
+                   translate>
+                This sancturary is not protected by any army, fight directly the monster!
+              </div>
+              <div>
+                <br/>
+                <br/>
+                <button class="btn btn-outline-primary"
+                        (click)="sanctuariesSpy(sanctuariesSpyInfo.id)"
+                        *ngIf="user.getPropertyNb('apollo') == 0">
+                  <ic-icon [icon]="fistRaised"></ic-icon>
+                </button>
+                <button class="btn btn-outline-primary"
+                        (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
+                        *ngIf="user.getPropertyNb('apollo') == 1">
+                  <ic-icon [icon]="eyeIcon"></ic-icon>
+                </button>
+                
+                <button class="btn"
+                        (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
+                  <ic-icon [icon]="swordIcon"></ic-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-body" *ngIf="attackMode == 10">
+            <div *ngIf="getArmy().length > 0" class="text-center">
+              <br/>
+              <strong translate>Army summary</strong>
+              <div *ngFor="let i of getArmy()">
+                {{ i.nb | number:'': this.translate.currentLang }} {{ user.info.datas.army[i.unit].names | translate }}
+              </div>
+              <br/>
+              <strong translate>Offensive power</strong>
+              <strong translate>:</strong>
+              {{ getOffensivePower() | number:'': this.translate.currentLang}}
+              <br/><br/>
+              <div class="text-center">
+                <button class="btn btn-primary"
+                        (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
+                  <ic-icon [icon]="swordIcon"></ic-icon>
+                  &nbsp;<span translate>Attack</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="attackMode == 11">
+            <sanctuary-message [(info)]="sanctuariesAttackInfo"></sanctuary-message>
+          </div>
+          
+          <div class="card-body" *ngIf="attackMode == 12">
+            <h1>{{ sanctuariesInfo.sanctuaries_name | translate}}</h1>
+            <span *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
+              Your city is protected against the fury of Demeter
+            </span>
+            <span *ngIf="sanctuariesInfo.sanctuaries_id == 2" translate>
+              The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
+            </span>
+            <span *ngIf="sanctuariesInfo.sanctuaries_id == 3" translate>
+              Your city produces 24 additional Ambrosia a day
+            </span>
+            <span *ngIf="sanctuariesInfo.sanctuaries_id == 4" translate>
+              Your city is protected against the Zeus lightning
+            </span>
+            
+            <div class="fw-bold text-danger text-center" translate>
+              Units you send to a sanctuary cannot return to your city.
+            </div>
+            
+            <div class="row">
+              <div class="col-6">
+                <table>
+                  <tbody *ngFor="let unit of sanctuariesWaveTab; let i = index">
+                    <tr>
+                      <td (click)="sanctuariesPrepareUnit(i, getArmy()[i].nb)" role="button" colspan="2">
+                        <strong>
+                          {{ user.info.datas.army[getArmy()[i].unit].names | translate }}
+                          {{":"|translate}}
+                        </strong> 
+                        {{ getArmy()[i].nb | number:'': this.translate.currentLang }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="center" rowspan="2">
+                        <img src="assets/img/army/{{getArmy()[i].unit}}.png"
+                             alt="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}"
+                             title="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}" 
+                             height="70px"/>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="input-group">
+                          <input type="number" [(ngModel)]="sanctuariesWave[i]"
+                                 min="0" max="{{getArmy()[i].nb}}"
+                                 placeholder="0">
+                          <span class="input-group-text" role="button"
+                                (click)="waveNew(i, sanctuariesWave[i])">
+                            <ic-icon [icon]="plusIcon"></ic-icon>
+                            <span class="visually-hidden" translate>Add</span>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div class="col-6">
+                <div *ngFor="let unit of getSanctuariesDefense()">
+                  {{ unit.nb | number:'': this.translate.currentLang }}
+                  <span *ngIf="parseInt(unit.nb) == 1">
+                    {{user.info.datas.army[unit.unit].name|translate}}
+                  </span>
+                  <span *ngIf="parseInt(unit.nb) > 1">
+                    {{user.info.datas.army[unit.unit].names|translate}}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

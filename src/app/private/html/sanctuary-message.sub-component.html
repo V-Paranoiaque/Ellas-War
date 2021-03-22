@@ -28,7 +28,7 @@
 
 <div *ngIf="getSanctuaryLost().length > 0" class="col-12">
   <strong>{{'Losses again { value }' | translate: {value: info.sanctuaries_name|translate} }}</strong>
-  <div *ngFor="let unit of getAttackLost()">
+  <div *ngFor="let unit of getSanctuaryLost()">
     {{unit.nb| number:'': this.translate.currentLang}} 
     {{user.info.datas.army[unit.code].names|translate}} 
   </div>
