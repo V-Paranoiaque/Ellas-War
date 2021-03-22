@@ -46,6 +46,10 @@ export class City {
       'power': 0,
       'error': 0
     };
+    
+  }
+  
+  ngOnInit() {
     this.selectTreasure();
     
     this.socket.on('divineBonus', (data:any) => {
@@ -69,9 +73,7 @@ export class City {
         element.click();
       }
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(() => {
       this.socket.emit('divineBonus');
       this.socket.emit('dailyCoCheck');

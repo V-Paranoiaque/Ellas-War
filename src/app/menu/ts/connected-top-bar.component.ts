@@ -19,6 +19,8 @@ export class ConnectedTopBar extends CommonTopBar {
   
   @Input()
   
+  private audio:any;
+  
   cog      = cog;
   comments = comments;
   powerOff = powerOff;
@@ -27,17 +29,9 @@ export class ConnectedTopBar extends CommonTopBar {
               router: Router, public user: User) {
     super(socket, router, user);
     
-    let audio = new Audio();
-    audio.src = "../../assets/audio/2042.mp3";
-    audio.load();
-    
-    this.socket.on('msgNewNb', (nb:number) => {
-      this.user.setNewMsg(nb)
-      
-      if(user.getPropertyNb('sound') == 1) {
-        audio.play();
-      }
-    });
+    this.audio = new Audio();
+    this.audio.src = "../../assets/audio/2042.mp3";
+    this.audio.load();
   }
   
   ngOnInit() {
@@ -48,6 +42,14 @@ export class ConnectedTopBar extends CommonTopBar {
     setTimeout(() => {
       this.socket.emit('msgNewNb');
     }, 0);
+    
+    this.socket.on('msgNewNb', (nb:number) => {
+      this.user.setNewMsg(nb)
+      
+      if(this.user.getPropertyNb('sound') == 1) {
+        this.audio.play();
+      }
+    });
   }
   
   ngOnDestroy() {

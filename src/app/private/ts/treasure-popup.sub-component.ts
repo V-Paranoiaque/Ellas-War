@@ -24,6 +24,9 @@ export class TreasurePopup {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.treasureHistory = [];
     
+  }
+  
+  ngOnInit() {
     this.socket.on('treasureHistory', (datas:any) => {
       this.treasureHistory = datas;
     });

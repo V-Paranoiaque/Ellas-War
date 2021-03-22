@@ -37,7 +37,9 @@ export class Storeroom {
     this.storeroomQuantity = '';
     this.storeroomRate = '';
     this.storeroomRess = 1;
-    
+  }
+  
+  ngOnInit() {
     this.socket.on('storeroomList', (data:any) => {
       this.storeroomList = data;
     });
@@ -57,9 +59,7 @@ export class Storeroom {
     this.socket.on('storeroomStats', (data:any) => {
       this.storeroomStats = data;
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(()=> {
       this.socket.emit("storeroomList");
       this.socket.emit("storeroomMyList");

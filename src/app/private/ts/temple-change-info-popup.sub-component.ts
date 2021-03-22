@@ -19,6 +19,9 @@ export class TempleChangeInfoPopup {
     this.templeChangeError = 0;
     this.templeChangeHistory = [];
     
+  }
+  
+  ngOnInit() {
     this.socket.on('templeChange', (data:number) => {
       this.templeChangeError = data;
       console.log(data);
@@ -30,9 +33,7 @@ export class TempleChangeInfoPopup {
         this.templeChangeHistory.push(data[i]);
       }
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(() => {
       this.socket.emit('templeChangeHistory');
     }, 0);

@@ -38,7 +38,9 @@ export class ConnectedBottomBar extends CommonBottomBar {
     this.chat_alli_msgs = [];
     this.chatAlliMsg = '';
     this.chat_alli_nb = 0;
-    
+  }
+  
+  ngOnInit() {
     setTimeout(() => {
       this.socket.emit("chatUserPlayers");
       this.socket.emit("chatUserMsgs");

@@ -46,6 +46,9 @@ export class Support {
     this.contactNewTitle = '';
     this.contactNewMsg = '';
     
+  }
+  
+  ngOnInit() {
     setTimeout(() => {
       this.socket.emit('contactList');
       this.loadSupport();

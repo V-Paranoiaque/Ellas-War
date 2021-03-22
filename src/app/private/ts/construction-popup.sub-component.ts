@@ -17,6 +17,9 @@ export class ConstructionPopup {
   Number =  Number;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  }
+  
+  ngOnInit() {
     this.socket.on('buildPossible', (nb:number) => {
       this.info.rBuildPossible = nb;
     });

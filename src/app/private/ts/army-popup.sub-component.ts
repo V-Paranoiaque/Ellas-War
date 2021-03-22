@@ -18,6 +18,9 @@ export class ArmyPopup {
   Object = Object;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  }
+  
+  ngOnInit() {
     this.socket.on('engagePossible', (nb:number) => {
       this.info.rEngagePossible = nb;
     });

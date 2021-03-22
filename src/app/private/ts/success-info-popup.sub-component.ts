@@ -21,7 +21,9 @@ export class SuccessInfoPopup {
     
     this.listDisplay = [];
     this.statsPlayer = {};
-    
+  }
+  
+  ngOnInit() {
     setTimeout(() => {
       this.socket.emit('hfNext');
       this.socket.emit('statsPlayer');
@@ -33,7 +35,7 @@ export class SuccessInfoPopup {
     
     this.socket.on("hfNext", (list:any) => {
       this.hfNext = list;
-      socket.emit('hfDisplay');
+      this.socket.emit('hfDisplay');
     });
     
     this.socket.on("hfDisplay", (data:any) =>{

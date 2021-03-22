@@ -14,6 +14,9 @@ export class Quests {
   public selectedQuest:any;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
+  }
+  
+  ngOnInit() {
     
     this.socket.on('myQuestList', (data:any) => {
       this.myQuestList = data;
@@ -21,9 +24,7 @@ export class Quests {
     this.socket.on('myQuestListRefresh', () => {
       this.socket.emit('myQuestList');
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(()=> {
       this.socket.emit("questCheck");
       this.socket.emit("statsTmp");

@@ -44,7 +44,9 @@ export class TempleInfoPopup {
       'wine': 80000,
       'gold': 60000
     }
-    
+  }
+  
+  ngOnInit() {
     setTimeout(() => {
       this.socket.emit('wallDefense');
       this.socket.emit('myAttacksList');

@@ -45,7 +45,13 @@ export class Options {
     this.newusername = '';
     this.pauseAllowed = 0;
     this.pauseNb = 4;
-    this.sound = user.getPropertyNb('sound');
+    
+    this.sound = this.user.getPropertyNb('sound');
+    this.currentStyle = this.user.getProperty('style');
+  }
+  
+  ngOnInit() {
+    this.sound = this.user.getPropertyNb('sound');
     
     this.currentStyle = this.user.getProperty('style');
     
@@ -74,9 +80,7 @@ export class Options {
     this.socket.on('soundModify', (sound:number) => {
       this.sound = sound;
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(() => {
       this.socket.emit('accountInfo');
       this.socket.emit('accountRenameCost');

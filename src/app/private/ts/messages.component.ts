@@ -67,7 +67,9 @@ export class Messages {
     };
     this.deleteMode = 0;
     this.destList = [];
-    
+  }
+  
+  ngOnInit() {
     this.socket.on('msgPage', (newMsgList:any) => {
       for(let i in newMsgList.list) {
         newMsgList.list[i].isChecked = true;
@@ -95,9 +97,7 @@ export class Messages {
       this.setPage(this.currentPage);
       this.messageLoad({'id': this.currentMsg});
     });
-  }
-  
-  ngOnInit() {
+    
     setTimeout(() => {
       this.setPage(this.currentPage);
     }, 0);

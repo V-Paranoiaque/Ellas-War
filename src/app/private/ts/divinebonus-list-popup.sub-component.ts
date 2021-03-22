@@ -14,7 +14,9 @@ export class DivineBonusListPopup {
   
   constructor(private socket: Socket) {
     this.divineBonus = [];
+  }
   
+  ngOnInit() {
     this.socket.on('divineBonus', (data:any) => {
       if(data.nb > 0) {
         this.divineBonusList   = data.list;

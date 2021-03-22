@@ -8,6 +8,9 @@ import { Socket } from '../../../services/socketio.service';
 
 export class Blocked {
   constructor(private socket: Socket) {
+  }
+  
+  ngOnInit() {
     this.socket.on('reset', () => {
       document.location.href="/";
     });
