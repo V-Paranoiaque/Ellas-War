@@ -16,7 +16,9 @@ export class Favors {
       'id': 0,
       'error': 0
     }
-    
+  }
+  
+  ngOnInit() {
     this.socket.on('favorUse', (id:number) => {
       this.favor.error = id;
     });
