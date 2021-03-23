@@ -251,7 +251,7 @@
         {{user.getPropertyNb('black_smith')*1000| date:'dd/MM, HH:mm'}}
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 1}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 1}">
         <strong translate>Cost:</strong>
         1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>
@@ -281,12 +281,12 @@
         You can't use this power on this player
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 180}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 180}">
         <strong translate>Cost:</strong>
         180 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>
       <input type="text" class="form-control" aria-label="Player" 
-             placeholder="{{'Player'|translate}}" ng-model="idToUser"
+             placeholder="{{'Player'|translate}}" [(ngModel)]="idToUser"
               *ngIf="user.getPropertyNb('ambrosia') >= 180">
       <button class="btn btn-success" (click)="powerUseTarget(8)"
               *ngIf="user.getPropertyNb('ambrosia') >= 180" translate>
@@ -418,7 +418,7 @@
         Zeus heard your call
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
         <strong translate>Cost:</strong>
         200 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>
@@ -451,7 +451,7 @@
         Heavy black clouds invade the targeted enemy city which can no longer engage units
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
         <strong translate>Cost:</strong>
         200 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
         <span translate>For 15 minutes</span>
@@ -459,7 +459,7 @@
       
       <div class="col-xs-12">
         <input type="text" class="form-control" aria-label="Player" 
-               placeholder="{{'Player'|translate}}" ng-model="idToUser">
+               placeholder="{{'Player'|translate}}" [(ngModel)]="idToUser">
       </div>
       <div class="clearfix"></div>
       
@@ -548,14 +548,14 @@
         Hades launches an epidemic on the enemy city causing the immediate death of 5 to 15% of his army.
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 400}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 400}">
         <strong translate>Cost:</strong>
         400 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>
       
       <div class="col-xs-12">
         <input type="text" class="form-control" aria-label="Player" 
-               placeholder="{{'Player'|translate}}" ng-model="idToUser">
+               placeholder="{{'Player'|translate}}" [(ngModel)]="idToUser">
       </div>
       <div class="clearfix"></div>
       
@@ -628,7 +628,7 @@
         Hades gives you marble and stone to defeat your enemies.
       </div>
       
-      <div ng-class="{'text-danger': user.getPropertyNb('ambrosia') < 40}">
+      <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 40}">
         <strong translate>Cost:</strong>
         40 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>

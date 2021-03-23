@@ -67,17 +67,21 @@
       <div class="col-xl-6">
         <div class="card">
           <div class="card-flex text-center">
-            <button class="btn btn-primary" (click)="messageLoad(0)">
+            <button class="btn btn-primary" (click)="messageLoad(0)"
+                    title="{{'Write a new message'| translate}}">
               <ic-icon [icon]="brushIcon"></ic-icon>
             </button>
-            <button class="btn btn-info" data-bs-toggle="modal" 
+            <button class="btn btn-info" data-bs-toggle="modal"
+                    title="{{'Set all messages as read'| translate}}"
                     data-bs-target="#MsgSetRead">
               <ic-icon [icon]="envelopeFill"></ic-icon>
             </button>
-            <button class="btn btn-warning" (click)="switchDeleteMode()">
+            <button class="btn btn-warning" (click)="switchDeleteMode()"
+                    title="{{'Switch to delete mode'| translate}}">
               <ic-icon [icon]="trashIcon"></ic-icon>
             </button>
             <button [ngClass]="{'d-none': getDeleteMode() == 0}"
+                    title="{{'Delete all the selected messages'| translate}}"
                     class="btn btn-danger" data-bs-toggle="modal" 
                     data-bs-target="#DeleteMultipleMsg">
                 <ic-icon [icon]="trash2Icon"></ic-icon>
@@ -222,37 +226,37 @@
                 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
               </span>
               <span *ngSwitchCase="14">
-                <h2>{{getCurrentMsg().msg[0].content.username}}</h2>
+                <h2 id="Message14Desc">{{getCurrentMsg().msg[0].content.username}}</h2>
                 
                 <div class="col-table">
-                <table class="table">
+                <table class="table" aria-describedby="Message14Desc">
                   <tr *ngIf="getCurrentMsg().msg[0].content.alliance > 0">
-                    <th translate>Alliance</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.alliance_name}}&nbsp;</td>
+                    <th scope="row" translate>Alliance</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.alliance_name}}&nbsp;</td>
                   </tr>
                   <tr *ngIf="getCurrentMsg().msg[0].content.alliance > 0">
-                    <th translate>Rank</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.rank_name}}&nbsp;</td>
+                    <th scope="row" translate>Rank</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.rank_name}}&nbsp;</td>
                   </tr>
                   <tr>
-                    <th translate>Level</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.level}}&nbsp;</td>
+                    <th scope="row" translate>Level</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.level}}&nbsp;</td>
                   </tr>
                   <tr>
-                    <th translate>Field</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.field| number:'': this.translate.currentLang}}</td>
+                    <th scope="row" translate>Field</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.field| number:'': this.translate.currentLang}}</td>
                   </tr>
                   <tr>
-                    <th translate>Victories</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.victory| number:'': this.translate.currentLang}}</td>
+                    <th scope="row" translate>Victories</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.victory| number:'': this.translate.currentLang}}</td>
                   </tr>
                   <tr>
-                    <th translate>Defeats</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.defeat| number:'': this.translate.currentLang}}</td>
+                    <th scope="row" translate>Defeats</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.defeat| number:'': this.translate.currentLang}}</td>
                   </tr>
                   <tr>
-                    <th translate>XP</th>
-                    <td align="text-end">{{getCurrentMsg().msg[0].content.xp| number:'': this.translate.currentLang}}</td>
+                    <th scope="row" translate>XP</th>
+                    <td class="text-end">{{getCurrentMsg().msg[0].content.xp| number:'': this.translate.currentLang}}</td>
                   </tr>
                 </table>
                 </div>

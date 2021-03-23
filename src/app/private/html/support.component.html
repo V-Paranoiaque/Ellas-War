@@ -45,11 +45,11 @@
           <table class="table" *ngIf="contactNb > 0">
             <tbody>
               <tr *ngFor="let info of contactList">
-                <td class="text-start">
+                <th scope="row" class="text-start">
                   <a [routerLink]="['/support/'+info.support_id]">
                     {{info.support_topic}}
                   </a>
-                </td>
+                </th>
                 <td>
                   {{ info?.support_lastdate }}
                 </td>

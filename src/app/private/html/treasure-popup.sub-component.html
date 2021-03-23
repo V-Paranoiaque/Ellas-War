@@ -66,8 +66,7 @@
           <td colspan="2">
             <span *ngIf="user.getPropertyNb('bonus_treasure') == 0">
               {{15-0.5*user.getLevel() | number:'': this.translate.currentLang }}%
-              (<a class="nolink" ui-sref="favors" 
-                 href="/favors">
+              (<a [routerLink]="['/favors']"  data-bs-dismiss="modal">
                 0% taxes?
               </a>)
             </span>

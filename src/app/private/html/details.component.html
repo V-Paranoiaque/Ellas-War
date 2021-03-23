@@ -1,119 +1,121 @@
 <common-top-bar active="details"></common-top-bar>
 
-<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main container">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="card">
-        <div class="card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">
-                  <span translate>Production</span>/<span translate>Day</span>
-                </th>
-                <th scope="col">
-                  <span translate>Consumption</span>/<span translate>Day</span>
-                </th>
-                <th scope="col">
-                  <span translate>Evolution</span>/<span translate>Day</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              <tr *ngFor="let ress of nbvariation | keyvalue">
-                <td>
-                  <span *ngFor="let building of user.getBuildings()">
-                    <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.production, ress.key) > 0">
-                      +{{ getRess(building.production, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
-                      <id-to-ress [ress_id]="ress.key"></id-to-ress>
-                      {{building.name|translate}}<br/>
-                    </span>
-                  </span>
-                </td>
-                <td>
-                  <span *ngFor="let building of user.getBuildings()">
-                    <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.consumption, ress.key) > 0">
-                      -{{ getRess(building.consumption, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
-                      <id-to-ress [ress_id]="ress.key"></id-to-ress>
-                      {{building.name|translate}}<br/>
-                    </span>
-                  </span>
-                  <span *ngFor="let unit of user.getArmy()">
-                    <span *ngIf="user.getPropertyNb(unit.code) > 0 && getRess(unit.consumption, ress.key) > 0">
-                      -{{ getRess(unit.consumption, ress.key) * user.getPropertyNb(unit.code) | number:'': this.translate.currentLang }} 
-                      <id-to-ress [ress_id]="ress.key"></id-to-ress>
-                      {{unit.name|translate}}<br/>
-                    </span>
-                  </span>
-                  <span *ngIf="user.getTaxes(ress.key) > 0">
-                    -{{user.getTaxes(ress.key) | number:'': this.translate.currentLang }} 
-                    <id-to-ress [ress_id]="ress.key"></id-to-ress>
-                    {{'Alliance\'s taxes'|translate}}
-                  </span>
-                </td>
-                <td [ngClass]="{'text-danger': user.getPropertyNb(ress.key) == 0 && getVariation(ress.key) < 0, 'text-warning': getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)}">
-                  <span *ngIf="user.getVarRess(ress.key) > 0">+</span>{{user.getVarRess(ress.key)*3600*24| number:'': this.translate.currentLang }}
-                  <id-to-ress [ress_id]="ress.key"></id-to-ress>
-                </td>
-              </tr>
-              <tr *ngIf="user.getLevel() >= user.getLevelRess('ambrosia')">
-                <td>
-                  <div *ngIf="user.getPropertyNb('apollo')  == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Apollo</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('demeter') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Demeter</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('hermes') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hermes</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('ares') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Ares</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('athena') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Athena</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('artemis')  == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Artemis</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('dionysus') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Dionysus</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('hephaestus') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hephaestus</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('hades')  == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hades</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('poseidon') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Poseidon</span>
-                  </div>
-                  <div *ngIf="user.getPropertyNb('zeus') == 1">
-                    + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Zeus</span>
-                  </div>
-                  <div *ngIf="user.getSanctuary(3) > 0">
-                    + 24 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Tantalus</span>
-                  </div>
-                </td>
-                <td>
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <span translate>Production</span>/<span translate>Day</span>
+                  </th>
+                  <th scope="col">
+                    <span translate>Consumption</span>/<span translate>Day</span>
+                  </th>
+                  <th scope="col">
+                    <span translate>Evolution</span>/<span translate>Day</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
                 
-                </td>
-                <td *ngIf="user.getSanctuary(3) == 0">
-                  +{{4*(
-                   user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
-    
-                  <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
-                </td>
-                <td *ngIf="user.getSanctuary(3) > 0">
-                  +{{4*(6+
-                   user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
-    
-                  <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <tr *ngFor="let ress of nbvariation | keyvalue">
+                  <td>
+                    <span *ngFor="let building of user.getBuildings()">
+                      <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.production, ress.key) > 0">
+                        +{{ getRess(building.production, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
+                        <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                        {{building.name|translate}}<br/>
+                      </span>
+                    </span>
+                  </td>
+                  <td>
+                    <span *ngFor="let building of user.getBuildings()">
+                      <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.consumption, ress.key) > 0">
+                        -{{ getRess(building.consumption, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
+                        <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                        {{building.name|translate}}<br/>
+                      </span>
+                    </span>
+                    <span *ngFor="let unit of user.getArmy()">
+                      <span *ngIf="user.getPropertyNb(unit.code) > 0 && getRess(unit.consumption, ress.key) > 0">
+                        -{{ getRess(unit.consumption, ress.key) * user.getPropertyNb(unit.code) | number:'': this.translate.currentLang }} 
+                        <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                        {{unit.name|translate}}<br/>
+                      </span>
+                    </span>
+                    <span *ngIf="user.getTaxes(ress.key) > 0">
+                      -{{user.getTaxes(ress.key) | number:'': this.translate.currentLang }} 
+                      <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                      {{'Alliance\'s taxes'|translate}}
+                    </span>
+                  </td>
+                  <td [ngClass]="{'text-danger': user.getPropertyNb(ress.key) == 0 && getVariation(ress.key) < 0, 'text-warning': getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)}">
+                    <span *ngIf="user.getVarRess(ress.key) > 0">+</span>{{user.getVarRess(ress.key)*3600*24| number:'': this.translate.currentLang }}
+                    <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                  </td>
+                </tr>
+                <tr *ngIf="user.getLevel() >= user.getLevelRess('ambrosia')">
+                  <td>
+                    <div *ngIf="user.getPropertyNb('apollo')  == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Apollo</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('demeter') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Demeter</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('hermes') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hermes</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('ares') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Ares</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('athena') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Athena</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('artemis')  == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Artemis</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('dionysus') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Dionysus</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('hephaestus') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hephaestus</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('hades')  == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Hades</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('poseidon') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Poseidon</span>
+                    </div>
+                    <div *ngIf="user.getPropertyNb('zeus') == 1">
+                      + 4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Temple of Zeus</span>
+                    </div>
+                    <div *ngIf="user.getSanctuary(3) > 0">
+                      + 24 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>&nbsp;<span translate>Tantalus</span>
+                    </div>
+                  </td>
+                  <td>
+                  
+                  </td>
+                  <td *ngIf="user.getSanctuary(3) == 0">
+                    +{{4*(
+                     user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
+      
+                    <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+                  </td>
+                  <td *ngIf="user.getSanctuary(3) > 0">
+                    +{{4*(6+
+                     user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
+      
+                    <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
