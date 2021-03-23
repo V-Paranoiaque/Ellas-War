@@ -28,8 +28,13 @@
 
 <strong translate>Army sent</strong>
 <div *ngFor="let unit of getSentUnits()" class="col-xs-12">
-    {{unit.nb| number:'': this.translate.currentLang}} 
-    {{user.info.datas.army[unit.code].names|translate}} 
+    {{unit.nb| number:'': this.translate.currentLang}}
+    <span *ngIf="user.info.datas.army[unit.code]">
+      {{user.info.datas.army[unit.code].names|translate}} 
+    </span>
+    <span *ngIf="user.info.datas.building[unit.code]">
+      {{user.info.datas.building[unit.code].names|translate}} 
+    </span>
 </div>
 
 <div class="clearfix"><br/></div>
@@ -62,10 +67,11 @@
           class="col-6 text-end">
         {{info.lost_ress[ress]| number:'1.0-0': this.translate.currentLang}}
       </td>
-      <td *ngIf="info.lost_ress[ress] > 0"
+      <th scope="row"
+          *ngIf="info.lost_ress[ress] > 0"
           class="col-6 text-start">
         <id-to-ress [ress_id]=ress></id-to-ress>
-      </td>
+      </th>
     </tr>
   </table>
 </div>
@@ -75,8 +81,8 @@
   <table class="table" aria-describedby="LostBuildingDesc">
     <tr *ngFor="let building of getLostBuildings()">
       <td class="col-6 text-end">{{building.nb| number:'': this.translate.currentLang}}</td>
-      <td class="col-6 text-start" *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</td>
-      <td class="col-6 text-start" *ngIf="building.nb > 1">{{user.info.datas.building[building.code].names|translate}}</td>
+      <th scope="row" class="col-6 text-start" *ngIf="building.nb == 1">{{user.info.datas.building[building.code].name|translate}}</th>
+      <th scope="row" class="col-6 text-start" *ngIf="building.nb > 1">{{user.info.datas.building[building.code].names|translate}}</th>
     </tr>
   </table>
 </div>
@@ -93,7 +99,7 @@
   <table class="table"  aria-describedby="CorruptedResDesc">
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'1.0-0': this.translate.currentLang}}</td>
-      <td *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></td>
+      <th scope="row" *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></th>
     </tr>
   </table>
 </div>

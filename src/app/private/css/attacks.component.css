@@ -3,6 +3,10 @@
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
 
+.card-header-auto {
+  height: auto;
+}
+
 .card-body.attack-menu {
   display: flex;
   flex-grow: 1;

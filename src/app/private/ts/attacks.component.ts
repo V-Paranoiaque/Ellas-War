@@ -4,6 +4,7 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
 import boltIcon from '@iconify/icons-fa-solid/bolt';
 import dotCircle from '@iconify/icons-fa-solid/dot-circle';
 import eyeIcon from '@iconify/icons-fa-solid/eye';
@@ -11,6 +12,7 @@ import fireIcon from '@iconify/icons-fa-solid/fire';
 import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
+import share from '@iconify/icons-bi/share';
 import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
@@ -23,19 +25,23 @@ export class Attacks {
   private attackListInfo:any;
   private attackOrderSort:string;
   private attackOrderReverse:number;
-  private attackPage:number;
+  public attackPage:number;
   
   public attackInfo:any;
   public attackMode:number;
+  public currentMsg:any;
   public diamondInfo:any;
   public diamondRankingPlayers:any;
   public diamondRankingAlliance:any;
   public realWaveAttackCheck:any;
   public menuMode:number;
+  public nbpp:number;
   public furyInfo:any;
   public furyPossible:any;
   public lightningPossible:any;
   public lightningInfo:any;
+  public linkSaved:number;
+  public msgList:any;
   public ressList:any;
   public spyInfo:any;
   public targetProfile:any;
@@ -54,12 +60,14 @@ export class Attacks {
   
   //Icons
   boltIcon   = boltIcon;
+  clipboardCheck = clipboardCheck;
   dotCircle  = dotCircle;
   eyeIcon    = eyeIcon;
   fireIcon   = fireIcon;
   fistRaised = fistRaised;
   gemIcon    = gemIcon;
   plusIcon   = plusIcon;
+  share      = share;
   swordIcon  = swordIcon;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
@@ -69,6 +77,9 @@ export class Attacks {
     this.ressList = environment.resources;
     
     this.attackInfo = {};
+    this.currentMsgReset();
+    this.linkSaved = 0;
+    this.msgList = [];
     
     /* Mode
      * 0: History
@@ -85,6 +96,8 @@ export class Attacks {
      */
     this.attackMode = 0;
     this.menuMode = 0;
+    //Number of targets by attack page
+    this.nbpp = 10;
     
     this.furyInfo = {
       'lost_build': {
@@ -118,14 +131,7 @@ export class Attacks {
   }
   
   ngOnInit(){
-    setTimeout(() => {
-      this.socket.emit("attackList", {
-        'page': this.attackPage,
-        'order': this.attackOrderSort,
-        'reverse': this.attackOrderReverse
-      });
-      this.socket.emit('realWaveAttackCheck');
-    }, 0);
+    this.attackListInit();
     
     this.socket.on('attack', (datas:any) => {
       this.attackMode = 4;
@@ -134,6 +140,8 @@ export class Attacks {
     
     this.socket.on('attackList', (datas:any) => {
       this.attackListInfo = Object.assign([], datas);
+      this.attackListInfo.max = datas.max;
+      this.attackPage = datas.cPage;
       this.attackListInfo.list = [];
       for(let city in datas.list) {
         this.attackListInfo.list.push(datas.list[city]);
@@ -236,6 +244,18 @@ export class Attacks {
         this.attackMode = 9;
       }
     });
+    
+    this.socket.on('msgPage', (newMsgList:any) => {
+      this.msgList   = newMsgList.list;
+    });
+    
+    this.socket.on('msgInfo', (msgInfo:any) => {
+      this.currentMsg = msgInfo;
+      //TODO: remove that and change on the server side
+      if(this.currentMsg.msg) {
+        this.currentMsg.msg = this.currentMsg.msg.reverse();
+      }
+    });
   }
   
   ngOnDestroy() {
@@ -249,6 +269,8 @@ export class Attacks {
     this.socket.removeListener('eye');
     this.socket.removeListener('fury');
     this.socket.removeListener('lightning'); 
+    this.socket.removeListener('msgInfo'); 
+    this.socket.removeListener('msgPage'); 
     this.socket.removeListener('sanctuariesAttack');
     this.socket.removeListener('sanctuariesEye');
     this.socket.removeListener('sanctuariesDefense');
@@ -257,6 +279,37 @@ export class Attacks {
     this.socket.removeListener('sanctuariesSpy');
     this.socket.removeListener('spyInfo');
     this.socket.removeListener('waveAttackSum');
+  }
+  
+  attackListInit() {
+    this.socket.emit("attackList", {
+      'page': this.attackPage,
+      'order': this.attackOrderSort,
+      'reverse': this.attackOrderReverse,
+      'nbpp': this.nbpp
+    });
+    this.socket.emit('realWaveAttackCheck');
+    
+    this.socket.emit('msgPage', {
+      'page': 1,
+      'category': 4
+    });
+  }
+  
+  copyLink() {
+    this.linkSaved = 1;
+    
+    setTimeout(() => {
+      this.linkSaved = 0;
+    }, 2000);
+  }
+  
+  currentMsgReset() {
+    this.currentMsg = {
+      id: 0,
+      content: '',
+      msg_type: 0
+    };
   }
   
   getAttackList() {
@@ -281,6 +334,14 @@ export class Attacks {
     }
     
     return list;
+  }
+  
+  getAttacksPageNb() {
+    return this.attackListInfo.max;
+  }
+  
+  getCurrentMsg() {
+    return this.currentMsg;
   }
   
   getOffensivePower() {
@@ -316,6 +377,11 @@ export class Attacks {
     return list;
   }
   
+  pageAttacksLoad(event:any) {
+    let id = event.target.value;
+    this.setAttacksPage(parseInt(id));
+  }
+  
   prepareAttack(id:number) {
     this.attackMode = 3;
     
@@ -345,6 +411,25 @@ export class Attacks {
   
   launchLightning(id:number) {
     this.socket.emit('lightning', id);
+  }
+  
+  messageLoad(msg:any) {
+    let id = msg.msg_id;
+    this.linkSaved = 0;
+    
+    if(id > 0) {
+      if(!msg.msg_read) {
+        msg.msg_read = 1;
+      }
+      this.socket.emit('msgInfo', id);
+    }
+    else {
+      this.currentMsg = {
+        id: 0,
+        content: '',
+        msg_type: 0
+      };
+    }
   }
   
   observe(id:number) {
@@ -381,8 +466,25 @@ export class Attacks {
     this.socket.emit('sanctuariesSpy', id);
   }
   
+  setAttacksPage(id:number, i:number=0) {
+    id += i;
+    if(id >= 1 && id <= this.getAttacksPageNb()) {
+      this.attackPage = id;
+      this.socket.emit("attackList", {
+        'page': this.attackPage,
+        'order': this.attackOrderSort,
+        'reverse': this.attackOrderReverse,
+        'nbpp': this.nbpp
+      });
+    }
+  }
+  
   setMenuMode(id:number) {
     switch(id) {
+      case 0:
+        this.attackListInit();
+        this.currentMsgReset();
+      break;
       case 1:
       break;
       case 2:
@@ -396,6 +498,11 @@ export class Attacks {
       break;
     }
     this.menuMode = id;
+  }
+  
+  shareMsg() {
+    this.socket.emit("msgShare", this.currentMsg.id);
+    this.currentMsg.msg_shared = (this.currentMsg.msg_shared+1)%2;
   }
   
   spy(id:number) {

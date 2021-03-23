@@ -63,7 +63,7 @@
                   <ic-icon [icon]="gemIcon"
                            *ngIf="player.diamond_begin > 0"></ic-icon>
                   
-                  <span *ngIf="player.alliance > 0">
+                  <span class="fw-lighter" *ngIf="player.alliance > 0">
                     <br/>
                     {{ player.alliance_name }}
                   </span>
@@ -115,6 +115,17 @@
                 </td>
               </tr>
             </table>
+            
+            <div class="input-group" *ngIf="getAttacksPageNb() > 1">
+              <span class="input-group-text" role="button" (click)="setAttacksPage(1)">&lt;&lt;</span>
+              <span class="input-group-text" role="button" (click)="setAttacksPage(attackPage, -1)">&lt;</span>
+              <select class="form-control" (change)="pageAttacksLoad($event)" [(ngModel)]="attackPage">
+                <option *ngFor="let item of [].constructor(getAttacksPageNb()); let i = index"
+                        value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
+              </select>
+              <span class="input-group-text" role="button" (click)="setAttacksPage(attackPage, 1)">&gt;</span>
+              <span class="input-group-text" role="button" (click)="setAttacksPage(getAttacksPageNb())">&gt;&gt;</span>
+            </div>
           </div>
           <div class="card-body" *ngIf="menuMode == 1">
             <attacks-stats></attacks-stats>
@@ -130,7 +141,51 @@
           </div>
         </div>
       </div>
-      
+      <div class="col-xl-6" *ngIf="attackMode == 0">
+        <div class="card" *ngIf="getCurrentMsg().id == 0">
+          <div class="card-header" translate>Last attacks</div>
+          <div class="card-body">
+            <div *ngFor="let msg of msgList" class="d-flex bd-highlight"
+               role="button" (click)="messageLoad(msg)">
+              <div class="p-2 flex-grow-1 bd-highlight border-top">
+                <messages-title [msg]="msg"></messages-title>
+                <div class="fw-lighter">
+                  {{ msg.last_date | date:'dd/MM/yyyy, HH:mm' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="getCurrentMsg().id > 0">
+          <div class="card-header card-header-auto">
+            <messages-title [msg]="getCurrentMsg()"></messages-title>
+            &nbsp;
+            <button class="btn btn-warning" (click)="shareMsg()">
+              <ic-icon [icon]="share"></ic-icon>
+            </button>
+          </div>
+          <div *ngIf="getCurrentMsg().msg_shared == 1" class="card-body text-center">
+            <div class="wg-bold text-danger"
+                 *ngIf="linkSaved == 1"
+                 translate>Link saved to clipboard</div>
+            <strong translate>Share link:</strong>
+            {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
+            <span class="badge bg-primary" role="button" (click)="copyLink()"
+                  [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
+                  ngxClipboard>
+              <ic-icon [icon]="clipboardCheck" ></ic-icon>
+            </span>
+          </div>
+          <div class="card-body">
+            <span [ngSwitch]="getCurrentMsg().msg_type">
+              <span *ngSwitchCase="1"><attacks-message [(info)]="getCurrentMsg().msg[0].content"></attacks-message></span>
+              <span *ngSwitchCase="3"><fury-message [(info)]="getCurrentMsg().msg[0].content"></fury-message></span>
+              <span *ngSwitchCase="8"><lost-message [(info)]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="col-xl-6" *ngIf="attackMode > 0">
         <div class="card">
           <div class="card-header card-header-flexible"
