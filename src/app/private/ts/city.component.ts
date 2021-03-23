@@ -92,13 +92,13 @@ export class City {
   
   selectArmy(name:string) {
     this.armyInfo = this.user.info.datas.army[name];
-    this.buildingInfo.engageNb   = '';
-    this.buildingInfo.liberatenb = '';
-    this.buildingInfo.resale     = {};
-    this.buildingInfo.rEngageNb      = 0;
-    this.buildingInfo.rLiberateNb    = 0;
-    this.buildingInfo.rEngagePossible= 0;
-    this.buildingInfo.error          = 0; 
+    this.armyInfo.engageNb   = '';
+    this.armyInfo.liberatenb = '';
+    this.armyInfo.resale     = {};
+    this.armyInfo.rEngageNb      = 0;
+    this.armyInfo.rLiberateNb    = 0;
+    this.armyInfo.rEngagePossible= 0;
+    this.armyInfo.error          = 0; 
     
     this.socket.emit('engagePossible', name);
     
