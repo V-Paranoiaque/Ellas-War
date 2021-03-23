@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.hello" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>EllasWar</name>
+    <description>
+        Desktop/Mobile application for the online game ellaswar.com.
+    </description>
+    <author email="mighty@ellaswar.com" href="https://ellaswar.eu">
+        Ellas War's Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="electron">
+        <preference name="ElectronSettingsFilePath" value="assets/electron/settings.json" />
+        <icon src="res/electron/icon.png" />
+        <icon src="res/electron/icon@2x.png" target="installer" />
+    </platform>
+    <platform name="ios">
+        <preference name="scheme" value="app" />
+        <preference name="hostname" value="localhost" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+</widget>

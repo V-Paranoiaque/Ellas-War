@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
     
-    this.cssBase = '/assets/styles/';
+    this.cssBase = './assets/styles/';
     this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
   }
   
