@@ -3,6 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 
+import greekcolumnIcon from '@iconify/icons-whh/greekcolumn';
+
 @Component({
   selector: 'common-top-bar',
   templateUrl: '../html/common-top-bar.component.html'
@@ -12,6 +14,8 @@ export class CommonTopBar implements OnInit {
   
   @Input()
   active: string;
+  
+  greekcolumnIcon = greekcolumnIcon;
   
   constructor(protected socket: Socket, 
               protected router: Router, public user: User) {

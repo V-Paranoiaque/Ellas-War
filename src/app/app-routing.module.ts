@@ -31,6 +31,7 @@ import { Blocked } from './private/ts/blocked.component';
 import { Paused } from './private/ts/paused.component';
 
 //Admin
+import { AdminHome } from './admin/ts/admin-home.component';
 import { AdminUnits } from './admin/ts/admin-units.component';
 
 //General
@@ -72,10 +73,8 @@ routes = [
   
   { path: 'admin',
     children: [
-      {
-        path: 'units',
-        component: AdminUnits
-      }
+      { path: 'units', component: AdminUnits },
+      { path: '**', component: AdminHome }
     ]
   },
     
