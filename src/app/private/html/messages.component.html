@@ -284,7 +284,7 @@
               
                 <br/>
                 
-                <div *ngIf="getCurrentMsg().msg[0].content.buildings.length > 0">
+                <div *ngIf="getCurrentMsg().msg[0].content.buildings && getCurrentMsg().msg[0].content.buildings.length > 0">
                   <strong translate>Buildings</strong><strong translate>:</strong>
                   <div *ngFor="let build of getCurrentMsg().msg[0].content.buildings">
                     {{user.info.datas.building[build].name|translate}}
