@@ -1,6 +1,5 @@
 # TODO
 ## General
-* A refresh is required after a server restart
 * Different favicon when a new message is arrived
 * Quest challenge (+ in the general city frame)
 * Save 404

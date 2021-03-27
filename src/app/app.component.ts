@@ -31,15 +31,10 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.socket.setupSocketConnection();
     this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
-    this.socket.emit('loadConfig');
     
-    let localToken = localStorage.getItem('token');
-    if(localToken) {
-      this.socket.emit('ewAuth', {'token': localToken});
-    }
+    this.socket.setupSocketConnection();
     
     this.socket.on('ewAuth', (data: any) => {
       if(data) {
