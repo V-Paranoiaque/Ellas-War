@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../services/user.service';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   private cssBase: string;
   
   constructor(private socket: Socket, public user: User,
+              private router: Router,
               public translate: TranslateService,
               public sanitizer: DomSanitizer) {
     translate.addLangs(['en', 'fr']);
@@ -38,11 +40,20 @@ export class AppComponent implements OnInit {
     
     this.socket.on('ewAuth', (data: any) => {
       if(data) {
-        this.user.setUser(data);
+        let before = this.user.getPropertyNb('mstatus')
+        this.user.setUser(data)
         
         let newStyle = this.setStyle();
         if(this.cssUrl != newStyle) {
           this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
+        }
+        
+        //For component to reload after login
+        if(before != this.user.getPropertyNb('mstatus')) {
+          let currentUrl = this.router.url;
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate([currentUrl]);
         }
       }
     });
