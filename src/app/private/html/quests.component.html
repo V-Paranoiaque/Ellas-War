@@ -102,13 +102,13 @@
             
             <quests-daily *ngSwitchCase="14"
                           subject="{{'Food of the Gods'|translate}}"
-                          description="{{ quest.reward_quantity | number:'': this.translate.currentLang }}"
+                          description="{{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
                           link="city"></quests-daily>
             
             <quests-daily *ngSwitchCase="15"
                           subject="{{'Tickler'|translate}}"
-                          description="{{ quest.reward_quantity | number:'': this.translate.currentLang }}"
+                          description="{{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
                           link="tickets"></quests-daily>
             
