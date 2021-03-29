@@ -1,0 +1,63 @@
+<common-top-bar active="admin"></common-top-bar>
+
+<div class="container-fluid">
+  <div class="row">
+    <admin-left-menu active="resources" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
+  
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header" translate>
+                Give resources to a player
+              </div>
+              
+              <div class="card-body" *ngIf="error > 0">
+                <span *ngIf="error == 1">Error in the reason</span>
+                <span *ngIf="error == 2">This player doesn't exist</span>
+                <span *ngIf="error == 3">Resources given to the player</span>
+              </div>
+              
+              <div class="card-body">
+                <div class="mb-3">
+                  <div class="input-group">
+                    <span class="input-group-text" id="player" 
+                          translate>Player</span>
+                    <input type="text" class="form-control"
+                           placeholder="{{'Player'|translate}}"
+                           [(ngModel)]="give.player" 
+                           aria-describedby="player">
+                  </div>
+                  <select class="form-control" [(ngModel)]="give.resource">
+                    <option *ngFor="let res of ressList; let index = index;" value="{{ index }}">
+                      {{ res | titlecase | translate }}
+                    </option>
+                  </select>
+                  <div class="input-group">
+                    <span class="input-group-text" id="quantity" translate>Quantity</span>
+                    <input type="text" class="form-control"
+                           placeholder="{{'Quantity'|translate}}"
+                           [(ngModel)]="give.quantity"
+                           aria-describedby="quantity">
+                  </div>
+                  <select class="form-control" [(ngModel)]="give.reason">
+                    <option value="1" translate>Paypal</option>
+                    <option value="2" translate>Refund</option>
+                    <option value="3" translate>Present</option>
+                  </select>
+                </div>
+                
+                <div class="text-center">
+                  <button (click)="sendRes()" class="btn btn-primary" translate>Validate</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>

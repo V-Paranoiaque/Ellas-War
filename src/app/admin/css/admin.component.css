@@ -1,3 +1,12 @@
 admin-left-menu {
   padding-left: 0;
 }
+
+.card-header-auto {
+  height: auto;
+}
+
+.card-body-100 {
+  padding-left: 0;
+  padding-right: 0;
+}

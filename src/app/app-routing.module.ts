@@ -31,7 +31,20 @@ import { Blocked } from './private/ts/blocked.component';
 import { Paused } from './private/ts/paused.component';
 
 //Admin
+import { AdminChat } from './admin/ts/admin-chat.component';
+import { AdminContact } from './admin/ts/admin-contact.component';
+import { AdminEmails } from './admin/ts/admin-emails.component';
+import { AdminMessages } from './admin/ts/admin-messages.component';
+import { AdminNews } from './admin/ts/admin-news.component';
 import { AdminHome } from './admin/ts/admin-home.component';
+import { AdminPauses } from './admin/ts/admin-pauses.component';
+import { AdminPermissions } from './admin/ts/admin-permissions.component';
+import { AdminPlayers } from './admin/ts/admin-players.component';
+import { AdminPrayers } from './admin/ts/admin-prayers.component';
+import { AdminQuests } from './admin/ts/admin-quests.component';
+import { AdminResources } from './admin/ts/admin-resources.component';
+import { AdminStoreroom } from './admin/ts/admin-storeroom.component';
+import { AdminSupport } from './admin/ts/admin-support.component';
 import { AdminUnits } from './admin/ts/admin-units.component';
 
 //General
@@ -73,6 +86,19 @@ routes = [
   
   { path: 'admin',
     children: [
+      { path: 'chat', component: AdminChat },
+      { path: 'contact', component: AdminContact },
+      { path: 'emails', component: AdminEmails },
+      { path: 'messages', component: AdminMessages },
+      { path: 'news', component: AdminNews },
+      { path: 'pauses', component: AdminPauses },
+      { path: 'permissions', component: AdminPermissions },
+      { path: 'players', component: AdminPlayers },
+      { path: 'prayers', component: AdminPrayers },
+      { path: 'quests', component: AdminQuests },
+      { path: 'resources', component: AdminResources },
+      { path: 'storeroom', component: AdminStoreroom },
+      { path: 'support', component: AdminSupport },
       { path: 'units', component: AdminUnits },
       { path: '**', component: AdminHome }
     ]

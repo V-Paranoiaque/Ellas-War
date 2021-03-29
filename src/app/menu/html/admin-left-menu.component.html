@@ -1,15 +1,41 @@
 <ul class="list-group">
-  <li class="list-group-item" translate>Players</li>
-  <li class="list-group-item" translate>Send a messages</li>
-  <li class="list-group-item" translate>Prayers</li>
-  <li class="list-group-item" translate>Resources</li>
-  <li class="list-group-item" translate>News</li>
-  <li class="list-group-item" translate>Email Switching</li>
-  <li class="list-group-item" translate>Pauses</li>
-  <li class="list-group-item" translate>Store room</li>
-  <li class="list-group-item" translate>Quests</li>
-  <li class="list-group-item" translate>Chat</li>
-  <li class="list-group-item" translate>Permissions</li>
-  <li class="list-group-item" translate>Contact</li>
-  <li class="list-group-item" translate>Support</li>
+  <li class="list-group-item" [routerLink]="['/admin/players']"
+      [ngClass]="{'active': active == 'players'}"
+      role="button" translate>Players</li>
+  <li class="list-group-item" [routerLink]="['/admin/messages']"
+      [ngClass]="{'active': active == 'messages'}"
+      role="button" translate>Send a message</li>
+  <li class="list-group-item" [routerLink]="['/admin/prayers']"
+      [ngClass]="{'active': active == 'prayers'}"
+      role="button" translate>Prayers</li>
+  <li class="list-group-item" [routerLink]="['/admin/resources']"
+      [ngClass]="{'active': active == 'resources'}"
+      role="button" translate>Resources</li>
+  <li class="list-group-item" [routerLink]="['/admin/news']"
+      [ngClass]="{'active': active == 'news'}"
+      role="button" translate>News</li>
+  <li class="list-group-item" [routerLink]="['/admin/emails']"
+      [ngClass]="{'active': active == 'emails'}"
+      role="button" translate>Email Switching</li>
+  <li class="list-group-item" [routerLink]="['/admin/pauses']"
+      [ngClass]="{'active': active == 'pauses'}"
+      role="button" translate>Pauses</li>
+  <li class="list-group-item" [routerLink]="['/admin/storeroom']"
+      [ngClass]="{'active': active == 'storeroom'}"
+      role="button" translate>Store room</li>
+  <li class="list-group-item" [routerLink]="['/admin/quests']"
+      [ngClass]="{'active': active == 'quests'}"
+      role="button" translate>Quests</li>
+  <li class="list-group-item" [routerLink]="['/admin/chat']"
+      [ngClass]="{'active': active == 'chat'}"
+      role="button" translate>Chat</li>
+  <li class="list-group-item" [routerLink]="['/admin/permissions']"
+      [ngClass]="{'active': active == 'permissions'}"
+      role="button" translate>Permissions</li>
+  <li class="list-group-item" [routerLink]="['/admin/contact']"
+      [ngClass]="{'active': active == 'contact'}"
+      role="button" translate>Contact</li>
+  <li class="list-group-item" [routerLink]="['/admin/support']"
+      [ngClass]="{'active': active == 'support'}"
+      role="button" translate>Support</li>
 </ul>

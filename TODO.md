@@ -7,7 +7,17 @@
 * Scroll down the chat when opening
 
 ## Admin
-* Everything
+* Add a pray
+* Chat management
+* Contact page
+* Email modification list
+* List players
+* Manage news
+* Panel permissions
+* Pauses
+* Send an email/message
+* Storeroom control
+* Support page
 
 ## Alliances
 * Everything

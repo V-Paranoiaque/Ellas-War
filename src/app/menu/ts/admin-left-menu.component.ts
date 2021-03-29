@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
@@ -11,8 +11,12 @@ import { Router } from '@angular/router'
 
 export class AdminLeftMenu {
   
+  @Input()
+  active: string;
+  
   constructor(socket: Socket, 
               router: Router, public user: User) {
+    this.active = '';
   }
   
   ngOnInit() {
