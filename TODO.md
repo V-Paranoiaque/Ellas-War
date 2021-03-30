@@ -4,7 +4,6 @@
 * Quest challenge (+ in the general city frame)
 * Save 404
 * Search in the ranking
-* Scroll down the chat when opening
 
 ## Admin
 * Add a pray

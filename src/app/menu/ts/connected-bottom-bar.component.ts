@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
@@ -23,6 +23,9 @@ export class ConnectedBottomBar extends CommonBottomBar {
   public chat_alli_msgs:any;
   public chatAlliMsg:string;
   public chat_alli_nb:number;
+  
+  @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
+  @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
   
   constructor(protected socket: Socket, public user: User) {
     super(socket, user);
@@ -120,9 +123,23 @@ export class ConnectedBottomBar extends CommonBottomBar {
     }
     if(this.chatActive == 'general') {
       this.chat_user_nb = 0;
+      setTimeout(() => {
+        this.chatGeneralScroll?.nativeElement.scroll({
+          top: 999999,
+          left: 0,
+          behavior: 'auto'
+        });
+      }, 0);
     }
     else if(this.chatActive == 'alliance') {
       this.chat_alli_nb = 0;
+      setTimeout(() => {
+        this.chatAllianceScroll?.nativeElement.scroll({
+          top: 999999,
+          left: 0,
+          behavior: 'auto'
+        });
+      }, 0);
     }
   }
 }
