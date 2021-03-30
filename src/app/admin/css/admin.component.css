@@ -2,6 +2,10 @@ admin-left-menu {
   padding-left: 0;
 }
 
+.main {
+  background-color: white;
+}
+
 .card-header-auto {
   height: auto;
 }

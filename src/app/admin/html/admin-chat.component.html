@@ -7,7 +7,34 @@
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <table class="table table-sm">
+            <tbody>
+              <tr *ngFor="let p of adminChatList">
+                <td></td>
+                <td>
+                  <a [routerLink]="['/admin/profile/'+p.user_id]">
+                    {{p.username}}
+                  </a>
+                </td>
+                
+                <td [ngClass]="{'text-danger': p.censured == '1'}">
+                  {{ p.msg }}
+                </td>
+                
+                <td>
+                  {{p.time*1000| date:'dd/MM, HH:mm'}}
+                </td>
+                
+                <td class="center">
+                  <button class="btn" (click)="adminChatCensor(p.id)"
+                          [ngClass]="{'btn-danger': p.censured == 1, 'btn-primary': p.censured == 0}">
+                    <ic-icon *ngIf="p.censured == 0" [icon]="volumeOff"></ic-icon>
+                    <ic-icon *ngIf="p.censured == 1" [icon]="volumeMute"></ic-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

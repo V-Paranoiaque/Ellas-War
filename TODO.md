@@ -8,7 +8,6 @@
 
 ## Admin
 * Add a pray
-* Chat management
 * Contact page
 * Email modification list
 * List players
