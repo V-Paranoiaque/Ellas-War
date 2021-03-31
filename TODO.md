@@ -1,6 +1,5 @@
 # TODO
 ## General
-* Different favicon when a new message is arrived
 * Quest challenge (+ in the general city frame)
 * Save 404
 * Search in the ranking
@@ -27,8 +26,6 @@
 ## Levels
 * Set yellow color on buildings/units when required for a quest
 * Strategies
-* Yellow there is a new message
-* Yellow when a quest can be validated
 
 ## Mythology
 * Altars

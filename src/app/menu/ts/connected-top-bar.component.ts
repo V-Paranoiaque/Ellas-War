@@ -19,6 +19,7 @@ export class ConnectedTopBar extends CommonTopBar {
   
   @Input()
   
+  private favicon: HTMLLinkElement = document.querySelector('#favicon') as HTMLLinkElement;
   private audio:any;
   
   cog      = cog;
@@ -46,8 +47,15 @@ export class ConnectedTopBar extends CommonTopBar {
     this.socket.on('msgNewNb', (nb:number) => {
       this.user.setNewMsg(nb)
       
-      if(this.user.getPropertyNb('sound') == 1) {
-        this.audio.play();
+      if(nb > 0) {
+        this.favicon.href = 'assets/favicon-notif.png';
+        
+        if(this.user.getPropertyNb('sound') == 1) {
+          this.audio.play();
+        }
+      }
+      else {
+        this.favicon.href = 'assets/favicon-normal.png';
       }
     });
   }
