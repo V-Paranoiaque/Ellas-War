@@ -1,9 +1,45 @@
 <common-top-bar active="alliance"></common-top-bar>
 
+<div class="modal fade" id="AllianceDissolve" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-dissolve-popup></alliance-dissolve-popup>
+  </div>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
-      
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">
+              {{myAllianceProfile.alliance_name}}
+              <button class="btn btn-success"
+                      *ngIf="allowLeave == 1"
+                      ng-click="popupLeave()"
+                      title="{{'Leave your alliance'|translate}}">
+                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                <span class="visually-hidden" translate>Leave your alliance</span>
+              </button>
+              <button class="btn btn-danger"
+                      *ngIf="allowLeave == 0 && user.getId() != myAllianceProfile.chief_id && 
+                             user.getPropertyNb('emergency_exit') == 0"
+                      ng-click="popupEmergencyExit()"
+                      title="{{'Enable emergency exit'|translate}}">
+                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                <span class="visually-hidden" translate>Enable emergency exit</span>
+              </button>
+              <button class="btn btn-success" *ngIf="allowDissolve == 1"
+                      data-bs-toggle="modal" data-bs-target="#AllianceDissolve" 
+                      title="{{'Dissolve your alliance'|translate}}">
+                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                <ic-icon [icon]="times"></ic-icon>
+                <span class="visually-hidden" translate>Dissolve your alliance</span>
+              </button>
+            </h1>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

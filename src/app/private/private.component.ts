@@ -3,6 +3,7 @@ import { Attacks } from './ts/attacks.component';
 import { Blocked } from './ts/blocked.component';
 import { City } from './ts/city.component';
 import { Details } from './ts/details.component';
+import { Diplomacy } from './ts/diplomacy.component';
 import { Favors } from './ts/favors.component';
 import { Messages } from './ts/messages.component';
 import { Options } from './ts/options.component';
@@ -11,6 +12,9 @@ import { Quests } from './ts/quests.component';
 import { Storeroom } from './ts/storeroom.component';
 import { Support } from './ts/support.component';
 
+import { AllianceCreatePopup } from './ts/alliance-create-popup.sub-component';
+import { AllianceDissolvePopup } from './ts/alliance-dissolve-popup.sub-component';
+import { AllianceJoinPopup } from './ts/alliance-join-popup.sub-component';
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksDiamond } from './ts/attacks-diamond.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
@@ -47,6 +51,7 @@ export const PrivateComponent = [
   Blocked,
   City,
   Details,
+  Diplomacy,
   Favors,
   Messages,
   Options,
@@ -55,6 +60,9 @@ export const PrivateComponent = [
   Storeroom,
   Support,
   
+  AllianceCreatePopup,
+  AllianceDissolvePopup,
+  AllianceJoinPopup,
   ArmyPopup,
   AttacksDiamond,
   AttacksMessage,

@@ -1,0 +1,94 @@
+<common-top-bar active="allianceprofile"></common-top-bar>
+
+<div class="modal fade" id="AllianceJoin" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-join-popup [info]="allianceProfile"></alliance-join-popup>
+  </div>
+</div>
+
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">
+              {{allianceProfile.alliance_name}}
+              
+              <button class="btn btn-success" 
+                      *ngIf="user.getPropertyNb('level') > 0 && user.getPropertyNb('alliance') == 0"
+                      data-bs-toggle="modal" data-bs-target="#AllianceJoin"
+                      title="{{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}"
+                      [ngClass]="{'btn-invisible': allianceProfile.recruitement_open == 0}">
+                <ic-icon [icon]="userPlus"></ic-icon>
+                <span class="visually-hidden">
+                  {{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}
+                </span>
+              </button>
+            </h1>
+            <br/>
+            <div class="row">
+              <div class="col-sm-6 col-xs-12">
+                <img src="/aprofile/{{allianceProfile.alliance_img}}" 
+                     *ngIf="allianceProfile.alliance_img != ''"
+                     class="img-responsive center-block"
+                     alt="{{allianceProfile.alliance_name}}">
+              </div>
+              <div class="col-sm-6 col-xs-12">
+                <table class="table">
+                  <tr>
+                    <th class="fw-bold" scope="row"
+                        translate>Chief:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td [routerLink]="['/profile/'+allianceProfile.chief_id]"
+                        role="button">
+                      {{allianceProfile.username}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row"
+                        translate>Founder:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td [routerLink]="['/profile/'+allianceProfile.creator_id]"
+                        role="button">
+                      {{allianceProfile.founder}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row"
+                        translate>Members:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>
+                      {{allianceProfile.nbmembers}}
+                      (<a [routerLink]="['/alliancemembers/'+allianceProfile.alliance_id]"
+                          class="link" translate>Consult</a>)
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row"
+                        translate>Victories:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>{{allianceProfile.victories}}</td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row"
+                        translate>Defeats:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>{{allianceProfile.defeats}}</td>
+                  </tr>
+                </table>
+                <br/><br/>
+                <div class="text-justify">
+                  {{allianceProfile.description}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<connected-right-menu></connected-right-menu>
+<common-bottom-bar></common-bottom-bar>

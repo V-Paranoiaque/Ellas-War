@@ -39,8 +39,13 @@
              translate>Quests</a>
         </li>
         <li class="nav-item" *ngIf="this.user.getLevel() > 1">
+          <a class="nav-link" [routerLink]="['/diplomacy']"
+             [ngClass]="{'active': active == 'diplomacy'}"
+             *ngIf="user.getPropertyNb('alliance') == 0"
+             translate>Alliance</a>
           <a class="nav-link" [routerLink]="['/alliance']"
              [ngClass]="{'active': active == 'alliance'}"
+             *ngIf="user.getPropertyNb('alliance') > 0"
              translate>Alliance</a>
         </li>
         <li class="nav-item" *ngIf="this.user.getLevel() > 0">

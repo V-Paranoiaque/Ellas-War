@@ -1,0 +1,55 @@
+<common-top-bar active="alliancemembers"></common-top-bar>
+
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">{{allianceProfile.alliance_name}}</h1>
+            
+            <br/>
+            
+            <table class="table table-striped table-middle">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" translate>Level</th>
+                  <th scope="col" translate>Rank</th>
+                  <th scope="col" translate>XP</th>
+                  <th scope="col" class="visible-lg visible-md" translate>Victories</th>
+                  <th scope="col" translate>Field</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of allianceMembers">
+                  <td>
+                    <a [ngClass]="{'text-danger': p.membre_status == '3' || p.membre_status == '5',
+                                  'text-warning': p.membre_status == '4'}"
+                       [routerLink]="['/profile/'+p.membre_id]">{{p.username}}</a>
+                  </td>
+                  <td class="text-center">{{p.level}}</td>
+                  <td>{{p.rank_name}}</td>
+                  <td class="text-end">{{p.xp| number:'': this.translate.currentLang}}</td>
+                  <td class="text-end visible-lg visible-md">
+                    {{p.victory| number:'': this.translate.currentLang}}
+                  </td>
+                  <td class="text-end">{{p.field| number:'': this.translate.currentLang}}</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="text-center fw-bold">
+              <a [routerLink]="['/allianceprofile/'+allianceProfile.alliance_id]"
+                 translate>Alliance profile</a>
+            </div>
+            <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<connected-right-menu></connected-right-menu>
+<common-bottom-bar></common-bottom-bar>

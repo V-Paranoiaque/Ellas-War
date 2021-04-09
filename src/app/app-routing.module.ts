@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //Public
+import { AllianceMembers } from './public/ts/alliance-members.component';
+import { AllianceProfile } from './public/ts/alliance-profile.component';
 import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
 import { Honnor } from './public/ts/honnor.component';
@@ -17,6 +19,7 @@ import { Alliance } from './private/ts/alliance.component';
 import { Attacks } from './private/ts/attacks.component';
 import { City } from './private/ts/city.component';
 import { Details } from './private/ts/details.component';
+import { Diplomacy } from './private/ts/diplomacy.component';
 import { Favors } from './private/ts/favors.component';
 import { Messages } from './private/ts/messages.component';
 import { Options } from './private/ts/options.component';
@@ -69,9 +72,12 @@ routes = [
   { path: 'sitemap', component: SiteMap },
   
   { path: 'alliance', component: Alliance },
+  { path: 'alliancemembers/:id', component: AllianceMembers },
+  { path: 'allianceprofile/:id', component: AllianceProfile },
   { path: 'attacks', component: Attacks },
   { path: 'city', component: City },
   { path: 'details', component: Details },
+  { path: 'diplomacy', component: Diplomacy },
   { path: 'favors', component: Favors },
   { path: 'messages', component: Messages },
   { path: 'options', component: Options },

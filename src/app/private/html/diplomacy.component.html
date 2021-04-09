@@ -1,0 +1,187 @@
+<common-top-bar active="diplomacy"></common-top-bar>
+
+<div class="modal fade" id="AllianceCreate" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-create-popup></alliance-create-popup>
+  </div>
+</div>
+
+<div class="modal fade" id="AllianceJoin" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-join-popup [info]="allianceProfile"></alliance-join-popup>
+  </div>
+</div>
+
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center fw-bold text-danger"
+                 *ngIf="user.info.datas && user.info.datas.alliance && 
+                        user.getPropertyNb('alliance') == 0 && 
+                        user.getPropertyNb('level') >= user.info.datas.alliance.create">
+              <a data-bs-toggle="modal" data-bs-target="#AllianceCreate" role="button" translate>
+                Create an alliance
+              </a>
+            </div>
+            
+            <div *ngIf="allianceWait && allianceWait.alliance_name" class="text-center text-danger"><br/>
+              {{'Waiting in the alliance { value }'| translate: {value: allianceWait.alliance_name } }}
+              <span (click)="allianceWaitCancel()" role="button">
+                (<span translate>Cancel</span>)
+              </span>
+            </div>
+            
+            <div class="text-center fw-bold text-danger"
+                 *ngIf="user.info.datas && user.getPropertyNb('strategist') >0 && 
+                        user.getPropertyNb('alliance') > 0 && 
+                        user.getPropertyNb('nbmembers') < user.info.datas.war.minmembers">
+              {{'To start wars, your alliance must have at least { value } members.'| translate:{ value: user.info.datas.war.minmembers } }}
+            </div>
+            <br/>
+            
+            <table class="table table-striped table-middle" *ngIf="allianceList">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center" ng-click="allianceListOrder('mbs')">
+                    <span class="fa fa-users "></span>
+                  </th>
+                  <th scope="col" ng-click="allianceListOrder('name')"
+                      translate>Name</th>
+                  <th scope="col" class="invisible-xs"
+                       ng-click="allianceListOrder('chief')" translate>Chief</th>
+                  <th scope="col"
+                       ng-click="allianceListOrder('victories')" translate>V</th>
+                  <th scope="col"
+                       ng-click="allianceListOrder('defeats')" translate>D</th>
+                  <th scope="col">
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let alli of allianceList">
+                  <td class="text-center">
+                    {{alli.nbmembers}}
+                  </td>
+                  <td>
+                    {{alli.alliance_name}}
+                    <div class="d-block d-sm-none">
+                      <a [routerLink]="['/profile/'+alli.chief_id]">
+                        {{alli.username}}
+                      </a>
+                    </div>
+                  </td>
+                  <td class="d-none d-sm-table-cell">
+                    <a [routerLink]="['/profile/'+alli.chief_id]">
+                      {{alli.username}}
+                    </a>
+                  </td>
+                  <td>{{alli.victories}}</td>
+                  <td>{{alli.defeats}}</td>
+                  <td class="text-center">
+                    <a class="btn btn-primary"
+                       [routerLink]="['/alliancemembers/'+alli.alliance_id]"
+                       title="{{'Alliance members:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="users"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Alliance members:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-info"
+                       [routerLink]="['/allianceprofile/'+alli.alliance_id]"
+                       title="{{'Alliance profile'|translate}}{{':'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="fileAlt"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Alliance profile'|translate}}{{':'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    
+                    <a class="btn btn-success" *ngIf="user.getPropertyNb('alliance') == 0"
+                            ng-click="popupAllianceJoin(alli.alliance_id)"
+                            title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
+                            data-bs-toggle="modal" data-bs-target="#AllianceJoin"
+                            (click)="setJoin(alli)"
+                            [ngClass]="{'btn-invisible': alli.recruitement_open == 0}">
+                      <ic-icon [icon]="userPlus"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Join the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn success" 
+                            *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id"
+                            ng-click="popupPact(alli.alliance_id, 0)"
+                            title="{{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-warning" 
+                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 1"
+                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
+                            title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-success" 
+                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 2"
+                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
+                            title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-danger" 
+                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 3 && user.getPropertyNb('alliance') != alli.alliance_id"
+                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
+                            title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-invisible" *ngIf="user.getPropertyNb('alliance') == alli.alliance_id">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-danger" 
+                            *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.war == 0"
+                            title="{{'Can not declare war on the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="swordIcon"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Can not declare war on the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-success" 
+                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.war > 0"
+                            ng-click="popupAllianceWar(alli.alliance_id)"
+                            title="{{'Declare war on the alliance:'|translate}} {{alli.alliance_name}}">
+                      <span class="flaticon-sword1"></span>
+                      <span class="visually-hidden">
+                        {{'Declare war on the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <div class="text-center" *ngIf="!allianceList" translate>
+              There is no alliance available currently
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<connected-right-menu></connected-right-menu>
+<common-bottom-bar></common-bottom-bar>
