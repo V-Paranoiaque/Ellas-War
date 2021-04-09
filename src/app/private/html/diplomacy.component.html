@@ -63,10 +63,14 @@
               <tbody>
                 <tr *ngFor="let alli of allianceList">
                   <td class="text-center">
-                    {{alli.nbmembers}}
+                    <a class="link" [routerLink]="['/alliancemembers/'+alli.alliance_id]">
+                      {{alli.nbmembers}}
+                    </a>
                   </td>
                   <td>
-                    {{alli.alliance_name}}
+                    <a [routerLink]="['/allianceprofile/'+alli.alliance_id]">
+                      {{alli.alliance_name}}
+                    </a>
                     <div class="d-block d-sm-none">
                       <a [routerLink]="['/profile/'+alli.chief_id]">
                         {{alli.username}}
