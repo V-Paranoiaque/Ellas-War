@@ -14,7 +14,9 @@ import { Support } from './ts/support.component';
 
 import { AllianceCreatePopup } from './ts/alliance-create-popup.sub-component';
 import { AllianceDissolvePopup } from './ts/alliance-dissolve-popup.sub-component';
+import { AllianceEmergencyPopup } from './ts/alliance-emergency-popup.sub-component';
 import { AllianceJoinPopup } from './ts/alliance-join-popup.sub-component';
+import { AllianceLeavePopup } from './ts/alliance-leave-popup.sub-component';
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksDiamond } from './ts/attacks-diamond.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
@@ -62,7 +64,9 @@ export const PrivateComponent = [
   
   AllianceCreatePopup,
   AllianceDissolvePopup,
+  AllianceEmergencyPopup,
   AllianceJoinPopup,
+  AllianceLeavePopup,
   ArmyPopup,
   AttacksDiamond,
   AttacksMessage,
