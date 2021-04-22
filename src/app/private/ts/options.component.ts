@@ -127,7 +127,7 @@ export class Options {
   
   accountSave() {
     this.errorAccountSave = 1;
-    var msg = {
+    let msg = {
       location: this.location,
       description: this.description
     };
@@ -158,7 +158,7 @@ export class Options {
   
   uploadImage(event:any){
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
       let name = event.target.files[0].name;
       
       reader.readAsDataURL(event.target.files[0]);
@@ -167,7 +167,7 @@ export class Options {
           'name': name,
           'data': event.target.result
         };
-        //this.socket.emit('accountImgUpload', playerImage)
+        this.socket.emit('accountImgUpload', playerImage)
         this.image = '';
       }
     }
