@@ -34,7 +34,7 @@
           
           <div *ngIf="profile.alliance > 0">
             <strong>{{'Alliance'|translate}}{{':'|translate}}</strong> 
-            <a href="allianceprofile/{{profile.alliance}}">{{profile.alliance_name}}</a>
+            <a [routerLink]="['/allianceprofile/'+profile.alliance]">{{profile.alliance_name}}</a>
             <div *ngIf="profile.rank_name != ''">
               <strong translate>Rank</strong><strong translate>:</strong> {{profile.rank_name}}
             </div>
