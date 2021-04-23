@@ -21,7 +21,8 @@
       <tbody>
         <tr *ngFor="let n of getNews()">
           <td>
-            <a href="{{ n.link }}" target="_blank">{{ n.title}}</a>
+            <a href="{{ n.link }}" target="_blank"
+               rel="noopener">{{ n.title}}</a>
           </td>
           <td>{{ n.author}}</td>
           <td>{{ n.news_date * 1000 | date:'dd/MM/yyyy'}}</td>
