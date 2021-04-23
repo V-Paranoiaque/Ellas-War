@@ -1,0 +1,42 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      {{ info.alliance_name }}
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  
+  <div class="modal-body container-fluid" 
+       *ngIf="info.war == 0">
+    <div class="fw-bold" translate>
+      You can't start a war with this alliance, possible reasons:
+    </div>
+    <ul>
+      <li translate>Each alliance needs minimum two members</li>
+      <li translate>Both alliances have a pact</li>
+      <li translate>Both alliances have already a war scheduled or in progress</li>
+      <li translate>The target alliance has less than the half of members than yours</li>
+      <li translate>The target alliance has more than the double of members than yours</li>
+      <li translate>A pact has been broken recently between both alliances</li>
+    </ul>
+  </div>
+  
+  <div class="modal-body container-fluid" 
+       *ngIf="info.war == 1">
+    <strong *ngIf="started == 0">
+      {{'You are at the point of declare war to { value } alliance, it will start in 24h.'| translate: { value: info.alliance_name} }}
+    </strong>
+    
+    <strong class="text-danger" *ngIf="started == 1">
+      {{'You just declared war to { value } alliance, it will start in 24h.'| translate: { value: info.alliance_name} }}
+    </strong>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button type="button" class="btn btn-success"
+            *ngIf="warPossible()" (click)="allianceWar()"
+            translate>Confirm</button>
+  </div>
+</div>

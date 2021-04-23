@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" translate>Archives</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid">
+    <div *ngFor="let msg of archiveList">
+      <alliance-archives-title class="fw-bold" [type]="msg.type" [title]="msg.title"></alliance-archives-title>
+      <div class="text-end fw-lighter">{{msg.alliance_history_date*1000| date:'dd/MM/yyyy, HH:mm'}}</div>
+      <alliance-archives-text [msg]="msg"></alliance-archives-text>
+      <br/>
+      <br/>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Socket } from '../../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
@@ -29,7 +30,7 @@ export class Diplomacy {
   userPlus = userPlus;
   users    = users;
   
-  constructor(private router: Router, private http: HttpClient, private socket: Socket, public user: User) {
+  constructor(private router: Router, private http: HttpClient, private socket: Socket, public user: User, public translate: TranslateService) {
     this.allianceList = '';
     this.allianceProfile = {
       'alliance_name': ''
@@ -53,6 +54,9 @@ export class Diplomacy {
         this.router.navigate(['/alliance'])
       }
     });
+    this.socket.on('alliancePactAsk', () => {
+      this.socket.emit('alliancePactList');
+    });
     this.socket.on('allianceRankingRefresh', () => {
       this.socket.emit('allianceList', this.order);
     });
@@ -65,11 +69,17 @@ export class Diplomacy {
     this.socket.removeListener('allianceList');
     this.socket.removeListener('allianceListReload');
     this.socket.removeListener('allianceNew');
+    this.socket.removeListener('alliancePactAsk');
     this.socket.removeListener('allianceRankingRefresh');
     this.socket.removeListener('allianceWait');
   }
   
-  allianceWaitCancel = () => {
+  allianceListOrder(order:string) {
+    this.order = order;
+    this.socket.emit("allianceList", this.order);
+  }
+  
+  allianceWaitCancel() {
     this.socket.emit('allianceWaitCancel');
   }
   
@@ -83,7 +93,10 @@ export class Diplomacy {
     });
   }
   
-  setJoin(alliance:any) {
+  setAlliance(alliance:any) {
+    if(alliance.pact_id) {
+      this.socket.emit('alliancePactInfo', alliance.pact_id);
+    }
     this.allianceProfile = alliance;
   }
 }

@@ -6,9 +6,26 @@
   </div>
 </div>
 
+<div class="modal fade" id="AlliancePactAsk" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-pact-ask-popup [info]="allianceProfile"></alliance-pact-ask-popup>
+  </div>
+</div>
+<div class="modal fade" id="AlliancePactManage" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-pact-manage-popup [info]="allianceProfile"></alliance-pact-manage-popup>
+  </div>
+</div>
+
 <div class="modal fade" id="AllianceJoin" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <alliance-join-popup [info]="allianceProfile"></alliance-join-popup>
+  </div>
+</div>
+
+<div class="modal fade" id="AllianceWarDeclare" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-war-declare-popup [info]="allianceProfile"></alliance-war-declare-popup>
   </div>
 </div>
 
@@ -25,6 +42,7 @@
               <a data-bs-toggle="modal" data-bs-target="#AllianceCreate" role="button" translate>
                 Create an alliance
               </a>
+              <br/>
             </div>
             
             <div *ngIf="allianceWait && allianceWait.alliance_name" class="text-center text-danger"><br/>
@@ -32,6 +50,7 @@
               <span (click)="allianceWaitCancel()" role="button">
                 (<span translate>Cancel</span>)
               </span>
+              <br/>
             </div>
             
             <div class="text-center fw-bold text-danger"
@@ -39,23 +58,24 @@
                         user.getPropertyNb('alliance') > 0 && 
                         user.getPropertyNb('nbmembers') < user.info.datas.war.minmembers">
               {{'To start wars, your alliance must have at least { value } members.'| translate:{ value: user.info.datas.war.minmembers } }}
+              <br/>
             </div>
-            <br/>
             
             <table class="table table-striped table-middle" *ngIf="allianceList">
               <thead>
                 <tr>
-                  <th scope="col" class="text-center" ng-click="allianceListOrder('mbs')">
+                  <th (click)="allianceListOrder('mbs')" scope="col"
+                      class="text-center">
                     <span class="fa fa-users "></span>
                   </th>
-                  <th scope="col" ng-click="allianceListOrder('name')"
+                  <th (click)="allianceListOrder('name')" scope="col"
                       translate>Name</th>
-                  <th scope="col" class="invisible-xs"
-                       ng-click="allianceListOrder('chief')" translate>Chief</th>
-                  <th scope="col"
-                       ng-click="allianceListOrder('victories')" translate>V</th>
-                  <th scope="col"
-                       ng-click="allianceListOrder('defeats')" translate>D</th>
+                  <th (click)="allianceListOrder('chief')" scope="col"
+                      class="d-none d-sm-table-cell" translate>Chief</th>
+                  <th (click)="allianceListOrder('victories')" scope="col"
+                      translate>V</th>
+                  <th (click)="allianceListOrder('defeats')" scope="col"
+                      translate>D</th>
                   <th scope="col">
                   </th>
                 </tr>
@@ -82,8 +102,8 @@
                       {{alli.username}}
                     </a>
                   </td>
-                  <td>{{alli.victories}}</td>
-                  <td>{{alli.defeats}}</td>
+                  <td>{{alli.victories | number:'': this.translate.currentLang}}</td>
+                  <td>{{alli.defeats | number:'': this.translate.currentLang}}</td>
                   <td class="text-center">
                     <a class="btn btn-primary"
                        [routerLink]="['/alliancemembers/'+alli.alliance_id]"
@@ -103,73 +123,85 @@
                     </a>
                     
                     <a class="btn btn-success" *ngIf="user.getPropertyNb('alliance') == 0"
-                            ng-click="popupAllianceJoin(alli.alliance_id)"
-                            title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
-                            data-bs-toggle="modal" data-bs-target="#AllianceJoin"
-                            (click)="setJoin(alli)"
-                            [ngClass]="{'btn-invisible': alli.recruitement_open == 0}">
+                       title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
+                       data-bs-toggle="modal" data-bs-target="#AllianceJoin"
+                       (click)="setAlliance(alli)"
+                       [ngClass]="{'btn-invisible': alli.recruitement_open == 0}">
                       <ic-icon [icon]="userPlus"></ic-icon>
                       <span class="visually-hidden">
                         {{'Join the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
-                    <a class="btn success" 
-                            *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id"
-                            ng-click="popupPact(alli.alliance_id, 0)"
-                            title="{{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}">
+                    <a class="btn btn-success" 
+                       *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
+                       (click)="setAlliance(alli)"
+                       title="{{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}">
                       <ic-icon [icon]="flag"></ic-icon>
                       <span class="visually-hidden">
                         {{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
-                    <a class="btn btn-warning" 
-                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 1"
-                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
-                            title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
+                    <a class="btn btn-info" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 1"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
                       <ic-icon [icon]="flag"></ic-icon>
                       <span class="visually-hidden">
                         {{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
-                    <a class="btn btn-success" 
-                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 2"
-                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
-                            title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
+                    <a class="btn btn-warning" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 2"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
                       <ic-icon [icon]="flag"></ic-icon>
                       <span class="visually-hidden">
                         {{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
-                    <a class="btn btn-danger" 
-                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 3 && user.getPropertyNb('alliance') != alli.alliance_id"
-                            ng-click="popupPact(alli.alliance_id, alli.pact_id)"
-                            title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
+                    <a class="btn btn-primary" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && 
+                              user.getPropertyNb('alliance') > 0 && alli.pact == 3 && 
+                              user.getPropertyNb('alliance') != alli.alliance_id"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
                       <ic-icon [icon]="flag"></ic-icon>
                       <span class="visually-hidden">
                         {{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
-                    <a class="btn btn-invisible" *ngIf="user.getPropertyNb('alliance') == alli.alliance_id">
+                    <a class="btn btn-danger"
+                       *ngIf="user.getPropertyNb('alliance') == alli.alliance_id"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
+                       (click)="setAlliance(alli)">
                       <ic-icon [icon]="flag"></ic-icon>
                       <span class="visually-hidden">
                         {{alli.alliance_name}}
                       </span>
                     </a>
+                    
                     <a class="btn btn-danger" 
-                            *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.war == 0"
-                            title="{{'Can not declare war on the alliance:'|translate}} {{alli.alliance_name}}">
+                       *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.war == 0"
+                       data-bs-toggle="modal" data-bs-target="#AllianceWarDeclare"
+                       (click)="setAlliance(alli)"
+                       title="{{'Impossible to declare a war to the alliance:'|translate}} {{alli.alliance_name}}">
                       <ic-icon [icon]="swordIcon"></ic-icon>
                       <span class="visually-hidden">
-                        {{'Can not declare war on the alliance:'|translate}} {{alli.alliance_name}}
+                        {{'Impossible to declare a war to the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
                     <a class="btn btn-success" 
-                            *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.war > 0"
-                            ng-click="popupAllianceWar(alli.alliance_id)"
-                            title="{{'Declare war on the alliance:'|translate}} {{alli.alliance_name}}">
-                      <span class="flaticon-sword1"></span>
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.war > 0"
+                       data-bs-toggle="modal" data-bs-target="#AllianceWarDeclare"
+                       (click)="setAlliance(alli)"
+                       title="{{'Declare war to the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="swordIcon"></ic-icon>
                       <span class="visually-hidden">
-                        {{'Declare war on the alliance:'|translate}} {{alli.alliance_name}}
+                        {{'Declare war to the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
                   </td>

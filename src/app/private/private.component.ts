@@ -12,11 +12,25 @@ import { Quests } from './ts/quests.component';
 import { Storeroom } from './ts/storeroom.component';
 import { Support } from './ts/support.component';
 
+import { AllianceArchivesPopup } from './ts/alliance-archives-popup.sub-component';
+import { AllianceArchivesText } from './ts/alliance-archives-text.sub-component';
+import { AllianceArchivesTitle } from './ts/alliance-archives-title.sub-component';
+import { AllianceCandidatePopup } from './ts/alliance-candidate-popup.sub-component';
 import { AllianceCreatePopup } from './ts/alliance-create-popup.sub-component';
 import { AllianceDissolvePopup } from './ts/alliance-dissolve-popup.sub-component';
 import { AllianceEmergencyPopup } from './ts/alliance-emergency-popup.sub-component';
+import { AllianceEvictPopup } from './ts/alliance-evict-popup.sub-component';
+import { AllianceGiftPopup } from './ts/alliance-gift-popup.sub-component';
 import { AllianceJoinPopup } from './ts/alliance-join-popup.sub-component';
 import { AllianceLeavePopup } from './ts/alliance-leave-popup.sub-component';
+import { AlliancePactAskPopup } from './ts/alliance-pact-ask-popup.sub-component';
+import { AlliancePactManagePopup } from './ts/alliance-pact-manage-popup.sub-component';
+import { AllianceProfilePopup } from './ts/alliance-profile-popup.sub-component';
+import { AllianceRankPopup } from './ts/alliance-rank-popup.sub-component';
+import { AllianceRequestsPopup } from './ts/alliance-requests-popup.sub-component';
+import { AllianceTaxesPopup } from './ts/alliance-taxes-popup.sub-component';
+import { AllianceWarDeclarePopup } from './ts/alliance-war-declare-popup.sub-component';
+import { AllianceWarArchivesPopup } from './ts/alliance-war-archives-popup.sub-component';
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksDiamond } from './ts/attacks-diamond.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
@@ -62,11 +76,25 @@ export const PrivateComponent = [
   Storeroom,
   Support,
   
+  AllianceArchivesPopup,
+  AllianceArchivesText,
+  AllianceArchivesTitle,
+  AllianceCandidatePopup,
   AllianceCreatePopup,
   AllianceDissolvePopup,
   AllianceEmergencyPopup,
+  AllianceEvictPopup,
+  AllianceGiftPopup,
   AllianceJoinPopup,
   AllianceLeavePopup,
+  AlliancePactAskPopup,
+  AlliancePactManagePopup,
+  AllianceProfilePopup,
+  AllianceRankPopup,
+  AllianceRequestsPopup,
+  AllianceTaxesPopup,
+  AllianceWarArchivesPopup,
+  AllianceWarDeclarePopup,
   ArmyPopup,
   AttacksDiamond,
   AttacksMessage,

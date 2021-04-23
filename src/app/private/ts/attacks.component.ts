@@ -25,6 +25,7 @@ export class Attacks {
   private attackListInfo:any;
   private attackOrderSort:string;
   private attackOrderReverse:number;
+  private attackWarsListInfo:any;
   public attackPage:number;
   
   public attackInfo:any;
@@ -296,6 +297,21 @@ export class Attacks {
     });
   }
   
+  attackListWarInit() {
+    this.socket.emit("attackWarsList", {
+      'page': this.attackPage,
+      'order': this.attackOrderSort,
+      'reverse': this.attackOrderReverse,
+      'nbpp': this.nbpp
+    });
+    this.socket.emit('realWaveAttackCheck');
+    
+    this.socket.emit('msgPage', {
+      'page': 1,
+      'category': 4
+    });
+  }
+  
   copyLink() {
     this.linkSaved = 1;
     
@@ -321,6 +337,15 @@ export class Attacks {
     }
   }
   
+  getAttackWarsList() {
+    if(this.attackWarsListInfo && this.attackWarsListInfo.list) {
+      return this.attackWarsListInfo.list;
+    }
+    else {
+      return [];
+    }
+  }
+  
   getArmy() {
     let list:any = [];
     
@@ -338,6 +363,10 @@ export class Attacks {
   
   getAttacksPageNb() {
     return this.attackListInfo.max;
+  }
+  
+  getAttacksWarsPageNb() {
+    return this.attackWarsListInfo.max;
   }
   
   getCurrentMsg() {
@@ -380,6 +409,10 @@ export class Attacks {
   pageAttacksLoad(event:any) {
     let id = event.target.value;
     this.setAttacksPage(parseInt(id));
+  }
+  pageAttacksWarsLoad(event:any) {
+    let id = event.target.value;
+    this.setAttacksWarsPage(parseInt(id));
   }
   
   prepareAttack(id:number) {
@@ -479,9 +512,25 @@ export class Attacks {
     }
   }
   
+  setAttacksWarsPage(id:number, i:number=0) {
+    id += i;
+    if(id >= 1 && id <= this.getAttacksWarsPageNb()) {
+      this.attackPage = id;
+      this.socket.emit("attackWarsList", {
+        'page': this.attackPage,
+        'order': this.attackOrderSort,
+        'reverse': this.attackOrderReverse,
+        'nbpp': this.nbpp
+      });
+    }
+  }
+  
   setMenuMode(id:number) {
     switch(id) {
       case 0:
+        this.attackPage = 1;
+        this.attackOrderSort = 'other';
+        this.attackOrderReverse = 0;
         this.attackListInit();
         this.currentMsgReset();
       break;
@@ -495,6 +544,12 @@ export class Attacks {
       case 3:
         this.socket.emit('sanctuariesList');
         this.socket.emit('waveAttackSum');
+      break;
+      case 4:
+        this.attackPage = 1;
+        this.attackOrderSort = 'other';
+        this.attackOrderReverse = 0;
+        this.attackListWarInit();
       break;
     }
     this.menuMode = id;

@@ -1,0 +1,42 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">
+      {{ info.username }} ({{ info.level }})
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid">
+    <div class="text-center">
+      {{'{ value } can still receive { qtt } Drachmas'| translate: { value: info.username, qtt: giftRemain | number:'': this.translate.currentLang } }}
+    </div>
+    
+    <br/>
+    <div *ngIf="giftsError > 0" class="text-center">
+      <div class="alert alert-danger" *ngIf="giftsError == 1" translate>
+        You can't give Drachmas to this member.
+      </div>
+      <div class="alert alert-danger" *ngIf="giftsError == 2" translate>
+        You don't have enough Drachmas.
+      </div>
+      <div class="alert alert-danger" *ngIf="giftsError == 3" translate>
+        You can't give as much drachmas to this member.
+      </div>
+      <div class="alert alert-success" *ngIf="giftsError == 4" translate>
+        Don completed successfully.
+      </div>
+      <br/>
+    </div>
+    
+    <input type="number" class="form-control" placeholder="0" 
+           min="0" max="{{giftRemain}}" [(ngModel)]="qttGiftsRess">
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button type="button" class="btn btn-success"
+            *ngIf="qttGiftsRess > 0 && giftRemain > 0"
+            (click)="memberGifts()" translate>Confirm</button>
+  </div>
+</div>

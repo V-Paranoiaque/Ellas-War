@@ -154,6 +154,25 @@ export class User {
       return 0;
     }
   }
+  
+  getResId(name:string) {
+    switch(name) {
+      case 'drachma': return 0;
+      case 'food': return 1;
+      case 'water': return 2;
+      case 'wood': return 3;
+      case 'iron': return 4;
+      case 'stone': return 5;
+      case 'marble': return 6;
+      case 'grapes': return 7;
+      case 'wine': return 8;
+      case 'gold': return 9;
+      case 'favor': return 10;
+      case 'ambrosia': return 11;
+    }
+    
+    return name;
+  }
   getSanctuary(sanctuary:any) {
     if(this.info.sanctuary && this.info.sanctuary[sanctuary]) {
       return this.info.sanctuary[sanctuary];

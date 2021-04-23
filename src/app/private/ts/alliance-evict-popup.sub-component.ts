@@ -4,11 +4,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-emergency-popup',
-  templateUrl: '../html/alliance-emergency-popup.sub-component.html'
+  selector: 'alliance-evict-popup',
+  templateUrl: '../html/alliance-evict-popup.sub-component.html'
 })
 
-export class AllianceEmergencyPopup {
+export class AllianceEvictPopup {
+  
+  @Input() info:any;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }
@@ -19,10 +21,14 @@ export class AllianceEmergencyPopup {
   ngOnDestroy() {
   }
   
-  myAllianceEmergencyExit() {
-    this.socket.emit('myAllianceEmergencyExit');
+  memberEject() {
+    this.socket.emit('myAllianceEject', this.info.membre_id);
   }
-  myAllianceEmergencyExitCancel() {
-    this.socket.emit('myAllianceEmergencyExitCancel');
+  
+  possible() {
+    if(this.user.getPropertyNb('recruiter') > 0 && this.info.allow_eject == 1) {
+      return true
+    }
+    return false;
   }
 }

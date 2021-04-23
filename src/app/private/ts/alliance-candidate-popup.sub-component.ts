@@ -5,11 +5,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-leave-popup',
-  templateUrl: '../html/alliance-leave-popup.sub-component.html'
+  selector: 'alliance-candidate-popup',
+  templateUrl: '../html/alliance-candidate-popup.sub-component.html'
 })
 
-export class AllianceLeavePopup {
+export class AllianceCandidatePopup {
+  
+  @Input() candidate:any;
   
   constructor(private router: Router, private socket: Socket, public user: User, public translate: TranslateService) {
   }
@@ -19,9 +21,12 @@ export class AllianceLeavePopup {
   
   ngOnDestroy() {
   }
-   
-  allianceLeave() {
-    this.socket.emit('myAllianceLeave');
-    this.router.navigate(['/diplomacy'])
+  
+  accept() {
+    this.socket.emit('myAllianceAccept', this.candidate.membre_id);
+  }
+  
+  refuse() {
+    this.socket.emit('myAllianceRefuse', this.candidate.membre_id);
   }
 }

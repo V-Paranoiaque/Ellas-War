@@ -1,8 +1,33 @@
 <common-top-bar active="alliance"></common-top-bar>
 
+<div class="modal fade" id="AllianceArchives" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-archives-popup></alliance-archives-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceCandidate" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-candidate-popup [candidate]="selectedPlayer"></alliance-candidate-popup>
+  </div>
+</div>
 <div class="modal fade" id="AllianceDissolve" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <alliance-dissolve-popup></alliance-dissolve-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceEmergency" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-emergency-popup></alliance-emergency-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceEvict" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-evict-popup [info]="selectedPlayer"></alliance-evict-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceGift" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-gift-popup [info]="selectedPlayer"></alliance-gift-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceLeave" tabindex="-1" aria-hidden="true">
@@ -10,9 +35,35 @@
     <alliance-leave-popup></alliance-leave-popup>
   </div>
 </div>
-<div class="modal fade" id="AllianceEmergency" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="AlliancePactManage" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-emergency-popup></alliance-emergency-popup>
+    <alliance-pact-manage-popup [info]="allianceProfile"></alliance-pact-manage-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceProfile" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-profile-popup [allianceProfile]="myAllianceProfile" ></alliance-profile-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceRank" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-rank-popup [info]="selectedPlayer"></alliance-rank-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceRequests" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-requests-popup [profile]="myAllianceProfile"
+                             [info]="selectedRequest"></alliance-requests-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceTaxes" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-taxes-popup [taxes]="taxes"></alliance-taxes-popup>
+  </div>
+</div>
+<div class="modal fade" id="AllianceWarArchives" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <alliance-war-archives-popup [info]="selectedWar"></alliance-war-archives-popup>
   </div>
 </div>
 
@@ -24,10 +75,25 @@
           <div class="card-body">
             <h1 class="text-center">
               {{myAllianceProfile.alliance_name}}
+              
+              <button class="btn btn-primary" (click)="getProfile()"
+                      *ngIf="user.getPropertyNb('second') > 0"
+                      data-bs-toggle="modal" data-bs-target="#AllianceProfile" 
+                      title="{{'Modify the alliance\'s profile'|translate}}">
+                <ic-icon [icon]="brushIcon"></ic-icon>
+              </button>
+              
+              <button class="btn btn-warning"
+                      data-bs-toggle="modal" data-bs-target="#AllianceArchives" 
+                      title="{{'Archives'|translate}}">
+                <ic-icon [icon]="filePaper2Line"></ic-icon>
+                <span class="visually-hidden" translate>Archives</span>
+              </button>
+              
               <button class="btn btn-success"  *ngIf="allowLeave == 1"
                       data-bs-toggle="modal" data-bs-target="#AllianceLeave" 
                       title="{{'Leave your alliance'|translate}}">
-                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                <ic-icon [icon]="times"></ic-icon>
                 <span class="visually-hidden" translate>Leave your alliance</span>
               </button>
               <button class="btn btn-danger"
@@ -35,17 +101,276 @@
                              user.getPropertyNb('emergency_exit') == 0"
                       data-bs-toggle="modal" data-bs-target="#AllianceEmergency" 
                       title="{{'Enable emergency exit'|translate}}">
-                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+                <ic-icon [icon]="times"></ic-icon>
                 <span class="visually-hidden" translate>Enable emergency exit</span>
               </button>
               <button class="btn btn-success" *ngIf="allowDissolve == 1"
                       data-bs-toggle="modal" data-bs-target="#AllianceDissolve" 
                       title="{{'Dissolve your alliance'|translate}}">
-                <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
                 <ic-icon [icon]="times"></ic-icon>
                 <span class="visually-hidden" translate>Dissolve your alliance</span>
               </button>
             </h1>
+            
+            <div class="text-center fw-bold text-danger"
+                 *ngIf="user.getPropertyNb('emergency_exit') > 0">
+              <span translate>
+                Emergency exit activated, departure planned:
+              </span>
+              {{user.getPropertyNb('emergency_exit')*1000| date:'dd/MM, HH:mm'}}
+              <span data-bs-toggle="modal" data-bs-target="#AllianceEmergency" 
+                    role="button">(<span translate>Cancel</span>)</span>
+            </div>
+            
+            <table class="table table-striped align-middle">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>Rank</th>
+                  <th scope="col" translate>XP</th>
+                  <th scope="col" class="visible-lg visible-md" translate>Victories</th>
+                  <th scope="col" translate>Field</th>
+                  <th scope="col" translate>Activity</th>
+                  <th scope="col"></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of myAllianceMembers">
+                  <td>
+                    <a [ngClass]="{'player_blocked': p.membre_status == '3' || p.membre_status == '5',
+                                   'player_pause': p.membre_status == '4'}"
+                       [routerLink]="['/profile/'+p.membre_id]">
+                      {{p.username}}
+                      ({{p.level}})
+                    </a>
+                    <div class="d-block d-sm-none"
+                         *ngIf="p.rank_name !=''">{{p.rank_name}}</div>
+                  </td>
+                  <td class="d-none d-sm-table-cell">{{p.rank_name}}</td>
+                  <td class="text-end">{{p.xp | number:'': this.translate.currentLang}}</td>
+                  <td class="text-end visible-lg visible-md">{{p.victory | number:'': this.translate.currentLang}}</td>
+                  <td class="text-end">{{p.field | number:'': this.translate.currentLang}}</td>
+                  <td class="text-center">
+                    {{p.last_activity*1000| date:'dd/MM yyyy, HH:mm'}}
+                  </td>
+                  <td>
+                    <button class="btn btn-success" (click)="setPlayer(p, 3)"
+                            data-bs-toggle="modal" data-bs-target="#AllianceRank" 
+                            title="{{''|translate}}">
+                      <ic-icon [icon]="sportsMedal"></ic-icon>
+                      <span class="visually-hidden">
+                        
+                      </span>
+                    </button>
+                    
+                    <button class="btn btn-success" (click)="setPlayer(p, 1)"
+                            *ngIf="p.gift == 0 && p.membre_id != user.getId()"
+                            data-bs-toggle="modal" data-bs-target="#AllianceGift" 
+                            title="{{'Give drachmas'|translate}}">
+                      <ic-icon [icon]="coinBagSolid"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Give drachmas'|translate}}
+                      </span>
+                    </button>
+                    <button class="btn btn-warning" (click)="setPlayer(p, 1)"
+                            *ngIf="p.gift > 0 && p.remain > 0 && p.membre_id != user.getId()"
+                            data-bs-toggle="modal" data-bs-target="#AllianceGift"
+                            title="{{'Give drachmas'|translate}}">
+                      <ic-icon [icon]="coinBagSolid"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Give drachmas'|translate}}
+                      </span>
+                    </button>
+                    <button class="btn btn-danger" (click)="setPlayer(p, 1)"
+                            *ngIf="p.remain == 0 && p.membre_id != user.getId()"
+                            data-bs-toggle="modal" data-bs-target="#AllianceGift"
+                            title="{{'Impossible to give drachmas'|translate}}">
+                      <ic-icon [icon]="coinBagSolid"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Impossible to give drachmas'|translate}}
+                      </span>
+                    </button>
+                    <button class="btn btn-danger" (click)="setPlayer(p, 2)"
+                            *ngIf="user.getPropertyNb('recruiter') > 0 && p.allow_eject == 1"
+                            data-bs-toggle="modal" data-bs-target="#AllianceEvict"
+                            title="{{'Evict from the alliance'|translate}}">
+                      <ic-icon [icon]="times"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Evict from the alliance'|translate}}
+                      </span>
+                    </button>
+                    <button class="btn btn-primary" (click)="setPlayer(p, 2)"
+                            *ngIf="user.getPropertyNb('recruiter') > 0 && p.allow_eject == 0 && p.membre_id != user.getId() && p.membre_id != myAllianceProfile.chief_id"
+                            data-bs-toggle="modal" data-bs-target="#AllianceEvict"
+                            title="{{'Impossible to evict this member from the alliance'|translate}}">
+                      <ic-icon [icon]="times"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Impossible to evict this member from the alliance'|translate}}
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            <span translate>
+              Resources
+            </span>
+            <ic-icon [icIcon]="cog" role="button" (click)="taxesInit()"
+                     data-bs-toggle="modal" data-bs-target="#AllianceTaxes"></ic-icon>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped table-middle align-middle">
+              <tbody>
+                <tr *ngFor="let res of ressList">
+                  <td class="text-center">
+                    <id-to-ress [ress_id]="res"></id-to-ress>
+                  </td>
+                  <td class="text-end">
+                    {{ myAllianceProfile['stock_'+res] | number:'1.0-0': this.translate.currentLang }}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary" (click)="setRequest(res)"
+                            data-bs-toggle="modal" data-bs-target="#AllianceRequests">
+                      <ic-icon [icon]="handHolding"></ic-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        <div class="card">
+          <div class="card-header" translate>
+            Recruitment
+          </div>
+          <div class="card-body text-center fw-bold"
+               *ngIf="myAllianceWaitList.length == 0" translate>
+            There is no member waiting to enter in your alliance
+          </div>
+          <div class="card-body" *ngIf="myAllianceWaitList.length > 0">
+            <div *ngFor="let user of myAllianceWaitList" class="d-flex flex-row">
+              <div class="flex-grow-1">
+                {{ user.username }} ({{ user.level }})
+              </div>
+              <div class="text-end">
+                <button class="btn btn-primary" (click)="setPlayer(user, 0)"
+                        data-bs-toggle="modal" data-bs-target="#AllianceCandidate" >
+                  <ic-icon [icon]="eye"></ic-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span translate>
+              Pacts
+            </span>
+            <ic-icon [icon]="flag" role="button"
+                     [routerLink]="['/diplomacy']"></ic-icon>
+          </div>
+          <div class="card-body">
+            <div class="card-body text-center fw-bold"
+                 *ngIf="pactList.length == 0" translate>
+              You don't have any pact
+            </div>
+            <table class="table table-striped table-middle align-middle"
+                   *ngIf="pactList.length > 0" >
+              <tbody>
+                <tr *ngFor="let alli of pactList">
+                  <td>
+                    <a [routerLink]="['/allianceprofile/'+alli.allinace_id]">
+                      {{ alli.alliance_name }}
+                    </a>
+                  </td>
+                  <td class="text-center">
+                    <a class="btn btn-info" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 1"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-warning" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 2"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                    <a class="btn btn-primary" 
+                       *ngIf="user.getPropertyNb('strategist') >0 && 
+                              user.getPropertyNb('alliance') > 0 && alli.pact == 3 && 
+                              user.getPropertyNb('alliance') != alli.alliance_id"
+                       data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
+                       (click)="setAlliance(alli)"
+                       title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
+                      <ic-icon [icon]="flag"></ic-icon>
+                      <span class="visually-hidden">
+                        {{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}
+                      </span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <span translate>
+              Wars
+            </span>
+            <ic-icon [icon]="swordIcon" role="button"
+                     [routerLink]="['/diplomacy']"></ic-icon>
+          </div>
+          <div class="card-body">
+            <div class="card-body text-center fw-bold"
+                 *ngIf="myAllianceWar.length == 0" translate>
+              You don't have any war
+            </div>
+            <table class="table table-striped table-middle align-middle"
+                   *ngIf="myAllianceWar.length > 0">
+              <tbody>
+                <tr *ngFor="let w of myAllianceWar">
+                  <td>
+                    <a [routerLink]="['/allianceprofile/'+w.alliance_attacking]">
+                      {{ w.name_attacking }}
+                    </a>
+                  </td>
+                  <td *ngIf="w.begin == 1" 
+                      class="text-center">{{w.win_attacking}} - {{w.win_defender}}</td>
+                  <td *ngIf="w.begin == 0" 
+                      class="text-center">{{w.time*1000| date:'dd/MM à HH:mm'}}</td>
+                  <td class="text-end">
+                    <a [routerLink]="['/allianceprofile/'+w.alliance_defender]">
+                      {{ w.name_defender }}
+                    </a>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary" title="{{'Archives'|translate}}"
+                            *ngIf="w.begin == 1" (click)="warSelect(w)"
+                            data-bs-toggle="modal" data-bs-target="#AllianceWarArchives" >
+                      <ic-icon [icon]="filePaper2Line"></ic-icon>
+                      <span class="visually-hidden" translate>Archives</span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -1,0 +1,139 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" translate>
+      {{ info.username }}
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid" translate>
+    <strong for="rankname" translate>Rank</strong><strong translate>:</strong>
+    <input type="text" class="form-control" name="rankname"
+           *ngIf="user.getPropertyNb('second') > 0 && 
+                  (user.getId() == user.getPropertyNb('chief') || info.membre_id != user.getPropertyNb('chief'))"
+           [(ngModel)]="info.rank_name" />
+    <span *ngIf="user.getPropertyNb('second') == 0 || 
+                 (info.membre_id == user.getPropertyNb('chief') && info.membre_id != user.getPropertyNb('chief'))">
+      {{ info.rank_name }}
+    </span>
+    <br/>
+    <table class="table"
+           *ngIf="info.membre_id != user.getPropertyNb('chief')">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center" translate>Power</th>
+          <th scope="col" class="text-center" translate>Use</th>
+          <th scope="col" class="text-center" translate>Transmit</th>
+          <th scope="col" class="text-center" translate>No access</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="fw-bold" (click)="setHelp(1)">
+            <span translate>Second</span>&nbsp;
+            <ic-icon role="button" [icIcon]="questionCircle"></ic-icon>
+          </th>
+          <td class="text-center">
+            <input type="radio" name="second" [(ngModel)]="info.second"
+                   [disabled]="user.getPropertyNb('second') == 2 ? false : true"
+                   [checked]="info.second == 1" [value]="1">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="second" [(ngModel)]="info.second"
+                   [disabled]="user.getPropertyNb('second') == 2 ? false : true"
+                   [checked]="info.second == 2" [value]="2">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="second" [(ngModel)]="info.second"
+                   [disabled]="user.getPropertyNb('second') == 2 ? false : true"
+                   [checked]="info.second == 0" [value]="0">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="fw-bold" (click)="setHelp(2)">
+            <span translate>Recruiter</span>&nbsp;
+            <ic-icon role="button" [icIcon]="questionCircle"></ic-icon>
+          </th>
+          <td class="text-center">
+            <input type="radio" name="recruit" [(ngModel)]="info.recruiter"
+                   [disabled]="user.getPropertyNb('recruiter') == 2 ? false : true"
+                   [value]="1">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="recruit" [(ngModel)]="info.recruiter"
+                   [disabled]="user.getPropertyNb('recruiter') == 2 ? false : true"
+                   [value]="2">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="recruit" [(ngModel)]="info.recruiter"
+                   [disabled]="user.getPropertyNb('recruiter') == 2 ? false : true"
+                   [value]="0">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="fw-bold" (click)="setHelp(3)">
+            <span translate>Strategist</span>&nbsp;
+            <ic-icon role="button" [icIcon]="questionCircle"></ic-icon>
+          </th>
+          <td class="text-center">
+            <input type="radio" name="strategist" [(ngModel)]="info.strategist"
+                   [disabled]="user.getPropertyNb('strategist') == 2 ? false : true"
+                   [value]="1">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="strategist" [(ngModel)]="info.strategist"
+                   [disabled]="user.getPropertyNb('strategist') == 2 ? false : true"
+                   [value]="2">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="strategist" [(ngModel)]="info.strategist"
+                   [disabled]="user.getPropertyNb('strategist') == 2 ? false : true"
+                   [value]="0">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row" class="fw-bold" (click)="setHelp(4)">
+            <span translate>Treasurer</span>&nbsp;
+            <ic-icon role="button" [icIcon]="questionCircle"></ic-icon>
+          </th>
+          <td class="text-center">
+            <input type="radio" name="treasurer" [(ngModel)]="info.treasurer"
+                   [disabled]="user.getPropertyNb('treasurer') == 2 ? false : true"
+                   [value]="1">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="treasurer" [(ngModel)]="info.treasurer"
+                   [disabled]="user.getPropertyNb('treasurer') == 2 ? false : true"
+                   [value]="2">
+          </td>
+          <td class="text-center">
+            <input type="radio" name="treasurer" [(ngModel)]="info.treasurer"
+                   [disabled]="user.getPropertyNb('treasurer') == 2 ? false : true"
+                   [value]="0">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="info.help == 1" translate>
+      The second rank allows to modify members rank's name.
+      A member with this rank can also be promoted to chief if the current one is inactive.
+    </div>
+    <div *ngIf="info.help == 2" translate>
+      The recruiter is allowed to accept/refuse candidates and eject members.
+    </div>
+    <div *ngIf="info.help == 3" translate>
+      The strategist is allowed to manage pacts and wars.
+    </div>
+    <div *ngIf="info.help == 4" translate>
+      The treasurer is allowed to accept/refuse resource requests from membres.
+      He can't accept his own requests.
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button type="button" class="btn btn-primary"
+            (click)="save()" *ngIf="canSave()"
+            data-bs-dismiss="modal" translate>Confirm</button>
+  </div>
+</div>

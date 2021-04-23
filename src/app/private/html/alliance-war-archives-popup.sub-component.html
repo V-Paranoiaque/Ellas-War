@@ -1,0 +1,54 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 *ngIf="info.alliance_attacking == user.getPropertyNb('alliance')"
+        class="modal-title">
+      {{'Against { value }' | translate: { value: info.name_defender } }}
+    </h5>
+    <h5 *ngIf="info.alliance_attacking != user.getPropertyNb('alliance')"
+        class="modal-title">
+      {{'Against { value }' | translate: { value: info.name_attacking } }}
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid text-center fw-bold"
+       *ngIf="list.length == 0" translate>
+    No attack has been made yet
+  </div>
+  <div class="modal-body container-fluid">
+    <table class="table table-middle table-striped">
+    <thead>
+      <tr>
+        <th scope="col" translate>Attacker</th>
+        <th scope="col" translate>Defender</th>
+        <th scope="col" translate></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of list"
+          [ngClass]="{'bg-danger': p.defender == p.result}">
+        <td>
+          <ic-icon [icon]="swordIcon" *ngIf="p.offender == 1"></ic-icon>
+          <ic-icon [icon]="shieldShaded" *ngIf="p.offender == 0"></ic-icon>&nbsp;
+          <a [routerLink]="['/profile/'+p.attacking]"
+             data-bs-dismiss="modal">{{p.ausername}}</a>
+        </td>
+        <td>
+          <ic-icon [icon]="swordIcon" *ngIf="p.offender == 0"></ic-icon>
+          <ic-icon [icon]="shieldShaded" *ngIf="p.offender == 1"></ic-icon>&nbsp;
+          <a [routerLink]="['/profile/'+p.defender]"
+             data-bs-dismiss="modal">{{p.dusername}}</a>
+        </td>
+        <td>
+          {{p.time*1000| date:'dd/MM, HH:mm'}}
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+  </div>
+</div>
+
