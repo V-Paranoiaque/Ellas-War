@@ -110,7 +110,7 @@ export class Attacks {
       }
     };
     this.lightningInfo = {'lost_build':[]}
-    this.spyInfo = {};
+    this.spyInfo = {'error': 0};
     this.targetProfile = {};
     
     this.waveAttackSum = {};
