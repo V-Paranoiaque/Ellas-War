@@ -3,8 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  templateUrl: '../html/admin-units.component.html',
-  styleUrls: ['../css/admin-units.component.css']
+  templateUrl: '../html/admin-units.component.html'
 })
 
 export class AdminUnits {
