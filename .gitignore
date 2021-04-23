@@ -49,3 +49,6 @@ Thumbs.db
 /plugins/
 /platforms/
 /www
+
+# SonarQube
+.scannerwork
