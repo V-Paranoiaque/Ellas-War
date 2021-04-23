@@ -1,6 +1,6 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title" translate>
+    <h5 id="taxesDesc" class="modal-title" translate>
       Taxes management
     </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
@@ -17,12 +17,14 @@
            [(ngModel)]="level_min">
     <br/>
     
-    <table class="table table-striped table-middle">
+    <table class="table table-striped table-middle"
+           aria-describedby="taxesDesc">
       <thead>
         <tr>
-          <th></th>
-          <th translate>Quantity</th>
-          <th *ngIf="user.getPropertyNb('treasurer') > 0" translate>Max</th>
+          <th scope="col"></th>
+          <th scope="col" translate>Quantity</th>
+          <th scope="col" *ngIf="user.getPropertyNb('treasurer') > 0"
+              translate>Max</th>
         </tr>
       </thead>
       <tbody>
