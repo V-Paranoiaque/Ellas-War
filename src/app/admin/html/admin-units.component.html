@@ -3,38 +3,46 @@
 <div class="col-xs-12 main">
   <div class="container">
     <div class="row">
-      
-      <table class="table">
-        <thead>
-          <tr>
-           <th scope="column" translate>Name</th>
-           <th scope="column" translate>Attack</th>
-           <th scope="column" translate>Defense</th>
-           <th scope="column" translate>Price</th>
-           <th scope="column" translate>Consu</th>
-           <th scope="column" translate>P by A</th>
-           <th scope="column" translate>P by D</th>
-           <th scope="column" translate>C by A</th>
-           <th scope="column" translate>C by D</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let unit of armyArray">
-            <td>{{ unit.name | translate }}</td>
-            <td>{{ unit.attack | number:'': this.translate.currentLang }}</td>
-            <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
-            <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
-            <td>{{ unit.globalConsu | number:'': this.translate.currentLang }}</td>
-            
-            <td *ngIf="unit.attack > 0">{{ unit.globalCost/unit.attack | number:'': this.translate.currentLang }}</td>
-            <td *ngIf="unit.attack == 0"></td>
-            
-            <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
-            <td>{{ unit.globalConsu/unit.attack | number:'': this.translate.currentLang }}</td>
-            <td>{{ unit.globalConsu/unit.defense | number:'': this.translate.currentLang  }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+               <th scope="column" translate>Name</th>
+               <th scope="column" translate>Attack</th>
+               <th scope="column" translate>Defense</th>
+               <th scope="column" translate>Price</th>
+               <th scope="column" translate>Consu</th>
+               <th scope="column" translate>P by A</th>
+               <th scope="column" translate>P by D</th>
+               <th scope="column" translate>C by A</th>
+               <th scope="column" translate>C by D</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unit of armyArray">
+                <td>{{ unit.name | translate }}</td>
+                <td>{{ unit.attack | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.globalConsu | number:'': this.translate.currentLang }}</td>
+                
+                <td *ngIf="unit.attack > 0">{{ unit.globalCost/unit.attack | number:'': this.translate.currentLang }}</td>
+                <td *ngIf="unit.attack == 0"></td>
+                
+                <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.globalConsu/unit.attack | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.globalConsu/unit.defense | number:'': this.translate.currentLang  }}</td>
+                <td>
+                  <span *ngFor="let res of unit.consumption | keyvalue">
+                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
