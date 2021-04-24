@@ -47,7 +47,9 @@
             </p>
           </div>
           <div class="card-body" *ngIf="menuMode == 0 && getAttackList().length > 0">
-            <table class="table">
+            <div class="visually-hidden" id="getAttackListDesc"
+                 translate>Attackable cities</div>
+            <table class="table align-middle" aria-labelledby="getAttackListDesc">
               <tr class="text-center">
                 <th scope="col"></th>
                 <th scope="col" translate>V</th>
@@ -156,7 +158,9 @@
             </p>
           </div>
           <div class="card-body" *ngIf="menuMode == 4 && getAttackWarsList().length > 0">
-            <table class="table">
+            <div class="visually-hidden" id="getAttackWarsListDesc"
+                 translate>Attackable cities at war</div>
+            <table class="table align-middle" aria-labelledby="getAttackWarsListDesc">
               <tr class="text-center">
                 <th scope="col"></th>
                 <th scope="col" translate>V</th>
@@ -381,89 +385,92 @@
                 <div class="col-table center"
                      *ngIf="spyInfo.ress && spyInfo.ress.food">
                   <br/>
-                  <strong id="resourcesDesc" translate>Resources</strong>
+                  <strong translate>Resources</strong>
                   <strong translate>:</strong>
                   <br/>
-                  <table class="table" aria-describedby="resourcesDesc">
-                    <tr>
-                      <td>
-                        <id-to-ress [ress_id]="'food'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
-                                             'low': spyInfo.ress.food    == 2,
-                                             'middle': spyInfo.ress.food == 3,
-                                             'high': spyInfo.ress.food   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'water'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
-                                             'low': spyInfo.ress.water    == 2,
-                                             'middle': spyInfo.ress.water == 3,
-                                             'high': spyInfo.ress.water   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'wood'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
-                                             'low': spyInfo.ress.wood    == 2,
-                                             'middle': spyInfo.ress.wood == 3,
-                                             'high': spyInfo.ress.wood   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <id-to-ress [ress_id]="'iron'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
-                                             'low': spyInfo.ress.iron    == 2,
-                                             'middle': spyInfo.ress.iron == 3,
-                                             'high': spyInfo.ress.iron   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'stone'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
-                                             'low': spyInfo.ress.stone    == 2,
-                                             'middle': spyInfo.ress.stone == 3,
-                                             'high': spyInfo.ress.stone   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'marble'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
-                                             'low': spyInfo.ress.marble    == 2,
-                                             'middle': spyInfo.ress.marble == 3,
-                                             'high': spyInfo.ress.marble   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <id-to-ress [ress_id]="'grapes'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
-                                             'low': spyInfo.ress.grapes    == 2,
-                                             'middle': spyInfo.ress.grapes == 3,
-                                             'high': spyInfo.ress.grapes   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'wine'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
-                                             'low': spyInfo.ress.wine    == 2,
-                                             'middle': spyInfo.ress.wine == 3,
-                                             'high': spyInfo.ress.wine   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                      <td>
-                        <id-to-ress [ress_id]="'gold'"></id-to-ress>
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
-                                             'low': spyInfo.ress.gold    == 2,
-                                             'middle': spyInfo.ress.gold == 3,
-                                             'high': spyInfo.ress.gold   == 4}"
-                                 [icon]="dotCircle"></ic-icon>
-                      </td>
-                    </tr>
-                  </table>
+                  <div class="row">
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'food'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
+                                           'low': spyInfo.ress.food    == 2,
+                                           'middle': spyInfo.ress.food == 3,
+                                           'high': spyInfo.ress.food   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'water'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
+                                           'low': spyInfo.ress.water    == 2,
+                                           'middle': spyInfo.ress.water == 3,
+                                           'high': spyInfo.ress.water   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
+                                           'low': spyInfo.ress.wood    == 2,
+                                           'middle': spyInfo.ress.wood == 3,
+                                           'high': spyInfo.ress.wood   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
+                                           'low': spyInfo.ress.iron    == 2,
+                                           'middle': spyInfo.ress.iron == 3,
+                                           'high': spyInfo.ress.iron   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
+                                           'low': spyInfo.ress.stone    == 2,
+                                           'middle': spyInfo.ress.stone == 3,
+                                           'high': spyInfo.ress.stone   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
+                                           'low': spyInfo.ress.marble    == 2,
+                                           'middle': spyInfo.ress.marble == 3,
+                                           'high': spyInfo.ress.marble   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
+                                           'low': spyInfo.ress.grapes    == 2,
+                                           'middle': spyInfo.ress.grapes == 3,
+                                           'high': spyInfo.ress.grapes   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'wine'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
+                                           'low': spyInfo.ress.wine    == 2,
+                                           'middle': spyInfo.ress.wine == 3,
+                                           'high': spyInfo.ress.wine   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                    <div class="col-4">
+                      <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                      &nbsp;
+                      <ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
+                                           'low': spyInfo.ress.gold    == 2,
+                                           'middle': spyInfo.ress.gold == 3,
+                                           'high': spyInfo.ress.gold   == 4}"
+                               [icon]="dotCircle"></ic-icon>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="text-center">
@@ -707,22 +714,24 @@
               Your city is protected against the Zeus lightning
             </span>
             
-            <div class="fw-bold text-danger text-center" translate>
+            <div class="fw-bold text-danger text-center"
+                 id="sanctuariesWaveTabDesc" translate>
               Units you send to a sanctuary cannot return to your city.
             </div>
             
             <div class="row">
               <div class="col-6">
-                <table>
+                <table aria-labelledby="sanctuariesWaveTabDesc">
                   <tbody *ngFor="let unit of sanctuariesWaveTab; let i = index">
                     <tr>
-                      <td (click)="sanctuariesPrepareUnit(i, getArmy()[i].nb)" role="button" colspan="2">
+                      <th (click)="sanctuariesPrepareUnit(i, getArmy()[i].nb)" 
+                          scope="col" role="button" colspan="2">
                         <strong>
                           {{ user.info.datas.army[getArmy()[i].unit].names | translate }}
                           {{":"|translate}}
                         </strong> 
                         {{ getArmy()[i].nb | number:'': this.translate.currentLang }}
-                      </td>
+                      </th>
                     </tr>
                     <tr>
                       <td class="center" rowspan="2">

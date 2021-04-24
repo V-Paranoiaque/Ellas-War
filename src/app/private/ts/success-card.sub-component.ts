@@ -5,8 +5,7 @@ import { User } from '../../../services/user.service';
 
 @Component({
   selector: 'success-card',
-  templateUrl: '../html/success-card.sub-component.html',
-  styleUrls: ['../css/success-card.sub-component.css']
+  templateUrl: '../html/success-card.sub-component.html'
 })
 
 export class SuccessCard {

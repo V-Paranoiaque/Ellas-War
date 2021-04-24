@@ -16,8 +16,7 @@ import times from '@iconify/icons-fa-solid/times';
 import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 
 @Component({
-  templateUrl: '../html/alliance.component.html',
-  styleUrls: ['../css/alliance.component.css']
+  templateUrl: '../html/alliance.component.html'
 })
 
 export class Alliance {

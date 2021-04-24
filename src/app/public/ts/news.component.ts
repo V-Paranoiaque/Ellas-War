@@ -24,4 +24,4 @@ export class News implements OnInit {
   getNews() {
     return this.newsList;
   }
-};
+}

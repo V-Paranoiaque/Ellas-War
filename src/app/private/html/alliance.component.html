@@ -122,7 +122,10 @@
                     role="button">(<span translate>Cancel</span>)</span>
             </div>
             
-            <table class="table table-striped align-middle">
+            <div class="visually-hidden" id="detailsDesc"
+                 translate>Alliance members</div>
+            <table class="table table-striped align-middle"
+                   aria-labelledby="myAllianceMembersDesc">
               <thead>
                 <tr class="text-center">
                   <th scope="col"></th>
@@ -217,19 +220,20 @@
       <div class="col-md-6 col-xs-12">
         <div class="card">
           <div class="card-header">
-            <span translate>
+            <span id="resourcesDesc" translate>
               Resources
             </span>
             <ic-icon [icIcon]="cog" role="button" (click)="taxesInit()"
                      data-bs-toggle="modal" data-bs-target="#AllianceTaxes"></ic-icon>
           </div>
           <div class="card-body">
-            <table class="table table-striped table-middle align-middle">
+            <table class="table table-striped table-middle align-middle"
+                   aria-labelledby="resourcesDesc">
               <tbody>
                 <tr *ngFor="let res of ressList">
-                  <td class="text-center">
+                  <th scope="row" class="text-center">
                     <id-to-ress [ress_id]="res"></id-to-ress>
-                  </td>
+                  </th>
                   <td class="text-end">
                     {{ myAllianceProfile['stock_'+res] | number:'1.0-0': this.translate.currentLang }}
                   </td>
@@ -270,7 +274,7 @@
         </div>
         <div class="card">
           <div class="card-header">
-            <span translate>
+            <span id="pactsDesc" translate>
               Pacts
             </span>
             <ic-icon [icon]="flag" role="button"
@@ -282,14 +286,14 @@
               You don't have any pact
             </div>
             <table class="table table-striped table-middle align-middle"
-                   *ngIf="pactList.length > 0" >
+                   *ngIf="pactList.length > 0" aria-labelledby="pactsDesc">
               <tbody>
                 <tr *ngFor="let alli of pactList">
-                  <td>
+                  <th scope="row">
                     <a [routerLink]="['/allianceprofile/'+alli.allinace_id]">
                       {{ alli.alliance_name }}
                     </a>
-                  </td>
+                  </th>
                   <td class="text-center">
                     <a class="btn btn-info" 
                        *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') > 0 && alli.pact == 1"
@@ -331,7 +335,7 @@
         </div>
         <div class="card">
           <div class="card-header">
-            <span translate>
+            <span id="warsDesc" translate>
               Wars
             </span>
             <ic-icon [icon]="swordIcon" role="button"
@@ -343,23 +347,24 @@
               You don't have any war
             </div>
             <table class="table table-striped table-middle align-middle"
-                   *ngIf="myAllianceWar.length > 0">
+                   *ngIf="myAllianceWar.length > 0"
+                   aria-labelledby="warsDesc">
               <tbody>
                 <tr *ngFor="let w of myAllianceWar">
-                  <td>
+                  <th scope="row">
                     <a [routerLink]="['/allianceprofile/'+w.alliance_attacking]">
                       {{ w.name_attacking }}
                     </a>
-                  </td>
+                  </th>
                   <td *ngIf="w.begin == 1" 
                       class="text-center">{{w.win_attacking}} - {{w.win_defender}}</td>
                   <td *ngIf="w.begin == 0" 
                       class="text-center">{{w.time*1000| date:'dd/MM à HH:mm'}}</td>
-                  <td class="text-end">
+                  <th scope="row" class="text-end">
                     <a [routerLink]="['/allianceprofile/'+w.alliance_defender]">
                       {{ w.name_defender }}
                     </a>
-                  </td>
+                  </th>
                   <td class="text-center">
                     <button class="btn btn-primary" title="{{'Archives'|translate}}"
                             *ngIf="w.begin == 1" (click)="warSelect(w)"

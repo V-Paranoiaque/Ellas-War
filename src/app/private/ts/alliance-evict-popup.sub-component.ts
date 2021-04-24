@@ -15,12 +15,6 @@ export class AllianceEvictPopup {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }
   
-  ngOnInit() {
-  }
-  
-  ngOnDestroy() {
-  }
-  
   memberEject() {
     this.socket.emit('myAllianceEject', this.info.membre_id);
   }

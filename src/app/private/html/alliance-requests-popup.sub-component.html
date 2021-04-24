@@ -22,7 +22,8 @@
   </div>
   <div class="modal-body"
        *ngIf="myAllianceAskList.length > 0">
-    <div class="text-center fw-bold" translate>Waiting requests</div>
+    <div class="text-center fw-bold" id="myAllianceAskListDesc"
+         translate>Waiting requests</div>
     
     <div class="alert alert-danger text-center"
          *ngIf="myAllianceAskAcceptError == 1" translate>
@@ -33,17 +34,18 @@
       Your alliance doesn't have enough resources
     </div>
     
-    <table class="table table-striped table-middle">
+    <table class="table table-striped table-middle"
+           aria-labelledby="myAllianceAskListDesc">
       <tbody>
         <tr *ngFor="let req of myAllianceAskList">
           <td class="text-end">
             {{req.quantity | number:'1.0-0': this.translate.currentLang }}
             <id-to-ress [ress_id]="req.resource_id"></id-to-ress>
           </td>
-          <td>
+          <th scope="row">
             <a [routerLink]="['/profile/'+req.membre_id]"
                data-bs-dismiss="modal">{{req.username}}</a>
-          </td>
+          </th>
           <td class="text-center" *ngIf="user.getPropertyNb('treasurer') > 0">
             <button class="btn btn-success"
                     (click)="myAllianceAskAccept(req.alliance_ask_id)"
@@ -69,15 +71,17 @@
   </div>
   <div class="modal-body"
        *ngIf="myAllianceAskMy.length > 0">
-    <div class="text-center fw-bold" translate>Your requests</div>
+    <div class="text-center fw-bold" id="requestsDesc"
+         translate>Your requests</div>
     
-    <table class="table table-striped table-middle align-middle">
+    <table class="table table-striped table-middle align-middle"
+           aria-labelledby="requestsDesc">
       <tbody>
         <tr *ngFor="let req of myAllianceAskMy">
-          <td class="text-end">
+          <th scope="row" class="text-end">
             {{req.quantity | number:'1.0-0': this.translate.currentLang }}
             <id-to-ress [ress_id]="req.resource_id"></id-to-ress>
-          </td>
+          </th>
           <td class="text-center">
             <button class="btn btn-danger"
                     (click)="myAllianceAskCancel(req.alliance_ask_id)"

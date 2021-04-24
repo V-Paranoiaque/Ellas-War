@@ -11,8 +11,5 @@ export class AdminPrayers {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

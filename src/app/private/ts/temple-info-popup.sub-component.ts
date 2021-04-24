@@ -8,8 +8,7 @@ import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'temple-info-popup',
-  templateUrl: '../html/temple-info-popup.sub-component.html',
-  styleUrls: ['../css/temple-info-popup.sub-component.css']
+  templateUrl: '../html/temple-info-popup.sub-component.html'
 })
 
 export class TempleInfoPopup {

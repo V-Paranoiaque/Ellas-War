@@ -6,8 +6,7 @@ import { User } from '../../../services/user.service';
 
 @Component({
   selector: 'attacks-message',
-  templateUrl: '../html/attacks-message.sub-component.html',
-  styleUrls: ['../css/attacks-message.sub-component.css']
+  templateUrl: '../html/attacks-message.sub-component.html'
 })
 
 export class AttacksMessage {

@@ -37,6 +37,10 @@ export class QuestsAltar {
     });
   }
   
+  ngOnDestroy() {
+    this.socket.removeListener('altarValidate');
+  }
+  
   altarValidate(id:number) {
     this.socket.emit("altarValidate", id);
   }

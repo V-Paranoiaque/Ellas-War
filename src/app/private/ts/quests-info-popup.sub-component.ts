@@ -18,14 +18,6 @@ export class QuestsInfoPopup {
     
   }
   
-  ngOnInit() {
-    
-  }
-  
-  ngOnDestroy() {
-    
-  }
-  
   myQuestReward() {
     this.socket.emit('myQuestReward');
   }

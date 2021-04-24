@@ -164,7 +164,7 @@ export class Messages {
       this.socket.emit('msgAnswer', msg);
       this.answerText = '';
     }
-  };
+  }
   
   copyLink() {
     this.linkSaved = 1;

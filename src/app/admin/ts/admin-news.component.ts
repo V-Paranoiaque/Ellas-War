@@ -11,8 +11,5 @@ export class AdminNews {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

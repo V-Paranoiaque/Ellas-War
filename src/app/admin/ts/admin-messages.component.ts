@@ -11,8 +11,5 @@ export class AdminMessages {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

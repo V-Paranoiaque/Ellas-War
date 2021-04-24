@@ -1,5 +1,5 @@
 <div class="modal-content">
-  <div class="modal-header">
+  <div class="modal-header" id="warDesc">
     <h5 *ngIf="info.alliance_attacking == user.getPropertyNb('alliance')"
         class="modal-title">
       {{'Against { value }' | translate: { value: info.name_defender } }}
@@ -16,7 +16,7 @@
     No attack has been made yet
   </div>
   <div class="modal-body container-fluid">
-    <table class="table table-middle table-striped">
+    <table class="table table-middle table-striped" aria-labelledby="warDesc">
     <thead>
       <tr>
         <th scope="col" translate>Attacker</th>

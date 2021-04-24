@@ -11,8 +11,5 @@ export class AdminSupport {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

@@ -11,8 +11,5 @@ export class AdminPermissions {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

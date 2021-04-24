@@ -30,7 +30,7 @@ export class Storeroom {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.storeroomList = [];
     this.storeroomMyList = [];
-    this.storeroomStats = [],
+    this.storeroomStats = [];
     
     this.storeroom_ress = [].constructor(10);
     this.storeroomMin = {'rate': 0, 'you': 0};

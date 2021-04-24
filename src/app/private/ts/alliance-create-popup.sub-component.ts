@@ -17,16 +17,6 @@ export class AllianceCreatePopup {
     }
   }
   
-  ngOnInit() {
-    this.alliance = {
-      'name': '',
-      'description': ''
-    }
-  }
-  
-  ngOnDestroy() {
-  }
-  
   allianceNew() {
     let msg = {
       'name': this.alliance.name,

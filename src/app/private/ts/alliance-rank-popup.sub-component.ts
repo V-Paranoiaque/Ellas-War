@@ -19,12 +19,6 @@ export class AllianceRankPopup {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }
   
-  ngOnInit() {
-  }
-  
-  ngOnDestroy() {
-  }
-  
   canSave() {
     //Chief
     if(this.user.getId() == this.user.getPropertyNb('chief')) {

@@ -43,13 +43,14 @@ div.containBar {
 }
 
 .progression-quest-container>div {
-   width: 12vw;
-   height: 60px;
-   position: relative;
-   margin-right: 5px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+  width: 12vw;
+  height: 60px;
+  position: relative;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(200,200,200,0.4);
 }
 
 .progression-quest-container>p {
@@ -87,6 +88,7 @@ div.containBar {
   border-top: 30px solid transparent;
   border-bottom: 30px solid transparent;
   z-index: 10;
+  border-left-color: rgba(200,200,200,0.4);
 }
 
 .progression-quest-container>div:first-of-type{
@@ -109,13 +111,6 @@ div.containBar {
 
 .progression-quest-container>div.quest_available:before {
   border-left-color: rgba(52, 152, 219,1.0);
-}
-
-.progression-quest-container>div {
-  background: rgba(200,200,200,0.4);
-}
-.progression-quest-container>div:before {
-  border-left-color: rgba(200,200,200,0.4);
 }
 
 .progression-quest-container>div > img {

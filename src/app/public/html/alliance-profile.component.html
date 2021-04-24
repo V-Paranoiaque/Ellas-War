@@ -12,7 +12,7 @@
       <div class="col-xs-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center">
+            <h1 class="text-center" id="allianceProfileDesc">
               {{allianceProfile.alliance_name}}
               
               <button class="btn btn-success" 
@@ -35,7 +35,7 @@
                      alt="{{allianceProfile.alliance_name}}">
               </div>
               <div class="col-sm-6 col-xs-12">
-                <table class="table">
+                <table class="table" aria-labelledby="allianceProfileDesc">
                   <tr>
                     <th class="fw-bold" scope="row"
                         translate>Chief:</th>

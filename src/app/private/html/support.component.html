@@ -34,15 +34,18 @@
     <div class="row">
       <div class="card">
         <div class="card-body text-center" *ngIf="id == 0">
+        {{ contactNb }}
           <div *ngIf="contactNb == 0" translate>You do not have message on the support page</div>
           <br/>
           <button class="btn btn-success" data-bs-toggle="modal"
+                  id="contactDesc"
                   data-bs-target="#SupportNewTopic" role="button" translate>
             Send a message to the staff
           </button>
           <br/>
           <br/>
-          <table class="table" *ngIf="contactNb > 0">
+          <table class="table table-middle table-striped align-middle"
+                 *ngIf="contactNb > 0" aria-labelledby="contactDesc">
             <tbody>
               <tr *ngFor="let info of contactList">
                 <th scope="row" class="text-start">

@@ -4,4 +4,4 @@ import { Component } from '@angular/core';
   templateUrl: '../html/sitemap.component.html'
 })
 
-export class SiteMap {};
+export class SiteMap {}

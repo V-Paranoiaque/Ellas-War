@@ -6,11 +6,12 @@
       <div class="col-xs-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center">{{allianceProfile.alliance_name}}</h1>
+            <h1 class="text-center"
+                id="allianceProfileDesc">{{allianceProfile.alliance_name}}</h1>
             
             <br/>
             
-            <table class="table table-striped table-middle">
+            <table class="table table-striped table-middle" aria-labelledby="allianceProfileDesc">
               <thead>
                 <tr class="text-center">
                   <th scope="col"></th>

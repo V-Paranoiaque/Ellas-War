@@ -11,8 +11,5 @@ export class AdminStoreroom {
   
   constructor(public user: User, public translate: TranslateService) {
   }
-  
-  ngOnInit() {
-  }
 }
   

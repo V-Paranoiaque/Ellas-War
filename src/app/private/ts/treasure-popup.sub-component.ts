@@ -7,8 +7,7 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 @Component({
   selector: 'treasure-popup',
-  templateUrl: '../html/treasure-popup.sub-component.html',
-  styleUrls: ['../css/treasure-popup.sub-component.css']
+  templateUrl: '../html/treasure-popup.sub-component.html'
 })
 
 export class TreasurePopup {

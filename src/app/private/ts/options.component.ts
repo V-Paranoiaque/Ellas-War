@@ -162,10 +162,10 @@ export class Options {
       let name = event.target.files[0].name;
       
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event:any) => {
+      reader.onload = (event2:any) => {
         let playerImage = {
           'name': name,
-          'data': event.target.result
+          'data': event2.target.result
         };
         this.socket.emit('accountImgUpload', playerImage)
         this.image = '';

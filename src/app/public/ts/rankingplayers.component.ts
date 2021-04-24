@@ -1,8 +1,6 @@
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'
-import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 import { environment } from './../../../environments/environment';
@@ -18,7 +16,7 @@ export class RankingPlayers implements OnInit {
   public rankingPage:number;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
-              private router: Router, private socket: Socket, public user: User, 
+              private router: Router, public user: User, 
               public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     
@@ -80,4 +78,4 @@ export class RankingPlayers implements OnInit {
       this.router.navigate(['/rankingplayers/'+page])
     }
   }
-};
+}

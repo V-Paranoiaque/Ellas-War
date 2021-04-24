@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';

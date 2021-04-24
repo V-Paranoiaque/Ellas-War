@@ -1,8 +1,6 @@
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Socket } from '../../../services/socketio.service';
-
 
 import eye from '@iconify/icons-fa-solid/eye';
 

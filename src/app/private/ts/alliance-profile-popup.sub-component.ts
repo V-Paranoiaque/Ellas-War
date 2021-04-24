@@ -23,24 +23,16 @@ export class AllianceProfilePopup {
     this.imageProfile = '';
   }
   
-  ngOnInit() {
-    
-  }
-  
-  ngOnDestroy() {
-    
-  }
-  
   uploadImage(event:any){
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       let name = event.target.files[0].name;
       
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event:any) => {
+      reader.onload = (event2:any) => {
         let playerImage = {
           'name': name,
-          'data': event.target.result
+          'data': event2.target.result
         };
         this.socket.emit('allianceImgUpload', playerImage)
         this.image = '';

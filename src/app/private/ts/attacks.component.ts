@@ -170,9 +170,7 @@ export class Attacks {
       this.lightningPossible = data;
     });
     this.socket.on('eye',(data:any) => {
-      this.attackMode = 1;
-      
-      this.spyInfo = data;
+      this.setSpy(data);
     });
     
     this.socket.on('fury', (data:any) => {
@@ -193,9 +191,7 @@ export class Attacks {
     });
     
     this.socket.on('spyInfo',(data:any) => {
-      this.attackMode = 1;
-      
-      this.spyInfo = data;
+      this.setSpy(data);
     });
     
     this.socket.on('waveAttackSum',(data:any) => {
@@ -558,6 +554,11 @@ export class Attacks {
   shareMsg() {
     this.socket.emit("msgShare", this.currentMsg.id);
     this.currentMsg.msg_shared = (this.currentMsg.msg_shared+1)%2;
+  }
+  
+  setSpy(data:any) {
+    this.attackMode = 1;
+    this.spyInfo = data;
   }
   
   spy(id:number) {

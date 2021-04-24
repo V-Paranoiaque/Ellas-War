@@ -18,12 +18,6 @@ export class AllianceWarDeclarePopup {
     this.started = 0;
   }
   
-  ngOnInit() {
-  }
-  
-  ngOnDestroy() {
-  }
-  
   allianceWar() {
     this.started = 1;
     this.socket.emit('allianceWar', this.info.alliance_id);
