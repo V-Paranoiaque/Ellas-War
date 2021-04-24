@@ -17,6 +17,8 @@
                <th scope="column" translate>P by D</th>
                <th scope="column" translate>C by A</th>
                <th scope="column" translate>C by D</th>
+               <th scope="column"></th>
+               <th scope="column"></th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +35,11 @@
                 <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.globalConsu/unit.attack | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.globalConsu/unit.defense | number:'': this.translate.currentLang  }}</td>
+                <td>
+                  <span *ngFor="let res of unit.cost | keyvalue">
+                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                  </span>
+                </td>
                 <td>
                   <span *ngFor="let res of unit.consumption | keyvalue">
                     <id-to-ress [ress_id]="res.key"></id-to-ress>
