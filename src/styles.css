@@ -1,6 +1,9 @@
 a {
   text-decoration: none;
 }
+a.no-padding {
+  padding: 0;
+}
 
 .text-justify {
   text-align: justify;

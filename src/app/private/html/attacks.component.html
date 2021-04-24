@@ -48,40 +48,44 @@
           </div>
           <div class="card-body" *ngIf="menuMode == 0 && getAttackList().length > 0">
             <table class="table">
-              <tr>
+              <tr class="text-center">
                 <th scope="col"></th>
-                <th scope="col" class="text-center" translate>V</th>
+                <th scope="col" translate>V</th>
                 <th *ngIf="user.getDatas() && user.getDatas().attack && 
                            user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    scope="col" class="text-start" translate>XP</th>
+                    scope="col" translate>XP</th>
                 <th scope="col" translate>Field</th>
                 <th scope="col"></th>
               </tr>
               <tr *ngFor="let player of getAttackList()">
                 <td>
-                  {{ player.username }}
-                  <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                  <a [routerLink]="['/profile/'+player.membre_id]"
+                     class="no-padding">
+                    {{ player.username }}
+                    <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                  </a>
                   
                   <ic-icon [icon]="gemIcon"
                            *ngIf="player.diamond_begin > 0"></ic-icon>
                   
-                  <span class="fw-lighter" *ngIf="player.alliance > 0">
+                  <a [routerLink]="['/allianceprofile/'+player.alliance]"
+                     class="fw-lighter no-padding" *ngIf="player.alliance > 0">
                     <br/>
                     {{ player.alliance_name }}
-                  </span>
+                  </a>
                 </td>
-                <td class="text-start">
+                <td class="text-end">
                   {{player.victory | number:'': this.translate.currentLang}}
                 </td>
                 <td *ngIf="user.getDatas() && user.getDatas().attack && 
                            user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    class="text-start">
+                    class="text-end">
                   {{player.xp | number:'': this.translate.currentLang}}
                 </td>
-                <td class="text-start">
+                <td class="text-end">
                   {{ player.field | number:'': this.translate.currentLang}}
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-outline-primary"
                           *ngIf="user.getPropertyNb('apollo') == 0"
                           (click)="spy(player.membre_id)">
@@ -153,40 +157,45 @@
           </div>
           <div class="card-body" *ngIf="menuMode == 4 && getAttackWarsList().length > 0">
             <table class="table">
-              <tr>
+              <tr class="text-center">
                 <th scope="col"></th>
-                <th scope="col" class="text-center" translate>V</th>
+                <th scope="col" translate>V</th>
                 <th *ngIf="user.getDatas() && user.getDatas().attack && 
                            user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    scope="col" class="text-start" translate>XP</th>
+                    scope="col" translate>XP</th>
                 <th scope="col" translate>Field</th>
                 <th scope="col"></th>
               </tr>
               <tr *ngFor="let player of getAttackWarsList()">
                 <td>
-                  {{ player.username }}
-                  <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                  <a [routerLink]="['/profile/'+player.membre_id]"
+                     class="no-padding">
+                    {{ player.username }}
+                    <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                  </a>
                   
                   <ic-icon [icon]="gemIcon"
                            *ngIf="player.diamond_begin > 0"></ic-icon>
                   
-                  <span class="fw-lighter" *ngIf="player.alliance > 0">
+                  <a [routerLink]="['/allianceprofile/'+player.alliance]"
+                     class="fw-lighter no-padding"
+                     *ngIf="player.alliance > 0">
                     <br/>
                     {{ player.alliance_name }}
-                  </span>
+                  </a>
                 </td>
-                <td class="text-start">
+                <td class="text-end">
                   {{player.victory | number:'': this.translate.currentLang}}
                 </td>
                 <td *ngIf="user.getDatas() && user.getDatas().attack && 
                            user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    class="text-start">
+                    class="text-end">
                   {{player.xp | number:'': this.translate.currentLang}}
                 </td>
-                <td class="text-start">
+                <td class="text-end">
                   {{ player.field | number:'': this.translate.currentLang}}
                 </td>
-                <td>
+                <td class="text-center">
                   <button class="btn btn-outline-primary"
                           *ngIf="user.getPropertyNb('apollo') == 0"
                           (click)="spy(player.membre_id)">
