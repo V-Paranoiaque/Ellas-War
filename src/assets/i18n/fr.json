@@ -1040,7 +1040,6 @@
   "You have won the Honnor challenge!": "Vous avez remporté le concours de l'honneur !",
   "You just declared war to { value } alliance, it will start in 24h.": "Vous venez de déclarer la guerre à l'alliance {{ value }}, elle commencera dans 24h.",
   "You must have the power of Gaia's defense to engage this unit.": "Vous devez avoir le pouvoir de la défense de Gaia pour engager cette unité.",
-  "You must have the power of the Divine units level {{ user.datas.army[ngDialogData.unit].power_level }} to engage this unit.": "Vous devez avoir le pouvoir des Unités divine niveau {{ user.datas.army[ngDialogData.unit].power_level }} pour pouvoir engager cette unité.",
   "You must have the temple of Ares to engage this unit.": "Vous devez avoir le temple d'Arès pour engager cette unité.",
   "You must have the temple of Artemis to engage this unit.": "Vous devez avoir le temple d'Artémis pour engager cette unité.",
   "You must have the temple of Dionysus to engage this unit.": "Vous devez avoir le temple de Dionysos pour engager cette unité.",
