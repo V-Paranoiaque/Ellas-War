@@ -106,6 +106,9 @@
             <div *ngIf="user.getLevel() >= 1">
               <strong translate>Quest progress</strong>
               <strong translate>:</strong>
+              <ic-icon [icIcon]="questionCircle"
+                       data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                       role="button"></ic-icon>
               <div class="progress" role="button" [routerLink]="['/quests']">
                 <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100"
