@@ -5,8 +5,8 @@ import { User } from '../../../services/user.service';
 
 @Component({
   selector: 'quests-missions',
-  templateUrl: '../html/quests-missions.sub-compotent.html',
-  styleUrls: ['../css/quests-missions.sub-compotent.css']
+  templateUrl: '../html/quests-missions.sub-component.html',
+  styleUrls: ['../css/quests-missions.sub-component.css']
 })
 
 export class QuestsMissions {
