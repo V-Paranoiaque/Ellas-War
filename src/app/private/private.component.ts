@@ -47,6 +47,7 @@ import { IdToRess } from './ts/id-to-ress.sub-component';
 import { IdToWeather } from './ts/id-to-weather.sub-component';
 import { LostMessage } from './ts/lost-message.sub-component';
 import { MessagesTitle } from './ts/messages-title.sub-component';
+import { QuestsAltar } from './ts/quests-altar.sub-component';
 import { QuestsDaily } from './ts/quests-daily.sub-component';
 import { QuestsInfoPopup } from './ts/quests-info-popup.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-component';
@@ -112,6 +113,7 @@ export const PrivateComponent = [
   IdToWeather,
   LostMessage,
   MessagesTitle,
+  QuestsAltar,
   QuestsDaily,
   QuestsInfoPopup,
   QuestsMissions,

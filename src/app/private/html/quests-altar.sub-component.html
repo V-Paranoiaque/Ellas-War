@@ -1,0 +1,102 @@
+<div class="card">
+  <div class="card-header" translate>
+    <span>{{ title }}</span> 
+    <span *ngIf="user.getPropertyNb(code) > 0">({{ user.getPropertyNb(code) }})</span>
+  </div>
+  
+  <div class="card-body" *ngIf="altarValidateInfo && altarValidateInfo.code == 4 && altarValidateInfo.error > 1">
+    <div [ngSwitch]="altarValidateInfo.error" class="center">
+      <div *ngSwitchCase="2" class="text-danger" translate>You don't have enough resources</div>
+      <div *ngSwitchCase="3" class="fw-bold" translate>Altar successfully built</div>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div *ngIf="user.getPropertyNb(code) <= 4">
+      <p class="altar_complete"
+         *ngIf="user.getPropertyNb(code) == 5"
+         translate>Completed</p>
+      <div *ngIf="user.getPropertyNb(code) < 5">
+        <p *ngIf="id == 1"
+           translate>Find how to honor Gaia and the forces of nature will defend your city.</p>
+        <p *ngIf="id == 2"
+           translate>Satisfy hestia and more units can join your homes.</p>
+        <p *ngIf="id == 3"
+           translate>Exhume the dark fate of Prometheus and you can engage more mythological units.</p>
+        <p *ngIf="id == 4"
+           translate>Discover the secrets of divine units and they will serve you.</p>
+        
+      </div>
+      <div *ngIf="user.getPropertyNb(code) <= 4">
+        <strong translate>Cost:</strong>
+        <br/>
+        <span *ngFor="let res of getPrice()"
+              [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < parseInt(res.quantity)*(user.getPropertyNb(code)+1)}">
+          {{ parseInt(res.quantity)*(user.getPropertyNb(code)+1) | number:'': this.translate.currentLang}}
+          <id-to-ress [ress_id]="res.resource"></id-to-ress>
+        </span>
+        <br/>
+      </div>
+      <div>
+        <strong translate>Reward:</strong>
+        <p *ngIf="id == 1" translate>
+          30 Additional Gaia Defenders
+        </p>
+        <p *ngIf="id == 2" translate>+20% more space in your homes</p>
+        <p *ngIf="id == 3" translate>+20% more Mythological units</p>
+        <p *ngIf="id == 4">
+          <span [ngClass]="{'red': user.getPropertyNb(code) <= 0, 'bold': user.getPropertyNb(code) == 0}"
+                translate>Harpies</span>
+          <br/>
+          <span [ngClass]="{'red': user.getPropertyNb(code) <= 1, 'bold': user.getPropertyNb(code) == 1}"
+                translate>Griffins</span>
+          <br/>
+          <span [ngClass]="{'red': user.getPropertyNb(code) <= 2, 'bold': user.getPropertyNb(code) == 2}"
+                translate>Hecatoncheires</span>
+          <br/>
+          <span [ngClass]="{'red': user.getPropertyNb(code) <= 3, 'bold': user.getPropertyNb(code) == 3}"
+                translate>Manticores</span>
+          <br/>
+          <span [ngClass]="{'red': user.getPropertyNb(code) <= 4, 'bold': user.getPropertyNb(code) == 4}"
+                translate>Lampads</span>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="user.getPropertyNb(code) >= 5">
+      <p *ngIf="id == 1">
+        {{'You have satisfied Gaia and got these { value } deffensers as a reward.' | translate: { value: user.info.datas.army.gaia.nbmax } }}
+      </p>
+      <p *ngIf="id == 2" translate>
+        You have satisfied Hestia and got +100% space in your homes
+      </p>
+      <p *ngIf="id == 3" translate>
+        You have satisfied Prometheus and got +100% of Mythological units
+      </p>
+      <p *ngIf="id == 4" translate>
+        You have satisfied the Divine units and got 4 new units to serve you
+      </p>
+    </div>
+    <div *ngIf="user.getPropertyNb(code) <= 4 &&
+                condition && condition.possible == 0">
+      <strong translate>Progression:</strong>
+      <br/>
+      <ic-icon *ngFor="let n of range(1, condition.error.green)"
+               class="fs-2 text-success" [icIcon]="outlineStars"
+               title="{{'Validated'|translate}}"></ic-icon>
+  
+      <ic-icon *ngFor="let n of range(1, condition.error.orange)"
+               class="fs-2 text-warning" [icIcon]="outlineStars"
+               title="{{'In progress'|translate}}"></ic-icon>
+  
+      <ic-icon *ngFor="let n of range(1, condition.error.red)"
+               class="fs-2 text-danger" [icIcon]="outlineStars"
+               title="{{'Not validated'|translate}}"></ic-icon>
+    </div>
+  </div>
+  
+  <div class="card-button card-button-success" role="button"
+       *ngIf="condition && condition.possible == 1"
+       (click)="altarValidate(id)" translate>
+    Validate
+  </div>
+</div>

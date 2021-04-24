@@ -108,6 +108,7 @@
   "You can't eject { value } from the alliance": "You can't eject {{ value }} from the alliance",
   "You can't have more than { value } buildings of this type": "You can't have more than {{ value }} buildings of this type",
   "You currently have { value } available bonus attacks": "You currently have {{ value }} available bonus attacks",
+  "You have satisfied Gaia and got these { value } deffensers as a reward.": "You have satisfied Gaia and got these {{ value }} deffensers as a reward. ",
   "You just declared war to { value } alliance, it will start in 24h.": "You just declared war to {{ value }} alliance, it will start in 24h.",
   "You will be able to get your reward in { value } days": "You will be able to get your reward in {{ value }} days",
   "You win { value } Drachmas": "You win {{ value }} Drachmas",

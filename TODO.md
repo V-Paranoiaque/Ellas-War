@@ -23,6 +23,3 @@
 ## Levels
 * Set yellow color on buildings/units when required for a quest
 * Strategies
-
-## Mythology
-* Altars

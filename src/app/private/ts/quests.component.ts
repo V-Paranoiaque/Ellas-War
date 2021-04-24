@@ -12,6 +12,11 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 export class Quests {
   
+  public altarConditionDivineunits:any;
+  public altarConditionPrometheus:any;
+  public altarConditionHestia:any;
+  public altarConditionGaia:any;
+  
   private myQuestList:any;
   public selectedQuest:any;
   
@@ -39,9 +44,27 @@ export class Quests {
       this.socket.emit("altarConditionHestia");
       this.socket.emit("altarConditionGaia");
     });
+    
+    this.socket.on("altarConditionDivineunits", (data:any) => {
+      this.altarConditionDivineunits = data;
+    });
+    this.socket.on("altarConditionPrometheus", (data:any) => {
+      this.altarConditionPrometheus = data;
+    });
+    this.socket.on("altarConditionHestia", (data:any) => {
+      this.altarConditionHestia = data;
+    });
+    this.socket.on("altarConditionGaia", (data:any) => {
+      this.altarConditionGaia = data;
+    });
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('altarConditionDivineunits');
+    this.socket.removeListener('altarConditionPrometheus');
+    this.socket.removeListener('altarConditionHestia');
+    this.socket.removeListener('altarConditionGaia');
+    
     this.socket.removeListener('myQuestList');
     this.socket.removeListener('myQuestListRefresh');
   }
