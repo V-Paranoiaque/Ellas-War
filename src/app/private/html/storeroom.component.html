@@ -116,8 +116,8 @@
                     </td>
                     <td class="center">
                       <button class="btn btn-success"
-                        (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
-                        title="{{'Buy'|translate}}" *ngIf="trade.remaining > 0">
+                              (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
+                              title="{{'Buy'|translate}}" *ngIf="trade.remaining > 0">
                         <ic-icon [icon]="bagIcon"></ic-icon>
                         <span class="visually-hidden" translate>Buy</span>
                       </button>
