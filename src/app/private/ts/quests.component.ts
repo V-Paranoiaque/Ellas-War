@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
+
+import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 @Component({
   templateUrl: '../html/quests.component.html',
@@ -12,6 +14,8 @@ export class Quests {
   
   private myQuestList:any;
   public selectedQuest:any;
+  
+  treasureChest = treasureChest;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
   }

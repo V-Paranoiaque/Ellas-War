@@ -1,0 +1,47 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" translate>
+      Quest progress
+    </h5>
+  </div>
+  <div class="modal-body">
+    <p *ngIf="user.getPropertyNb('quest_today') == 1 &&
+              user.getPropertyNb('quest_step') < 7">
+      {{'You will be able to get your reward in { value } days' | translate: { value: (7 - user.getPropertyNb('quest_step'))} }}
+    </p>
+    <p *ngIf="user.getPropertyNb('quest_today') == 0 && user.getPropertyNb('quest_step') < 7" translate>
+      Don't forget to validate your daily quest
+    </p>
+    <p *ngIf="user.getPropertyNb('quest_step') >= 7" translate>
+      Open the chest and get your reward
+    </p>
+    <div class="text-center">
+      <ic-icon class="fs-1" [icIcon]="treasureChest"
+               data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+               role="button"></ic-icon>
+    </div>
+    <div class="fw-bold" translate>The chest contains:</div>
+    
+    <ul>
+      <li *ngIf="user.getPropertyNb('artemis') > 0 || 
+                 user.getPropertyNb('dionysus') > 0 ||
+                 user.getPropertyNb('hephaestus') > 0" translate>
+        200 units of your third temple
+      </li>
+      <li translate>
+        6 hours of withdrawal without taxes in your treasure
+      </li>
+      <li translate>
+        10 bonus attacks
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+    <button type="button" class="btn btn-secondary"
+            (click)="myQuestReward()"
+            *ngIf="user.getPropertyNb('quest_step') >= 7"
+            data-bs-dismiss="modal" translate>Validate</button>
+  </div>
+</div>

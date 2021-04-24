@@ -76,6 +76,12 @@
   </div>
 </div>
 
+<div class="modal fade" id="QuestsInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <quests-info-popup></quests-info-popup>
+  </div>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
@@ -96,6 +102,18 @@
                 <strong translate>Quests</strong><strong translate>:</strong> 
                 {{ user.getQuest() }}/{{ user.getQuestMax() }}
               </a>
+            </div>
+            <div *ngIf="user.getLevel() >= 1">
+              <strong translate>Quest progress</strong>
+              <strong translate>:</strong>
+              <div class="progress" role="button" [routerLink]="['/quests']">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                     aria-valuemin="0" aria-valuemax="100"
+                     [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
+                <div class="progress-text">
+                  {{ user.getPropertyNb('quest_step') }}/{{7}}
+                </div>
+              </div>
             </div>
           </div>
         </div>

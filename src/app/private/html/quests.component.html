@@ -1,5 +1,11 @@
 <common-top-bar active="quests"></common-top-bar>
 
+<div class="modal fade" id="QuestsInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <quests-info-popup></quests-info-popup>
+  </div>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
   <div class="container">
     <div class="row">
@@ -7,6 +13,52 @@
         <quests-missions *ngIf="user.getLevel() < 10"></quests-missions>
       </div>
       <div class="col-xl-6" *ngIf="user.getLevel() > 0">
+        <div class="card">
+          <div class="card-header" translate>
+            Quest progress
+          </div>
+          <div class="card-body">
+            <div class="containBar">
+               <div class="progression-quest-container">
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 1,
+                                  'quest_available': user.getPropertyNb('quest_step') == 0 && user.getPropertyNb('quest_today') == 0}">
+                   <p>1</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 2,
+                                  'quest_available': user.getPropertyNb('quest_step') == 1 && user.getPropertyNb('quest_today') == 0}">
+                   <p>2</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 3,
+                                  'quest_available': user.getPropertyNb('quest_step') == 2 && user.getPropertyNb('quest_today') == 0}">
+                   <p>3</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 4,
+                                  'quest_available': user.getPropertyNb('quest_step') == 3 && user.getPropertyNb('quest_today') == 0}">
+                   <p>4</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 5,
+                                  'quest_available': user.getPropertyNb('quest_step') == 4 && user.getPropertyNb('quest_today') == 0}">
+                   <p>5</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 6,
+                                  'quest_available': user.getPropertyNb('quest_step') == 5 && user.getPropertyNb('quest_today') == 0}">
+                   <p>6</p>
+                 </div>
+                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 7,
+                                  'quest_available': user.getPropertyNb('quest_step') == 6 && user.getPropertyNb('quest_today') == 0}">
+                   <ic-icon class="fs-2" [icIcon]="treasureChest"
+                            data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                            role="button"></ic-icon>
+                 </div>
+               </div>
+            </div>
+          </div>
+          <div class="card-bottom card-button"
+               data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+               *ngIf="user.getPropertyNb('quest_step') >= 7">
+            Validate
+          </div>
+        </div>
         <div *ngFor="let quest of getMyQuestList()" class="card">
           <div [ngSwitch]="quest.quest_type">
             <quests-daily *ngSwitchCase="1"

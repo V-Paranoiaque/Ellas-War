@@ -1,6 +1,5 @@
 # TODO
 ## General
-* Quest challenge (+ in the general city frame)
 * Redirect when the connected pages are accessed directly
 * Save 404
 * Search in the ranking
