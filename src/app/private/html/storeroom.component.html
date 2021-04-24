@@ -112,7 +112,6 @@
                       <input type="number" class="form-control"
                              [(ngModel)]="storeroom_ress[trade.resource_id]" min="0"
                              max="trade.remaining" placeholder="0" step="1" 
-                             ng-change="storeroomCheck(idToRess(trade.resource_id), trade.remaining, storeroom_ress[trade.resource_id], trade.rate)" 
                              [hidden]="trade.remaining == 0" />
                     </td>
                     <td class="center">
