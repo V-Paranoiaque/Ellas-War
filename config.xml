@@ -19,7 +19,7 @@
         <allow-intent href="market:*" />
     </platform>
     <platform name="electron">
-        <preference name="ElectronSettingsFilePath" value="assets/electron/settings.json" />
+        <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
         <icon src="res/electron/icon.png" />
         <icon src="res/electron/icon@2x.png" target="installer" />
     </platform>
