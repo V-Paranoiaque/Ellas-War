@@ -6,21 +6,18 @@
     <h5 *ngIf="temple == 8" translate>Dionysus</h5>
   </div>
   <div class="modal-header">
-    <img src="assets/img/temples/temple-no.png" role="button"
-         [ngClass]="{'grey': temple > 0 && temple != 6}"
-         alt="{{'No temple' | translate}}" 
-         title="{{'Build a new temple' | translate}}"
-         (click)="setTemple(6)" />
-    <img src="assets/img/temples/temple-no.png" role="button"
-         [ngClass]="{'grey': temple > 0 && temple != 7}"
-         alt="{{'No temple' | translate}}" 
-         title="{{'Build a new temple' | translate}}"
-         (click)="setTemple(7)" />
-    <img src="assets/img/temples/temple-no.png" role="button"
-         [ngClass]="{'grey': temple > 0 && temple != 8}"
-         alt="{{'No temple' | translate}}" 
-         title="{{'Build a new temple' | translate}}"
-         (click)="setTemple(8)" />
+    <ew-icon name="artemis" role="button"
+             [ngClass]="{'grey': temple > 0 && temple != 6}"
+             title="{{'Build a new temple' | translate}}"
+             (click)="setTemple(6)"></ew-icon>
+    <ew-icon name="hephaestus" role="button"
+             [ngClass]="{'grey': temple > 0 && temple != 7}"
+             title="{{'Build a new temple' | translate}}"
+             (click)="setTemple(7)"></ew-icon>
+    <ew-icon name="dionysus" role="button"
+             [ngClass]="{'grey': temple > 0 && temple != 8}"
+             title="{{'Build a new temple' | translate}}"
+             (click)="setTemple(8)"></ew-icon>
   </div>
   <div class="modal-body">
     <strong translate>Price</strong><strong translate>:</strong>
@@ -39,7 +36,7 @@
     </div>
     <div *ngIf="user.getLevel() >= 8 && temple == 0"
          class="text-center text-danger" translate>
-      Click on a ? symbole to select a temple
+      Click on one of the temples to select it
     </div>
     <div *ngIf="temple > 0">
       <strong translate>New powers</strong>

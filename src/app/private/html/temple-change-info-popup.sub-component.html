@@ -20,83 +20,72 @@
     <div class="container-fluid">
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('hermes') == 1"
-           (click)="selectTemples(1)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Hermes' | translate}}" 
-             title="{{'Hermes' | translate}}" />
+           (click)="selectTemples(1)"
+           title="{{'Hermes' | translate}}">
+        <ew-icon name="hermes"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('apollo') == 1"
-           (click)="selectTemples(2)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Apollo' | translate}}" 
-             title="{{'Apollo' | translate}}" />
+           (click)="selectTemples(2)"
+           title="{{'Apollo' | translate}}">
+        <ew-icon name="apollo"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('demeter') == 1"
-           (click)="selectTemples(3)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Demeter' | translate}}" 
-             title="{{'Demeter' | translate}}" />
+           (click)="selectTemples(3)"
+           title="{{'Demeter' | translate}}">
+        <ew-icon name="demeter"></ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('ares') == 1"
-           (click)="selectTemples(4)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Ares' | translate}}" 
-             title="{{'Ares' | translate}}" />
+           (click)="selectTemples(4)"
+             title="{{'Ares' | translate}}">
+        <ew-icon name="ares"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('athena') == 1"
-           (click)="selectTemples(5)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Athena' | translate}}" 
-             title="{{'Athena' | translate}}" />
+           (click)="selectTemples(5)"
+             title="{{'Athena' | translate}}">
+        <ew-icon name="athena"></ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('artemis') == 1"
-           (click)="selectTemples(6)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Artemis' | translate}}" 
-             title="{{'Artemis' | translate}}" />
+           (click)="selectTemples(6)"
+           title="{{'Artemis' | translate}}">
+        <ew-icon name="artemis"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('dionysus') == 1"
-           (click)="selectTemples(8)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Dionysus' | translate}}" 
-             title="{{'Dionysus' | translate}}" />
+           (click)="selectTemples(8)"
+           title="{{'Dionysus' | translate}}">
+        <ew-icon name="dionysus"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('hephaestus') == 1"
-           (click)="selectTemples(7)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Hephaestus' | translate}}" 
-             title="{{'Hephaestus' | translate}}" />
+           (click)="selectTemples(7)"
+           title="{{'Hephaestus' | translate}}">
+        <ew-icon name="hephaestus"></ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('zeus') == 1"
-           (click)="selectTemples(9)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Zeus' | translate}}" 
-             title="{{'Zeus' | translate}}" />
+           (click)="selectTemples(9)"
+           title="{{'Zeus' | translate}}">
+        <ew-icon name="zeus"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('hades') == 1"
-           (click)="selectTemples(10)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Hades' | translate}}" 
-             title="{{'Hades' | translate}}" />
+           (click)="selectTemples(10)"
+           title="{{'Hades' | translate}}">
+        <ew-icon name="hades"></ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            *ngIf="user.getPropertyNb('poseidon') == 1"
-           (click)="selectTemples(11)">
-        <img src="assets/img/temples/temple-no.png"
-             alt="{{'Poseidon' | translate}}" 
-             title="{{'Poseidon' | translate}}" />
+           (click)="selectTemples(11)"
+           title="{{'Poseidon' | translate}}">
+        <ew-icon name="poseidon"></ew-icon>
       </div>
     </div>
   </div>
@@ -118,7 +107,7 @@
     <div>
       <div *ngIf="temple == 0"
            class="text-center text-danger" translate>
-        Click on a ? symbole to select a temple
+        Click on one of the temples to select it
       </div>
       <!-- Firt temple -->
       <div *ngIf="temple == 2 || temple == 3">

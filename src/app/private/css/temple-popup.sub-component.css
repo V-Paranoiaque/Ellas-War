@@ -1,7 +1,7 @@
-.modal-header img {
+.modal-header ew-icon {
   width: calc(100%/3);
 }
 
-img.grey {
+ew-icon.grey {
   opacity: 50%;
 }
