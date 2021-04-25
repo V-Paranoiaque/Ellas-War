@@ -86,6 +86,10 @@ export class City {
     this.socket.removeListener('dailyCoCheck');
   }
   
+  dailCo() {
+    return Object.keys(this.dailyCo).length;
+  }
+  
   divineBonusReset() {
     this.divinBonusListSelected.error = 0;
   }

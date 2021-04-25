@@ -90,7 +90,7 @@
           <div class="card-header">
             <span translate>General</span>
             <span data-bs-toggle="modal" data-bs-target="#DailyInfo"
-                  *ngIf="dailyCoCheck == 1"
+                  *ngIf="dailCo() > 0 && dailyCoCheck == 1"
                   id="DailyCoCheckOpen"
                   role="button" translate>
               <ic-icon [icIcon]="questionCircle"></ic-icon>
