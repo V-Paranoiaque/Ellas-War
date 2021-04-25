@@ -194,12 +194,11 @@
             </div>
             
             <div *ngFor="let building of user.getBuildings()"
-                 class="frame frame-20"
+                 class="frame frame-20" role="button"
                  data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                 (click)="selectBuilding(building.code)">
-              <img src="assets/img/buildings/{{building.code}}.png"
-                   title="{{ building.name | translate }}" 
-                   alt="{{building.name | translate }}" />
+                 (click)="selectBuilding(building.code)"
+                 title="{{ building.name | translate }}">
+              <ew-icon name="{{ building.code }}"></ew-icon>
               <div>{{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}</div>
             </div>
           </div>
