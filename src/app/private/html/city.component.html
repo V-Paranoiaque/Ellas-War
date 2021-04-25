@@ -187,10 +187,9 @@
           <div class="card-body no-padding">
             <div class="frame frame-20" (click)="selectTreasure()"
                  data-bs-toggle="modal" data-bs-target="#TreasureInfo"
-                 *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11">
-              <img src="assets/img/buildings/treasure.png"
-                   title="{{ 'Treasure' | translate }}" 
-                   alt="{{ 'Treasure' | translate }}" />
+                 *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11"
+                 title="{{ 'Treasure' | translate }}" role="button">
+              <ew-icon name="treasure"></ew-icon>
             </div>
             
             <div *ngFor="let building of user.getBuildings()"
