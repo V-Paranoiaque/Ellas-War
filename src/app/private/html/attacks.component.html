@@ -32,7 +32,8 @@
       <div class="col-xl-6">
         <div class="card">
           <div class="card-body attack-menu">
-            <button class="btn btn-primary" (click)="setMenuMode(4)" translate>Wars</button>
+            <button class="btn btn-primary" (click)="setMenuMode(4)"
+                    *ngIf="myAllianceWar.length > 0"                 translate>Wars</button>
             <button class="btn btn-danger"  (click)="setMenuMode(0)" translate>Attacks</button>
             <button class="btn btn-success" (click)="setMenuMode(1)" translate>Stats</button>
             <button class="btn btn-info"    (click)="setMenuMode(2)"

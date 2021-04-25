@@ -36,6 +36,7 @@ export class Attacks {
   public diamondRankingAlliance:any;
   public realWaveAttackCheck:any;
   public menuMode:number;
+  public myAllianceWar:any;
   public nbpp:number;
   public furyInfo:any;
   public furyPossible:any;
@@ -133,6 +134,7 @@ export class Attacks {
   
   ngOnInit(){
     this.attackListInit();
+    this.socket.emit('myAllianceWar');
     
     this.socket.on('attack', (datas:any) => {
       this.attackMode = 4;
@@ -240,6 +242,10 @@ export class Attacks {
       else {
         this.attackMode = 9;
       }
+    });
+    
+    this.socket.on('myAllianceWar', (data:any) => {
+      this.myAllianceWar = data;
     });
     
     this.socket.on('msgPage', (newMsgList:any) => {
