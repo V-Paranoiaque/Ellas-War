@@ -51,7 +51,7 @@ export class SuccessInfoPopup {
   }
   
   calculate() {
-    let nbFS = 1;
+    let nbFS = 0;
     this.listDisplay = [];
     
     for(let i=0;i<this.hfNext.length;i++) {

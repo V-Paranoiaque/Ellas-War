@@ -1,5 +1,5 @@
 <div class="modal-content">
-  <div class="modal-header" [ngSwitch]="successType">
+  <div class="modal-header" [ngSwitch]="successType.selected">
     <h5 class="modal-title" *ngSwitchCase="1" translate>General</h5>
     <h5 class="modal-title" *ngSwitchCase="2" translate>Constructions</h5>
     <h5 class="modal-title" *ngSwitchCase="3" translate>Alliance</h5>
@@ -888,7 +888,7 @@
                   point="1">
     </success-card>
     
-    <div *ngIf="listDisplay[0] == 0"
+    <div *ngIf="successType.selected == 7 && listDisplay[0] == 0"
          class="text-danger fw-bold text-center" translate>
       Feats of Strength are reserved for the bravest warriors. They only bring prestige to your city.
     </div>
