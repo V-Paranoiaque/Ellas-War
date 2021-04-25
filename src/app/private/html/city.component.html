@@ -166,12 +166,11 @@
           </div>
           <div class="card-body no-padding">
             <div *ngFor="let army of user.getArmy()"
-                 class="frame frame-20"
+                 class="frame frame-20" role="button"
                  data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                 (click)="selectArmy(army.code)">
-              <img src="assets/img/army/{{army.code}}.png"
-                   title="{{ army.name | translate }}" 
-                   alt="{{army.name | translate }}" />
+                 (click)="selectArmy(army.code)"
+                 title="{{ army.name | translate }}">
+              <ew-icon name="{{ army.code }}"></ew-icon>
               <div>{{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}</div>
             </div>
           </div>
