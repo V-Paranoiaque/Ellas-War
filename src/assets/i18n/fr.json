@@ -122,6 +122,7 @@
   "and": "et",
   "And one extra": "Et une de plus",
   "Apollo": "Apollon",
+  "Are you sure that you want to name { value } chief of your alliance?": "Êtes vous certain de vouloir nommer {{ value }} chef de l'alliance ?",
   "Are you sure to want to active the emergency exit?": "Êtes vous certain de vouloir activer la sortie d'urgence ?",
   "Are you sure to want to cancel the emergency exit?": "Êtes vous certain de vouloir annuler la sortie d'urgence ?",
   "Are you sure to want to dissolve your alliance?": "Êtes vous certain de vouloir dissoudre votre alliance ?",
@@ -546,6 +547,7 @@
   "Lightning falls on your city": "La foudre s'abat sur votre cité",
   "Lightning owned": "Foudre possédée",
   "Lightnings owned": "Foudres possédées",
+  "Link": "Lien",
   "Link saved to clipboard": "Lien copié dans le presse-papier",
   "Lion": "Lion",
   "Lions": "Lions",
@@ -600,6 +602,7 @@
   "Mythology": "Mythologie",
   
   "Name": "Nom",
+  "Name { value } chief of the alliance": "Nommer {{ value }} chef de l'alliance",
   "Name of your alliance": "Nom de votre alliance",
   "Nature's Revenge": "Revanche de la nature",
   "New email": "Nouvelle addresse mail",
@@ -1026,6 +1029,7 @@
   "Worshiper of the unconquered sun": "Adorateur du soleil invaincu",
   "Wrath of Poseidon": "Colère de Poséidon",
   "Write a new message": "Écrire un nouveau message",
+  "Write a new news": "Écrire une nouvelle news",
   
   "XP": "XP",
   

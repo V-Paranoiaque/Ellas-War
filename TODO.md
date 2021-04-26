@@ -9,7 +9,6 @@
 * Contact page
 * Email modification list
 * List players
-* Manage news
 * Panel permissions
 * Pauses
 * Send an email/message
@@ -21,5 +20,4 @@
 * Search feature
 
 ## Levels
-* Set yellow color on buildings/units when required for a quest
 * Strategies

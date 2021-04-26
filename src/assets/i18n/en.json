@@ -22,63 +22,81 @@
   "{ value } of the alliance { name } has refused a pact with your alliance.": "{{ value }} of the alliance {{ name }} has refused a pact with your alliance.",
   "{ value } of your alliance destroyed a pact with the alliance { name }.": "{{ value }} of your alliance destroyed a pact with the alliance {{ name }}.",
   "{ value } of your alliance has refused a pact with the alliance { name }.": "{{ value }} of your alliance has refused a pact with the alliance {{ name }}.",
+  
   "Against { value }": "Against {{ value }}",
+  "Are you sure that you want to name { value } chief of your alliance?": "Are you sure that you want to name {{ value }} chief of your alliance?",
   "Attack { value } sanctuaries": "Attack {{ value }} sanctuaries",
   "Attempted espionage from { value }": "Attempted espionage from {{ value }}",
   "Attempted espionage of your sanctuary from { value }": "Attempted espionage of your sanctuary from {{ value }}",
+  
   "Being in an alliance level { value } or more": "Being in an alliance level {{ value }} or more",
   "Build a total of { value } { building }.": "Build a total of {{ value }} {{ building }}.",
   "Buy { value } lotto tickets": "Buy {{ value }} lotto tickets",
   "By { value }": "By {{ value }}",
+  
   "Candidate to join { value }": "Candidate to join {{ value }}",
   "Connect every day for { value } days.": "Connect every day for {{ value }} days.",
   "Conquest { value } sanctuaries": "Conquest {{ value }} sanctuaries",
   "Construct { value } buildings": "Construct {{ value }} buildings",
   "Choose a new Username for your account. It will cost you { value } favor(s).": "Choose a new Username for your account. It will cost you {{ value }} favor(s).",
+  
   "Declaration of war from the alliance { value }": "Declaration of war from the alliance {{ value }}",
   "Declaration of war to the alliance { value }": "Declaration of war to the alliance {{ value }}",
   "Defeat against { value }": "Defeat against {{ value }}",
   "Defeat of { value } against { player }": "Defeat of {{ value }} against {{ player }}",
+  
   "Eject { value } from the alliance": "Eject {{ value }} from the alliance",
   "Ejected member: { value }": "Ejected member: {{ value }}",
   "Engage { value } Units": "Engage {{ value }} Units",
   "Engage a total of { value } { unit }.": "Engage a total of {{ value }} {{ unit }}.",
   "Espionage from { value }": "Espionage from {{ value }}",
   "Espionage of your sanctuary from { value }": "Espionage of your sanctuary from {{ value }}",
+  
   "Fury against { value }": "Fury against {{ value }}",
   "Fury from { value }": "Fury from {{ value }}",
+  
   "Give drachmas to { value }": "Give drachmas to {{ value }}",
   "Giving { value } Drachmas on donations": "Giving {{ value }} Drachmas on donations",
   "Go to the level { value }": "Go to the level {{ value }}",
   "Get { value } defensive victories": "Get {{ value }} defensive victories",
+  
   "Have { value } XP with the old system": "Have {{ value }} XP with the old system",
+  
   "Level { value }": "Level {{ value }}",
   "Lightning against { value }": "Lightning against {{ value }}",
   "Lightning from { value }": "Lightning from {{ value }}",
   "Losing { value } spies at espionage.": "Losing {{ value }} spies at espionage.",
   "Losses again { value }": "Losses again {{ value }}",
+  
   "Make { value } victories": "Make {{ value }} victories",
+  
+  "Name { value } chief of the alliance":"Name {{ value }} chief of the alliance",
   "New member: { value }": "New member: {{ value }}",
   "New unity: { unit }": "New unity: { unit }",
   "Next goal: { value } Days": "Next goal: { value } Days",
   "Next goal: { value } Days, possible bonus:": "Next goal: { value } Days, possible bonus:",
+  
   "Own { value } mints": "Own { value } mints",
   "Own { value } Drachmas in your treasure": "Own { value } Drachmas in your treasure",
   "Owning { value } altars of the gods": "Owning { value } altars of the gods",
   "Owning { value } godchilds": "Owning { value } godchilds",
+  
   "Peste against { value }": "Peste against { value }",
   "Peste from { value }": "Peste from {{ value }}",
   "Put a total of { value } Drachmas into your treasure.": "Put a total of {{ value }} Drachmas into your treasure.",
+  
   "Reach { value } field": "Reach {{ value }} field",
   "Reach over { value } victories in a war": "Reach over {{ value }} victories in a war",
   "Refused member: { value }": "Refused member: {{ value }}",
   "Request of pact from the alliance { value }": "Request of pact from the alliance {{ value }}",
   "Request of pact to the alliance { value }": "Request of pact to the alliance {{ value }}",
+  
   "Scratch { value } tickets": "Scratch {{ value }} tickets",
   "Scratch { value } winning tickets": "Scratch {{ value }} winning tickets",
   "Send at least { value } soldiers in a battle": "Send at least {{ value }} soldiers in a battle",
   "Sign { value } pacts": "Sign {{ value }} pacts",
   "Spend { value } Ambrosia": "Spend {{ value }} Ambrosia",
+  
   "Take the Diamond { value } times": "Take the Diamond {{ value }} times",
   "The alliance { value } has accepted a pact with your alliance": "The alliance {{ value }} has accepted a pact with your alliance",
   "The alliance { value } has canceled a pact request with your alliance.": "The alliance {{ value }} has canceled a pact request with your alliance.",
@@ -87,11 +105,14 @@
   "The alliances { value } and { name } will go to war in 24, stand ready!": "The alliances {{ value }} and {{ name }} will go to war in 24, stand ready!",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
+  
   "Unsupported message type: { value }": "Unsupported message type: {{ value }}",
   "Use { value } Divine bonus": "Use {{ value }} Divine bonus",
   "Use { value } Divine powers": "Use {{ value }} Divine powers",
+  
   "Victory against { value }": "Victory against {{ value }}",
   "Victory of { value } against { player }": "Victory of {{ value }} against {{ player }}",
+  
   "Waiting in the alliance { value }": "Waiting in the alliance {{ value }}",
   "Win a war with { value } defensive victories": "Win a war with {{ value }} defensive victories",
   "Win { value } Drachmas through games.": "Win {{ value }} Drachmas through games.",
@@ -102,6 +123,7 @@
   "Win a war with more than { value } victories": "Win a war with more than {{ value }} victories",
   "Win the Diamond challenge { value } times": "Win the Diamond challenge {{ value }} times",
   "Win the Honnor challenge { value } times": "Win the Honnor challenge {{ value }} times",
+  
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "You are at the point of declare war to {{ value }} alliance, it will start in 24h.",
   "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
