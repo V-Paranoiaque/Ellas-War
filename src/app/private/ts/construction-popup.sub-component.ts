@@ -5,6 +5,8 @@ import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
 
+import shieldShaded from '@iconify/icons-bi/shield-shaded';
+
 @Component({
   selector: 'construction-popup',
   templateUrl: '../html/construction-popup.sub-component.html',
@@ -15,6 +17,8 @@ export class ConstructionPopup {
   @Input() info: any;
   
   Number =  Number;
+  
+  shieldShaded = shieldShaded;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }

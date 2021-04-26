@@ -5,6 +5,9 @@ import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
 
+import shieldShaded from '@iconify/icons-bi/shield-shaded';
+import swordIcon from '@iconify/icons-vaadin/sword';
+
 @Component({
   selector: 'army-popup',
   templateUrl: '../html/army-popup.sub-component.html',
@@ -16,6 +19,9 @@ export class ArmyPopup {
   
   Number = Number;
   Object = Object;
+  
+  shieldShaded = shieldShaded;
+  swordIcon= swordIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }

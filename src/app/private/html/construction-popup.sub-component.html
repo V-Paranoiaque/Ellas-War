@@ -58,6 +58,13 @@
       </div>
       
       <div class="col-6">
+        <div *ngIf="info.type == 2">
+          <strong translate>Defense</strong>
+          <strong translate>:</strong>
+          {{ info.defense | number:'': this.translate.currentLang }}
+          <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+        </div>
+        
         <div *ngIf="info.cost">
           <strong translate>Construction cost</strong>
           <strong translate>:</strong>

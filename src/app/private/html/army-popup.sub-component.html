@@ -92,6 +92,18 @@
       </div>
       
       <div class="col-6">
+        <div *ngIf="info.attack > 0 || info.defense > 0">
+          <strong translate>Strength</strong>
+          <strong translate>:</strong>
+          <span>
+           {{ info.attack }}
+           <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
+          </span>
+          <span>
+           {{ info.defense }}
+           <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+          </span>
+        </div>
         <div *ngIf="info.cost">
           <strong translate>Commitment</strong>
           <strong translate>:</strong>
