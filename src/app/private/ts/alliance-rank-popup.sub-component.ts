@@ -13,7 +13,7 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 export class AllianceRankPopup {
   
   @Input() info:any;
-  
+   
   questionCircle = questionCircle;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
@@ -37,15 +37,20 @@ export class AllianceRankPopup {
   }
   
   save() {
-    let data = {
-      id:         this.info.membre_id,
-      rank_name:  this.info.rank_name,
-      second:     this.info.second,
-      recruiter:  this.info.recruiter,
-      strategist: this.info.strategist,
-      treasurer:  this.info.treasurer
-    };
-    this.socket.emit('rankEdit', data);
+    if(this.info.help == 5) {
+      this.socket.emit('chiefEdit', this.info.membre_id);
+    }
+    else {
+      let data = {
+        id:         this.info.membre_id,
+        rank_name:  this.info.rank_name,
+        second:     this.info.second,
+        recruiter:  this.info.recruiter,
+        strategist: this.info.strategist,
+        treasurer:  this.info.treasurer
+      };
+      this.socket.emit('rankEdit', data);
+    }
   }
   
   setHelp(nb:number) {
