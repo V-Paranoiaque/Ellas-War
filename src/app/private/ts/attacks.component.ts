@@ -120,6 +120,7 @@ export class Attacks {
     this.diamondInfo = {};
     this.diamondRankingPlayers = [];
     this.diamondRankingAlliance = [];
+    this.myAllianceWar = {};
     this.realWaveAttackCheck = {
       'ress': {},
       'habitation': {}

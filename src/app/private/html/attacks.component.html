@@ -736,10 +736,8 @@
                     </tr>
                     <tr>
                       <td class="center" rowspan="2">
-                        <img src="assets/img/army/{{getArmy()[i].unit}}.png"
-                             alt="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}"
-                             title="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}" 
-                             height="70px"/>
+                        <ew-icon title="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}" 
+                                 name="{{ getArmy()[i].unit }}" height="70px"></ew-icon>
                       </td>
                       <td></td>
                     </tr>
@@ -748,7 +746,7 @@
                         <div class="input-group">
                           <input type="number" [(ngModel)]="sanctuariesWave[i]"
                                  min="0" max="{{getArmy()[i].nb}}"
-                                 placeholder="0">
+                                 size="6" placeholder="0">
                           <span class="input-group-text" role="button"
                                 (click)="waveNew(i, sanctuariesWave[i])">
                             <ic-icon [icon]="plusIcon"></ic-icon>
