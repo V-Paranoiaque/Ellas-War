@@ -18,6 +18,3 @@
 ## Attacks
 * Strategies
 * Search feature
-
-## Levels
-* Strategies
