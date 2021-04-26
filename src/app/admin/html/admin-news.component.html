@@ -1,13 +1,136 @@
 <common-top-bar active="admin"></common-top-bar>
 
+<div class="modal fade" id="NewsNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Write a new news</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Title</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.title" />
+        
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.link" />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary"
+                (click)="newsNew()"
+                data-bs-dismiss="modal" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="NewsModify" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Modify a news</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Title</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.title" />
+        
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.link" />
+        
+        <strong translate>Author</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.author" />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary"
+                (click)="newsModify()"
+                data-bs-dismiss="modal" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="NewsDelete" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Delete a news</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ newsSelected.title }} ({{ newsSelected.author }})
+        <br/>
+        <u>{{newsSelected.link}}</u>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-danger"
+                (click)="newsDelete()"
+                data-bs-dismiss="modal" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
   <div class="row">
-    <admin-left-menu active="news" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
-  
+    <admin-left-menu active="chat" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <h1 class="text-center" id="newsTitle" translate>News</h1>
+          
+          <div class="text-center">
+            <button class="btn btn-success" data-bs-toggle="modal"
+                    (click)="setNews({'title': '', 'link': ''})"
+                    data-bs-target="#NewsNew" role="button" translate>
+              Write a new news
+            </button>
+          </div>
+          <table class="table" aria-describedby="newsTitle">
+            <tbody>
+              <tr *ngFor="let msg of adminNewsList">
+                <th scope="row">
+                  {{msg.title}}
+                </th>
+                <td>
+                  <a href="{{msg.link}}" target="_blank"
+                     rel="noopener">{{msg.link}}</a>
+                </td>
+                <td>
+                  {{msg.author}}
+                </td>
+                <td>
+                  {{msg.news_date*1000| date:'EEEE dd MMMM, HH:mm'}}
+                </td>
+                <td>
+                  <button class="btn btn-primary glyphicon glyphicon-pencil"
+                          (click)="setNews(msg)"
+                          data-bs-toggle="modal" data-bs-target="#NewsModify"
+                          title="{{'Modify a news'|translate}}">
+                    <ic-icon [icon]="brushIcon"></ic-icon>
+                    <span class="visually-hidden" translate>Modify a news</span>
+                  </button>
+                  <button class="btn btn-danger glyphicon glyphicon-remove" 
+                          (click)="setNews(msg)"
+                          data-bs-toggle="modal" data-bs-target="#NewsDelete"
+                          title="{{'Delete a news'|translate}}">
+                    <ic-icon [icon]="trash2Icon"></ic-icon>
+                    <span class="visually-hidden" translate>Delete a news</span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
