@@ -94,6 +94,101 @@ export class City {
     this.divinBonusListSelected.error = 0;
   }
   
+  levelQuest(name:string) {
+    if(this.user.getQuestValidate() == 1) {
+      return false;
+    }
+    
+    let quest = this.user.getLevel()+'_'+this.user.getQuest();
+    
+    let array_goal:any = {
+      //Level 0
+      '0_2': 'mint',
+      '0_3': 'ironmine',
+      '0_4': 'well',
+      '0_5': 'sawmill',
+      '0_6': 'ironmine',
+      '0_9': 'spartan',
+      '0_10': 'watchtower',
+      '0_11': 'treasure',
+      '0_12': 'mint',
+      '0_13': 'watchtower',
+      //Level 1
+      '1_1': 'silver_man',
+      '1_2': 'spy',
+      '1_4': 'mint',
+      '1_5': 'treasure',
+      '1_6': 'hut',
+      '1_8': 'farm',
+      '1_9': 'mint',
+      '1_11': 'treasure',
+      //Level 2
+      '2_2': 'quarry',
+      '2_3': 'mint',
+      '2_4': 'treasure',
+      '2_6': 'quarry',
+      '2_8': 'treasure',
+      '2_9': 'militarycamp',
+      '2_10': 'peltast',
+      '2_11': 'temple1',
+      //Level 3
+      '3_2': 'observationtower',
+      '3_3': 'mint',
+      '3_5': 'camp_level',
+      '3_6': 'slinger',
+      '3_7': 'observationtower',
+      //Level 4
+      '4_2': 'growers',
+      '4_3': 'shortbow',
+      '4_4': 'mint',
+      '4_6': 'observationtower',
+      '4_7': 'growers',
+      '4_9': 'observationtower',
+      //Level 5
+      '5_1': 'habitation',
+      '5_3': 'mint',
+      '5_4': 'habitation',
+      '5_5': 'longbow',
+      //Level 6
+      '6_1': 'militarycamp',
+      '6_2': 'hippeis',
+      '6_4': 'mint',
+      '6_5': 'temple2',
+      '6_6': 'hippeis',
+      //Level 7
+      '7_2': 'mountedarchery',
+      '7_4': 'mint',
+      '7_5': 'mountedarchery',
+      //Level 8
+      '8_2': 'hoplite',
+      '8_3': 'mint',
+      '8_5': 'hoplite',
+      '8_7': 'mint',
+      '8_8': 'temple3',
+      //Level 9
+      '9_1': 'militarycamp',
+      '9_2': 'palace',
+      '9_3': 'mountedhoplite',
+      '9_4': 'mint',
+      '9_5': 'winery',
+      '9_6': 'goldmine',
+      '9_8': 'mountedhoplite',
+      '9_9': 'mint',
+      '9_10': 'winery',
+      '9_11': 'goldmine',
+      '9_13': 'mountedhoplite',
+      '9_14': 'mint',
+      '9_15': 'winery',
+      '9_16': 'goldmine'
+    }
+    
+    if(array_goal[quest] && array_goal[quest] == name) {
+      return true;
+    }
+    
+    return false;
+  }
+  
   selectArmy(name:string) {
     this.armyInfo = this.user.info.datas.army[name];
     this.armyInfo.engageNb   = '';

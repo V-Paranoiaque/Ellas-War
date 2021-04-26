@@ -167,6 +167,7 @@
           <div class="card-body no-padding">
             <div *ngFor="let army of user.getArmy()"
                  class="frame frame-20" role="button"
+                 [ngClass]="{'level-quest': levelQuest(army.code)}"
                  data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                  (click)="selectArmy(army.code)"
                  title="{{ army.name | translate }}">
@@ -187,12 +188,14 @@
             <div class="frame frame-20" (click)="selectTreasure()"
                  data-bs-toggle="modal" data-bs-target="#TreasureInfo"
                  *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11"
+                 [ngClass]="{'level-quest': levelQuest('treasure')}"
                  title="{{ 'Treasure' | translate }}" role="button">
               <ew-icon name="treasure"></ew-icon>
             </div>
             
             <div *ngFor="let building of user.getBuildings()"
                  class="frame frame-20" role="button"
+                 [ngClass]="{'level-quest': levelQuest(building.code)}"
                  data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                  (click)="selectBuilding(building.code)"
                  title="{{ building.name | translate }}">
@@ -295,31 +298,31 @@
             <!-- Frames to build temples -->
             <div class="frame frame-20"
                  *ngIf="user.buildTemple1Allowed() == 0"
-                 data-bs-toggle="modal" data-bs-target="#Temple1Info">
-              <img src="assets/img/temples/temple-no.png"
-                   alt="{{'No temple' | translate}}" 
-                   title="{{'Build a new temple' | translate}}" />
+                 [ngClass]="{'level-quest': levelQuest('temple1')}"
+                 data-bs-toggle="modal" data-bs-target="#Temple1Info"
+                 title="{{'Build a new temple' | translate}}" >
+              <ew-icon name="olympus"></ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple2Allowed() == 0"
-                 data-bs-toggle="modal" data-bs-target="#Temple2Info">
-              <img src="assets/img/temples/temple-no.png"
-                   alt="{{'No temple' | translate}}" 
-                   title="{{'Build a new temple' | translate}}" />
+                 [ngClass]="{'level-quest': levelQuest('temple2')}"
+                 data-bs-toggle="modal" data-bs-target="#Temple2Info"
+                 title="{{'Build a new temple' | translate}}" >
+              <ew-icon name="olympus"></ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple3Allowed() == 0"
-                 data-bs-toggle="modal" data-bs-target="#Temple3Info">
-              <img src="assets/img/temples/temple-no.png"
-                   alt="{{'No temple' | translate}}" 
-                   title="{{'Build a new temple' | translate}}" />
+                 [ngClass]="{'level-quest': levelQuest('temple3')}"
+                 data-bs-toggle="modal" data-bs-target="#Temple3Info"
+                 title="{{'Build a new temple' | translate}}" >
+              <ew-icon name="olympus"></ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple4Allowed() == 0"
-                 data-bs-toggle="modal" data-bs-target="#Temple4Info">
-              <img src="assets/img/temples/temple-no.png"
-                   alt="{{'No temple' | translate}}" 
-                   title="{{'Build a new temple' | translate}}" />
+                 [ngClass]="{'level-quest': levelQuest('temple4')}"
+                 data-bs-toggle="modal" data-bs-target="#Temple4Info"
+                 title="{{'Build a new temple' | translate}}" >
+              <ew-icon name="olympus"></ew-icon>
             </div>
             <div class="frame frame-20" role="button"
                  *ngIf="user.hasTemples() > 0"
