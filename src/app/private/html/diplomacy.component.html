@@ -178,7 +178,7 @@
                       </span>
                     </a>
                     <a class="btn btn-danger"
-                       *ngIf="user.getPropertyNb('alliance') == alli.alliance_id"
+                       *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') == alli.alliance_id"
                        data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
                        (click)="setAlliance(alli)">
                       <ic-icon [icon]="flag"></ic-icon>
