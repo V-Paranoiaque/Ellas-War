@@ -14,10 +14,29 @@ export class EwIcon {
   @Input()
   
   set name(iconName:string) {
-    this.element.nativeElement.innerHTML = ewIcons[iconName] || null;
+    this.element.nativeElement.innerHTML = ewIcons[iconName] || ewIcons['default'];
   }
   
   constructor(private element: ElementRef) {
     
+  }
+  
+  static getDivineBonus(id:number) {
+    switch(id) {
+      case 1: return 'iron';
+      case 2: return 'wood';
+      case 3: return 'grapes';
+      case 4: return 'stone';
+      case 5: return 'marble';
+      case 6: return 'wine';
+      case 7: return 'gold';
+      case 9: return 'spartan';
+      case 10: return 'menu-temple';
+      case 11: return 'treasure';
+      case 12: return 'menu-agora';
+      case 13: return 'smenu-attacks';
+      case 14: return 'drachma';
+    }
+    return 'default'
   }
 }
