@@ -240,9 +240,6 @@ export class Attacks {
       if(data.membre_id == this.user.getId()) {
         this.attackMode = 12;
       }
-      else {
-        this.attackMode = 9;
-      }
     });
     
     this.socket.on('myAllianceWar', (data:any) => {
