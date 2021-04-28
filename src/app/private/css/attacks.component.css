@@ -48,18 +48,18 @@
   color: black;
 }
 
-.unavailable-normal
-.unavailable-war
-.unavailable-bonus
-.unavailable-receive-normal
+.unavailable-normal,
+.unavailable-war,
+.unavailable-bonus,
+.unavailable-receive-normal,
 .unavailable-receive-war {
   color: lightgray;
 }
 
-.available-war
-.available-normal 
-available-receive-normal
-available-receive-war {
+.available-war,
+.available-normal,
+.available-receive-normal,
+.available-receive-war {
   color: olive;
 }
 
@@ -68,6 +68,5 @@ available-receive-war {
 }
 
 ew-icon {
-  width: 80px;
   display: inline-block;
 }

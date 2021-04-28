@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { EwIcon } from '../../../services/ew-icon.service';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class DivineBonusListPopup {
   @Input() divineBonus: any;
   
   public divineBonusList:any;
+  
+  EwIcon = EwIcon;
   
   constructor(private socket: Socket) {
     this.divineBonus = [];

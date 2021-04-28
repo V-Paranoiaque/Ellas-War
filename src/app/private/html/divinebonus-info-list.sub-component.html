@@ -1,6 +1,8 @@
 <div class="modal-content">
   <div class="modal-header">
     <h5 id="divinebonusDesc" translate>Divine Bonus</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
   </div>
   <div class="modal-body">
     <div class="alert alert-success" role="alert"
@@ -12,8 +14,8 @@
       <tr *ngFor="let bonus of divineBonusList">
         <td class="col-2">
           <div>
-            <img src="assets/img/divinebonus/base.png" alt="test"/>
-            <div>{{ bonus.nb }}</div>
+            <ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></ew-icon>
+            <div  class="badge bg-secondary">{{ bonus.nb }}</div>
           </div>
         </td>
         <th scope="row">

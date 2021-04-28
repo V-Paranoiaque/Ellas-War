@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -131,8 +131,8 @@
                   <th scope="col"></th>
                   <th scope="col" class="d-none d-sm-table-cell" translate>Rank</th>
                   <th scope="col" translate>XP</th>
-                  <th scope="col" class="visible-lg visible-md" translate>Victories</th>
-                  <th scope="col" translate>Field</th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>Victories</th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>Field</th>
                   <th scope="col" translate>Activity</th>
                   <th scope="col"></th>
               </thead>
@@ -150,12 +150,12 @@
                   </td>
                   <td class="d-none d-sm-table-cell">{{p.rank_name}}</td>
                   <td class="text-end">{{p.xp | number:'': this.translate.currentLang}}</td>
-                  <td class="text-end visible-lg visible-md">{{p.victory | number:'': this.translate.currentLang}}</td>
-                  <td class="text-end">{{p.field | number:'': this.translate.currentLang}}</td>
+                  <td class="d-none d-sm-table-cell">{{p.victory | number:'': this.translate.currentLang}}</td>
+                  <td class="d-none d-sm-table-cell text-end">{{p.field | number:'': this.translate.currentLang}}</td>
                   <td class="text-center">
                     {{p.last_activity*1000| date:'dd/MM yyyy, HH:mm'}}
                   </td>
-                  <td>
+                  <td class="text-center">
                     <button class="btn btn-success" (click)="setPlayer(p, 3)"
                             data-bs-toggle="modal" data-bs-target="#AllianceRank" 
                             title="{{''|translate}}">
