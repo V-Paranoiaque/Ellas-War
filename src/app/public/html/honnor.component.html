@@ -11,8 +11,13 @@
       </p>
       
       <nav>
+        <button class="btn btn-outline-primary d-inline d-sm-none"
+                role="button" [ngClass]="{'active': id == 0}"
+                [routerLink]="['/honnor']" translate>
+          Global ranking
+        </button>
         <ul class="pagination justify-content-center">
-          <li class="page-item" [ngClass]="{'active': id == 0}">
+          <li class="page-item d-none d-sm-block" [ngClass]="{'active': id == 0}">
             <a class="page-link" [routerLink]="['/honnor']">#</a>
           </li>
           <li *ngFor="let j of levels; let i = index" class="page-item"
@@ -27,8 +32,8 @@
           <tr>
             <th scope="col" translate>Player</th>
             <th scope="col" translate *ngIf="id == 10">XP</th>
-            <th scope="col" translate>Field</th>
-            <th scope="col" translate>Victories</th>
+            <th scope="col" class="d-none d-sm-table-cell" translate>Field</th>
+            <th scope="col" class="d-none d-sm-table-cell" translate>Victories</th>
             <th scope="col" translate>Honnor</th>
         </thead>
         <tbody>
@@ -39,8 +44,8 @@
               </a>
             </td>
             <td *ngIf="id == 10">{{p.xp}}</td>
-            <td>{{p.field | number:'': this.translate.currentLang}}</td>
-            <td>{{p.victory | number:'': this.translate.currentLang}}</td>
+            <td class="d-none d-sm-table-cell">{{p.field | number:'': this.translate.currentLang}}</td>
+            <td class="d-none d-sm-table-cell">{{p.victory | number:'': this.translate.currentLang}}</td>
             <td>{{p.honnor | number:'': this.translate.currentLang}}</td>
           </tr>
         </tbody>
