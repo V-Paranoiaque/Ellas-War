@@ -16,6 +16,31 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
+        <preference name="android-minSdkVersion" value="22" />
+        <splash density="land-ldpi" src="res/android/splash-land-ldpi.png" />
+        <splash density="land-mdpi" src="res/android/splash-land-mdpi.png" />
+        <splash density="land-hdpi" src="res/android/splash-land-hdpi.png" />
+        <splash density="land-xhdpi" src="res/android/splash-land-xhdpi.png" />
+        <splash density="land-xxhdpi" src="res/android/splash-land-xxhdpi.png" />
+        <splash density="land-xxxhdpi" src="res/android/splash-land-xxxhdpi.png" />
+        <splash density="ldpi" src="res/android/splash-port-ldpi.png" />
+        <splash density="mdpi" src="res/android/splash-port-mdpi.png" />
+        <splash density="hdpi" src="res/android/splash-port-hdpi.png" />
+        <splash density="xhdpi" src="res/android/splash-port-xhdpi.png" />
+        <splash density="xxhdpi" src="res/android/splash-port-xxhdpi.png" />
+        <splash density="xxxhdpi" src="res/android/splash-port-xxxhdpi.png" />
+        <splash density="port-ldpi" src="res/android/splash-port-ldpi.png" />
+        <splash density="port-mdpi" src="res/android/splash-port-mdpi.png" />
+        <splash density="port-hdpi" src="res/android/splash-port-hdpi.png" />
+        <splash density="port-xhdpi" src="res/android/splash-port-xhdpi.png" />
+        <splash density="port-xxhdpi" src="res/android/splash-port-xxhdpi.png" />
+        <splash density="port-xxxhdpi" src="res/android/splash-port-xxxhdpi.png" />
+        <icon density="ldpi" src="res/android/ldpi.png" />
+        <icon density="mdpi" src="res/android/mdpi.png" />
+        <icon density="hdpi" src="res/android/hdpi.png" />
+        <icon density="xhdpi" src="res/android/xhdpi.png" />
+        <icon density="xxhdpi" src="res/android/xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/android/xxxhdpi.png" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="electron">
@@ -28,6 +53,52 @@
         <preference name="hostname" value="localhost" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <splash src="res/ios/Default@2x~universal~anyany.png" />
+        <splash src="res/ios/Default@2x~universal~comany.png" />
+        <splash src="res/ios/Default@2x~universal~comcom.png" />
+        <splash src="res/ios/Default@3x~universal~anyany.png" />
+        <splash src="res/ios/Default@3x~universal~anycom.png" />
+        <splash src="res/ios/Default@3x~universal~comany.png" />
+        <icon height="180" src="res/ios/icon-60@3x.png" width="180" />
+        <icon height="60" src="res/ios/icon-60.png" width="60" />
+        <icon height="120" src="res/ios/icon-60@2x.png" width="120" />
+        <icon height="76" src="res/ios/icon-76.png" width="76" />
+        <icon height="152" src="res/ios/icon-76@2x.png" width="152" />
+        <icon height="40" src="res/ios/icon-40.png" width="40" />
+        <icon height="80" src="res/ios/icon-40@2x.png" width="80" />
+        <icon height="57" src="res/ios/icon.png" width="57" />
+        <icon height="114" src="res/ios/icon@2x.png" width="114" />
+        <icon height="72" src="res/ios/icon-72.png" width="72" />
+        <icon height="144" src="res/ios/icon-72@2x.png" width="144" />
+        <icon height="167" src="res/ios/icon-167.png" width="167" />
+        <icon height="29" src="res/ios/icon-small.png" width="29" />
+        <icon height="58" src="res/ios/icon-small@2x.png" width="58" />
+        <icon height="87" src="res/ios/icon-small@3x.png" width="87" />
+        <icon height="50" src="res/ios/icon-50.png" width="50" />
+        <icon height="100" src="res/ios/icon-50@2x.png" width="100" />
+        <icon height="167" src="res/ios/icon-83.5@2x.png" width="167" />
+    </platform>
+    <platform name="osx">
+        <icon height="16" src="res/osx/icon-16x16.png" width="16" />
+        <icon height="32" src="res/osx/icon-32x32.png" width="32" />
+        <icon height="64" src="res/osx/icon-64x64.png" width="64" />
+        <icon height="128" src="res/osx/icon-128x128.png" width="128" />
+        <icon height="256" src="res/osx/icon-256x256.png" width="256" />
+        <icon height="512" src="res/osx/icon-512x512.png" width="512" />
+    </platform>
+    <platform name="windows">
+        <icon src="res/windows/StoreLogo.png" target="StoreLogo" />
+        <icon src="res/windows/smalllogo.png" target="Square30x30Logo" />
+        <icon src="res/windows/Square44x44Logo.png" target="Square44x44Logo" />
+        <icon src="res/windows/Square70x70Logo.png" target="Square70x70Logo" />
+        <icon src="res/windows/Square71x71Logo.png" target="Square71x71Logo" />
+        <icon src="res/windows/Square150x150Logo.png" target="Square150x150Logo" />
+        <splash src="res/windows/Square310x310Logo.png" target="Square310x310Logo" />
+        <splash src="res/windows/splashscreen.png" target="SplashScreen" />
+        <splash src="res/windows/splashscreenphone.png" target="SplashScreenPhone" />
+        <splash src="res/windows/Wide310x150Logo.png" target="Wide310x150Logo" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <preference name="windows-target-version" value="10.0" />
+    <preference name="WindowsStoreDisplayName" value="Ellas War" />
 </widget>
