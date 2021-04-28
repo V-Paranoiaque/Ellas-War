@@ -82,7 +82,7 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-9 col-xs-12 main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row">
       <div class="col-xl-6">
@@ -147,12 +147,12 @@
             </div>
           </div>
           <div class="card-body no-padding" *ngIf="divineBonus.length > 0">
-            <div *ngFor="let bonus of divineBonus"
-                 class="frame frame-10"
+            <div *ngFor="let bonus of divineBonus" role="button"
+                 class="frame frame-db"
                  data-bs-toggle="modal" data-bs-target="#DivineBonusInfo"
                  (click)="selectDivinBonus(bonus)">
-              <img src="assets/img/divinebonus/base.png" alt="test"/>
-              <div>{{ bonus.nb }}</div>
+              <ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></ew-icon>
+              <div class="badge bg-secondary">{{ bonus.nb }}</div>
             </div>
           </div>
         </div>
@@ -172,7 +172,9 @@
                  (click)="selectArmy(army.code)"
                  title="{{ army.name | translate }}">
               <ew-icon name="{{ army.code }}"></ew-icon>
-              <div>{{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}</div>
+              <div class="badge bg-secondary">
+                {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
+              </div>
             </div>
           </div>
         </div>
@@ -200,7 +202,9 @@
                  (click)="selectBuilding(building.code)"
                  title="{{ building.name | translate }}">
               <ew-icon name="{{ building.code }}"></ew-icon>
-              <div>{{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}</div>
+              <div class="badge bg-secondary">
+                {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}
+              </div>
             </div>
           </div>
         </div>

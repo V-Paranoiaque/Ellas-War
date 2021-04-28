@@ -1,4 +1,5 @@
 import { Component, Output  } from '@angular/core';
+import { EwIcon } from '../../../services/ew-icon.service';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -28,6 +29,7 @@ export class City {
   
   //Icons
   cloud = cloud;
+  EwIcon = EwIcon;
   questionCircle = questionCircle;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
