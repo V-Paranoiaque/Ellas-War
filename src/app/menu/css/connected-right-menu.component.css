@@ -9,6 +9,12 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
   }
 }
 
+@media (max-width: 767px) {
+  div.col-sm-0 {
+    display: none;
+  }
+}
+
 .card-button.card-button-primary .btn {
   width: 100%;
   font-weight: bold;

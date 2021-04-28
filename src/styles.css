@@ -18,11 +18,22 @@ a.no-padding {
   padding-bottom: 40px;
 }
 
+@media (max-width: 575px) {
+  .main {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .main {
+    padding-bottom: 80px;
+  }
+}
+
 .main-full.container .card {
   margin-top: calc(var(--bs-gutter-x)/ 2);
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
-
 
 /*** Cards **/
 .card-header, .card-button, .card-footer {

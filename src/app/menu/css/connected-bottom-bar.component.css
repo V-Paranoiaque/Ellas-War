@@ -15,9 +15,38 @@
   display: flex;
 }
 
-@media (max-width:575px) {
+@media (max-width:767px) {
+  .chat-button {
+    display: none;
+  }
+  
   .chat-text {
     bottom: 109px;
+  }
+  
+  .bottom-button {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));
+    padding: 0;
+  }
+  
+  .bottom-button .menu-5 {
+    width: calc(100%/5);
+    padding: 4px;
+  }
+  
+  .bottom-button .menu-7 {
+    width: calc(100%/7);
+    padding: 4px;
+  }
+  
+  .bottom-button a.inactive {
+    opacity: 0.75;
   }
 }
 

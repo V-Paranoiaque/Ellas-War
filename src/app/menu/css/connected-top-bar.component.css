@@ -12,7 +12,11 @@ img {
   padding: 0;
 }
 
-@media (min-width: 576px) {
+.navbar-brand {
+  color: white;
+}
+
+@media (min-width: 768px) {
   .navbar-brand {
     display: none;
   }
@@ -42,4 +46,9 @@ img {
 
 .navbar-light .navbar-nav .nav-link:hover {
   color: var(--color-menu-text-active);
+}
+
+.menu-xs a.nav-link {
+  color: white;
+  padding: 0.5rem 0.8rem;
 }

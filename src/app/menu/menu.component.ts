@@ -10,6 +10,8 @@ import { ConnectedRightMenu } from './ts/connected-right-menu.component';
 
 import { AdminLeftMenu } from './ts/admin-left-menu.component';
 
+import { PlayerInfoPopup } from './ts/player-info-popup.sub-component';
+
 export const MenuComponent = [
     CommonBottomBar,
     CommonTopBar,
@@ -25,5 +27,7 @@ export const MenuComponent = [
     PublicBottomBar,
     PublicTopBar,
     
-    AdminLeftMenu
+    AdminLeftMenu,
+    
+    PlayerInfoPopup
 ];

@@ -1,12 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light navbar-menu">
+<nav class="navbar navbar-expand-md navbar-light navbar-menu">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']" translate>Ellas War</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" attr.aria-label="{{'Toggle navigation'|translate}}">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    
+    <div class="collapse navbar-collapse">
       <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/city']"
              [ngClass]="{'active': active == 'city'}"
@@ -55,7 +53,7 @@
         </li>
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
       </ul>
-      <ul class="navbar-nav mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-lg-0">
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
         <li class="nav-item" *ngIf="user.getPropertyNb('rank') > 1">
           <a class="nav-link" [routerLink]="['/admin/']">
@@ -75,13 +73,37 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="disconnect()">
+          <a class="nav-link" role="button" (click)="disconnect()">
             <ic-icon [icIcon]="powerOff"></ic-icon>
           </a>
         </li>
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
       </ul>
     </div>
+    <div class="menu-xs d-flex d-md-none">
+      <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
+        <a class="nav-link" [routerLink]="['/admin/']" *ngIf="user.getPropertyNb('rank') > 1">
+          <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
+        </a>
+        <a class="nav-link" [routerLink]="['/options']"
+           [ngClass]="{'active': active == 'options'}">
+          <ic-icon [icIcon]="cog"></ic-icon>
+        </a>
+        <a class="nav-link" [routerLink]="['/support']"
+           [ngClass]="{'active': active == 'support'}">
+          <ic-icon [icIcon]="comments"></ic-icon>
+        </a>
+        <a class="nav-link" role="button" (click)="disconnect()">
+          <ic-icon [icIcon]="powerOff"></ic-icon>
+        </a>
+      <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
+    </div>
   </div>
 </nav>
 <div class="mosaic"></div>
+
+<div class="modal fade" id="PlayerInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <player-info-popup></player-info-popup>
+  </div>
+</div>

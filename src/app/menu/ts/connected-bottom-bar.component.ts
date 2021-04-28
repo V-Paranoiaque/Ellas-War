@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router'
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
@@ -27,7 +28,8 @@ export class ConnectedBottomBar extends CommonBottomBar {
   @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
   @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
   
-  constructor(protected socket: Socket, public user: User) {
+  constructor(protected socket: Socket, 
+              public router: Router, public user: User) {
     super(socket, user);
     
     this.chatActive = '';
