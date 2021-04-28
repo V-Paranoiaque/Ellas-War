@@ -11,6 +11,7 @@ export class Details {
 
   public nbvariation:any;
   public variation:any;
+  public menuMode:number;
 
   constructor(public user: User, public translate: TranslateService) {
     this.variation = {
@@ -37,6 +38,12 @@ export class Details {
       'wine': 0,
       'gold': 0
     };
+    /**
+     * 0: Production
+     * 1: Comsumption
+     * 2: Evolution
+     **/
+    this.menuMode = 2;
     
     setTimeout(() => {
       this.defineRess();
@@ -94,5 +101,9 @@ export class Details {
   }
   getVariation(ress:any) {
     return this.variation[ress];
+  }
+  
+  setMenuMode(id:number) {
+    this.menuMode = id;
   }
 }
