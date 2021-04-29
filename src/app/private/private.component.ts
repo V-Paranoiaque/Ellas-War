@@ -34,7 +34,6 @@ import { AllianceWarArchivesPopup } from './ts/alliance-war-archives-popup.sub-c
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { AttacksDiamond } from './ts/attacks-diamond.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
-import { AttacksSanctuariesInfo } from './ts/attacks-sanctuaries-info.sub-component';
 import { AttacksStats } from './ts/attacks-stats.sub-component';
 import { DailyPopup } from './ts/daily-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
@@ -100,7 +99,6 @@ export const PrivateComponent = [
   ArmyPopup,
   AttacksDiamond,
   AttacksMessage,
-  AttacksSanctuariesInfo,
   AttacksStats,
   ConstructionPopup,
   DailyPopup,

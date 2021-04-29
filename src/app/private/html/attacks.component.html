@@ -54,7 +54,7 @@
             <button class="btn btn-warning" (click)="setMenuMode(3)"
                     *ngIf="user.getLevel() >= 10">
               <ew-icon name="smenu-sanctuary"></ew-icon>
-              <span class="d-none d-sm-block" translate>Sanctuary</span>
+              <span class="d-none d-sm-block" translate>Sanctuaries</span>
             </button>
           </div>
           <div class="card-body text-center"
@@ -161,9 +161,65 @@
             <attacks-diamond></attacks-diamond>
           </div>
           <div class="card-body" *ngIf="menuMode == 3">
-            <div *ngFor="let sanctuaryInfo of sanctuariesList; let i = index">
-              <attacks-sanctuaries-info *ngIf="sanctuariesList[i]"
-                                        [(sanctuary)]="sanctuariesList[i]"></attacks-sanctuaries-info>
+            <div *ngFor="let sanctuary of sanctuariesList; let i = index">
+              <div class="card mb-3" *ngIf="i > 0">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="assets/img/success.png" title="{{sanctuary.sanctuaries_name|translate}}"
+                         alt="{{sanctuary.sanctuaries_name|translate}}">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title" translate>
+                        {{ sanctuary.sanctuaries_name | translate }}
+                      </h5>
+                      <p class="card-text">
+                        <strong translate>Controlled by</strong>
+                        <strong translate>:</strong>
+                        {{ sanctuary.username }}
+                        <br/>
+                        <strong translate>Power</strong>
+                        <strong translate>:</strong>
+                        <span *ngIf="sanctuary.sanctuaries_id == 1" translate>
+                          Your city is protected against the fury of Demeter
+                        </span>
+                        <span *ngIf="sanctuary.sanctuaries_id == 2" translate>
+                          The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
+                        </span>
+                        <span *ngIf="sanctuary.sanctuaries_id == 3" translate>
+                          Your city produces 24 additional Ambrosia a day
+                        </span>
+                        <span *ngIf="sanctuary.sanctuaries_id == 4" translate>
+                          Your city is protected against the Zeus lightning
+                        </span>
+                      </p>
+                    </div>
+                    <div class="card-body text-center" *ngIf="sanctuary.membre_id == user.getId()">
+                      <button class="btn btn-outline-primary"
+                              (click)="sanctuaryManage(sanctuary.sanctuaries_id)">
+                        <ic-icon [icon]="twotoneFence"></ic-icon>
+                      </button>
+                    </div>
+                    <div class="card-body text-center" *ngIf="sanctuary.membre_id != user.getId()">
+                      <button class="btn btn-outline-primary"
+                              (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
+                              *ngIf="user.getPropertyNb('apollo') == 0">
+                        <ic-icon [icon]="fistRaised"></ic-icon>
+                      </button>
+                      <button class="btn btn-outline-primary"
+                              (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
+                              *ngIf="user.getPropertyNb('apollo') == 1">
+                        <ic-icon [icon]="eyeIcon"></ic-icon>
+                      </button>
+                      
+                      <button class="btn"
+                              (click)="sanctuariesPrepare(sanctuary.sanctuaries_id)">
+                        <ic-icon [icon]="swordIcon"></ic-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -326,9 +382,15 @@
             </h2>
           </div>
           <div class="card-header card-header-flexible"
-               *ngIf="sanctuariesSpyInfo?.sanctuaries_name">
+               *ngIf="attackMode != 12 && sanctuariesSpyInfo?.sanctuaries_name">
             <h2 id="playerDesc">
               {{ sanctuariesSpyInfo?.sanctuaries_name | translate }}
+            </h2>
+          </div>
+          <div class="card-header card-header-flexible"
+               *ngIf="attackMode == 12">
+            <h2 id="playerDesc">
+              {{ sanctuariesInfo.sanctuaries_name | translate }}
             </h2>
           </div>
           
@@ -648,6 +710,7 @@
             <lost-message [(info)]="lightningInfo"></lost-message>
           </div>
           
+          <!-- Spying a sanctuary -->
           <div class="card-body text-center" *ngIf="attackMode == 9">
             <span [ngSwitch]="sanctuariesSpyInfo.error">
               <div *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</div>
@@ -695,6 +758,7 @@
             </div>
           </div>
           
+          <!-- Preparing to attack a sanctuary -->
           <div class="card-body" *ngIf="attackMode == 10">
             <div *ngIf="getArmy().length > 0" class="text-center">
               <br/>
@@ -716,12 +780,14 @@
               </div>
             </div>
           </div>
+          
+          <!-- Attacking a sanctuary -->
           <div class="card-body" *ngIf="attackMode == 11">
             <sanctuary-message [(info)]="sanctuariesAttackInfo"></sanctuary-message>
           </div>
           
+          <!-- Sanctuary info -->
           <div class="card-body" *ngIf="attackMode == 12">
-            <h1>{{ sanctuariesInfo.sanctuaries_name | translate}}</h1>
             <span *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
               Your city is protected against the fury of Demeter
             </span>

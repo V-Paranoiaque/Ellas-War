@@ -14,6 +14,7 @@ import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
 import share from '@iconify/icons-bi/share';
 import swordIcon from '@iconify/icons-vaadin/sword';
+import twotoneFence from '@iconify/icons-ic/twotone-fence';
 
 @Component({
   templateUrl: '../html/attacks.component.html',
@@ -71,6 +72,7 @@ export class Attacks {
   plusIcon   = plusIcon;
   share      = share;
   swordIcon  = swordIcon;
+  twotoneFence = twotoneFence;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
     this.attackPage = 1;
@@ -479,7 +481,9 @@ export class Attacks {
     this.socket.emit('sanctuariesAttack', id);
   }
   sanctuariesPrepareUnit(id:number, nb:number) {
+    this.attackMode = 10;
     this.sanctuariesWave[id] = nb;
+    this.socket.emit('sanctuariesInfo', id);
   }
   sanctuariesEye(id:number) {
     this.socket.emit('sanctuariesEye', id);
@@ -529,14 +533,17 @@ export class Attacks {
     switch(id) {
       case 0:
         this.attackPage = 1;
+        this.attackMode = 0;
         this.attackOrderSort = 'other';
         this.attackOrderReverse = 0;
         this.attackListInit();
         this.currentMsgReset();
       break;
       case 1:
+        this.attackMode = 0;
       break;
       case 2:
+        this.attackMode = 0;
         this.socket.emit('diamondInfo');
         this.socket.emit('diamondRankingPlayers');
         this.socket.emit('diamondRankingAlliance');
@@ -549,6 +556,7 @@ export class Attacks {
         this.attackPage = 1;
         this.attackOrderSort = 'other';
         this.attackOrderReverse = 0;
+        this.attackMode = 0;
         this.attackListWarInit();
       break;
     }
