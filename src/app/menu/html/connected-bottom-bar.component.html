@@ -86,48 +86,50 @@
   </button>
 </div>
 
-<div class="bottom-button d-flex text-center">
-  <a [routerLink]="['/city']"
-     [ngClass]="{'inactive': router.url != '/city',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-city"></ew-icon>
-  </a>
-  <a [routerLink]="['/attacks']"
-     [ngClass]="{'inactive': router.url != '/attacks',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-attack"></ew-icon>
-  </a>
-  <a [routerLink]="['/messages']" 
-     [ngClass]="{'inactive': router.url != '/messages',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-messages"></ew-icon>
-  </a>
-  <a [routerLink]="['/quests']"
-     [ngClass]="{'inactive': router.url != '/quests',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-quests"></ew-icon>
-  </a>
-  <a [routerLink]="['/alliance']"
-     [ngClass]="{'inactive': router.url != '/alliance',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-alliance"></ew-icon>
-  </a>
-  <a [routerLink]="['/storeroom']"
-     [ngClass]="{'inactive': router.url != '/storeroom',
-                 'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-agora"></ew-icon>
-  </a>
-  <a role="button" data-bs-toggle="modal" data-bs-target="#PlayerInfo"
-     [ngClass]="{'menu-5': user.getLevel() == 0,
-                 'menu-7': user.getLevel() > 0}">
-    <ew-icon name="menu-resources"></ew-icon>
-  </a>
+<div class="bottom-button">
+  <div class="d-flex text-center">
+    <a [routerLink]="['/city']"
+       [ngClass]="{'inactive': router.url != '/city',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-city"></ew-icon>
+    </a>
+    <a [routerLink]="['/attacks']"
+       [ngClass]="{'inactive': router.url != '/attacks',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-attack"></ew-icon>
+    </a>
+    <a [routerLink]="['/messages']" 
+       [ngClass]="{'inactive': router.url != '/messages',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-messages"></ew-icon>
+    </a>
+    <a [routerLink]="['/quests']"
+       [ngClass]="{'inactive': router.url != '/quests',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-quests"></ew-icon>
+    </a>
+    <a [routerLink]="['/alliance']"
+       [ngClass]="{'inactive': router.url != '/alliance',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-alliance"></ew-icon>
+    </a>
+    <a [routerLink]="['/storeroom']"
+       [ngClass]="{'inactive': router.url != '/storeroom',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-agora"></ew-icon>
+    </a>
+    <a role="button" data-bs-toggle="modal" data-bs-target="#PlayerInfo"
+       [ngClass]="{'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-resources"></ew-icon>
+    </a>
+  </div>
 </div>
 
 <div class="mosaic"></div>
