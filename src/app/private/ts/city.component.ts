@@ -66,13 +66,13 @@ export class City {
     
     this.socket.on('dailyCo', (result:any) => {
       this.dailyCo = result;
+      let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
+      element.click();
     });
     this.socket.on("dailyCoCheck", (r:number) => {
       this.dailyCoCheck = r;
       if(r == 1) {
         this.socket.emit('dailyCo');
-        let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
-        element.click();
       }
     });
     
