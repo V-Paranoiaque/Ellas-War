@@ -96,11 +96,11 @@
           <strong translate>Strength</strong>
           <strong translate>:</strong>
           <span>
-           {{ info.attack }}
+           {{ info.attack | number:'': this.translate.currentLang }}
            <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
           </span>
           <span>
-           {{ info.defense }}
+           {{ info.defense | number:'': this.translate.currentLang }}
            <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
           </span>
         </div>
