@@ -258,30 +258,34 @@ export class Attacks {
       if(this.currentMsg.msg) {
         this.currentMsg.msg = this.currentMsg.msg.reverse();
       }
-    });
+    }); 
   }
   
   ngOnDestroy() {
-    this.socket.removeListener('attackStats');
     this.socket.removeListener('attack');
     this.socket.removeListener('attackList');
+    this.socket.removeListener('diamondInfo');
+    this.socket.removeListener('diamondRankingPlayers');
+    this.socket.removeListener('diamondRankingAlliance');
     this.socket.removeListener('profile');
     this.socket.removeListener('attackPossible');
     this.socket.removeListener('furyPossible');
     this.socket.removeListener('lightningPossible');
     this.socket.removeListener('eye');
     this.socket.removeListener('fury');
-    this.socket.removeListener('lightning'); 
-    this.socket.removeListener('msgInfo'); 
-    this.socket.removeListener('msgPage'); 
+    this.socket.removeListener('lightning');
+    this.socket.removeListener('spyInfo');
+    this.socket.removeListener('waveAttackSum');
+    this.socket.removeListener('realWaveAttackCheck');
+    this.socket.removeListener('sanctuariesList');
     this.socket.removeListener('sanctuariesAttack');
     this.socket.removeListener('sanctuariesEye');
     this.socket.removeListener('sanctuariesDefense');
-    this.socket.removeListener('sanctuariesInfo');
-    this.socket.removeListener('sanctuariesList');
     this.socket.removeListener('sanctuariesSpy');
-    this.socket.removeListener('spyInfo');
-    this.socket.removeListener('waveAttackSum');
+    this.socket.removeListener('sanctuariesInfo');
+    this.socket.removeListener('myAllianceWar');
+    this.socket.removeListener('msgPage');
+    this.socket.removeListener('msgInfo');
   }
   
   attackListInit() {
