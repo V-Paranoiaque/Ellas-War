@@ -1,5 +1,52 @@
 <common-top-bar active="messages"></common-top-bar>
 
+<div class="modal fade" id="MsgNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Write a new message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span class="badge bg-primary" *ngFor="let user of getDestList()">
+          {{ user.username }}
+          <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+        </span>
+        
+        <div class="input-group">
+          <span class="input-group-text" translate>To: </span>
+          <input type="text" class="form-control" aria-label="Player" 
+                 placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
+                 (keydown.enter)="addDest(msgToUser)" >
+          <span class="input-group-text text-center" role="button" 
+                (click)="addDest(msgToUser)">
+            <ic-icon [icon]="plusIcon"></ic-icon>
+          </span>
+        </div>
+        <div *ngIf="addDestError > 0" class="alert alert-danger"
+             translate>This player doesn't exist</div>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" 
+               placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
+        <br/>
+        <div class="input-group">
+          <textarea class="form-control mobile-textarea" placeholder="{{'Message'|translate}}"
+                    [(ngModel)]="msgText"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" 
+                data-bs-dismiss="modal" translate>Close</button>
+        <button type="button" class="btn btn-primary"
+                (click)="send()"
+                data-bs-dismiss="modal" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="MsgSetRead" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -65,9 +112,19 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-6">
+        <div class="alert alert-success d-lg-none" *ngIf="msgSent > 0" translate>
+          Message sent
+        </div>
         <div class="card">
           <div class="card-flex text-center">
-            <button class="btn btn-primary" (click)="messageLoad(0)"
+            <button class="btn btn-primary d-lg-none"
+                    (click)="messageLoad(0)"
+                    data-bs-toggle="modal" data-bs-target="#MsgNew"
+                    title="{{'Write a new message'| translate}}">
+              <ic-icon [icon]="brushIcon"></ic-icon>
+            </button>
+            <button class="btn btn-primary d-none d-lg-block"
+                    (click)="messageLoad(0)"
                     title="{{'Write a new message'| translate}}">
               <ic-icon [icon]="brushIcon"></ic-icon>
             </button>
@@ -383,7 +440,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6 text-center" *ngIf="getCurrentMsg().id == 0">
+      <div class="col-xl-6 text-center d-none d-lg-block" *ngIf="getCurrentMsg().id == 0">
         <div class="alert alert-success" *ngIf="msgSent > 0" translate>
           Message sent
         </div>

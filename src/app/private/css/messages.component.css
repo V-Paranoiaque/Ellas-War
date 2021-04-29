@@ -23,3 +23,7 @@
 .card-body.new {
   background-color: var(--color-menu-clear);
 }
+
+.mobile-textarea {
+  height: 90px;
+}
