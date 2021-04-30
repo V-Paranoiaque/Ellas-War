@@ -86,6 +86,13 @@
   </button>
 </div>
 
+<div class="chat-button-mobile"
+     [ngClass]="{'text-primary': chatActive == 'general',
+                 'text-success': chatActive == 'alliance'}">
+  <ic-icon [icIcon]="comments" role="button"
+           (click)="chatOpenMobile()"></ic-icon>
+</div>
+
 <div class="bottom-button">
   <div class="d-flex text-center">
     <a [routerLink]="['/city']"

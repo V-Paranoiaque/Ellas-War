@@ -5,6 +5,8 @@ import { User } from '../../../services/user.service';
 
 import { CommonBottomBar } from './common-bottom-bar.component';
 
+import comments from '@iconify/icons-fa-solid/comments';
+
 @Component({
   selector: 'connected-bottom-bar',
   templateUrl: '../html/connected-bottom-bar.component.html',
@@ -27,6 +29,8 @@ export class ConnectedBottomBar extends CommonBottomBar {
   
   @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
   @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
+  
+  comments = comments;
   
   constructor(protected socket: Socket, 
               public router: Router, public user: User) {
@@ -116,6 +120,19 @@ export class ConnectedBottomBar extends CommonBottomBar {
       this.chatAlliMsg = '';
     }
   }
+  chatOpenMobile() {
+    if(this.chatActive == '') {
+      this.chatActive = 'general';
+    }
+    else if(this.user.getPropertyNb('alliance') > 0 &&
+            this.chatActive == 'general') {
+      this.chatActive = 'alliance';
+    }
+    else {
+      this.chatActive = '';
+    }
+  }
+  
   toggle(chat:string) {
     if(this.chatActive == chat) {
       this.chatActive = '';

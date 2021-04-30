@@ -16,7 +16,8 @@
 }
 
 @media (min-width:768px) {
-  .bottom-button {
+  .bottom-button,
+  .chat-button-mobile {
     display: none;
   }
 }
@@ -27,7 +28,7 @@
   }
   
   .chat-text {
-    bottom: 109px;
+    bottom: 129px;
   }
   
   .bottom-button {
@@ -76,6 +77,14 @@
 .chat-button {
   position: fixed;
   bottom: 22px;
+  right: 0px;
+}
+
+.chat-button-mobile {
+  color: black;
+  font-size: 2em;
+  position: fixed;
+  bottom: 52px;
   right: 0px;
 }
 
