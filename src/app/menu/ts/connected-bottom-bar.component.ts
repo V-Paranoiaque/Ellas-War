@@ -123,10 +123,24 @@ export class ConnectedBottomBar extends CommonBottomBar {
   chatOpenMobile() {
     if(this.chatActive == '') {
       this.chatActive = 'general';
+      setTimeout(() => {
+        this.chatGeneralScroll?.nativeElement.scroll({
+          top: 999999,
+          left: 0,
+          behavior: 'auto'
+        });
+      }, 0);
     }
     else if(this.user.getPropertyNb('alliance') > 0 &&
             this.chatActive == 'general') {
       this.chatActive = 'alliance';
+      setTimeout(() => {
+        this.chatAllianceScroll?.nativeElement.scroll({
+          top: 999999,
+          left: 0,
+          behavior: 'auto'
+        });
+      }, 0);
     }
     else {
       this.chatActive = '';
