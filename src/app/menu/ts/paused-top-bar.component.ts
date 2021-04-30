@@ -6,7 +6,6 @@ import { Router } from '@angular/router'
 import { CommonTopBar } from './common-top-bar.component';
 
 import cog from '@iconify/icons-fa-solid/cog';
-import comments from '@iconify/icons-fa-solid/comments';
 import powerOff from '@iconify/icons-fa-solid/power-off';
 
 @Component({
@@ -18,7 +17,6 @@ import powerOff from '@iconify/icons-fa-solid/power-off';
 export class PausedTopBar extends CommonTopBar {
   
   cog      = cog;
-  comments = comments;
   powerOff = powerOff;
   
   constructor(socket: Socket, 

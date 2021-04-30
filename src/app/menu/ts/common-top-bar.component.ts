@@ -4,6 +4,7 @@ import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 
 import greekcolumnIcon from '@iconify/icons-whh/greekcolumn';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
   selector: 'common-top-bar',
@@ -16,6 +17,7 @@ export class CommonTopBar implements OnInit {
   active: string;
   
   greekcolumnIcon = greekcolumnIcon;
+  questionCircle  = questionCircle;
   
   constructor(protected socket: Socket, 
               protected router: Router, public user: User) {

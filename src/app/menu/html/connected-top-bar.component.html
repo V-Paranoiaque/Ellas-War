@@ -69,7 +69,7 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/support']"
              [ngClass]="{'active': active == 'support'}">
-            <ic-icon [icIcon]="comments"></ic-icon>
+            <ic-icon [icIcon]="questionCircle"></ic-icon>
           </a>
         </li>
         <li class="nav-item">
@@ -91,7 +91,7 @@
         </a>
         <a class="nav-link" [routerLink]="['/support']"
            [ngClass]="{'active': active == 'support'}">
-          <ic-icon [icIcon]="comments"></ic-icon>
+          <ic-icon [icIcon]="questionCircle"></ic-icon>
         </a>
         <a class="nav-link" role="button" (click)="disconnect()">
           <ic-icon [icIcon]="powerOff"></ic-icon>
