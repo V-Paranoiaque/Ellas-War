@@ -70,3 +70,8 @@
 ew-icon {
   display: inline-block;
 }
+
+.revert {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

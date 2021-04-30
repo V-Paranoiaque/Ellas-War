@@ -165,8 +165,9 @@
               <div class="card mb-3" *ngIf="i > 0">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <img src="assets/img/success.png" title="{{sanctuary.sanctuaries_name|translate}}"
-                         alt="{{sanctuary.sanctuaries_name|translate}}">
+                    <ew-icon title="{{sanctuary.sanctuaries_name|translate}}"
+                             name="sanctuary_{{sanctuary.sanctuaries_id}}"
+                             class="revert"></ew-icon>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -803,7 +804,7 @@
             
             <div class="fw-bold text-danger text-center"
                  id="sanctuariesWaveTabDesc" translate>
-              Units you send to a sanctuary cannot return to your city.
+              Units you send to a sanctuary cannot return to your city. They also don't consume any resources.
             </div>
             
             <div class="row">

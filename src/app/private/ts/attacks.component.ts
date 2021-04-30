@@ -224,6 +224,8 @@ export class Attacks {
     this.socket.on('sanctuariesAttack', (data:any) => {
       this.attackMode = 11;
       this.sanctuariesAttackInfo = data;
+      
+      this.socket.emit('sanctuariesList');
     });
     this.socket.on('sanctuariesEye', (data:any) => {
       this.attackMode = 9;
@@ -490,9 +492,11 @@ export class Attacks {
     this.socket.emit('sanctuariesInfo', id);
   }
   sanctuariesEye(id:number) {
+    this.targetProfile = {};
     this.socket.emit('sanctuariesEye', id);
   }
   sanctuaryManage(id:number) {
+    this.targetProfile = {};
     this.socket.emit('realWaveAttackCheck');
     this.socket.emit('sanctuariesInfo', id);
     this.socket.emit('sanctuariesDefense', id);
@@ -500,10 +504,12 @@ export class Attacks {
   
   sanctuariesPrepare(id:number) {
     this.attackMode = 10;
+    this.targetProfile = {};
     this.socket.emit('waveAttackSum');
     this.socket.emit('sanctuariesInfo', id);
   }
   sanctuariesSpy(id:number) {
+    this.targetProfile = {};
     this.socket.emit('sanctuariesSpy', id);
   }
   
@@ -542,6 +548,7 @@ export class Attacks {
         this.attackOrderReverse = 0;
         this.attackListInit();
         this.currentMsgReset();
+        this.sanctuariesSpyInfo = {};
       break;
       case 1:
         this.attackMode = 0;
@@ -562,6 +569,7 @@ export class Attacks {
         this.attackOrderReverse = 0;
         this.attackMode = 0;
         this.attackListWarInit();
+        this.sanctuariesSpyInfo = {};
       break;
     }
     this.menuMode = id;
