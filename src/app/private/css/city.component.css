@@ -57,10 +57,13 @@
   width: 20%;
 }
 
-#successBlock img {
-  width: calc(100%/6);
-  border: 1px solid;
+#successBlock {
+  display: flex;
+}
+
+#successBlock ew-icon {
   cursor: pointer;
+  flex: 1;
 }
 
 #templesBlock img.disabled {

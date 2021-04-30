@@ -96,6 +96,18 @@ export class City {
     this.divinBonusListSelected.error = 0;
   }
   
+  getDivinBonusIcon(id:number) {
+    switch(id) {
+      case 1: return 'ancient-greece';
+      case 2: return 'menu-city';
+      case 3: return 'menu-alliance';
+      case 5: return 'menu-attack';
+      case 6: return 'pegasus';
+      case 7: return 'feats-of-strength';
+    }
+    return '';
+  }
+  
   levelQuest(name:string) {
     if(this.user.getQuestValidate() == 1) {
       return false;

@@ -355,36 +355,30 @@
             Success
           </div>
           <div class="card-body no-padding" id="successBlock">
-            <img src="assets/img/success.png"
-                 title="{{'General' | translate }}"
-                 alt="{{'General' | translate }}"
-                 (click)="selectSuccess(1)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
-            <img src="assets/img/success.png"
-                 title="{{'Constructions' | translate }}"
-                 alt="{{'Constructions' | translate }}"
-                 (click)="selectSuccess(2)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
-            <img src="assets/img/success.png"
-                 title="{{'Alliance' | translate }}"
-                 alt="{{'Alliance' | translate }}"
-                 (click)="selectSuccess(3)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
-            <img src="assets/img/success.png"
-                 title="{{'Attacks' | translate }}"
-                 alt="{{'Attacks' | translate }}"
-                 (click)="selectSuccess(5)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
-            <img src="assets/img/success.png"
-                 title="{{'Mythology' | translate }}"
-                 alt="{{'Mythology' | translate }}"
-                 (click)="selectSuccess(6)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
-            <img src="assets/img/success.png"
-                 title="{{'Feats of Strength' | translate }}"
-                 alt="{{'Feats of Strength' | translate }}"
-                 (click)="selectSuccess(7)"
-                 data-bs-toggle="modal" data-bs-target="#SuccessInfo"/>
+            <ew-icon name="{{ getDivinBonusIcon(1) }}"
+                     title="{{'General' | translate }}"
+                     (click)="selectSuccess(1)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+            <ew-icon name="{{ getDivinBonusIcon(2) }}"
+                     title="{{'Constructions' | translate }}"
+                     (click)="selectSuccess(2)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+            <ew-icon name="{{ getDivinBonusIcon(3) }}"
+                     title="{{'Alliance' | translate }}"
+                     (click)="selectSuccess(3)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+            <ew-icon name="{{ getDivinBonusIcon(5) }}"
+                     title="{{'Attacks' | translate }}"
+                     (click)="selectSuccess(5)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+            <ew-icon name="{{ getDivinBonusIcon(6) }}"
+                     title="{{'Mythology' | translate }}"
+                     (click)="selectSuccess(6)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+            <ew-icon name="{{ getDivinBonusIcon(7) }}"
+                     title="{{'Feats of Strength' | translate }}"
+                     (click)="selectSuccess(7)"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
           </div>
         </div>
       </div>
