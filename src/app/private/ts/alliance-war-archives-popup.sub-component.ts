@@ -34,4 +34,23 @@ export class AllianceWarArchivesPopup {
   ngOnDestroy() {
     this.socket.removeListener('myAllianceWarHistory');
   }
+  
+  warVictory() {
+    let min;
+    let official = this.user.getDatas().war.victory;
+    if(this.info.win_attacking > this.info.win_defender) {
+      min = this.info.win_defender;
+    }
+    else {
+      min = this.info.win_attacking;
+    }
+    min += this.user.getDatas().war.diff;
+    
+    if(min > official) {
+      return min;
+    }
+    else {
+      return official;
+    }
+  }
 }
