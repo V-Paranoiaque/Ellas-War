@@ -68,7 +68,12 @@
             Buy resources
           </div>
           <div class="card-body">
-            <table class="table table-middle" aria-describedby="BuyResourcesDesc">
+            <div *ngIf="getStoreroomList().length == 0"
+                 class="text-center fw-bold" translate>
+              No resource available on the Agora
+            </div>
+            <table class="table table-middle" aria-describedby="BuyResourcesDesc"
+                   *ngIf="getStoreroomList().length > 0">
               <thead>
                 <tr>
                   <th scope="col"></th>
@@ -209,7 +214,12 @@
             Last week
           </div>
           <div class="card-body">
-            <table class="table table-middle" aria-describedby="titleLastWeek">
+            <div *ngIf="getStoreroomStatsNb() == 0"
+                 class="text-center fw-bold" translate>
+              No statistics available about last week 
+            </div>
+            <table class="table table-middle" aria-describedby="titleLastWeek"
+                   *ngIf="getStoreroomStatsNb() > 0">
               <thead>
                 <tr>
                   <th scope="col"></th>

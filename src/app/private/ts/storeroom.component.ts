@@ -94,6 +94,16 @@ export class Storeroom {
     return this.storeroomStats;
   }
   
+  getStoreroomStatsNb() {
+    let nb = 0;
+    for(let i in this.storeroomStats) {
+      if(this.storeroomStats[i] && this.storeroomStats[i].quantity > 0) {
+        nb++;
+      }
+    }
+    return nb;
+  }
+  
   selectResources(trade:any) {
     this.storeroom_ress[trade.resource_id] = trade.remaining;
   }
