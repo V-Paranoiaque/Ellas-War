@@ -63,7 +63,7 @@
             
             <div class="visually-hidden" id="allianceListDesc"
                  translate>List of the alliances</div>
-            <table class="table table-striped table-middle"
+            <table class="table table-striped table-middle align-middle"
                    *ngIf="allianceList" aria-labelledby="allianceListDesc">
               <thead>
                 <tr>
@@ -135,6 +135,10 @@
                         {{'Join the alliance:'|translate}} {{alli.alliance_name}}
                       </span>
                     </a>
+                    
+                    <br class="d-lg-none"
+                        *ngIf="user.getPropertyNb('strategist') > 0" />
+                    
                     <a class="btn btn-success" 
                        *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id"
                        data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
