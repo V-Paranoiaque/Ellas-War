@@ -45,25 +45,27 @@ div.containBar {
 .progression-quest-container>div {
   height: 60px;
   position: relative;
+  text-align: center;
   margin-right: 5px;
-  display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(200,200,200,0.4);
-}
-
-.progression-quest-container>p {
-  margin-bottom: 0;
-  margin-left: 20px;
-  display: flex;
+  flex: 1;
+  vertical-align: middle;
   align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
-.progression-quest-container>div p {
-  margin: 0;
+.progression-quest-container p{
+  margin-top: 16px;
   margin-left: 20px;
-  font-weight: bold;
 }
+
+.progression-quest-container p.quest_final {
+  margin-top: 5px;
+}
+
 .progression-quest-container>div:after {
   content: "";
   position: absolute;

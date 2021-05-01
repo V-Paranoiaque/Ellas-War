@@ -62,9 +62,11 @@
                  </div>
                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 7,
                                   'quest_available': user.getPropertyNb('quest_step') == 6 && user.getPropertyNb('quest_today') == 0}">
-                   <ic-icon class="fs-2" [icIcon]="treasureChest"
-                            data-bs-toggle="modal" data-bs-target="#QuestsInfo"
-                            role="button"></ic-icon>
+                   <p class="quest_final">
+                     <ic-icon class="fs-2" [icIcon]="treasureChest"
+                              data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                              role="button"></ic-icon>
+                   </p>
                  </div>
                </div>
             </div>
