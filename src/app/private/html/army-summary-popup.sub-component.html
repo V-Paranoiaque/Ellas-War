@@ -18,7 +18,10 @@
       <tbody>
         <ng-container *ngFor="let unit of user.getArmy()">
           <tr *ngIf="user.getPropertyNb(unit.code) > 0 && (unit.attack > 0 || unit.defense > 0)">
-            <th scope="row">{{ unit.name | translate }} ({{user.getPropertyNb(unit.code)}})</th>
+            <th scope="row">
+              {{ unit.name | translate }} 
+              ({{user.getPropertyNb(unit.code) | number:'': this.translate.currentLang }})
+            </th>
             <td class="text-end">
               {{ user.getPropertyNb(unit.code)*unit.attack | number:'': this.translate.currentLang }}
             </td>
