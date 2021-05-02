@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/partners.component.html'
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
 
 export class Partners {
 
+  constructor(public user: User) {
+  }
 }
