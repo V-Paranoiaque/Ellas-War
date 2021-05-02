@@ -1,0 +1,37 @@
+<common-top-bar active="teamrecruitment"></common-top-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center" translate>Ellas War Staff recruitment</h1>
+          
+          <br/>
+          
+          <div [innerHTML]="'Ellas War is rapidly evolving'|translate"></div>
+          
+          <br/>
+          <p class="text-center">
+            <a href="{{ user.config.fb_page }}"
+               target="_blank" rel="noopener">
+              <ic-icon [icon]="facebookIcon" class="fs-1"></ic-icon>
+            </a>
+            &nbsp;
+            <a href="https://github.com/V-Paranoiaque/Ellas-War/"
+               target="_blank" rel="noopener">
+              <ic-icon [icon]="githubOctocat" class="fs-1"></ic-icon>
+            </a>
+          </p>
+          <br/>
+          
+          <div translate>
+            We are also looking for people with technical or artistic skills. The tasks are many and all people of goodwill are appreciated.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>

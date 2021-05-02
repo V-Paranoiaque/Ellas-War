@@ -15,6 +15,7 @@ import { PublicHome } from './public/ts/public-home.component';
 import { RankingPlayers } from './public/ts/rankingplayers.component';
 import { Register } from './public/ts/register.component';
 import { TAndCs } from './public/ts/tandcs.component';
+import { TeamRecruitment } from './public/ts/teamrecruitment.component';
 
 //Connected
 import { Alliance } from './private/ts/alliance.component';
@@ -72,6 +73,7 @@ routes = [
   { path: 'rankingplayers/:id', component: RankingPlayers },
   { path: 'rankingplayers/:id/:order', component: RankingPlayers },
   { path: 'tandcs', component: TAndCs },
+  { path: 'teamrecruitment', component: TeamRecruitment },
   
   { path: 'sitemap', component: SiteMap },
   

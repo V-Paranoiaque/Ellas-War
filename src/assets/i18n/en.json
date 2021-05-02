@@ -47,6 +47,7 @@
   
   "Eject { value } from the alliance": "Eject {{ value }} from the alliance",
   "Ejected member: { value }": "Ejected member: {{ value }}",
+  "Ellas War is rapidly evolving": "Ellas War is rapidly evolving and <a href=\"/team\" class=\"link-secondary\">our staff</a> must regularly strengthen. If you think you have the qualities to be part of it, do not hesitate to contact us by our facebook page or through <a href=\"/contactus\" class=\"link-secondary\">the contact page</a>. The Prophets are the guarantors of justice on the game and the facebook page. They resolve conflicts between players and take care of the application of <a href=\"/tandcs\" class=\"link-secondary\">the Regulation</a>.",
   "Engage { value } Units": "Engage {{ value }} Units",
   "Engage a total of { value } { unit }.": "Engage a total of {{ value }} {{ unit }}.",
   "Espionage from { value }": "Espionage from {{ value }}",

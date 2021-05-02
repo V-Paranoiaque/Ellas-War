@@ -14,6 +14,7 @@ import { Profile } from './ts/profile.component';
 import { RankingPlayers } from './ts/rankingplayers.component';
 import { SiteMap } from './ts/sitemap.component';
 import { TAndCs } from './ts/tandcs.component';
+import { TeamRecruitment } from './ts/teamrecruitment.component';
 
 export const PublicComponent = [
   DiscoverTheGame,
@@ -31,5 +32,6 @@ export const PublicComponent = [
   Profile,
   RankingPlayers,
   SiteMap,
-  TAndCs
+  TAndCs,
+  TeamRecruitment
 ];
