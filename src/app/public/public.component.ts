@@ -13,6 +13,7 @@ import { PageNotFound } from './ts/pagenotfound.component';
 import { Profile } from './ts/profile.component';
 import { RankingPlayers } from './ts/rankingplayers.component';
 import { SiteMap } from './ts/sitemap.component';
+import { TAndCs } from './ts/tandcs.component';
 
 export const PublicComponent = [
   DiscoverTheGame,
@@ -29,5 +30,6 @@ export const PublicComponent = [
   PageNotFound,
   Profile,
   RankingPlayers,
-  SiteMap
+  SiteMap,
+  TAndCs
 ];

@@ -103,12 +103,14 @@
   "The alliance { value } has destroyed the pact with your alliance.": "The alliance {{ value }} has destroyed the pact with your alliance.",
   "The alliance { value } has refused a pact with your alliance.": "The alliance {{ value }} has refused a pact with your alliance.",
   "The alliances { value } and { name } will go to war in 24, stand ready!": "The alliances {{ value }} and {{ name }} will go to war in 24, stand ready!",
+  "The following conditions regulate the use of Ellas War and all services related to the website edited by": "The following conditions regulate the use of Ellas War and all services related to the website edited by <a class=\"link-secondary\" href=\"/team\">the Ellas War team</a>.",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
   
   "Unsupported message type: { value }": "Unsupported message type: {{ value }}",
   "Use { value } Divine bonus": "Use {{ value }} Divine bonus",
   "Use { value } Divine powers": "Use {{ value }} Divine powers",
+  "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address": "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address, <a href=\"/confidentiality\">is prohibited</a>.",
   
   "Victory against { value }": "Victory against {{ value }}",
   "Victory of { value } against { player }": "Victory of {{ value }} against {{ player }}",
