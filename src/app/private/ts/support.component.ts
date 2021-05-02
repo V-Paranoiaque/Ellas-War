@@ -47,10 +47,8 @@ export class Support {
   }
   
   ngOnInit() {
-    setTimeout(() => {
-      this.socket.emit('contactList');
-      this.loadSupport();
-    }, 0);
+    this.socket.emit('contactList');
+    this.loadSupport();
     
     this.socket.on('contactList', (data:any) => {
       this.contactList = data.list;

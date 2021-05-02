@@ -46,10 +46,8 @@ export class TempleInfoPopup {
   }
   
   ngOnInit() {
-    setTimeout(() => {
-      this.socket.emit('wallDefense');
-      this.socket.emit('myAttacksList');
-    }, 0);
+    this.socket.emit('wallDefense');
+    this.socket.emit('myAttacksList');
     
     this.socket.on('wallDefense', (def:number) => {
       this.wallDefense = def;

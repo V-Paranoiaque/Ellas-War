@@ -98,9 +98,7 @@ export class Messages {
       this.messageLoad({'id': this.currentMsg});
     });
     
-    setTimeout(() => {
-      this.setPage(this.currentPage);
-    }, 0);
+    this.setPage(this.currentPage);
   }
   
   ngOnDestroy() {

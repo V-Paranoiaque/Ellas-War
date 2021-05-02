@@ -60,12 +60,10 @@ export class Storeroom {
       this.storeroomStats = data;
     });
     
-    setTimeout(()=> {
-      this.socket.emit("storeroomList");
-      this.socket.emit("storeroomMyList");
-      this.socket.emit("storeroomStats");
-      this.socket.emit("storeroomMin", this.storeroomRess);
-    }, 0);
+    this.socket.emit("storeroomList");
+    this.socket.emit("storeroomMyList");
+    this.socket.emit("storeroomStats");
+    this.socket.emit("storeroomMin", this.storeroomRess);
   }
   
   ngOnDestroy() {

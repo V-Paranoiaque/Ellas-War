@@ -26,9 +26,7 @@ export class AdminUnits {
   }
   
   ngOnInit() {
-    setTimeout(() => {
-      this.calculate();
-    }, 500);
+    this.calculate();
   }
   
   calculate() {

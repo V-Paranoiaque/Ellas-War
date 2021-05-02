@@ -34,9 +34,7 @@ export class TempleChangeInfoPopup {
       }
     });
     
-    setTimeout(() => {
-      this.socket.emit('templeChangeHistory');
-    }, 0);
+    this.socket.emit('templeChangeHistory');
   }
   
   ngOnDestroy() {

@@ -50,12 +50,10 @@ export class ConnectedBottomBar extends CommonBottomBar {
   }
   
   ngOnInit() {
-    setTimeout(() => {
-      this.socket.emit("chatUserPlayers");
-      this.socket.emit("chatUserMsgs");
-      this.socket.emit("chatAlliPlayers");
-      this.socket.emit("chatAlliMsgs");
-    });
+    this.socket.emit("chatUserPlayers");
+    this.socket.emit("chatUserMsgs");
+    this.socket.emit("chatAlliPlayers");
+    this.socket.emit("chatAlliMsgs");
     
     /*** General Chat ***/
     this.socket.on('chatUserPlayers', (players:any) => {

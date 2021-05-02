@@ -34,16 +34,14 @@ export class Quests {
       this.socket.emit('myQuestList');
     });
     
-    setTimeout(()=> {
-      this.socket.emit("questCheck");
-      this.socket.emit("statsTmp");
-      this.socket.emit('myQuestList');
-      
-      this.socket.emit("altarConditionDivineunits");
-      this.socket.emit("altarConditionPrometheus");
-      this.socket.emit("altarConditionHestia");
-      this.socket.emit("altarConditionGaia");
-    });
+    this.socket.emit("questCheck");
+    this.socket.emit("statsTmp");
+    this.socket.emit('myQuestList');
+    
+    this.socket.emit("altarConditionDivineunits");
+    this.socket.emit("altarConditionPrometheus");
+    this.socket.emit("altarConditionHestia");
+    this.socket.emit("altarConditionGaia");
     
     this.socket.on("altarConditionDivineunits", (data:any) => {
       this.altarConditionDivineunits = data;
