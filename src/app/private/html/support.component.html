@@ -34,69 +34,71 @@
 <div class="col-12 main">
   <div class="container">
     <div class="row">
-      <div class="card">
-        <div class="card-body text-center" *ngIf="id == 0">
-          <div *ngIf="contactNb == 0"
-               translate>You do not have message on the support page</div>
-          <br/>
-          <button class="btn btn-success" data-bs-toggle="modal"
-                  id="contactDesc"
-                  data-bs-target="#SupportNewTopic" role="button" translate>
-            Send a message to the staff
-          </button>
-          <br/>
-          <br/>
-          <table class="table table-middle table-striped align-middle"
-                 *ngIf="contactNb > 0" aria-labelledby="contactDesc">
-            <tbody>
-              <tr *ngFor="let info of contactList">
-                <th scope="row" class="text-start">
-                  <a [routerLink]="['/support/'+info.support_id]">
-                    {{info.support_topic}}
-                  </a>
-                </th>
-                <td>
-                  {{ info?.support_lastdate }}
-                </td>
-                <td>
-                  {{info.last_username}}
-                </td>
-                <td>
-                  <a class="btn btn-primary"
-                     [routerLink]="['/support/'+info.support_id]">
-                     <ic-icon [icon]="eye"></ic-icon>
-                    <span class="visually-hidden" translate>Read and reply to the message:</span> 
-                    <span class="visually-hidden">{{info.support_id}}</span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-body"  *ngIf="id > 0">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a [routerLink]="['/support']">Support</a></li>
-              <li class="breadcrumb-item active">{{contactInfo.title}}</li>
-            </ol>
-          </nav>
-          
-          <h2 class="text-center">{{contactInfo.title}}</h2>
-          
-          <div class="input-group">
-            <textarea class="form-control custom-control" rows="5" 
-                      style="resize:none" [(ngModel)]="answerMsg"
-                      placeholder="{{'Enter your message'|translate}}"></textarea>
-            <span class="input-group-addon btn btn-primary"
-                  (click)="contactAnswer()" translate>Send</span>
-          </div>
-          
-          <div *ngFor="let msg of contactInfo.msg">
-            {{msg.support_msg}}
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body text-center" *ngIf="id == 0">
+            <div *ngIf="contactNb == 0"
+                 translate>You do not have message on the support page</div>
             <br/>
-            <div class="text-end fw-bold">
-              <span>{{'By { value }' | translate : { value: msg.username } }}</span>,
-              {{msg.support_date*1000| date:'d/M, HH:mm'}}
+            <button class="btn btn-success" data-bs-toggle="modal"
+                    id="contactDesc"
+                    data-bs-target="#SupportNewTopic" role="button" translate>
+              Send a message to the staff
+            </button>
+            <br/>
+            <br/>
+            <table class="table table-middle table-striped align-middle"
+                   *ngIf="contactNb > 0" aria-labelledby="contactDesc">
+              <tbody>
+                <tr *ngFor="let info of contactList">
+                  <th scope="row" class="text-start">
+                    <a [routerLink]="['/support/'+info.support_id]">
+                      {{info.support_topic}}
+                    </a>
+                  </th>
+                  <td>
+                    {{ info?.support_lastdate }}
+                  </td>
+                  <td>
+                    {{info.last_username}}
+                  </td>
+                  <td>
+                    <a class="btn btn-primary"
+                       [routerLink]="['/support/'+info.support_id]">
+                       <ic-icon [icon]="eye"></ic-icon>
+                      <span class="visually-hidden" translate>Read and reply to the message:</span> 
+                      <span class="visually-hidden">{{info.support_id}}</span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-body"  *ngIf="id > 0">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/support']">Support</a></li>
+                <li class="breadcrumb-item active">{{contactInfo.title}}</li>
+              </ol>
+            </nav>
+            
+            <h2 class="text-center">{{contactInfo.title}}</h2>
+            
+            <div class="input-group">
+              <textarea class="form-control custom-control" rows="5" 
+                        style="resize:none" [(ngModel)]="answerMsg"
+                        placeholder="{{'Enter your message'|translate}}"></textarea>
+              <span class="input-group-addon btn btn-primary"
+                    (click)="contactAnswer()" translate>Send</span>
+            </div>
+            
+            <div *ngFor="let msg of contactInfo.msg">
+              {{msg.support_msg}}
+              <br/>
+              <div class="text-end fw-bold">
+                <span>{{'By { value }' | translate : { value: msg.username } }}</span>,
+                {{msg.support_date*1000| date:'d/M, HH:mm'}}
+              </div>
             </div>
           </div>
         </div>
