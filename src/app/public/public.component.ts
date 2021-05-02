@@ -8,6 +8,7 @@ import { AllianceMembers } from './ts/alliance-members.component';
 import { AllianceProfile } from './ts/alliance-profile.component';
 import { Community } from './ts/community.component';
 import { Confidentiality } from './ts/confidentiality.component';
+import { ConnectedPlayers } from './ts/connectedplayers.component';
 import { Credits } from './ts/credits.component';
 import { Honnor } from './ts/honnor.component';
 import { PageNotFound } from './ts/pagenotfound.component';
@@ -28,6 +29,7 @@ export const PublicComponent = [
   AllianceProfile,
   Community,
   Confidentiality,
+  ConnectedPlayers,
   Credits,
   Honnor,
   PageNotFound,

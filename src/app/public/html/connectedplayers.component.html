@@ -1,0 +1,52 @@
+<common-top-bar active="connectedplayers"></common-top-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body">
+          <h1 id="ConnectedPlayersDesc"
+              class="text-center" translate>Connected players</h1>
+          <br/>
+          <div class="text-center fw-bold"
+                 *ngIf="connected.length == 0" translate>
+            No player connected
+          </div>
+          <table class="table" aria-describedby="ConnectedPlayersDesc"
+                 *ngIf="connected.length > 0">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" class="text-center" translate>Level</th>
+                <th scope="col" class="text-center" translate>Field</th>
+                <th scope="col" class="text-center" translate>Alliance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let u of connected">
+                <th scope="row">
+                  <a [routerLink]="['/profile/'+u.membre_id]"
+                     class="fw-bold">{{u.username}}</a>
+                </th>
+                <td class="text-center">
+                  {{u.level}}
+                </td>
+                <td class="text-end">
+                  {{u.field| number:'': this.translate.currentLang}}
+                </td>
+                <td *ngIf="u.alliance > 0">
+                  {{u.alliance_name}}
+                </td>
+                <td *ngIf="u.alliance == 0" translate>
+                  None
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>
