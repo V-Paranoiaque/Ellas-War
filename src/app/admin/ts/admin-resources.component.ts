@@ -21,7 +21,9 @@ export class AdminResources {
   }
   
   ngOnInit() {
-     this.give = {
+    this.user.checkPermissions([1]);
+    
+    this.give = {
       'player': '',
       'resource': 0,
       'quantity': '',

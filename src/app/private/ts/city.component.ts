@@ -52,8 +52,9 @@ export class City {
   }
   
   ngOnInit() {
-    this.selectTreasure();
+    this.user.checkPermissions([1]);
     
+    this.selectTreasure();
     this.socket.on('divineBonus', (data:any) => {
       this.divineBonusNb = data.nb;
       if(this.divineBonusNb > 0) {

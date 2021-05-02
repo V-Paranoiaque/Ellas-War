@@ -27,6 +27,8 @@ export class AdminQuests {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.emit('adminQuestList');
     this.socket.emit('adminQuestReward');
     

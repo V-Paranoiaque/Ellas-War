@@ -1,6 +1,5 @@
 # TODO
 ## General
-* Redirect when the connected pages are accessed directly
 * Save 404
 * Search in the ranking
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/blocked.component.html',
@@ -7,10 +8,12 @@ import { Socket } from '../../../services/socketio.service';
 })
 
 export class Blocked {
-  constructor(private socket: Socket) {
+  constructor(public user: User, private socket: Socket) {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([3]);
+    
     this.socket.on('reset', () => {
       document.location.href="/";
     });

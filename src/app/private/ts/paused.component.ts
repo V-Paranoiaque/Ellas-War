@@ -14,6 +14,10 @@ export class Paused {
     
   }
   
+  ngOnInit() {
+    this.user.checkPermissions([4]);
+  }
+  
   pauseReturn() {
     this.socket.emit('pauseReturn');
   }

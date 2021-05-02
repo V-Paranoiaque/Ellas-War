@@ -1,9 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router'
+
+@Injectable()
 export class User {
   config: any;
   info: any;
+  init: number;
   newMsg: number;
   
-  constructor() {
+  constructor(private router: Router) {
     this.config = {
       'weather': 'sun'
     };
@@ -17,11 +22,16 @@ export class User {
       'army': {},
       'building': {}
     }
+    this.init = 0;
     this.newMsg = 0;
   }
   
   setConfig(data: any) {
     this.config = data;
+  }
+  
+  setInit() {
+    this.init = 1;
   }
   
   setUser(user: any) {
@@ -57,6 +67,20 @@ export class User {
     }
     return this.getPropertyNb('zeus') + this.getPropertyNb('hades') +
            this.getPropertyNb('poseidon');
+  }
+  
+  //Check permissions for the user
+  checkPermissions(status:number[]) {
+    //Not received the info yet
+    if(this.init == 0) {
+      console.log('Not connected')
+      return;
+    }
+    console.log('Status: '+this.info.mstatus);
+    console.log(status);
+    if(!status.includes(this.info.mstatus)) {
+      this.router.navigate(['/']);
+    }
   }
   
   getArmy() {
@@ -120,6 +144,10 @@ export class User {
   
   getConfig() {
     return this.config;
+  }
+  
+  getInit() {
+    return this.init;
   }
   
   getQuest() {

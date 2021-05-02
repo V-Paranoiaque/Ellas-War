@@ -40,6 +40,8 @@ export class Storeroom {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.on('storeroomList', (data:any) => {
       this.storeroomList = data;
     });

@@ -27,6 +27,8 @@ export class Options {
   public sound: number;
 
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+    this.user.checkPermissions([1,2,3,4,5]);
+    
     if(user.getLevel() >= 1) {
       this.accountRenameCost = 1;
     }

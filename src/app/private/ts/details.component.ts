@@ -44,10 +44,11 @@ export class Details {
      * 2: Evolution
      **/
     this.menuMode = 2;
-    
-    setTimeout(() => {
-      this.defineRess();
-    }, 0);
+  }
+  
+  ngOnInit() {
+    this.user.checkPermissions([1]);
+    this.defineRess();
   }
   
   defineRess() {

@@ -61,6 +61,8 @@ export class Alliance {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.emit('alliancePactListAll');
     
     this.socket.emit('myAllianceProfile');

@@ -25,6 +25,8 @@ export class AdminNews {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.emit('adminNewsList');
     
     this.socket.on('adminNewsList', (msg:any) => {

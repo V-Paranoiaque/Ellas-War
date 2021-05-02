@@ -70,6 +70,8 @@ export class Messages {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.on('msgPage', (newMsgList:any) => {
       for(let i in newMsgList.list) {
         newMsgList.list[i].isChecked = true;

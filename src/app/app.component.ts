@@ -38,9 +38,15 @@ export class AppComponent implements OnInit {
     
     this.socket.setupSocketConnection();
     
+    if(!localStorage.getItem('token')) {
+      this.user.setInit();
+    }
+    
     this.socket.on('ewAuth', (data: any) => {
+      console.log(data);
+      this.user.setInit();
+      
       if(data) {
-        let before = this.user.getPropertyNb('mstatus')
         this.user.setUser(data)
         
         let newStyle = this.setStyle();
@@ -49,12 +55,10 @@ export class AppComponent implements OnInit {
         }
         
         //For component to reload after login
-        if(before != this.user.getPropertyNb('mstatus')) {
-          let currentUrl = this.router.url;
-          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-          this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate([currentUrl]);
-        }
+        let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
       }
     });
     

@@ -136,6 +136,8 @@ export class Attacks {
   }
   
   ngOnInit(){
+    this.user.checkPermissions([1]);
+    
     this.attackListInit();
     this.socket.emit('myAllianceWar');
     

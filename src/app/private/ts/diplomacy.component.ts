@@ -40,6 +40,8 @@ export class Diplomacy {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.emit('allianceList', this.order);
     this.socket.emit('allianceWait');
     

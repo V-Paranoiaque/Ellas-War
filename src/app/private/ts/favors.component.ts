@@ -19,6 +19,8 @@ export class Favors {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.on('favorUse', (id:number) => {
       this.favor.error = id;
     });

@@ -26,6 +26,7 @@ export class Quests {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
     
     this.socket.on('myQuestList', (data:any) => {
       this.myQuestList = data;

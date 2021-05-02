@@ -11,5 +11,9 @@ export class AdminHome {
   
   constructor(public user: User, public translate: TranslateService) {
   }
+  
+  ngOnInit() {
+    this.user.checkPermissions([1]);
+  }
 }
   

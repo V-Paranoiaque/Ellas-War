@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { User } from '../../../services/user.service';
 
 import eye from '@iconify/icons-fa-solid/eye';
 
@@ -21,7 +22,7 @@ export class Support {
   
   eye = eye;
   
-  constructor(private router: Router, private route: ActivatedRoute, private socket: Socket) {
+  constructor(private router: Router, public user: User, private route: ActivatedRoute, private socket: Socket) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     let id = this.route.snapshot.paramMap.get('id');
     
@@ -47,6 +48,8 @@ export class Support {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1,2,3,4,5]);
+    
     this.socket.emit('contactList');
     this.loadSupport();
     

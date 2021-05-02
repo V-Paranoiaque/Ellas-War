@@ -24,6 +24,8 @@ export class AdminChat {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.socket.emit('adminChatList');
     
     this.socket.on('adminChatList', (msg:any) => {

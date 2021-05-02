@@ -26,6 +26,8 @@ export class AdminUnits {
   }
   
   ngOnInit() {
+    this.user.checkPermissions([1]);
+    
     this.calculate();
   }
   
