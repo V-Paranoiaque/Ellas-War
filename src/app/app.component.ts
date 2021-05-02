@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
     }
     
     this.socket.on('ewAuth', (data: any) => {
-      console.log(data);
       this.user.setInit();
       
       if(data) {

@@ -73,11 +73,8 @@ export class User {
   checkPermissions(status:number[]) {
     //Not received the info yet
     if(this.init == 0) {
-      console.log('Not connected')
       return;
     }
-    console.log('Status: '+this.info.mstatus);
-    console.log(status);
     if(!status.includes(this.info.mstatus)) {
       this.router.navigate(['/']);
     }
