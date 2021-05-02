@@ -10,20 +10,22 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div translate>
+          Our staff are volunteers however we will try to answer you as soon as possible.
+        </div>
+        <br/>
         <input type="text" class="form-control"
                [(ngModel)]="contactNewTitle"
                placeholder="{{'Title'| translate}}" />
         <textarea class="form-control" placeholder="{{'Message'| translate}}"
                   [(ngModel)]="contactNewMsg"></textarea>
-        <div class="text-center">
-          <br/>
-          <button class="btn btn-success" 
-                  (click)="contactNewSend()"
-                  translate>Send</button>
-        </div>
       </div>
       <div class="modal-footer" translate>
-        Our staff are volunteers however we will try to answer you as soon as possible.
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button class="btn btn-success" 
+                (click)="contactNewSend()"
+                translate>Send</button>
       </div>
     </div>
   </div>
