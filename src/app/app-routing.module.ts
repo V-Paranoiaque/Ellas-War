@@ -7,17 +7,25 @@ import { AllianceProfile } from './public/ts/alliance-profile.component';
 import { Community } from './public/ts/community.component';
 import { Confidentiality } from './public/ts/confidentiality.component';
 import { ConnectedPlayers } from './public/ts/connectedplayers.component';
+import { ContactUs } from './public/ts/contactus.component';
 import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
+import { FewWords } from './public/ts/fewwords.component';
 import { FreeGame } from './public/ts/free-game.component';
+import { Help } from './public/ts/help.component';
 import { Honnor } from './public/ts/honnor.component';
 import { Login } from './public/ts/login.component';
+import { LostPassword } from './public/ts/lostpassword.component';
 import { News } from './public/ts/news.component';
+import { Partners } from './public/ts/partners.component';
 import { Profile } from './public/ts/profile.component';
 import { PublicHome } from './public/ts/public-home.component';
+import { RankingAlliances } from './public/ts/rankingalliances.component';
 import { RankingPlayers } from './public/ts/rankingplayers.component';
 import { Register } from './public/ts/register.component';
+import { StrategyGame } from './public/ts/strategy-game.component';
 import { TAndCs } from './public/ts/tandcs.component';
+import { Team } from './public/ts/team.component';
 import { TeamRecruitment } from './public/ts/teamrecruitment.component';
 
 //Connected
@@ -66,19 +74,28 @@ routes = [
   { path: 'community', component: Community },
   { path: 'confidentiality', component: Confidentiality },
   { path: 'connectedplayers', component: ConnectedPlayers },
+  { path: 'contactus', component: ContactUs },
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
+  { path: 'fewwords', component: FewWords },
   { path: 'free-game', component: FreeGame },
+  { path: 'help', component: Help },
   { path: 'honnor', component: Honnor },
   { path: 'honnor/:id', component: Honnor },
   { path: 'login', component: Login },
+  { path: 'lostpassword', component: LostPassword },
   { path: 'news', component: News },
+  { path: 'partners', component: Partners },
   { path: 'profile/:id', component: Profile },
   { path: 'register', component: Register },
+  { path: 'rankingalliances', component: RankingAlliances },
+  { path: 'rankingalliances/:id', component: RankingAlliances },
   { path: 'rankingplayers', component: RankingPlayers },
   { path: 'rankingplayers/:id', component: RankingPlayers },
   { path: 'rankingplayers/:id/:order', component: RankingPlayers },
+  { path: 'strategy-game', component: StrategyGame },
   { path: 'tandcs', component: TAndCs },
+  { path: 'team', component: Team },
   { path: 'teamrecruitment', component: TeamRecruitment },
   
   { path: 'sitemap', component: SiteMap },
