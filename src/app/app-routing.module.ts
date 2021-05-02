@@ -9,6 +9,7 @@ import { Confidentiality } from './public/ts/confidentiality.component';
 import { ConnectedPlayers } from './public/ts/connectedplayers.component';
 import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
+import { FreeGame } from './public/ts/free-game.component';
 import { Honnor } from './public/ts/honnor.component';
 import { Login } from './public/ts/login.component';
 import { News } from './public/ts/news.component';
@@ -67,6 +68,7 @@ routes = [
   { path: 'connectedplayers', component: ConnectedPlayers },
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
+  { path: 'free-game', component: FreeGame },
   { path: 'honnor', component: Honnor },
   { path: 'honnor/:id', component: Honnor },
   { path: 'login', component: Login },

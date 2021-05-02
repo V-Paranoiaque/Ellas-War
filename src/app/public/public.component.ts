@@ -10,6 +10,7 @@ import { Community } from './ts/community.component';
 import { Confidentiality } from './ts/confidentiality.component';
 import { ConnectedPlayers } from './ts/connectedplayers.component';
 import { Credits } from './ts/credits.component';
+import { FreeGame } from './ts/free-game.component';
 import { Honnor } from './ts/honnor.component';
 import { PageNotFound } from './ts/pagenotfound.component';
 import { Profile } from './ts/profile.component';
@@ -31,6 +32,7 @@ export const PublicComponent = [
   Confidentiality,
   ConnectedPlayers,
   Credits,
+  FreeGame,
   Honnor,
   PageNotFound,
   Profile,
