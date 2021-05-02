@@ -6,6 +6,7 @@ import { Register } from './ts/register.component';
 
 import { AllianceMembers } from './ts/alliance-members.component';
 import { AllianceProfile } from './ts/alliance-profile.component';
+import { Confidentiality } from './ts/confidentiality.component';
 import { Credits } from './ts/credits.component';
 import { Honnor } from './ts/honnor.component';
 import { PageNotFound } from './ts/pagenotfound.component';
@@ -22,6 +23,7 @@ export const PublicComponent = [
   
   AllianceMembers,
   AllianceProfile,
+  Confidentiality,
   Credits,
   Honnor,
   PageNotFound,
