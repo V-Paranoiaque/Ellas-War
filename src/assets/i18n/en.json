@@ -63,6 +63,8 @@
   
   "Have { value } XP with the old system": "Have {{ value }} XP with the old system",
   
+  "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
+  
   "Level { value }": "Level {{ value }}",
   "Lightning against { value }": "Lightning against {{ value }}",
   "Lightning from { value }": "Lightning from {{ value }}",
