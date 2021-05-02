@@ -67,7 +67,9 @@ export class City {
     this.socket.on('dailyCo', (result:any) => {
       this.dailyCo = result;
       let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
-      element.click();
+      if(element) {
+        element.click();
+      }
     });
     this.socket.on("dailyCoCheck", (r:number) => {
       this.dailyCoCheck = r;
@@ -76,10 +78,8 @@ export class City {
       }
     });
     
-    setTimeout(() => {
-      this.socket.emit('divineBonus');
-      this.socket.emit('dailyCoCheck');
-    }, 0);
+    this.socket.emit('divineBonus');
+    this.socket.emit('dailyCoCheck');
   }
   
   ngOnDestroy() {
