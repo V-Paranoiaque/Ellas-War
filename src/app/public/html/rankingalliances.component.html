@@ -5,7 +5,74 @@
     <div class="col-12 col-lg-10 offset-lg-1">
       <div class="card">
         <div class="card-body">
-          
+          <h1 class="text-center" id="rankingDesc" translate>Ranking of Alliances</h1>
+          <table class="table table-striped table-middle align-middle"
+                 aria-labelledby="rankingDesc">
+            <thead>
+              <tr class="text-center">
+                <th scope="col"></th>
+                <th scope="col" (click)="rankingChooseOrder('name')" role="button">
+                  <span translate>Name</span>
+                  <span class="fa fa-sort-asc" *ngIf="rankingOrder == 'name'"></span>
+                </th>
+                <th scope="col" (click)="rankingChooseOrder('chief')" role="button" class="d-none d-sm-table-cell">
+                  <span translate>Chief</span>
+                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'chief'"></span>
+                </th>
+                <th scope="col" (click)="rankingChooseOrder('mbs')" role="button">
+                  <ic-icon [icon]="users"></ic-icon>
+                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'mbs'"></span>
+                </th>
+                <th scope="col" (click)="rankingChooseOrder('victories')" role="button">
+                  <span translate>V</span>
+                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'victories'"></span>
+                </th>
+                <th scope="col" (click)="rankingChooseOrder('defeats')" role="button" class="d-none d-sm-table-cell">
+                  <span translate>D</span>
+                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'defeats'"></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of rankingList">
+                <td>
+                    {{p.ranking}}
+                </td>
+                <td>
+                  <a [routerLink]="['/allianceprofile/'+p.alliance_id]">
+                    {{p.alliance_name}}
+                  </a>
+                </td>
+                <td>
+                  <a [routerLink]="['/profile/'+p.chief_id]">
+                    {{p.username}}
+                  </a>
+                </td>
+                <td class="text-end">{{p.nbmembers| number:'': this.translate.currentLang}}</td>
+                <td class="text-end">{{p.victories| number:'': this.translate.currentLang}}</td>
+                <td class="d-none d-sm-table-cell text-end">{{p.defeats| number:'': this.translate.currentLang}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="card-body" *ngIf="rankingMax > 1">
+          <div class="input-group">
+            <span class="input-group-text" role="button"
+                  (click)="rankingPageChange(1)">&lt;&lt;</span>
+            <span class="input-group-text" role="button"
+                  (click)="rankingPageChange(rankingPage-1)">&lt;</span>
+            <select class="form-control" #mySelect
+                    (change)="rankingPageChange(mySelect.value)"
+                    [ngModel]="rankingPage">
+              <option *ngFor="let id of range(1, rankingMax)"
+                      value="{{id}}" translate>Page {{id}}</option>
+            </select>
+            <span class="input-group-text" role="button"
+                  (click)="rankingPageChange(rankingPage+1)">&gt;</span>
+            <span class="input-group-text" role="button"
+                  (click)="rankingPageChange(rankingMax)">&gt;&gt;</span>
+          </div>
         </div>
       </div>
     </div>
