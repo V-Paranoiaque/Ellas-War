@@ -1,0 +1,32 @@
+<common-top-bar active="tandcs"></common-top-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center" translate>Community</h1>
+          
+          <br/>
+          <div translate>
+            The Ellas War community is found on the Facebook Page. You can find help and communicate with other players.
+          </div>
+          <br>
+          <p class="text-center">
+            <a href="{{ user.config.fb_page }}"
+               target="_blank" rel="noopener">
+              <ic-icon [icon]="facebookIcon" class="fs-1"></ic-icon>
+            </a>
+            &nbsp;
+            <a href="https://github.com/V-Paranoiaque/Ellas-War/"
+               target="_blank" rel="noopener">
+              <ic-icon [icon]="githubOctocat" class="fs-1"></ic-icon>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>

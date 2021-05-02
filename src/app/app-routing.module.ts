@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 //Public
 import { AllianceMembers } from './public/ts/alliance-members.component';
 import { AllianceProfile } from './public/ts/alliance-profile.component';
+import { Community } from './public/ts/community.component';
 import { Confidentiality } from './public/ts/confidentiality.component';
 import { Credits } from './public/ts/credits.component';
 import { DiscoverTheGame } from './public/ts/discoverthegame.component';
@@ -60,6 +61,7 @@ import { PageNotFound } from './public/ts/pagenotfound.component';
 let routes: Routes = [];
 
 routes = [
+  { path: 'community', component: Community },
   { path: 'confidentiality', component: Confidentiality },
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
