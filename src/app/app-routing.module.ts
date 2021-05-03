@@ -6,6 +6,7 @@ import { AllianceMembers } from './public/ts/alliance-members.component';
 import { AllianceProfile } from './public/ts/alliance-profile.component';
 import { Community } from './public/ts/community.component';
 import { Confidentiality } from './public/ts/confidentiality.component';
+import { Confirm } from './public/ts/confirm.component';
 import { ConnectedPlayers } from './public/ts/connectedplayers.component';
 import { ContactUs } from './public/ts/contactus.component';
 import { Credits } from './public/ts/credits.component';
@@ -73,6 +74,7 @@ let routes: Routes = [];
 routes = [
   { path: 'community', component: Community },
   { path: 'confidentiality', component: Confidentiality },
+  { path: 'confirm/:id/:check', component: Confirm },
   { path: 'connectedplayers', component: ConnectedPlayers },
   { path: 'contactus', component: ContactUs },
   { path: 'credits', component: Credits },

@@ -1,3 +1,4 @@
+import { Confirm } from './ts/confirm.component';
 import { ContactUs } from './ts/contactus.component';
 import { DiscoverTheGame } from './ts/discoverthegame.component';
 import { Login } from './ts/login.component';
@@ -28,6 +29,7 @@ import { Team } from './ts/team.component';
 import { TeamRecruitment } from './ts/teamrecruitment.component';
 
 export const PublicComponent = [
+  Confirm,
   ContactUs,
   DiscoverTheGame,
   Login,

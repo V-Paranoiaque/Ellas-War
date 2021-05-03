@@ -45,13 +45,16 @@
   "Defeat against { value }": "Defeat against {{ value }}",
   "Defeat of { value } against { player }": "Defeat of {{ value }} against {{ player }}",
   
+  "Each unit has unique characteristics. They allow you to carry out your conquests or defend your city.": "<a href=\"/discoverthegame/recruitment\" class=\"link-secondary\">Each unit</a> has unique characteristics. They allow you to carry out your conquests or defend your city. These can be human or mythological, on foot or horseback, melee or remotely. These features enable you to build your own strategies or improve those of your opponents.",
   "Eject { value } from the alliance": "Eject {{ value }} from the alliance",
   "Ejected member: { value }": "Ejected member: {{ value }}",
+  "Ellar War is a free strategy game online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece.": "Ellar War is a <a href=\"/strategy-game\" class=\"link-secondary\">free strategy game</a> online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece. Upon his release in April 2007, it was a personal project, gradually the <a href=\"/team\" class=\"link-secondary\">site team</a> was strengthened and its competences were extended. This has evolved over time both graphically and technically. The game is in constant development and updates are added regularly.",
   "Ellas War is rapidly evolving": "Ellas War is rapidly evolving and <a href=\"/team\" class=\"link-secondary\">our staff</a> must regularly strengthen. If you think you have the qualities to be part of it, do not hesitate to contact us by our facebook page or through <a href=\"/contactus\" class=\"link-secondary\">the contact page</a>. The Prophets are the guarantors of justice on the game and the facebook page. They resolve conflicts between players and take care of the application of <a href=\"/tandcs\" class=\"link-secondary\">the Regulation</a>.",
   "Engage { value } Units": "Engage {{ value }} Units",
   "Engage a total of { value } { unit }.": "Engage a total of {{ value }} {{ unit }}.",
   "Espionage from { value }": "Espionage from {{ value }}",
   "Espionage of your sanctuary from { value }": "Espionage of your sanctuary from {{ value }}",
+  "Except in exceptional cases, your chances of attack or being attacked are determined by your field.": "Except in exceptional cases, your chances of attack or being attacked are determined by your field. By varying this one while strengthening <a href=\"/discoverthegame/defense\" class=\"link-secondary\">your defense</a> you will be able to adapt to your enemies.",
   
   "Fury against { value }": "Fury against {{ value }}",
   "Fury from { value }": "Fury from {{ value }}",
@@ -64,6 +67,7 @@
   "Have { value } XP with the old system": "Have {{ value }} XP with the old system",
   
   "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
+  "In addition to the site, Ellas War also has a Facebook page and a GitHub repository.": "In addition to the site, Ellas War also has a Facebook page and a GitHub repository. On the Facebook page you can exchange with the rest of <a href=\"/community\" class=\"link-secondary\">the community</a> and staff. It is animated and moderated by the team of the game, you will find information and ask questions. Ellas War has a GitHub repository where you can find the source code of the client part of the game. You can submit bug reports or provide improvement requests directly from this repository.",
   
   "Level { value }": "Level {{ value }}",
   "Lightning against { value }": "Lightning against {{ value }}",
@@ -91,6 +95,7 @@
   "Reach { value } field": "Reach {{ value }} field",
   "Reach over { value } victories in a war": "Reach over {{ value }} victories in a war",
   "Refused member: { value }": "Refused member: {{ value }}",
+  "Regularly you will have the opportunity to build a temple in your city. There are 11 temples available in all, unfortunately for you, you will only be able to build 4 temples.": "Regularly you will have the opportunity to <a href=\"/discoverthegame/temples\" class=\"link-secondary\">build a temple</a> in your city. There are 11 temples available in all, unfortunately for you, you will only be able to build 4 temples. These temples are decisive for your strategy and they will give you various advantages. You will have the opportunity to change temples via our <a href=\"/free-game\" class=\"link-secondary\">favors system</a>.",
   "Request of pact from the alliance { value }": "Request of pact from the alliance {{ value }}",
   "Request of pact to the alliance { value }": "Request of pact to the alliance {{ value }}",
   
@@ -106,6 +111,7 @@
   "The alliance { value } has destroyed the pact with your alliance.": "The alliance {{ value }} has destroyed the pact with your alliance.",
   "The alliance { value } has refused a pact with your alliance.": "The alliance {{ value }} has refused a pact with your alliance.",
   "The alliances { value } and { name } will go to war in 24, stand ready!": "The alliances {{ value }} and {{ name }} will go to war in 24, stand ready!",
+  "The Ellas War team is constituted by the administrators from members of the game.": "<a href=\"/team\" class=\"link-secondary\">The Ellas War team</a> is constituted by the administrators from members of the game. <a href=\"/free-game\" class=\"link-secondary\">This is voluntary</a> and done everything possible to allow all players to have fun while keeping a good atmosphere. She volunteers, the money raised via the favors used to pay for accommodation and different domain names. Different paid services provided by the game can also finance side projects like the backup server and sites related to Ellas War.",
   "The following conditions regulate the use of Ellas War and all services related to the website edited by": "The following conditions regulate the use of Ellas War and all services related to the website edited by <a class=\"link-secondary\" href=\"/team\">the Ellas War team</a>.",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
