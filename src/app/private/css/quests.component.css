@@ -52,7 +52,6 @@ div.containBar {
   background: rgba(200,200,200,0.4);
   flex: 1;
   vertical-align: middle;
-  align-items: center;
   font-weight: bold;
   font-size: 1.2em;
 }
