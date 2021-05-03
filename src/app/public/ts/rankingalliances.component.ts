@@ -42,7 +42,7 @@ export class RankingAlliances {
     this.getPage();
     
     this.socket.on('rankingAlliancesRefresh', () => {
-      
+      this.getPage();
     });
   }
   
