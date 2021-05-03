@@ -1,0 +1,12 @@
+.col-12 {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.col-12 .card > .card-body {
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
