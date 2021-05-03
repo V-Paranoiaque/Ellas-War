@@ -206,10 +206,10 @@
                            </span>
                           </span>
                         </td>
-                        <td>{{ quest.quest_reward }}</td>
-                        <td>{{ quest.quest_difficulty }}</td>
-                        <td>{{ quest.quest_level }}</td>
-                        <td>
+                        <td class="text-center">{{ quest.quest_reward }}</td>
+                        <td class="text-center">{{ quest.quest_difficulty }}</td>
+                        <td class="text-center">{{ quest.quest_level }}</td>
+                        <td class="text-center">
                           <button class="btn btn-success" (click)="setQuest(quest)"
                                   data-bs-toggle="modal" data-bs-target="#QuestEdit">
                             <ic-icon [icon]="brushIcon"></ic-icon>
@@ -243,13 +243,13 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let p of adminQuestReward">
-                        <td>{{ p.reward_type }}</td>
-                        <td>
+                        <td class="text-center">{{ p.reward_type }}</td>
+                        <td class="text-end">
                           {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                          <id-to-ress ress_id="p.reward_ress"></id-to-ress>
+                          <id-to-ress ress_id="{{p.reward_ress}}"></id-to-ress>
                         </td>
-                        <td>{{ p.reward_level }}</td>
-                        <td>
+                        <td class="text-center">{{ p.reward_level }}</td>
+                        <td class="text-center">
                           <button class="btn btn-success" (click)="setReward(p)"
                                   data-bs-toggle="modal" data-bs-target="#RewardEdit">
                             <ic-icon [icon]="brushIcon"></ic-icon>
