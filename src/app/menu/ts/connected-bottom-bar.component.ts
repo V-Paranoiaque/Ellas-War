@@ -121,17 +121,19 @@ export class ConnectedBottomBar extends CommonBottomBar {
   chatOpenMobile() {
     if(this.chatActive == '') {
       this.chatActive = 'general';
-      setTimeout(() => {
-        this.chatGeneralScroll?.nativeElement.scroll({
-          top: 999999,
-          left: 0,
-          behavior: 'auto'
-        });
-      }, 0);
+      this.scrollGeneral();
     }
     else if(this.user.getPropertyNb('alliance') > 0 &&
             this.chatActive == 'general') {
       this.chatActive = 'alliance';
+      this.scrollAlliance();
+    }
+    else {
+      this.chatActive = '';
+    }
+  }
+  
+  scrollAlliance() {
       setTimeout(() => {
         this.chatAllianceScroll?.nativeElement.scroll({
           top: 999999,
@@ -139,10 +141,16 @@ export class ConnectedBottomBar extends CommonBottomBar {
           behavior: 'auto'
         });
       }, 0);
-    }
-    else {
-      this.chatActive = '';
-    }
+  }
+  
+  scrollGeneral() {
+    setTimeout(() => {
+      this.chatGeneralScroll?.nativeElement.scroll({
+        top: 999999,
+        left: 0,
+        behavior: 'auto'
+      });
+    }, 0);
   }
   
   toggle(chat:string) {
@@ -154,23 +162,11 @@ export class ConnectedBottomBar extends CommonBottomBar {
     }
     if(this.chatActive == 'general') {
       this.chat_user_nb = 0;
-      setTimeout(() => {
-        this.chatGeneralScroll?.nativeElement.scroll({
-          top: 999999,
-          left: 0,
-          behavior: 'auto'
-        });
-      }, 0);
+      this.scrollGeneral();
     }
     else if(this.chatActive == 'alliance') {
       this.chat_alli_nb = 0;
-      setTimeout(() => {
-        this.chatAllianceScroll?.nativeElement.scroll({
-          top: 999999,
-          left: 0,
-          behavior: 'auto'
-        });
-      }, 0);
+      this.scrollAlliance();
     }
   }
 }
