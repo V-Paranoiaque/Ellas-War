@@ -10,18 +10,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class Login implements OnInit {
 
   loginForm: FormGroup;
+  loginError: number;
   
   constructor(private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});
+    this.loginError = 0;
   }
   
   ngOnInit() {
+    this.user.checkPermissions([0]);
+    
     this.socket.on('connection', (data: string) => {
+      console.log(data);
       if(data) {
         this.socket.emit('ewAuth', {'token': data});
         localStorage.setItem('token', data);
       }
       else {
+        this.loginError = 1;
         localStorage.removeItem('token');
       }
     });

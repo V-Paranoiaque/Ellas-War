@@ -1,16 +1,41 @@
-<common-top-bar active="login"></common-top-bar>
+<common-top-bar active="partners"></common-top-bar>
 
-<div class="text-center">
-  <form method="POST" action="/login" 
-        [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <input class="form-control" type="text" 
-           placeholder="{{'Login'|translate}}" name="username" 
-           formControlName="username" required="required" />
-    <input class="form-control" type="password" 
-           placeholder="{{'Password'|translate}}" name="password" 
-           formControlName="password" required="required" />
-    <button class="btn btn-success btn-outline-primary" type="submit" translate>Connect</button>
-  </form>
+<div class="container main-full">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
+      <div class="card">
+        
+        <div class="card-body" *ngIf="loginError == 1">
+          <div class="alert alert-danger text-center" 
+               role="alert" translate>
+            Wrong username or password
+          </div>
+        </div>
+        <div class="card-body">
+          
+          <form method="POST" action="/login" 
+                [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+            <label class="fw-bold" for="username" translate>Username</label>
+            <input class="form-control mb-2" type="text" id="username"
+                   placeholder="{{'Login'|translate}}" name="username" 
+                   formControlName="username" required="required" />
+            <label class="fw-bold" for="password" translate>Password</label>
+            <input class="form-control mb-4" type="password" id="password"
+                   placeholder="{{'Password'|translate}}" name="password" 
+                   formControlName="password" required="required" />
+            <div class="text-center mb-2">
+              <button class="btn btn-success btn-primary mb-2" type="submit" 
+                      translate>Connect</button>
+            </div>
+            <div class="text-center" translate>
+              <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                 translate>Forgot your password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <common-bottom-bar></common-bottom-bar>
