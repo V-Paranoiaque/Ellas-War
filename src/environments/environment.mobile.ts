@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  mobile: 0,
+  mobile: 1,
   resources: ['drachma', 'food', 'water', 'wood', 'iron', 'stone', 'marble', 'grapes', 'wine', 'gold'],
   style: {
     default: 'red',
