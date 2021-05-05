@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { environment } from './../../../environments/environment';
 
 @Component({
   templateUrl: '../html/login.component.html'
@@ -21,7 +22,6 @@ export class Login implements OnInit {
     this.user.checkPermissions([0]);
     
     this.socket.on('connection', (data: string) => {
-      console.log(data);
       if(data) {
         this.socket.emit('ewAuth', {'token': data});
         localStorage.setItem('token', data);
@@ -34,7 +34,8 @@ export class Login implements OnInit {
     
     this.loginForm = this.formBuilder.group({
       username: '',
-      password: ''
+      password: '',
+      mobile: environment.mobile
     });
   }
   
