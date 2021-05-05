@@ -547,6 +547,7 @@
   "If the other alliance refuses the pact request, you will get 500'000 Drachmas back.": "Si l'autre alliance refuse la demande de pacte, vous récupererez 500'000 Drachmes.",
   "If you are afraid that this will have a detrimental effect on your city, you can make an offering to the gods. After this offering your city will no longer suffer the weather for a week.": "Si vous avez peur que celle-ci ait un effet néfaste sur votre cité, vous pouvez faire une offrande aux dieux. Après cette offrande votre cité ne subira plus la météo durant une semaine.",
   "If you cancel the request, your alliance will be refunded of 500'000 Drachmas.": "Si vous annulez la demande, votre alliance sera remboursée de 500'000 Drachmes.",
+  "If you confirm your unsubscription, your account will be blocked soon.": "Si vous confirmez votre desinscription, votre compte sera bloqué prochainement.",
   "If you think you have the qualities required to": "Si vous pensez avoir les qualités requises pour rejoindre l'équipe n'hésitez pas à nous contacter. Vous pouvez le faire soit en utilisant notre page Facebook, soit par la page contact. La liste des compétences que nous recherchons n'est pas exaustive et nous répondons individuellement à toutes les demandes.",
   "If you wish to change your username, you can go into the <strong>Option</strong> menu at the top, then <strong>Change your username</strong>. The first change is free as long as you level 0.": "Si vous desirez changer votre identifiant, vous pouvez aller dans le menu <strong>Options</strong> situé en haut, puis dans <strong>Changez votre nom</strong>. Le premier changement est gratuit tant que vous restez niveau 0.",
   "Impossible to attack the city:": "Impossible d'attaquer la cité :",
@@ -1001,6 +1002,7 @@
   "The user may, however, acquire a fee, certain advantages on Ellas War.": "L'utilisateur pourra cependant acquérir moyennant rétribution, certains avantages sur Ellàs War.",
   "The user shall in no case allowed to log into the account of another player unless specific authorization.": "L’utilisateur ne sera en aucun cas autorisé à se connecter sur le compte d'un autre joueur sauf en cas d'autorisation spécifique.",
   "The user will be directly and personally responsible for the violation of rights of third parties being responsible for the antagonism towards them. The user undertakes to indemnify Ellas War of all losses resulting from breach of its obligations under these terms of use. User is obliged to be personally responsible for all claims which could invoke other users or third parties against Ellas War, due to the violation of their rights as a result of the contents inserted by the user or due to violation of other obligations. The user shall bear the necessary expenses incurred by Ellas War in defense of its rights, including legal expenses and attorney fees. This provision does not apply if the infringement is not attributable to the user.": "L’utilisateur sera directement et personnellement responsable en cas de violation de droits de tiers lui étant imputable, envers ceux-ci. L’utilisateur s’oblige à indemniser Ellàs War de tous les préjudices subis, résultant du non-respect des obligations lui incombant en vertu des présentes conditions d’utilisation. L’utilisateur s’oblige à faire son affaire personnelle de toutes les revendications dont pourraient se prévaloir les autres utilisateurs ou bien des tiers à l’encontre de Ellàs War, en raison de la violation de leurs droits par suite des contenus insérés par l’utilisateur ou par suite de la violation d’autres obligations. L’utilisateur prendra à sa charge les frais nécessaires engagés par Ellàs War pour assurer la défense de ses droits, y compris les dépenses de justice et les honoraires d’avocat. Cette disposition ne s’appliquera pas si l’atteinte au droit n’est pas imputable à l’utilisateur.",
+  "The validation code is invalid": "Le code de validation est invalide",
   "The volunteer is a free citizen or a metic. Since he is not a soldier, he hardly touches his momentary commitment in your army. Nevertheless, it has a low pay and its strength is just as much.": "Le volontaire est un citoyen libre ou un métèque. Comme ce n'est pas un militaire, il ne touche presque rien à son engagement momentané dans vos armées. Néanmoins, il a une faible solde et sa force l'est tout autant.",
   "The wall gains 20% defensive power for 2h, 200 Cyclops join you to resist the invader.": "Le mur gagne en puissance défensive de 20% pendant 2h, 200 cyclopes se joignent à vous afin de résister contre l'envahisseur.",
   "The wall of Poseidon protects this city.": "Le mur de Poséidon protége cette cité.",
@@ -1018,6 +1020,7 @@
   "They are the spirits of the heroes who have fought under your orders or against you. Hades brought them out of the underworld and sent them to serve you.": "Ce sont les esprits des heros qui ont combattus sous vos ordres ou contre vous. Hadès les a fait sortir des enfers pour les envoyer vous servir.",
   "They see me, they don't see me, oh they see me": "On me voit, on me voit plus, ha si on me voit",
   "This account does not exist": "Ce compte n'existe pas",
+  "This account has already been unsubscribed from the game": "Ce compte a déjà été desinscrit du jeu",
   "This account has no email address": "Ce compte n'a pas d'adresse mail",
   "This imposing gold and marble tower will be one of your best defensive weapons. In return for its enormous cost, its effectiveness is well established.": "Cette imposante tour d'or et de marbre sera l'une de vos meilleures armes défensives. En contrepartie de son coût énorme, son efficacité n'est plus à démontrer.",
   "This imposing stone and marble tower will be one of your best defensive weapons, in return for its enormous cost, its effectiveness is no longer to be demonstrated.": "Cette imposante tour de pierre et de marbre sera l'une de vos meilleures armes défensives, en contre-partie de son coût énorme, son efficacité n'est plus à démontrer.",
@@ -1164,6 +1167,7 @@
   "Wrath of Poseidon": "Colère de Poséidon",
   "Write a new message": "Écrire un nouveau message",
   "Write a new news": "Écrire une nouvelle news",
+  "Wrong username or password": "Mauvais identifiant ou mot de passe",
   
   "XP": "XP",
   
@@ -1272,6 +1276,7 @@
   "Your opponent": "Votre adversaire",
   "Your personal information are collected through forms, namely:": "Vos renseignements personnels sont collectés par le biais de formulaire, à savoir :",
   "Your production field can't be over { value }": "Votre production ne peut pas dépasser {{ value }} de terrain",
+  "Your request to unsubscribe has been taken into account, your account will soon be deactivated.": "Votre demande de désinscription a été prise en compte, votre compte sera prochainement désactivé.",
   "Your requests": "Vos demandes",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères.",
   

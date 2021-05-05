@@ -28,6 +28,7 @@ import { StrategyGame } from './public/ts/strategy-game.component';
 import { TAndCs } from './public/ts/tandcs.component';
 import { Team } from './public/ts/team.component';
 import { TeamRecruitment } from './public/ts/teamrecruitment.component';
+import { Unsubscribe } from './public/ts/unsubscribe.component';
 
 //Connected
 import { Alliance } from './private/ts/alliance.component';
@@ -99,6 +100,7 @@ routes = [
   { path: 'tandcs', component: TAndCs },
   { path: 'team', component: Team },
   { path: 'teamrecruitment', component: TeamRecruitment },
+  { path: 'unsubscribe/:id/:check', component: Unsubscribe },
   
   { path: 'sitemap', component: SiteMap },
   

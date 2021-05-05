@@ -6,6 +6,7 @@ import { LostPassword } from './ts/lostpassword.component';
 import { News } from './ts/news.component';
 import { PublicHome } from './ts/public-home.component';
 import { Register } from './ts/register.component';
+import { Unsubscribe } from './ts/unsubscribe.component';
 
 import { AllianceMembers } from './ts/alliance-members.component';
 import { AllianceProfile } from './ts/alliance-profile.component';
@@ -37,6 +38,7 @@ export const PublicComponent = [
   News,
   PublicHome,
   Register,
+  Unsubscribe,
   
   AllianceMembers,
   AllianceProfile,
