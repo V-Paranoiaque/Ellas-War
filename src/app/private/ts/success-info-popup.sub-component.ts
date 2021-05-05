@@ -54,12 +54,15 @@ export class SuccessInfoPopup {
     let nbFS = 0;
     this.listDisplay = [];
     
-    for(let i=0;i<this.hfNext.length;i++) {
+    let hfNextLength = this.hfNext.length;
+    for(let i=0;i<hfNextLength;i++) {
       if(this.hfNext[i] && this.hfNext[i].id) {
         this.listDisplay[this.hfNext[i].id] = 1;
       }
     }
-    for(let i=0;i<this.hfDisplay.length;i++) {
+    
+    let hfDisplayLength = this.hfDisplay.length;
+    for(let i=0;i<hfDisplayLength;i++) {
       if(this.hfDisplay[i] && this.hfDisplay[i].id) {
         if(this.successType.selected == 0 || 
            this.successType.selected == this.hfDisplay[i].type) {
@@ -75,7 +78,7 @@ export class SuccessInfoPopup {
         }
       }
     }
-    for(let i=0;i<this.hfNext.length;i++) {
+    for(let i=0;i<hfNextLength;i++) {
       if(this.hfNext[i] && this.hfNext[i].id) {
         if(this.successType.selected == 0 || this.successType.selected == this.hfNext[i].type) {
           if(this.listDisplay[this.hfNext[i].id] != 1) {
