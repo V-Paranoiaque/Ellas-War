@@ -258,10 +258,6 @@ export class Attacks {
     
     this.socket.on('msgInfo', (msgInfo:any) => {
       this.currentMsg = msgInfo;
-      //TODO: remove that and change on the server side
-      if(this.currentMsg.msg) {
-        this.currentMsg.msg = this.currentMsg.msg.reverse();
-      }
     }); 
   }
   
