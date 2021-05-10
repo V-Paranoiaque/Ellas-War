@@ -6,5 +6,5 @@ export const environment = {
     default: 'red',
     allowed: ['pink', 'red']
   },
-  SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com',
+  SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com'
 };

@@ -1,10 +1,10 @@
 import { Confirm } from './ts/confirm.component';
 import { ContactUs } from './ts/contactus.component';
 import { DiscoverTheGame } from './ts/discoverthegame.component';
+import { Home } from './ts/home.component';
 import { Login } from './ts/login.component';
 import { LostPassword } from './ts/lostpassword.component';
 import { News } from './ts/news.component';
-import { PublicHome } from './ts/public-home.component';
 import { Register } from './ts/register.component';
 import { Unsubscribe } from './ts/unsubscribe.component';
 
@@ -33,10 +33,10 @@ export const PublicComponent = [
   Confirm,
   ContactUs,
   DiscoverTheGame,
+  Home,
   Login,
   LostPassword,
   News,
-  PublicHome,
   Register,
   Unsubscribe,
   

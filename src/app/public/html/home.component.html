@@ -1,0 +1,221 @@
+<common-top-bar active="home"></common-top-bar>
+
+<div id="home-home" class="container-flexible">
+  <div class="row">
+    <div id="social-media-frame"
+         *ngIf="environment.mobile == 0 && localevars.facebook">
+      <div class="column"></div>
+      <div class="social">
+        <a href="{{ localevars.facebook }}" target="_blank" rel="noopener">
+          <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+          {{'Follow us'|translate}}
+        </a>
+      </div>
+    </div>
+    
+    <div id="app-store-frame" *ngIf="environment.mobile == 0">
+      <div class="column"></div>
+      <div class="apps">
+        <a *ngIf="localevars.store.amazon" target="_blank" rel="noopener"
+           href="{{ localevars.store.amazon }}"
+           title="{{'Download on Amazon Appstore'|translate}}">
+          <img [src]="'assets/i18n/'+translate.currentLang+'/amazon-appstore-badge.png'"
+               alt="{{'Download on Amazon Appstore'|translate}}">
+        </a>
+        <a *ngIf="localevars.store.microsoft" target="_blank" rel="noopener"
+           href="{{ localevars.store.microsoft }}"
+           title="{{'Download on the Microsoft Store'|translate}}">
+          <img [src]="'assets/i18n/'+translate.currentLang+'/microsoft-appstore-badge.png'"
+               alt="{{'Download on the Microsoft Store'|translate}}">
+        </a>
+        <a title="{{'Download on Google Play'|translate}}" class="disabled">
+          <span translate>Soon</span>
+          <img [src]="'assets/i18n/'+translate.currentLang+'/google-play-badge.png'"
+               alt="{{'Download on Google Play'|translate}}">
+        </a>
+      </div>
+    </div>
+    
+    <div class="main-card">
+      <div class="column left-column"></div>
+      <div class="card">
+        <div class="card-body card-body-zero d-flex">
+          <button class="btn"
+                  [ngClass]="{'btn-success': menu == 0,
+                              'btn-white': menu == 1}"
+                  (click)="setMenu(1)"
+                  translate>Connect</button>
+          <button class="btn"
+                  [ngClass]="{'btn-white': menu == 0,
+                              'btn-red': menu == 1}"
+                  (click)="setMenu(0)"
+                  translate>Register</button>
+        </div>
+        <div class="card-body text-center" *ngIf="menu == 0">
+          <form method="POST" action="/register" 
+                [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+            <label class="fw-bold" for="username-re" translate>Username</label>
+            <input type="text" name="username" placeholder="{{'Username'|translate}}"
+                   class="mb-2 form-control" formControlName="username"
+                   id="username-re" required/>
+            
+            <label class="fw-bold" for="email-re" translate>Email</label>
+            <input type="email" name="email" placeholder="{{'Email address'|translate}}"
+                   class="mb-2 form-control" formControlName="email"
+                   id="email-re" required />
+            
+            <label class="fw-bold" for="password-re" translate>Password</label>
+            <input type="password" name="password" placeholder="{{'Password'|translate}}"
+                   class="mb-4 form-control" formControlName="password"
+                   id="password-re" required/>
+             
+            <button class="btn btn-success mb-2" type="submit"
+                    translate>Register</button>
+            <div class="text-center" translate>
+              <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                 translate>Forgot your password?</a>
+            </div>
+          </form>
+        </div>
+        <div class="card-body text-center" *ngIf="menu == 1">
+          <form method="POST" action="/login" 
+                [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+            <label class="fw-bold" for="username" translate>Username</label>
+            <input class="form-control mb-2" type="text" id="username"
+                   placeholder="{{'Login'|translate}}" name="username" 
+                   formControlName="username" required="required" />
+            <label class="fw-bold" for="password" translate>Password</label>
+            <input class="form-control mb-4" type="password" id="password"
+                   placeholder="{{'Password'|translate}}" name="password" 
+                   formControlName="password" required="required" />
+            <div class="text-center mb-2">
+              <input type="hidden" formControlName="mobile" name="mobile" />
+              <button class="btn btn-success btn-primary mb-2" type="submit" 
+                      translate>Connect</button>
+            </div>
+            <div class="text-center">
+              <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                 translate>Forgot your password?</a>
+            </div>
+          </form>
+        </div>
+        <div id="social-buttons" class="card-body card-body-zero">
+          <div class="row">
+            <div class="col-6 half-right">
+              <button class="btn btn-primary">
+                <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+                {{'Login with Facebook'|translate}}
+              </button>
+            </div>
+            <div class="col-6 half-left">
+              <button class="btn btn-grey">
+                <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
+                {{'Login with Google'|translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column right-column"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card">
+      <div class="card-body card-body-zero d-flex">
+        <a class="btn btn-red btn-lg flex-fill"
+           [routerLink]="['/discoverthegame']"
+           translate>Discover the Game</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="home-discover">
+  <div class="container">
+    <div class="row">
+      <!--  Line 1 -->
+      
+      <div class="col-12 col-md-6 half-middle order-1 order-md-2">
+        <div class="half-middle d-flex flex-column" id="img-heracles-birds">
+          <h2 class="text-center" translate>Ellas War, fighting for glory!</h2>
+          <p [innerHTML]="'Explore Ancient Greece on Ellas-War. Start the development of'|translate"></p>
+        </div>
+      </div>
+      
+      <!--  Line 2 -->
+      <div class="col-12 col-md-6 half-middle order-2 order-md-1">
+        <div class="half-middle" id="img-heracles-hydra">
+          <div class="row">
+            <div class="col-6 half-middle d-flex align-items-center justify-content-center">
+              <a [routerLink]="['/discoverthegame/treeofthegods']"
+                 class="btn-link" translate>
+                Adorate →
+              </a>
+            </div>
+            <div class="col-6 half-middle">
+              <div class="card">
+                <div class="card-body">
+                  <p class="home-text-1" [innerHTML]="'Venerate the gods by'|translate"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-6 half-middle">
+              <div class="card">
+                <div class="card-body">
+                  <p class="home-text-2" [innerHTML]="'Do stocks through your purse or spend any to improve'|translate"></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-6 half-middle d-flex align-items-center justify-content-center">
+              <a [routerLink]="['/discoverthegame/treeofthegods']"
+                 class="btn-link" translate>
+                Fight →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!--  Line 3 -->
+      <div *ngFor="let news of newsList; let i = index"
+           class="col-md-3 col-6 card-news half-middle"
+           [ngClass]="{'d-none d-md-flex': i >= 2}">
+        <div class="card card-{{i}}">
+          <div class="card-body">
+            <a href="{{news.link}}" target="_blank" rel="noopener">
+              <h4>{{news.news_date*1000| date:'dd/MM/yyyy'}}</h4>
+              <p class="text-center">{{news.title}}</p>
+              <p class="text-center fs-1">→</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!--  Line 4 -->
+      <div class="col-6 half-middle d-flex flex-column">
+        <a type="button" class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1">
+          <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
+          {{'Facebook page'|translate}}
+        </a>
+      </div>
+      
+      <div class="col-6 half-middle d-flex flex-column">
+        <a type="button" class="btn btn-red btn-lg fs-3 flex-grow-1" translate>
+          Contact us
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="frame-bottom" class="row">
+  <nav class="text-center">
+    <a class="badge" translate>Sitemap</a>
+    <a class="badge" translate>Terms and Conditions of use</a>
+    <a class="badge" translate>Privacy policy</a>
+    <a class="badge" translate>Credits</a>
+    <a class="badge" translate>Help</a>
+  </nav>
+</div>

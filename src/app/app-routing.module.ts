@@ -14,13 +14,13 @@ import { DiscoverTheGame } from './public/ts/discoverthegame.component';
 import { FewWords } from './public/ts/fewwords.component';
 import { FreeGame } from './public/ts/free-game.component';
 import { Help } from './public/ts/help.component';
+import { Home } from './public/ts/home.component';
 import { Honnor } from './public/ts/honnor.component';
 import { Login } from './public/ts/login.component';
 import { LostPassword } from './public/ts/lostpassword.component';
 import { News } from './public/ts/news.component';
 import { Partners } from './public/ts/partners.component';
 import { Profile } from './public/ts/profile.component';
-import { PublicHome } from './public/ts/public-home.component';
 import { RankingAlliances } from './public/ts/rankingalliances.component';
 import { RankingPlayers } from './public/ts/rankingplayers.component';
 import { Register } from './public/ts/register.component';
@@ -142,8 +142,8 @@ routes = [
       { path: '**', component: AdminHome }
     ]
   },
-    
-  { path: '', component: PublicHome },
+  
+  { path: '', component: Home },
   { path: '**', component: PageNotFound },
 ];
 
