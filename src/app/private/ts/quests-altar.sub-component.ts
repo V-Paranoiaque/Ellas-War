@@ -7,7 +7,8 @@ import outlineStars from '@iconify-icons/ic/outline-stars';
 
 @Component({
   selector: 'quests-altar',
-  templateUrl: '../html/quests-altar.sub-component.html'
+  templateUrl: '../html/quests-altar.sub-component.html',
+  styleUrls: ['../css/quests-altar.sub-component.css']
 })
 
 export class QuestsAltar {
@@ -43,6 +44,16 @@ export class QuestsAltar {
   
   altarValidate(id:number) {
     this.socket.emit("altarValidate", id);
+  }
+  
+  canGet() {
+    let resList = this.user.info.datas.altars[this.code];
+    for(let res in resList) {
+      if(this.user.getPropertyNb(res) < resList[res]*(this.user.getPropertyNb(this.code)+1)) {
+        return 0
+      }
+    }
+    return 1;
   }
   
   getPrice() {

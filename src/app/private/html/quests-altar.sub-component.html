@@ -95,8 +95,13 @@
   </div>
   
   <div class="card-button card-button-success" role="button"
-       *ngIf="condition && condition.possible == 1"
+       *ngIf="condition && condition.possible == 1 && canGet()"
        (click)="altarValidate(id)" translate>
     Validate
+  </div>
+  <div class="card-button card-button-danger"
+       *ngIf="condition && condition.possible == 1 && !canGet()"
+       translate>
+    You don't have enough resources
   </div>
 </div>
