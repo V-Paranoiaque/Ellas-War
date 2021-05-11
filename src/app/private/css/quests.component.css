@@ -52,7 +52,6 @@ div.containBar {
   background: rgba(200,200,200,0.4);
   flex: 1;
   vertical-align: middle;
-  font-weight: bold;
   font-size: 1.2em;
 }
 
@@ -100,6 +99,7 @@ div.containBar {
 
 .progression-quest-container>div.quest_validated {
   background: #157347;
+  color: white;
 }
 .progression-quest-container>div.quest_validated:before {
     border-left-color: #157347;
@@ -107,6 +107,7 @@ div.containBar {
 
 .progression-quest-container>div.quest_available{
   background: rgba(52, 152, 219,1.0);
+  color: white;
 }
 
 .progression-quest-container>div.quest_available:before {
