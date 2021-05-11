@@ -80,6 +80,7 @@ routes = [
   { path: 'contactus', component: ContactUs },
   { path: 'credits', component: Credits },
   { path: 'discoverthegame', component: DiscoverTheGame },
+  { path: 'discoverthegame/:page', component: DiscoverTheGame },
   { path: 'fewwords', component: FewWords },
   { path: 'free-game', component: FreeGame },
   { path: 'help', component: Help },
