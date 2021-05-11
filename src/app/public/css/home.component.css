@@ -223,8 +223,6 @@ h2 {
 /*** Discover frame ***/
 #home-discover .half-middle {
   margin-top: calc(var(--bs-gutter-x)/ 2);
-}
-#home-discover .half-middle {
   display: flex;
 }
 
