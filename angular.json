@@ -75,7 +75,7 @@
               ],
               "index": {
                 "input": "merges/index.html",
-                "output": "src/index.html"
+                "output": "index.html"
               },
               "optimization": true,
               "outputHashing": "all",
