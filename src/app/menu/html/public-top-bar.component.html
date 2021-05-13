@@ -19,10 +19,14 @@
       </ul>
       <form method="POST" action="/login" class="d-flex" 
             [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <input class="form-control me-2" type="text" 
+        <label class="visually-hidden" for="username_top"
+               translate>Username</label>
+        <input class="form-control me-2" type="text" id="username_top"
                placeholder="{{'Login'|translate}}" name="username" 
                formControlName="username" required="required" />
-        <input class="form-control me-2" type="password" 
+        <label class="visually-hidden" for="password_top"
+               translate>Password</label>
+        <input class="form-control me-2" type="password" id="password_top"
                placeholder="{{'Password'|translate}}" name="password" 
                formControlName="password" required="required" />
         <button class="btn btn-success btn-outline-primary" type="submit" translate>Connect</button>
