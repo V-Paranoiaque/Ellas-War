@@ -1,0 +1,103 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 id="buildingDesc" class="modal-title" translate>Buildings</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid">
+    <div class="text-center fw-bold">
+      {{'Production field:'|translate}}
+      {{getProdField()| number:'': this.translate.currentLang }}/{{user.getDatas().maxField| number:'': this.translate.currentLang }}
+    </div>
+    <br/>
+    <table class="table" aria-describedby="buildingDesc">
+      <thead class="text-center">
+        <th scope="col"></th>
+        <th scope="col" translate>Field</th>
+        <th scope="col" translate>Total</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let building of user.getBuildings()">
+          <tr>
+            <th scope="row">{{ building.name | translate }} ({{user.getPropertyNb(building.code)}})</th>
+            <td class="text-end">
+              {{ building.field | number:'': this.translate.currentLang }}
+            </td>
+            <td class="text-end">
+              {{ user.getPropertyNb(building.code)*building.field | number:'': this.translate.currentLang }}
+            </td>
+          </tr>
+        </ng-container>
+        <tr *ngIf="user.getPropertyNb('hermes') == 1">
+         <th scope="row">Hermes</th>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('apollo') == 1">
+         <th scope="row">Apollo</th>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('demeter') == 1">
+         <th scope="row">Demeter</th>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple1.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        
+        <tr *ngIf="user.getPropertyNb('ares') == 1">
+         <th scope="row">Ares</th>
+         <td class="text-end">{{getTempleField().temple2.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple2.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('athena') == 1">
+         <th scope="row">Athena</th>
+         <td class="text-end">{{getTempleField().temple2.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple2.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        
+        <tr *ngIf="user.getPropertyNb('artemis') == 1">
+         <th scope="row">Artemis</th>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('dionysus') == 1">
+         <th scope="row">Dionysus</th>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('hephaestus') == 1">
+         <th scope="row">Hephaestus</th>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple3.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        
+        <tr *ngIf="user.getPropertyNb('zeus') == 1">
+         <th scope="row">Zeus</th>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('hades') == 1">
+         <th scope="row">Hades</th>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+        <tr *ngIf="user.getPropertyNb('poseidon') == 1">
+         <th scope="row">Poseidon</th>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+         <td class="text-end">{{getTempleField().temple4.field| number:'': this.translate.currentLang}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="text-end">{{ getField() | number:'': this.translate.currentLang}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="text-end">
+      <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal" translate>Close</button>
+    </div>
+  </div>
+</div>

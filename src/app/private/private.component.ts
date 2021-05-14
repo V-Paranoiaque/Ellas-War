@@ -37,6 +37,7 @@ import { AttacksMessage } from './ts/attacks-message.sub-component';
 import { AttacksStats } from './ts/attacks-stats.sub-component';
 import { DailyPopup } from './ts/daily-popup.sub-component';
 import { ConstructionPopup } from './ts/construction-popup.sub-component';
+import { ConstructionSummaryPopup } from './ts/construction-summary-popup.sub-component';
 import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
@@ -101,6 +102,7 @@ export const PrivateComponent = [
   AttacksMessage,
   AttacksStats,
   ConstructionPopup,
+  ConstructionSummaryPopup,
   DailyPopup,
   DivineBonusHelpPopup,
   DivineBonusInfoPopup,
