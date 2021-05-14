@@ -3,6 +3,11 @@
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
 
+.row .row {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .card-header-auto {
   height: auto;
 }

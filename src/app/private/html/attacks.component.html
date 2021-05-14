@@ -33,29 +33,35 @@
       <div class="col-xl-6">
         <div class="card">
           <div class="card-body attack-menu">
-            <button class="btn btn-primary" (click)="setMenuMode(4)"
-                    *ngIf="myAllianceWar.length > 0">
-              <ew-icon name="smenu-war"></ew-icon>
-              <span class="d-none d-sm-block" translate>Wars</span>
-            </button>
-            <button class="btn btn-danger"  (click)="setMenuMode(0)">
-              <ew-icon name="smenu-attacks"></ew-icon>
-              <span class="d-none d-sm-block" translate>Attacks</span>
-            </button>
-            <button class="btn btn-success" (click)="setMenuMode(1)">
-              <ew-icon name="smenu-stats"></ew-icon>
-              <span class="d-none d-sm-block" translate>Stats</span>
-            </button>
-            <button class="btn btn-info"    (click)="setMenuMode(2)"
-                    *ngIf="user.getLevel() >= 10">
-              <ew-icon name="smenu-diamond"></ew-icon>
-              <span class="d-none d-sm-block" translate>Diamond</span>
-            </button>
-            <button class="btn btn-warning" (click)="setMenuMode(3)"
-                    *ngIf="user.getLevel() >= 10">
-              <ew-icon name="smenu-sanctuary"></ew-icon>
-              <span class="d-none d-sm-block" translate>Sanctuaries</span>
-            </button>
+            <div class="row">
+              <div class="d-flex"
+                   [ngClass]="{'col-8 offset-2': user.getLevel() < 10,
+                               'col-12': user.getLevel() >= 10}">
+                <button class="btn btn-primary" (click)="setMenuMode(4)"
+                        *ngIf="myAllianceWar.length > 0">
+                  <ew-icon name="smenu-war"></ew-icon>
+                  <span class="d-none d-sm-block" translate>Wars</span>
+                </button>
+                <button class="btn btn-danger"  (click)="setMenuMode(0)">
+                  <ew-icon name="smenu-attacks"></ew-icon>
+                  <span class="d-none d-sm-block" translate>Attacks</span>
+                </button>
+                <button class="btn btn-success" (click)="setMenuMode(1)">
+                  <ew-icon name="smenu-stats"></ew-icon>
+                  <span class="d-none d-sm-block" translate>Stats</span>
+                </button>
+                <button class="btn btn-info"    (click)="setMenuMode(2)"
+                        *ngIf="user.getLevel() >= 10">
+                  <ew-icon name="smenu-diamond"></ew-icon>
+                  <span class="d-none d-sm-block" translate>Diamond</span>
+                </button>
+                <button class="btn btn-warning" (click)="setMenuMode(3)"
+                        *ngIf="user.getLevel() >= 10">
+                  <ew-icon name="smenu-sanctuary"></ew-icon>
+                  <span class="d-none d-sm-block" translate>Sanctuaries</span>
+                </button>
+              </div>
+            </div>
           </div>
           <div class="card-body text-center"
                *ngIf="menuMode == 0 && getAttackList().length == 0">
