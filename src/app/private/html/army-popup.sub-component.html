@@ -1,6 +1,31 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title">{{ info.name | translate }}</h5>
+    <h5 class="modal-title">
+      {{ info.name | translate }}
+      
+      <span *ngIf="info.attack > 0 || info.defense > 0">
+        <ic-icon title="{{'Infantryman'|translate}}"
+                 *ngIf="info.type%2 == 1"
+                 [icon]="footPrint"></ic-icon>
+        <ic-icon title="{{'Cavalry unit'|translate}}"
+                 *ngIf="info.type%2 == 0"
+                 [icon]="horseIcon"></ic-icon>
+        
+        <ic-icon title="{{'Mythological creature'|translate}}"
+                 *ngIf="info.type >= 5"
+                 [icon]="animalDog20Filled"></ic-icon>
+        <ic-icon title="{{'Human unit'|translate}}"
+                 *ngIf="info.type <= 4"
+                 [icon]="manSharp"></ic-icon>
+        
+        <ic-icon title="{{'Melee unit'|translate}}"
+                 *ngIf="info.type == 1 || info.type == 2 || info.type == 5 || info.type == 6"
+                 [icon]="sword"></ic-icon>
+        <ic-icon title="{{'Remote unit'|translate}}"
+                 *ngIf="info.type == 3 || info.type == 4 || info.type == 7 || info.type == 8"
+                 [icon]="bowAndArrow"></ic-icon>
+      </span>
+    </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
   </div>

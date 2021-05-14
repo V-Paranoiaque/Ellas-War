@@ -5,8 +5,15 @@ import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
 
+import animalDog20Filled from '@iconify-icons/fluent/animal-dog-20-filled';
+import bowAndArrow from '@iconify-icons/emojione-monotone/bow-and-arrow';
+import footPrint from '@iconify-icons/mdi/foot-print';
+import horseIcon from '@iconify-icons/mdi/horse';
+import manSharp from '@iconify-icons/ion/man-sharp';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
+import {default as sword}  from '@iconify-icons/whh/sword';
 import swordIcon from '@iconify/icons-vaadin/sword';
+
 
 @Component({
   selector: 'army-popup',
@@ -20,7 +27,13 @@ export class ArmyPopup {
   Number = Number;
   Object = Object;
   
+  animalDog20Filled = animalDog20Filled;
+  footPrint = footPrint;
+  bowAndArrow = bowAndArrow;
+  horseIcon = horseIcon;
+  manSharp = manSharp;
   shieldShaded = shieldShaded;
+  sword = sword;
   swordIcon= swordIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
