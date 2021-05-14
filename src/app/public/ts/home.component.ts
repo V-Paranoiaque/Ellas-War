@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../../environments/environment';
+import { Router } from '@angular/router'
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -29,7 +30,8 @@ export class Home {
   googleIcon = googleIcon;
   
   constructor(private socket: Socket, private formBuilder: FormBuilder,
-              private http: HttpClient, public translate: TranslateService) {
+              private http: HttpClient, public translate: TranslateService, 
+              private router: Router,) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
@@ -39,7 +41,7 @@ export class Home {
   }
   
   ngOnInit() {
-    this.http.get('../../../assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe(data =>{
+    this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe(data =>{
       this.localevars = data;
     });
     
@@ -62,6 +64,11 @@ export class Home {
   
   onSubmit(data:object) {
     this.socket.emit('register', data);
+  }
+  
+  onSubmitConnect(data:object) {
+    this.router.navigateByUrl('login');
+    this.socket.emit('connection', data);
   }
   
   setMenu(id:number) {

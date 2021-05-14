@@ -40,16 +40,16 @@
       <div class="column left-column"></div>
       <div class="card">
         <div class="card-body card-body-zero d-flex">
-          <button class="btn"
-                  [ngClass]="{'btn-success': menu == 0,
-                              'btn-white': menu == 1}"
-                  (click)="setMenu(1)"
-                  translate>Connect</button>
-          <button class="btn"
-                  [ngClass]="{'btn-white': menu == 0,
-                              'btn-red': menu == 1}"
-                  (click)="setMenu(0)"
-                  translate>Register</button>
+          <h1 class="btn"
+              [ngClass]="{'btn-success': menu == 0,
+                          'btn-white': menu == 1}"
+              (click)="setMenu(1)"
+              translate>Connect</h1>
+          <h1 class="btn"
+              [ngClass]="{'btn-white': menu == 0,
+                          'btn-red': menu == 1}"
+              (click)="setMenu(0)"
+              translate>Register</h1>
         </div>
         <div class="card-body text-center" *ngIf="menu == 0">
           <form method="POST" action="/register" 
@@ -79,7 +79,7 @@
         </div>
         <div class="card-body text-center" *ngIf="menu == 1">
           <form method="POST" action="/login" 
-                [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+                [formGroup]="loginForm" (ngSubmit)="onSubmitConnect(loginForm.value)">
             <label class="fw-bold" for="username" translate>Username</label>
             <input class="form-control mb-2" type="text" id="username"
                    placeholder="{{'Login'|translate}}" name="username" 
@@ -132,79 +132,86 @@
 
 <div id="home-discover">
   <div class="container">
-    <div class="row">
-      <!--  Line 1 -->
-      
-      <div class="col-12 col-md-6 half-middle order-1 order-md-2">
-        <div class="half-middle d-flex flex-column" id="img-heracles-birds">
-          <h2 class="text-center" translate>Ellas War, fighting for glory!</h2>
-          <p [innerHTML]="'Explore Ancient Greece on Ellas-War. Start the development of'|translate"></p>
-        </div>
-      </div>
-      
-      <!--  Line 2 -->
-      <div class="col-12 col-md-6 half-middle order-2 order-md-1">
-        <div class="half-middle" id="img-heracles-hydra">
-          <div class="row">
-            <div class="col-6 half-middle d-flex align-items-center justify-content-center">
-              <a [routerLink]="['/discoverthegame/treeofthegods']"
-                 class="btn-link" translate>
-                Adorate →
-              </a>
-            </div>
-            <div class="col-6 half-middle">
-              <div class="card">
-                <div class="card-body">
-                  <p class="home-text-1" [innerHTML]="'Venerate the gods by'|translate"></p>
+    <div class="card card-column">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" id="img-heracles-hydra">
+            <div class="row">
+              <div class="col-12 col-md-3 d-flex align-items-center justify-content-center">
+                <a [routerLink]="['/discoverthegame/treeofthegods']"
+                   class="btn-link" translate>
+                  Adorate →
+                </a>
+              </div>
+              <div class="col-12 col-md-3 card-body-zero">
+                <div class="card">
+                  <div class="card-body">
+                    <p [innerHTML]="'Venerate the gods by'|translate"></p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div class="col-6 half-middle">
-              <div class="card">
-                <div class="card-body">
-                  <p class="home-text-2" [innerHTML]="'Do stocks through your purse or spend any to improve'|translate"></p>
+              
+              <div class="col-12 col-md-6 card-body-zero d-flex flex-column align-items-center justify-content-center">
+                <a [routerLink]="['/discoverthegame/attack']"
+                   class="btn-link" translate>
+                  Ellas War, fighting for glory! →
+                </a>
+              </div>
+              
+              <div class="col-12 col-md-3 card-body-zero">
+                <div class="card">
+                  <div class="card-body">
+                    <p [innerHTML]="'Do stocks through your purse or spend any to improve'|translate"></p>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div class="col-6 half-middle d-flex align-items-center justify-content-center">
-              <a [routerLink]="['/discoverthegame/treeofthegods']"
-                 class="btn-link" translate>
-                Fight →
-              </a>
+              
+              <div class="col-12 col-md-3 d-flex align-items-center justify-content-center">
+                <a [routerLink]="['/discoverthegame/treeofthegods']"
+                   class="btn-link" translate>
+                  Fight →
+                </a>
+              </div>
+              
+              <div class="col-12 col-md-6 card-body-zero d-flex">
+                <div class="card">
+                  <div class="card-body d-flex align-items-center ">
+                    <p [innerHTML]="'Explore Ancient Greece on Ellas-War. Start the development of'|translate"></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      
-      <!--  Line 3 -->
-      <div *ngFor="let news of newsList; let i = index"
-           class="col-md-3 col-6 card-news half-middle"
-           [ngClass]="{'d-none d-md-flex': i >= 2}">
-        <div class="card card-{{i}}">
-          <div class="card-body">
-            <a href="{{news.link}}" target="_blank" rel="noopener">
-              <h4>{{news.news_date*1000| date:'dd/MM/yyyy'}}</h4>
-              <p class="text-center">{{news.title}}</p>
-              <p class="text-center fs-1">→</p>
+          
+          <!--  News -->
+          <div *ngFor="let news of newsList; let i = index"
+               class="col-md-3 col-6 card-news order-3 card-body-zero d-flex"
+               [ngClass]="{'d-none d-md-flex': i >= 2}">
+            <div class="card card-{{i}}">
+              <div class="card-body">
+                <a href="{{news.link}}" target="_blank" rel="noopener">
+                  <h3>{{news.title}}</h3>
+                  <p class="text-center">{{news.news_date*1000| date:'dd/MM/yyyy'}}</p>
+                  <span class="text-center fs-1">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!--  Links -->
+          <div class="col-6 d-flex order-4 card-body-zero">
+            <a type="button" class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1">
+              <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
+              {{'Facebook page'|translate}}
+            </a>
+          </div>
+          
+          <div class="col-6 d-flex order-5 d-flex card-body-zero">
+            <a type="button" class="btn btn-success btn-lg fs-3 d-flex align-items-center justify-content-center">
+              <span translate>Contact us</span>
             </a>
           </div>
         </div>
-      </div>
-      
-      <!--  Line 4 -->
-      <div class="col-6 half-middle d-flex flex-column">
-        <a type="button" class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1">
-          <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
-          {{'Facebook page'|translate}}
-        </a>
-      </div>
-      
-      <div class="col-6 half-middle d-flex flex-column">
-        <a type="button" class="btn btn-red btn-lg fs-3 flex-grow-1" translate>
-          Contact us
-        </a>
       </div>
     </div>
   </div>

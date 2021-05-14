@@ -50,3 +50,24 @@ a.no-padding {
 .card-header-flexible {
   height: auto;
 }
+
+.card.card-column {
+  background-clip: content-box;
+  background-color: white;
+  border-width: 0px;
+  padding-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .card.card-column > .card-body {
+    background: url("./assets/img/ornaments/column-bot.png") no-repeat bottom right,
+                url("./assets/img/ornaments/column-top.png") no-repeat top right,
+                url("./assets/img/ornaments/column-mid.png") repeat-y bottom right,
+                url("./assets/img/ornaments/column-bot.png") no-repeat bottom left,
+                url("./assets/img/ornaments/column-top.png") no-repeat top left,
+                url("./assets/img/ornaments/column-mid.png") repeat-y bottom left;
+    min-height: 100px;
+    margin: -16px -50px;
+    padding: 31px 61px;
+  }
+}
