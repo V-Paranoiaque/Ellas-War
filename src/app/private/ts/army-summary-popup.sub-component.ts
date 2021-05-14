@@ -40,7 +40,9 @@ export class ArmySummaryPopup {
     let nb = 0;
     for(let i in this.army) {
       let unit = this.army[i];
-      nb += this.user.getPropertyNb(unit.code)*unit.defense; 
+      if(unit.defense) {
+        nb += this.user.getPropertyNb(unit.code)*unit.defense; 
+      }
     }
     for(let i in this.buildings) {
       let building = this.buildings[i];
