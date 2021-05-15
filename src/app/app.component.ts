@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   title = 'Ellas War';
   
   public cssUrl: any;
+  public cssPlatform: any;
   private cssBase: string;
   
   constructor(private socket: Socket, public user: User,
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
     
     this.cssBase = './assets/styles/';
     this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
+    this.cssPlatform = this.sanitizer.bypassSecurityTrustResourceUrl(this.cssBase+'platform.css');
   }
   
   ngOnInit() {
