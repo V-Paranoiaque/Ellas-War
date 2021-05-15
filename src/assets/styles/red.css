@@ -71,3 +71,7 @@ input.form-control, textarea.form-control {
 .card-body.selected a {
   color: white;
 }
+
+.card.card-column a.link-secondary {
+  color: #dc3545;
+}
