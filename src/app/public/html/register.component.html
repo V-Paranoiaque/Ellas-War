@@ -1,17 +1,34 @@
 <common-top-bar active="register"></common-top-bar>
 
-<div class="container text-center">
-  <form method="POST" action="/register" 
-        [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-    <input type="text" name="username" placeholder="{{'Username'|translate}}"
-           class="form-control" formControlName="username" required/>
-    <input type="email" name="email" placeholder="{{'Email'|translate}}"
-           class="form-control" formControlName="email" required />
-    <input type="password" name="password" placeholder="{{'Password'|translate}}"
-           class="form-control" formControlName="password" required/>
-    <br/>
-    <button class="btn btn-success" type="submit" translate>Connect</button>
-  </form>
+<div class="container main-full">
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
+      <div class="card card-column">
+        <div class="card-body">
+          <h1 class="text-center" translate>Join Ellas War</h1>
+          <br/>
+          <form method="POST" action="/register" 
+                [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+            <input type="text" name="username" placeholder="{{'Username'|translate}}"
+                   class="form-control" formControlName="username" required/>
+            <input type="email" name="email" placeholder="{{'Email'|translate}}"
+                   class="form-control" formControlName="email" required />
+            <input type="password" name="password" placeholder="{{'Password'|translate}}"
+                   class="form-control" formControlName="password" required/>
+            <div class="text-center" translate>
+              <a class="text-danger fw-light"
+                  href="/lostpassword" translate>Forgot your password?</a>
+            </div>
+            <br/>
+            <div class="text-center">
+              <button class="btn btn-success"
+                      type="submit" translate>Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <common-bottom-bar></common-bottom-bar>

@@ -1,9 +1,9 @@
 <common-top-bar active="rankingalliances"></common-top-bar>
 
-<div class="container">
+<div class="container main-full">
   <div class="row">
     <div class="col-12 col-lg-10 offset-lg-1">
-      <div class="card">
+      <div class="card card-column">
         <div class="card-body">
           <h1 class="text-center" id="rankingDesc" translate>Ranking of Alliances</h1>
           <table class="table table-striped table-middle align-middle"
@@ -54,24 +54,25 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        
-        <div class="card-body" *ngIf="rankingMax > 1">
-          <div class="input-group">
-            <span class="input-group-text" role="button"
-                  (click)="rankingPageChange(1)">&lt;&lt;</span>
-            <span class="input-group-text" role="button"
-                  (click)="rankingPageChange(rankingPage-1)">&lt;</span>
-            <select class="form-control" #mySelect
-                    (change)="rankingPageChange(mySelect.value)"
-                    [ngModel]="rankingPage">
-              <option *ngFor="let id of range(1, rankingMax)"
-                      value="{{id}}" translate>Page {{id}}</option>
-            </select>
-            <span class="input-group-text" role="button"
-                  (click)="rankingPageChange(rankingPage+1)">&gt;</span>
-            <span class="input-group-text" role="button"
-                  (click)="rankingPageChange(rankingMax)">&gt;&gt;</span>
+          
+          <div *ngIf="rankingMax > 1">
+            <br/>
+            <div class="input-group">
+              <span class="input-group-text" role="button"
+                    (click)="rankingPageChange(1)">&lt;&lt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="rankingPageChange(rankingPage-1)">&lt;</span>
+              <select class="form-control" #mySelect
+                      (change)="rankingPageChange(mySelect.value)"
+                      [ngModel]="rankingPage">
+                <option *ngFor="let id of range(1, rankingMax)"
+                        value="{{id}}" translate>Page {{id}}</option>
+              </select>
+              <span class="input-group-text" role="button"
+                    (click)="rankingPageChange(rankingPage+1)">&gt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="rankingPageChange(rankingMax)">&gt;&gt;</span>
+            </div>
           </div>
         </div>
       </div>

@@ -7,8 +7,7 @@ import { User } from '../../../services/user.service';
 import { environment } from './../../../environments/environment';
 
 @Component({
-  templateUrl: '../html/profile.component.html',
-  styleUrls: ['../css/profile.component.css']
+  templateUrl: '../html/profile.component.html'
 })
 
 export class Profile implements OnInit {
