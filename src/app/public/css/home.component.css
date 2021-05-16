@@ -66,8 +66,7 @@ a.btn-link:hover {
   flex: 1;
 }
 
-p a,
-h2 {
+p a {
   color: #dc3545;
 }
 
