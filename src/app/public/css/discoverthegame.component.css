@@ -1,0 +1,11 @@
+h1 {
+  padding-bottom: 1em;
+}
+
+h1 a:nth-child(1) {
+  margin-right: 2em;
+}
+
+h1 a:nth-child(3) {
+  margin-left: 2em;
+}

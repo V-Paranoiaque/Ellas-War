@@ -2,9 +2,150 @@
 
 <div class="container main-full">
   <div class="row">
-    <div class="card">
-      <div class="card-body">
+    <div class="card card-column" [ngSwitch]="page">
+      <!-- Old pages -->
+      <div class="card-body" *ngSwitchCase="'treeofthegods'">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p translate>The tree of the gods has been removed in Ellas War Next V2.</p>
+            <br/>
+            <a class="btn btn-primary" translate>
+              Discover the game
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" *ngSwitchCase="'games'">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p translate>The games have been removed in Ellas War Next V2.</p>
+            <br/>
+            <a class="btn btn-primary" translate>
+              Discover the game
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Description pages -->
+      <div class="card-body" *ngSwitchCase="'constructions'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Constructions</span>
+          <a [routerLink]="['/discoverthegame/treasure']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'treasure'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/constructions']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Treasure</span>
+          <a [routerLink]="['/discoverthegame/temples']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'temples'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/treasure']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Temples</span>
+          <a [routerLink]="['/discoverthegame/recruitment']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'recruitment'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/temples']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Recruitment</span>
+          <a [routerLink]="['/discoverthegame/army']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'army'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/recruitment']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Army</span>
+          <a [routerLink]="['/discoverthegame/attack']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'attack'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/army']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Offensive strategy</span>
+          <a [routerLink]="['/discoverthegame/defense']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'defense'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/attack']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Defensive strategy</span>
+          <a [routerLink]="['/discoverthegame/trade']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'trade'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/defense']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Agora</span>
+          <a [routerLink]="['/discoverthegame/sell']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchCase="'sell'">
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/trade']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>Sell resources</span>
+          <a [routerLink]="['/discoverthegame']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
+      </div>
+      <div class="card-body" *ngSwitchDefault>
+        <h1 class="text-center">
+          <a [routerLink]="['/discoverthegame/sell']">
+            <ic-icon [icon]="arrowLeft"></ic-icon>
+          </a>
+          <span translate>City</span>
+          <a [routerLink]="['/discoverthegame/constructions']">
+            <ic-icon [icon]="arrowRight"></ic-icon>
+          </a>
+        </h1>
         
+        <div class="row">
+          <div class="col-4">
+            
+          </div>
+          <div class="col-8">
+            <p>Summary of your city, access quickly to the most important information.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
