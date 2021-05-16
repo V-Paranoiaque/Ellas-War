@@ -1,3 +1,12 @@
-* {
-  color: pink;
+public-top-bar .navbar-menu .container-fluid {
+  padding-bottom: 30px;
+}
+public-top-bar .mosaic {
+  height: 48px;
+  background-size: contain;
+}
+@media (max-width: 767px) {
+  #frame-bottom {
+    padding-bottom: 45px;
+  }
 }
