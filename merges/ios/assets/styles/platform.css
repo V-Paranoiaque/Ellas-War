@@ -5,6 +5,11 @@ public-top-bar .mosaic {
   height: 48px;
   background-size: contain;
 }
+
+#home-home {
+  min-height: calc(100vh - 118px);
+}
+
 @media (max-width: 767px) {
   #frame-bottom {
     padding-bottom: 45px;
