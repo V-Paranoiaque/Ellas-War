@@ -242,6 +242,14 @@ h3 {
 }
 
 /*** Discover frame ***/
+
+@media (min-width: 768px) {
+  #home-discover .row {
+    margin-right: calc(var(--bs-gutter-x)/ -2);
+    margin-left: calc(var(--bs-gutter-x)/ -2);
+  }
+}
+
 #home-discover .card {
   flex: 1;
   opacity: 0.9;
