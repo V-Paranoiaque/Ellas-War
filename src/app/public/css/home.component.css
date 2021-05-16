@@ -209,7 +209,7 @@ h3 {
   position: relative;
   background-image: url("../../../assets/img/backgrounds/poseidon.svg");
   background-position: center right;
-  min-height: calc(100vh - 91px);
+  min-height: calc(100vh - 64px);
   background-repeat: no-repeat;
   background-size: cover;
 }
