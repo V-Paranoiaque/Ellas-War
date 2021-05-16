@@ -76,3 +76,8 @@ a.no-padding {
     padding: 31px 61px;
   }
 }
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
