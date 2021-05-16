@@ -1,3 +1,6 @@
+.card {
+  margin-bottom: calc(var(--bs-gutter-x)/ 2);
+}
 .card-button.card-button-danger {
   color: #fff;
   background-color: #dc3545;

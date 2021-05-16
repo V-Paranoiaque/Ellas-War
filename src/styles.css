@@ -18,6 +18,11 @@ a.no-padding {
   padding-bottom: 40px;
 }
 
+.main-top .container .row,
+.card.main-top {
+  margin-top: calc(var(--bs-gutter-x)/ 2);
+}
+
 @media (max-width: 575px) {
   .main {
     padding-bottom: 60px;

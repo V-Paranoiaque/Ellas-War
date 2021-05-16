@@ -21,13 +21,40 @@ a {
   color: black;
 }
 
-.card-header, .card-footer {
-  background-color: var();
+.col-block-half:nth-child(odd) {
+  padding-right: calc(var(--bs-gutter-x)/ 4);
 }
 
-.card-header:first-letter,
+.col-block-half:nth-child(even) {
+  padding-left: calc(var(--bs-gutter-x)/ 4);
+}
+
+@media (max-width: 1199px) {
+  .col-xl-6.col-block-half {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 991px) {
+  .col-lg-6.col-block-half {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 767px) {
+  .col-md-6.col-block-half {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.card-header {
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+  color: white;
+}
+
 .card-footer:first-letter {
-  color: var(--color-menu-dark);
+  color: var(--color-menu-text);
 }
 
 .card-button.card-button-success {

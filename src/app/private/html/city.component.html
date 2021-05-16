@@ -95,7 +95,7 @@
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row">
-      <div class="col-xl-6">
+      <div class="col-xl-6 col-block-half">
         <div class="card">
           <div class="card-header">
             <span translate>General</span>
@@ -133,7 +133,7 @@
       </div>
       
       <div *ngIf="user.getLevel() >= 1 || user.getQuest() >= 7"
-           class="col-xl-6">
+           class="col-xl-6 col-block-half">
         <div class="card">
           <div class="card-header">
             <span translate>Divine Bonus</span>
@@ -168,7 +168,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6"
+      <div class="col-xl-6 col-block-half"
            *ngIf="user.getLevel() >= 1 || user.getPropertyNb('spartan') > 0">
         <div class="card">
           <div class="card-header">
@@ -196,7 +196,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6">
+      <div class="col-xl-6 col-block-half">
         <div class="card">
           <div class="card-header">
             <span translate>Buildings</span>
@@ -229,7 +229,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6"
+      <div class="col-xl-6 col-block-half"
            *ngIf="user.getLevel() >= 3 || (user.getLevel() == 2 && user.getQuest() >= 11)">
         <div class="card">
           <div class="card-header">
@@ -357,7 +357,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6" *ngIf="user.getLevel() >= 1">
+      <div class="col-xl-6 col-block-half" *ngIf="user.getLevel() >= 1">
         <div class="card">
           <div class="card-header" translate>
             Success

@@ -111,7 +111,7 @@
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row">
-      <div class="col-xl-6">
+      <div class="col-xl-6 col-block-half">
         <div class="alert alert-success d-lg-none" *ngIf="msgSent > 0" translate>
           Message sent
         </div>
@@ -177,7 +177,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6 text-center" *ngIf="getCurrentMsg().id > 0">
+      <div class="col-xl-6 col-block-half text-center" *ngIf="getCurrentMsg().id > 0">
         <div class="card">
           <div class="card-body">
             <h2>
@@ -440,7 +440,7 @@
         </div>
       </div>
       
-      <div class="col-xl-6 text-center d-none d-lg-block" *ngIf="getCurrentMsg().id == 0">
+      <div class="col-xl-6 col-block-half text-center d-none d-lg-block" *ngIf="getCurrentMsg().id == 0">
         <div class="alert alert-success" *ngIf="msgSent > 0" translate>
           Message sent
         </div>

@@ -2,10 +2,9 @@
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0 || Object.keys(realWaveAttackCheck.habitation).length > 0">
       <div class="col-12">
-        <div class="text-center alert alert-danger" 
-             *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0 || Object.keys(realWaveAttackCheck.habitation).length > 0">
+        <div class="text-center alert alert-danger">
           <div *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0">
             <span translate>
               You do not have enough resources, the units of your waves can not fight.
@@ -28,9 +27,10 @@
           </div>
         </div>
       </div>
+    </div>
     
-      
-      <div class="col-xl-6">
+    <div class="row">
+      <div class="col-xl-6 col-block-half">
         <div class="card">
           <div class="card-body attack-menu">
             <div class="row">
@@ -498,7 +498,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6" *ngIf="attackMode == 0">
+      <div class="col-xl-6 col-block-half" *ngIf="attackMode == 0">
         <div class="card" *ngIf="getCurrentMsg().id == 0">
           <div class="card-header" translate>Last attacks</div>
           <div class="card-body">
@@ -543,7 +543,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-6" *ngIf="attackMode > 0">
+      <div class="col-xl-6 col-block-half" *ngIf="attackMode > 0">
         <div class="card">
           <div class="card-header card-header-flexible"
                *ngIf="targetProfile?.username">
