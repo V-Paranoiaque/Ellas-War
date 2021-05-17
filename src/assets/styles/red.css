@@ -8,6 +8,7 @@
 
 .mosaic {
   background-image: url('../img/styles/red/mosaic.png');
+  background-color: #DCD1B1;
   width: 100%;
   height: 24px;
 }
