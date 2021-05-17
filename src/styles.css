@@ -41,6 +41,15 @@ a.no-padding {
 }
 
 /*** Cards **/
+.card {
+  border-width: 0px 0px 1px 0px;
+}
+
+.card-body {
+  border: 1px solid rgba(0,0,0,.125);
+  border-top: 0px;
+}
+
 .card-header, .card-button, .card-footer {
   text-align: center;
   padding: 4px;
