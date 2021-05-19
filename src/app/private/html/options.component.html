@@ -194,6 +194,55 @@
   </div>
 </div>
 
+<div class="modal fade" id="ChangePassword" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Change your password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" role="alert" *ngIf="getPasswordError() > 0">
+          <div [ngSwitch]="getPasswordError()">
+            <div *ngSwitchCase="1" translate>
+              Both passwords are different
+            </div>
+            <div *ngSwitchCase="2" translate>
+              Your password must be at least 8 characters.
+            </div>
+            <div *ngSwitchCase="3" translate>
+              Bad password
+            </div>
+            <div *ngSwitchCase="4" translate>
+              Password changed successfully
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="accountPasswordPossible == 1">
+          <strong for="oldpassword" translate>Old password</strong>
+          <input type="password" class="form-control" [(ngModel)]="oldPassword"
+                 placeholder="{{'Old password'|translate}}" id="oldpassword">
+        </div>
+        <strong for="newpassword" translate>New password</strong> 
+        <input type="password" class="form-control" [(ngModel)]="newPassword"
+               placeholder="{{'New password'|translate}}" id="newpassword">
+        <strong for="confirm" translate>Confirmation</strong> 
+        <input type="password" class="form-control" [(ngModel)]="confirm"
+               placeholder="{{'Confirmation'|translate}}" id="confirm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+        <button class="btn btn-primary"
+                (click)="accountPassword()"
+                translate>Change your password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="ResetAccount" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -295,6 +344,20 @@
           <div class="card-button card-button-primary" data-bs-toggle="modal" 
                role="button" data-bs-target="#ChangeEmail" translate>
             Change your email
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-block-half">
+        <div class="card">
+          <div class="card-header" translate>
+            Password
+          </div>
+          <div class="card-body" translate>
+            Modify your password.
+          </div>
+          <div class="card-button card-button-primary" data-bs-toggle="modal" 
+               role="button" data-bs-target="#ChangePassword" translate>
+            Change your password
           </div>
         </div>
       </div>

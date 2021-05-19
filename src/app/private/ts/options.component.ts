@@ -9,19 +9,24 @@ import { User } from '../../../services/user.service';
 })
 
 export class Options {
+  public accountPasswordPossible:number;
   private accountRenameCost:number;
   
   private renameError: number;
   public emailError: number;
+  public passwordError: number;
   public errorAccountSave: number;
   
+  public confirm:string;
   public currentStyle:string;
   public description:string;
   public image:any;
   public imageProfile:any;
   public location:string;
   public newEmail: string;
+  public newPassword: string;
   public newusername: string;
+  public oldPassword: string;
   public pauseAllowed: number;
   public pauseNb: number;
   public sound: number;
@@ -29,6 +34,7 @@ export class Options {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.user.checkPermissions([1,2,3,4,5]);
     
+    this.accountPasswordPossible = 0;
     if(user.getLevel() >= 1) {
       this.accountRenameCost = 1;
     }
@@ -39,12 +45,16 @@ export class Options {
     this.errorAccountSave = 0;
     this.renameError = 0;
     this.emailError = 0;
+    this.passwordError = 0;
     
+    this.confirm = '';
     this.description = '';
     this.imageProfile = '';
     this.location = '';
     this.newEmail = '';
+    this.newPassword = '';
     this.newusername = '';
+    this.oldPassword = '';
     this.pauseAllowed = 0;
     this.pauseNb = 4;
     
@@ -76,6 +86,16 @@ export class Options {
     this.socket.on("pauseAllowed", (result:any) => {
       this.pauseAllowed = result;
     });
+    this.socket.on('accountPassword', (nb:number) => {
+      this.passwordError = nb;
+      this.socket.emit('accountPasswordPossible');
+    });
+    this.socket.on('accountPasswordPossible', (nb:number) => {
+      this.accountPasswordPossible = nb;
+      if(nb == 0) {
+        this.oldPassword = 'notused';
+      }
+    });
     this.socket.on('reset', () => {
       document.location.href="/";
     });
@@ -83,15 +103,16 @@ export class Options {
       this.sound = sound;
     });
     
-    setTimeout(() => {
-      this.socket.emit('accountInfo');
-      this.socket.emit('accountRenameCost');
-      this.socket.emit('pauseAllowed');
-    }, 0);
+    this.socket.emit('accountInfo');
+    this.socket.emit('accountRenameCost');
+    this.socket.emit('pauseAllowed');
+    this.socket.emit('accountPasswordPossible');
   }
   
   ngOnDestroy() {
     this.socket.removeListener('accountInfo');
+    this.socket.removeListener('accountPassword');
+    this.socket.removeListener('accountPasswordPossible');
     this.socket.removeListener('accountRenameCost');
     this.socket.removeListener('accountRename');
     this.socket.removeListener('pauseAllowed');
@@ -101,6 +122,9 @@ export class Options {
   
   getAccountRenameCost() {
     return this.accountRenameCost;
+  }
+  getPasswordError() {
+    return this.passwordError;
   }
   getRenameError() {
     return this.renameError;
@@ -119,6 +143,25 @@ export class Options {
   accountPause() {
     if(this.pauseNb >= 4 && this.pauseNb <= 100) {
       this.socket.emit('pause', this.pauseNb);
+    }
+  }
+  
+  accountPassword() {
+    if(!this.newPassword) {
+      this.passwordError = 2;
+    }
+    else if(!this.confirm || this.newPassword != this.confirm) {
+      this.passwordError = 1;
+    }
+    else if(this.newPassword.length < 8) {
+      this.passwordError = 2;
+    }
+    else {
+      let msg = {
+        'oldPassword': this.oldPassword,
+        'newpassword': this.newPassword
+      };
+      this.socket.emit('accountPassword', msg);
     }
   }
   
