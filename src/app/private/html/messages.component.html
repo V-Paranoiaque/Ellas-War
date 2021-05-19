@@ -115,7 +115,7 @@
         <div class="alert alert-success d-lg-none" *ngIf="msgSent > 0" translate>
           Message sent
         </div>
-        <div class="card">
+        <div class="card card-normal">
           <div class="card-flex text-center">
             <button class="btn btn-primary d-lg-none"
                     (click)="messageLoad(0)"
@@ -178,7 +178,7 @@
       </div>
       
       <div class="col-xl-6 col-block-half text-center" *ngIf="getCurrentMsg().id > 0">
-        <div class="card">
+        <div class="card card-normal">
           <div class="card-body">
             <h2>
               <messages-title [msg]="getCurrentMsg()"></messages-title>
@@ -444,7 +444,7 @@
         <div class="alert alert-success" *ngIf="msgSent > 0" translate>
           Message sent
         </div>
-        <div class="card">
+        <div class="card card-normal">
           <div class="card-body">
             <span class="badge bg-primary" *ngFor="let user of getDestList()">
               {{ user.username }}
