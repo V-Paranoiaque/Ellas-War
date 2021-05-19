@@ -203,6 +203,9 @@ h3 {
   z-index: 900;
   opacity: 0.9;
 }
+.main-card .card .card-body {
+  border-width: 0px;
+}
 
 #home-home {
   position: relative;
