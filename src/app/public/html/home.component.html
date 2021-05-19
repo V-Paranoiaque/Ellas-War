@@ -73,6 +73,8 @@
                     translate>Register</button>
             <div class="text-center" translate>
               <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                 title="{{'Request a new password'|translate}}"
+                 [attr.aria-label]="['Forgot your password?'|translate]"
                  translate>Forgot your password?</a>
             </div>
           </form>
@@ -95,6 +97,8 @@
             </div>
             <div class="text-center">
               <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                 title="{{'Request a new password'|translate}}"
+                 [attr.aria-label]="['Forgot your password?'|translate]"
                  translate>Forgot your password?</a>
             </div>
           </form>
@@ -207,7 +211,9 @@
           </div>
           
           <div class="col-6 d-flex order-5 d-flex card-body-zero">
-            <a class="btn btn-success btn-lg fs-3 d-flex align-items-center justify-content-center">
+            <a class="btn btn-success btn-lg fs-3 d-flex align-items-center justify-content-center"
+               [attr.aria-label]="['Contact us'|translate]" title="{{'Contact us'|translate}}"
+               [routerLink]="['/contactus']">
               <span translate>Contact us</span>
             </a>
           </div>
