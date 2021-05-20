@@ -2,8 +2,9 @@
 
 <div id="home-home" class="container-flexible">
   <div class="row">
-    <div id="social-media-frame"
-         *ngIf="environment.mobile == 0 && localevars.facebook">
+    <div id="social-media-frame" role="region" 
+         *ngIf="environment.mobile == 0 && localevars.facebook"
+         attr.aria-label="{{'Follow us on our Facebook Page'|translate}}">
       <div class="column"></div>
       <div class="social">
         <a href="{{ localevars.facebook }}" target="_blank" rel="noopener">
@@ -13,7 +14,8 @@
       </div>
     </div>
     
-    <div id="app-store-frame" *ngIf="environment.mobile == 0">
+    <div id="app-store-frame" *ngIf="environment.mobile == 0"
+         role="region" attr.aria-label="{{'Links to the App stores'|translate}}">
       <div class="column"></div>
       <div class="apps">
         <a *ngIf="localevars.store.amazon" target="_blank" rel="noopener"
@@ -36,7 +38,8 @@
       </div>
     </div>
     
-    <div class="main-card">
+    <div class="main-card" role="main"
+         attr.aria-label="{{'Main content of the page'|translate}}">
       <div class="column left-column"></div>
       <div class="card">
         <div class="card-body card-body-zero d-flex">
@@ -54,23 +57,26 @@
         <div class="card-body text-center" *ngIf="menu == 0">
           <form method="POST" action="/register" 
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
-            <label class="fw-bold" for="username-re" translate>Username</label>
-            <input type="text" name="username" placeholder="{{'Username'|translate}}"
-                   class="mb-2 form-control" formControlName="username"
-                   id="username-re" required/>
-            
-            <label class="fw-bold" for="email-re" translate>Email</label>
-            <input type="email" name="email" placeholder="{{'Email address'|translate}}"
-                   class="mb-2 form-control" formControlName="email"
-                   id="email-re" required />
-            
-            <label class="fw-bold" for="password-re" translate>Password</label>
-            <input type="password" name="password" placeholder="{{'Password'|translate}}"
-                   class="mb-4 form-control" formControlName="password"
-                   id="password-re" required/>
-             
-            <button class="btn btn-success mb-2" type="submit"
-                    translate>Register</button>
+            <fieldset>
+              <legend class="visually-hidden" translate>Register on the game</legend>
+              <label class="fw-bold" for="username-re" translate>Username</label>
+              <input type="text" name="username" placeholder="{{'Username'|translate}}"
+                     class="mb-2 form-control" formControlName="username"
+                     id="username-re" required/>
+              
+              <label class="fw-bold" for="email-re" translate>Email</label>
+              <input type="email" name="email" placeholder="{{'Email address'|translate}}"
+                     class="mb-2 form-control" formControlName="email"
+                     id="email-re" required />
+              
+              <label class="fw-bold" for="password-re" translate>Password</label>
+              <input type="password" name="password" placeholder="{{'Password'|translate}}"
+                     class="mb-4 form-control" formControlName="password"
+                     id="password-re" required/>
+               
+              <button class="btn btn-success mb-2" type="submit"
+                      translate>Register</button>
+            </fieldset>
             <div class="text-center" translate>
               <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
                  title="{{'Request a new password'|translate}}"
@@ -82,19 +88,22 @@
         <div class="card-body text-center" *ngIf="menu == 1">
           <form method="POST" action="/login" 
                 [formGroup]="loginForm" (ngSubmit)="onSubmitConnect(loginForm.value)">
-            <label class="fw-bold" for="username" translate>Username</label>
-            <input class="form-control mb-2" type="text" id="username"
-                   placeholder="{{'Login'|translate}}" name="username" 
-                   formControlName="username" required="required" />
-            <label class="fw-bold" for="password" translate>Password</label>
-            <input class="form-control mb-4" type="password" id="password"
-                   placeholder="{{'Password'|translate}}" name="password" 
-                   formControlName="password" required="required" />
-            <div class="text-center mb-2">
-              <input type="hidden" formControlName="mobile" name="mobile" />
-              <button class="btn btn-success btn-primary mb-2" type="submit" 
-                      translate>Connect</button>
-            </div>
+            <fieldset>
+              <legend class="visually-hidden" translate>Login to the game</legend>
+              <label class="fw-bold" for="username" translate>Username</label>
+              <input class="form-control mb-2" type="text" id="username"
+                     placeholder="{{'Login'|translate}}" name="username" 
+                     formControlName="username" required="required" />
+              <label class="fw-bold" for="password" translate>Password</label>
+              <input class="form-control mb-4" type="password" id="password"
+                     placeholder="{{'Password'|translate}}" name="password" 
+                     formControlName="password" required="required" />
+              <div class="text-center mb-2">
+                <input type="hidden" formControlName="mobile" name="mobile" />
+                <button class="btn btn-success btn-primary mb-2" type="submit" 
+                        translate>Connect</button>
+              </div>
+            </fieldset>
             <div class="text-center">
               <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
                  title="{{'Request a new password'|translate}}"
@@ -123,7 +132,8 @@
       <div class="column right-column"></div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" role="navigation"
+       [attr.aria-label]="['Discover the Game']">
     <div class="card">
       <div class="card-body card-body-zero d-flex">
         <a class="btn btn-red btn-lg flex-fill"
@@ -139,7 +149,8 @@
     <div class="card card-column">
       <div class="card-body">
         <div class="row">
-          <div class="col-12" id="img-heracles-hydra">
+          <div class="col-12" id="img-heracles-hydra" role="navigation"
+               [attr.aria-label]="['Links to discover the game']">
             <div class="row">
               <div class="col-12 col-md-3 d-flex align-items-center justify-content-center">
                 <a [routerLink]="['/discoverthegame/treeofthegods']"
@@ -188,29 +199,37 @@
           </div>
           
           <!--  News -->
-          <div *ngFor="let news of newsList; let i = index"
-               class="col-md-3 col-6 card-news order-3 card-body-zero d-flex"
-               [ngClass]="{'d-none d-md-flex': i >= 2}">
-            <div class="card card-{{i}}">
-              <div class="card-body">
-                <a href="{{news.link}}" target="_blank" rel="noopener">
-                  <h3>{{news.title}}</h3>
-                  <p class="text-center">{{news.news_date*1000| date:'dd/MM/yyyy'}}</p>
-                  <span class="text-center fs-1">→</span>
-                </a>
+          <div class="col-12">
+            <div class="row" role="region"
+                 attr.aria-label="{{'Links to the game news'|translate}}">
+              <div *ngFor="let news of newsList; let i = index"
+                   class="col-md-3 col-6 card-news order-3 card-body-zero d-flex"
+                   [ngClass]="{'d-none d-md-flex': i >= 2}">
+                <div class="card card-{{i}}">
+                  <div class="card-body">
+                    <a href="{{news.link}}" target="_blank" rel="noopener">
+                      <h3>{{news.title}}</h3>
+                      <p class="text-center">{{news.news_date*1000| date:'dd/MM/yyyy'}}</p>
+                      <span class="text-center fs-1">→</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           
           <!--  Links -->
-          <div class="col-6 d-flex order-4 card-body-zero">
-            <a class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1">
+          <div class="col-6 d-flex order-4 card-body-zero" role="region"
+               attr.aria-label="{{'Link to the Facebook Page'|translate}}">
+            <a class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1"
+               href="{{ localevars.facebook }}" target="_blank" rel="noopener">
               <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
               {{'Facebook page'|translate}}
             </a>
           </div>
           
-          <div class="col-6 d-flex order-5 d-flex card-body-zero">
+          <div class="col-6 d-flex order-5 d-flex card-body-zero" role="navigation"
+               [attr.aria-label]="['Contact the Ellas War Team'|translate]">
             <a class="btn btn-success btn-lg fs-3 d-flex align-items-center justify-content-center"
                [attr.aria-label]="['Contact us'|translate]" title="{{'Contact us'|translate}}"
                [routerLink]="['/contactus']">
