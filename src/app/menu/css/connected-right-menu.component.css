@@ -19,7 +19,7 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
   background: url("../../../assets/img/ornaments/column-bot.png") no-repeat bottom left,
               url("../../../assets/img/ornaments/column-top.png") no-repeat top left,
               url("../../../assets/img/ornaments/column-mid.png") repeat-y bottom left;
-  padding-left: 64px;
+  padding-left: 44px;
   margin-top: -2px;
   margin-bottom: 66px;
 }
@@ -30,7 +30,6 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
 
 #infoMenu .card {
   background: url("../../../assets/img/backgrounds/stone-background-with-golden-strokes_130.svg");
-  margin-left: -14px;
   background-clip: content-box;
   padding-top: 15px;
   padding-bottom: 15px;

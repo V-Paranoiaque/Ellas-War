@@ -93,8 +93,8 @@ a.no-padding {
                 url("./assets/img/ornaments/column-top.png") no-repeat top left,
                 url("./assets/img/ornaments/column-mid.png") repeat-y bottom left;
     min-height: 100px;
-    margin: -16px -50px;
-    padding: 31px 61px;
+    margin: -16px -45px;
+    padding: 31px 55px;
   }
 }
 

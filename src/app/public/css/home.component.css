@@ -307,6 +307,10 @@ h3 {
   flex: 1;
 }
 
+.card-news .card .card-body {
+  background-image: none;
+}
+
 #home-discover .card .card-0 {
   background-color: #B62F21;
 }
