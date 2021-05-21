@@ -119,7 +119,15 @@
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-quests"></ew-icon>
     </a>
+    <a [routerLink]="['/diplomacy']"
+       *ngIf="user.getPropertyNb('alliance') == 0"
+       [ngClass]="{'inactive': router.url != '/diplomacy',
+                   'menu-5': user.getLevel() == 0,
+                   'menu-7': user.getLevel() > 0}">
+      <ew-icon name="menu-alliance"></ew-icon>
+    </a>
     <a [routerLink]="['/alliance']"
+       *ngIf="user.getPropertyNb('alliance') > 0"
        [ngClass]="{'inactive': router.url != '/alliance',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
