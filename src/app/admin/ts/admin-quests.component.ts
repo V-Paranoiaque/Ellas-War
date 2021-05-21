@@ -63,7 +63,8 @@ export class AdminQuests {
         'id': this.questInfo.type,
         'reward': this.questInfo.reward,
         'difficulty': this.questInfo.difficulty,
-        'level': this.questInfo.level
+        'level': this.questInfo.level,
+        'levelmax': this.questInfo.levelmax
       });
     }
     else {
@@ -73,7 +74,8 @@ export class AdminQuests {
         'id': this.questInfo.type,
         'reward': this.questInfo.reward,
         'difficulty': this.questInfo.difficulty,
-        'level': this.questInfo.level
+        'level': this.questInfo.level,
+        'levelmax': this.questInfo.levelmax
       });
     }
   }
@@ -84,6 +86,7 @@ export class AdminQuests {
       'difficulty': 0,
       'goal': '',
       'level': 0,
+      'levelmax': 0,
       'reward': 0,
       'type': ''
     }
@@ -125,6 +128,7 @@ export class AdminQuests {
       'difficulty': quest.quest_difficulty,
       'goal': quest.quest_goal,
       'level': quest.quest_level,
+      'levelmax': quest.quest_levelmax,
       'reward': quest.quest_reward,
       'type': quest.quest_type
     }

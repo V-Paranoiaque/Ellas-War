@@ -53,6 +53,9 @@
           <input class="form-control" type="number" min="0" max="10"
                  [(ngModel)]="questInfo.level">
           
+          <strong translate>Maximum level</strong><strong translate>:</strong>
+          <input class="form-control" type="number" min="0" max="10"
+                 [(ngModel)]="questInfo.levelmax">
         </div>
       </div>
       <div class="modal-footer">
@@ -113,155 +116,147 @@
 <div class="container-fluid">
   <div class="row">
     <admin-left-menu active="quests" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
-  
-    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
-      <div class="row">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-xs-12">
-              <div class="card">
-                <div class="card-header card-header-auto" id="GoalsDesc" translate>
-                  Quests
-                  <button class="btn btn-success" (click)="resetQuest()"
+
+    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+      <div class="card">
+        <div class="card-header card-header-auto" id="GoalsDesc" translate>
+          Quests
+          <button class="btn btn-success" (click)="resetQuest()"
+                  data-bs-toggle="modal" data-bs-target="#QuestEdit">
+            <ic-icon [icon]="brushIcon"></ic-icon>
+          </button>
+        </div>
+        
+        <div class="card-body card-body-100">
+          <table class="table table-striped table-middle" aria-describedby="QuestNew">
+            <thead>
+              <tr>
+                <th scope="col" translate>Goal</th>
+                <th scope="col" translate>Reward</th>
+                <th scope="col" translate>Difficulty</th>
+                <th scope="col" translate>Level</th>
+                <th scope="col">
+                </th>
+              <tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let quest of adminQuestList">
+                <td>
+                  <span [ngSwitch]="quest.quest_type">
+                    <span *ngSwitchCase="1">
+                      {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="2">
+                      {{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="3">
+                      {{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="4">
+                      {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="5">
+                      {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="6">
+                      {{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="7">
+                      {{ quest.quest_goal == 1 ?
+                         ('Attack 1 sanctuary'  | translate) : 
+                         ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="8">
+                      {{ quest.quest_goal == 1 ?
+                         ('Conquest 1 sanctuary'|translate) : 
+                         ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="9">
+                      {{ quest.quest_goal == 1 ?
+                         ('Win 1 war'|translate) : 
+                         ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="10">
+                      {{ quest.quest_goal == 1 ?
+                         ('Win the Honnor challenge'|translate) : 
+                         ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="11">
+                      {{ quest.quest_goal == 1 ?
+                         ('Take the Diamond'|translate) : 
+                         ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="12">
+                      {{ quest.quest_goal == 1 ?
+                         ('Win the Diamond challenge'|translate) : 
+                         ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}
+                    </span>
+                    <span *ngSwitchCase="13">
+                      {{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}
+                    </span>
+                    <span *ngSwitchCase="14">
+                     {{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}
+                    </span>
+                   <span *ngSwitchCase="15">
+                     {{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}
+                   </span>
+                   <span *ngSwitchCase="16">
+                     {{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}
+                   </span>
+                  </span>
+                </td>
+                <td class="text-center">{{ quest.quest_reward }}</td>
+                <td class="text-center">{{ quest.quest_difficulty }}</td>
+                <td class="text-center">{{ quest.quest_level }}-{{ quest.quest_levelmax }}</td>
+                <td class="text-center">
+                  <button class="btn btn-success" (click)="setQuest(quest)"
                           data-bs-toggle="modal" data-bs-target="#QuestEdit">
                     <ic-icon [icon]="brushIcon"></ic-icon>
                   </button>
-                </div>
-                
-                <div class="card-body card-body-100">
-                  <table class="table table-striped table-middle" aria-describedby="QuestNew">
-                    <thead>
-                      <tr>
-                        <th scope="col" translate>Goal</th>
-                        <th scope="col" translate>Reward</th>
-                        <th scope="col" translate>Difficulty</th>
-                        <th scope="col" translate>Level</th>
-                        <th scope="col">
-                        </th>
-                      <tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let quest of adminQuestList">
-                        <td>
-                          <span [ngSwitch]="quest.quest_type">
-                            <span *ngSwitchCase="1">
-                              {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="2">
-                              {{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="3">
-                              {{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="4">
-                              {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="5">
-                              {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="6">
-                              {{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="7">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Attack 1 sanctuary'  | translate) : 
-                                 ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="8">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Conquest 1 sanctuary'|translate) : 
-                                 ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="9">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Win 1 war'|translate) : 
-                                 ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="10">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Win the Honnor challenge'|translate) : 
-                                 ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="11">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Take the Diamond'|translate) : 
-                                 ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="12">
-                              {{ quest.quest_goal == 1 ?
-                                 ('Win the Diamond challenge'|translate) : 
-                                 ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}
-                            </span>
-                            <span *ngSwitchCase="13">
-                              {{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}
-                            </span>
-                            <span *ngSwitchCase="14">
-                             {{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}
-                            </span>
-                           <span *ngSwitchCase="15">
-                             {{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}
-                           </span>
-                           <span *ngSwitchCase="16">
-                             {{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}
-                           </span>
-                          </span>
-                        </td>
-                        <td class="text-center">{{ quest.quest_reward }}</td>
-                        <td class="text-center">{{ quest.quest_difficulty }}</td>
-                        <td class="text-center">{{ quest.quest_level }}</td>
-                        <td class="text-center">
-                          <button class="btn btn-success" (click)="setQuest(quest)"
-                                  data-bs-toggle="modal" data-bs-target="#QuestEdit">
-                            <ic-icon [icon]="brushIcon"></ic-icon>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 col-xs-12">
-              <div class="card">
-                <div class="card-header card-header-auto" id="RewardsDesc" translate>
-                  Rewards
-                  <button class="btn btn-success" 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+      <div class="card">
+        <div class="card-header card-header-auto" id="RewardsDesc" translate>
+          Rewards
+          <button class="btn btn-success" 
+                  data-bs-toggle="modal" data-bs-target="#RewardEdit">
+            <ic-icon [icon]="brushIcon"></ic-icon>
+          </button>
+        </div>
+        
+        <div class="card-body card-body-100">
+          <table class="table table-striped table-middle" aria-describedby="RewardsDesc">
+            <thead>
+              <tr>
+                <th scope="col" translate>Type</th>
+                <th scope="col" translate>Reward</th>
+                <th scope="col" translate>Level</th>
+                <th scope="col"></th>
+              <tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of adminQuestReward">
+                <td class="text-center">{{ p.reward_type }}</td>
+                <td class="text-end">
+                  {{ p.reward_quantity | number:'': this.translate.currentLang }}
+                  <id-to-ress ress_id="{{p.reward_ress}}"></id-to-ress>
+                </td>
+                <td class="text-center">{{ p.reward_level }}</td>
+                <td class="text-center">
+                  <button class="btn btn-success" (click)="setReward(p)"
                           data-bs-toggle="modal" data-bs-target="#RewardEdit">
                     <ic-icon [icon]="brushIcon"></ic-icon>
                   </button>
-                </div>
-                
-                <div class="card-body card-body-100">
-                  <table class="table table-striped table-middle" aria-describedby="RewardsDesc">
-                    <thead>
-                      <tr>
-                        <th scope="col" translate>Type</th>
-                        <th scope="col" translate>Reward</th>
-                        <th scope="col" translate>Level</th>
-                        <th scope="col"></th>
-                      <tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let p of adminQuestReward">
-                        <td class="text-center">{{ p.reward_type }}</td>
-                        <td class="text-end">
-                          {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                          <id-to-ress ress_id="{{p.reward_ress}}"></id-to-ress>
-                        </td>
-                        <td class="text-center">{{ p.reward_level }}</td>
-                        <td class="text-center">
-                          <button class="btn btn-success" (click)="setReward(p)"
-                                  data-bs-toggle="modal" data-bs-target="#RewardEdit">
-                            <ic-icon [icon]="brushIcon"></ic-icon>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
