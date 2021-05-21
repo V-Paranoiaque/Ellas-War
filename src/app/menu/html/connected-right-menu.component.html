@@ -194,13 +194,13 @@
   </div>
 </div>
 
-<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0" id="infoMenu">
   <div class="card">
     <div class="card-header">
       {{ user.getProperty('username') }} ({{ user.getPropertyNb('level') }})
     </div>
     
-    <div class="card-body">
+    <div class="card-body player-info">
       <strong translate>Field</strong>
       <strong translate>:</strong> {{ user.getPropertyNb('field') | number:'': this.translate.currentLang }}
       <br/>
@@ -215,44 +215,84 @@
       </span>
     </div>
     
-    <div class="card-body">
-      <strong translate>Victories</strong>
-      <strong translate>:</strong> {{ user.getPropertyNb('victory') }}<br/>
-      
-      <a [routerLink]="['/rankingplayers']">
-        <strong translate>XP</strong>
-        <strong translate>:</strong> {{ user.getPropertyNb('xp') }}
-      </a>
-      <br/>
-      
-      <a [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
-        <strong translate>Honnor</strong>
-        <strong translate>:</strong> {{ user.getPropertyNb('honnor') }}
-      </a>
-      <br/>
+    <div class="card-body player-stats">
+      <div class="row">
+        <div class="col-12 d-flex">
+          <div class="p-2 icon">
+            <ic-icon [icIcon]="swordIcon"></ic-icon>
+          </div>
+          <div class="p-2 flex-grow-1 text-end">
+            {{ user.getPropertyNb('victory') | number:'': this.translate.currentLang}}<br/>
+          </div>
+        </div>
+        <div class="col-6 d-flex">
+          <div class="p-2 icon">
+            <ic-icon [icIcon]="trophy"></ic-icon>
+          </div>
+          <div class="p-2 flex-grow-1 text-end">
+            <a [routerLink]="['/rankingplayers']">
+              {{ user.getPropertyNb('xp') | number:'': this.translate.currentLang}}
+            </a>
+          </div>
+        </div>
+        <div class="col-6 d-flex">
+          <div class="p-2 icon">
+            <ic-icon [icIcon]="crown"></ic-icon>
+          </div>
+          <div class="p-2 flex-grow-1 text-end">
+            <a [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
+              {{ user.getPropertyNb('honnor') | number:'': this.translate.currentLang}}
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     
     <div class="card-body">
       <div *ngFor="let res of ressList">
-        <div *ngIf="user.hasLevelRess(res)">
-          <ic-icon class="text-success" *ngIf="user.getProperty('var_ress')[res] > 0" [icIcon]="angleUp"></ic-icon>
-          <span *ngIf="user.getProperty('var_ress')[res] == 0">=</span>
-          <ic-icon class="text-danger" *ngIf="user.getProperty('var_ress')[res] < 0" [icIcon]="angleDown"></ic-icon>
-          {{ user.getPropertyNb(res) | number:'1.0-2': this.translate.currentLang }}
-          <id-to-ress [ress_id]="res"></id-to-ress>
+        <div *ngIf="user.hasLevelRess(res)" class="d-flex">
+          <div class="p-2 bd-highlight"
+               [ngClass]="{'icon-increase': user.getProperty('var_ress')[res] > 0,
+                          'icon-equal': user.getProperty('var_ress')[res] == 0,
+                          'icon-decrease': user.getProperty('var_ress')[res] < 0}">
+            <ic-icon *ngIf="user.getProperty('var_ress')[res] > 0"
+                     [icIcon]="angleUp"></ic-icon>
+            <ic-icon *ngIf="user.getProperty('var_ress')[res] == 0" [icIcon]="equals"></ic-icon>
+            <ic-icon *ngIf="user.getProperty('var_ress')[res] < 0" [icIcon]="angleDown"></ic-icon>
+          </div>
+          <div class="p-2 flex-grow-1 text-end">
+            {{ user.getPropertyNb(res) | number:'1.0-0': this.translate.currentLang }}
+          </div>
+          <div class="p-2 icon">
+            <id-to-ress [ress_id]="res"></id-to-ress>
+          </div>
         </div>
       </div>
-      <div *ngIf="user.hasLevelRess('ambrosia')">
-        <ic-icon class="text-success" [icIcon]="angleUp"></ic-icon>
-        {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
-        <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
-      </div>
-      <div *ngIf="user.hasLevelRess('favor')">
-        <span>=</span>
-        {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
-        <id-to-ress [ress_id]="'favor'"></id-to-ress>
+      <div *ngIf="user.hasLevelRess('ambrosia')" class="d-flex">
+        <div class="p-2 icon-increase">
+          <ic-icon [icIcon]="angleUp"></ic-icon>
+        </div>
+        <div class="p-2 bd-highlight">
         <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
                  role="button"></ic-icon>
+        </div>
+        <div class="p-2 flex-grow-1 text-end">
+          {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
+        </div>
+        <div class="p-2 icon">
+          <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        </div>
+      </div>
+      <div *ngIf="user.hasLevelRess('favor')" class="d-flex">
+        <div class="p-2 icon-equal">
+          <ic-icon [icIcon]="equals"></ic-icon>
+        </div>
+        <div class="p-2 flex-grow-1 text-end">
+          {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
+        </div>
+        <div class="p-2 icon">
+          <id-to-ress [ress_id]="'favor'"></id-to-ress>
+        </div>
       </div>
     </div>
     <div class="card-button card-button-primary">

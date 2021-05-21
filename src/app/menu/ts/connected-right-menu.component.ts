@@ -7,7 +7,11 @@ import { environment } from './../../../environments/environment';
 
 import angleDown from '@iconify/icons-fa-solid/angle-down';
 import angleUp from '@iconify/icons-fa-solid/angle-up';
+import crown from '@iconify/icons-fa-solid/crown';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+import equals from '@iconify/icons-fa-solid/equals';
+import swordIcon from '@iconify/icons-vaadin/sword';
+import trophy from '@iconify/icons-fa-solid/trophy';
 
 
 @Component({
@@ -23,7 +27,11 @@ export class ConnectedRightMenu {
   //Icons
   angleDown      = angleDown;
   angleUp        = angleUp;
+  crown          = crown;
+  equals         = equals;
   questionCircle = questionCircle;
+  swordIcon      = swordIcon;
+  trophy         = trophy;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.selectedWeather = user.getConfig().weather;
