@@ -106,14 +106,14 @@
               <ic-icon [icIcon]="questionCircle"></ic-icon>
             </span>
           </div>
-          <div class="card-body">
-            <div *ngIf="user.getLevel() < 10">
+          <div class="card-body d-flex align-items-center">
+            <div class="flex-grow-1" *ngIf="user.getLevel() < 10">
               <a [routerLink]="['/quests']">
                 <strong translate>Quests</strong><strong translate>:</strong> 
                 {{ user.getQuest() }}/{{ user.getQuestMax() }}
               </a>
             </div>
-            <div *ngIf="user.getLevel() >= 1">
+            <div class="flex-grow-1" *ngIf="user.getLevel() >= 1">
               <strong translate>Quest progress</strong>
               <strong translate>:</strong>
               <ic-icon [icIcon]="questionCircle"
