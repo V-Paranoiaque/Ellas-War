@@ -3,7 +3,7 @@
     <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 chat-inner" #chatGeneral>
       <div *ngFor="let msg of chat_user_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
-           [ngClass]="{'text-danger fw-bold': msg.rank == 5 }"
+           [ngClass]="{'text-danger': msg.rank == 5 }"
            title="{{ msg.time*1000| date:'dd/MM, HH:mm'}}"
            class="fw-bold">{{msg.username}}</a>
         <span translate>:</span>
