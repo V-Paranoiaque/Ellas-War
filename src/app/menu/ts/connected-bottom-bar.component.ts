@@ -71,6 +71,9 @@ export class ConnectedBottomBar extends CommonBottomBar {
       if(this.chatActive != 'general') {
         this.chat_user_nb++;
       }
+      else {
+        this.scrollGeneral();
+      }
     });
     
     /*** Alliance chat ***/
@@ -87,6 +90,9 @@ export class ConnectedBottomBar extends CommonBottomBar {
       this.chat_alli_msgs.push(msg[0]);
       if(this.chatActive != 'alliance') {
         this.chat_alli_nb++;
+      }
+      else {
+        this.scrollAlliance();
       }
     });
   }
