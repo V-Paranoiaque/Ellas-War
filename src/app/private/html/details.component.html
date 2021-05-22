@@ -1,3 +1,23 @@
+<div class="modal fade" id="detailsHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 translate>Legend</h5>
+      </div>
+      <div class="modal-body">
+        <div translate>You don't have enough resources to maintain your production.</div>
+        <div translate>The productions in yellow are degraded and those in red stopped.</div>
+        <div translate>Check your resources to restore your production, it is probably currently at zero.</div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <common-top-bar active="details"></common-top-bar>
 
 <div class="col-lg-10 col-md-10 col-12 main">
@@ -68,6 +88,11 @@
                                   'd-none d-sm-table-cell': menuMode != 2}">
                     <span *ngIf="user.getVarRess(ress.key) > 0">+</span>{{user.getVarRess(ress.key)*3600*24| number:'': this.translate.currentLang }}
                     <id-to-ress [ress_id]="ress.key"></id-to-ress>
+                    <span *ngIf="user.getPropertyNb(ress.key) == 0 && getVariation(ress.key) < 0 || getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)"
+                          data-bs-toggle="modal" data-bs-target="#detailsHelp"
+                          role="button" title="{{'Help'|translate}}" translate>
+                      <ic-icon [icIcon]="questionCircle"></ic-icon>
+                    </span>
                   </td>
                 </tr>
                 <tr *ngIf="user.getLevel() >= user.getLevelRess('ambrosia')">

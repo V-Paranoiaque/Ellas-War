@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
+
 @Component({
   templateUrl: '../html/details.component.html',
   styleUrls: ['../css/details.component.css']
@@ -12,7 +14,9 @@ export class Details {
   public nbvariation:any;
   public variation:any;
   public menuMode:number;
-
+  
+  questionCircle = questionCircle;
+  
   constructor(public user: User, public translate: TranslateService) {
     this.variation = {
       'drachma': 0,
