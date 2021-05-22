@@ -93,3 +93,7 @@
 .level-quest {
   background-color: #ffc107;
 }
+
+.badge.badge-mini {
+  font-size: .65em;
+}

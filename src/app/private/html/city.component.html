@@ -188,7 +188,8 @@
                  (click)="selectArmy(army.code)"
                  title="{{ army.name | translate }}">
               <ew-icon name="{{ army.code }}"></ew-icon>
-              <div class="badge bg-secondary">
+              <div class="badge bg-secondary"
+                   [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
                 {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
               </div>
             </div>
