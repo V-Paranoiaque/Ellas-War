@@ -45,11 +45,11 @@
         <div class="card-body card-body-zero d-flex">
           <h1 class="btn"
               [ngClass]="{'btn-success': menu == 0,
-                          'btn-white': menu == 1}"
+                          'btn-transparent fw-bold': menu == 1}"
               (click)="setMenu(1)"
               translate>Connect</h1>
           <h1 class="btn"
-              [ngClass]="{'btn-white': menu == 0,
+              [ngClass]="{'btn-transparent fw-bold': menu == 0,
                           'btn-red': menu == 1}"
               (click)="setMenu(0)"
               translate>Register</h1>
