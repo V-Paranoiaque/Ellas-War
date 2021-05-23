@@ -54,8 +54,9 @@ a {
   color: white;
 }
 
-.card-body {
+.card {
   background-image: url("../img/backgrounds/marble-background.svg");
+  text-shadow: -1px 1px 0 #FFF, 1px 1px 0 #FFF, 1px -1px 0 #FFF, -1px -1px 0 #FFF;
 }
 
 .card-footer:first-letter {
