@@ -1,1 +1,4 @@
 /*** This file is replaced by platform's specific CSS ***/
+.platform-web {
+  display: inline-block;
+}
