@@ -91,3 +91,8 @@
 .chat-button .btn {
   font-size: 1.2rem;
 }
+
+.row {
+  margin-right: calc(var(--bs-gutter-x)/ -2);
+  margin-left: calc(var(--bs-gutter-x)/ -2);
+}
