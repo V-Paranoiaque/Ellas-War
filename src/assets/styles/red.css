@@ -79,7 +79,8 @@ input.form-control, textarea.form-control {
   border-radius: 0px;
 }
 
-.btn {
+.btn,
+.card-button {
   text-shadow: none;
 }
 

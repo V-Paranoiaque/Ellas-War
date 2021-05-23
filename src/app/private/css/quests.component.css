@@ -108,6 +108,7 @@ div.containBar {
 .progression-quest-container>div.quest_available{
   background: rgba(52, 152, 219,1.0);
   color: white;
+  text-shadow: none;
 }
 
 .progression-quest-container>div.quest_available:before {
