@@ -78,6 +78,7 @@
   background-color: grey;
   box-shadow: 0 0 10px rgba(0, 0, 0, .7) inset;
   color: white;
+  text-shadow: none;
 }
 
 .card-body .progress .progress-text {
@@ -92,6 +93,10 @@
 
 .level-quest {
   background-color: #ffc107;
+}
+
+.badge {
+  text-shadow: none;
 }
 
 .badge.badge-mini {

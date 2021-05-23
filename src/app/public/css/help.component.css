@@ -4,6 +4,10 @@
   display: flex;
 }
 
+.col-12 .card-body:nth-child(2) {
+  border-bottom: 0px;
+}
+
 .col-12 .card > .card-body {
   flex:1;
   display: flex;
