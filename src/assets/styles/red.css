@@ -80,7 +80,8 @@ input.form-control, textarea.form-control {
 }
 
 .btn,
-.card-button {
+.card-button,
+.card-body.new {
   text-shadow: none;
 }
 
