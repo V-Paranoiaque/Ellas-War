@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     });
     
     //oauth
-    this.socket.on('connectionFB', (token:string) => {
+    this.socket.on('connectionToken', (token:string) => {
       localStorage.removeItem('token');
       
       if(token) {
