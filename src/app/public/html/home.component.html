@@ -55,6 +55,33 @@
               translate>Register</h1>
         </div>
         <div class="card-body text-center" *ngIf="menu == 0">
+          <div [ngSwitch]="rerror" class="text-danger text-center fw-bold" *ngIf="rerror > 0">
+            <div *ngSwitchCase="1" translate>
+              Please, enter your username
+            </div>
+            <div *ngSwitchCase="2" translate>
+              Please, enter your password
+            </div>
+            <div *ngSwitchCase="3" translate>
+              Enter your email
+            </div>
+            <div *ngSwitchCase="4" translate>
+              Your username must be at least 6 characters.
+            </div>
+            <div *ngSwitchCase="5" translate>
+              Your password must be at least 8 characters.
+            </div>
+            <div *ngSwitchCase="6" translate>
+              Enter your email
+            </div>
+            <div *ngSwitchCase="7" translate>
+              This username is already used
+            </div>
+            <div *ngSwitchCase="8" translate>
+              This email is already used
+            </div>
+            <br/>
+          </div>
           <form method="POST" action="/register" 
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
             <fieldset>

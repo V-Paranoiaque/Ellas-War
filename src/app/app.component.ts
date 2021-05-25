@@ -73,12 +73,24 @@ export class AppComponent implements OnInit {
     this.socket.on('config', (data:any) => {
       this.user.setConfig(data);
     });
+    
+    //oauth
+    this.socket.on('connectionFB', (token:string) => {
+      localStorage.removeItem('token');
+      
+      if(token) {
+        this.socket.emit('ewAuth', {'token': token});
+        localStorage.setItem('token', token);
+        this.router.navigate(['/city']);
+      }
+    });
   }
   
   ngOnDestroy() {
     this.socket.removeListener('ewAuth');
     this.socket.removeListener('user');
     this.socket.removeListener('config');
+    this.socket.removeListener('connectionFB');
   }
   
   setStyle() {

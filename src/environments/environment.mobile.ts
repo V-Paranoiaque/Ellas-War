@@ -7,4 +7,7 @@ export const environment = {
     allowed: ['pink', 'red']
   },
   SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com',
+  facebook: {
+    client_id: 173897253017254
+  }
 };

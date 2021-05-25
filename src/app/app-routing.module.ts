@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 //Public
+import { Auth } from './public/ts/auth.component';
 import { AllianceMembers } from './public/ts/alliance-members.component';
 import { AllianceProfile } from './public/ts/alliance-profile.component';
 import { Community } from './public/ts/community.component';
@@ -73,6 +74,8 @@ import { PageNotFound } from './public/ts/pagenotfound.component';
 let routes: Routes = [];
 
 routes = [
+  { path: 'auth', component: Auth },
+  { path: 'auth/:provider', component: Auth },
   { path: 'community', component: Community },
   { path: 'confidentiality', component: Confidentiality },
   { path: 'confirm/:id/:check', component: Confirm },

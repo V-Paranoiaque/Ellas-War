@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
+import { User } from '../../../services/user.service';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -20,6 +21,7 @@ export class Home {
   public localevars:any;
   public menu:number;
   public newsList:any;
+  public rerror: number;
   
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -31,13 +33,14 @@ export class Home {
   
   constructor(private socket: Socket, private formBuilder: FormBuilder,
               private http: HttpClient, public translate: TranslateService, 
-              private router: Router,) {
+              public user: User, private router: Router,) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
     this.loginForm = this.formBuilder.group({});
     this.registerForm = this.formBuilder.group({});
     this.menu = 0;
+    this.rerror = 0;
   }
   
   ngOnInit() {
@@ -60,6 +63,14 @@ export class Home {
       email: '',
       password: ''
     });
+    
+    this.socket.on('register', (data:any) => {
+      this.rerror = data.error;
+    });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('register');
   }
   
   onSubmit(data:object) {
@@ -73,5 +84,15 @@ export class Home {
   
   setMenu(id:number) {
     this.menu = id;
+  }
+  
+  oauthFB() {
+    let clientId = environment.facebook.client_id;
+    let redirectURI = this.user.config.url+'/auth/facebook/';
+    
+    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
+                           '?client_id='+clientId +
+                           '&redirect_uri='+ redirectURI +
+                           '&scope=email&response_type=token';
   }
 }

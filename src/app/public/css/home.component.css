@@ -3,10 +3,6 @@
   background-color: transparent;
   border-color: transparent;
 }
-.btn-grey {
-  background-color: lightgrey;
-  border-color: lightgrey;
-}
 
 .btn-red {
   background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));

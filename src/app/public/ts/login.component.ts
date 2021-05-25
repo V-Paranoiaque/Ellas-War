@@ -4,6 +4,9 @@ import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../../environments/environment';
 
+import facebookIcon from '@iconify-icons/logos/facebook';
+import googleIcon from '@iconify-icons/logos/google-icon';
+
 @Component({
   templateUrl: '../html/login.component.html'
 })
@@ -12,6 +15,9 @@ export class Login implements OnInit {
 
   loginForm: FormGroup;
   loginError: number;
+  
+  facebookIcon = facebookIcon;
+  googleIcon = googleIcon;
   
   constructor(private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});

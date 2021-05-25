@@ -118,3 +118,8 @@ input.form-control, textarea.form-control {
 .card.card-column a.link-secondary {
   color: #dc3545;
 }
+
+.btn-grey {
+  background-color: lightgrey;
+  border-color: lightgrey;
+}

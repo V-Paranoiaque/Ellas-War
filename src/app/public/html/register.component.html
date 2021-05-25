@@ -7,6 +7,35 @@
         <div class="card-body">
           <h1 class="text-center" translate>Join Ellas War</h1>
           <br/>
+          
+          <div [ngSwitch]="rerror" class="text-danger text-center fw-bold" *ngIf="rerror > 0">
+            <div *ngSwitchCase="1" translate>
+              Please, enter your username
+            </div>
+            <div *ngSwitchCase="2" translate>
+              Please, enter your password
+            </div>
+            <div *ngSwitchCase="3" translate>
+              Enter your email
+            </div>
+            <div *ngSwitchCase="4" translate>
+              Your username must be at least 6 characters.
+            </div>
+            <div *ngSwitchCase="5" translate>
+              Your password must be at least 8 characters.
+            </div>
+            <div *ngSwitchCase="6" translate>
+              Enter your email
+            </div>
+            <div *ngSwitchCase="7" translate>
+              This username is already used
+            </div>
+            <div *ngSwitchCase="8" translate>
+              This email is already used
+            </div>
+            <br/>
+          </div>
+          
           <form method="POST" action="/register" 
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
             <input type="text" name="username" placeholder="{{'Username'|translate}}"
@@ -25,6 +54,17 @@
                       type="submit" translate>Register</button>
             </div>
           </form>
+          <br/>
+          <div class="d-flex">
+            <button class="btn btn-primary flex-grow-1">
+              <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+              {{'Login with Facebook'|translate}}
+            </button>
+            <button class="btn btn-grey flex-grow-1">
+              <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
+              {{'Login with Google'|translate}}
+            </button>
+          </div>
         </div>
       </div>
     </div>
