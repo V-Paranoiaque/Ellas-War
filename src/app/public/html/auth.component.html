@@ -13,11 +13,11 @@
               <div *ngSwitchCase="'facebook'" translate>Connection using Facebook in progress</div>
               <div *ngSwitchCase="'google'" translate>Connection using Google in progress</div>
               <div *ngSwitchDefault>
-                <button class="btn btn-primary" (click)="oauthFB()">
+                <button class="btn btn-primary" (click)="user.oauthFB()">
                   <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
                   {{'Login with Facebook'|translate}}
                 </button>
-                <button class="btn btn-grey">
+                <button class="btn btn-grey" (click)="user.oauthGoogle()">
                   <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
                   {{'Login with Google'|translate}}
                 </button>

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
+import { environment } from './../environments/environment';
 
 @Injectable()
 export class User {
@@ -8,7 +10,7 @@ export class User {
   init: number;
   newMsg: number;
   
-  constructor(private router: Router) {
+  constructor(private router: Router, private oauthService: OAuthService) {
     this.config = {
       'weather': 'sun'
     };
@@ -273,5 +275,34 @@ export class User {
   }
   getNewMsg() {
     return this.newMsg;
+  }
+  
+  paramToObject(url:string) {
+    let resultList:any = {};
+    
+    let list = url.split('&')
+    
+    for(let i=0;i<list.length;i++){
+      let tmp:any = list[i].split('=');
+      if(tmp.length >= 2) {
+        resultList[tmp[0]] = tmp[1];
+      }
+    }
+    
+    return resultList;
+  }
+  
+  oauthFB() {
+    let clientId = environment.facebook.client_id;
+    let redirectURI = this.config.url+'/auth/facebook/';
+    
+    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
+                           '?client_id='+clientId +
+                           '&redirect_uri='+ redirectURI +
+                           '&scope=email&response_type=token';
+  }
+  
+  oauthGoogle() {
+    this.oauthService.initImplicitFlow();
   }
 }

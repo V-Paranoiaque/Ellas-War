@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthConfig, OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,13 +25,25 @@ export class AppComponent implements OnInit {
   constructor(private socket: Socket, public user: User,
               private router: Router,
               public translate: TranslateService,
-              public sanitizer: DomSanitizer) {
+              public sanitizer: DomSanitizer,
+              private oauthService: OAuthService) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
     
     this.cssBase = './assets/styles/';
     this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
     this.cssPlatform = this.sanitizer.bypassSecurityTrustResourceUrl(this.cssBase+'platform.css');
+    
+    let authConfig:AuthConfig = {
+      issuer: 'https://accounts.google.com',
+      redirectUri: window.location.origin + '/auth/google', 
+      clientId: environment.google.client_id,
+      scope: 'openid profile email',
+      strictDiscoveryDocumentValidation: false
+    };
+    
+    this.oauthService.configure(authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
   
   ngOnInit() {

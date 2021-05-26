@@ -13,6 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@visurel/iconify-angular';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { AdminComponent } from './admin/admin.component';
 import { MenuComponent } from './menu/menu.component';
@@ -42,7 +43,8 @@ import { PrivateComponent } from './private/private.component';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    OAuthModule.forRoot()
   ],
   providers: [Socket, User],
   bootstrap: [AppComponent]

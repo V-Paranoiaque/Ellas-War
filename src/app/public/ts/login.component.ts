@@ -52,14 +52,4 @@ export class Login implements OnInit {
   onSubmit(data:object) {
     this.socket.emit('connection', data);
   }
-  
-  oauthFB() {
-    let clientId = environment.facebook.client_id;
-    let redirectURI = this.user.config.url+'/auth/facebook/';
-    
-    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
-                           '?client_id='+clientId +
-                           '&redirect_uri='+ redirectURI +
-                           '&scope=email&response_type=token';
-  }
 }

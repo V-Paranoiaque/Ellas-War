@@ -13,5 +13,8 @@ export const environment = {
   SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com',
   facebook: {
     client_id: 989771815127197
+  },
+  google: {
+    client_id: '516434350883-uqounu7irl3u2jl42dph661dsqg0vvnj.apps.googleusercontent.com'
   }
 };

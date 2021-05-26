@@ -33,7 +33,7 @@ export class Home {
   
   constructor(private socket: Socket, private formBuilder: FormBuilder,
               private http: HttpClient, public translate: TranslateService, 
-              public user: User, private router: Router,) {
+              public user: User, private router: Router) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
@@ -84,15 +84,5 @@ export class Home {
   
   setMenu(id:number) {
     this.menu = id;
-  }
-  
-  oauthFB() {
-    let clientId = environment.facebook.client_id;
-    let redirectURI = this.user.config.url+'/auth/facebook/';
-    
-    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
-                           '?client_id='+clientId +
-                           '&redirect_uri='+ redirectURI +
-                           '&scope=email&response_type=token';
   }
 }

@@ -1,6 +1,5 @@
 # TODO
 ## General
-* Connection using Google
 * Discover page
 * Links to discover on the home page
 * Save 404
