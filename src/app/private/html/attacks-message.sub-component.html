@@ -91,7 +91,7 @@
   <br/>
   <strong translate>Souls saved</strong>
   <strong translate>:</strong>
-  {{info.hades_saving}}
+  {{info.hades_saving| number:'': this.translate.currentLang}}
 </div>
 
 <div class="col-table text-center" *ngIf="hasCorruptedRes()">
