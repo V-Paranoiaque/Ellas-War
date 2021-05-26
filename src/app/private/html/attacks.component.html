@@ -803,6 +803,41 @@
                 </button>
               </div>
             </div>
+            
+            <div class="text-center fw-bold text-danger"
+                 [ngSwitch]="attackPossibleError"
+                 *ngIf="attackPossible == 0">
+              <br/>
+              <div *ngSwitchCase="2" translate>Your army is empty</div>
+              <div *ngSwitchCase="3" translate>Error in the target</div>
+              <div *ngSwitchCase="4" translate>You can't attack a player who is in the same alliance than you</div>
+              <div *ngSwitchCase="5" translate>You don't have enough mints to launch an attack</div>
+              <div *ngSwitchCase="7" translate>This city's field has changed, refresh your attack list</div>
+              <div *ngSwitchCase="8" translate>You can't attack an Admin</div>
+              <div *ngSwitchCase="9" translate>This player is too low level for you</div>
+              <div *ngSwitchCase="10" translate>You have already attacked this player</div>
+              <div *ngSwitchCase="11" translate>You have a pact with this player's alliance</div>
+              <div *ngSwitchCase="12" translate>This city has suffered a lot, it needs time to recover</div>
+              <div *ngSwitchCase="13" translate>This city is on strike and can't be attacked</div>
+              <div *ngSwitchCase="14" translate>You are on strike, you can't attack in war</div>
+              <div *ngSwitchCase="15" translate>You are in trial period, you can't attack during a war</div>
+              <div *ngSwitchCase="16" translate>You don't have war attacks available</div>
+              <div *ngSwitchCase="17" translate>This city has too much or not enoug field</div>
+              <div *ngSwitchCase="18" translate>This city has received too many war attacks</div>
+              <div *ngSwitchCase="19" translate>The level of this city is too low</div>
+              <div *ngSwitchCase="20" translate>The level of this city is too high</div>
+              <div *ngSwitchCase="21" translate>Your army is empty</div>
+              <div *ngSwitchCase="22" translate>This city's field is too high</div>
+              <div *ngSwitchCase="23" translate>This city's field is too low</div>
+              <div *ngSwitchCase="24" translate>This city's level is too high</div>
+              <div *ngSwitchCase="25" translate>This city has received too many attacks</div>
+              <div *ngSwitchCase="26" translate>Your army is empty</div>
+              <div *ngSwitchCase="27" translate>Your army is empty</div>
+              <div *ngSwitchCase="28" translate>You have done too many attacks</div>
+              <div *ngSwitchCase="29" translate>Artemis is protecting this city</div>
+              <div *ngSwitchDefault>{{ attackPossibleError }}</div>
+              <div *ngSwitchCase="" translate></div>
+            </div>
           </div>
           
           <!-- Prepare to attack -->

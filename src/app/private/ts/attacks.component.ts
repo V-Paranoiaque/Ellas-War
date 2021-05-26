@@ -49,6 +49,7 @@ export class Attacks {
   public spyInfo:any;
   public targetProfile:any;
   public attackPossible:any;
+  public attackPossibleError:number;
   public waveAttackSum:any;
   public sanctuariesAttackInfo:any;
   public sanctuariesDefense:any;
@@ -84,6 +85,7 @@ export class Attacks {
     this.currentMsgReset();
     this.linkSaved = 0;
     this.msgList = [];
+    this.attackPossibleError = 0;
     
     /* Mode
      * 0: History
@@ -168,7 +170,8 @@ export class Attacks {
       this.targetProfile = data;
     });
     this.socket.on('attackPossible',(data:any) => {
-      this.attackPossible = data.result;
+      this.attackPossible      = data.result;
+      this.attackPossibleError = data.error;
     });
     this.socket.on('furyPossible',(data:any) => {
       this.furyPossible = data;
