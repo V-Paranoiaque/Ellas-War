@@ -107,24 +107,26 @@
             </span>
           </div>
           <div class="card-body d-flex align-items-center">
-            <div class="flex-grow-1" *ngIf="user.getLevel() < 10">
-              <a [routerLink]="['/quests']">
-                <strong translate>Quests</strong><strong translate>:</strong> 
-                {{ user.getQuest() }}/{{ user.getQuestMax() }}
-              </a>
-            </div>
-            <div class="flex-grow-1" *ngIf="user.getLevel() >= 1">
-              <strong translate>Quest progress</strong>
-              <strong translate>:</strong>
-              <ic-icon [icIcon]="questionCircle"
-                       data-bs-toggle="modal" data-bs-target="#QuestsInfo"
-                       role="button"></ic-icon>
-              <div class="progress" role="button" [routerLink]="['/quests']">
-                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100"
-                     [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
-                <div class="progress-text">
-                  {{ user.getPropertyNb('quest_step') }}/{{7}}
+            <div class="flex-grow-1 text-center">
+              <div *ngIf="user.getLevel() < 10">
+                <a [routerLink]="['/quests']">
+                  <strong translate>Quests</strong><strong translate>:</strong> 
+                  {{ user.getQuest() }}/{{ user.getQuestMax() }}
+                </a>
+              </div>
+              <div *ngIf="user.getLevel() >= 1">
+                <strong translate>Quest progress</strong>
+                <strong translate>:</strong>
+                <ic-icon [icIcon]="questionCircle"
+                         data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                         role="button"></ic-icon>
+                <div class="progress" role="button" [routerLink]="['/quests']">
+                  <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                       aria-valuemin="0" aria-valuemax="100"
+                       [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
+                  <div class="progress-text">
+                    {{ user.getPropertyNb('quest_step') }}/{{7}}
+                  </div>
                 </div>
               </div>
             </div>
