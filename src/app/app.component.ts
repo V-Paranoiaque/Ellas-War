@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthConfig, OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
