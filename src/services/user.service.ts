@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
+import { Socket } from './socketio.service';
+
+declare var facebookConnectPlugin:any;
 
 @Injectable()
 export class User {
@@ -10,7 +13,7 @@ export class User {
   init: number;
   newMsg: number;
   
-  constructor(private router: Router, private oauthService: OAuthService) {
+  constructor(private router: Router, private oauthService: OAuthService, private socket: Socket) {
     this.config = {
       'weather': 'sun'
     };
@@ -293,13 +296,29 @@ export class User {
   }
   
   oauthFB() {
-    let clientId = environment.facebook.client_id;
-    let redirectURI = this.config.url+'/auth/facebook/';
-    
-    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
-                           '?client_id='+clientId +
-                           '&redirect_uri='+ redirectURI +
-                           '&scope=email&response_type=token';
+    if(environment.mobile == 0) {
+      let clientId = environment.facebook.client_id;
+      let redirectURI = this.config.url+'/auth/facebook/';
+      
+      window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
+                             '?client_id='+clientId +
+                             '&redirect_uri='+ redirectURI +
+                             '&scope=email&response_type=token';
+    }
+    else {
+      facebookConnectPlugin.login(["public_profile", "email"])
+      .then(() => {
+        facebookConnectPlugin.getAccessToken()
+        .then((success:any) => {
+          // success
+          var msg = {
+            'id': success.id,
+            'token': success
+          };
+          this.socket.emit('mobileFB', msg);
+        });
+      });
+    }
   }
   
   oauthGoogle() {

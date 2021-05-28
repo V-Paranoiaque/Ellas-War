@@ -17,6 +17,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <preference name="android-minSdkVersion" value="22" />
+        <preference name="AndroidXEnabled" value="true" />
         <splash density="land-ldpi" src="res/android/splash-land-ldpi.png" />
         <splash density="land-mdpi" src="res/android/splash-land-mdpi.png" />
         <splash density="land-hdpi" src="res/android/splash-land-hdpi.png" />
@@ -105,6 +106,11 @@
         <splash src="res/windows/Wide310x150Logo.png" target="Wide310x150Logo" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-facebook-connect" spec="~2.3.0">
+        <variable name="FACEBOOK_IOS_SDK_VERSION" value="9.2.0" />
+    </plugin>
+    <variable name="APP_ID" value="173897253017254" />
+    <variable name="APP_NAME" value="EllasWar" />
     <preference name="windows-target-version" value="10.0" />
     <preference name="WindowsStoreDisplayName" value="Ellas War" />
 </widget>

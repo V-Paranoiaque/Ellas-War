@@ -33,6 +33,7 @@
     "@visurel/iconify-angular": "^11.0.0",
     "angular-oauth2-oidc": "^10.0.3",
     "bootstrap": "^5.0.1",
+    "cordova-plugin-facebook-connect": "2.3.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.6.7",
@@ -86,7 +87,12 @@
       "electron"
     ],
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-facebook-connect": {
+        "APP_ID": "173897253017254",
+        "APP_NAME": "EllasWar",
+        "FACEBOOK_IOS_SDK_VERSION": "9.2.0"
+      }
     }
   }
 }
