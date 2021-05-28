@@ -34,6 +34,7 @@
     "angular-oauth2-oidc": "^10.0.3",
     "bootstrap": "^5.0.1",
     "cordova-plugin-facebook-connect": "2.3.0",
+    "cordova-plugin-googleplus": "8.5.2",
     "ngx-bootstrap": "^6.2.0",
     "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.6.7",
@@ -92,6 +93,11 @@
         "APP_ID": "173897253017254",
         "APP_NAME": "EllasWar",
         "FACEBOOK_IOS_SDK_VERSION": "9.2.0"
+      },
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.516434350883-qo9nfv1jnp5jvgqjikcnjdvf9g0piutp",
+        "WEB_APPLICATION_CLIENT_ID": "516434350883-qo9nfv1jnp5jvgqjikcnjdvf9g0piutp.apps.googleusercontent.com",
+        "PLAY_SERVICES_VERSION": "15.0.1"
       }
     }
   }
