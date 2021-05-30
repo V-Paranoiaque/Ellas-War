@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -31,7 +32,8 @@ export class Options {
   public pauseNb: number;
   public sound: number;
 
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(private socket: Socket, public user: User, private router: Router,
+              public translate: TranslateService) {
     this.user.checkPermissions([1,2,3,4,5]);
     
     this.accountPasswordPossible = 0;
@@ -97,7 +99,7 @@ export class Options {
       }
     });
     this.socket.on('reset', () => {
-      document.location.href="/";
+      this.router.navigate([''])
     });
     this.socket.on('soundModify', (sound:number) => {
       this.sound = sound;

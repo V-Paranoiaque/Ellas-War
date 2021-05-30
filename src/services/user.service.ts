@@ -339,4 +339,14 @@ export class User {
       });
     }
   }
+  
+  disconnect() {
+    localStorage.removeItem('token');
+    this.socket.emit('deconnection');
+    
+    this.info.id = 0;
+    this.info.mstatus = 0;
+    
+    this.router.navigate(['/']);
+  }
 }

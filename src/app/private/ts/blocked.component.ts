@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: '../html/blocked.component.html',
@@ -8,14 +9,14 @@ import { User } from '../../../services/user.service';
 })
 
 export class Blocked {
-  constructor(public user: User, private socket: Socket) {
+  constructor(public user: User, private socket: Socket, private router: Router) {
   }
   
   ngOnInit() {
     this.user.checkPermissions([3]);
     
     this.socket.on('reset', () => {
-      document.location.href="/";
+      this.router.navigate(['/'])
     });
   }
   

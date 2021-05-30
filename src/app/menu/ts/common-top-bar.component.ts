@@ -35,8 +35,8 @@ export class CommonTopBar implements OnInit {
         this.user.setUserRess(data)
       }
     });
-    this.socket.on('redirect', function() {
-      document.location.href="/";
+    this.socket.on('redirect', () => {
+      this.router.navigate(['/'])
     });
   }
   
@@ -44,5 +44,9 @@ export class CommonTopBar implements OnInit {
     this.socket.removeListener('user');
     this.socket.removeListener('ress');
     this.socket.removeListener('redirect');
+  }
+  
+  disconnect() {
+    this.user.disconnect();
   }
 }

@@ -29,10 +29,4 @@ export class BlockedTopBar extends CommonTopBar {
       this.router.navigate(['/blocked'])
     }
   }
-  
-  disconnect() {
-    localStorage.removeItem('token');
-    this.socket.emit('deconnection');
-    document.location.href="/";
-  }
 }

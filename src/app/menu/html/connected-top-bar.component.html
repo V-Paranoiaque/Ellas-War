@@ -93,7 +93,8 @@
            [ngClass]="{'active': active == 'support'}">
           <ic-icon [icIcon]="questionCircle"></ic-icon>
         </a>
-        <a class="nav-link" role="button" (click)="disconnect()">
+        <a class="nav-link" [routerLink]="['']"
+           role="button" (click)="disconnect()">
           <ic-icon [icIcon]="powerOff"></ic-icon>
         </a>
       <img src="assets/img/ornaments/column-mini.png" alt="Pillar">

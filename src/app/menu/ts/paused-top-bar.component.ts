@@ -29,10 +29,4 @@ export class PausedTopBar extends CommonTopBar {
       this.router.navigate(['/paused'])
     }
   }
-  
-  disconnect() {
-    localStorage.removeItem('token');
-    this.socket.emit('deconnection');
-    document.location.href="/";
-  }
 }

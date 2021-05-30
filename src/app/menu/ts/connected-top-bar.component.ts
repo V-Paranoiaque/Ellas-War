@@ -61,10 +61,4 @@ export class ConnectedTopBar extends CommonTopBar {
   ngOnDestroy() {
     this.socket.removeListener('msgNewNb');
   }
-  
-  disconnect() {
-    localStorage.removeItem('token');
-    this.socket.emit('deconnection');
-    document.location.href="/";
-  }
 }
