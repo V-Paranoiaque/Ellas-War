@@ -284,8 +284,8 @@ export class User {
     let resultList:any = {};
     
     let list = url.split('&')
-    
-    for(let i=0;i<list.length;i++){
+    let size:number = list.length;
+    for(let i=0;i<size;i++){
       let tmp:any = list[i].split('=');
       if(tmp.length >= 2) {
         resultList[tmp[0]] = tmp[1];
