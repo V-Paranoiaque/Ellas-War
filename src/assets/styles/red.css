@@ -121,5 +121,12 @@ input.form-control, textarea.form-control {
 
 .btn-grey {
   background-color: lightgrey;
-  border-color: lightgrey;
+  border-color: silver;
 }
+
+.btn-grey:hover {
+  background-color: silver;
+  border-color: darkgrey;
+}
+
+
