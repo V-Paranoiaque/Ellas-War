@@ -27,6 +27,7 @@ export class Register implements OnInit {
   
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+      server: this.socket.server,
       username: '',
       email: '',
       password: ''
@@ -45,13 +46,13 @@ export class Register implements OnInit {
     this.socket.emit('register', data);
   }
   
-  oauthFB() {
-    let clientId = environment.facebook.client_id;
-    let redirectURI = this.user.config.url+'/auth/facebook/';
-    
-    window.location.href = 'https://www.facebook.com/v10.0/dialog/oauth'+
-                           '?client_id='+clientId +
-                           '&redirect_uri='+ redirectURI +
-                           '&scope=email&response_type=token';
+  selectServer() {
+    if(environment.mobile == 1 || this.socket.local) {
+      this.socket.setupSocketConnection(this.registerForm.controls['server'].value);
+    }
+    else {
+      //Redirect to the selected server
+      this.socket.redirect(this.registerForm.controls['server'].value);
+    }
   }
 }

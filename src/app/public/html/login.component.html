@@ -16,6 +16,14 @@
           
           <form method="POST" action="/login" 
                 [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+            <label class="fw-bold" for="server" translate>Server</label>
+            <select class="form-control mb-2" name="server"
+                    id="server" formControlName="server"
+                    (change)="selectServer()">
+              <option value="fr" translate>French</option>
+              <option value="en" translate>English</option>
+              <option value="next" translate>Development (French)</option>
+            </select>
             <label class="fw-bold" for="username" translate>Username</label>
             <input class="form-control mb-2" type="text" id="username"
                    placeholder="{{'Login'|translate}}" name="username" 

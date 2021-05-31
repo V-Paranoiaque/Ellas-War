@@ -54,11 +54,13 @@ export class Home {
       });
     
     this.loginForm = this.formBuilder.group({
+      server: this.socket.server,
       username: '',
       password: '',
       mobile: environment.mobile
     });
     this.registerForm = this.formBuilder.group({
+      server: this.socket.server,
       username: '',
       email: '',
       password: ''
@@ -84,5 +86,33 @@ export class Home {
   
   setMenu(id:number) {
     this.menu = id;
+  }
+  
+  selectServerRegister() {
+    if(environment.mobile == 1 || this.socket.local) {
+      //Modify the server
+      this.loginForm.patchValue({
+        server: this.registerForm.controls['server'].value
+      });
+      this.socket.setupSocketConnection(this.registerForm.controls['server'].value);
+    }
+    else {
+      //Redirect to the selected server
+      this.socket.redirect(this.registerForm.controls['server'].value);
+    }
+  }
+  
+  selectServerLogin() {
+    if(environment.mobile == 1 || this.socket.local) {
+      //Modify the server
+      this.registerForm.patchValue({
+        server: this.loginForm.controls['server'].value
+      });
+      this.socket.setupSocketConnection(this.loginForm.controls['server'].value);
+    }
+    else {
+      //Redirect to the selected server
+      this.socket.redirect(this.loginForm.controls['server'].value);
+    }
   }
 }

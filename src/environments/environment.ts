@@ -10,6 +10,10 @@ export const environment = {
     default: 'red',
     allowed: ['pink', 'red']
   },
+  language: {
+    default: 'en',
+    allowed: ['en', 'fr']
+  },
   SOCKET_ENDPOINT: 'https://ewnextv2.ellaswar.com',
   facebook: {
     client_id: 989771815127197

@@ -19,6 +19,7 @@ export class Options {
   public errorAccountSave: number;
   
   public confirm:string;
+  public currentLanguage:string;
   public currentStyle:string;
   public description:string;
   public image:any;
@@ -59,8 +60,8 @@ export class Options {
     this.oldPassword = '';
     this.pauseAllowed = 0;
     this.pauseNb = 4;
-    
     this.sound = this.user.getPropertyNb('sound');
+    this.currentLanguage = this.user.getProperty('language');
     this.currentStyle = this.user.getProperty('style');
   }
   
@@ -98,6 +99,9 @@ export class Options {
         this.oldPassword = 'notused';
       }
     });
+    this.socket.on('languageModify', (language:string) => {
+        this.translate.use(language);
+    });
     this.socket.on('reset', () => {
       this.router.navigate([''])
     });
@@ -117,6 +121,7 @@ export class Options {
     this.socket.removeListener('accountPasswordPossible');
     this.socket.removeListener('accountRenameCost');
     this.socket.removeListener('accountRename');
+    this.socket.removeListener('languageModify');
     this.socket.removeListener('pauseAllowed');
     this.socket.removeListener('reset');
     this.socket.removeListener('soundModify');
@@ -201,6 +206,11 @@ export class Options {
   styleChange(event:any) {
     let style = event.target.value;
     this.socket.emit('styleModify', style);
+  }
+  
+  languageChange(event:any) {
+    let language = event.target.value;
+    this.socket.emit('languageModify', language);
   }
   
   uploadImage(event:any){

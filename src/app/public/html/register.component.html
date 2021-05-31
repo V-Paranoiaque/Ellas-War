@@ -38,12 +38,29 @@
           
           <form method="POST" action="/register" 
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+            <label class="fw-bold" for="server" translate>Server</label>
+            <select class="form-control" name="server"
+                    id="server" formControlName="server"
+                    (change)="selectServer()">
+              <option value="fr" translate>French</option>
+              <option value="en" translate>English</option>
+              <option value="next" translate>Development (French)</option>
+            </select>
+            
+            <label class="fw-bold" for="username" translate>Username</label>
             <input type="text" name="username" placeholder="{{'Username'|translate}}"
-                   class="form-control" formControlName="username" required/>
+                   class="form-control" formControlName="username" 
+                   id="username" required/>
+            
+            <label class="fw-bold" for="email" translate>Email</label>
             <input type="email" name="email" placeholder="{{'Email'|translate}}"
-                   class="form-control" formControlName="email" required />
+                   class="form-control" formControlName="email" 
+                   id="email" required />
+            
+            <label class="fw-bold" for="password-re" translate>Password</label>
             <input type="password" name="password" placeholder="{{'Password'|translate}}"
-                   class="form-control" formControlName="password" required/>
+                   class="form-control" formControlName="password"
+                   id="password" required/>
             <div class="text-center" translate>
               <a class="text-danger fw-light"
                   href="/lostpassword" translate>Forgot your password?</a>
@@ -56,11 +73,11 @@
           </form>
           <br/>
           <div class="d-flex">
-            <button class="btn btn-primary flex-grow-1" (click)="oauthFB()">
+            <button class="btn btn-primary flex-grow-1" (click)="user.oauthFB()">
               <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
               {{'Login with Facebook'|translate}}
             </button>
-            <button class="btn btn-grey flex-grow-1">
+            <button class="btn btn-grey flex-grow-1" (click)="user.oauthGoogle()">
               <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
               {{'Login with Google'|translate}}
             </button>

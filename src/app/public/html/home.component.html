@@ -86,6 +86,16 @@
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
             <fieldset>
               <legend class="visually-hidden" translate>Register on the game</legend>
+              
+              <label class="fw-bold" for="server-re" translate>Server</label>
+              <select class="mb-2 form-control" name="server"
+                      id="server-re" formControlName="server"
+                      (change)="selectServerRegister()">
+                <option value="fr" translate>French</option>
+                <option value="en" translate>English</option>
+                <option value="next" translate>Development (French)</option>
+              </select>
+              
               <label class="fw-bold" for="username-re" translate>Username</label>
               <input type="text" name="username" placeholder="{{'Username'|translate}}"
                      class="mb-2 form-control" formControlName="username"
@@ -117,6 +127,16 @@
                 [formGroup]="loginForm" (ngSubmit)="onSubmitConnect(loginForm.value)">
             <fieldset>
               <legend class="visually-hidden" translate>Login to the game</legend>
+              
+              <label class="fw-bold" for="server-re" translate>Server</label>
+              <select class="mb-2 form-control" name="server"
+                      id="server-re" formControlName="server"
+                      (change)="selectServerLogin()">
+                <option value="fr" translate>French</option>
+                <option value="en" translate>English</option>
+                <option value="next" translate>Development (French)</option>
+              </select>
+              
               <label class="fw-bold" for="username" translate>Username</label>
               <input class="form-control mb-2" type="text" id="username"
                      placeholder="{{'Login'|translate}}" name="username" 

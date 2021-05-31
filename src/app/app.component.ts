@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
               public translate: TranslateService,
               public sanitizer: DomSanitizer,
               private oauthService: OAuthService) {
-    translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang('en');
+    translate.addLangs(environment.language.allowed);
+    translate.setDefaultLang(environment.language.default);
     
     this.cssBase = './assets/styles/';
     this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
     this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
     
-    this.socket.setupSocketConnection();
+    this.socket.setupSocketConnection(this.socket.detectServer());
     
     if(!localStorage.getItem('token')) {
       this.user.setInit();
@@ -66,6 +66,8 @@ export class AppComponent implements OnInit {
         if(this.cssUrl != newStyle) {
           this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
         }
+        
+        this.translate.use(this.user.getProperty('language'));
         
         //For component to reload after login
         let currentUrl = this.router.url;
@@ -103,6 +105,32 @@ export class AppComponent implements OnInit {
     this.socket.removeListener('user');
     this.socket.removeListener('config');
     this.socket.removeListener('connectionFB');
+  }
+  
+  detectLanguage() {
+    let language:any;
+    if(localStorage.getItem('language')) {
+      language = localStorage.getItem('language');
+      
+      if(!environment.language.allowed.includes(language)) {
+        language = this.detectBrowserLanguage();
+      }
+    }
+    else {
+      language = this.detectBrowserLanguage();
+    }
+    
+    localStorage.setItem('language', language);
+    
+    return language;
+  }
+  
+  detectBrowserLanguage() {
+    let browserLanguage = navigator.language.split('-')[0];
+    if(!environment.language.allowed.includes(browserLanguage)) {
+      return environment.language.default;
+    }
+    return browserLanguage;
   }
   
   setStyle() {

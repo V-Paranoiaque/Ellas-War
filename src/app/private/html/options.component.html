@@ -59,6 +59,14 @@
           </select>
         </div>
         <div class="mb-3">
+          <label class="fw-bold" for="language" translate>Language</label>
+          <select class="form-control" (change)="languageChange($event)" 
+                  [(ngModel)]="currentLanguage">
+            <option value="fr" translate>French</option>
+            <option value="en" translate>English</option>
+          </select>
+        </div>
+        <div class="mb-3">
           <div class="form-check form-switch">
             <input id="gameSound" class="form-check-input" 
                    type="checkbox" [(ngModel)]="sound"

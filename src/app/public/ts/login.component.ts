@@ -39,6 +39,7 @@ export class Login implements OnInit {
     });
     
     this.loginForm = this.formBuilder.group({
+      server: this.socket.server,
       username: '',
       password: '',
       mobile: environment.mobile
@@ -51,5 +52,15 @@ export class Login implements OnInit {
   
   onSubmit(data:object) {
     this.socket.emit('connection', data);
+  }
+  
+  selectServer() {
+    if(environment.mobile == 1 || this.socket.local) {
+      this.socket.setupSocketConnection(this.loginForm.controls['server'].value);
+    }
+    else {
+      //Redirect to the selected server
+      this.socket.redirect(this.loginForm.controls['server'].value);
+    }
   }
 }
