@@ -89,6 +89,24 @@ export class City {
     this.socket.removeListener('dailyCoCheck');
   }
   
+  armyDisplay(info:any) {
+    //Temple unit
+    if(info.temple) {
+      for(let temple in info.temple) {
+        if(this.user.getPropertyNb(temple) == 0) {
+          return false;
+        }
+      }
+    }
+    
+    //Altars
+    if(this.user.getPropertyNb(info.power) < info.power_level) {
+      return false;
+    }
+    
+    return true;
+  }
+  
   dailCo() {
     return Object.keys(this.dailyCo).length;
   }

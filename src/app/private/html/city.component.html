@@ -183,16 +183,18 @@
             </span>
           </div>
           <div class="card-body no-padding">
-            <div *ngFor="let army of user.getArmy()"
-                 class="frame frame-20" role="button"
-                 [ngClass]="{'level-quest': levelQuest(army.code)}"
-                 data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                 (click)="selectArmy(army.code)"
-                 title="{{ army.name | translate }}">
-              <ew-icon name="{{ army.code }}"></ew-icon>
-              <div class="badge bg-secondary"
-                   [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
-                {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
+            <div *ngFor="let army of user.getArmy()">
+              <div class="frame frame-20" role="button"
+                   [ngClass]="{'level-quest': levelQuest(army.code)}"
+                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                   (click)="selectArmy(army.code)"
+                   title="{{ army.name | translate }}"
+                   *ngIf="armyDisplay(army)">
+                <ew-icon name="{{ army.code }}"></ew-icon>
+                <div class="badge bg-secondary"
+                     [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
+                  {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
+                </div>
               </div>
             </div>
           </div>
