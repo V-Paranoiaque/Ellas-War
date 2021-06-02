@@ -27,8 +27,6 @@ export class Auth {
     this.user.checkPermissions([0]);
     
     let provider:any = this.route.snapshot.paramMap.get('provider');
-    console.log(provider);
-    console.log(this.route.snapshot);
     
     switch(provider) {
       case 'facebook':

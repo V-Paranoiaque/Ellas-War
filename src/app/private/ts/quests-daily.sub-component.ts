@@ -35,7 +35,6 @@ export class QuestsDaily {
     this.showDelete = (this.showDelete+1)%2;
   }
   questGiveup(quest:any) {
-    console.log(quest);
     this.socket.emit('myQuestGiveup', {
       'quest_id': quest.quest_id,
       'quest_current': quest.quest_current,

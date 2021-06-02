@@ -24,7 +24,6 @@ export class TempleChangeInfoPopup {
   ngOnInit() {
     this.socket.on('templeChange', (data:number) => {
       this.templeChangeError = data;
-      console.log(data);
       this.socket.emit('templeChangeHistory');
     });
     this.socket.on('templeChangeHistory', (data:any) => {
