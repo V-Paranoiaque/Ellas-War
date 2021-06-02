@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   templateUrl: '../html/lostpassword.component.html'
@@ -10,9 +12,16 @@ export class LostPassword {
   public lostpasswordError:number;
   public lostvalue:string;
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private titleService: Title,
+              public translate: TranslateService) {
     this.lostpasswordError = 0;
     this.lostvalue = '';
+  }
+  
+  ngOnInit() {
+    this.translate.get('Forgot your password').subscribe((res: string) => {
+      this.titleService.setTitle(res);
+    });
   }
   
   lostpassword() {

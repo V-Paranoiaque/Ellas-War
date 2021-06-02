@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../services/user.service';
+import { Title } from '@angular/platform-browser';
 
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
               private router: Router,
               public translate: TranslateService,
               public sanitizer: DomSanitizer,
-              private oauthService: OAuthService) {
+              private oauthService: OAuthService,
+              private titleService: Title) {
     translate.addLangs(environment.language.allowed);
     translate.setDefaultLang(environment.language.default);
     
@@ -141,5 +143,9 @@ export class AppComponent implements OnInit {
     }
     
     return this.cssBase+style + '.css';
+  }
+  
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
   }
 }
