@@ -48,7 +48,7 @@ export class Register implements OnInit {
   
   selectServer() {
     if(environment.mobile == 1 || this.socket.local) {
-      this.socket.setupSocketConnection(this.registerForm.controls['server'].value);
+      this.socket.makeConnection(this.registerForm.controls['server'].value);
     }
     else {
       //Redirect to the selected server

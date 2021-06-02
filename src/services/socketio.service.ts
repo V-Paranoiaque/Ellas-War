@@ -16,7 +16,17 @@ export class Socket {
     this.server = '';
   }
   
+  makeConnection(server:string) {
+    localStorage.setItem('server', server);
+    this.setupSocketConnection(this.getServerUrl(server))
+  }
+  
   setupSocketConnection(server:string) {
+    //Close previous connection
+    if(this.socket) {
+      this.socket.close();
+    }
+    
     this.socket = io(server);
     
     this.socket.on("connect", () => {
@@ -64,21 +74,20 @@ export class Socket {
       let server;
       if(localStorage.getItem('server')) {
         let local:any = localStorage.getItem('server');
-        server = this.getServer(local);
+        server = this.getServerUrl(local);
         
         if(server != '') {
-          this.server = server;
+          this.server = local;
           return server;
         }
         localStorage.removeItem('server');
       }
       
       let language = this.detectLanguage();
-      server = this.getServer(language);
+      server = this.getServerUrl(language);
       
       if(server != '') {
-        localStorage.setItem('server', server);
-        this.server = server;
+        this.server = language;
         return server;
       }
       else {
@@ -88,7 +97,7 @@ export class Socket {
     }
   }
   
-  getServer(server: string) {
+  getServerUrl(server: string) {
     switch(server) {
       case 'fr':
         return 'https://www.ellaswar.com';
@@ -101,7 +110,7 @@ export class Socket {
   }
   
   redirect(server: string) {
-    window.location.href = this.getServer(server);
+    window.location.href = this.getServerUrl(server);
   }
   
   /**

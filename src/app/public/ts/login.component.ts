@@ -56,7 +56,7 @@ export class Login implements OnInit {
   
   selectServer() {
     if(environment.mobile == 1 || this.socket.local) {
-      this.socket.setupSocketConnection(this.loginForm.controls['server'].value);
+      this.socket.makeConnection(this.loginForm.controls['server'].value);
     }
     else {
       //Redirect to the selected server

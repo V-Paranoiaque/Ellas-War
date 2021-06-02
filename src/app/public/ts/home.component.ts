@@ -94,7 +94,7 @@ export class Home {
       this.loginForm.patchValue({
         server: this.registerForm.controls['server'].value
       });
-      this.socket.setupSocketConnection(this.registerForm.controls['server'].value);
+      this.socket.makeConnection(this.registerForm.controls['server'].value);
     }
     else {
       //Redirect to the selected server
@@ -108,7 +108,7 @@ export class Home {
       this.registerForm.patchValue({
         server: this.loginForm.controls['server'].value
       });
-      this.socket.setupSocketConnection(this.loginForm.controls['server'].value);
+      this.socket.makeConnection(this.loginForm.controls['server'].value);
     }
     else {
       //Redirect to the selected server
