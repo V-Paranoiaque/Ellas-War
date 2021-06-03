@@ -29,7 +29,7 @@ export class ConnectedTopBar extends CommonTopBar {
     super(socket, router, user);
     
     this.audio = new Audio();
-    this.audio.src = "../../assets/audio/2042.mp3";
+    this.audio.src = "./assets/audio/2042.mp3";
     this.audio.load();
   }
   
