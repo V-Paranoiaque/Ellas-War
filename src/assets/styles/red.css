@@ -82,7 +82,8 @@ input.form-control, textarea.form-control {
 .btn,
 .card-button,
 .card-body.new,
-.progress-text {
+.progress-text,
+.page-item .active {
   text-shadow: none;
 }
 
