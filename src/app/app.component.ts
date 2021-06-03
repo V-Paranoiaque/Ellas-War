@@ -4,9 +4,7 @@ import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../services/user.service';
-import { Title } from '@angular/platform-browser';
-
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -49,8 +47,8 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.translate.use('fr');
     registerLocaleData(localeFr, 'fr');
+    this.translate.use(this.socket.detectLanguage());
     
     this.socket.setupSocketConnection(this.socket.detectServer());
     
@@ -107,24 +105,6 @@ export class AppComponent implements OnInit {
     this.socket.removeListener('user');
     this.socket.removeListener('config');
     this.socket.removeListener('connectionFB');
-  }
-  
-  detectLanguage() {
-    let language:any;
-    if(localStorage.getItem('language')) {
-      language = localStorage.getItem('language');
-      
-      if(!environment.language.allowed.includes(language)) {
-        language = this.detectBrowserLanguage();
-      }
-    }
-    else {
-      language = this.detectBrowserLanguage();
-    }
-    
-    localStorage.setItem('language', language);
-    
-    return language;
   }
   
   detectBrowserLanguage() {

@@ -16,9 +16,9 @@ export class Socket {
     this.server = '';
   }
   
-  makeConnection(server:string) {
+  setServer(server:string) {
+    this.server = server;
     localStorage.setItem('server', server);
-    this.setupSocketConnection(this.getServerUrl(server))
   }
   
   setupSocketConnection(server:string) {
@@ -123,9 +123,11 @@ export class Socket {
       language = this.detectBrowserLanguage();
     }
     
-    localStorage.setItem('language', language);
-    
     return language;
+  }
+  
+  saveLanguage(language:string) {
+    localStorage.setItem('language', language);
   }
   
   detectBrowserLanguage() {

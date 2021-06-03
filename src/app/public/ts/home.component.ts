@@ -90,11 +90,8 @@ export class Home {
   
   selectServerRegister() {
     if(environment.mobile == 1 || this.socket.local) {
-      //Modify the server
-      this.loginForm.patchValue({
-        server: this.registerForm.controls['server'].value
-      });
-      this.socket.makeConnection(this.registerForm.controls['server'].value);
+      this.socket.setServer(this.registerForm.controls['server'].value);
+      this.user.reload();
     }
     else {
       //Redirect to the selected server
@@ -104,11 +101,8 @@ export class Home {
   
   selectServerLogin() {
     if(environment.mobile == 1 || this.socket.local) {
-      //Modify the server
-      this.registerForm.patchValue({
-        server: this.loginForm.controls['server'].value
-      });
-      this.socket.makeConnection(this.loginForm.controls['server'].value);
+      this.socket.setServer(this.loginForm.controls['server'].value);
+      this.user.reload();
     }
     else {
       //Redirect to the selected server

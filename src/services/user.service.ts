@@ -349,4 +349,11 @@ export class User {
     
     this.router.navigate(['/']);
   }
+  
+  reload() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
 }
