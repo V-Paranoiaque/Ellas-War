@@ -108,6 +108,10 @@ export class Storeroom {
     this.storeroom_ress[trade.resource_id] = trade.remaining;
   }
   
+  setRess() {
+    this.socket.emit("storeroomMin", this.storeroomRess);
+  }
+  
   storeroomBuy(resource_id:any, quantity:any, rate:any) {
     let msg = {
       'quantity': quantity,

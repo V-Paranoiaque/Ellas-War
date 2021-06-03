@@ -35,7 +35,8 @@
                 <input type="number" placeholder="0" step="0.001" min="0"
                        class="form-control" [(ngModel)]="storeroomRate">
               </div>
-              <select class="form-control" [(ngModel)]="storeroomRess">
+              <select class="form-control" [(ngModel)]="storeroomRess"
+                      (change)="setRess()">
                 <option value="1" translate>Food</option>
                 <option value="2" translate>Water</option>
                 <option value="3" translate>Wood</option>
