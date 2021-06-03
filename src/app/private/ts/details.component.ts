@@ -52,12 +52,31 @@ export class Details {
   
   ngOnInit() {
     this.user.checkPermissions([1]);
-    this.defineRess();
+    
+    //Process the productions/consumptions
+    this.defineRessBuildingsConso();
+    this.defineRessBuildingsProd();
+    this.defineRessArmy();
+    this.defineRessAlliance();
   }
   
-  defineRess() {
+  defineRessBuildingsConso() {
     let buildingList = this.user.getBuildings();
-    let armyList    = this.user.getArmy();
+    
+    for (let i in buildingList) {
+      if(this.user.getPropertyNb(buildingList[i].code) > 0) {
+        if(buildingList[i].consumption) {
+          for(let consum in buildingList[i].consumption) {
+            this.variation[consum] -= (buildingList[i].consumption[consum] * this.user.getPropertyNb(buildingList[i].code));
+            this.nbvariation[consum]++;
+          }
+        }
+      }
+    }
+  }
+  
+  defineRessBuildingsProd() {
+    let buildingList = this.user.getBuildings();
     
     for (let i in buildingList) {
       if(this.user.getPropertyNb(buildingList[i].code) > 0) {
@@ -67,14 +86,12 @@ export class Details {
             this.nbvariation[prod]++;
           }
         }
-        if(buildingList[i].consumption) {
-          for(let consum in buildingList[i].consumption) {
-            this.variation[consum] -= (buildingList[i].consumption[consum] * this.user.getPropertyNb(buildingList[i].code));
-            this.nbvariation[consum]++;
-          }
-        }
       }
     }
+  }
+  
+  defineRessArmy() {
+    let armyList    = this.user.getArmy();
     
     for (let i in armyList) {
       if(this.user.getPropertyNb(armyList[i].code) > 0 && armyList[i].consumption) {
@@ -84,7 +101,9 @@ export class Details {
         }
       }
     }
-    
+  }
+  
+  defineRessAlliance() {
     let name;
     for(let ress in this.variation) {
       name = 'tax_'+ress;
