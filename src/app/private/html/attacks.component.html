@@ -111,12 +111,12 @@
                   {{ player.field | number:'': this.translate.currentLang}}
                 </td>
                 <td class="text-center">
-                  <button class="btn btn-outline-primary"
+                  <button class="btn btn-primary"
                           *ngIf="user.getPropertyNb('apollo') == 0"
                           (click)="spy(player.membre_id)">
                     <ic-icon [icon]="fistRaised"></ic-icon>
                   </button>
-                  <button class="btn btn-outline-primary"
+                  <button class="btn btn-primary"
                           *ngIf="user.getPropertyNb('apollo') == 1"
                           (click)="observe(player.membre_id)">
                     <ic-icon [icon]="eyeIcon"></ic-icon>
@@ -124,8 +124,8 @@
                   
                   <button class="btn"
                           *ngIf="user.getPropertyNb('demeter') == 1"
-                          [ngClass]="{'btn-outline-danger': player.fury_allowed == 0,
-                                      'btn-outline-success': player.fury_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.fury_allowed == 0,
+                                      'btn-success': player.fury_allowed == 1}"
                           (click)="prepareFury(player.membre_id)">
                     <ic-icon [icon]="fireIcon"></ic-icon>
                   </button>
@@ -133,15 +133,15 @@
                              user.getPropertyNb('zeus') == 1"/>
                   <button class="btn"
                           *ngIf="user.getPropertyNb('zeus') == 1"
-                          [ngClass]="{'btn-outline-danger': player.lightning_allowed == 0,
-                                      'btn-outline-success': player.lightning_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.lightning_allowed == 0,
+                                      'btn-success': player.lightning_allowed == 1}"
                           (click)="prepareLightning(player.membre_id)">
                     <ic-icon [icon]="boltIcon"></ic-icon>
                   </button>
                   
                   <button class="btn"
-                          [ngClass]="{'btn-outline-danger': player.attack_allowed == 0,
-                                      'btn-outline-success': player.attack_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.attack_allowed == 0,
+                                      'btn-success': player.attack_allowed == 1}"
                           (click)="prepareAttack(player.membre_id)">
                     <ic-icon [icon]="swordIcon"></ic-icon>
                   </button>
@@ -367,18 +367,18 @@
                       </p>
                     </div>
                     <div class="card-body text-center" *ngIf="sanctuary.membre_id == user.getId()">
-                      <button class="btn btn-outline-primary"
+                      <button class="btn btn-primary"
                               (click)="sanctuaryManage(sanctuary.sanctuaries_id)">
                         <ic-icon [icon]="twotoneFence"></ic-icon>
                       </button>
                     </div>
                     <div class="card-body text-center" *ngIf="sanctuary.membre_id != user.getId()">
-                      <button class="btn btn-outline-primary"
+                      <button class="btn btn-primary"
                               (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
                               *ngIf="user.getPropertyNb('apollo') == 0">
                         <ic-icon [icon]="fistRaised"></ic-icon>
                       </button>
-                      <button class="btn btn-outline-primary"
+                      <button class="btn btn-primary"
                               (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
                               *ngIf="user.getPropertyNb('apollo') == 1">
                         <ic-icon [icon]="eyeIcon"></ic-icon>
@@ -447,12 +447,12 @@
                   {{ player.field | number:'': this.translate.currentLang}}
                 </td>
                 <td class="text-center">
-                  <button class="btn btn-outline-primary"
+                  <button class="btn btn-primary"
                           *ngIf="user.getPropertyNb('apollo') == 0"
                           (click)="spy(player.membre_id)">
                     <ic-icon [icon]="fistRaised"></ic-icon>
                   </button>
-                  <button class="btn btn-outline-primary"
+                  <button class="btn btn-primary"
                           *ngIf="user.getPropertyNb('apollo') == 1"
                           (click)="observe(player.membre_id)">
                     <ic-icon [icon]="eyeIcon"></ic-icon>
@@ -460,8 +460,8 @@
                   
                   <button class="btn"
                           *ngIf="user.getPropertyNb('demeter') == 1"
-                          [ngClass]="{'btn-outline-danger': player.fury_allowed == 0,
-                                      'btn-outline-success': player.fury_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.fury_allowed == 0,
+                                      'btn-success': player.fury_allowed == 1}"
                           (click)="prepareFury(player.membre_id)">
                     <ic-icon [icon]="fireIcon"></ic-icon>
                   </button>
@@ -469,15 +469,15 @@
                              user.getPropertyNb('zeus') == 1"/>
                   <button class="btn"
                           *ngIf="user.getPropertyNb('zeus') == 1"
-                          [ngClass]="{'btn-outline-danger': player.lightning_allowed == 0,
-                                      'btn-outline-success': player.lightning_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.lightning_allowed == 0,
+                                      'btn-success': player.lightning_allowed == 1}"
                           (click)="prepareLightning(player.membre_id)">
                     <ic-icon [icon]="boltIcon"></ic-icon>
                   </button>
                   
                   <button class="btn"
-                          [ngClass]="{'btn-outline-danger': player.attack_allowed == 0,
-                                      'btn-outline-success': player.attack_allowed == 1}"
+                          [ngClass]="{'btn-danger': player.attack_allowed == 0,
+                                      'btn-success': player.attack_allowed == 1}"
                           (click)="prepareAttack(player.membre_id)">
                     <ic-icon [icon]="swordIcon"></ic-icon>
                   </button>
@@ -946,12 +946,12 @@
               <div>
                 <br/>
                 <br/>
-                <button class="btn btn-outline-primary"
+                <button class="btn btn-primary"
                         (click)="sanctuariesSpy(sanctuariesSpyInfo.id)"
                         *ngIf="user.getPropertyNb('apollo') == 0">
                   <ic-icon [icon]="fistRaised"></ic-icon>
                 </button>
-                <button class="btn btn-outline-primary"
+                <button class="btn btn-primary"
                         (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
                         *ngIf="user.getPropertyNb('apollo') == 1">
                   <ic-icon [icon]="eyeIcon"></ic-icon>
