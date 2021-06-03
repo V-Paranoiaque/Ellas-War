@@ -73,80 +73,84 @@
             <div class="visually-hidden" id="getAttackListDesc"
                  translate>Attackable cities</div>
             <table class="table align-middle" aria-labelledby="getAttackListDesc">
-              <tr class="text-center">
-                <th scope="col"></th>
-                <th scope="col" class="d-none d-sm-table-cell" translate>V</th>
-                <th *ngIf="user.getDatas() && user.getDatas().attack && 
-                           user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    scope="col" translate>XP</th>
-                <th scope="col" translate>Field</th>
-                <th scope="col"></th>
-              </tr>
-              <tr *ngFor="let player of getAttackList()">
-                <td>
-                  <a [routerLink]="['/profile/'+player.membre_id]"
-                     class="no-padding">
-                    {{ player.username }}
-                    <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
-                  </a>
-                  
-                  <ic-icon [icon]="gemIcon"
-                           *ngIf="player.diamond_begin > 0"></ic-icon>
-                  
-                  <a [routerLink]="['/allianceprofile/'+player.alliance]"
-                     class="fw-lighter no-padding" *ngIf="player.alliance > 0">
-                    <br/>
-                    {{ player.alliance_name }}
-                  </a>
-                </td>
-                <td class="d-none d-sm-table-cell text-end">
-                  {{player.victory | number:'': this.translate.currentLang}}
-                </td>
-                <td *ngIf="user.getDatas() && user.getDatas().attack && 
-                           user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    class="text-end">
-                  {{player.xp | number:'': this.translate.currentLang}}
-                </td>
-                <td class="text-end">
-                  {{ player.field | number:'': this.translate.currentLang}}
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary"
-                          *ngIf="user.getPropertyNb('apollo') == 0"
-                          (click)="spy(player.membre_id)">
-                    <ic-icon [icon]="fistRaised"></ic-icon>
-                  </button>
-                  <button class="btn btn-primary"
-                          *ngIf="user.getPropertyNb('apollo') == 1"
-                          (click)="observe(player.membre_id)">
-                    <ic-icon [icon]="eyeIcon"></ic-icon>
-                  </button>
-                  
-                  <button class="btn"
-                          *ngIf="user.getPropertyNb('demeter') == 1"
-                          [ngClass]="{'btn-danger': player.fury_allowed == 0,
-                                      'btn-success': player.fury_allowed == 1}"
-                          (click)="prepareFury(player.membre_id)">
-                    <ic-icon [icon]="fireIcon"></ic-icon>
-                  </button>
-                  <br *ngIf="user.getPropertyNb('demeter') == 1 &&
-                             user.getPropertyNb('zeus') == 1"/>
-                  <button class="btn"
-                          *ngIf="user.getPropertyNb('zeus') == 1"
-                          [ngClass]="{'btn-danger': player.lightning_allowed == 0,
-                                      'btn-success': player.lightning_allowed == 1}"
-                          (click)="prepareLightning(player.membre_id)">
-                    <ic-icon [icon]="boltIcon"></ic-icon>
-                  </button>
-                  
-                  <button class="btn"
-                          [ngClass]="{'btn-danger': player.attack_allowed == 0,
-                                      'btn-success': player.attack_allowed == 1}"
-                          (click)="prepareAttack(player.membre_id)">
-                    <ic-icon [icon]="swordIcon"></ic-icon>
-                  </button>
-                </td>
-              </tr>
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>V</th>
+                  <th *ngIf="user.getDatas() && user.getDatas().attack && 
+                             user.getLevel() >= user.getDatas().attack.level_xp_min"
+                      scope="col" translate>XP</th>
+                  <th scope="col" translate>Field</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let player of getAttackList()">
+                  <td>
+                    <a [routerLink]="['/profile/'+player.membre_id]"
+                       class="no-padding">
+                      {{ player.username }}
+                      <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                    </a>
+                    
+                    <ic-icon [icon]="gemIcon"
+                             *ngIf="player.diamond_begin > 0"></ic-icon>
+                    
+                    <a [routerLink]="['/allianceprofile/'+player.alliance]"
+                       class="fw-lighter no-padding" *ngIf="player.alliance > 0">
+                      <br/>
+                      {{ player.alliance_name }}
+                    </a>
+                  </td>
+                  <td class="d-none d-sm-table-cell text-end">
+                    {{player.victory | number:'': this.translate.currentLang}}
+                  </td>
+                  <td *ngIf="user.getDatas() && user.getDatas().attack && 
+                             user.getLevel() >= user.getDatas().attack.level_xp_min"
+                      class="text-end">
+                    {{player.xp | number:'': this.translate.currentLang}}
+                  </td>
+                  <td class="text-end">
+                    {{ player.field | number:'': this.translate.currentLang}}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary"
+                            *ngIf="user.getPropertyNb('apollo') == 0"
+                            (click)="spy(player.membre_id)">
+                      <ic-icon [icon]="fistRaised"></ic-icon>
+                    </button>
+                    <button class="btn btn-primary"
+                            *ngIf="user.getPropertyNb('apollo') == 1"
+                            (click)="observe(player.membre_id)">
+                      <ic-icon [icon]="eyeIcon"></ic-icon>
+                    </button>
+                    
+                    <button class="btn"
+                            *ngIf="user.getPropertyNb('demeter') == 1"
+                            [ngClass]="{'btn-danger': player.fury_allowed == 0,
+                                        'btn-success': player.fury_allowed == 1}"
+                            (click)="prepareFury(player.membre_id)">
+                      <ic-icon [icon]="fireIcon"></ic-icon>
+                    </button>
+                    <br *ngIf="user.getPropertyNb('demeter') == 1 &&
+                               user.getPropertyNb('zeus') == 1"/>
+                    <button class="btn"
+                            *ngIf="user.getPropertyNb('zeus') == 1"
+                            [ngClass]="{'btn-danger': player.lightning_allowed == 0,
+                                        'btn-success': player.lightning_allowed == 1}"
+                            (click)="prepareLightning(player.membre_id)">
+                      <ic-icon [icon]="boltIcon"></ic-icon>
+                    </button>
+                    
+                    <button class="btn"
+                            [ngClass]="{'btn-danger': player.attack_allowed == 0,
+                                        'btn-success': player.attack_allowed == 1}"
+                            (click)="prepareAttack(player.membre_id)">
+                      <ic-icon [icon]="swordIcon"></ic-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             
             <div class="input-group" *ngIf="getAttacksPageNb() > 1">
@@ -408,81 +412,85 @@
             <div class="visually-hidden" id="getAttackWarsListDesc"
                  translate>Attackable cities at war</div>
             <table class="table align-middle" aria-labelledby="getAttackWarsListDesc">
-              <tr class="text-center">
-                <th scope="col"></th>
-                <th scope="col" translate>V</th>
-                <th *ngIf="user.getDatas() && user.getDatas().attack && 
-                           user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    scope="col" translate>XP</th>
-                <th scope="col" translate>Field</th>
-                <th scope="col"></th>
-              </tr>
-              <tr *ngFor="let player of getAttackWarsList()">
-                <td>
-                  <a [routerLink]="['/profile/'+player.membre_id]"
-                     class="no-padding">
-                    {{ player.username }}
-                    <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
-                  </a>
-                  
-                  <ic-icon [icon]="gemIcon"
-                           *ngIf="player.diamond_begin > 0"></ic-icon>
-                  
-                  <a [routerLink]="['/allianceprofile/'+player.alliance]"
-                     class="fw-lighter no-padding"
-                     *ngIf="player.alliance > 0">
-                    <br/>
-                    {{ player.alliance_name }}
-                  </a>
-                </td>
-                <td class="text-end">
-                  {{player.victory | number:'': this.translate.currentLang}}
-                </td>
-                <td *ngIf="user.getDatas() && user.getDatas().attack && 
-                           user.getLevel() >= user.getDatas().attack.level_xp_min"
-                    class="text-end">
-                  {{player.xp | number:'': this.translate.currentLang}}
-                </td>
-                <td class="text-end">
-                  {{ player.field | number:'': this.translate.currentLang}}
-                </td>
-                <td class="text-center">
-                  <button class="btn btn-primary"
-                          *ngIf="user.getPropertyNb('apollo') == 0"
-                          (click)="spy(player.membre_id)">
-                    <ic-icon [icon]="fistRaised"></ic-icon>
-                  </button>
-                  <button class="btn btn-primary"
-                          *ngIf="user.getPropertyNb('apollo') == 1"
-                          (click)="observe(player.membre_id)">
-                    <ic-icon [icon]="eyeIcon"></ic-icon>
-                  </button>
-                  
-                  <button class="btn"
-                          *ngIf="user.getPropertyNb('demeter') == 1"
-                          [ngClass]="{'btn-danger': player.fury_allowed == 0,
-                                      'btn-success': player.fury_allowed == 1}"
-                          (click)="prepareFury(player.membre_id)">
-                    <ic-icon [icon]="fireIcon"></ic-icon>
-                  </button>
-                  <br *ngIf="user.getPropertyNb('demeter') == 1 &&
-                             user.getPropertyNb('zeus') == 1"/>
-                  <button class="btn"
-                          *ngIf="user.getPropertyNb('zeus') == 1"
-                          [ngClass]="{'btn-danger': player.lightning_allowed == 0,
-                                      'btn-success': player.lightning_allowed == 1}"
-                          (click)="prepareLightning(player.membre_id)">
-                    <ic-icon [icon]="boltIcon"></ic-icon>
-                  </button>
-                  
-                  <button class="btn"
-                          [ngClass]="{'btn-danger': player.attack_allowed == 0,
-                                      'btn-success': player.attack_allowed == 1}"
-                          (click)="prepareAttack(player.membre_id)">
-                    <ic-icon [icon]="swordIcon"></ic-icon>
-                  </button>
-                </td>
-              </tr>
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" translate>V</th>
+                  <th *ngIf="user.getDatas() && user.getDatas().attack && 
+                             user.getLevel() >= user.getDatas().attack.level_xp_min"
+                      scope="col" translate>XP</th>
+                  <th scope="col" translate>Field</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let player of getAttackWarsList()">
+                  <td>
+                    <a [routerLink]="['/profile/'+player.membre_id]"
+                       class="no-padding">
+                      {{ player.username }}
+                      <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
+                    </a>
+                    
+                    <ic-icon [icon]="gemIcon"
+                             *ngIf="player.diamond_begin > 0"></ic-icon>
+                    
+                    <a [routerLink]="['/allianceprofile/'+player.alliance]"
+                       class="fw-lighter no-padding"
+                       *ngIf="player.alliance > 0">
+                      <br/>
+                      {{ player.alliance_name }}
+                    </a>
+                  </td>
+                  <td class="text-end">
+                    {{player.victory | number:'': this.translate.currentLang}}
+                  </td>
+                  <td *ngIf="user.getDatas() && user.getDatas().attack && 
+                             user.getLevel() >= user.getDatas().attack.level_xp_min"
+                      class="text-end">
+                    {{player.xp | number:'': this.translate.currentLang}}
+                  </td>
+                  <td class="text-end">
+                    {{ player.field | number:'': this.translate.currentLang}}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-primary"
+                            *ngIf="user.getPropertyNb('apollo') == 0"
+                            (click)="spy(player.membre_id)">
+                      <ic-icon [icon]="fistRaised"></ic-icon>
+                    </button>
+                    <button class="btn btn-primary"
+                            *ngIf="user.getPropertyNb('apollo') == 1"
+                            (click)="observe(player.membre_id)">
+                      <ic-icon [icon]="eyeIcon"></ic-icon>
+                    </button>
+                    
+                    <button class="btn"
+                            *ngIf="user.getPropertyNb('demeter') == 1"
+                            [ngClass]="{'btn-danger': player.fury_allowed == 0,
+                                        'btn-success': player.fury_allowed == 1}"
+                            (click)="prepareFury(player.membre_id)">
+                      <ic-icon [icon]="fireIcon"></ic-icon>
+                    </button>
+                    <br *ngIf="user.getPropertyNb('demeter') == 1 &&
+                               user.getPropertyNb('zeus') == 1"/>
+                    <button class="btn"
+                            *ngIf="user.getPropertyNb('zeus') == 1"
+                            [ngClass]="{'btn-danger': player.lightning_allowed == 0,
+                                        'btn-success': player.lightning_allowed == 1}"
+                            (click)="prepareLightning(player.membre_id)">
+                      <ic-icon [icon]="boltIcon"></ic-icon>
+                    </button>
+                    
+                    <button class="btn"
+                            [ngClass]="{'btn-danger': player.attack_allowed == 0,
+                                        'btn-success': player.attack_allowed == 1}"
+                            (click)="prepareAttack(player.membre_id)">
+                      <ic-icon [icon]="swordIcon"></ic-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             
             <div class="input-group" *ngIf="getAttacksWarsPageNb() > 1">
