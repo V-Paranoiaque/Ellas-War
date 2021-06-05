@@ -44,6 +44,7 @@
   "-5% to the defense": "-5% aux forces défensives",
   "-5% to the defense of the Poseidon Wall": "-5% à la défense du mur de Poséidon",
   
+  "{ value } by Vecteezy": "{{ value }} par Vecteezy",
   "{ value } can still receive { qtt } Drachmas": "{{ value }} peut encore recevoir {{ qtt }} Drachmes",
   "{ value } from the alliance { name } has requested a pact to your alliance.": "{{ value }} de l'alliance {{ name }} a demandé un pacte à votre alliance.",
   "{ value } has accepted { name } in your alliance.": "{{ value }} a accepté {{ name }} dans votre alliance.",
@@ -1171,7 +1172,6 @@
   "Validate": "Valider",
   "Validated": "Validé",
   "Vary your field": "Faites varier votre terrain",
-  "Vectors by Vecteezy": "Vectors par Vecteezy",
   "Venerate the gods by": "Vénérez les dieux en <a href=\"/discoverthegame/temples\">bâtissant des temples en leur honneur</a>, en remerciement, ils vous aideront dans votre conquête !",
   "Victories": "Victoires",
   "Victories:": "Victoires :",
