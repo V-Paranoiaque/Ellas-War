@@ -148,7 +148,7 @@
           {{ info?.field | number:'': this.translate.currentLang }}
         </div>
         
-        <div class="input-group"
+        <div class="input-group mt-2"
              *ngIf="(info.nbmax == 0 || user.getPropertyNb(info.code) < info.nbmax) && user.getPropertyNb('volcano') == 0">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="info.buildNb" class="form-control"
@@ -157,7 +157,7 @@
                 (click)="buildingBuild()" translate>Build</span>
         </div>
         
-        <div class="input-group"
+        <div class="input-group mt-2"
              [hidden]="user.getPropertyNb(info.code) == 0 || (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)">
           <input type="number" placeholder="0" min="0" step="1"
                  [(ngModel)]="info.destructNb" class="form-control"
