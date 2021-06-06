@@ -34,7 +34,9 @@ a.no-padding {
     padding-bottom: 80px;
   }
 }
-
+.main-full {
+  min-height: calc(100vh - 161px);
+}
 .main-full.container .card {
   margin-top: calc(var(--bs-gutter-x)/ 2);
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
