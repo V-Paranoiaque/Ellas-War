@@ -43,12 +43,12 @@ export class ConnectedTopBar extends CommonTopBar {
     }, 0);
     
     this.socket.on('msgNewNb', (nb:number) => {
-      this.user.setNewMsg(nb)
+      let play = this.user.setNewMsg(nb)
       
       if(nb > 0) {
         this.favicon.href = 'assets/favicon-notif.png';
         
-        if(this.user.getPropertyNb('sound') == 1) {
+        if(this.user.getPropertyNb('sound') == 1 && play == 1) {
           this.audio.play();
         }
       }

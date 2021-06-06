@@ -274,7 +274,15 @@ export class User {
   }
   
   setNewMsg(nb:number) {
+    let previous = this.newMsg;
     this.newMsg = nb;
+    
+    if(previous >= this.newMsg) {
+      return 0
+    }
+    else {
+      return 1;
+    }
   }
   getNewMsg() {
     return this.newMsg;
