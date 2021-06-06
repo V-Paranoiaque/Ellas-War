@@ -43,20 +43,20 @@
 @media (max-width: 575px) {
   .card-body.no-padding .frame.frame-db {
     width: 20%;
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
 }
 
 @media (min-width: 576px) {
   .card-body.no-padding .frame.frame-db {
     width: calc(100%/7);
-    padding: 0.6rem;
+    padding: 0.8rem;
   }
 }
 
 .card-body.no-padding .frame.frame-20 {
   width: 20%;
-  padding: 0.6rem;
+  padding: 0.8rem;
 }
 
 #successBlock {
@@ -65,7 +65,7 @@
 
 #successBlock ew-icon {
   flex: 1;
-  padding: 0.6rem;
+  padding: 0.8rem;
 }
 
 #templesBlock img.disabled {
