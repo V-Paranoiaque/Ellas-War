@@ -53,6 +53,7 @@ a {
   background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
   color: white;
   text-shadow: none;
+  box-shadow: none;
 }
 
 .card {
@@ -75,7 +76,8 @@ a {
 }
 
 .card-body .progress, .btn,
-input.form-control, textarea.form-control {
+input.form-control, textarea.form-control,
+.card .card-header {
   border-radius: 0px;
 }
 
