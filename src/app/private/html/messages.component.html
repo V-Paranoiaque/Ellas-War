@@ -147,7 +147,7 @@
           <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight card-body"
                [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
                role="button" (click)="messageLoad(msg)">
-            <div class="p-2 bd-highlight border-top" *ngIf="getDeleteMode() == 1">
+            <div class="p-2 bd-highlight border-top d-flex" *ngIf="getDeleteMode() == 1">
               <input type="checkbox" [checked]="msg.isChecked" 
                      [(ngModel)]="msg.isChecked" />
             </div>
