@@ -242,7 +242,7 @@
           </div>
           <div class="card-body no-padding" id="templesBlock">
             <!-- Temple informations -->
-            <div class="frame frame-20"
+            <div class="frame frame-20" role=""
                  *ngIf="user.getPropertyNb('hermes') == 1"
                  (click)="selectTemples(1)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
@@ -368,27 +368,27 @@
             Success
           </div>
           <div class="card-body no-padding align-items-center" id="successBlock">
-            <ew-icon name="{{ getDivinBonusIcon(1) }}"
+            <ew-icon name="{{ getDivinBonusIcon(1) }}" role="button"
                      title="{{'General' | translate }}"
                      (click)="selectSuccess(1)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(2) }}"
+            <ew-icon name="{{ getDivinBonusIcon(2) }}" role="button"
                      title="{{'Constructions' | translate }}"
                      (click)="selectSuccess(2)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(3) }}"
+            <ew-icon name="{{ getDivinBonusIcon(3) }}" role="button"
                      title="{{'Alliance' | translate }}"
                      (click)="selectSuccess(3)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(5) }}"
+            <ew-icon name="{{ getDivinBonusIcon(5) }}" role="button"
                      title="{{'Attacks' | translate }}"
                      (click)="selectSuccess(5)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(6) }}"
+            <ew-icon name="{{ getDivinBonusIcon(6) }}" role="button"
                      title="{{'Mythology' | translate }}"
                      (click)="selectSuccess(6)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(7) }}"
+            <ew-icon name="{{ getDivinBonusIcon(7) }}" role="button"
                      title="{{'Feats of Strength' | translate }}"
                      (click)="selectSuccess(7)"
                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
