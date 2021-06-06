@@ -628,6 +628,7 @@
   
   "Lampad": "Lampade",
   "Lampads": "Lampades",
+  "Language": "Langue",
   "Last attacks": "Dernières attaques",
   "Last mouvements": "Derniers mouvements",
   "Last week": "La semaine dernière",
@@ -1201,6 +1202,7 @@
   "We use the information collected for the following purposes:": "Nous utilisons les renseignements collectés pour les finalités suivantes :",
   "Weather": "Météo",
   "Weather details": "Détails de la météo",
+  "Weather information": "Information sur la météo",
   "Web browser's language": "Langue du navigateur",
   "Wedding of Bronze": "Noces de Coquelicot",
   "Wedding of Iron": "Noces de Chypre",
@@ -1256,6 +1258,7 @@
   
   "You": "Vous",
   "You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.": "Vous pouvez attaquer une seconde fois un ennemi afin de l'affaiblir. Ne compte pas dans le score des guerres.",
+  "You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday ": "Vous pouvez vendre sur l'Agora, même le mercredi/samedi/dimanche",
   "You are allowed to sell in the Agora today, even if it's Sunday": "Vous pouvez vendre sur l'Agora, même si c'est dimanche",
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "Vous êtes sur le point de déclarer la guerre à l'alliance {{ value }}, celle-ci commencera dans 24h.",
   "You are in trial period, you can't attack during a war": "Vous êtes en période d'essai, vous ne pouvez pas participer aux guerres",
