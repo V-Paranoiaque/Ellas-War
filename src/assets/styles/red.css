@@ -22,12 +22,6 @@ a {
   color: black;
 }
 
-@media (max-width: 575px) {
-  .navbar-brand {
-    margin-left: 1rem;
-  }
-}
-
 .col-block-half:nth-child(odd) {
   padding-right: calc(var(--bs-gutter-x)/ 4);
 }
