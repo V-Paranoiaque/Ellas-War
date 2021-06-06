@@ -156,7 +156,7 @@
             <div class="input-group" *ngIf="getAttacksPageNb() > 1">
               <span class="input-group-text" role="button" (click)="setAttacksPage(1)">&lt;&lt;</span>
               <span class="input-group-text" role="button" (click)="setAttacksPage(attackPage, -1)">&lt;</span>
-              <select class="form-control" (change)="pageAttacksLoad($event)" [(ngModel)]="attackPage">
+              <select class="form-select" (change)="pageAttacksLoad($event)" [(ngModel)]="attackPage">
                 <option *ngFor="let item of [].constructor(getAttacksPageNb()); let i = index"
                         value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
               </select>
@@ -496,7 +496,7 @@
             <div class="input-group" *ngIf="getAttacksWarsPageNb() > 1">
               <span class="input-group-text" role="button" (click)="setAttacksWarsPage(1)">&lt;&lt;</span>
               <span class="input-group-text" role="button" (click)="setAttacksWarsPage(attackPage, -1)">&lt;</span>
-              <select class="form-control" (change)="pageAttacksWarsLoad($event)" [(ngModel)]="attackPage">
+              <select class="form-select" (change)="pageAttacksWarsLoad($event)" [(ngModel)]="attackPage">
                 <option *ngFor="let item of [].constructor(getAttacksWarsPageNb()); let i = index"
                         value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
               </select>

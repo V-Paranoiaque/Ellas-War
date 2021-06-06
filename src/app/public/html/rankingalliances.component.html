@@ -62,7 +62,7 @@
                     (click)="rankingPageChange(1)">&lt;&lt;</span>
               <span class="input-group-text" role="button"
                     (click)="rankingPageChange(rankingPage-1)">&lt;</span>
-              <select class="form-control" #mySelect
+              <select class="form-select" #mySelect
                       (change)="rankingPageChange(mySelect.value)"
                       [ngModel]="rankingPage">
                 <option *ngFor="let id of range(1, rankingMax)"

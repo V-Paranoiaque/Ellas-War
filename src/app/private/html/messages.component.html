@@ -168,7 +168,7 @@
         <div class="input-group" *ngIf="getMsgPageNb() > 1">
           <span class="input-group-text" role="button" (click)="setPage(1)">&lt;&lt;</span>
           <span class="input-group-text" role="button" (click)="setPage(currentPage, -1)">&lt;</span>
-          <select class="form-control" (change)="pageLoad($event)" [(ngModel)]="currentPage">
+          <select class="form-select" (change)="pageLoad($event)" [(ngModel)]="currentPage">
             <option *ngFor="let item of [].constructor(getMsgPageNb()); let i = index"
                     value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
           </select>

@@ -29,7 +29,7 @@
                            [(ngModel)]="give.player" 
                            aria-describedby="player">
                   </div>
-                  <select class="form-control" [(ngModel)]="give.resource">
+                  <select class="form-select" [(ngModel)]="give.resource">
                     <option *ngFor="let res of ressList; let index = index;" value="{{ index }}">
                       {{ res | titlecase | translate }}
                     </option>
@@ -41,7 +41,7 @@
                            [(ngModel)]="give.quantity"
                            aria-describedby="quantity">
                   </div>
-                  <select class="form-control" [(ngModel)]="give.reason">
+                  <select class="form-select" [(ngModel)]="give.reason">
                     <option value="1" translate>Paypal</option>
                     <option value="2" translate>Refund</option>
                     <option value="3" translate>Present</option>

@@ -40,7 +40,7 @@
           <form method="POST" action="/register" 
                 [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
             <label class="fw-bold" for="server" translate>Server</label>
-            <select class="form-control" name="server"
+            <select class="form-select" name="server"
                     id="server" formControlName="server"
                     [attr.aria-label]="['Select the server you want to play on'|translate]"
                     (change)="selectServer()">

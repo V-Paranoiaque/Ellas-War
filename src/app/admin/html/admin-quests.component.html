@@ -18,7 +18,7 @@
           <strong translate>Goal</strong><strong translate>:</strong>
           <input class="form-control" type="number" min="0"
                  [(ngModel)]="questInfo.goal">
-          <select class="form-control" [(ngModel)]="questInfo.type">
+          <select class="form-select" [(ngModel)]="questInfo.type">
             <option value="1">{{ 'Win { value } victories' | translate: { value: 'XX' } }}</option>
             <option value="2">{{ 'Use { value } Divine powers' | translate: { value: 'XX' } }}</option>
             <option value="3">{{ 'Win { value } times in the javelin game' | translate: { value: 'XX' } }}</option>
@@ -42,7 +42,7 @@
                  [(ngModel)]="questInfo.reward">
           
           <strong translate>Difficulty</strong><strong translate>:</strong>
-          <select class="form-control" [(ngModel)]="questInfo.difficulty">
+          <select class="form-select" [(ngModel)]="questInfo.difficulty">
             <option translate value="1">1</option>
             <option translate value="2">2</option>
             <option translate value="3">3</option>
@@ -87,7 +87,7 @@
           <strong translate>Resources</strong><strong translate>:</strong>
           <input class="form-control" type="number" min="0"
                  [(ngModel)]="rewardInfo.quantity">
-          <select class="form-control" [(ngModel)]="rewardInfo.ress">
+          <select class="form-select" [(ngModel)]="rewardInfo.ress">
             <option *ngFor="let res of ressList; let index = index;" value="{{ index }}">
               {{ res | titlecase | translate }}
             </option>

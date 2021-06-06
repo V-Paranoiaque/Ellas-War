@@ -91,7 +91,7 @@
         360 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
       </div>
       {{ preUseList.length }}
-      <select class="form-control"
+      <select class="form-select"
               *ngIf="user.getPropertyNb('ambrosia') >= 360 &&
                      preUseList.length > 0"
               [(ngModel)]="id">

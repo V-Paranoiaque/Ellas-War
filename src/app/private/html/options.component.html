@@ -51,7 +51,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <select class="form-control" (change)="styleChange($event)" 
+          <select class="form-select" (change)="styleChange($event)" 
                   [(ngModel)]="currentStyle">
             <option value="default" translate>Default Style</option>
             <option value="red" translate>Red Style</option>
@@ -60,7 +60,7 @@
         </div>
         <div class="mb-3">
           <label class="fw-bold" for="language" translate>Language</label>
-          <select class="form-control" (change)="languageChange($event)" 
+          <select class="form-select" (change)="languageChange($event)" 
                   [(ngModel)]="currentLanguage">
             <option value="fr" translate>French</option>
             <option value="en" translate>English</option>
