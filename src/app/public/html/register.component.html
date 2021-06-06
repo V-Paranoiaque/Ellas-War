@@ -3,7 +3,8 @@
 <div class="container main-full">
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
-      <div class="card card-column">
+      <div class="card card-column"role="main"
+           attr.aria-label="{{'Main content of the page'|translate}}">
         <div class="card-body">
           <h1 class="text-center" translate>Join Ellas War</h1>
           <br/>
@@ -41,26 +42,30 @@
             <label class="fw-bold" for="server" translate>Server</label>
             <select class="form-control" name="server"
                     id="server" formControlName="server"
+                    [attr.aria-label]="['Select the server you want to play on'|translate]"
                     (change)="selectServer()">
               <option value="fr" translate>French</option>
               <option value="en" translate>English</option>
               <option value="next" translate>Development (French)</option>
             </select>
             
-            <label class="fw-bold" for="username" translate>Username</label>
+            <label id="username-label" class="fw-bold" for="username"
+                   translate>Username</label>
             <input type="text" name="username" placeholder="{{'Username'|translate}}"
                    class="form-control" formControlName="username" 
-                   id="username" required/>
+                   aria-labelledby="username-label" id="username" required/>
             
-            <label class="fw-bold" for="email" translate>Email</label>
+            <label id="email-label" class="fw-bold" for="email"
+                   translate>Email</label>
             <input type="email" name="email" placeholder="{{'Email'|translate}}"
                    class="form-control" formControlName="email" 
-                   id="email" required />
+                   aria-labelledby="email-label" id="email" required />
             
-            <label class="fw-bold" for="password-re" translate>Password</label>
+            <label id="password-label" class="fw-bold" for="password"
+                   translate>Password</label>
             <input type="password" name="password" placeholder="{{'Password'|translate}}"
                    class="form-control" formControlName="password"
-                   id="password" required/>
+                   aria-labelledby="password-label" id="password" required/>
             <div class="text-center" translate>
               <a class="text-danger fw-light"
                   href="/lostpassword" translate>Forgot your password?</a>
