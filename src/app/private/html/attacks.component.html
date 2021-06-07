@@ -507,7 +507,7 @@
         </div>
       </div>
       <div class="col-xl-6 col-block-half" *ngIf="attackMode == 0">
-        <div class="card card-normal" *ngIf="getCurrentMsg().id == 0">
+        <div class="card" *ngIf="getCurrentMsg().id == 0">
           <div class="card-header" translate>Last attacks</div>
           <div class="card-body">
             <div *ngFor="let msg of msgList" class="d-flex bd-highlight"

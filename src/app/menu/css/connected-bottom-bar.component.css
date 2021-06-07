@@ -13,6 +13,15 @@
   right: 0px;
   font-size: 0.9em;
   display: flex;
+  border-width:1px;
+  border-style: solid;
+  border-right: 0px;
+}
+
+@media (max-width: 575px) {
+  .chat-players {
+    border-top: solid black 1px;
+  }
 }
 
 @media (min-width:768px) {

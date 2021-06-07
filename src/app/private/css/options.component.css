@@ -1,16 +1,17 @@
-.col-xl-6 {
-  display: -ms-flex;
-  display: -webkit-flex;
-  display: flex;
-}
-
-.col-xl-6 .card {
-  width:100%;
+#options-component {
   margin-top: calc(var(--bs-gutter-x)/ 2);
-  flex:1;
 }
 
-.card-footer {
-  text-align: center;
-  cursor: pointer;
+#options-component .card-body:first-child {
+  border-top: 1px;
+  border-style: solid;
+}
+
+#options-component .card-body {
+  padding: 0px;
+}
+
+.col-logo {
+  width: 120px;
+  padding: 1rem;
 }

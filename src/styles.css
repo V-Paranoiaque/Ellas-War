@@ -44,7 +44,7 @@ a.no-padding {
 
 /*** Cards **/
 .card {
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px;
 }
 
 .card-body {
@@ -60,10 +60,13 @@ a.no-padding {
   border-width: 0px;
 }
 
+.card .no-bottom {
+  border-bottom: 0px;
+}
+
 .card-header, .card-button, .card-footer {
   text-align: center;
   padding: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5) inset;
 }
 
 .card-header, .card-footer {

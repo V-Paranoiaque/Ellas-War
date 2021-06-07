@@ -75,9 +75,16 @@ a {
   color: white;
 }
 
+.card-body,
+.card.card-normal,
+.chat-text {
+  border-color: var(--color-menu-dark);
+}
+
 .card-body .progress, .btn,
 input.form-control, textarea.form-control,
-.card .card-header {
+.card .card-header,
+.card.card-normal {
   border-radius: 0px;
 }
 
