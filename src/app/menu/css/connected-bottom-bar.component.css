@@ -20,7 +20,7 @@
 
 @media (max-width: 575px) {
   .chat-players {
-    border-top: solid black 1px;
+    border-top: solid var(--color-menu-dark) 1px;
   }
 }
 
