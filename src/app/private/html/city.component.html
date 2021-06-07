@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main" role="main">
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-block-half">
@@ -109,20 +109,23 @@
           <div class="card-body d-flex align-items-center">
             <div class="flex-grow-1 text-center">
               <div *ngIf="user.getLevel() < 10">
-                <a [routerLink]="['/quests']">
+                <a [routerLink]="['/quests']"
+                   title="{{'Access to the quests'}}">
                   <strong translate>Quests</strong><strong translate>:</strong> 
                   {{ user.getQuest() }}/{{ user.getQuestMax() }}
                 </a>
               </div>
               <div *ngIf="user.getLevel() >= 1">
-                <strong translate>Quest progress</strong>
+                <strong id="questProgressLabel" translate>Quest progress</strong>
                 <strong translate>:</strong>
                 <ic-icon [icIcon]="questionCircle"
                          data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                         title="{{'Quest progress'|translate}}"
                          role="button"></ic-icon>
                 <div class="progress" role="button" [routerLink]="['/quests']">
                   <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
                        aria-valuemin="0" aria-valuemax="100"
+                       aria-labelledby="questProgressLabel"
                        [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
                   <div class="progress-text">
                     {{ user.getPropertyNb('quest_step') }}/{{7}}
@@ -142,10 +145,12 @@
             
             <span data-bs-toggle="modal" data-bs-target="#DivineBonusList"
                   role="button" *ngIf="divineBonus.length > 0"
+                  title="{{'All your divine bonuses'|translate}}"
                   class="text-warning" (click)="divineBonusReset()">
               <ic-icon [icIcon]="cloud"></ic-icon>
             </span>
             <span data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
+                  title="{{'About the Divine Bonuses'|translate}}"
                   role="button" translate>
               <ic-icon [icIcon]="questionCircle"></ic-icon>
             </span>
@@ -178,6 +183,7 @@
               Army
             </span>
             <span data-bs-toggle="modal" data-bs-target="#ArmySummary"
+                  title="{{'Army summary'|translate}}"
                   role="button" translate>
               <ic-icon [icIcon]="questionCircle"></ic-icon>
             </span>
@@ -206,6 +212,7 @@
           <div class="card-header">
             <span translate>Buildings</span>
             <span data-bs-toggle="modal" data-bs-target="#BuildingSummary"
+                  title="{{'Building details'|translate}}"
                   role="button" translate>
               <ic-icon [icIcon]="questionCircle"></ic-icon>
             </span>
@@ -355,7 +362,7 @@
             <div class="frame frame-20" role="button"
                  *ngIf="user.hasTemples() > 0"
                  data-bs-toggle="modal" data-bs-target="#TempleChangeInfo"
-                 title="{{'Change a new temple' | translate}}" >
+                 title="{{'Change a temple' | translate}}" >
               <ew-icon name="olympus"></ew-icon>
             </div>
           </div>

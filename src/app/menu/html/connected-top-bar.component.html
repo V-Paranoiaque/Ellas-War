@@ -56,24 +56,28 @@
       <ul class="navbar-nav mb-lg-0">
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
         <li class="nav-item" *ngIf="user.getPropertyNb('rank') > 1">
-          <a class="nav-link" [routerLink]="['/admin/']">
+          <a class="nav-link" [routerLink]="['/admin/']"
+             title="{{'Administration panel'|translate}}">
             <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/options']"
-             [ngClass]="{'active': active == 'options'}">
+             [ngClass]="{'active': active == 'options'}"
+             title="{{'Game options'|translate}}">
             <ic-icon [icIcon]="cog"></ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/support']"
-             [ngClass]="{'active': active == 'support'}">
+             [ngClass]="{'active': active == 'support'}"
+             title="{{'Send a message to the staff'|translate}}">
             <ic-icon [icIcon]="questionCircle"></ic-icon>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" role="button" (click)="disconnect()">
+          <a class="nav-link" role="button" (click)="disconnect()"
+             title="{{'Disconnect'|translate}}">
             <ic-icon [icIcon]="powerOff"></ic-icon>
           </a>
         </li>
@@ -82,21 +86,26 @@
     </div>
     <div class="menu-xs d-flex d-md-none">
       <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
-        <a class="nav-link" [routerLink]="['/admin/']" *ngIf="user.getPropertyNb('rank') > 1">
-          <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
-        </a>
-        <a class="nav-link" [routerLink]="['/options']"
-           [ngClass]="{'active': active == 'options'}">
-          <ic-icon [icIcon]="cog"></ic-icon>
-        </a>
-        <a class="nav-link" [routerLink]="['/support']"
-           [ngClass]="{'active': active == 'support'}">
-          <ic-icon [icIcon]="questionCircle"></ic-icon>
-        </a>
-        <a class="nav-link" [routerLink]="['']"
-           role="button" (click)="disconnect()">
-          <ic-icon [icIcon]="powerOff"></ic-icon>
-        </a>
+      <a class="nav-link" [routerLink]="['/admin/']"
+         *ngIf="user.getPropertyNb('rank') > 1"
+         title="{{'Administration panel'|translate}}">
+        <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
+      </a>
+      <a class="nav-link" [routerLink]="['/options']"
+         [ngClass]="{'active': active == 'options'}"
+         title="{{'Game options'|translate}}">
+        <ic-icon [icIcon]="cog"></ic-icon>
+      </a>
+      <a class="nav-link" [routerLink]="['/support']"
+         [ngClass]="{'active': active == 'support'}"
+         title="{{'Send a message to the staff'|translate}}">
+        <ic-icon [icIcon]="questionCircle"></ic-icon>
+      </a>
+      <a class="nav-link" [routerLink]="['']"
+         role="button" (click)="disconnect()"
+         title="{{'Disconnect'|translate}}">
+        <ic-icon [icIcon]="powerOff"></ic-icon>
+      </a>
       <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
     </div>
   </div>

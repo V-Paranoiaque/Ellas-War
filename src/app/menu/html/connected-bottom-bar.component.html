@@ -70,50 +70,57 @@
   </div>
 </div>
 
-<div class="chat-button">
-  <button *ngIf="user.getPropertyNb('alliance') > 0"
-          class="btn btn-success" (click)="toggle('alliance')">
-    <span translate>Alliance Chat</span>
-    <span *ngIf="chat_alli_nb > 0">
-      ({{chat_alli_nb}})
-    </span>
-  </button>
-  <button class="btn btn-primary" (click)="toggle('general')">
-    <span translate>General Chat</span>
-    <span *ngIf="chat_user_nb > 0">
-      ({{chat_user_nb}})
-    </span>
-  </button>
+<div role="complementary" [attr.aria-label]="['Access to the chats'|translate]">
+  <div class="chat-button" role="tablist">
+    <button *ngIf="user.getPropertyNb('alliance') > 0" role="tab"
+            class="btn btn-success" (click)="toggle('alliance')">
+      <span translate>Alliance Chat</span>
+      <span *ngIf="chat_alli_nb > 0">
+        ({{chat_alli_nb}})
+      </span>
+    </button>
+    <button class="btn btn-primary" (click)="toggle('general')" role="tab">
+      <span translate>General Chat</span>
+      <span *ngIf="chat_user_nb > 0">
+        ({{chat_user_nb}})
+      </span>
+    </button>
+  </div>
 </div>
 
 <div class="chat-button-mobile"
      [ngClass]="{'text-primary': chatActive == 'general',
                  'text-success': chatActive == 'alliance'}">
   <ic-icon [icIcon]="comments" role="button"
+           title="{{'Access to the chats'|translate}}"
            (click)="chatOpenMobile()"></ic-icon>
 </div>
 
 <div class="bottom-button">
   <div class="d-flex text-center">
     <a [routerLink]="['/city']"
+       title="{{'Access to your city'|translate}}"
        [ngClass]="{'inactive': router.url != '/city',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-city"></ew-icon>
     </a>
     <a [routerLink]="['/attacks']"
+       title="{{'Access to the attacks'|translate}}"
        [ngClass]="{'inactive': router.url != '/attacks',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-attack"></ew-icon>
     </a>
     <a [routerLink]="['/messages']" 
+       title="{{'Access to your messages'|translate}}"
        [ngClass]="{'inactive': router.url != '/messages',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-messages"></ew-icon>
     </a>
     <a [routerLink]="['/quests']"
+       title="{{'Access to the quests'|translate}}"
        [ngClass]="{'inactive': router.url != '/quests',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
@@ -121,6 +128,7 @@
     </a>
     <a [routerLink]="['/diplomacy']"
        *ngIf="user.getPropertyNb('alliance') == 0"
+       title="{{'Access to the alliance list'|translate}}"
        [ngClass]="{'inactive': router.url != '/diplomacy',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
@@ -128,18 +136,21 @@
     </a>
     <a [routerLink]="['/alliance']"
        *ngIf="user.getPropertyNb('alliance') > 0"
+       title="{{'Access to the alliance list'|translate}}"
        [ngClass]="{'inactive': router.url != '/alliance',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-alliance"></ew-icon>
     </a>
     <a [routerLink]="['/storeroom']"
+       title="{{'Access to the agora'|translate}}"
        [ngClass]="{'inactive': router.url != '/storeroom',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-agora"></ew-icon>
     </a>
     <a role="button" data-bs-toggle="modal" data-bs-target="#PlayerInfo"
+       title="{{'Display your resources'|translate}}"
        [ngClass]="{'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
       <ew-icon name="menu-resources"></ew-icon>
