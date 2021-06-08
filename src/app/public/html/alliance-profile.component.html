@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="col-sm-12 col-xs-12 main main-full"
+<div class="col-sm-12 col-xs-12 main main-full" role="main"
      [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') == 1}">
   <div class="container main-full">
     <div class="row">
@@ -41,18 +41,20 @@
                     <th class="fw-bold" scope="row"
                         translate>Chief:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td [routerLink]="['/profile/'+allianceProfile.chief_id]"
-                        role="button">
-                      {{allianceProfile.username}}
+                    <td [routerLink]="['/profile/'+allianceProfile.chief_id]">
+                      <span role="button">
+                        {{allianceProfile.username}}
+                      </span>
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-bold" scope="row"
                         translate>Founder:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td [routerLink]="['/profile/'+allianceProfile.creator_id]"
-                        role="button">
-                      {{allianceProfile.founder}}
+                    <td [routerLink]="['/profile/'+allianceProfile.creator_id]">
+                      <span role="button">
+                        {{allianceProfile.founder}}
+                      </span>
                     </td>
                   </tr>
                   <tr>
@@ -60,22 +62,24 @@
                         translate>Members:</th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
-                      {{allianceProfile.nbmembers}}
-                      (<a [routerLink]="['/alliancemembers/'+allianceProfile.alliance_id]"
-                          class="link" translate>Consult</a>)
+                      <a [routerLink]="['/alliancemembers/'+allianceProfile.alliance_id]"
+                         class="link">
+                        {{allianceProfile.nbmembers}}
+                        (<span translate>Consult</span>)
+                      </a>
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-bold" scope="row"
                         translate>Victories:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td>{{allianceProfile.victories}}</td>
+                    <td><span>{{allianceProfile.victories}}</span></td>
                   </tr>
                   <tr>
                     <th class="fw-bold" scope="row"
                         translate>Defeats:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td>{{allianceProfile.defeats}}</td>
+                    <td><span>{{allianceProfile.defeats}}</span></td>
                   </tr>
                 </table>
                 <br/><br/>

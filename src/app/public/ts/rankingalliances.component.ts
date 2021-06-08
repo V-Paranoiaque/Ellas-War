@@ -7,6 +7,7 @@ import { User } from '../../../services/user.service';
 import { environment } from './../../../environments/environment';
 
 import users from '@iconify/icons-fa-solid/users';
+import sortUP from '@iconify/icons-fa-solid/sort-up';
 
 @Component({
   templateUrl: '../html/rankingalliances.component.html'
@@ -18,7 +19,8 @@ export class RankingAlliances {
   public rankingOrder:string;
   public rankingPage:number;
   
-  users = users;
+  sortUP = sortUP;
+  users  = users;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User, 

@@ -1,6 +1,6 @@
 <common-top-bar active="tandcs"></common-top-bar>
 
-<div class="container main-full">
+<div class="container main-full" role="main">
   <div class="row">
     <div class="col-12 col-lg-10 offset-lg-1">
       <div class="card card-column">
@@ -14,12 +14,14 @@
           <br>
           <p class="text-center">
             <a href="{{ user.config.fb_page }}"
-               target="_blank" rel="noopener">
+               title="{{'Follow us on our Facebook Page'|translate}}"
+               target="_blank" rel="external nofollow">
               <ic-icon [icon]="facebookIcon" class="fs-1"></ic-icon>
             </a>
             &nbsp;
             <a href="https://github.com/V-Paranoiaque/Ellas-War/"
-               target="_blank" rel="noopener">
+               title="{{'Access to our GitHub repository'|translate}}"
+               target="_blank" rel="external nofollow">
               <ic-icon [icon]="githubOctocat" class="fs-1"></ic-icon>
             </a>
           </p>

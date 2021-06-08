@@ -1,6 +1,6 @@
 <common-top-bar active="news"></common-top-bar>
 
-<div class="container main-full">
+<div class="container main-full" role="main">
   <div class="row">
     <div class="col-12">
       <div class="card card-column">
@@ -25,7 +25,7 @@
               <tr *ngFor="let n of getNews()">
                 <td>
                   <a href="{{ n.link }}" target="_blank"
-                     rel="noopener">{{ n.title}}</a>
+                     rel="external nofollow">{{ n.title}}</a>
                 </td>
                 <td>{{ n.author}}</td>
                 <td>{{ n.news_date * 1000 | date:'dd/MM/yyyy'}}</td>

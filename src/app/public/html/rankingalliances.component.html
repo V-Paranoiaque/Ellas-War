@@ -1,6 +1,6 @@
 <common-top-bar active="rankingalliances"></common-top-bar>
 
-<div class="container main-full">
+<div class="container main-full" role="main">
   <div class="row">
     <div class="col-12 col-lg-10 offset-lg-1">
       <div class="card card-column">
@@ -11,25 +11,38 @@
             <thead>
               <tr class="text-center">
                 <th scope="col"></th>
-                <th scope="col" (click)="rankingChooseOrder('name')" role="button">
-                  <span translate>Name</span>
-                  <span class="fa fa-sort-asc" *ngIf="rankingOrder == 'name'"></span>
+                <th scope="col" (click)="rankingChooseOrder('name')">
+                  <span role="button" translate>Name</span>
+                  <ic-icon role="button" [icon]="sortUP"
+                           title="{{'Current order'|translate}}"
+                           *ngIf="rankingOrder == 'name'"></ic-icon>
                 </th>
-                <th scope="col" (click)="rankingChooseOrder('chief')" role="button" class="d-none d-sm-table-cell">
-                  <span translate>Chief</span>
-                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'chief'"></span>
+                <th scope="col" (click)="rankingChooseOrder('chief')"
+                    class="d-none d-sm-table-cell">
+                  <span role="button" translate>Chief</span>
+                  <ic-icon role="button" [icon]="sortUP"
+                           title="{{'Current order'|translate}}"
+                           *ngIf="rankingOrder == 'chief'"></ic-icon>
                 </th>
-                <th scope="col" (click)="rankingChooseOrder('mbs')" role="button">
-                  <ic-icon [icon]="users"></ic-icon>
-                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'mbs'"></span>
+                <th scope="col" (click)="rankingChooseOrder('mbs')">
+                  <ic-icon role="button" [icon]="users"
+                           title="{{'Number of members'|translate}}"></ic-icon>
+                  <ic-icon role="button" [icon]="sortUP"
+                           title="{{'Current order'|translate}}"
+                           *ngIf="rankingOrder == 'mbs'"></ic-icon>
                 </th>
-                <th scope="col" (click)="rankingChooseOrder('victories')" role="button">
-                  <span translate>V</span>
-                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'victories'"></span>
+                <th scope="col" (click)="rankingChooseOrder('victories')">
+                  <span role="button" translate>V</span>
+                  <ic-icon role="button" [icon]="sortUP"
+                           title="{{'Current order'|translate}}"
+                           *ngIf="rankingOrder == 'victories'"></ic-icon>
                 </th>
-                <th scope="col" (click)="rankingChooseOrder('defeats')" role="button" class="d-none d-sm-table-cell">
-                  <span translate>D</span>
-                  <span class="fa fa-sort-desc" *ngIf="rankingOrder == 'defeats'"></span>
+                <th scope="col" (click)="rankingChooseOrder('defeats')"
+                    class="d-none d-sm-table-cell">
+                  <span role="button" translate>D</span>
+                  <ic-icon role="button" [icon]="sortUP"
+                           title="{{'Current order'|translate}}"
+                           *ngIf="rankingOrder == 'defeats'"></ic-icon>
                 </th>
               </tr>
             </thead>
@@ -64,7 +77,7 @@
                     (click)="rankingPageChange(rankingPage-1)">&lt;</span>
               <select class="form-select" #mySelect
                       (change)="rankingPageChange(mySelect.value)"
-                      [ngModel]="rankingPage">
+                      [ngModel]="rankingPage" title="{{'Change page'|translate}}">
                 <option *ngFor="let id of range(1, rankingMax)"
                         value="{{id}}" translate>Page {{id}}</option>
               </select>

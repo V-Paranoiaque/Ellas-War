@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 import { environment } from './../../../environments/environment';
 
+import sortUP from '@iconify/icons-fa-solid/sort-up';
+
 @Component({
   templateUrl: '../html/rankingplayers.component.html'
 })
@@ -14,6 +16,8 @@ export class RankingPlayers implements OnInit {
   public rankingMax:number;
   public rankingOrder:string;
   public rankingPage:number;
+  
+  sortUP = sortUP;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User, 

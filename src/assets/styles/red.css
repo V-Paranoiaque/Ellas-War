@@ -92,7 +92,7 @@ input.form-control, textarea.form-control,
 .card-button,
 .card-body.new,
 .progress-text,
-.page-item .active {
+.page-item {
   text-shadow: none;
 }
 

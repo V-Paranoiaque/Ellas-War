@@ -1,10 +1,10 @@
 <common-top-bar active="partners"></common-top-bar>
 
-<div class="container main-full">
+<div class="container main-full" role="main"
+     [attr.aria-label]="['Main content of the page'|translate]">
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
-      <div class="card card-column" role="main"
-           attr.aria-label="{{'Main content of the page'|translate}}">
+      <div class="card card-column">
         <div class="card-body">
           <h1 class="text-center" translate>Connect</h1>
           

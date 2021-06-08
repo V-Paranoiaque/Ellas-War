@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../../environments/environment';
 
@@ -13,7 +14,7 @@ export class ConnectedPlayers {
   public connected:any;
   
   constructor(private http: HttpClient, private socket: Socket, 
-              public translate: TranslateService) {
+              public translate: TranslateService, private titleService: Title) {
     this.connected = [];
   }
   
@@ -37,6 +38,11 @@ export class ConnectedPlayers {
     this.http.get(url).subscribe((result:any) => {
       this.connected = result;
     });
+    this.translate.get('Connected players on the Ancient Greece').subscribe((res: string) => {
+      this.titleService.setTitle(res);
+    });
   }
   
 }
+
+
