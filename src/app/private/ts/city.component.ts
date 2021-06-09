@@ -6,6 +6,7 @@ import { User } from '../../../services/user.service';
 
 import cloud from '@iconify/icons-fa-solid/cloud';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+import swordCross from '@iconify/icons-mdi/sword-cross';
 
 @Component({
   templateUrl: '../html/city.component.html',
@@ -31,6 +32,7 @@ export class City {
   cloud = cloud;
   EwIcon = EwIcon;
   questionCircle = questionCircle;
+  swordCross = swordCross;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     //We set a default building to avoid errors

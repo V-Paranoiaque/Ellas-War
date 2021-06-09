@@ -31,6 +31,7 @@ import { AllianceRequestsPopup } from './ts/alliance-requests-popup.sub-componen
 import { AllianceTaxesPopup } from './ts/alliance-taxes-popup.sub-component';
 import { AllianceWarDeclarePopup } from './ts/alliance-war-declare-popup.sub-component';
 import { AllianceWarArchivesPopup } from './ts/alliance-war-archives-popup.sub-component';
+import { ArmyHelpPopup } from './ts/army-help-popup.sub-component';
 import { ArmyPopup } from './ts/army-popup.sub-component';
 import { ArmySummaryPopup } from './ts/army-summary-popup.sub-component';
 import { AttacksMessage } from './ts/attacks-message.sub-component';
@@ -97,6 +98,7 @@ export const PrivateComponent = [
   AllianceTaxesPopup,
   AllianceWarArchivesPopup,
   AllianceWarDeclarePopup,
+  ArmyHelpPopup,
   ArmyPopup,
   ArmySummaryPopup,
   AttacksMessage,

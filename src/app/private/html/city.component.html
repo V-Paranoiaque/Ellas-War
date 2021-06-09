@@ -15,6 +15,11 @@
     <army-summary-popup></army-summary-popup>
   </div>
 </div>
+<div class="modal fade" id="ArmyHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <army-help-popup></army-help-popup>
+  </div>
+</div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <construction-popup [info]="buildingInfo"></construction-popup>
@@ -184,6 +189,11 @@
             </span>
             <span data-bs-toggle="modal" data-bs-target="#ArmySummary"
                   title="{{'Army summary'|translate}}"
+                  role="button" translate>
+              <ic-icon [icIcon]="swordCross"></ic-icon>
+            </span>
+            <span data-bs-toggle="modal" data-bs-target="#ArmyHelp"
+                  title="{{'Army information'|translate}}"
                   role="button" translate>
               <ic-icon [icIcon]="questionCircle"></ic-icon>
             </span>
