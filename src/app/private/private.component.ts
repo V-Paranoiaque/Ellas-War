@@ -42,6 +42,7 @@ import { ConstructionSummaryPopup } from './ts/construction-summary-popup.sub-co
 import { DivineBonusHelpPopup } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopup } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopup } from './ts/divinebonus-list-popup.sub-component';
+import { FirstInfoPopup } from './ts/first-info-popup.sub-component';
 import { FuryMessage } from './ts/fury-message.sub-component';
 import { IdToDivineBonus } from './ts/id-to-divinebonus.sub-component';
 import { IdToRess } from './ts/id-to-ress.sub-component';
@@ -109,6 +110,7 @@ export const PrivateComponent = [
   DivineBonusHelpPopup,
   DivineBonusInfoPopup,
   DivineBonusListPopup,
+  FirstInfoPopup,
   FuryMessage,
   IdToDivineBonus,
   IdToRess,

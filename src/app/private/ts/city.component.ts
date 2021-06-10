@@ -57,6 +57,17 @@ export class City {
     this.user.checkPermissions([1]);
     
     this.selectTreasure();
+    
+    if(this.user.getPropertyNb('level') == 0 &&
+       this.user.getPropertyNb('quest') == 1) {
+      setTimeout(() => {
+        let element:HTMLElement = document.getElementById('FirstInfoOpen') as HTMLElement;
+        if(element) {
+          element.click();
+        }
+      }, 500);
+    }
+    
     this.socket.on('divineBonus', (data:any) => {
       this.divineBonusNb = data.nb;
       if(this.divineBonusNb > 0) {

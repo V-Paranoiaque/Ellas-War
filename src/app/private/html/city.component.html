@@ -30,6 +30,11 @@
     <construction-summary-popup></construction-summary-popup>
   </div>
 </div>
+<div class="modal fade" id="FirstInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <first-info-popup></first-info-popup>
+  </div>
+</div>
 <div class="modal fade" id="TreasureInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <treasure-popup [info]="treasureInfo"></treasure-popup>
@@ -104,6 +109,12 @@
         <div class="card">
           <div class="card-header">
             <span translate>General</span>
+            <span data-bs-toggle="modal" data-bs-target="#FirstInfo"
+                  *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
+                  id="FirstInfoOpen"
+                  role="button" translate>
+              <ic-icon [icIcon]="questionCircle"></ic-icon>
+            </span>
             <span data-bs-toggle="modal" data-bs-target="#DailyInfo"
                   *ngIf="dailCo() > 0 && dailyCoCheck == 1"
                   id="DailyCoCheckOpen"
