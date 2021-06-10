@@ -31,18 +31,15 @@ export class ConnectedPlayers {
   }
   
   getPage() {
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/connected.json';
-      
-      this.http.get(url).subscribe((result:any) => {
-        this.connected = result;
-      });
-      this.translate.get('Connected players on the Ancient Greece').subscribe((res: string) => {
-        this.titleService.setTitle(res);
-      });
-    }
+    let url = this.socket.url+'/api/connected.json';
+    
+    this.http.get(url).subscribe((result:any) => {
+      this.connected = result;
+    });
+    this.translate.get('Connected players on the Ancient Greece').subscribe((res: string) => {
+      this.titleService.setTitle(res);
+    });
   }
-  
 }
 
 

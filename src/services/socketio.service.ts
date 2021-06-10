@@ -4,6 +4,7 @@ import { environment } from './../environments/environment';
 export class Socket {
   socket: any;
   server: string;
+  url: string;
   local: boolean;
   
   constructor() {
@@ -14,6 +15,7 @@ export class Socket {
       this.local = false;
     }
     this.server = '';
+    this.url = '';
   }
   
   setServer(server:string) {
@@ -21,13 +23,14 @@ export class Socket {
     localStorage.setItem('server', server);
   }
   
-  setupSocketConnection(server:string) {
+  setupSocketConnection(url:string) {
     //Close previous connection
     if(this.socket) {
       this.socket.close();
     }
     
-    this.socket = io(server);
+    this.socket = io(url);
+    this.url = url;
     
     this.socket.on("connect", () => {
       this.loadUser();
@@ -71,24 +74,24 @@ export class Socket {
       }
     }
     else {
-      let server;
+      let url;
       if(localStorage.getItem('server')) {
         let local:any = localStorage.getItem('server');
-        server = this.getServerUrl(local);
+        url = this.getServerUrl(local);
         
-        if(server != '') {
+        if(url != '') {
           this.server = local;
-          return server;
+          return url;
         }
         localStorage.removeItem('server');
       }
       
       let language = this.detectLanguage();
-      server = this.getServerUrl(language);
+      url = this.getServerUrl(language);
       
-      if(server != '') {
+      if(url != '') {
         this.server = language;
-        return server;
+        return url;
       }
       else {
         this.server = 'dev';

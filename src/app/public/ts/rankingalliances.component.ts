@@ -48,16 +48,14 @@ export class RankingAlliances {
   }
   
   getPage() {
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
-      
-      this.http.get(url).subscribe((result:any) => {
-        this.rankingPage = result.cPage;
-        this.rankingMax  = result.max;
-        this.rankingList = result.ranking;
-        this.rankingOrder= result.order
-      });
-    }
+    let url = this.socket.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
+    
+    this.http.get(url).subscribe((result:any) => {
+      this.rankingPage = result.cPage;
+      this.rankingMax  = result.max;
+      this.rankingList = result.ranking;
+      this.rankingOrder= result.order
+    });
   }
   
   range(a:number, b:number) {

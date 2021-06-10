@@ -84,15 +84,13 @@ export class Diplomacy {
   }
   
   getProfile(id:number) {
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/allianceProfile/'+id+'.json';
-      
-      this.http.get(url).subscribe((res:any) => {
-        if(res) {
-          this.allianceProfile = res;
-        }
-      });
-    }
+    let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
+    
+    this.http.get(url).subscribe((res:any) => {
+      if(res) {
+        this.allianceProfile = res;
+      }
+    });
   }
   
   setAlliance(alliance:any) {

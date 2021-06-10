@@ -112,23 +112,21 @@ export class TempleInfoPopup {
     let info;
     this.temple.power = powerid;
     if(this.idToUser.length > 0) {
-      if(this.user.config.url) {
-        let url = this.user.config.url+'/api/playerProfile/'+this.idToUser+'.json'
-        
-        this.http.get(url).subscribe((res:any) => {
-          if(res && res.membre_id) {
-            info = {
-              'id': this.temple.power,
-              'param': res.membre_id
-            }
-            this.socket.emit('powersUse', info);
+      let url = this.socket.url+'/api/playerProfile/'+this.idToUser+'.json'
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res && res.membre_id) {
+          info = {
+            'id': this.temple.power,
+            'param': res.membre_id
           }
-          else {
-            this.idToUser = '';
-            this.temple.error = 2;
-          }
-        });
-      }
+          this.socket.emit('powersUse', info);
+        }
+        else {
+          this.idToUser = '';
+          this.temple.error = 2;
+        }
+      });
     }
     else {
       this.idToUser = '';

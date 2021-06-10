@@ -112,26 +112,24 @@ export class Messages {
       return;
     }
     
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/playerProfile/'+username+'.json';
+    let url = this.socket.url+'/api/playerProfile/'+username+'.json';
+    
+    this.http.get(url).subscribe((res:any) => {
+      if(res && res.membre_id) {
+        this.removeDest(res.membre_id);
+        this.destList.push({
+          'id': res.membre_id,
+          'username': res.username
+        });
+      }
+      else if(!callback) {
+        this.addDestError = 1;
+      }
       
-      this.http.get(url).subscribe((res:any) => {
-        if(res && res.membre_id) {
-          this.removeDest(res.membre_id);
-          this.destList.push({
-            'id': res.membre_id,
-            'username': res.username
-          });
-        }
-        else if(!callback) {
-          this.addDestError = 1;
-        }
-        
-        if(callback) {
-          callback();
-        }
-      });
-    }
+      if(callback) {
+        callback();
+      }
+    });
     
     this.msgToUser = '';
   }

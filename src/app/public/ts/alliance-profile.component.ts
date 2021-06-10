@@ -35,14 +35,12 @@ export class AllianceProfile {
   getProfile() {
     let id = this.route.snapshot.paramMap.get('id');
     
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/allianceProfile/'+id+'.json';
-      
-      this.http.get(url).subscribe((res:any) => {
-        if(res) {
-          this.allianceProfile = res;
-        }
-      });
-    }
+    let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
+    
+    this.http.get(url).subscribe((res:any) => {
+      if(res) {
+        this.allianceProfile = res;
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -20,7 +21,7 @@ export class RankingPlayers implements OnInit {
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User, 
-              public translate: TranslateService) {
+              private socket: Socket,public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     
     this.rankingList = [];
@@ -40,16 +41,14 @@ export class RankingPlayers implements OnInit {
   }
   
   getPage() {
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
-      
-      this.http.get(url).subscribe((result:any) => {
-        this.rankingPage = result.cPage;
-        this.rankingMax  = result.max;
-        this.rankingList = result.ranking;
-        this.rankingOrder= result.order
-      });
-    }
+    let url = this.socket.url+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
+    
+    this.http.get(url).subscribe((result:any) => {
+      this.rankingPage = result.cPage;
+      this.rankingMax  = result.max;
+      this.rankingList = result.ranking;
+      this.rankingOrder= result.order
+    });
   }
   
   range(a:number, b:number) {

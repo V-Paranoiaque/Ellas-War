@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
 @Component({
@@ -9,17 +10,15 @@ import { User } from '../../../services/user.service';
 export class News implements OnInit {
   private newsList:any;
   
-  constructor(public user: User, private http: HttpClient) {
+  constructor(public user: User, private socket: Socket, private http: HttpClient) {
     this.newsList = [];
   }
   
   ngOnInit() {
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/news.json';
-      this.http.get(url).subscribe(res => {
-        this.newsList = res;
-      });
-    }
+    let url = this.socket.url+'/api/news.json';
+    this.http.get(url).subscribe(res => {
+      this.newsList = res;
+    });
   }
   
   getNews() {

@@ -24,16 +24,14 @@ export class Unsubscribe {
     this.id    = this.route.snapshot.paramMap.get('id');
     this.check = this.route.snapshot.paramMap.get('check');
     
-    if(this.user.config.url) {
-      let url:string;
-      url = this.user.config.url+'/api/unsubscribe/'+
-            encodeURIComponent(this.id)+'/'+
-            encodeURIComponent(this.check)+'.json';
-      
-      this.http.get(url).subscribe((result:any) => {
-        this.unsubscribeResult = result;
-      });
-    }
+    let url:string;
+    url = this.socket.url+'/api/unsubscribe/'+
+          encodeURIComponent(this.id)+'/'+
+          encodeURIComponent(this.check)+'.json';
+    
+    this.http.get(url).subscribe((result:any) => {
+      this.unsubscribeResult = result;
+    });
   }
   
   unsubscribeConfirm() {

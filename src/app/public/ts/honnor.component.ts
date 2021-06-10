@@ -50,11 +50,10 @@ export class Honnor {
     else {
       this.id = 0;
     }
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/rankingHonnor/'+this.id+'.json';
-      this.http.get(url).subscribe(res => {
-        this.list = res;
-      });
-    }
+    
+    let url = this.socket.url+'/api/rankingHonnor/'+this.id+'.json';
+    this.http.get(url).subscribe(res => {
+      this.list = res;
+    });
   }
 }

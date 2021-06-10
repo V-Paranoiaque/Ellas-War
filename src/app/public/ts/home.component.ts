@@ -47,12 +47,10 @@ export class Home {
       this.localevars = data;
     });
     
-    if(this.user.config.url) {
-      let url = this.user.config.url+'/api/news-4.json';
-      this.http.get(url).subscribe(res => {
-        this.newsList = res;
-      });
-    }
+    let url = this.socket.url+'/api/news-4.json';
+    this.http.get(url).subscribe(res => {
+      this.newsList = res;
+    });
     
     this.loginForm = this.formBuilder.group({
       server: this.socket.server,
