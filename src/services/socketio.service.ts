@@ -63,8 +63,8 @@ export class Socket {
     if(environment.mobile == 0) {
       //Local
       if(this.local) {
-        this.server = 'next';
-        return environment.SOCKET_ENDPOINT;
+        this.server = 'dev';
+        return environment.SERVER_DEV;
       }
       else {
         return window.origin;
@@ -91,8 +91,8 @@ export class Socket {
         return server;
       }
       else {
-        this.server = 'next';
-        return environment.SOCKET_ENDPOINT;
+        this.server = 'dev';
+        return environment.SERVER_DEV;
       }
     }
   }

@@ -10,7 +10,7 @@ export const environment = {
     default: 'en',
     allowed: ['en', 'fr']
   },
-  SOCKET_ENDPOINT: 'https://next.ellaswar.com',
+  SERVER_DEV: 'https://next.ellaswar.com',
   facebook: {
     client_id: 173897253017254
   },
