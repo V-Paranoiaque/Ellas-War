@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from './../../../environments/environment';
+import { User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/honnor.component.html',
@@ -11,12 +11,13 @@ import { environment } from './../../../environments/environment';
 })
 
 export class Honnor {
-  private _url = environment.SOCKET_ENDPOINT+'/api/rankingHonnor/';
   public id: any;
   public list:any;
   public levels:any
   
-  constructor(private router: Router, private route: ActivatedRoute, private socket: Socket, private http: HttpClient, public translate: TranslateService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+              private socket: Socket, private http: HttpClient,
+              public user: User, public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.levels = Array(10);
   }
@@ -49,9 +50,11 @@ export class Honnor {
     else {
       this.id = 0;
     }
-    this.http.get(this._url+this.id+'.json')
-      .subscribe(res => {
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/rankingHonnor/'+this.id+'.json';
+      this.http.get(url).subscribe(res => {
         this.list = res;
       });
+    }
   }
 }

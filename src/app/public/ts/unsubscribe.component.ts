@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
-import { environment } from './../../../environments/environment';
+import { User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/unsubscribe.component.html'
@@ -13,8 +13,8 @@ export class Unsubscribe {
   public check:any;
   public unsubscribeResult:any;
   
-  constructor(private socket: Socket, private http: HttpClient,
-              private route: ActivatedRoute) {
+  constructor(public user: User, private socket: Socket,
+              private http: HttpClient, private route: ActivatedRoute) {
     this.unsubscribeResult = {
       error: 0
     }
@@ -24,14 +24,16 @@ export class Unsubscribe {
     this.id    = this.route.snapshot.paramMap.get('id');
     this.check = this.route.snapshot.paramMap.get('check');
     
-    let url:string;
-    url = environment.SOCKET_ENDPOINT+'/api/unsubscribe/'+
-          encodeURIComponent(this.id)+'/'+
-          encodeURIComponent(this.check)+'.json';
-    
-    this.http.get(url).subscribe((result:any) => {
-      this.unsubscribeResult = result;
-    });
+    if(this.user.config.url) {
+      let url:string;
+      url = this.user.config.url+'/api/unsubscribe/'+
+            encodeURIComponent(this.id)+'/'+
+            encodeURIComponent(this.check)+'.json';
+      
+      this.http.get(url).subscribe((result:any) => {
+        this.unsubscribeResult = result;
+      });
+    }
   }
   
   unsubscribeConfirm() {

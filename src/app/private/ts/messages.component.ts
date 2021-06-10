@@ -4,8 +4,6 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
 import brushIcon from '@iconify/icons-bi/brush';
 import envelopeFill from '@iconify/icons-bi/envelope-fill';
@@ -113,24 +111,27 @@ export class Messages {
       }
       return;
     }
-    let _url = environment.SOCKET_ENDPOINT+'/api/playerProfile/'+username+'.json';
     
-    this.http.get(_url).subscribe((res:any) => {
-      if(res && res.membre_id) {
-        this.removeDest(res.membre_id);
-        this.destList.push({
-          'id': res.membre_id,
-          'username': res.username
-        });
-      }
-      else if(!callback) {
-        this.addDestError = 1;
-      }
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/playerProfile/'+username+'.json';
       
-      if(callback) {
-        callback();
-      }
-    });
+      this.http.get(url).subscribe((res:any) => {
+        if(res && res.membre_id) {
+          this.removeDest(res.membre_id);
+          this.destList.push({
+            'id': res.membre_id,
+            'username': res.username
+          });
+        }
+        else if(!callback) {
+          this.addDestError = 1;
+        }
+        
+        if(callback) {
+          callback();
+        }
+      });
+    }
     
     this.msgToUser = '';
   }

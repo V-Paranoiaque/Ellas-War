@@ -17,7 +17,6 @@ import googleIcon from '@iconify-icons/logos/google-icon';
 })
 
 export class Home {
-  private _newsUrl = environment.SOCKET_ENDPOINT+'/api/news-4.json';
   public localevars:any;
   public menu:number;
   public newsList:any;
@@ -48,10 +47,12 @@ export class Home {
       this.localevars = data;
     });
     
-    this.http.get(this._newsUrl)
-      .subscribe(res => {
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/news-4.json';
+      this.http.get(url).subscribe(res => {
         this.newsList = res;
       });
+    }
     
     this.loginForm = this.formBuilder.group({
       server: this.socket.server,

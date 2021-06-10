@@ -5,8 +5,6 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 @Component({
   templateUrl: '../html/alliance-members.component.html'
 })
@@ -37,24 +35,28 @@ export class AllianceMembers {
   getMembers() {
     let id = this.route.snapshot.paramMap.get('id');
     
-    let _url = environment.SOCKET_ENDPOINT+'/api/allianceMembers/'+id+'.json';
-    
-    this.http.get(_url).subscribe((res:any) => {
-      if(res) {
-        this.allianceMembers = res;
-      }
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/allianceMembers/'+id+'.json';
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res) {
+          this.allianceMembers = res;
+        }
+      });
+    }
   }
   
   getProfile() {
     let id = this.route.snapshot.paramMap.get('id');
     
-    let _url = environment.SOCKET_ENDPOINT+'/api/allianceProfile/'+id+'.json';
-    
-    this.http.get(_url).subscribe((res:any) => {
-      if(res) {
-        this.allianceProfile = res;
-      }
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/allianceProfile/'+id+'.json';
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res) {
+          this.allianceProfile = res;
+        }
+      });
+    }
   }
 }

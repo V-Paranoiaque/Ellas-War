@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
-import { environment } from './../../../environments/environment';
 
 import sortUP from '@iconify/icons-fa-solid/sort-up';
 
@@ -41,16 +40,16 @@ export class RankingPlayers implements OnInit {
   }
   
   getPage() {
-    let url:string;
-   
-    url = environment.SOCKET_ENDPOINT+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
-    
-    this.http.get(url).subscribe((result:any) => {
-      this.rankingPage = result.cPage;
-      this.rankingMax  = result.max;
-      this.rankingList = result.ranking;
-      this.rankingOrder= result.order
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
+      
+      this.http.get(url).subscribe((result:any) => {
+        this.rankingPage = result.cPage;
+        this.rankingMax  = result.max;
+        this.rankingList = result.ranking;
+        this.rankingOrder= result.order
+      });
+    }
   }
   
   range(a:number, b:number) {

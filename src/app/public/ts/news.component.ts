@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../environments/environment';
+import { User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/news.component.html'
 })
 
 export class News implements OnInit {
-  private _newsUrl = environment.SOCKET_ENDPOINT+'/api/news.json';
   private newsList:any;
   
-  constructor(private http: HttpClient) {
+  constructor(public user: User, private http: HttpClient) {
     this.newsList = [];
   }
   
   ngOnInit() {
-    this.http.get(this._newsUrl)
-      .subscribe(res => {
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/news.json';
+      this.http.get(url).subscribe(res => {
         this.newsList = res;
       });
+    }
   }
   
   getNews() {

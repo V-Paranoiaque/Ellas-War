@@ -4,8 +4,6 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 @Component({
   selector: 'temple-info-popup',
   templateUrl: '../html/temple-info-popup.sub-component.html'
@@ -114,22 +112,23 @@ export class TempleInfoPopup {
     let info;
     this.temple.power = powerid;
     if(this.idToUser.length > 0) {
-      
-      let _url = environment.SOCKET_ENDPOINT+'/api/playerProfile/'+this.idToUser+'.json'
-      
-      this.http.get(_url).subscribe((res:any) => {
-        if(res && res.membre_id) {
-          info = {
-            'id': this.temple.power,
-            'param': res.membre_id
+      if(this.user.config.url) {
+        let url = this.user.config.url+'/api/playerProfile/'+this.idToUser+'.json'
+        
+        this.http.get(url).subscribe((res:any) => {
+          if(res && res.membre_id) {
+            info = {
+              'id': this.temple.power,
+              'param': res.membre_id
+            }
+            this.socket.emit('powersUse', info);
           }
-          this.socket.emit('powersUse', info);
-        }
-        else {
-          this.idToUser = '';
-          this.temple.error = 2;
-        }
-      });
+          else {
+            this.idToUser = '';
+            this.temple.error = 2;
+          }
+        });
+      }
     }
     else {
       this.idToUser = '';

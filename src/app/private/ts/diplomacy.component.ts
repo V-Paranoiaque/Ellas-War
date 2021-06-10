@@ -5,8 +5,6 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 import fileAlt from '@iconify/icons-fa-solid/file-alt';
 import flag from '@iconify/icons-fa-solid/flag';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -86,13 +84,15 @@ export class Diplomacy {
   }
   
   getProfile(id:number) {
-    let _url = environment.SOCKET_ENDPOINT+'/api/allianceProfile/'+id+'.json';
-    
-    this.http.get(_url).subscribe((res:any) => {
-      if(res) {
-        this.allianceProfile = res;
-      }
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/allianceProfile/'+id+'.json';
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res) {
+          this.allianceProfile = res;
+        }
+      });
+    }
   }
   
   setAlliance(alliance:any) {

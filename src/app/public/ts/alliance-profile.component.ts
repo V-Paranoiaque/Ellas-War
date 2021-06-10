@@ -5,8 +5,6 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 import userPlus from '@iconify/icons-fa-solid/user-plus';
 
 @Component({
@@ -37,12 +35,14 @@ export class AllianceProfile {
   getProfile() {
     let id = this.route.snapshot.paramMap.get('id');
     
-    let _url = environment.SOCKET_ENDPOINT+'/api/allianceProfile/'+id+'.json';
-    
-    this.http.get(_url).subscribe((res:any) => {
-      if(res) {
-        this.allianceProfile = res;
-      }
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/allianceProfile/'+id+'.json';
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res) {
+          this.allianceProfile = res;
+        }
+      });
+    }
   }
 }

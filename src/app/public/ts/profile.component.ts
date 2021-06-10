@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
-import { environment } from './../../../environments/environment';
-
 @Component({
   templateUrl: '../html/profile.component.html'
 })
@@ -23,12 +21,14 @@ export class Profile implements OnInit {
   ngOnInit() {
     let userId = this.route.snapshot.paramMap.get('id');
     
-    let _url = environment.SOCKET_ENDPOINT+'/api/playerProfile/'+userId+'.json';
-    
-    this.http.get(_url).subscribe((res:any) => {
-      if(res && res.membre_id) {
-        this.profile = res;
-      }
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/playerProfile/'+userId+'.json';
+      
+      this.http.get(url).subscribe((res:any) => {
+        if(res && res.membre_id) {
+          this.profile = res;
+        }
+      });
+    }
   }
 }

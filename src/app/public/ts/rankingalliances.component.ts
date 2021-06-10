@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
-import { environment } from './../../../environments/environment';
 
 import users from '@iconify/icons-fa-solid/users';
 import sortUP from '@iconify/icons-fa-solid/sort-up';
@@ -49,16 +48,16 @@ export class RankingAlliances {
   }
   
   getPage() {
-    let url:string;
-   
-    url = environment.SOCKET_ENDPOINT+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
-    
-    this.http.get(url).subscribe((result:any) => {
-      this.rankingPage = result.cPage;
-      this.rankingMax  = result.max;
-      this.rankingList = result.ranking;
-      this.rankingOrder= result.order
-    });
+    if(this.user.config.url) {
+      let url = this.user.config.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
+      
+      this.http.get(url).subscribe((result:any) => {
+        this.rankingPage = result.cPage;
+        this.rankingMax  = result.max;
+        this.rankingList = result.ranking;
+        this.rankingOrder= result.order
+      });
+    }
   }
   
   range(a:number, b:number) {
