@@ -7,7 +7,8 @@
          attr.aria-label="{{'Follow us on our Facebook Page'|translate}}">
       <div class="column"></div>
       <div class="social">
-        <a href="{{ localevars.facebook }}" target="_blank" rel="noopener">
+        <a href="{{ localevars.facebook }}" target="_blank"
+           rel="external nofollow noopener">
           <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
           {{'Follow us'|translate}}
         </a>
@@ -18,13 +19,15 @@
          role="region" attr.aria-label="{{'Links to the App stores'|translate}}">
       <div class="column"></div>
       <div class="apps">
-        <a *ngIf="localevars.store.amazon" target="_blank" rel="noopener"
+        <a *ngIf="localevars.store.amazon" target="_blank"
+           rel="external nofollow noopener"
            href="{{ localevars.store.amazon }}"
            title="{{'Download on Amazon Appstore'|translate}}">
           <img [src]="'assets/i18n/'+translate.currentLang+'/amazon-appstore-badge.png'"
                alt="{{'Download on Amazon Appstore'|translate}}">
         </a>
-        <a *ngIf="localevars.store.microsoft" target="_blank" rel="noopener"
+        <a *ngIf="localevars.store.microsoft" target="_blank"
+           rel="external nofollow noopener"
            href="{{ localevars.store.microsoft }}"
            title="{{'Download on the Microsoft Store'|translate}}">
           <img [src]="'assets/i18n/'+translate.currentLang+'/microsoft-appstore-badge.png'"
@@ -265,7 +268,8 @@
                    [ngClass]="{'d-none d-md-flex': i >= 2}">
                 <div class="card card-{{i}}">
                   <div class="card-body">
-                    <a href="{{news.link}}" target="_blank" rel="noopener">
+                    <a href="{{news.link}}" target="_blank"
+                       rel="external nofollow noopener">
                       <h3>{{news.title}}</h3>
                       <p class="text-center">{{news.news_date*1000| date:'dd/MM/yyyy'}}</p>
                       <span class="text-center fs-1">→</span>
@@ -280,7 +284,8 @@
           <div class="col-6 d-flex order-4 card-body-zero" role="region"
                attr.aria-label="{{'Link to the Facebook Page'|translate}}">
             <a class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1"
-               href="{{ localevars.facebook }}" target="_blank" rel="noopener">
+               href="{{ localevars.facebook }}" target="_blank"
+               rel="external nofollow noopener">
               <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
               {{'Facebook page'|translate}}
             </a>

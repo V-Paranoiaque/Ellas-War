@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-8 col-sm-6 col-xs-12">
             <img src="{{ user.getConfig().url }}/pprofile/{{profile.membre_img}}" class="img-responsive center-block"
-                 alt="{{profile.username}}">
+                 alt="{{profile.username}}" *ngIf="profile.membre_img">
           </div>
           <div class="col-lg-4 col-sm-6 col-xs-12">
             <strong translate>Level</strong><strong translate>:</strong>
