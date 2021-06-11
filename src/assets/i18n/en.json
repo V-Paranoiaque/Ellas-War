@@ -1,4 +1,5 @@
 {
+  "{ value } by Vecteezy": "{{ value }} by Vecteezy",
   "{ value } can still receive { qtt } Drachmas": "{{ value }} can still receive {{ qtt }} Drachmas",
   "{ value } from the alliance { name } has requested a pact to your alliance.": "{{ value }} from the alliance {{ name }} has requested a pact to your alliance.",
   "{ value } has accepted { name } in your alliance.": "{{ value }} has accepted {{ name }} in your alliance.",
