@@ -36,7 +36,8 @@ export class AdminEmails {
     this.socket.removeListener('adminEmailModification');
   }
   
-  getPage(id:number) {
+  getPage(id:number, inc:number=0) {
+    id += inc;
     this.socket.emit('adminEmailModification', id);
   }
   

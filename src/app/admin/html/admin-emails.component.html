@@ -39,7 +39,7 @@
             <span class="input-group-text" role="button" (click)="getPage(1)">&lt;&lt;</span>
             <span class="input-group-text" role="button" (click)="getPage(adminemailsPage, -1)">&lt;</span>
             <select class="form-select" (change)="pageLoad($event)" [(ngModel)]="adminemailsPage">
-              <option *ngFor="let item of [].constructor(getMsgPageNb()); let i = index"
+              <option *ngFor="let item of [].constructor(adminemailsMax); let i = index"
                       value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
             </select>
             <span class="input-group-text" role="button" (click)="getPage(adminemailsPage, 1)">&gt;</span>
