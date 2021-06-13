@@ -1046,7 +1046,7 @@
                       <td>
                         <div class="input-group">
                           <input type="number" [(ngModel)]="sanctuariesWave[i]"
-                                 min="0" max="{{getArmy()[i].nb}}"
+                                 [attr.min]="0" [attr.max]="getArmy()[i].nb"
                                  size="6" placeholder="0">
                           <span class="input-group-text" role="button"
                                 (click)="waveNew(i, sanctuariesWave[i])">
