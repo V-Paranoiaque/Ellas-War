@@ -1,13 +1,50 @@
 <common-top-bar active="admin"></common-top-bar>
 
-<div class="container-fluid">
+<div class="container-fluid" role="main">
   <div class="row">
     <admin-left-menu active="emails" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
   
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <h1 class="text-center" id="emailLabel"
+              translate>Email modification</h1>
+          
+          <table aria-describedby="emailLabel">
+            <thead>
+              <tr>
+                <th scope="col" translate>Player</th>
+                <th scope="col" translate>Previous email</th>
+                <th scope="col" translate>New email</th>
+                <th scope="col" translate>IP</th>
+                <th scope="col" translate>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of adminemailsList">
+                <th scope="row">
+                  <a [routerLink]="['/admin/profile/'+p.membre_id]">
+                    {{p.username}}
+                  </a>
+                </th>
+                <td>{{p.old_mail}}</td>
+                <td>{{p.new_mail}}</td>
+                <td>{{p.ip_addr}}</td>
+                <td>{{p.modification_date*1000| date:'dd/MM/YYYY, HH:mm'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="input-group" *ngIf="adminemailsPage > 1">
+            <span class="input-group-text" role="button" (click)="getPage(1)">&lt;&lt;</span>
+            <span class="input-group-text" role="button" (click)="getPage(adminemailsPage, -1)">&lt;</span>
+            <select class="form-select" (change)="pageLoad($event)" [(ngModel)]="adminemailsPage">
+              <option *ngFor="let item of [].constructor(getMsgPageNb()); let i = index"
+                      value="{{ i +1 }}" translate>Page {{ i +1 }}</option>
+            </select>
+            <span class="input-group-text" role="button" (click)="getPage(adminemailsPage, 1)">&gt;</span>
+            <span class="input-group-text" role="button" (click)="getPage(adminemailsMax)">&gt;&gt;</span>
+          </div>
         </div>
       </div>
     </div>

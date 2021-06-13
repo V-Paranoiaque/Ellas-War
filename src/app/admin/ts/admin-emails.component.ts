@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -9,11 +10,38 @@ import { User } from '../../../services/user.service';
 
 export class AdminEmails {
   
-  constructor(public user: User, public translate: TranslateService) {
+  public adminemailsPage:number;
+  public adminemailsMax:number;
+  public adminemailsList:any;
+  
+  constructor(private socket: Socket, public user: User,
+              public translate: TranslateService) {
+    this.adminemailsPage = 1;
+    this.adminemailsMax = 1;
+    this.adminemailsList = [];
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+    this.getPage(1);
+    
+    this.socket.on('adminEmailModification', (res:any) => {
+      this.adminemailsPage = res.cPage;
+      this.adminemailsMax  = res.max;
+      this.adminemailsList = res.list;
+    });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('adminEmailModification');
+  }
+  
+  getPage(id:number) {
+    this.socket.emit('adminEmailModification', id);
+  }
+  
+  pageLoad(event:any) {
+    this.getPage(event.target.value);
   }
 }
   
