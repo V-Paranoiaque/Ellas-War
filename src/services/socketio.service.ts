@@ -8,7 +8,7 @@ export class Socket {
   local: boolean;
   
   constructor() {
-    if(window.location.port != '443') {
+    if(window.location.port && window.location.port != '443') {
       this.local = true;
     }
     else {
@@ -70,7 +70,9 @@ export class Socket {
         return environment.SERVER_DEV;
       }
       else {
-        return window.origin;
+        let url = window.location.hostname;
+        this.server = this.getUrlServer(url);
+        return 'https://'+url;
       }
     }
     else {
@@ -110,6 +112,21 @@ export class Socket {
         return 'https://next.ellaswar.com';
     }
     return '';
+  }
+  
+  getUrlServer(url:string) {
+    switch(url) {
+      case 'ellaswar.co.uk':
+        return 'en';
+      case 'dev.ellaswar.com':
+        return 'dev';
+      case 'next.ellaswar.com':
+        return 'next';
+      case 'www.ellaswar.com':
+        return 'fr';
+      
+      default: return 'next';
+    }
   }
   
   redirect(server: string) {
