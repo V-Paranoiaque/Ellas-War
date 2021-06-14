@@ -70,6 +70,9 @@ export class AdminUnits {
         building.globalConsu += building.consumption[res]*this.priceList[res];
       }
       
+      //Use a fake type, 9
+      building.type = 9;
+      
       this.armyArray.push(Object.assign({}, building));
     }
   }

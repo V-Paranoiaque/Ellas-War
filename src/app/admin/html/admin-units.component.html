@@ -24,7 +24,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let unit of armyArray">
+              <tr *ngFor="let unit of armyArray"
+                  [ngClass]="{'table-light': unit.type == 1,
+                              'table-primary': unit.type == 2,
+                              'table-secondary': unit.type == 3,
+                              'table-success': unit.type == 4,
+                              'table-danger': unit.type == 5,
+                              'table-warning': unit.type == 6,
+                              'table-info': unit.type == 7,
+                              'table-dark': unit.type == 8}">
                 <td>{{ unit.name | translate }}</td>
                 <td>{{ unit.attack | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
