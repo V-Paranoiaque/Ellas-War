@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -21,7 +22,8 @@ export class RankingPlayers implements OnInit {
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User, 
-              private socket: Socket,public translate: TranslateService) {
+              private socket: Socket,public translate: TranslateService,
+              private titleService: Title) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     
     this.rankingList = [];
@@ -38,6 +40,10 @@ export class RankingPlayers implements OnInit {
     }
     
     this.getPage();
+    
+    this.translate.get('Watch your enemies on the player rankings').subscribe((res: string) => {
+      this.titleService.setTitle(res);
+    });
   }
   
   getPage() {

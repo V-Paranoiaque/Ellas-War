@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
@@ -32,7 +33,8 @@ export class Home {
   
   constructor(private socket: Socket, private formBuilder: FormBuilder,
               private http: HttpClient, public translate: TranslateService, 
-              public user: User, private router: Router) {
+              public user: User, private router: Router,
+              private titleService: Title) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
@@ -63,6 +65,10 @@ export class Home {
       username: '',
       email: '',
       password: ''
+    });
+    
+    this.translate.get('Ellas War, free online strategy game').subscribe((res: string) => {
+      this.titleService.setTitle(res);
     });
     
     this.socket.on('register', (data:any) => {

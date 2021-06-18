@@ -3,6 +3,8 @@ import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../../environments/environment';
+import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -19,7 +21,8 @@ export class Login implements OnInit {
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
   
-  constructor(private socket: Socket, public user: User, private formBuilder: FormBuilder) {
+  constructor(private titleService: Title, public translate: TranslateService,
+              private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});
     this.loginError = 0;
   }
@@ -43,6 +46,10 @@ export class Login implements OnInit {
       username: '',
       password: '',
       mobile: environment.mobile
+    });
+    
+    this.translate.get('Connect and Join your City').subscribe((res: string) => {
+      this.titleService.setTitle(res);
     });
   }
   

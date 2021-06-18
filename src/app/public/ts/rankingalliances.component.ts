@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
+import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -23,7 +24,7 @@ export class RankingAlliances {
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User, 
-              private socket: Socket, 
+              private socket: Socket, private titleService: Title, 
               public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     
@@ -44,6 +45,10 @@ export class RankingAlliances {
     
     this.socket.on('rankingAlliancesRefresh', () => {
       this.getPage();
+    });
+    
+    this.translate.get('Watch the power of other alliances').subscribe((res: string) => {
+      this.titleService.setTitle(res);
     });
   }
   
