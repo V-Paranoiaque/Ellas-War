@@ -71,15 +71,16 @@
                   <div class="d-flex row">
                     <ng-container *ngFor="let army of user.getArmy()">
                       <div *ngIf="wave[army.code] > 0" role="button"
-                           class="col-3 col-md-2 d-flex flex-column"
-                           data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                           (click)="selectArmy(army.code)" cdkDrag>
-                        <div>
+                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                        <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                             (click)="selectArmy(army.code)">
                           <strong translate>{{ army.name }}</strong>
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ army.code }}"></ew-icon>
+                          <ew-icon name="{{ army.code }}"
+                                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                                   (click)="selectArmy(army.code)"></ew-icon>
                           <button [ngClass]="{'d-none': army.code == 'soul'}"
                                   class="btn btn-danger mt-1"
                                   (click)="waveAttackDelete(army.code, i)"
@@ -161,15 +162,16 @@
                   <div class="d-flex row">
                     <ng-container *ngFor="let army of user.getArmy()">
                       <div *ngIf="wave[army.code] > 0" role="button"
-                           class="col-3 col-md-2 d-flex flex-column"
-                           data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                           (click)="selectArmy(army.code)" cdkDrag>
-                        <div>
+                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                        <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                             (click)="selectArmy(army.code)">
                           <strong translate>{{ army.name }}</strong>
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ army.code }}"></ew-icon>
+                          <ew-icon name="{{ army.code }}"
+                                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                                   (click)="selectArmy(army.code)"></ew-icon>
                           <button [ngClass]="{'d-none': army.code == 'soul'}"
                                   class="btn btn-danger mt-1"
                                   (click)="waveDefenseDelete(army.code, i)"
@@ -179,15 +181,16 @@
                     </ng-container>
                     <ng-container *ngFor="let building of user.getBuildings()">
                       <div *ngIf="wave[building.code] > 0" role="button"
-                           class="col-3 col-md-2 d-flex flex-column"
-                           data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                           (click)="selectBuilding(building.code)" cdkDrag>
-                        <div>
+                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                        <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                             (click)="selectBuilding(building.code)">
                           <strong translate>{{ building.name }}</strong>
                           (<strong>{{ wave[building.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ building.code }}"></ew-icon>
+                          <ew-icon name="{{ building.code }}"
+                                   data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                                   (click)="selectBuilding(building.code)"></ew-icon>
                           <button class="btn btn-danger mt-1"
                                   (click)="waveDefenseDelete(building.code, i)"
                                   translate>Remove</button>
