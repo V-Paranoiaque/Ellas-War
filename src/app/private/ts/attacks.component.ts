@@ -98,7 +98,9 @@ export class Attacks {
      * 7: Prepare lightning
      * 8: Lightning
      * 9: Spy sanctuary
-     *10: Attack sanctuary
+     *10: Prepare to attack a sanctuary
+     *11: Attack sanctuary
+     *12: Sanctuary info
      */
     this.attackMode = 0;
     this.menuMode = 0;
