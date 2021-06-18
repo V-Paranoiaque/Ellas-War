@@ -54,6 +54,7 @@ import { QuestsDaily } from './ts/quests-daily.sub-component';
 import { QuestsInfoPopup } from './ts/quests-info-popup.sub-component';
 import { QuestsMissions } from './ts/quests-missions.sub-component';
 import { SanctuaryMessage } from './ts/sanctuary-message.sub-component';
+import { Strategies } from './ts/strategies.component';
 import { SuccessCard } from './ts/success-card.sub-component';
 import { SuccessInfoPopup } from './ts/success-info-popup.sub-component';
 import { Temple1Popup } from './ts/temple1-popup.sub-component';
@@ -122,6 +123,7 @@ export const PrivateComponent = [
   QuestsInfoPopup,
   QuestsMissions,
   SanctuaryMessage,
+  Strategies,
   SuccessCard,
   SuccessInfoPopup,
   Temple1Popup,

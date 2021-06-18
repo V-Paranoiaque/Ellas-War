@@ -70,6 +70,10 @@
             </p>
           </div>
           <div class="card-body" *ngIf="menuMode == 0 && getAttackList().length > 0">
+            <div class="text-center fw-bold mb-2" *ngIf="user.getLevel() >= 1">
+              <a [routerLink]="['/strategies/attack']"
+                 translate>Manage your waves to optimize your losses</a>
+            </div>
             <div class="visually-hidden" id="getAttackListDesc"
                  translate>Attackable cities</div>
             <table class="table align-middle" aria-labelledby="getAttackListDesc">
@@ -411,6 +415,10 @@
           <div class="card-body" *ngIf="menuMode == 4 && getAttackWarsList().length > 0">
             <div class="visually-hidden" id="getAttackWarsListDesc"
                  translate>Attackable cities at war</div>
+            <div class="text-center fw-bold mb-2" *ngIf="user.getLevel() >= 1">
+              <a [routerLink]="['/strategies/attack']"
+                 translate>Manage your waves to optimize your losses</a>
+            </div>
             <table class="table align-middle" aria-labelledby="getAttackWarsListDesc">
               <thead>
                 <tr class="text-center">

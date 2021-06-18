@@ -124,6 +124,26 @@
           </div>
           <div class="card-body d-flex align-items-center">
             <div class="flex-grow-1 text-center">
+              
+              <div class="row" *ngIf="user.getLevel() >= 1">
+                <div class="col-6">
+                  <strong translate>Attack:</strong>
+                  {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
+                  <a [routerLink]="['/strategies/attack']">
+                    <ic-icon [icIcon]="cog"></ic-icon>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <strong translate>Defense</strong>
+                  <strong translate>:</strong>
+                  {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
+                  <a [routerLink]="['/strategies/defense']">
+                    <ic-icon [icIcon]="cog"></ic-icon>
+                  </a>
+                </div>
+                <br/>
+              </div>
+              
               <div *ngIf="user.getLevel() < 10">
                 <a [routerLink]="['/quests']"
                    title="{{'Access to the quests'}}">

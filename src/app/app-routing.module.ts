@@ -41,6 +41,7 @@ import { Favors } from './private/ts/favors.component';
 import { Messages } from './private/ts/messages.component';
 import { Options } from './private/ts/options.component';
 import { Quests } from './private/ts/quests.component';
+import { Strategies } from './private/ts/strategies.component';
 import { Storeroom } from './private/ts/storeroom.component';
 import { Support } from './private/ts/support.component';
 
@@ -119,6 +120,8 @@ routes = [
   { path: 'messages', component: Messages },
   { path: 'options', component: Options },
   { path: 'quests', component: Quests },
+  { path: 'strategies', component: Strategies },
+  { path: 'strategies/:type', component: Strategies },
   { path: 'storeroom', component: Storeroom },
   { path: 'support', component: Support },
   { path: 'support/:id', component: Support },

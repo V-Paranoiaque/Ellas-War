@@ -130,6 +130,7 @@
   "Victory of { value } against { player }": "Victory of {{ value }} against {{ player }}",
   
   "Waiting in the alliance { value }": "Waiting in the alliance {{ value }}",
+  "Wave { value }": "Wave {{ value }}",
   "Win a war with { value } defensive victories": "Win a war with {{ value }} defensive victories",
   "Win { value } Drachmas through games.": "Win {{ value }} Drachmas through games.",
   "Win { value } times in the javelin game": "Win {{ value }} times in the javelin game",

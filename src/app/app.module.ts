@@ -14,6 +14,7 @@ import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@visurel/iconify-angular';
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AdminComponent } from './admin/admin.component';
 import { MenuComponent } from './menu/menu.component';
@@ -44,7 +45,8 @@ import { PrivateComponent } from './private/private.component';
         deps: [HttpClient]
       }
     }),
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    DragDropModule,
   ],
   providers: [Socket, User],
   bootstrap: [AppComponent]

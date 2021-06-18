@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import cloud from '@iconify/icons-fa-solid/cloud';
+import cog from '@iconify/icons-fa-solid/cog';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import swordCross from '@iconify/icons-mdi/sword-cross';
 
@@ -27,9 +28,12 @@ export class City {
   
   public divineBonus:any;
   public divineBonusNb:number;
+  public waveAttackPower:number;
+  public waveDefensePower:number;
   
   //Icons
   cloud = cloud;
+  cog = cog;
   EwIcon = EwIcon;
   questionCircle = questionCircle;
   swordCross = swordCross;
@@ -50,7 +54,8 @@ export class City {
       'power': 0,
       'error': 0
     };
-    
+    this.waveAttackPower = 0;
+    this.waveDefensePower = 0;
   }
   
   ngOnInit() {
@@ -92,14 +97,26 @@ export class City {
       }
     });
     
+    this.socket.on('waveAttackList', (data:any) => {
+        this.waveAttackPower = data.power;
+    });
+    this.socket.on('waveDefenseList', (data:any) => {
+        this.waveDefensePower = data.power;
+    });
+    
     this.socket.emit('divineBonus');
     this.socket.emit('dailyCoCheck');
+    
+    this.socket.emit("waveAttackList");
+    this.socket.emit("waveDefenseList");
   }
   
   ngOnDestroy() {
     this.socket.removeListener('divineBonus');
     this.socket.removeListener('dailyCo');
     this.socket.removeListener('dailyCoCheck');
+    this.socket.removeListener('waveAttackList');
+    this.socket.removeListener('waveDefenseList');
   }
   
   armyDisplay(info:any) {
