@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -8,12 +9,24 @@ import { User } from '../../../services/user.service';
 })
 
 export class AdminPauses {
+  public adminPause:any[];
   
-  constructor(public user: User, public translate: TranslateService) {
+  constructor(private socket: Socket, public user: User,
+              public translate: TranslateService) {
+    this.adminPause = [];
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+    
+    this.socket.emit('adminPause');
+    
+    this.socket.on('adminPause', (res:any) => {
+      this.adminPause = res;
+    })
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('adminPause');
   }
 }
-  
