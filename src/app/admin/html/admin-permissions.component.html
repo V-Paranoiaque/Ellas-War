@@ -1,5 +1,69 @@
 <common-top-bar active="admin"></common-top-bar>
 
+<div class="modal fade" id="AdminPermissionsNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Give permissions to a player</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="fw-bold" for="username-new" translate>Player</label>
+        <input class="form-control" type="text" id="username-new"
+               data-lpignore="true" name="username-new"
+               [(ngModel)]="usernameNew" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                translate>Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                (click)="permissionsNew()" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="AdminPermissionsModify" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Modify the player's permissions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedPlayer.username">
+        <div class="text-center">
+          <h3>{{ selectedPlayer.username}}</h3>
+          
+          <input type="radio" name="permissions" [value]="1"
+                 [(ngModel)]="selectedPlayer.rank" />
+          <span translate>Member</span>
+          <br/>
+          <input type="radio" name="permissions" [value]="2"
+                 [(ngModel)]="selectedPlayer.rank" />
+          <span translate>Prophet</span>
+          <br/>
+          <input type="radio" name="permissions" [value]="4"
+                 [(ngModel)]="selectedPlayer.rank" />
+          <span translate>High priest</span>
+          <br/>
+          <input type="radio" name="permissions" [value]="5"
+                 [(ngModel)]="selectedPlayer.rank" />
+          <span translate>God</span>
+          <br/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                translate>Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                (click)="permissionsModify()" translate>Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
   <div class="row">
     <admin-left-menu active="permissions" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
@@ -7,7 +71,48 @@
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <h1 class="text-center" id="permissionsDescribe">
+            <span translate>
+              Permissions
+            </span>
+            <button class="btn btn-primary" role="button"
+                    data-bs-toggle="modal" data-bs-target="#AdminPermissionsNew">
+              <ic-icon [icon]="brushIcon"></ic-icon>
+            </button>
+          </h1>
+          <br/>
+          <table class="table table-striped"
+                 aria-describedby="permissionsDescribe">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" class="text-center" translate>Rank</th>
+              <th scope="col" class="text-center" translate>Activity</th>
+              <th scope="col" *ngIf="user.getPropertyNb('rank') > 2"></th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr *ngFor="let u of adminPermissionsList">
+                <td>
+                  <a href="adminprofile/{{u.membre_id}}/connections" 
+                     class="bold">{{u.username}}</a>
+                </td>
+                <td class="text-center">
+                  {{u.rank}}
+                </td>
+                <td class="text-end">
+                  {{u.last_activity*1000| date:'EEEE dd MMMM, HH:mm'}}
+                </td>
+                <td class="text-center" *ngIf="user.getPropertyNb('rank') > 2">
+                  <button class="btn btn-primary" role="button"
+                          (click)="selectPlayer(u)" data-bs-toggle="modal"
+                          data-bs-target="#AdminPermissionsModify">
+                    <ic-icon [icon]="brushIcon"></ic-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
