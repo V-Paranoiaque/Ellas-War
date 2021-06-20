@@ -83,6 +83,7 @@ a {
 
 .card-body .progress, .btn,
 input.form-control, textarea.form-control,
+.input-group-text, .form-select,
 .card .card-header,
 .card.card-normal {
   border-radius: 0px;
