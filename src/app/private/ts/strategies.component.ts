@@ -171,7 +171,23 @@ export class Strategies {
       this.socket.emit('waveAttackNew', msg);
       this.waveAttackUnit[unit] = this.user.getPropertyNb(unit);
     }
+    else if(waveNew == 0) {
+      let msg = {
+        'unit': unit,
+        'wave': wavePrevious
+      };
+      this.socket.emit("waveAttackDelete", msg);
+    }
+    else {
+      let msg = {
+        'unit': unit,
+        'previous': wavePrevious,
+        'wave': waveNew
+      };
+      this.socket.emit("waveAttackMove", msg);
+    }
   }
+  
   onDropDefense(event: CdkDragDrop<string[]>) {
     let wavePrevious = parseInt(event.previousContainer.id.split('-')[2]);
     let waveNew      = parseInt(event.container.id.split('-')[2]);
@@ -194,6 +210,21 @@ export class Strategies {
       };
       this.socket.emit('waveDefenseNew', msg);
       this.waveDefenseUnit[unit] = this.user.getPropertyNb(unit);
+    }
+    else if(waveNew == 0) {
+      let msg = {
+        'unit': unit,
+        'wave': wavePrevious
+      };
+      this.socket.emit("waveDefenseDelete", msg);
+    }
+    else {
+      let msg = {
+        'unit': unit,
+        'previous': wavePrevious,
+        'wave': waveNew
+      };
+      this.socket.emit("waveDefenseMove", msg);
     }
   }
   

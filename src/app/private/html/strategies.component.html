@@ -71,6 +71,7 @@
                   <div class="d-flex row">
                     <ng-container *ngFor="let army of user.getArmy()">
                       <div *ngIf="wave[army.code] > 0" role="button"
+                           id="{{army.code}}-{{i}}-{{wave[army.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                              (click)="selectArmy(army.code)">
@@ -162,6 +163,7 @@
                   <div class="d-flex row">
                     <ng-container *ngFor="let army of user.getArmy()">
                       <div *ngIf="wave[army.code] > 0" role="button"
+                           id="{{army.code}}-{{i}}-{{wave[army.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                              (click)="selectArmy(army.code)">
@@ -181,6 +183,7 @@
                     </ng-container>
                     <ng-container *ngFor="let building of user.getBuildings()">
                       <div *ngIf="wave[building.code] > 0" role="button"
+                           id="{{building.code}}-{{i}}-{{wave[building.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                              (click)="selectBuilding(building.code)">
