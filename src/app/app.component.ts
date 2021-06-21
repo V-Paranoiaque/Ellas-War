@@ -44,6 +44,14 @@ export class AppComponent implements OnInit {
     
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    
+    this.socket.onChange.subscribe({
+      next: (event: any) => {
+        if(event.action == 'appReload') {
+          this.ngOnInit();
+        }
+      }
+    })
   }
   
   ngOnInit() {

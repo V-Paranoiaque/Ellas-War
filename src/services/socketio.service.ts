@@ -1,7 +1,11 @@
+import { EventEmitter } from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
 export class Socket {
+  
+  public onChange: EventEmitter<any> = new EventEmitter<any>();
+  
   socket: any;
   server: string;
   url: string;
@@ -21,6 +25,12 @@ export class Socket {
   setServer(server:string) {
     this.server = server;
     localStorage.setItem('server', server);
+    
+    //Setup the new connection
+    this.setupSocketConnection(this.getServerUrl(server));
+    
+    //Reload the app
+    this.onChange.emit({action: 'appReload'});
   }
   
   setupSocketConnection(url:string) {
@@ -28,7 +38,6 @@ export class Socket {
     if(this.socket) {
       this.socket.close();
     }
-    
     this.socket = io(url);
     this.url = url;
     
@@ -55,6 +64,7 @@ export class Socket {
       callback(data);
     })
   }
+
   removeListener(socketName: string) {
     this.socket.removeListener(socketName);
   }
