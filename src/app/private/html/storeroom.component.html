@@ -21,49 +21,51 @@
               <id-to-ress [ress_id]="'drachma'"></id-to-ress>
             </span>
             
-            <div>
-              <div class="input-group">
+            <div class="input-group d-flex flex-row">
+              <div class="d-flex flex-column">
                 <span class="input-group-text"
                       id="aria-quantity" translate>Quantity</span>
-                <input type="number" placeholder="0" step="1" min="0"
-                       class="form-control" aria-describedby="aria-quantity"
+                      
+                <span class="input-group-text mt-2"
+                      id="aria-rate" translate>Rate</span>
+              </div>
+              <div class="d-flex flex-column flex-grow-1">
+                <input type="number" placeholder="0" step="1" [attr.min]="0"
+                       class="form-control mt-2" aria-describedby="aria-quantity"
                        [attr.aria-label]="['Quantity'|translate]"
                        [(ngModel)]="storeroomQuantity">
-              </div>
-              <div class="input-group tinybloc">
-                <span class="input-group-text"
-                      id="aria-rate" translate>Rate</span>
-                <input type="number" placeholder="0" step="0.001" min="0"
+                <input type="number" placeholder="0" step="0.001" [attr.min]="0"
                        class="form-control" aria-describedby="aria-rate"
                        [attr.aria-label]="['Rate'|translate]"
                        [(ngModel)]="storeroomRate">
               </div>
-              <select class="form-select" [(ngModel)]="storeroomRess"
-                      [attr.aria-label]="['Select the resource'|translate]"
-                      (change)="setRess()">
-                <option value="1" translate>Food</option>
-                <option value="2" translate>Water</option>
-                <option value="3" translate>Wood</option>
-                <option value="4" translate>Iron</option>
-                <option *ngIf="user.getLevel() >= user.getLevelRess('stone')"
-                        value="5" translate>Stone</option>
-                <option *ngIf="user.getLevel() >= user.getLevelRess('marble')"
-                        value="6" translate>Marble</option>
-                <option *ngIf="user.getLevel() >= user.getLevelRess('grapes')"
-                        value="7" translate>Grapes</option>
-                <option *ngIf="user.getLevel() >= user.getLevelRess('wine')"
-                        value="8" translate>Wine</option>
-                <option *ngIf="user.getLevel() >= user.getLevelRess('gold')"
-                        value="9" translate>Gold</option>
-                <option value="10" translate>Favor</option>
-              </select>
-              <br />
-              <button class="btn btn-success" (click)="storeroomSell()"
-                      translate>Depose</button>
-              <br />
-              <br />
-              <div translate>The lots remain on the market during 7 days</div>
             </div>
+            
+            <select class="form-select text-center mt-2"
+                    [(ngModel)]="storeroomRess" (change)="setRess()"
+                    [attr.aria-label]="['Select the resource'|translate]">
+              <option value="1" translate>Food</option>
+              <option value="2" translate>Water</option>
+              <option value="3" translate>Wood</option>
+              <option value="4" translate>Iron</option>
+              <option *ngIf="user.getLevel() >= user.getLevelRess('stone')"
+                      value="5" translate>Stone</option>
+              <option *ngIf="user.getLevel() >= user.getLevelRess('marble')"
+                      value="6" translate>Marble</option>
+              <option *ngIf="user.getLevel() >= user.getLevelRess('grapes')"
+                      value="7" translate>Grapes</option>
+              <option *ngIf="user.getLevel() >= user.getLevelRess('wine')"
+                      value="8" translate>Wine</option>
+              <option *ngIf="user.getLevel() >= user.getLevelRess('gold')"
+                      value="9" translate>Gold</option>
+              <option value="10" translate>Favor</option>
+            </select>
+            <br />
+            <button class="btn btn-success" (click)="storeroomSell()"
+                    translate>Depose</button>
+            <br />
+            <br />
+            <div translate>The lots remain on the market during 7 days</div>
           </div>
         </div>
       </div>
@@ -103,9 +105,9 @@
                                         (trade.remaining > 0 || trade.mremaining > 0))">
                     <td>
                       <button class="btn btn-primary" *ngIf="trade.remaining > 0"
+                              title="{{'Select all the resources'|translate}}"
                               (click)=selectResources(trade)>
-                        <ic-icon title="{{'Select all the resources'|translate}}"
-                                 [icon]="plusIcon"></ic-icon>
+                        <ic-icon [icon]="plusIcon"></ic-icon>
                       </button>
                     </td>
                     <td class="text-end">
@@ -120,9 +122,9 @@
                     </td>
                     <td>
                       <input type="number" class="form-control"
-                             [(ngModel)]="storeroom_ress[trade.resource_id]" min="0"
-                             max="trade.remaining" placeholder="0" step="1" 
-                             [hidden]="trade.remaining == 0" />
+                             [(ngModel)]="storeroom_ress[trade.resource_id]"
+                             [attr.min]="0" [attr.max]=trade.remaining step="1" 
+                             placeholder="0" [hidden]="trade.remaining == 0" />
                     </td>
                     <td class="center">
                       <button class="btn btn-success"
