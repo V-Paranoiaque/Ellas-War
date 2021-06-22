@@ -20,19 +20,21 @@
       </ul>
       <form method="POST" action="/login"
             [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <fieldset class="d-flex">
+        <fieldset>
           <legend class="visually-hidden">Login to the game</legend>
-          <label class="visually-hidden" for="username_top"
-                 translate>Username</label>
-          <input class="form-control me-2" type="text" id="username_top"
-                 placeholder="{{'Login'|translate}}" name="username" 
-                 formControlName="username" required="required" />
-          <label class="visually-hidden" for="password_top"
-                 translate>Password</label>
-          <input class="form-control me-2" type="password" id="password_top"
-                 placeholder="{{'Password'|translate}}" name="password" 
-                 formControlName="password" required="required" />
-          <button class="btn btn-success" type="submit" translate>Connect</button>
+          <div class="d-flex">
+            <label class="visually-hidden" for="username_top"
+                   translate>Username</label>
+            <input class="form-control me-2" type="text" id="username_top"
+                   placeholder="{{'Login'|translate}}" name="username" 
+                   formControlName="username" required="required" />
+            <label class="visually-hidden" for="password_top"
+                   translate>Password</label>
+            <input class="form-control me-2" type="password" id="password_top"
+                   placeholder="{{'Password'|translate}}" name="password" 
+                   formControlName="password" required="required" />
+            <button class="btn btn-success" type="submit" translate>Connect</button>
+          </div>
         </fieldset>
       </form>
     </div>
