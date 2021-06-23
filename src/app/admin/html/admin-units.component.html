@@ -1,7 +1,7 @@
 <common-top-bar active="admin"></common-top-bar>
 
 <div class="col-xs-12 main">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
     <div class="col-12">
       <div class="card">
@@ -19,6 +19,8 @@
                <th scope="column" translate>P by D</th>
                <th scope="column" translate>C by A</th>
                <th scope="column" translate>C by D</th>
+               <th scope="column" translate>A by F</th>
+               <th scope="column" translate>D by F</th>
                <th scope="column"></th>
                <th scope="column"></th>
               </tr>
@@ -39,12 +41,12 @@
                 <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.globalConsu | number:'': this.translate.currentLang }}</td>
                 
-                <td *ngIf="unit.attack > 0">{{ unit.globalCost/unit.attack | number:'': this.translate.currentLang }}</td>
-                <td *ngIf="unit.attack == 0"></td>
-                
-                <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
-                <td>{{ unit.globalConsu/unit.attack | number:'': this.translate.currentLang }}</td>
-                <td>{{ unit.globalConsu/unit.defense | number:'': this.translate.currentLang  }}</td>
+                <td [ngClass]="{'text-danger': checkBest('p_a', unit) }">{{ unit.p_a | number:'': this.translate.currentLang }}</td>
+                <td [ngClass]="{'text-danger': checkBest('p_d', unit) }">{{ unit.p_d | number:'': this.translate.currentLang }}</td>
+                <td [ngClass]="{'text-danger': checkBest('c_a', unit) }">{{ unit.c_a | number:'': this.translate.currentLang }}</td>
+                <td [ngClass]="{'text-danger': checkBest('c_d', unit) }">{{ unit.c_d | number:'': this.translate.currentLang }}</td>
+                <td [ngClass]="{'text-danger': checkBest('a_f', unit) }">{{ unit.a_f | number:'': this.translate.currentLang }}</td>
+                <td [ngClass]="{'text-danger': checkBest('d_f', unit) }">{{ unit.d_f | number:'': this.translate.currentLang }}</td>
                 <td>
                   <span *ngFor="let res of unit.cost | keyvalue">
                     <id-to-ress [ress_id]="res.key"></id-to-ress>
@@ -55,6 +57,37 @@
                     <id-to-ress [ress_id]="res.key"></id-to-ress>
                   </span>
                 </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table class="table" aria-labelledby="unitDesc">
+            <thead>
+              <tr>
+               <th scope="column" translate>Name</th>
+               <th scope="column" translate>Field</th>
+               <th scope="column" translate>Defense</th>
+               <th scope="column" translate>Price</th>
+               <th scope="column" translate>P by D</th>
+               <th scope="column" translate>D by F</th>
+               <th scope="column"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unit of towersArray">
+                <td>{{ unit.name | translate }}</td>
+                <td>{{ unit.field | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
+                
+                <td>{{ unit.globalCost/unit.defense | number:'': this.translate.currentLang }}</td>
+                <td>{{ unit.defense/unit.field | number:'': this.translate.currentLang }}</td>
+                <td>
+                  <span *ngFor="let res of unit.cost | keyvalue">
+                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                  </span>
+                </td>
+                <td>
               </tr>
             </tbody>
           </table>
