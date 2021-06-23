@@ -16,7 +16,7 @@
       <div class="modal-body row">
         <div class="col-12">
           <strong translate>Goal</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0"
+          <input class="form-control" type="number" [attr.min]="0"
                  [(ngModel)]="questInfo.goal">
           <select class="form-select" [(ngModel)]="questInfo.type">
             <option value="1">{{ 'Win { value } victories' | translate: { value: 'XX' } }}</option>
@@ -38,7 +38,7 @@
           </select>
           
           <strong translate>Reward type</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0"
+          <input class="form-control" type="number" [attr.min]="0"
                  [(ngModel)]="questInfo.reward">
           
           <strong translate>Difficulty</strong><strong translate>:</strong>
@@ -50,11 +50,11 @@
           </select>
           
           <strong translate>Minimum level</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0" max="10"
+          <input class="form-control" type="number" [attr.min]="0" [attr.max]="10"
                  [(ngModel)]="questInfo.level">
           
           <strong translate>Maximum level</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0" max="10"
+          <input class="form-control" type="number" [attr.min]="0" [attr.max]="10"
                  [(ngModel)]="questInfo.levelmax">
         </div>
       </div>
@@ -84,21 +84,32 @@
       </div>
       <div class="modal-body row">
         <div class="col-12">
-          <strong translate>Resources</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0"
+          <strong translate>Reward</strong><strong translate>:</strong>
+          <input class="form-control" type="number" [attr.min]="0"
                  [(ngModel)]="rewardInfo.quantity">
           <select class="form-select" [(ngModel)]="rewardInfo.ress">
-            <option *ngFor="let res of ressList; let index = index;" value="{{ index }}">
+            <!-- Resources -->
+            <option *ngFor="let res of ressList; let index = index;"
+                    value="{{ res }}">
               {{ res | titlecase | translate }}
             </option>
+            <option value="favor" translate>Favor</option>
+            <option value="ambrosia" translate>Ambrosia</option>
+            
+            <!-- Units -->
+            <option *ngFor="let unit of user.getArmy(); let index = index;"
+                    value="{{ unit.code }}">
+              {{ unit.name | translate }}
+            </option>
+            
           </select>
           
           <strong translate>Reward type</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0"
+          <input class="form-control" type="number" [attr.min]="0"
                  [(ngModel)]="rewardInfo.reward">
           
           <strong translate>Minimum level</strong><strong translate>:</strong>
-          <input class="form-control" type="number" min="0" max="10"
+          <input class="form-control" type="number" [attr.min]="0" [attr.max]="10"
                  [(ngModel)]="rewardInfo.level">
         </div>
       </div>
@@ -117,7 +128,7 @@
   <div class="row">
     <admin-left-menu active="quests" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
 
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+    <div class="col-lg-5 col-md-9 col-sm-9 col-xs-12">
       <div class="card">
         <div class="card-header card-header-auto" id="GoalsDesc" translate>
           Quests
@@ -220,7 +231,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+    <div class="col-lg-5 offset-lg-0 col-md-9 offset-md-3 col-sm-9 offset-sm-3 col-xs-12">
       <div class="card">
         <div class="card-header card-header-auto" id="RewardsDesc" translate>
           Rewards
