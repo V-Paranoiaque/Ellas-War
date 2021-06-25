@@ -97,6 +97,7 @@
             <option value="ambrosia" translate>Ambrosia</option>
             
             <!-- Units -->
+            <option value="volunteer" translate>Volunteer</option>
             <option *ngFor="let unit of user.getArmy(); let index = index;"
                     value="{{ unit.code }}">
               {{ unit.name | translate }}
@@ -128,7 +129,7 @@
   <div class="row">
     <admin-left-menu active="quests" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
 
-    <div class="col-lg-5 col-md-9 col-sm-9 col-xs-12">
+    <div class="col-lg-5 col-md-9 col-sm-9 col-xs-12" role="main">
       <div class="card">
         <div class="card-header card-header-auto" id="GoalsDesc" translate>
           Quests
@@ -139,7 +140,7 @@
         </div>
         
         <div class="card-body card-body-100">
-          <table class="table table-striped table-middle" aria-describedby="QuestNew">
+          <table class="table table-striped table-middle align-middle" aria-describedby="QuestNew">
             <thead>
               <tr>
                 <th scope="col" translate>Goal</th>
@@ -242,7 +243,7 @@
         </div>
         
         <div class="card-body card-body-100">
-          <table class="table table-striped table-middle" aria-describedby="RewardsDesc">
+          <table class="table table-striped table-middle align-middle" aria-describedby="RewardsDesc">
             <thead>
               <tr>
                 <th scope="col" translate>Type</th>
@@ -256,7 +257,7 @@
                 <td class="text-center">{{ p.reward_type }}</td>
                 <td class="text-end">
                   {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                  <id-to-ress ress_id="{{p.reward_ress}}"></id-to-ress>
+                  <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
                 </td>
                 <td class="text-center">{{ p.reward_level }}</td>
                 <td class="text-center">

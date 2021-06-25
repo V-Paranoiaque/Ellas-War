@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
+import { EwIcon } from '../../../services/ew-icon.service';
 
 import brushIcon from '@iconify/icons-bi/brush';
 
@@ -20,7 +21,8 @@ export class AdminQuests {
   public rewardInfo:any;
   
   //Icons
-  brushIcon    = brushIcon;
+  brushIcon = brushIcon;
+  EwIcon    = EwIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.ressList = environment.resources;

@@ -14,3 +14,8 @@ admin-left-menu {
   padding-left: 0;
   padding-right: 0;
 }
+
+.small-icon {
+  width: 25px;
+  display: inline-block;
+}

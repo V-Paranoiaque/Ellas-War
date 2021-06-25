@@ -21,3 +21,8 @@
   right: 0;
   left: 0;
 }
+
+.card-body .small-icon {
+  width: 20px;
+  display: inline-block;
+}
