@@ -5,6 +5,11 @@
     <army-popup [info]="armyInfo"></army-popup>
   </div>
 </div>
+<div class="modal fade" id="ArmyHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <army-help-popup></army-help-popup>
+  </div>
+</div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <construction-popup [info]="buildingInfo"></construction-popup>
@@ -92,7 +97,7 @@
                   </div>
                 </div>
               </ng-container>
-              <div *ngIf="waveAttackList.length < waveAttackMax">
+              <div *ngIf="waveAttackPower > 0 && waveAttackList.length < waveAttackMax">
                 <h3>{{'Wave { value }'| translate: { value: waveAttackList.length } }}</h3>
                 <div cdkDropList class="text-center"
                      id="wave-attack-{{waveAttackList.length}}"
@@ -101,6 +106,10 @@
                      (cdkDropListDropped)="onDropAttack($event)" translate>
                   Drag and drop units on a wave to add them
                 </div>
+              </div>
+              <div *ngIf="waveAttackPower == 0" class="text-center fw-bold"
+                   translate>
+                Your army is empty
               </div>
             </ng-container>
             
@@ -203,7 +212,7 @@
                   </div>
                 </div>
               </ng-container>
-              <div *ngIf="waveDefenseList.length < waveDefenseMax">
+              <div *ngIf="waveDefensePower > 0 && waveDefenseList.length < waveDefenseMax">
                 <h3>{{'Wave { value }'| translate: { value: waveDefenseList.length } }}</h3>
                 <div cdkDropList class="text-center"
                      id="wave-defense-{{waveDefenseList.length}}"
@@ -212,6 +221,10 @@
                      (cdkDropListDropped)="onDropDefense($event)" translate>
                   Drag and drop units on a wave to add them
                 </div>
+              </div>
+              <div *ngIf="waveDefensePower == 0" class="text-center fw-bold"
+                   translate>
+                Your army is empty
               </div>
             </ng-container>
           </div>

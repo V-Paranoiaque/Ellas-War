@@ -10,6 +10,7 @@ import bowAndArrow from '@iconify-icons/emojione-monotone/bow-and-arrow';
 import footPrint from '@iconify-icons/mdi/foot-print';
 import horseIcon from '@iconify-icons/mdi/horse';
 import manSharp from '@iconify-icons/ion/man-sharp';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import {default as sword}  from '@iconify-icons/whh/sword';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -32,6 +33,7 @@ export class ArmyPopup {
   bowAndArrow = bowAndArrow;
   horseIcon = horseIcon;
   manSharp = manSharp;
+  questionCircle = questionCircle;
   shieldShaded = shieldShaded;
   sword = sword;
   swordIcon= swordIcon;

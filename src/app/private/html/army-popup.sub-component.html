@@ -24,6 +24,12 @@
         <ic-icon title="{{'Remote unit'|translate}}"
                  *ngIf="info.type == 3 || info.type == 4 || info.type == 7 || info.type == 8"
                  [icon]="bowAndArrow"></ic-icon>
+      
+        <span data-bs-toggle="modal" data-bs-target="#ArmyHelp"
+              data-bs-dismiss="modal" title="{{'Army information'|translate}}"
+              role="button" translate>
+          <ic-icon [icIcon]="questionCircle"></ic-icon>
+        </span>
       </span>
     </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
@@ -180,11 +186,11 @@
         
         <div class="d-flex">
           <div class="d-flex flex-column">
-            <input type="number" placeholder="0" min="0" step="1"
+            <input type="number" placeholder="0" [attr.min]="0" step="1"
                    [(ngModel)]="info.engageNb" class="form-control mt-2"
                    (keydown.enter)="armyEngage()"
                    *ngIf="user.getLevel() >= info.lvlmini && user.getPropertyNb('lord_lightning') == 0">
-            <input type="number" placeholder="0" min="0" step="1"
+            <input type="number" placeholder="0" [attr.min]="0" step="1"
                  [(ngModel)]="info.liberatenb" class="form-control mt-2"
                  (keydown.enter)="armyLiberate()"
                  *ngIf="user.getPropertyNb('level') >= info.lvlmini || 
