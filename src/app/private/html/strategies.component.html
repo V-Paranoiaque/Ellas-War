@@ -55,7 +55,7 @@
                        data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                        (click)="selectArmy(army.code)"
                        cdkDrag>
-                    <div>
+                    <div class="text-center">
                       <strong translate>{{ army.name }}</strong>
                       (<strong>{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}</strong>)
                     </div>
@@ -79,7 +79,7 @@
                            id="{{army.code}}-{{i}}-{{wave[army.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                             (click)="selectArmy(army.code)">
+                             class="text-center" (click)="selectArmy(army.code)">
                           <strong translate>{{ army.name }}</strong>
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
@@ -134,7 +134,7 @@
                        data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                        (click)="selectArmy(army.code)"
                        cdkDrag>
-                    <div>
+                    <div class="text-center">
                       <strong translate>{{ army.name }}</strong>
                       (<strong>{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}</strong>)
                     </div>
@@ -151,7 +151,7 @@
                        data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                        (click)="selectBuilding(building.code)"
                        cdkDrag>
-                    <div>
+                    <div class="text-center">
                       <strong translate>{{ building.name }}</strong>
                       (<strong>{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}</strong>)
                     </div>
@@ -175,7 +175,7 @@
                            id="{{army.code}}-{{i}}-{{wave[army.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                             (click)="selectArmy(army.code)">
+                             class="text-center" (click)="selectArmy(army.code)">
                           <strong translate>{{ army.name }}</strong>
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
@@ -195,6 +195,7 @@
                            id="{{building.code}}-{{i}}-{{wave[building.code]}}"
                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                         <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                             class="text-center"
                              (click)="selectBuilding(building.code)">
                           <strong translate>{{ building.name }}</strong>
                           (<strong>{{ wave[building.code] }}</strong>)
