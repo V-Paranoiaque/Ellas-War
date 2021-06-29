@@ -146,7 +146,7 @@
               
               <div *ngIf="user.getLevel() < 10">
                 <a [routerLink]="['/quests']"
-                   title="{{'Access to the quests'}}">
+                   title="{{'Access to the quests'|translate}}">
                   <strong translate>Quests</strong><strong translate>:</strong> 
                   {{ user.getQuest() }}/{{ user.getQuestMax() }}
                 </a>
