@@ -220,7 +220,7 @@
           <div *ngFor="let msg of getCurrentMsg().msg" class="card-body">
             <div [ngSwitch]="msg.content_type">
               <span *ngSwitchCase="0">
-                {{ msg.content }}
+                <div class="text-prewrap">{{ msg.content }}</div>
                 <div class="text-end fw-lighter">
                   <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
                 </div>

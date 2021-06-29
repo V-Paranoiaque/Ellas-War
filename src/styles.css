@@ -13,6 +13,10 @@ a.no-padding {
   opacity: 0;
 }
 
+.text-prewrap  {
+  white-space: pre-wrap;
+}
+
 .main {
   float: left;
   padding-bottom: 40px;
