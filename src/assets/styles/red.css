@@ -95,7 +95,8 @@ input.form-control, textarea.form-control,
 .card-body.new,
 .progress-text,
 .page-item,
-.table-dark {
+.table-dark,
+.quest_validated {
   text-shadow: none;
 }
 
