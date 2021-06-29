@@ -37,19 +37,19 @@
           <h3>{{ selectedPlayer.username}}</h3>
           
           <input type="radio" name="permissions" [value]="1"
-                 [(ngModel)]="selectedPlayer.rank" />
+                 class="form-check-input" [(ngModel)]="selectedPlayer.rank" />
           <span translate>Member</span>
           <br/>
           <input type="radio" name="permissions" [value]="2"
-                 [(ngModel)]="selectedPlayer.rank" />
+                 class="form-check-input" [(ngModel)]="selectedPlayer.rank" />
           <span translate>Prophet</span>
           <br/>
           <input type="radio" name="permissions" [value]="4"
-                 [(ngModel)]="selectedPlayer.rank" />
+                 class="form-check-input" [(ngModel)]="selectedPlayer.rank" />
           <span translate>High priest</span>
           <br/>
           <input type="radio" name="permissions" [value]="5"
-                 [(ngModel)]="selectedPlayer.rank" />
+                 class="form-check-input" [(ngModel)]="selectedPlayer.rank" />
           <span translate>God</span>
           <br/>
         </div>

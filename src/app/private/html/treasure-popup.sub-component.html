@@ -39,12 +39,12 @@
           <td> 
             <input type="radio" [checked]="true" 
                    value="deposit" name="mod"
-                   [(ngModel)]="deposit">
+                   [(ngModel)]="deposit" class="form-check-input">
             <span translate>Depose</span>
           </td>
           <td>
             <input type="radio" value="pull" name="mod"
-                   [(ngModel)]="deposit">
+                   [(ngModel)]="deposit" class="form-check-input">
             <span translate>Pull</span>
           </td>
         </tr>
@@ -52,12 +52,14 @@
           <th scope="row" translate>Computation</th>
           <td>
             <input type="radio" id="computation" [checked]="true"
-                   value="2" [(ngModel)]="computation" name="computation"> 
+                   value="2" [(ngModel)]="computation" name="computation"
+                   class="form-check-input"> 
             <span translate>Relative</span>
           </td>
           <td> 
             <input type="radio" value="3" 
-                   [(ngModel)]="computation" name="computation"> 
+                   [(ngModel)]="computation" name="computation"
+                   class="form-check-input"> 
             <span translate>Absolute</span>
           </td>
         </tr>
