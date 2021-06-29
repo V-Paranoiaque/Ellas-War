@@ -63,7 +63,7 @@
         </div>
         
         <div translate
-             *ngIf="info.temple && info.temple.ares && user.getPropertyNb('ares') == 0">
+             *ngIf="info.temple && info.temple.ares && user.getPropertyNb('ares') == 0 && user.getLevel() > 0">
           You must have the temple of Ares to engage this unit.
         </div>
         
