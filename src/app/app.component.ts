@@ -97,10 +97,10 @@ export class AppComponent implements OnInit {
     });
     
     //oauth
-    this.socket.on('connectionToken', (token:string) => {
+    this.socket.on('connectionToken', (data:any) => {
       localStorage.removeItem('token');
-      
-      if(token) {
+      if(data && data.token) {
+        let token = data.token;
         this.socket.emit('ewAuth', {'token': token});
         localStorage.setItem('token', token);
         this.router.navigate(['/city']);
