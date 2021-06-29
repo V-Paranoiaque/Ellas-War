@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 
 import { CommonTopBar } from './common-top-bar.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 import cog from '@iconify/icons-fa-solid/cog';
 import powerOff from '@iconify/icons-fa-solid/power-off';
@@ -24,9 +26,10 @@ export class ConnectedTopBar extends CommonTopBar {
   cog      = cog;
   powerOff = powerOff;
   
-  constructor(socket: Socket, 
-              router: Router, public user: User) {
-    super(socket, router, user);
+  constructor(protected http: HttpClient, socket: Socket, 
+              router: Router, public user: User,
+              protected modalService: BsModalService) {
+    super(http, socket, router, user, modalService);
     
     this.audio = new Audio();
     this.audio.src = "./assets/audio/2042.mp3";

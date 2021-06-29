@@ -4,3 +4,18 @@
   <blocked-top-bar   *ngSwitchCase="3" active="{{ active }}"></blocked-top-bar>
   <paused-top-bar    *ngSwitchCase="4" active="{{ active }}"></paused-top-bar>
 </div>
+
+<div *ngIf="displayServerModal" [config]="{ show: true }" (onHidden)="onHidden()"
+     bsModal #serverModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Impossible to join the server</h4>
+      </div>
+      <div class="modal-body text-center">
+        <button class="btn btn-primary" (click)="refresh()"
+                translate>Refresh</button>
+      </div>
+    </div>
+  </div>
+</div>

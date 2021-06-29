@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router'
 
 import { CommonTopBar } from './common-top-bar.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'public-top-bar',
@@ -18,9 +20,10 @@ export class PublicTopBar extends CommonTopBar {
   active: string;
   loginForm: FormGroup;
   
-  constructor(socket: Socket, private formBuilder: FormBuilder, 
-              router: Router, public user: User) {
-    super(socket, router, user);
+  constructor(protected http: HttpClient, socket: Socket, private formBuilder: FormBuilder, 
+              router: Router, public user: User,
+              protected modalService: BsModalService) {
+    super(http, socket, router, user, modalService);
     
     this.loginForm = this.formBuilder.group({});
     this.active = '';
