@@ -136,7 +136,7 @@
           {{ user.getPropertyNb('camp_level') }}
         </div>
         
-        <div *ngIf="info.rBuildPossible > 0" role="button" 
+        <div *ngIf="info.rBuildPossible > 0 && user.getLevel() > 0" role="button" 
              (click)="setBuild(info.rBuildPossible)">
           <strong>{{"Max possible"|translate}}{{":"}}</strong>
           {{ info.rBuildPossible | number:'': this.translate.currentLang }}
