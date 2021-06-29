@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
+
+import facebookIcon from '@iconify-icons/logos/facebook';
 
 @Component({
   selector: 'quests-missions',
@@ -10,7 +13,19 @@ import { User } from '../../../services/user.service';
 })
 
 export class QuestsMissions {
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  public localevars:any;
+  
+  facebookIcon = facebookIcon;
+  
+  constructor(private socket: Socket, public user: User,
+              private http: HttpClient, public translate: TranslateService) {
+    this.localevars = {}
+  }
+  
+  ngOnInit() {
+    this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe(data =>{
+      this.localevars = data;
+    });
     
   }
   
