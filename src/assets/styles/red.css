@@ -92,7 +92,7 @@ input.form-control, textarea.form-control,
 
 .btn,
 .card-button,
-.card-body.new,
+.card-body .new,
 .progress-text,
 .page-item,
 .table-dark,
@@ -127,6 +127,10 @@ input.form-control, textarea.form-control,
 
 .card-body.selected a {
   color: white;
+}
+
+.card-body .new {
+  background-color: rgb(251, 96, 80, 0.8);
 }
 
 .card.card-column a.link-secondary {

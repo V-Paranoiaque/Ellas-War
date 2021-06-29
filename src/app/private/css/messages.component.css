@@ -20,10 +20,6 @@
   padding: 0.5rem 0.5rem;
 }
 
-.card-body.new {
-  background-color: var(--color-menu-clear);
-}
-
 .mobile-textarea {
   height: 90px;
 }
