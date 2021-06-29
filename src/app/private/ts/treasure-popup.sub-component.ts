@@ -43,7 +43,12 @@ export class TreasurePopup {
   }
   
   setTreasure(amount:number) {
-    this.info.amount = amount;
+    if(this.deposit == 'deposit') {
+      this.info.amount = amount;
+    }
+    else {
+      this.info.amount = this.user.getPropertyNb('treasure');
+    }
   }
   
   setTreasureMode(mode:number) {
