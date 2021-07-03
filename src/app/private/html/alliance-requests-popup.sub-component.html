@@ -14,7 +14,7 @@
     </div>
 
     <div class="input-group">
-      <input type="number" class="form-control" min="0"
+      <input type="number" class="form-control" [attr.min]="0"
              [(ngModel)]="info.quantity">
       <span class="input-group-text btn btn-primary" 
             (click)="askRess()" translate>Request</span>

@@ -13,7 +13,7 @@
     <span *ngIf="user.getPropertyNb('treasurer') == 0">{{ myAllianceProfile.fee_min }}</span>
     <br/>
     <input class="form-control" type="number" placeholder="0"
-           min="1" max="10" *ngIf="user.getPropertyNb('treasurer') > 0"
+           [attr.min]="1" [attr.max]="10" *ngIf="user.getPropertyNb('treasurer') > 0"
            [(ngModel)]="level_min">
     <br/>
     
@@ -33,7 +33,7 @@
             <id-to-ress [ress_id]="res"></id-to-ress>
           </td>
           <td *ngIf="user.getPropertyNb('treasurer') > 0">
-            <input class="form-control" type="number" step="1" min="0"
+            <input class="form-control" type="number" step="1" [attr.min]="0"
                    [(ngModel)]="taxes[res]">
           </td>
           <td *ngIf="user.getPropertyNb('treasurer') == 0" class="text-end">

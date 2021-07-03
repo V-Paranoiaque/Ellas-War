@@ -108,7 +108,8 @@
       </div>
       <div class="modal-body text-center" *ngIf="pauseAllowed == 1">
         <strong translate>Between 4 and 100 days including</strong>
-        <input type="number" min="4" max="100" class="form-control" [(ngModel)]="pauseNb" />
+        <input type="number" [attr.min]="4" [attr.max]="100"
+               class="form-control" [(ngModel)]="pauseNb" />
         <button class="btn btn-warning" (click)="accountPause()"
                 translate>Put your account in pause</button>
       </div>

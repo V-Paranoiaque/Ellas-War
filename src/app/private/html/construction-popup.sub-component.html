@@ -150,11 +150,11 @@
         
         <div class="d-flex">
           <div class="d-flex flex-column">
-            <input type="number" placeholder="0" min="0" step="1"
+            <input type="number" placeholder="0" [attr.min]="0" step="1"
                    [(ngModel)]="info.buildNb" class="form-control mt-2"
                    *ngIf="(info.nbmax == 0 || user.getPropertyNb(info.code) < info.nbmax) && user.getPropertyNb('volcano') == 0"
                    (keydown.enter)="buildingBuild()">
-            <input type="number" placeholder="0" min="0" step="1"
+            <input type="number" placeholder="0" [attr.min]="0" step="1"
                    [(ngModel)]="info.destructNb" class="form-control mt-2"
                    [hidden]="user.getPropertyNb(info.code) == 0 || (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)"
                    (keydown.enter)="buildingDestruct()">

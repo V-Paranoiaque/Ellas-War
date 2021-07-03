@@ -62,7 +62,7 @@
       <div class="input-group">
         <input type="number" [(ngModel)]="furyNb" 
                class="form-control" placeholder="0" 
-               step="1" min="0">
+               step="1" [attr.min]="0">
         <span (click)="furyBuy(furyNb)" 
               class="input-group-text btn btn-success" role=button
               translate>Buy</span>
@@ -397,7 +397,7 @@
       <div class="input-group">
         <input type="number" [(ngModel)]="lightningNb" 
                class="form-control" placeholder="0" 
-               step="1" min="0">
+               step="1" [attr.min]="0">
         <span (click)="lightningBuy(lightningNb)" 
               class="input-group-text btn btn-success" role=button
               translate>Buy</span>

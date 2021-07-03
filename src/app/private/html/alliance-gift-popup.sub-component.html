@@ -29,7 +29,7 @@
     </div>
     
     <input type="number" class="form-control" placeholder="0" 
-           min="0" max="{{giftRemain}}" [(ngModel)]="qttGiftsRess">
+           [attr.min]="0" [attr.max]="giftRemain" [(ngModel)]="qttGiftsRess">
     
   </div>
   <div class="modal-footer">
