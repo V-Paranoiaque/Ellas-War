@@ -1,27 +1,45 @@
-# Ew
+# Ellas War
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+Ellas War is an online Video Game started in 2007. The action takes place approximately to -500 during the Golden Age of ancient Greece. When we have migrated the frontend from AngularJS to Angular, we have decided to release it under a free license. Officially supported languages are English and French, but we are open to contributions.
 
-## Development server
+## Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Because of CSR problems you might be able to connect only to the development server.
 
-## Code scaffolding
+### Running tests
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng test --code-coverage` to execute the unit tests via [Karma](https://karma-runner.github.io). Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Build
+### Scan with SonarQube
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To scan the code and export the results to SonarQube, run `npm run sonar`.
 
-## Running unit tests
+## Production
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Build
 
-## Running end-to-end tests
+Run `ng build` to build the project. The build artifacts will be stored in the `www/` directory. Use the `--configuration=production` flag for the web version and `--configuration=mobile` for the mobile version.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Officially supported platforms
 
-## Further help
+| Platform | Supported | Comment |
+| ------------- |:-------------:| ----- |
+| Android | :white_check_mark: | Cordova |
+| Flatpack | :x: |  |
+| iOS | :white_check_mark: | Cordova |
+| Mac Os | :white_check_mark: | Cordova |
+| Snap | :white_check_mark: | Cordova + Electron |
+| Web | :white_check_mark: | |
+| Windows | :white_check_mark: | Cordova + Electron |
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Unofficially supported platforms
+
+It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
+
+
+### Stores
+- Amazon Store
+- Microsoft Store
+
+## Contributions
+Any contributions you make are greatly appreciated. To ease the contribution process, we ask to each contributor to assign copyright to the project.
