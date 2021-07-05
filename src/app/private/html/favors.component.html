@@ -57,7 +57,8 @@
         <div class="card">
           <div class="card-header" translate>Support of Leonidas</div>
           <div class="card-body">
-            <div translate>+40 Spartans</div>
+            <div *ngIf="user.getLevel() < 10"translate>+40 Spartans</div>
+            <div *ngIf="user.getLevel() >= 10"translate>+80 Spartans</div>
             <div translate>+200 Spies</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
