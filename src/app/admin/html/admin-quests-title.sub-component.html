@@ -12,10 +12,10 @@
     {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
   </span>
   <span *ngSwitchCase="5">
-    {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}
+    {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang } }}
   </span>
   <span *ngSwitchCase="6">
-    {{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}
+    {{ 'Engage { value } Units' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang } }}
   </span>
   <span *ngSwitchCase="7">
     {{ quest.quest_goal == 1 ?
