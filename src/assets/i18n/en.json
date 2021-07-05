@@ -83,16 +83,16 @@
   
   "Name { value } chief of the alliance":"Name {{ value }} chief of the alliance",
   "New member: { value }": "New member: {{ value }}",
-  "New unity: { unit }": "New unity: { unit }",
-  "Next goal: { value } Days": "Next goal: { value } Days",
-  "Next goal: { value } Days, possible bonus:": "Next goal: { value } Days, possible bonus:",
+  "New unity: { unit }": "New unity: {{ unit }}",
+  "Next goal: { value } Days": "Next goal: {{ value }} Days",
+  "Next goal: { value } Days, possible bonus:": "Next goal: {{ value }} Days, possible bonus:",
   
-  "Own { value } mints": "Own { value } mints",
-  "Own { value } Drachmas in your treasure": "Own { value } Drachmas in your treasure",
-  "Owning { value } altars of the gods": "Owning { value } altars of the gods",
+  "Own { value } mints": "Own {{ value }} mints",
+  "Own { value } Drachmas in your treasure": "Own {{ value }} Drachmas in your treasure",
+  "Owning { value } altars of the gods": "Owning {{ value }} altars of the gods",
   "Owning { value } godchildren": "Owning {{ value }} godchildren",
   
-  "Peste against { value }": "Peste against { value }",
+  "Peste against { value }": "Peste against {{ value }}",
   "Peste from { value }": "Peste from {{ value }}",
   "Put a total of { value } Drachmas into your treasure.": "Put a total of {{ value }} Drachmas into your treasure.",
   
