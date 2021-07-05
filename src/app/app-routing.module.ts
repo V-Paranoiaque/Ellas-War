@@ -66,7 +66,7 @@ import { AdminQuests } from './admin/ts/admin-quests.component';
 import { AdminResources } from './admin/ts/admin-resources.component';
 import { AdminStoreroom } from './admin/ts/admin-storeroom.component';
 import { AdminSupport } from './admin/ts/admin-support.component';
-import { AdminUnits } from './admin/ts/admin-units.component';
+import { AdminStatsUnits } from './admin/ts/admin-stats-units.component';
 
 //General
 import { SiteMap } from './public/ts/sitemap.component';
@@ -145,7 +145,9 @@ routes = [
       { path: 'resources', component: AdminResources },
       { path: 'storeroom', component: AdminStoreroom },
       { path: 'support', component: AdminSupport },
-      { path: 'units', component: AdminUnits },
+      
+      { path: 'stats/units', component: AdminStatsUnits },
+      
       { path: '**', component: AdminHome }
     ]
   },

@@ -12,7 +12,7 @@ import { AdminQuests } from './ts/admin-quests.component';
 import { AdminResources } from './ts/admin-resources.component';
 import { AdminStoreroom } from './ts/admin-storeroom.component';
 import { AdminSupport } from './ts/admin-support.component';
-import { AdminUnits } from './ts/admin-units.component';
+import { AdminStatsUnits } from './ts/admin-stats-units.component';
 
 export const AdminComponent = [
   AdminChat,
@@ -29,5 +29,5 @@ export const AdminComponent = [
   AdminResources,
   AdminStoreroom,
   AdminSupport,
-  AdminUnits
+  AdminStatsUnits
 ];

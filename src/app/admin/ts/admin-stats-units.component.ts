@@ -3,10 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  templateUrl: '../html/admin-units.component.html'
+  templateUrl: '../html/admin-stats-units.component.html'
 })
 
-export class AdminUnits {
+export class AdminStatsUnits {
   public armyArray:any;
   public armyFirst:any;
   public towersArray:any;
