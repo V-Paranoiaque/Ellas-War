@@ -154,68 +154,7 @@
             <tbody>
               <tr *ngFor="let quest of adminQuestList">
                 <td>
-                  <span [ngSwitch]="quest.quest_type">
-                    <span *ngSwitchCase="1">
-                      {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="2">
-                      {{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="3">
-                      {{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="4">
-                      {{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="5">
-                      {{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="6">
-                      {{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="7">
-                      {{ quest.quest_goal == 1 ?
-                         ('Attack 1 sanctuary'  | translate) : 
-                         ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="8">
-                      {{ quest.quest_goal == 1 ?
-                         ('Conquest 1 sanctuary'|translate) : 
-                         ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="9">
-                      {{ quest.quest_goal == 1 ?
-                         ('Win 1 war'|translate) : 
-                         ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="10">
-                      {{ quest.quest_goal == 1 ?
-                         ('Win the Honnor challenge'|translate) : 
-                         ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="11">
-                      {{ quest.quest_goal == 1 ?
-                         ('Take the Diamond'|translate) : 
-                         ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="12">
-                      {{ quest.quest_goal == 1 ?
-                         ('Win the Diamond challenge'|translate) : 
-                         ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}
-                    </span>
-                    <span *ngSwitchCase="13">
-                      {{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}
-                    </span>
-                    <span *ngSwitchCase="14">
-                     {{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}
-                    </span>
-                   <span *ngSwitchCase="15">
-                     {{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}
-                   </span>
-                   <span *ngSwitchCase="16">
-                     {{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}
-                   </span>
-                  </span>
+                  <admin-quests-title [quest]="quest"></admin-quests-title>
                 </td>
                 <td class="text-center">{{ quest.quest_reward }}</td>
                 <td class="text-center">{{ quest.quest_difficulty }}</td>

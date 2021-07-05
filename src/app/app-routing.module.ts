@@ -64,9 +64,10 @@ import { AdminPlayers } from './admin/ts/admin-players.component';
 import { AdminPrayers } from './admin/ts/admin-prayers.component';
 import { AdminQuests } from './admin/ts/admin-quests.component';
 import { AdminResources } from './admin/ts/admin-resources.component';
+import { AdminStatsQuests } from './admin/ts/admin-stats-quests.component';
+import { AdminStatsUnits } from './admin/ts/admin-stats-units.component';
 import { AdminStoreroom } from './admin/ts/admin-storeroom.component';
 import { AdminSupport } from './admin/ts/admin-support.component';
-import { AdminStatsUnits } from './admin/ts/admin-stats-units.component';
 
 //General
 import { SiteMap } from './public/ts/sitemap.component';
@@ -143,10 +144,10 @@ routes = [
       { path: 'prayers', component: AdminPrayers },
       { path: 'quests', component: AdminQuests },
       { path: 'resources', component: AdminResources },
+      { path: 'stats/units', component: AdminStatsUnits },
+      { path: 'stats/quests', component: AdminStatsQuests },
       { path: 'storeroom', component: AdminStoreroom },
       { path: 'support', component: AdminSupport },
-      
-      { path: 'stats/units', component: AdminStatsUnits },
       
       { path: '**', component: AdminHome }
     ]

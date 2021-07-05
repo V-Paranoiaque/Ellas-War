@@ -1,0 +1,42 @@
+<common-top-bar active="admin"></common-top-bar>
+
+<div class="col-xs-12 main">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped table-middle align-middle" aria-describedby="QuestNew">
+          <thead>
+            <tr>
+              <th scope="col" translate>Goal</th>
+              <th scope="col" translate>Reward</th>
+              <th scope="col" translate>Difficulty</th>
+              <th scope="col" translate>Level</th>
+            <tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let quest of adminQuestList">
+              <td>
+                <admin-quests-title [quest]="quest"></admin-quests-title>
+              </td>
+              <td class="text-center">
+              {{ quest.quest_reward }}
+                <ng-container *ngIf="adminQuestReward[quest.quest_reward]">
+                  <ng-container *ngFor="let p of adminQuestReward[quest.quest_reward]">
+                    {{ p.reward_quantity | number:'': this.translate.currentLang }}
+                    <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
+                    ({{ p.reward_level }})
+                    <br/>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td class="text-center">{{ quest.quest_difficulty }}</td>
+              <td class="text-center">{{ quest.quest_level }}-{{ quest.quest_levelmax }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>

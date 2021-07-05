@@ -10,9 +10,12 @@ import { AdminPlayers } from './ts/admin-players.component';
 import { AdminPrayers } from './ts/admin-prayers.component';
 import { AdminQuests } from './ts/admin-quests.component';
 import { AdminResources } from './ts/admin-resources.component';
+import { AdminStatsQuests } from './ts/admin-stats-quests.component';
+import { AdminStatsUnits } from './ts/admin-stats-units.component';
 import { AdminStoreroom } from './ts/admin-storeroom.component';
 import { AdminSupport } from './ts/admin-support.component';
-import { AdminStatsUnits } from './ts/admin-stats-units.component';
+
+import { AdminQuestsTitle } from './ts/admin-quests-title.sub-component';
 
 export const AdminComponent = [
   AdminChat,
@@ -27,7 +30,10 @@ export const AdminComponent = [
   AdminPrayers,
   AdminQuests,
   AdminResources,
+  AdminStatsQuests,
+  AdminStatsUnits,
   AdminStoreroom,
   AdminSupport,
-  AdminStatsUnits
+  
+  AdminQuestsTitle,
 ];
