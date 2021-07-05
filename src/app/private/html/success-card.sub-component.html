@@ -6,7 +6,7 @@
       <small class="text-muted">
         <strong translate>Currently</strong>
         <strong translate>:</strong>
-        {{ currently }}
+        {{ currently | number:'': this.translate.currentLang }}
       </small>
     </p>
   </div>

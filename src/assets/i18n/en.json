@@ -90,7 +90,7 @@
   "Own { value } mints": "Own { value } mints",
   "Own { value } Drachmas in your treasure": "Own { value } Drachmas in your treasure",
   "Owning { value } altars of the gods": "Owning { value } altars of the gods",
-  "Owning { value } godchilds": "Owning { value } godchilds",
+  "Owning { value } godchildren": "Owning {{ value }} godchildren",
   
   "Peste against { value }": "Peste against { value }",
   "Peste from { value }": "Peste from {{ value }}",
