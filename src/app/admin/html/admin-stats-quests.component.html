@@ -14,24 +14,26 @@
             <tr>
           </thead>
           <tbody>
-            <tr *ngFor="let quest of adminQuestList">
-              <td>
-                <admin-quests-title [quest]="quest"></admin-quests-title>
-              </td>
-              <td class="text-center">
-              {{ quest.quest_reward }}
-                <ng-container *ngIf="adminQuestReward[quest.quest_reward]">
-                  <ng-container *ngFor="let p of adminQuestReward[quest.quest_reward]">
-                    {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                    <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
-                    ({{ p.reward_level }})
-                    <br/>
+            <ng-container *ngFor="let quest of adminQuestList">
+              <tr *ngIf="quest.quest_level <= 10">
+                <td>
+                  <admin-quests-title [quest]="quest"></admin-quests-title>
+                </td>
+                <td class="text-center">
+                {{ quest.quest_reward }}
+                  <ng-container *ngIf="adminQuestReward[quest.quest_reward]">
+                    <ng-container *ngFor="let p of adminQuestReward[quest.quest_reward]">
+                      {{ p.reward_quantity | number:'': this.translate.currentLang }}
+                      <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
+                      ({{ p.reward_level }})
+                      <br/>
+                    </ng-container>
                   </ng-container>
-                </ng-container>
-              </td>
-              <td class="text-center">{{ quest.quest_difficulty }}</td>
-              <td class="text-center">{{ quest.quest_level }}-{{ quest.quest_levelmax }}</td>
-            </tr>
+                </td>
+                <td class="text-center">{{ quest.quest_difficulty }}</td>
+                <td class="text-center">{{ quest.quest_level }}-{{ quest.quest_levelmax }}</td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>
