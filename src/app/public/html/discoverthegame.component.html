@@ -29,7 +29,7 @@
       
       <!-- Description pages -->
       <div class="card-body" *ngSwitchCase="'constructions'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'treasure'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/constructions']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -55,11 +55,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          The treasure will allow you to shelter your wealth, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your drachmas.
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'temples'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/treasure']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -69,12 +69,12 @@
           </a>
         </h1>
         
-        <div class="fw-bold text-center" translate>
-          
+        <div class="fw-bold text-center"
+             [innerHTML]="'Each temple gives a unique advantage. It is up to you to choose them according to'|translate">
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'recruitment'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/temples']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -85,11 +85,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          The hoplites constitute the heavy infantry of the ancient Greek cities, made up of citizens who could not support a horse but who had the means to equip themselves with armor and provide for their families when They were in campaign.
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'army'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/recruitment']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -99,12 +99,12 @@
           </a>
         </h1>
         
-        <div class="fw-bold text-center" translate>
-          
+        <div class="fw-bold text-center"
+          [innerHTML]="'Your army will do its utmost to defend'|translate">
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'attack'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/army']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -115,11 +115,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          Choose the units that will go to battle and the order in which they will enter the enemy cities.
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'defense'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/attack']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -130,11 +130,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          Choose the units that will defend your city and the order in which they will go to battle.
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'trade'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/defense']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -145,11 +145,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          Buy the resources you need for your city or army.
         </div>
       </div>
       <div class="card-body" *ngSwitchCase="'sell'">
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/trade']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -160,11 +160,11 @@
         </h1>
         
         <div class="fw-bold text-center" translate>
-          
+          Sell the resources looted during your attacks or from your production.
         </div>
       </div>
       <div class="card-body" *ngSwitchDefault>
-        <h1 class="text-center">
+        <h1 class="pb-2 text-center d-flex justify-content-center">
           <a [routerLink]="['/discoverthegame/sell']">
             <ic-icon [icon]="arrowLeft"></ic-icon>
           </a>
@@ -174,13 +174,8 @@
           </a>
         </h1>
         
-        <div class="row">
-          <div class="col-4">
-            
-          </div>
-          <div class="col-8">
-            <p>Summary of your city, access quickly to the most important information.</p>
-          </div>
+        <div class="fw-bold text-center" translate>
+          Visualize your city and quickly access the different actions.
         </div>
       </div>
     </div>
