@@ -1,9 +1,6 @@
 name: cordova
 
 on:
-  # To be changed to release
-  push:
-    branches: [ * ]
   workflow_dispatch:
 
 jobs:
