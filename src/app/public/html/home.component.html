@@ -33,6 +33,13 @@
           <img [src]="'assets/i18n/'+translate.currentLang+'/microsoft-appstore-badge.png'"
                alt="{{'Download on the Microsoft Store'|translate}}">
         </a>
+        <a *ngIf="localevars.store.snap" target="_blank"
+           rel="external nofollow noopener"
+           href="{{ localevars.store.snap }}"
+           title="{{'Get it from the Snap Store'|translate}}">
+          <img [src]="'assets/i18n/'+translate.currentLang+'/snap-store-black.svg'"
+               alt="{{'Get it from the Snap Store'|translate}}" />
+        </a>
         <a title="{{'Download on Google Play'|translate}}" class="disabled">
           <span translate>Soon</span>
           <img [src]="'assets/i18n/'+translate.currentLang+'/google-play-badge.png'"
