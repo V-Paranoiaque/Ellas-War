@@ -27,7 +27,7 @@ jobs:
       - name: Build linux packages
         run: |
           cp build-linux.json build.json
-          cordova platform add electron
-          cordova build --no-telemetry electron
+          cordova platform add electron@2.0.0
+          cordova build electron --no-telemetry
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
