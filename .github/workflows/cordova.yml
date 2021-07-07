@@ -30,5 +30,18 @@ jobs:
           cp build-linux.json build.json
           cordova platform add electron@2.0.0
           cordova build electron --no-telemetry
+          cp "$(find . -name '*.apk')" bin/
+          cp "$(find . -name '*.AppImage')" bin/
+          cp "$(find . -name '*.snap')" bin/
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: bin/*
+          asset_name: ellaswar
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "Ellas War app"
