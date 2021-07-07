@@ -1,7 +1,8 @@
 name: Cordova
 
 on:
-  tags:
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
