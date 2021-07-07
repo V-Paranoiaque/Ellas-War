@@ -30,6 +30,7 @@ jobs:
           cp build-linux.json build.json
           cordova platform add electron@2.0.0
           cordova build electron --no-telemetry
+          mkdir -p bin
           cp ./platforms/electron/build/*.apk bin/
           cp ./platforms/electron/build/*.AppImage bin/
           cp ./platforms/electron/build/*.snap bin/
