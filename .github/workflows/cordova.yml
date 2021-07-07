@@ -34,6 +34,7 @@ jobs:
           cp ./platforms/electron/build/*.apk bin/
           cp ./platforms/electron/build/*.AppImage bin/
           cp ./platforms/electron/build/*.snap bin/
+          ls bin/
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
 
