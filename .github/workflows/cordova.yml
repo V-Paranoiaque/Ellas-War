@@ -1,8 +1,7 @@
 name: Cordova
 
 on:
-  push:
-    branches: [ cordova-automation ]
+  tags:
   workflow_dispatch:
 
 jobs:
