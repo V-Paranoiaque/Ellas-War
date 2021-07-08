@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from './../../../environments/environment';
 
 import arrowLeft from '@iconify/icons-fa-solid/arrow-left';
 import arrowRight from '@iconify/icons-fa-solid/arrow-right';
@@ -13,6 +14,7 @@ import arrowRight from '@iconify/icons-fa-solid/arrow-right';
 
 export class DiscoverTheGame {
   
+  public dir:string;
   public page:string;
   
   arrowLeft = arrowLeft;
@@ -22,9 +24,14 @@ export class DiscoverTheGame {
               private titleService: Title, public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.page = '';
+    this.dir = 'web';
   }
   
   ngOnInit() {
+    if(environment.mobile == 1) {
+      this.dir = 'mobile';
+    }
+    
     let page = this.route.snapshot.paramMap.get('page');
     if(page) {
       this.page = page;
