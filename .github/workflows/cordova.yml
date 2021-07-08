@@ -32,7 +32,7 @@ jobs:
 
       - name: Build linux packages
         run: |
-          cp build-linux.json build.json
+          cp build-linux-pipeline.json build.json
           cordova platform add electron@2.0.0
           cordova build electron --no-telemetry
           mkdir -p bin
