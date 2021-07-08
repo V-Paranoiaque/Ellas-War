@@ -1,9 +1,9 @@
 name: Cordova
 
 on:
-  push:
-    tags:
-    - '*' 
+  release:
+    types:
+      - created
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
         run: |
           cp build-linux.json build.json
           cordova platform add electron@2.0.0
-          cordova build electron --no-telemetry -p always
+          cordova build electron --no-telemetry
           mkdir -p bin
           cp ./platforms/electron/build/*.apk bin/
           cp ./platforms/electron/build/*.AppImage bin/
