@@ -39,9 +39,14 @@ jobs:
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
 
-      - name: Upload binaries to release
-        uses: AButler/upload-release-assets@v2.0
-        with:
-          repo-token: '${{ secrets.GH_TOKEN }}'
-          files: '/home/runner/work/Ellas-War/Ellas-War/bin/*.apk'
-          release-tag: ${{ github.ref }}
+      - name: Upload binaries to assets
+        run: |
+          set -x
+          assets=()
+          for asset in ./bin/*; do
+            assets+=("-a" "$asset")
+          done
+          tag_name="${GITHUB_REF##*/}"
+          hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
