@@ -3,7 +3,6 @@ name: Cordova
 on:
   release:
     types:
-      - created
       - published
   workflow_dispatch:
 
@@ -21,6 +20,11 @@ jobs:
         run: |
           npm install -g cordova
           npm install
+      
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
       
       - name: Build the project
         run: |
@@ -40,14 +44,8 @@ jobs:
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
 
-      - name: Upload binaries to assets
+      - name: Publish Snap
         run: |
-          set -x
-          assets=()
-          for asset in ./bin/*; do
-            assets+=("-a" "$asset")
-          done
-          tag_name="${GITHUB_REF##*/}"
-          hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILE=$(ls platforms/electron/build/*.snap)
+          snapcraft upload --release=stable $FILE
+      
