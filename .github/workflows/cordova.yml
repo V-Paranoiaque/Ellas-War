@@ -43,5 +43,5 @@ jobs:
         uses: AButler/upload-release-assets@v2.0
         with:
           repo-token: '${{ secrets.GH_TOKEN }}'
-          files: 'bin/*.apk'
+          files: '/home/runner/work/Ellas-War/Ellas-War/bin/*.apk'
           release-tag: ${{ github.ref }}
