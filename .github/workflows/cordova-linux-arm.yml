@@ -55,7 +55,7 @@ jobs:
             npm install -g cordova
             echo "Install the dependencies"
             ls
-            npm cache clean --force
+            npm cache verify
             npm install
             echo "Build www"
             npm run build -- --configuration=mobile
