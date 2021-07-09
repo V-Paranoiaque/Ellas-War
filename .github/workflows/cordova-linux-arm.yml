@@ -67,8 +67,8 @@ jobs:
             apt update -q -y
             apt install -q -y nodejs
             npm install -g cordova
-            npm install
           run: |
+            npm install
             npm run build -- --configuration=mobile
 
             cp build-pipeline-linux.json build.json
