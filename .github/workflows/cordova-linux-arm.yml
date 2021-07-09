@@ -22,16 +22,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-          
-      - name: Prepare bin
-        run: mkdir bin
-      
-      - name: Restore cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            bin
-          key: bin-key
 
       - uses: uraimo/run-on-arch-action@v2.0.5
         name: Run commands
@@ -43,30 +33,22 @@ jobs:
           # Not required, but speeds up builds by storing container images in
           # a GitHub package registry.
           githubToken: ${{ github.token }}
-
-          # Create an artifacts directory
-          setup: |
-            mkdir -p "${PWD}/bin"
-
-          # Mount the artifacts directory as /artifacts in the container
-          dockerRunArgs: |
-            --volume "${PWD}/bin:/bin"
+          
+          env: |
+            SNAPCRAFT_TOKEN: ${{ secrets.snapcraft_token }}
 
           install: |
             apt update -q -y
-            apt install -q -y curl gnupg
+            apt install -q -y curl gnupg snapcraft
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
             apt install -q -y nodejs
-          
-          # Set an output parameter `uname` for use in subsequent steps
-          
+           
           run: |
             echo "Install cordova"
             npm install -g cordova
             echo "Install the dependencies"
-            ls
             npm cache verify
             npm install
             echo "Build www"
@@ -74,13 +56,10 @@ jobs:
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
-            cp ./platforms/electron/build/*.snap /bin/
-            ls /bin/
-      
-      - name: Publish Snap
-        run: |
-          FILE=$(ls bin/*.snap)
-          for i in $FILE
-          do
-            snapcraft upload --release=stable $i
-          done
+
+            snapcraft login --with ${SNAPCRAFT_TOKEN}
+            FILE=$(ls ./platforms/electron/build//*.snap)
+            for i in $FILE
+            do
+              snapcraft upload --release=stable $i
+            done
