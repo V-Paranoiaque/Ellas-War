@@ -28,6 +28,13 @@ jobs:
         with:
           snapcraft_token: ${{ secrets.snapcraft_token }}
       
+      - name: Restore cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            bin
+          key: bin-key
+
       - uses: uraimo/run-on-arch-action@v2.0.5
         name: Run commands
         id: runcmd
