@@ -1,0 +1,88 @@
+name: Cordova
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+    name: Build on ${{ matrix.distro }} ${{ matrix.arch }}
+
+    # Run steps on a matrix of 3 arch/distro combinations
+    strategy:
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu20.04
+          - arch: armv7
+            distro: ubuntu20.04
+
+    steps:
+      - uses: actions/checkout@v2
+            
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Build artifact
+        id: build
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+
+          # Not required, but speeds up builds
+          githubToken: ${{ github.token }}
+
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/artifacts"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/bin:/bin"
+
+          # Pass some environment variables to the container
+          env: | # YAML, but pipe character is necessary
+            GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+
+          # The shell to run commands with in the container
+          shell: /bin/sh
+
+          # Install some dependencies in the container. This speeds up builds if
+          # you are also using githubToken. Any dependencies installed here will
+          # be part of the container image that gets cached, so subsequent
+          # builds don't have to re-install them. The image layer is cached
+          # publicly in your project's package repository, so it is vital that
+          # no secrets are present in the container state or logs.
+          install: |
+            apt-get update -q -y
+            apt-get install -q -y nodejs
+            npm install -g cordova
+            npm install
+          run: |
+            npm run build -- --configuration=mobile
+
+            cp build-pipeline-linux.json build.json
+            cordova platform add electron@2.0.0
+            cordova build electron --no-telemetry
+            cp ./platforms/electron/build/*.apk bin/
+            cp ./platforms/electron/build/*.AppImage bin/
+            cp ./platforms/electron/build/*.snap bin/
+            pwd
+            ls bin/
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+
+      - name: Publish Snap
+        run: |
+          FILE=$(ls bin/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+      
