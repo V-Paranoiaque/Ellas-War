@@ -59,6 +59,11 @@ jobs:
             cp ./platforms/electron/build/*.snap bin/
             ls bin/
 
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
       - name: Publish Snap
         run: |
           FILE=$(ls bin/*.snap)
