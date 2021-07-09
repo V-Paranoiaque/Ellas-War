@@ -41,6 +41,7 @@ jobs:
 
           install: |
             apt update -q -y
+            apt install -q -y curl 
           
           # Set an output parameter `uname` for use in subsequent steps
           run: |
