@@ -61,7 +61,7 @@ jobs:
           # no secrets are present in the container state or logs.
           install: |
             apt update -q -y
-            apt install curl gnupg
+            apt install -q -y curl gnupg
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
