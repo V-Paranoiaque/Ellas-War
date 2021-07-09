@@ -66,23 +66,21 @@ jobs:
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
             apt install -q -y nodejs
-            npm install -g cordova
+            #npm install -g cordova
           run: |
             echo "Install the dependencies"
-            npm install
-            echo "Build www"
-            npm run build -- --configuration=mobile
+            #npm install
+            #echo "Build www"
+            #npm run build -- --configuration=mobile
 
-            cp build-pipeline-linux.json build.json
-            cordova platform add electron@2.0.0
-            cordova build electron --no-telemetry
-            cp ./platforms/electron/build/*.apk bin/
-            cp ./platforms/electron/build/*.AppImage bin/
-            cp ./platforms/electron/build/*.snap bin/
-            pwd
-            ls bin/
-        env:
-          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+            #cp build-pipeline-linux.json build.json
+            #cordova platform add electron@2.0.0
+            #cordova build electron --no-telemetry
+            #cp ./platforms/electron/build/*.apk bin/
+            #cp ./platforms/electron/build/*.AppImage bin/
+            #cp ./platforms/electron/build/*.snap bin/
+            #pwd
+            #ls bin/
 
       - name: Publish Snap
         run: |
