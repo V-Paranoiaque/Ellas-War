@@ -22,11 +22,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-            
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
+          
+      - name: Prepare bin
+        run: mkdir bin
       
       - name: Restore cache
         uses: actions/cache@v2
