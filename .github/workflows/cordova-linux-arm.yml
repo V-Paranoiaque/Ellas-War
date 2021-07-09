@@ -55,6 +55,7 @@ jobs:
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
+            mkdir -p bin
             cp ./platforms/electron/build/*.snap bin/
             ls bin/
 
