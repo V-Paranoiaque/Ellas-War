@@ -39,9 +39,6 @@ jobs:
           # a GitHub package registry.
           githubToken: ${{ github.token }}
 
-          dockerRunArgs: |
-            --volume "${PWD}/bin:/bin"
-          
           install: |
             apt update -q -y
             apt install -q -y curl gnupg
