@@ -59,28 +59,27 @@ jobs:
           # builds don't have to re-install them. The image layer is cached
           # publicly in your project's package repository, so it is vital that
           # no secrets are present in the container state or logs.
-          install: |
+          run: |
             apt update -q -y
             apt install -q -y curl gnupg
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
             apt install -q -y nodejs
-            #npm install -g cordova
-          run: |
+            npm install -g cordova
             echo "Install the dependencies"
-            #npm install
-            #echo "Build www"
-            #npm run build -- --configuration=mobile
+            npm install
+            echo "Build www"
+            npm run build -- --configuration=mobile
 
-            #cp build-pipeline-linux.json build.json
-            #cordova platform add electron@2.0.0
-            #cordova build electron --no-telemetry
-            #cp ./platforms/electron/build/*.apk bin/
-            #cp ./platforms/electron/build/*.AppImage bin/
-            #cp ./platforms/electron/build/*.snap bin/
-            #pwd
-            #ls bin/
+            cp build-pipeline-linux.json build.json
+            cordova platform add electron@2.0.0
+            cordova build electron --no-telemetry
+            cp ./platforms/electron/build/*.apk bin/
+            cp ./platforms/electron/build/*.AppImage bin/
+            cp ./platforms/electron/build/*.snap bin/
+            pwd
+            ls bin/
 
       - name: Publish Snap
         run: |
