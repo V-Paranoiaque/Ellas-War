@@ -39,6 +39,14 @@ jobs:
           # a GitHub package registry.
           githubToken: ${{ github.token }}
 
+          # Create an artifacts directory
+          setup: |
+            mkdir -p "${PWD}/bin"
+
+          # Mount the artifacts directory as /artifacts in the container
+          dockerRunArgs: |
+            --volume "${PWD}/bin:/bin"
+
           install: |
             apt update -q -y
             apt install -q -y curl gnupg
@@ -50,7 +58,6 @@ jobs:
           # Set an output parameter `uname` for use in subsequent steps
           
           run: |
-            npm -v
             echo "Install cordova"
             npm install -g cordova
             echo "Install the dependencies"
@@ -62,9 +69,8 @@ jobs:
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
-            mkdir -p bin
-            pwd
-            ls bin/
+            cp ./platforms/electron/build/*.snap /bin/
+            ls /bin/
       
       - name: Publish Snap
         run: |
