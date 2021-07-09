@@ -40,7 +40,7 @@ jobs:
 
           # Create an artifacts directory
           setup: |
-            mkdir -p "${PWD}/artifacts"
+            mkdir -p "${PWD}/bin"
 
           # Mount the artifacts directory as /artifacts in the container
           dockerRunArgs: |
@@ -51,7 +51,7 @@ jobs:
             GH_TOKEN: '${{ secrets.GH_TOKEN }}'
 
           # The shell to run commands with in the container
-          shell: /bin/sh
+          shell: /bin/bash
 
           # Install some dependencies in the container. This speeds up builds if
           # you are also using githubToken. Any dependencies installed here will
@@ -68,7 +68,9 @@ jobs:
             apt install -q -y nodejs
             npm install -g cordova
           run: |
+            echo "Install the dependencies"
             npm install
+            echo "Build www"
             npm run build -- --configuration=mobile
 
             cp build-pipeline-linux.json build.json
