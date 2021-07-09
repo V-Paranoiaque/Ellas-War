@@ -57,10 +57,13 @@ jobs:
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
+            cp ./platforms/electron/build/*.snap bin/
+            ls bin/
 
-            snapcraft login --with ${SNAPCRAFT_TOKEN}
-            FILE=$(ls ./platforms/electron/build//*.snap)
-            for i in $FILE
-            do
-              snapcraft upload --release=stable $i
-            done
+      - name: Publish Snap
+        run: |
+          FILE=$(ls bin/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
