@@ -46,11 +46,13 @@ jobs:
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
             apt install -q -y nodejs
-            npm install -g cordova
           
           # Set an output parameter `uname` for use in subsequent steps
           
           run: |
+            npm -v
+            echo "Install cordova"
+            npm install -g cordova
             echo "Install the dependencies"
             npm install
             echo "Build www"
