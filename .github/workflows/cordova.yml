@@ -36,8 +36,8 @@ jobs:
           cordova platform add electron@2.0.0
           cordova build electron --no-telemetry
           mkdir -p bin
-          cp ./platforms/electron/build/*.apk bin/
-          cp ./platforms/electron/build/*.AppImage bin/
+          #cp ./platforms/electron/build/*.apk bin/
+          #cp ./platforms/electron/build/*.AppImage bin/
           cp ./platforms/electron/build/*.snap bin/
           pwd
           ls bin/
@@ -47,5 +47,8 @@ jobs:
       - name: Publish Snap
         run: |
           FILE=$(ls platforms/electron/build/*.snap)
-          snapcraft upload --release=stable $FILE
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
       
