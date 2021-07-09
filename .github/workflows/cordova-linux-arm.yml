@@ -41,7 +41,10 @@ jobs:
 
           install: |
             apt update -q -y
-            apt install -q -y curl 
+            apt install -q -y curl gnupg
+            curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+            echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
+            apt update -q -y
           
           # Set an output parameter `uname` for use in subsequent steps
           run: |
