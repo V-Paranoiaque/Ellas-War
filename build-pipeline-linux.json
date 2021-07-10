@@ -1,0 +1,8 @@
+{
+  "electron": {
+    "linux": {
+      "package": ["AppImage", "apk", "snap"],
+      "category": "Game"
+    }
+  }
+}
