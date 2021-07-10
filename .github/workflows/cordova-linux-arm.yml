@@ -22,6 +22,7 @@ jobs:
 
       - name: Build the project
         run: |
+          sudo -i
           apt update -q -y
           apt install -q -y curl gnupg
           curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
