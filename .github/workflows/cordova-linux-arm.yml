@@ -47,6 +47,7 @@ jobs:
           env: |
             SNAPCRAFT_TOKEN: ${{ secrets.snapcraft_token }}
             SNAPCRAFT_TARGET_ARCH: arm64
+            SNAPCRAFT_BUILD_ENVIRONMENT: host
 
           install: |
             apt update -q -y
