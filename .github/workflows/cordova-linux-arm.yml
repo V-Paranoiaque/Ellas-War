@@ -34,6 +34,7 @@ jobs:
           
           env: |
             SNAPCRAFT_TOKEN: ${{ secrets.snapcraft_token }}
+            SNAPCRAFT_BUILD_ENVIRONMENT: host
 
           install: |
             apt update -q -y
@@ -44,6 +45,7 @@ jobs:
             apt install -q -y nodejs
            
           run: |
+            echo ${SNAPCRAFT_BUILD_ENVIRONMENT}
             echo "Install cordova"
             npm install -g cordova
             echo "Install the dependencies"
