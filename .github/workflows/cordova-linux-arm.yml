@@ -37,9 +37,9 @@ jobs:
             SNAPCRAFT_BUILD_ENVIRONMENT: host
 
           install: |
-            snap install snapcraft --classic
             apt update -q -y
-            apt install -q -y curl gnupg
+            apt install -q -y curl gnupg snap
+            snap install snapcraft --classic
             curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
