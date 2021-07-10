@@ -1,8 +1,9 @@
 {
   "electron": {
     "linux": {
-      "package": ["snap"],
-      "category": "Game"
+      "package": ["deb", "snap"],
+      "category": "Game",
+      "arch": [ "arm64" ]
     }
   }
 }
