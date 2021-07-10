@@ -20,6 +20,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Build the project
+        run: |
+          apt update -q -y
+          apt install -q -y curl gnupg
+          curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+          echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
+          apt update -q -y
+          apt install -q -y nodejs
+          npm install
+          echo "Build www"
+          npm run build -- --configuration=mobile
+
       - uses: uraimo/run-on-arch-action@v2.0.5
         name: Run commands
         id: runcmd
@@ -48,12 +60,6 @@ jobs:
             echo ${SNAPCRAFT_BUILD_ENVIRONMENT}
             echo "Install cordova"
             npm install -g cordova
-            echo "Install the dependencies"
-            npm cache verify
-            npm cache clean --force
-            npm install
-            echo "Build www"
-            npm run build -- --configuration=mobile
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
