@@ -55,11 +55,11 @@ jobs:
             echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
             apt update -q -y
             apt install -q -y nodejs
+            echo "Install cordova"
+            npm install -g cordova
            
           run: |
             echo ${SNAPCRAFT_BUILD_ENVIRONMENT}
-            echo "Install cordova"
-            npm install -g cordova
             cp build-pipeline-linux.json build.json
             cordova platform add electron@2.0.0
             cordova build electron --no-telemetry
