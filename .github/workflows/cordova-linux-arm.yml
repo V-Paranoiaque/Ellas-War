@@ -22,13 +22,12 @@ jobs:
 
       - name: Build the project
         run: |
-          sudo -i
-          apt update -q -y
-          apt install -q -y curl gnupg
-          curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-          echo "deb https://deb.nodesource.com/node_14.x focal main" > /etc/apt/sources.list.d/nodesource.list
-          apt update -q -y
-          apt install -q -y nodejs
+          sudo apt update -q -y
+          sudoapt install -q -y curl gnupg
+          curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
+          echo "deb https://deb.nodesource.com/node_14.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+          sudo apt update -q -y
+          sudo apt install -q -y nodejs
           npm install
           echo "Build www"
           npm run build -- --configuration=mobile
