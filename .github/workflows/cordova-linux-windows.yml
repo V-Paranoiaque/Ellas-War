@@ -18,6 +18,7 @@ jobs:
       
       - name: Install Node requirements
         run: |
+          npm install -g windows-build-tools
           npm install -g cordova
           npm install
       
