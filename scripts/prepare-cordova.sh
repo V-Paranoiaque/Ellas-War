@@ -1,2 +1,2 @@
 #sh scripts/build-cordova.sh
-ng build --configuration=mobile
+npm run build -- --configuration=mobile
