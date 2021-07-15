@@ -16,6 +16,15 @@ jobs:
       with:
         node-version: '14'
 
+    - name: Install Node requirements
+      run: |
+        npm install -g cordova
+        npm install
+
+    - name: Build the project
+      run: |
+        npm run build -- --configuration=mobile
+
     - name: Write build config
       id: write_config
       uses: timheuer/base64-to-file@v1
@@ -29,37 +38,17 @@ jobs:
       with:
         fileName: 'sign_TemporaryKey.pfx'
         encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
-   
+ 
     - name: Build packages
       run: |
-        echo $JSON_PATH 
-        echo $KEY_PATH
-      env:
-        JSON_PATH: ${{ steps.write_config.outputs.filePath }}
-        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
-
-    - name: Build packages
-      run: |
-        cp ${{ env. JSON_PATH }} build.json
-        cp ${{ env. KEY_PATH }} sign_TemporaryKey.pfx
-      env:
-        JSON_PATH: ${{ steps.write_config.outputs.filePath }}
-        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
-
-    - name: Install Node requirements
-      run: |
-        npm install -g cordova
-        npm install
-
-    - name: Build the project
-      run: |
-        npm run build -- --configuration=mobile
-    
-    - name: Build packages
-      run: |
+        cp ${{ env.JSON_PATH }} build.json
+        cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx    
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
         rm -f build.json sign_TemporaryKey.pfx
+      env:
+        JSON_PATH: ${{ steps.write_config.outputs.filePath }}
+        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
 
     - uses: actions/upload-artifact@v2
       with:
