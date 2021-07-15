@@ -32,8 +32,8 @@ jobs:
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
       env:
-        WINDOWS_BUILD_JSON: ${WINDOWS_BUILD_JSON}
-        WINDOWS_BUILD_KEY: ${WINDOWS_BUILD_KEY}
+        WINDOWS_BUILD_JSON: ${{ secrets.WINDOWS_BUILD_JSON }}
+        WINDOWS_BUILD_KEY: ${{ secrets.WINDOWS_BUILD_KEY }}
 
     - uses: actions/upload-artifact@v2
       with:
