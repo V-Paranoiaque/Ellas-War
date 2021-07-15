@@ -40,8 +40,8 @@ jobs:
 
     - name: Build packages
       run: |
-        cat $JSON_PATH > build.json
-        cp $KEY_PATH sign_TemporaryKey.pfx
+        cp ${{ env. JSON_PATH }} build.json
+        cp ${{ env. KEY_PATH }} sign_TemporaryKey.pfx
       env:
         JSON_PATH: ${{ steps.write_config.outputs.filePath }}
         KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
