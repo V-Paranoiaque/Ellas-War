@@ -11,26 +11,45 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      
-      - name: Install Node requirements
-        run: |
-          npm install -g cordova
-          npm install
-      
-      - name: Build the project
-        run: |
-          npm run build -- --configuration=mobile
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
 
-      - name: Build packages
-        run: |
-          cp build-pipeline-windows.json build.json
-          cordova platform add electron@2.0.0
-          cordova build electron --no-telemetry
+    - name: Install Node requirements
+      run: |
+        npm install -g cordova
+        npm install
 
-      - uses: actions/upload-artifact@v2
-        with:	
-          path: platforms\electron\build\*.appx
+    - name: Build the project
+      run: |
+        npm run build -- --configuration=mobile
+
+    - name: Build packages
+      run: |
+        cp build-pipeline-windows.json build.json
+        cordova platform add electron@2.0.0
+        cordova build electron --no-telemetry
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: windows-packages
+        path: platforms\electron\build\*.appx
+  
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: windows-packages
+    
+    - name: Test the project
+      run: ls
+    
+    - name: Upload the artifacts
+      uses: skx/github-action-publish-binaries@release-1.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        releaseId: ${{ needs.create_release.outputs.id }}
+        args: '*.appx'
