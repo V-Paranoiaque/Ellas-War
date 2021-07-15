@@ -1,4 +1,4 @@
-name: Cordova
+name: Cordova-Linux
 
 on:
   release:
