@@ -23,8 +23,13 @@ jobs:
 
     - name: Build the project
       run: |
+        echo ${WINDOWS_BUILD_JSON} | base64 -d > build.json
+        echo ${WINDOWS_BUILD_KEY} | base64 -d > sign_TemporaryKey.pfx
         npm run build -- --configuration=mobile
-
+      env:
+        WINDOWS_BUILD_JSON: ${WINDOWS_BUILD_JSON}
+        WINDOWS_BUILD_KEY: ${WINDOWS_BUILD_KEY}
+    
     - name: Build packages
       run: |
         cp build-pipeline-windows.json build.json
