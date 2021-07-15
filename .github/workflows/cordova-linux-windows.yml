@@ -45,7 +45,11 @@ jobs:
         name: windows-packages
     
     - name: Test the project
-      run: ls
+      run: |
+        for file in *.appx
+        do
+          mv -- "$file" "${file// /_}"
+        done
     
     - name: Upload the artifacts
       uses: skx/github-action-publish-binaries@release-1.3
