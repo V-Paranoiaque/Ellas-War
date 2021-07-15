@@ -28,6 +28,7 @@ jobs:
     - name: Build packages
       run: |
         echo ${WINDOWS_BUILD_JSON} | base64 -d > build.json
+        cat build.json
         echo ${WINDOWS_BUILD_KEY} | base64 -d > sign_TemporaryKey.pfx
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
