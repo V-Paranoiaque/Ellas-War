@@ -26,14 +26,14 @@ jobs:
         npm run build -- --configuration=mobile
     
     - name: Write build config
-      id: write_file
+      id: write_config
       uses: timheuer/base64-to-file@v1
       with:
         fileName: 'build.json'
         encodedString: ${{ secrets.WINDOWS_BUILD_JSON }}
    
     - name: Write pfx cert
-      id: write_file
+      id: write_pfx
       uses: timheuer/base64-to-file@v1
       with:
         fileName: 'sign_TemporaryKey.pfx'
