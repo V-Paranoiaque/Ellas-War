@@ -41,12 +41,13 @@ jobs:
    
     - name: Build packages
       run: |
-        cat build.json
+        mv ${JSON_PATH} build.json
+        mv ${KEY_PATH} sign_TemporaryKey.pfx
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
       env:
-        WINDOWS_BUILD_JSON: ${{ secrets.WINDOWS_BUILD_JSON }}
-        WINDOWS_BUILD_KEY: ${{ secrets.WINDOWS_BUILD_KEY }}
+        JSON_PATH: ${{ steps.write_config.outputs.filePath }}
+        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
 
     - uses: actions/upload-artifact@v2
       with:
