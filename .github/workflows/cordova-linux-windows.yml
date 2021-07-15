@@ -25,11 +25,23 @@ jobs:
       run: |
         npm run build -- --configuration=mobile
     
+    - name: Write build config
+      id: write_file
+      uses: timheuer/base64-to-file@v1
+      with:
+        fileName: 'build.json'
+        encodedString: ${{ secrets.WINDOWS_BUILD_JSON }}
+   
+    - name: Write pfx cert
+      id: write_file
+      uses: timheuer/base64-to-file@v1
+      with:
+        fileName: 'sign_TemporaryKey.pfx'
+        encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
+   
     - name: Build packages
       run: |
-        echo ${WINDOWS_BUILD_JSON} | base64 -d > build.json
         cat build.json
-        echo ${WINDOWS_BUILD_KEY} | base64 -d > sign_TemporaryKey.pfx
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
       env:
