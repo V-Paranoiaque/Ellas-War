@@ -45,7 +45,8 @@ jobs:
         cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx    
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
-        rm build.json sign_TemporaryKey.pfx
+        rm build.json
+        rm sign_TemporaryKey.pfx
       env:
         JSON_PATH: ${{ steps.write_config.outputs.filePath }}
         KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
