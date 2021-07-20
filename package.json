@@ -130,8 +130,8 @@
         "releaseType": "release"
       },
       {
-        "provider": "Snap Store",
-        "releaseType": "release"
+        "provider": "snapStore",
+        "channels": "stable"
       }
     ]
   }
