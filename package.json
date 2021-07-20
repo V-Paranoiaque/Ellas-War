@@ -131,6 +131,7 @@
       },
       {
         "provider": "snapStore",
+        "releaseType": "release",
         "channels": "stable"
       }
     ]
