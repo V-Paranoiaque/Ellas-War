@@ -661,7 +661,7 @@
       <div class="text-center">
         <strong id="WallDesc" translate>Poseidon's wall's defense</strong>
         <strong translate>:</strong>
-        {{ wallDefense }}
+        {{ wallDefense | number:'': this.translate.currentLang }}
         <br/>
         <div *ngIf="user.getPropertyNb('poseidon_wall') == 1" 
              class="fw-bold text-danger"
