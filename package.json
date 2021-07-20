@@ -128,11 +128,6 @@
       {
         "provider": "github",
         "releaseType": "release"
-      },
-      {
-        "provider": "snapStore",
-        "releaseType": "release",
-        "channels": "stable"
       }
     ]
   }
