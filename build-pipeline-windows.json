@@ -3,7 +3,12 @@
     "windows": {
       "package": [ "appx" ],
       "arch": [ "x64", "ia32", "arm64" ],
-      "category": "Game"
+      "category": "Game",
+      "signing": {
+        "release": {
+          "certificateFile": "sign_TemporaryKey.pfx"
+        }
+      }
     }
   }
 }
