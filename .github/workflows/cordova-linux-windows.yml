@@ -1,0 +1,45 @@
+name: Cordova-Windows
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Node requirements
+      run: |
+        npm install -g cordova
+        npm install
+
+    - name: Build the project
+      run: |
+        npm run build -- --configuration=mobile
+
+    - name: Write pfx cert
+      id: write_pfx
+      uses: timheuer/base64-to-file@v1
+      with:
+        fileName: 'sign_TemporaryKey.pfx'
+        encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
+ 
+    - name: Build packages
+      run: |
+        cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
+        cp build-pipeline-windows.json build.json
+        cordova platform add electron@2.0.0
+        cordova build electron --no-telemetry
+        rm sign_TemporaryKey.pfx
+      env:
+        CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
+        GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
