@@ -123,6 +123,12 @@
       "identityName": "61206PearlDev.EllasWar",
       "displayName": "Ellas War",
       "languages": ["en-US", "fr-FR"]
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "release"
+      }
+    ]
   }
 }
