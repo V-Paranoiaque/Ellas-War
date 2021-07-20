@@ -64,10 +64,10 @@ jobs:
           mv -- "$file" "${file// /_}"
         done
     
-    - name: Upload the artifacts
-      uses: skx/github-action-publish-binaries@release-1.3
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        releaseId: ${{ needs.create_release.outputs.id }}
-        args: '*.appx'
+#    - name: Upload the artifacts
+#      uses: skx/github-action-publish-binaries@release-1.3
+#      env:
+#        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#      with:
+#        releaseId: ${{ needs.create_release.outputs.id }}
+#        args: '*.appx'
