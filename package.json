@@ -130,7 +130,7 @@
         "releaseType": "release"
       },
       {
-        "provider": "snapStore",
+        "provider": "Snap Store",
         "releaseType": "release"
       }
     ]
