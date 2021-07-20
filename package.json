@@ -114,5 +114,21 @@
         "ADDITIONAL_LANGUAGES": "fr"
       }
     }
+  },
+  "build": {
+    "appx": {
+      "applicationId": "PearlDev.EllasWar",
+      "publisher": "CN=6A55B1A5-FF3A-4B18-99CD-333287DB569A",
+      "publisherDisplayName": "PearlDev",
+      "identityName": "61206PearlDev.EllasWar",
+      "displayName": "Ellas War",
+      "languages": ["en-US", "fr-FR"]
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "releaseType": "release"
+      }
+    ]
   }
 }
