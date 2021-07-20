@@ -25,13 +25,6 @@ jobs:
       run: |
         npm run build -- --configuration=mobile
 
-    - name: Write build config
-      id: write_config
-      uses: timheuer/base64-to-file@v1
-      with:
-        fileName: 'build.json'
-        encodedString: ${{ secrets.WINDOWS_BUILD_JSON }}
-   
     - name: Write pfx cert
       id: write_pfx
       uses: timheuer/base64-to-file@v1
@@ -41,15 +34,14 @@ jobs:
  
     - name: Build packages
       run: |
-        cp ${{ env.JSON_PATH }} build.json
-        cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx    
+        cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
+        cp build-pipeline-windows.json build.json
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
-        rm build.json
         rm sign_TemporaryKey.pfx
       env:
+        CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
         GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-        JSON_PATH: ${{ steps.write_config.outputs.filePath }}
         KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
 
     - uses: actions/upload-artifact@v2
