@@ -43,31 +43,3 @@ jobs:
         CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
         GH_TOKEN: '${{ secrets.GH_TOKEN }}'
         KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
-
-    - uses: actions/upload-artifact@v2
-      with:
-        name: windows-packages
-        path: platforms\electron\build\*.appx
-  
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: windows-packages
-    
-    - name: Test the project
-      run: |
-        for file in *.appx
-        do
-          mv -- "$file" "${file// /_}"
-        done
-    
-#    - name: Upload the artifacts
-#      uses: skx/github-action-publish-binaries@release-1.3
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-#      with:
-#        releaseId: ${{ needs.create_release.outputs.id }}
-#        args: '*.appx'
