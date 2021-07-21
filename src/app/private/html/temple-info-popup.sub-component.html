@@ -16,13 +16,20 @@
   </div>
   
   <div class="modal-body" *ngIf="temple.id == 1">
-    <p translate>
-      In the Agora, when you redeem your batches, you get 97.5% instead of 80%
-    </p>
+    <ul>
+      <li translate>In the Agora, when you redeem your batches, you get 97.5% instead of 80%</li>
+      <li translate>Until the level 6, you can store 50% more Drachmas in your treasure</li>
+      <li translate>From the level 6, treasure your treasure taxes are reduced by 20%</li>
+    </ul>
   </div>
   <div class="modal-body" *ngIf="temple.id == 2">
-    <p translate>
-      You can spy on your enemies with the oracle of the Apollo's temple.
+    <p>
+      <span translate>
+        You can spy on your enemies with the oracle of the Apollo's temple.
+      </span>
+      <span translate>
+        Your units are 10% more efficients during sanctuaries attacks
+      </span>
     </p>
   </div>
   <div *ngIf="temple.id == 3">

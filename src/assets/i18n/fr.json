@@ -530,6 +530,7 @@
   "French": "Français",
   "From level 1 starting cost passes to one Favor": "A partir du niveau 1 le coût de départ passe à une Faveur",
   "From the beginning, the game has always managed to self-fund. If you want to help us, the best thing you can do is send the game link to your friends. Our best reward is to know that the site you like.": "Depuis le début, le jeu a toujours réussi à s'auto-financer. Si vous désirez nous aidez, la meilleure chose que vous puissiez faire est d'envoyer le lien du jeu à vos amis. Notre meilleure récompense est de savoir que le site vous plait.",
+  "From the level 6, treasure your treasure taxes are reduced by 20%": "À partir du niveau 6, les taxes sur votre trésor sont réduites de 20%",
   "Functioning of the Favors": "Fonctionnement des Faveurs",
   "Fury": "Furie",
   "Furies owned": "Furies possédées",
@@ -1237,6 +1238,7 @@
   "Units liberated": "Unités libérées",
   "Units you send to a sanctuary cannot return to your city. They also don't consume any resources.": "Les unités que vous envoyez dans un sanctuaire ne peuvent pas revenir dans votre cité. Elles ne dépendent plus de votre cité pour leur consommation en ressources.",
   "Unsupported message type: { value }": "Type de message non supporté : {{ value }}",
+  "Until the level 6, you can store 50% more Drachmas in your treasure": "Jusqu'au niveau 6, vous pouvez stocker 50% de drachmes en plus dans votre trésor",
   "Update": "Mettre à jour",
   "Update to recruit archers": "Mettre à jour pour recruter des archers",
   "Update to recruit cavalry": "Mettre à jour pour recruter de la cavalerie",
@@ -1468,6 +1470,7 @@
   "Your production field can't be over { value }": "Votre production ne peut pas dépasser {{ value }} de terrain",
   "Your request to unsubscribe has been taken into account, your account will soon be deactivated.": "Votre demande de désinscription a été prise en compte, votre compte sera prochainement désactivé.",
   "Your requests": "Vos demandes",
+  "Your units are 10% more efficients during sanctuaries attacks": "Vous unités sont 10% plus éfficaces lors des attaques de sanctuaires",
   "Your username must be at least 6 characters.": "Votre nom doit faire au moins 6 caractères.",
   
   "Zeus": "Zeus",

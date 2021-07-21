@@ -15,20 +15,35 @@ export class TreasurePopup {
   
   public deposit:any;
   public computation:any;
+  public taxDeduction:number;
   public treasureHistory:any;
+  public treasureMax:number;
   
   //Icons
   treasureChest = treasureChest;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.treasureHistory = [];
-    
+    this.taxDeduction = 1;
+    this.treasureMax = 200000;
   }
   
   ngOnInit() {
     this.socket.on('treasureHistory', (datas:any) => {
       this.treasureHistory = datas;
     });
+    
+    if(this.user.getLevel() < 5) {
+      this.treasureMax = (this.user.getLevel()+1)*200000;
+    }
+    else if(this.user.getLevel() == 5) {
+      this.treasureMax = 2000000;
+    }
+    
+    if(this.user.getPropertyNb('hermes') == 1) {
+      this.taxDeduction = 0.8;
+      this.treasureMax *= 1.5;
+    }
     
     setTimeout(() => {
       this.deposit = 'deposit';

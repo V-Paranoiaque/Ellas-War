@@ -1,4 +1,5 @@
 * Games have been removed
+* Hermes has two new powers, when the player is level 5 or less, the player can store 50% more Drachmas in the treasure, and it reduces the tax when the player is level 6 or more
 * Maximum 4 different resources by consumption for the units
 * Remove the spartan's comsumption when the player is level 0
 * The Agora allows buying/selling everydays, even without venerating Hermes
