@@ -6,3 +6,4 @@
 * The field and the price of the towers have been lowered
 * The support of Leonidas gives 80 spartans, instead of 40 when level 10
 * The Volunteer unit has been removed
+* The weekly bonus has now 40 of Ambrosia
