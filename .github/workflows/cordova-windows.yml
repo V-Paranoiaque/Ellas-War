@@ -35,7 +35,7 @@ jobs:
     - name: Build packages
       run: |
         cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
-        cp build-pipeline-windows.json build.json
+        cp res/electron/build-pipeline-windows.json build.json
         cordova platform add electron@2.0.0
         cordova build electron --no-telemetry
         rm sign_TemporaryKey.pfx

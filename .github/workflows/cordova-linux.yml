@@ -18,6 +18,8 @@ jobs:
       
       - name: Install Node requirements
         run: |
+          apt update -qq
+          apt install -y -qq rpm
           npm install -g cordova
           npm install
       
@@ -29,11 +31,21 @@ jobs:
       - name: Build the project
         run: |
           npm run build -- --configuration=mobile
-
+      
       - name: Build linux packages
         run: |
-          cp build-pipeline-linux.json build.json
           cordova platform add electron@2.0.0
+          #Build snap
+          cp res/electron/build-pipeline-snap.json build.json
+          cordova build electron --no-telemetry --release
+          #Build rpm x64
+          cp res/electron/build-pipeline-rpm-amd64.json build.json
+          cordova build electron --no-telemetry
+          #Build rpm arm64
+          cp res/electron/build-pipeline-rpm-arm64.json build.json
+          cordova build electron --no-telemetry
+          #Build other linux packages
+          cp res/electron/build-pipeline-linux.json build.json
           cordova build electron --no-telemetry
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
@@ -45,4 +57,3 @@ jobs:
           do
             snapcraft upload --release=stable $i
           done
-      
