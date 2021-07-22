@@ -18,8 +18,8 @@ jobs:
       
       - name: Install Node requirements
         run: |
-          apt update -qq
-          apt install -y -qq rpm
+          sudo apt update -qq
+          sudo apt install -y -qq rpm
           npm install -g cordova
           npm install
       
