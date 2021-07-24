@@ -1,0 +1,9 @@
+{
+  "electron": {
+    "linux": {
+      "package": ["rpm"],
+      "arch": [ "armv7l" ],
+      "category": "Game"
+    }
+  }
+}

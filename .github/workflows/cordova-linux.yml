@@ -41,6 +41,9 @@ jobs:
           #Build rpm x64
           cp res/electron/build-pipeline-rpm-amd64.json build.json
           cordova build electron --no-telemetry
+          #Build rpm armv7l
+          cp res/electron/build-pipeline-rpm-armv7l.json build.json
+          cordova build electron --no-telemetry
           #Build rpm arm64
           cp res/electron/build-pipeline-rpm-arm64.json build.json
           cordova build electron --no-telemetry
