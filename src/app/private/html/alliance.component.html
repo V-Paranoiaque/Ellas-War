@@ -348,34 +348,52 @@
                  *ngIf="myAllianceWar.length == 0" translate>
               You don't have any war
             </div>
+            
             <table class="table table-striped table-middle align-middle"
                    *ngIf="myAllianceWar.length > 0"
                    aria-labelledby="warsDesc">
               <tbody>
-                <tr *ngFor="let w of myAllianceWar">
-                  <th scope="row">
-                    <a [routerLink]="['/allianceprofile/'+w.alliance_attacking]">
-                      {{ w.name_attacking }}
-                    </a>
-                  </th>
-                  <td *ngIf="w.begin == 1" 
-                      class="text-center">{{w.win_attacking}} - {{w.win_defender}}</td>
-                  <td *ngIf="w.begin == 0" 
-                      class="text-center">{{w.time*1000| date:'dd/MM à HH:mm'}}</td>
-                  <th scope="row" class="text-end">
-                    <a [routerLink]="['/allianceprofile/'+w.alliance_defender]">
-                      {{ w.name_defender }}
-                    </a>
-                  </th>
-                  <td class="text-center">
-                    <button class="btn btn-primary" title="{{'Archives'|translate}}"
-                            *ngIf="w.begin == 1" (click)="warSelect(w)"
-                            data-bs-toggle="modal" data-bs-target="#AllianceWarArchives" >
-                      <ic-icon [icon]="filePaper2Line"></ic-icon>
-                      <span class="visually-hidden" translate>Archives</span>
-                    </button>
-                  </td>
-                </tr>
+                <tr *ngFor="let w of myAllianceWar"><th scope="row" class="p-0">
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-grow-1 flex-column flex-sm-row">
+                      <div class="d-flex flex-fill">
+                        <div class="flex-grow-1 p-2">
+                          <a class="fw-bold"
+                             [routerLink]="['/allianceprofile/'+w.alliance_attacking]">
+                            {{ w.name_attacking }}
+                          </a>
+                        </div>
+                        <div *ngIf="w.begin == 1"
+                             class="p-2 fw-light">{{w.win_attacking}}</div>
+                      </div>
+                      <div *ngIf="w.begin == 1"
+                           class="p-2 ps-sm-0 pe-sm-0 d-none d-sm-block fw-light">
+                        -
+                      </div>
+                      <div *ngIf="w.begin == 0"
+                           class="flex-fill text-center fw-light">
+                        {{w.time*1000| date:'dd/MM à HH:mm'}}
+                      </div>
+                      <div class="d-flex flex-fill">
+                        <div class="flex-grow-1 text-sm-end order-sm-2 p-2">
+                          <a [routerLink]="['/allianceprofile/'+w.alliance_defender]">
+                            {{ w.name_defender }}
+                          </a>
+                        </div>
+                        <div *ngIf="w.begin == 1"
+                             class="order-sm-1 p-2 fw-light">{{w.win_defender}}</div>
+                      </div>
+                    </div>
+                    <div class="p-2">
+                      <button class="btn btn-primary" title="{{'Archives'|translate}}"
+                              *ngIf="w.begin == 1" (click)="warSelect(w)"
+                              data-bs-toggle="modal" data-bs-target="#AllianceWarArchives" >
+                        <ic-icon [icon]="filePaper2Line"></ic-icon>
+                        <span class="visually-hidden" translate>Archives</span>
+                      </button>
+                    </div>
+                  </div>
+                </th></tr>
               </tbody>
             </table>
           </div>
