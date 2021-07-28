@@ -35,7 +35,7 @@ a.no-padding {
 
 @media (max-width: 767px) {
   .main {
-    padding-bottom: 80px;
+    padding-bottom: 120px;
   }
 }
 .main-full {
