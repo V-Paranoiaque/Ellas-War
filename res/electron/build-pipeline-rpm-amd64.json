@@ -2,7 +2,7 @@
   "electron": {
     "linux": {
       "package": ["rpm"],
-      "arch": [ "arm64" ],
+      "arch": [ "x64" ],
       "category": "Game"
     }
   }
