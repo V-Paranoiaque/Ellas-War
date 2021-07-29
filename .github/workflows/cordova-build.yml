@@ -1,4 +1,4 @@
-name: "Build packages with Cordova"
+name: Cordova
 
 on:
   release:
