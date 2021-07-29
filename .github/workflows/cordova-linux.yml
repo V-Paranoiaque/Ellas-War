@@ -28,19 +28,20 @@ jobs:
       - name: Cache www directory
         uses: actions/cache@v2
         with:
-          path: ~/www
-          key: ${{ runner.os }}-www-${{ env.GITHUB_RUN_ID }}
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
       
       - name: Install dependencies
         run: |
-          pwd
           npm install
   
       - name: Build the project
         run: |
           npm run build -- --configuration=mobile
-  package:
-    name: "Build the packages"
+  
+  #X64 Arch
+  package-x64:
+    name: "Build x64 packages"
     runs-on: ubuntu-latest
     needs: prepare
 
@@ -61,8 +62,8 @@ jobs:
       - name: Cache www directory
         uses: actions/cache@v2
         with:
-          path: ~/www
-          key: ${{ runner.os }}-www-${{ env.GITHUB_RUN_ID }}
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
       
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
@@ -75,27 +76,173 @@ jobs:
           sudo apt install -y -qq rpm
           npm install -g cordova
       
-      - name: Build linux packages
+      - name: Build packages
         run: |
           cordova platform add electron@2.0.0
-          #Build snap
-          cp res/electron/build-pipeline-snap.json build.json
+          cp res/electron/build-pipeline-linux-x64.json build.json
           cordova build electron --no-telemetry --release
-          #Build rpm x64
-          cp res/electron/build-pipeline-rpm-amd64.json build.json
-          cordova build electron --no-telemetry
-          #Build rpm armv7l
-          cp res/electron/build-pipeline-rpm-armv7l.json build.json
-          cordova build electron --no-telemetry
-          #Build rpm arm64
-          cp res/electron/build-pipeline-rpm-arm64.json build.json
-          cordova build electron --no-telemetry
-          #Build other linux packages
-          cp res/electron/build-pipeline-linux.json build.json
-          cordova build electron --no-telemetry
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+  
+  #X86 Arch
+  package-x86:
+    name: "Build x86 packages"
+    runs-on: ubuntu-latest
+    needs: prepare
 
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      
+      - name: Cache www directory
+        uses: actions/cache@v2
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y -qq rpm
+          npm install -g cordova
+      
+      - name: Build packages
+        run: |
+          cordova platform add electron@2.0.0
+          cp res/electron/build-pipeline-linux-x86.json build.json
+          cordova build electron --no-telemetry --release
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+  
+  #arm64 Arch
+  package-arm64:
+    name: "Build arm64 packages"
+    runs-on: ubuntu-latest
+    needs: prepare
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      
+      - name: Cache www directory
+        uses: actions/cache@v2
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y -qq rpm
+          npm install -g cordova
+      
+      - name: Build packages
+        run: |
+          cordova platform add electron@2.0.0
+          cp res/electron/build-pipeline-linux-arm64.json build.json
+          cordova build electron --no-telemetry --release
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+
+  #armhf Arch
+  package-armv7l:
+    name: "Build armv7l packages"
+    runs-on: ubuntu-latest
+    needs: prepare
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      
+      - name: Cache www directory
+        uses: actions/cache@v2
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y -qq rpm
+          npm install -g cordova
+      
+      - name: Build packages
+        run: |
+          cordova platform add electron@2.0.0
+          cp res/electron/build-pipeline-linux-armv7l.json build.json
+          cordova build electron --no-telemetry --release
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
       - name: Publish Snap
         run: |
           FILE=$(ls platforms/electron/build/*.snap)

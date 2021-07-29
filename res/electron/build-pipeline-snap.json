@@ -1,9 +1,0 @@
-{
-  "electron": {
-    "linux": {
-      "package": ["snap"],
-      "arch": [ "armv7l", "x64" ],
-      "category": "Game"
-    }
-  }
-}

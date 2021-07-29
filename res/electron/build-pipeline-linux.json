@@ -1,9 +1,0 @@
-{
-  "electron": {
-    "linux": {
-      "package": ["AppImage", "apk"],
-      "arch": [ "ia32", "x64", "arm64", "armv7l" ],
-      "category": "Game"
-    }
-  }
-}

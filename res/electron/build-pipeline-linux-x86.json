@@ -1,0 +1,9 @@
+{
+  "electron": {
+    "linux": {
+      "package": ["AppImage", "apk", "rpm"],
+      "arch": [ "ia32" ],
+      "category": "Game"
+    }
+  }
+}
