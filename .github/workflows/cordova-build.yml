@@ -245,7 +245,7 @@ jobs:
           done
   
   #Windows
-  build:
+  package-windows:
     name: "Build windows packages"
     runs-on: windows-latest
     needs: prepare
