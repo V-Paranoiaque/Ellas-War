@@ -170,7 +170,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          snap install multipass --edge
+          sudo snap install multipass --edge
           sudo apt update -qq
           sudo apt install -y -qq rpm
           npm install -g cordova
@@ -182,14 +182,6 @@ jobs:
           cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-      
-      - name: Publish Snap
-        run: |
-          FILE=$(ls platforms/electron/build/*.snap)
-          for i in $FILE
-          do
-            snapcraft upload --release=stable $i
-          done
 
   #armhf Arch
   package-armv7l:
@@ -248,47 +240,50 @@ jobs:
   package-windows:
     name: "Build windows packages"
     runs-on: windows-latest
-    needs: prepare
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Cache node modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-build-
-    
-    - name: Cache www directory
-      uses: actions/cache@v2
-      with:
-        path: ~/work/Ellas-War/Ellas-War/www
-        key: www-${{ runner.GITHUB_RUN_ID }}
-    
-    - name: Install dependencies
-      run: |
-        npm install -g cordova
-
-    - name: Write pfx cert
-      id: write_pfx
-      uses: timheuer/base64-to-file@v1
-      with:
-        fileName: 'sign_TemporaryKey.pfx'
-        encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
- 
-    - name: Build packages
-      run: |
-        cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
-        cp res/electron/build-pipeline-windows.json build.json
-        cordova platform add electron@2.0.0
-        cordova build electron --no-telemetry
-        rm sign_TemporaryKey.pfx
-      env:
-        CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
-        GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-        KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+  
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g cordova
+  
+      - name: Build the project
+        run: |
+          npm run build -- --configuration=mobile
+  
+      - name: Write pfx cert
+        id: write_pfx
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'sign_TemporaryKey.pfx'
+          encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
+   
+      - name: Build packages
+        run: |
+          cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
+          cp res/electron/build-pipeline-windows.json build.json
+          cordova platform add electron@2.0.0
+          cordova build electron --no-telemetry
+          rm sign_TemporaryKey.pfx
+        env:
+          CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+          KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
