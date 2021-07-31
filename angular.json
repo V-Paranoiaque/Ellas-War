@@ -40,6 +40,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "web",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",

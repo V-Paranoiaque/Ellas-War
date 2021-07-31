@@ -22,12 +22,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Officially supported platforms
 
-| Platform | Supported | Comment |
+| Platform | Supported |  |
 | ------------- |:-------------:| ----- |
 | Android | :white_check_mark: | Cordova |
 | Flatpack | :x: |  |
-| iOS | :white_check_mark: | Cordova |
-| Mac Os | :white_check_mark: | Cordova |
 | Snap | :white_check_mark: | Cordova + Electron |
 | Web | :white_check_mark: | |
 | Windows | :white_check_mark: | Cordova + Electron |
@@ -36,6 +34,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
 
+- iOS
+- macOS
 
 ### Stores
 - Amazon Store
