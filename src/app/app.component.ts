@@ -56,9 +56,17 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     registerLocaleData(localeFr, 'fr');
-    this.translate.use(this.socket.detectLanguage());
     
     this.socket.setupSocketConnection(this.socket.detectServer());
+    
+    if(environment.mobile == 0) {
+      let language = this.socket.detectServerLanguage();
+      this.translate.use(language);
+    }
+    else {
+      	let language = this.socket.detectLanguage();
+      this.translate.use(language);
+    }
     
     if(!localStorage.getItem('token')) {
       this.user.setInit();

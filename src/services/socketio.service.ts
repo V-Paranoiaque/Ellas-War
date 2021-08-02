@@ -158,6 +158,13 @@ export class Socket {
     return language;
   }
   
+  detectServerLanguage() {
+    if(this.server == 'fr' || this.server == 'next') {
+      return 'fr';
+    }
+    return 'en';
+  }
+  
   saveLanguage(language:string) {
     localStorage.setItem('language', language);
   }
