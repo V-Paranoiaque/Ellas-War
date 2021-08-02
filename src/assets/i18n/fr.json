@@ -1348,7 +1348,7 @@
   
   "You": "Vous",
   "You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.": "Vous pouvez attaquer une seconde fois un ennemi afin de l'affaiblir. Ne compte pas dans le score des guerres.",
-  "You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday ": "Vous pouvez vendre sur l'Agora, même le mercredi/samedi/dimanche",
+  "You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday": "Vous pouvez vendre sur l'Agora, même le mercredi/samedi/dimanche",
   "You are allowed to sell in the Agora today, even if it's Sunday": "Vous pouvez vendre sur l'Agora, même si c'est dimanche",
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "Vous êtes sur le point de déclarer la guerre à l'alliance {{ value }}, celle-ci commencera dans 24h.",
   "You are in trial period, you can't attack during a war": "Vous êtes en période d'essai, vous ne pouvez pas participer aux guerres",
