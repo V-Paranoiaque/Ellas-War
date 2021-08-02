@@ -1,3 +1,4 @@
+# 1.0.5
 * Games have been removed
 * Hermes has two new powers, when the player is level 5 or less, the player can store 50% more Drachmas in the treasure, and it reduces the tax when the player is level 6 or more
 * Maximum 4 different resources by consumption for the units
@@ -9,3 +10,7 @@
 * The support of Leonidas gives 80 spartans, instead of 40 when level 10
 * The Volunteer unit has been removed
 * The weekly bonus has now 40 of Ambrosia
+
+# 1.0.6
+* Rollback to the old Android loading way
+* Use the server language on the web home page
