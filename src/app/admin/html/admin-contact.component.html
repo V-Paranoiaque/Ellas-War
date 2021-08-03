@@ -7,7 +7,47 @@
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <h1 id="contactDesc" class="text-center" translate>Contact page</h1>
+          <table class="table" aria-labelledby="contactDesc">
+            <tbody>
+              <tr *ngFor="let msg of adminContactList">
+                <td class="text-prewrap">
+                  {{msg.text}}
+                </td>
+                <th scope="row">
+                  {{msg.send_date*1000| date:'dd/MM/yyyy, HH:mm'}}
+                  <br/>
+                  <strong>{{msg.name}}</strong>
+                  <br/>
+                  {{msg.email}}
+                  <br/>
+                  <a (click)="adminContactResolve(msg.id)" class="btn" 
+                     [ngClass]="{'btn-success': msg.resolve != 0, 'btn-danger': msg.resolve == 0}">
+                    <ic-icon [icon]="angellistIcon"></ic-icon>
+                  </a>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="adminContactMax > 1">
+            <br/>
+            <div class="input-group">
+              <span class="input-group-text" role="button"
+                    (click)="adminContactChange(1)">&lt;&lt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminContactChange(adminContactPage-1)">&lt;</span>
+              <select class="form-select" [ngModel]="adminContactPage" 
+                      (change)="adminContactChange(mySelect.value)"
+                      title="{{'Change page'|translate}}" #mySelect>
+                <option *ngFor="let id of range(1, adminContactMax)"
+                        value="{{id}}" translate>Page {{id}}</option>
+              </select>
+              <span class="input-group-text" role="button"
+                    (click)="adminContactChange(adminContactPage+1)">&gt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminContactChange(adminContactMax)">&gt;&gt;</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

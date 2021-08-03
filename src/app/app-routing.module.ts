@@ -68,6 +68,7 @@ import { AdminStatsQuests } from './admin/ts/admin-stats-quests.component';
 import { AdminStatsUnits } from './admin/ts/admin-stats-units.component';
 import { AdminStoreroom } from './admin/ts/admin-storeroom.component';
 import { AdminSupport } from './admin/ts/admin-support.component';
+import { AdminSupportMsg } from './admin/ts/admin-support-msg.component';
 
 //General
 import { SiteMap } from './public/ts/sitemap.component';
@@ -135,6 +136,7 @@ routes = [
     children: [
       { path: 'chat', component: AdminChat },
       { path: 'contact', component: AdminContact },
+      { path: 'contact/:id', component: AdminContact },
       { path: 'emails', component: AdminEmails },
       { path: 'messages', component: AdminMessages },
       { path: 'news', component: AdminNews },
@@ -148,6 +150,8 @@ routes = [
       { path: 'stats/quests', component: AdminStatsQuests },
       { path: 'storeroom', component: AdminStoreroom },
       { path: 'support', component: AdminSupport },
+      { path: 'support/:id', component: AdminSupport },
+      { path: 'support/:id/:msg', component: AdminSupportMsg },
       
       { path: '**', component: AdminHome }
     ]

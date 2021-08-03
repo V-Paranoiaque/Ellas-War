@@ -14,6 +14,7 @@ import { AdminStatsQuests } from './ts/admin-stats-quests.component';
 import { AdminStatsUnits } from './ts/admin-stats-units.component';
 import { AdminStoreroom } from './ts/admin-storeroom.component';
 import { AdminSupport } from './ts/admin-support.component';
+import { AdminSupportMsg } from './ts/admin-support-msg.component';
 
 import { AdminQuestsTitle } from './ts/admin-quests-title.sub-component';
 
@@ -34,6 +35,7 @@ export const AdminComponent = [
   AdminStatsUnits,
   AdminStoreroom,
   AdminSupport,
+  AdminSupportMsg,
   
   AdminQuestsTitle,
 ];

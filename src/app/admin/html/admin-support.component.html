@@ -7,7 +7,54 @@
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
         <div class="row">
-          test
+          <h1 id="supportDesc" class="text-center" translate>Support page</h1>
+          
+          <table class="table align-middle" aria-labelledby="supportDesc">
+            <tbody>
+              <tr *ngFor="let msg of adminSupportList">
+                <th scope="row">
+                  <a [routerLink]="['/admin/support/'+adminSupportPage+'/'+msg.support_id]">
+                    {{msg.support_topic}}
+                  </a>
+                </th>
+                <td>
+                  <a [routerLink]="['/profile/'+msg.support_membre]">
+                    {{msg.support_username}}
+                  </a>
+                </td>
+                <td>
+                  <a [routerLink]="['/profile/'+msg.support_last]">
+                    {{msg.last_username}}
+                  </a>
+                </td>
+                <td class="text-center">
+                  <a [routerLink]="['/admin/support/'+adminSupportPage+'/'+msg.support_id]"
+                     class="btn btn-primary">
+                    <ic-icon [icon]="eyeIcon"></ic-icon>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="adminSupportMax > 1">
+            <br/>
+            <div class="input-group">
+              <span class="input-group-text" role="button"
+                    (click)="adminSupportPageChange(1)">&lt;&lt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminSupportPageChange(adminSupportPage-1)">&lt;</span>
+              <select class="form-select" [ngModel]="adminSupportPage" 
+                      (change)="adminSupportPageChange(mySelect.value)"
+                      title="{{'Change page'|translate}}" #mySelect>
+                <option *ngFor="let id of range(1, adminSupportMax)"
+                        value="{{id}}" translate>Page {{id}}</option>
+              </select>
+              <span class="input-group-text" role="button"
+                    (click)="adminSupportPageChange(adminSupportPage+1)">&gt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminSupportPageChange(adminSupportMax)">&gt;&gt;</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

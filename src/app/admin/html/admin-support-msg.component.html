@@ -1,0 +1,48 @@
+<common-top-bar active="admin"></common-top-bar>
+
+<div class="container-fluid">
+  <div class="row">
+    <admin-left-menu active="support" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
+  
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center">
+            {{adminSupportInfo.title}}
+            <a (click)="adminSupportStatus()" class="btn" 
+               [ngClass]="{'btn-success': adminSupportInfo.status == 1, 'btn-danger': adminSupportInfo.status == 0}">
+              <ic-icon [icon]="angellistIcon"></ic-icon>
+            </a>
+          </h2>
+          
+          <div *ngFor="let msg of adminSupportInfo.msg">
+            <div class="text-prewrap">
+              {{msg.support_msg}}
+            </div>
+            <br/>
+            <div class="text-end fw-bold">
+              <a [routerLink]="['/profile/'+msg.support_membre]">
+                {{ 'By { value }' | translate: { value: msg.username } }}
+              </a>,
+              {{msg.support_date*1000| date:'dd/MM/yyyy, HH:mm'}}
+            </div>
+            <br/>
+          </div>
+          
+          <div>
+            <br/>
+            <div class="input-group">
+              <textarea class="form-control" rows="6" [(ngModel)]="answertext"
+                        placeholder="{{'Message'|translate}}"></textarea>
+              <span class="input-group-addon btn btn-primary"
+                    (click)="adminMsgAnswer()" translate>Send</span>
+            </div>
+            <br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<common-bottom-bar></common-bottom-bar>
