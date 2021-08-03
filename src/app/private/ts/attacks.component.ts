@@ -159,6 +159,15 @@ export class Attacks {
         this.attackListInfo.list.push(datas.list[city]);
       }
     });
+    this.socket.on('attackWarsList', (datas:any) => {
+      this.attackWarsListInfo = Object.assign([], datas);
+      this.attackWarsListInfo.max = datas.max;
+      this.attackPage = datas.cPage;
+      this.attackWarsListInfo.list = [];
+      for(let city in datas.list) {
+        this.attackWarsListInfo.list.push(datas.list[city]);
+      }
+    });
     this.socket.on('diamondInfo', (info:any) => {
       this.diamondInfo = info;
     });
@@ -269,6 +278,7 @@ export class Attacks {
   ngOnDestroy() {
     this.socket.removeListener('attack');
     this.socket.removeListener('attackList');
+    this.socket.removeListener('attackWarsList');
     this.socket.removeListener('diamondInfo');
     this.socket.removeListener('diamondRankingPlayers');
     this.socket.removeListener('diamondRankingAlliance');
