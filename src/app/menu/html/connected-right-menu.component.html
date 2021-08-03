@@ -205,6 +205,35 @@
   </div>
 </div>
 
+<div class="modal fade" id="ambrosiaHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 translate>Ambrosia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body">
+        <p translate>Ambrosia is a special resource. It is not possible to trade it or loot it.</p>
+        <strong translate>To obtain it:</strong>
+        <ul>
+          <li translate>Build temples</li>
+          <li translate>Validate 7 quests and open the chest</li>
+          <li translate>Own the Tantalus Sanctuary</li>
+        </ul>
+        
+        <p translate>To use it, visit your temples. Each has one or more powers.</p>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal" translate>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0" id="infoMenu"
      role="contentinfo">
   <div class="card">
@@ -286,9 +315,10 @@
           <ic-icon [icIcon]="angleUp"></ic-icon>
         </div>
         <div class="p-2 bd-highlight">
-        <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
-                 title="{{'Access to the Favors'|translate}}"
-                 role="button"></ic-icon>
+          <ic-icon data-bs-toggle="modal" data-bs-target="#ambrosiaHelp"
+                   data-bs-dismiss="modal" [icIcon]="questionCircle" 
+                   title="{{'About Ambrosia'|translate}}"
+                   role="button"></ic-icon>
         </div>
         <div class="p-2 flex-grow-1 text-end">
           {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
@@ -300,6 +330,11 @@
       <div *ngIf="user.hasLevelRess('favor')" class="d-flex">
         <div class="p-2 icon-equal">
           <ic-icon [icIcon]="equals"></ic-icon>
+        </div>
+        <div class="p-2 bd-highlight">
+          <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
+                   title="{{'Access to the Favors'|translate}}"
+                   role="button"></ic-icon>
         </div>
         <div class="p-2 flex-grow-1 text-end">
           {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
