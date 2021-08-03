@@ -222,7 +222,7 @@
               <span *ngSwitchCase="0">
                 <div class="text-prewrap">{{ msg.content }}</div>
                 <div class="text-end fw-lighter">
-                  <strong translate>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
+                  <strong>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
                 </div>
               </span>
               <span *ngSwitchCase="1"><attacks-message [(info)]="msg.content"></attacks-message></span>
