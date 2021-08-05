@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,6 +11,7 @@ import { User } from '../../../services/user.service';
 
 export class AttacksMessage {
   @Input() info: any;
+  @Output() infoChange:any;
   public resources:any;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
