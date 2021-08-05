@@ -32,6 +32,10 @@
                      class="btn btn-primary">
                     <ic-icon [icon]="eyeIcon"></ic-icon>
                   </a>
+                  <a (click)="adminSupportStatus(msg.support_id)" class="btn" 
+                     [ngClass]="{'btn-success': msg.support_status == 1, 'btn-danger': msg.support_status == 0}">
+                    <ic-icon [icon]="angellistIcon"></ic-icon>
+                  </a>
                 </td>
               </tr>
             </tbody>

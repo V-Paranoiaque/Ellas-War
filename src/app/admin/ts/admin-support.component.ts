@@ -4,6 +4,7 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import angellistIcon from '@iconify-icons/fa-brands/angellist';
 import eyeIcon from '@iconify/icons-fa-solid/eye';
 
 @Component({
@@ -16,6 +17,7 @@ export class AdminSupport {
   public adminSupportMax:number;
   public adminSupportPage:number;
   
+  angellistIcon = angellistIcon;
   eyeIcon = eyeIcon;
   
   constructor(private router: Router, private route: ActivatedRoute,
@@ -44,10 +46,19 @@ export class AdminSupport {
       this.adminSupportPage = msg.cPage;
       this.adminSupportMax  = msg.max;
     });
+    
+    this.socket.on('adminSupportInfo', () => {
+      this.socket.emit('adminSupportList', this.adminSupportPage);
+    });
+    this.socket.on('contactListRefresh', () => {
+      this.socket.emit('adminSupportList', this.adminSupportPage);
+    });
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('adminSupportInfo');
     this.socket.removeListener('adminSupportList');
+    this.socket.removeListener('contactListRefresh');
   }
   
   adminSupportPageChange(page:any) {
@@ -60,6 +71,10 @@ export class AdminSupport {
     }
     
     this.router.navigate(['/admin/support/'+page])
+  }
+  
+  adminSupportStatus(id:number) {
+    this.socket.emit('adminSupportStatus', id);
   }
   
   range(a:number, b:number) {
