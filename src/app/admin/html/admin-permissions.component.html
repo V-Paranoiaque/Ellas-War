@@ -101,7 +101,7 @@
                   {{u.rank}}
                 </td>
                 <td class="text-end">
-                  {{u.last_activity*1000| date:'EEEE dd MMMM, HH:mm'}}
+                  {{u.last_activity*1000| date:'EEEE dd MMMM YYYY, HH:mm'}}
                 </td>
                 <td class="text-center" *ngIf="user.getPropertyNb('rank') > 2">
                   <button class="btn btn-primary" role="button"
