@@ -39,6 +39,10 @@ export class ContactUs {
     });
   }
   
+  ngOnDestroy() {
+    this.socket.removeListener('contact');
+  }
+  
   contactsend() {
     this.contactError = 0;
     var info = ({

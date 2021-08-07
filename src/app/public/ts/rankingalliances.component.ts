@@ -52,6 +52,10 @@ export class RankingAlliances {
     });
   }
   
+  ngOnDestroy() {
+    this.socket.removeListener('rankingAlliancesRefresh');
+  }
+  
   getPage() {
     let url = this.socket.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
     

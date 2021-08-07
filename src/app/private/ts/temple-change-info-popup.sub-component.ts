@@ -37,6 +37,7 @@ export class TempleChangeInfoPopup {
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('templeChange');
     this.socket.removeListener('templeChangeHistory');
   }
   

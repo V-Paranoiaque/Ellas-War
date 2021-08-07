@@ -116,13 +116,14 @@ export class Options {
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('accountImg');
     this.socket.removeListener('accountInfo');
-    this.socket.removeListener('accountPassword');
-    this.socket.removeListener('accountPasswordPossible');
     this.socket.removeListener('accountRenameCost');
     this.socket.removeListener('accountRename');
-    this.socket.removeListener('languageModify');
     this.socket.removeListener('pauseAllowed');
+    this.socket.removeListener('accountPassword');
+    this.socket.removeListener('accountPasswordPossible');
+    this.socket.removeListener('languageModify');
     this.socket.removeListener('reset');
     this.socket.removeListener('soundModify');
   }

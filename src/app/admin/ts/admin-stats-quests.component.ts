@@ -43,4 +43,11 @@ export class AdminStatsQuests {
       this.socket.emit('adminQuestReward');
     });
   }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('adminQuestList');
+    this.socket.removeListener('adminQuestListRefresh');
+    this.socket.removeListener('adminQuestReward');
+    this.socket.removeListener('adminQuestRewardRefresh');
+  }
 }
