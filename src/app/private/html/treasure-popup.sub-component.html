@@ -17,9 +17,9 @@
       <thead>
         <td class="text-center" colspan="3">
           <strong translate>Current funds:</strong>
-          <span *ngIf="user.getLevel() > 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}</span>
+          <span *ngIf="user.getLevel() > 5">{{ user.getPropertyNb('treasure') | number:'1.0-0': this.translate.currentLang }}</span>
           <span (click)="setTreasure(treasureMax-user.getPropertyNb('treasure'))" role="button"
-                *ngIf="user.getLevel() <= 5">{{ user.getPropertyNb('treasure') | number:'': this.translate.currentLang }}/{{ treasureMax | number:'': this.translate.currentLang }}</span>
+                *ngIf="user.getLevel() <= 5">{{ user.getPropertyNb('treasure') | number:'1.0-0': this.translate.currentLang }}/{{ treasureMax | number:'': this.translate.currentLang }}</span>
           <id-to-ress [ress_id]="'drachma'"></id-to-ress>
         </td>
       </thead>
