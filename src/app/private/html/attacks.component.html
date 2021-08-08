@@ -556,9 +556,9 @@
           </div>
           <div class="card-body">
             <span [ngSwitch]="getCurrentMsg().msg_type">
-              <span *ngSwitchCase="1"><attacks-message [(info)]="getCurrentMsg().msg[0].content"></attacks-message></span>
-              <span *ngSwitchCase="3"><fury-message [(info)]="getCurrentMsg().msg[0].content"></fury-message></span>
-              <span *ngSwitchCase="8"><lost-message [(info)]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchCase="1"><attacks-message [info]="getCurrentMsg().msg[0].content"></attacks-message></span>
+              <span *ngSwitchCase="3"><fury-message [info]="getCurrentMsg().msg[0].content"></fury-message></span>
+              <span *ngSwitchCase="8"><lost-message [info]="getCurrentMsg().msg[0].content"></lost-message></span>
               <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
             </span>
           </div>
@@ -889,7 +889,7 @@
           
           <!-- Result from an attack -->
           <div class="card-body text-center" *ngIf="attackMode == 4">
-            <attacks-message [(info)]="attackInfo"></attacks-message>
+            <attacks-message [info]="attackInfo"></attacks-message>
           </div>
           
           <!-- Prepare to send a fury -->
@@ -912,7 +912,7 @@
           
           <!-- Result from a fury -->
           <div class="card-body text-center" *ngIf="attackMode == 6">
-            <fury-message [(info)]="furyInfo"></fury-message>
+            <fury-message [info]="furyInfo"></fury-message>
           </div>
           
           <!-- Prepare to send a lightning -->
@@ -935,7 +935,7 @@
           
           <!-- Result from a lightning -->
           <div class="card-body text-center" *ngIf="attackMode == 8">
-            <lost-message [(info)]="lightningInfo"></lost-message>
+            <lost-message [info]="lightningInfo"></lost-message>
           </div>
           
           <!-- Spying a sanctuary -->
@@ -1011,7 +1011,7 @@
           
           <!-- Attacking a sanctuary -->
           <div class="card-body" *ngIf="attackMode == 11">
-            <sanctuary-message [(info)]="sanctuariesAttackInfo"></sanctuary-message>
+            <sanctuary-message [info]="sanctuariesAttackInfo"></sanctuary-message>
           </div>
           
           <!-- Sanctuary info -->

@@ -225,14 +225,14 @@
                   <strong>{{ 'By { value }' | translate: { value: msg.username } }}</strong>, {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
                 </div>
               </span>
-              <span *ngSwitchCase="1"><attacks-message [(info)]="msg.content"></attacks-message></span>
+              <span *ngSwitchCase="1"><attacks-message [info]="msg.content"></attacks-message></span>
               <span *ngSwitchCase="2">
                 <br/><br/>
                 <span translate class="fw-bold">Jackpot:</span>
                 {{msg.content.drachma| number:'': this.translate.currentLang}}
                 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
               </span>
-              <span *ngSwitchCase="3"><fury-message [(info)]="msg.content"></fury-message></span>
+              <span *ngSwitchCase="3"><fury-message [info]="msg.content"></fury-message></span>
               <span *ngSwitchCase="4">{{'Attempted espionage from { value }' | translate: { value: getCurrentMsg().title.username } }}</span>
               <span *ngSwitchCase="5">{{'Espionage from { value }' | translate: { value: getCurrentMsg().title.username} }}</span>
               <span *ngSwitchCase="6">
@@ -245,7 +245,7 @@
                   <br/>
                   {{'The alliances { value } and { name } will go to war in 24, stand ready!' | translate: { value: msg.content.attacking_name, name: msg.content.defender_name } }}
               </span>
-              <span *ngSwitchCase="8"><lost-message [(info)]="msg.content"></lost-message></span>
+              <span *ngSwitchCase="8"><lost-message [info]="msg.content"></lost-message></span>
               <span *ngSwitchCase="9">
                 <div translate>Hello and welcome on Ellas War</div>
                 <br/>
@@ -257,7 +257,7 @@
                 <br/>
                 <span translate>The Ellas War's team</span>
               </span>
-              <span *ngSwitchCase="10"><lost-message [(info)]="msg.content"></lost-message></span>
+              <span *ngSwitchCase="10"><lost-message [info]="msg.content"></lost-message></span>
               <span *ngSwitchCase="11">
                 {{msg.content.qtt| number:'': this.translate.currentLang}}
                 <id-to-ress [ress_id]="msg.content.ress"></id-to-ress>
@@ -365,7 +365,7 @@
                   Read the message
                 </a>
               </span>
-              <span *ngSwitchCase="16"><sanctuary-message [(info)]="msg.content"></sanctuary-message></span>
+              <span *ngSwitchCase="16"><sanctuary-message [info]="msg.content"></sanctuary-message></span>
               <span *ngSwitchCase="17">
                 <h3 translate>Result</h3>
                 <strong>{{getCurrentMsg().title.attacker}}</strong><strong translate>:</strong> 
@@ -390,7 +390,7 @@
                 <strong translate>Reward:</strong> {{msg.content.benefits/10| number:'': this.translate.currentLang}}
                 <id-to-ress [ress_id]="'drachma'"></id-to-ress>
               </span>
-              <span *ngSwitchCase="19"><lost-message [(info)]="msg.content"></lost-message></span>
+              <span *ngSwitchCase="19"><lost-message [info]="msg.content"></lost-message></span>
               <span *ngSwitchCase="20">{{'Attempted espionage of your sanctuary from { value }' | translate: { value: getCurrentMsg().title.username } }}</span>
               <span *ngSwitchCase="21">{{'Espionage of your sanctuary from { value }' | translate: { value: getCurrentMsg().title.username } }}</span>
               <span *ngSwitchCase="22">
