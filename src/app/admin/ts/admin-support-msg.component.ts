@@ -30,6 +30,7 @@ export class AdminSupportMsg {
       this.msg = 0;
     }
     this.answertext = '';
+    this.adminSupportInfo = {};
   }
   
   ngOnInit() {
