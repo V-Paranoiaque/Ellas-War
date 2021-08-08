@@ -13,6 +13,8 @@ import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
 import share from '@iconify/icons-bi/share';
+import sortDown from '@iconify/icons-fa-solid/sort-down';
+import sortUP from '@iconify/icons-fa-solid/sort-up';
 import swordIcon from '@iconify/icons-vaadin/sword';
 import twotoneFence from '@iconify/icons-ic/twotone-fence';
 
@@ -24,8 +26,8 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
 export class Attacks {
   
   private attackListInfo:any;
-  private attackOrderSort:string;
-  private attackOrderReverse:number;
+  public attackOrderSort:string;
+  public attackOrderReverse:number;
   private attackWarsListInfo:any;
   public attackPage:number;
   
@@ -72,6 +74,8 @@ export class Attacks {
   gemIcon    = gemIcon;
   plusIcon   = plusIcon;
   share      = share;
+  sortDown   = sortDown;
+  sortUP     = sortUP;
   swordIcon  = swordIcon;
   twotoneFence = twotoneFence;
   
@@ -148,6 +152,9 @@ export class Attacks {
     this.socket.on('attack', (datas:any) => {
       this.attackMode = 4;
       this.attackInfo = datas;
+      
+      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     });
     
     this.socket.on('attackList', (datas:any) => {
@@ -304,12 +311,10 @@ export class Attacks {
   }
   
   attackListInit() {
-    this.socket.emit("attackList", {
-      'page': this.attackPage,
-      'order': this.attackOrderSort,
-      'reverse': this.attackOrderReverse,
-      'nbpp': this.nbpp
-    });
+    this.attackOrderSort = 'other';
+    this.attackOrderReverse = 0;
+    
+    this.refreshAttacksPage();
     this.socket.emit('realWaveAttackCheck');
     
     this.socket.emit('msgPage', {
@@ -319,12 +324,10 @@ export class Attacks {
   }
   
   attackListWarInit() {
-    this.socket.emit("attackWarsList", {
-      'page': this.attackPage,
-      'order': this.attackOrderSort,
-      'reverse': this.attackOrderReverse,
-      'nbpp': this.nbpp
-    });
+    this.attackOrderSort = 'other';
+    this.attackOrderReverse = 0;
+    
+    this.refreshAttacksWarsPage();
     this.socket.emit('realWaveAttackCheck');
     
     this.socket.emit('msgPage', {
@@ -530,12 +533,7 @@ export class Attacks {
     id += i;
     if(id >= 1 && id <= this.getAttacksPageNb()) {
       this.attackPage = id;
-      this.socket.emit("attackList", {
-        'page': this.attackPage,
-        'order': this.attackOrderSort,
-        'reverse': this.attackOrderReverse,
-        'nbpp': this.nbpp
-      });
+      this.refreshAttacksPage();
     }
   }
   
@@ -543,13 +541,26 @@ export class Attacks {
     id += i;
     if(id >= 1 && id <= this.getAttacksWarsPageNb()) {
       this.attackPage = id;
-      this.socket.emit("attackWarsList", {
-        'page': this.attackPage,
-        'order': this.attackOrderSort,
-        'reverse': this.attackOrderReverse,
-        'nbpp': this.nbpp
-      });
+      this.refreshAttacksWarsPage();
     }
+  }
+  
+  refreshAttacksPage() {
+    this.socket.emit("attackList", {
+      'page': this.attackPage,
+      'order': this.attackOrderSort,
+      'reverse': this.attackOrderReverse,
+      'nbpp': this.nbpp
+    });
+  }
+  
+  refreshAttacksWarsPage() {
+    this.socket.emit("attackWarsList", {
+      'page': this.attackPage,
+      'order': this.attackOrderSort,
+      'reverse': this.attackOrderReverse,
+      'nbpp': this.nbpp
+    });
   }
   
   setMenuMode(id:number) {
@@ -596,6 +607,20 @@ export class Attacks {
   setSpy(data:any) {
     this.attackMode = 1;
     this.spyInfo = data;
+  }
+  
+  setOrder(newOrder:string) {
+    if(newOrder == this.attackOrderSort) {
+      this.attackOrderReverse = (this.attackOrderReverse + 1)%2;
+    }
+    this.attackOrderSort = newOrder;
+    
+    if(this.menuMode == 0) {
+      this.refreshAttacksPage();
+    }
+    else {
+      this.refreshAttacksWarsPage();
+    }
   }
   
   spy(id:number) {
