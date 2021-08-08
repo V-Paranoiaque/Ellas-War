@@ -259,34 +259,30 @@
     
     <div class="card-body player-stats">
       <div class="row">
-        <div class="col-12 d-flex">
+        <a class="col-12 d-flex" [routerLink]="['/rankingplayers']">
           <div class="p-2 icon">
             <ic-icon [icIcon]="swordIcon"></ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
             {{ user.getPropertyNb('victory') | number:'': this.translate.currentLang}}<br/>
           </div>
-        </div>
-        <div class="col-6 d-flex">
+        </a>
+        <a class="col-6 d-flex" [routerLink]="['/rankingplayers']">
           <div class="p-2 icon">
             <ic-icon [icIcon]="trophy"></ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
-            <a [routerLink]="['/rankingplayers']">
-              {{ user.getPropertyNb('xp') | number:'': this.translate.currentLang}}
-            </a>
+            {{ user.getPropertyNb('xp') | number:'': this.translate.currentLang}}
           </div>
-        </div>
-        <div class="col-6 d-flex">
+        </a>
+        <a class="col-6 d-flex" [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
           <div class="p-2 icon">
             <ic-icon [icIcon]="crown"></ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
-            <a [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
-              {{ user.getPropertyNb('honnor') | number:'': this.translate.currentLang}}
-            </a>
+            {{ user.getPropertyNb('honnor') | number:'': this.translate.currentLang}}
           </div>
-        </div>
+        </a>
       </div>
     </div>
     

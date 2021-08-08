@@ -49,7 +49,9 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
 }
 
 #infoMenu .card-body.player-stats .row div.col-6,
-#infoMenu .card-body.player-stats .row div.col-12 {
+#infoMenu .card-body.player-stats .row a.col-6,
+#infoMenu .card-body.player-stats .row div.col-12,
+#infoMenu .card-body.player-stats .row a.col-12 {
   padding-left: 0px;
   padding-right: 0px;
 }

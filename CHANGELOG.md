@@ -30,6 +30,7 @@
 * Fix windows build process
 
 # 1.0.9
+* Add links on the right menu
 * Add status button to the support list
 * Add the year to the last connection in the permissions
 * Admin page for storeroom
