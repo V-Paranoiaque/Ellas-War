@@ -14,3 +14,31 @@
 # 1.0.6
 * Rollback to the old Android loading way
 * Use the server language on the web home page
+
+# 1.0.7
+* Add explanations about Ambrosia
+* Admin pages for contact and support
+* Fix a link in the quests
+* Fix favor link
+* Fix target list in the wars
+* Fix translations
+* Fix windows electron icons
+* Make stone backgrounds lighter
+
+# 1.0.8
+* Add a script to build snap for arm64
+* Fix windows build process
+
+# 1.0.9
+* Add status button to the support list
+* Add the year to the last connection in the permissions
+* Admin page for storeroom
+* Admin page to manage prayers
+* Clean variables
+* Cleaner treasure display
+* Fix a memory leak
+* Fix target color after en attack
+* Fix the link to the support in the messages
+* Fix some socket cleaning
+* Order players in the attacks
+* Update weekly reward popup
