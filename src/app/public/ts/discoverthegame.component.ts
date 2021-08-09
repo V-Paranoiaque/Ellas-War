@@ -97,6 +97,17 @@ export class DiscoverTheGame {
           this.titleService.setTitle(res);
         });
       break;
+      
+      case 'games':
+        this.translate.get('The games').subscribe((res: string) => {
+          this.titleService.setTitle(res);
+        });
+      break;
+      case 'treeofthegods':
+        this.translate.get('The tree of the gods').subscribe((res: string) => {
+          this.titleService.setTitle(res);
+        });
+      break;
     }
 
   }
