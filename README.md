@@ -39,6 +39,7 @@ It's possible to build the project for more platforms using Electron, for more i
 
 ### Stores
 - Amazon Store
+- Google Play Store
 - Microsoft Store
 
 ## Contributions
