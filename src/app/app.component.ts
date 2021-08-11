@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   public cssUrl: any;
   public cssPlatform: any;
   private cssBase: string;
+  private sub:any;
   
   constructor(private socket: Socket, public user: User,
               private router: Router,
@@ -45,7 +46,7 @@ export class AppComponent implements OnInit {
     this.oauthService.configure(authConfig);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
     
-    this.socket.onChange.subscribe({
+    this.sub = this.socket.onChange.subscribe({
       next: (event: any) => {
         if(event.action == 'appReload') {
           this.ngOnInit();
@@ -121,6 +122,7 @@ export class AppComponent implements OnInit {
     this.socket.removeListener('user');
     this.socket.removeListener('config');
     this.socket.removeListener('connectionFB');
+    this.sub.unsubscribe();
   }
   
   detectBrowserLanguage() {
