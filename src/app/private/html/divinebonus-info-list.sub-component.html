@@ -10,23 +10,25 @@
       Divine Bonus validated
     </div>
     
-    <table class="table" aria-describedby="divinebonusDesc">
-      <tr *ngFor="let bonus of divineBonusList">
-        <td class="col-2">
-          <div>
-            <ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></ew-icon>
-            <div  class="badge bg-secondary">{{ bonus.nb }}</div>
-          </div>
-        </td>
-        <th scope="row">
-          <id-to-divinebonus [id]="bonus.bonus_id"></id-to-divinebonus>
-        </th>
-        <td>
-          <button (click)="divineBonusUse(bonus.bonus_id)"
-                  class="btn-primary"
-                  translate>Use</button>
-        </td>
-      </tr>
+    <table class="table table-middle align-middle"
+           aria-describedby="divinebonusDesc">
+      <tbody>
+        <tr *ngFor="let bonus of divineBonusList">
+          <td class="col-2">
+            <div>
+              <ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></ew-icon>
+              <div class="badge bg-secondary">{{ bonus.nb }}</div>
+            </div>
+          </td>
+          <th scope="row">
+            <id-to-divinebonus [id]="bonus.bonus_id"></id-to-divinebonus>
+          </th>
+          <td>
+            <button (click)="divineBonusUse(bonus.bonus_id)" type="button"
+                    class="btn btn-primary" translate>Use</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
   
