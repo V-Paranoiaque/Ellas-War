@@ -30,6 +30,7 @@ export class EwIcon {
       case 5: return 'marble';
       case 6: return 'wine';
       case 7: return 'gold';
+      case 8: return 'favor';
       case 9: return 'spartan';
       case 10: return 'menu-temple';
       case 11: return 'treasure';
