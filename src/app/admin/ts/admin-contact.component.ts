@@ -41,7 +41,6 @@ export class AdminContact {
     this.socket.emit('adminContactList', this.adminContactPage);
     
     this.socket.on('adminContactList', (msg:any) => {
-      console.log(msg);
       this.adminContactList = msg.list;
       this.adminContactPage = msg.cPage;
       this.adminContactMax  = msg.max;

@@ -99,18 +99,7 @@ export class AdminStoreroom {
     else {
       beginDate = this.begining;
     }
-    console.log({
-      'minRate': this.minRate,
-      'maxRate': this.maxRate,
-      'begining': this.beginDate,
-      'still':    this.still,
-      'solded':   this.solded,
-      'resource': this.resource,
-      'player1':  this.player1,
-      'player2':  this.player2,
-      'sort':     this.sort,
-      'page':     this.currentPage
-    });
+    
     this.socket.emit('adminStoreroomList', {
       'minRate': this.minRate,
       'maxRate': this.maxRate,
