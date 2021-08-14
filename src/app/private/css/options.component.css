@@ -12,6 +12,7 @@
 }
 
 .col-logo {
-  width: 120px;
   padding: 1rem;
+  max-width: 200px;
+  width: 20%;
 }

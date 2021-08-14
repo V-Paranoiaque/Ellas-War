@@ -4,6 +4,14 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import cog from '@iconify/icons-fa-solid/cog';
+import email from '@iconify/icons-mdi/email';
+import history from '@iconify/icons-fa-solid/history';
+import idBadge from '@iconify/icons-fa-solid/id-badge';
+import key from '@iconify/icons-fa-solid/key';
+import userCircle from '@iconify/icons-fa-solid/user-circle';
+import redo from '@iconify/icons-fa-solid/redo';
+
 @Component({
   templateUrl: '../html/options.component.html',
   styleUrls: ['../css/options.component.css']
@@ -32,7 +40,15 @@ export class Options {
   public pauseAllowed: number;
   public pauseNb: number;
   public sound: number;
-
+  
+  cog        = cog;
+  email      = email;
+  history    = history;
+  idBadge    = idBadge;
+  key        = key;
+  userCircle = userCircle;
+  redo       = redo;
+  
   constructor(private socket: Socket, public user: User, private router: Router,
               public translate: TranslateService) {
     this.user.checkPermissions([1,2,3,4,5]);
