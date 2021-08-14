@@ -107,9 +107,18 @@
                   Drag and drop units on a wave to add them
                 </div>
               </div>
-              <div *ngIf="waveAttackPower == 0" class="text-center fw-bold"
-                   translate>
-                Your army is empty
+              <div *ngIf="waveAttackPower == 0">
+                <div class="text-center fw-bold" translate>
+                  Your army is empty
+                </div>
+                <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
+                <div cdkDropList class="text-center"
+                     id="wave-attack-1"
+                     [cdkDropListData]="['']"
+                     [cdkDropListConnectedTo]="waveAttackDropList"
+                     (cdkDropListDropped)="onDropAttack($event)" translate>
+                  Drag and drop units on a wave to add them
+                </div>
               </div>
             </ng-container>
             
@@ -223,9 +232,18 @@
                   Drag and drop units on a wave to add them
                 </div>
               </div>
-              <div *ngIf="waveDefensePower == 0" class="text-center fw-bold"
-                   translate>
-                Your army is empty
+              <div *ngIf="waveDefensePower == 0">
+                <div class="text-center fw-bold" translate>
+                  Your army is empty
+                </div>
+                <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
+                <div cdkDropList class="text-center"
+                     id="wave-defense-1"
+                     [cdkDropListData]="['']"
+                     [cdkDropListConnectedTo]="waveDefenseDropList"
+                     (cdkDropListDropped)="onDropDefense($event)" translate>
+                  Drag and drop units on a wave to add them
+                </div>
               </div>
             </ng-container>
           </div>
