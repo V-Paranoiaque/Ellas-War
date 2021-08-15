@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
     this.sub = this.socket.onChange.subscribe({
       next: (event: any) => {
         if(event.action == 'appReload') {
+          this.ngOnDestroy();
           this.ngOnInit();
         }
       }
