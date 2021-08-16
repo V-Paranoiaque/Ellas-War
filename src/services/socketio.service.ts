@@ -38,7 +38,9 @@ export class Socket {
     if(this.socket) {
       this.socket.close();
     }
-    this.socket = io(url);
+    
+    let ws = url.replace('https', 'wss');
+    this.socket = io(ws);
     this.url = url;
     
     this.socket.on("connect", () => {
