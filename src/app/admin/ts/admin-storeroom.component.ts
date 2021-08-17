@@ -93,8 +93,8 @@ export class AdminStoreroom {
     }
     var beginDate;
     if(this.begining != '') {
-      beginDate = this.begining.split('/');
-      beginDate = parseInt((new Date(beginDate[1]+"/"+beginDate[0]+"/"+beginDate[2]).getTime() / 1000).toFixed(0))
+      let beginDateTmp = this.begining.split('/');
+      beginDate = parseInt((new Date(beginDateTmp[1]+"/"+beginDateTmp[0]+"/"+beginDateTmp[2]).getTime() / 1000).toFixed(0))
     }
     else {
       beginDate = this.begining;
@@ -103,7 +103,7 @@ export class AdminStoreroom {
     this.socket.emit('adminStoreroomList', {
       'minRate': this.minRate,
       'maxRate': this.maxRate,
-      'begining': this.beginDate,
+      'begining': beginDate,
       'still':    this.still,
       'solded':   this.solded,
       'resource': this.resource,
