@@ -43,3 +43,19 @@
 * Fix some socket cleaning
 * Order players in the attacks
 * Update weekly reward popup
+
+# 1.0.10
+* Add Google Play Store look
+* Add missing headers for old presentation url
+* Add missing icons in the options page
+* Admin page to contact the users
+* Admin page to manage the storeroom
+* Clean debug
+* Fix favor icon in the divine bonuses
+* Fix possible bug in the wave page, when all the units are removed
+* Fix snap manual build script
+* Make the list of divine bonuses mor user friendly
+* Optimize server connection
+* Optimize subscribe/unsubscribe
+* Preload sub modules to accelerate the game
+* Save 404 for stats purpose
