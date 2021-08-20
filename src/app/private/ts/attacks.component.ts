@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -23,7 +23,7 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   styleUrls: ['../css/attacks.component.css']
 })
 
-export class Attacks {
+export class AttacksComponent implements OnInit, OnDestroy {
   
   private attackListInfo:any;
   public attackOrderSort:string;

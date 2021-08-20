@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
@@ -9,9 +9,12 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/lostpassword.component.html'
 })
 
-export class LostPassword {
+export class LostPasswordComponent implements OnInit, OnDestroy {
   public lostpasswordError:number;
   public lostvalue:string;
+  
+  private subLost:any;
+  private subTitle:any;
   
   constructor(private http: HttpClient, private titleService: Title,
               public user: User, public translate: TranslateService,
@@ -21,9 +24,14 @@ export class LostPassword {
   }
   
   ngOnInit() {
-    this.translate.get('Forgot your password').subscribe((res: string) => {
+    this.subTitle = this.translate.get('Forgot your password').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.subLost.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   lostpassword() {
@@ -34,7 +42,7 @@ export class LostPassword {
     
     let url = this.socket.url+'/api/lostpassword/'+encodeURIComponent(this.lostvalue)+'.json';
     
-    this.http.get(url).subscribe((result:any) => {
+    this.subLost = this.http.get(url).subscribe((result:any) => {
       if(result) {
         this.lostpasswordError = result.error;
       }

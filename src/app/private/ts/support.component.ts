@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
@@ -10,7 +10,7 @@ import eye from '@iconify/icons-fa-solid/eye';
   styleUrls: ['../css/support.component.css']
 })
 
-export class Support {
+export class SupportComponent implements OnInit, OnDestroy {
   public id: any;
   public answerMsg:string;
   public contactList:any;

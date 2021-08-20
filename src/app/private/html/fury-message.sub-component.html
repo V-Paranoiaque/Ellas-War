@@ -11,7 +11,7 @@
         {{info.lost_ress.food| number:'': this.translate.currentLang}}
       </td>
       <th scope="row" class="text-start">
-        <id-to-ress [ress_id]="'food'"></id-to-ress>
+        <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
       </th>
     </tr>
     <tr *ngIf="info.lost_ress.grapes > 0">
@@ -19,7 +19,7 @@
         {{info.lost_ress.grapes| number:'': this.translate.currentLang}}
       </td>
       <th scope="row" class="text-start">
-        <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+        <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
       </th>
     </tr>
     <tr *ngIf="info.lost_build.farm > 0">

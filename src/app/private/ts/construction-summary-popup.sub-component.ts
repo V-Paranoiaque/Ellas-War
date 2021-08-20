@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'construction-summary-popup',
+  selector: 'app-construction-summary-popup',
   templateUrl: '../html/construction-summary-popup.sub-component.html'
 })
 
-export class ConstructionSummaryPopup {
+export class ConstructionSummaryPopupSubComponent implements OnInit {
   private buildings:any;
   
   constructor(public user: User, public translate: TranslateService) {

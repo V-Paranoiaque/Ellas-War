@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'admin-left-menu',
+  selector: 'app-admin-left-menu',
   templateUrl: '../html/admin-left-menu.component.html'
 })
 
-export class AdminLeftMenu {
+export class AdminLeftMenuComponent {
   
   @Input()
   active: string;

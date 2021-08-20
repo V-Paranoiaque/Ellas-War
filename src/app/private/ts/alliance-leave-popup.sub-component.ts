@@ -5,11 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-leave-popup',
+  selector: 'app-alliance-leave-popup',
   templateUrl: '../html/alliance-leave-popup.sub-component.html'
 })
 
-export class AllianceLeavePopup {
+export class AllianceLeavePopupSubComponent {
   
   constructor(private router: Router, private socket: Socket, public user: User, public translate: TranslateService) {
   }

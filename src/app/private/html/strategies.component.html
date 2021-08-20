@@ -1,18 +1,18 @@
-<common-top-bar active="strategies"></common-top-bar>
+<app-common-top-bar active="strategies"></app-common-top-bar>
 
 <div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <army-popup [info]="armyInfo"></army-popup>
+    <app-army-popup [info]="armyInfo"></app-army-popup>
   </div>
 </div>
 <div class="modal fade" id="ArmyHelp" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <army-help-popup></army-help-popup>
+    <app-army-help-popup></app-army-help-popup>
   </div>
 </div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <construction-popup [info]="buildingInfo"></construction-popup>
+    <app-construction-popup [info]="buildingInfo"></app-construction-popup>
   </div>
 </div>
 
@@ -60,7 +60,7 @@
                       (<strong>{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}</strong>)
                     </div>
                     <div class="mt-auto m-1-xs m-4-md">
-                      <ew-icon name="{{ army.code }}"></ew-icon>
+                      <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                     </div>
                   </div>
                 </ng-container>
@@ -84,9 +84,9 @@
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ army.code }}"
+                          <app-ew-icon name="{{ army.code }}"
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                                   (click)="selectArmy(army.code)"></ew-icon>
+                                   (click)="selectArmy(army.code)"></app-ew-icon>
                           <button [ngClass]="{'d-none': army.code == 'soul'}"
                                   class="btn btn-danger mt-1"
                                   (click)="waveAttackDelete(army.code, i)"
@@ -148,7 +148,7 @@
                       (<strong>{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}</strong>)
                     </div>
                     <div class="mt-auto m-1-xs m-4-md">
-                      <ew-icon name="{{ army.code }}"></ew-icon>
+                      <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                     </div>
                   </div>
                 </ng-container>
@@ -165,7 +165,7 @@
                       (<strong>{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}</strong>)
                     </div>
                     <div class="mt-auto m-1-xs m-4-md">
-                      <ew-icon name="{{ building.code }}"></ew-icon>
+                      <app-ew-icon name="{{ building.code }}"></app-ew-icon>
                     </div>
                   </div>
                 </ng-container>
@@ -189,9 +189,9 @@
                           (<strong>{{ wave[army.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ army.code }}"
+                          <app-ew-icon name="{{ army.code }}"
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                                   (click)="selectArmy(army.code)"></ew-icon>
+                                   (click)="selectArmy(army.code)"></app-ew-icon>
                           <button [ngClass]="{'d-none': army.code == 'soul'}"
                                   class="btn btn-danger mt-1"
                                   (click)="waveDefenseDelete(army.code, i)"
@@ -210,9 +210,9 @@
                           (<strong>{{ wave[building.code] }}</strong>)
                         </div>
                         <div class="mt-auto m-1-xs m-4-md text-center">
-                          <ew-icon name="{{ building.code }}"
+                          <app-ew-icon name="{{ building.code }}"
                                    data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                                   (click)="selectBuilding(building.code)"></ew-icon>
+                                   (click)="selectBuilding(building.code)"></app-ew-icon>
                           <button class="btn btn-danger mt-1"
                                   (click)="waveDefenseDelete(building.code, i)"
                                   translate>Remove</button>
@@ -253,5 +253,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

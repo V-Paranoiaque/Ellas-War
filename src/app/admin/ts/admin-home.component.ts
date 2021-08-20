@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -7,7 +7,7 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminHome {
+export class AdminHomeComponent implements OnInit {
   
   constructor(public user: User, public translate: TranslateService) {
   }
@@ -16,4 +16,3 @@ export class AdminHome {
     this.user.checkPermissions([1]);
   }
 }
-  

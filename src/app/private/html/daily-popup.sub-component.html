@@ -7,7 +7,7 @@
   <div class="modal-body container-fluid">
     <span *ngIf="info.bonus_id > 0">
       <strong translate>Divine bonus received:</strong> 
-      <id-to-divinebonus [id]="info.bonus_id"></id-to-divinebonus>
+      <app-id-to-divinebonus [id]="info.bonus_id"></app-id-to-divinebonus>
       <br/>
     </span>
     <strong translate>New messages:</strong> {{ info.msg }} 

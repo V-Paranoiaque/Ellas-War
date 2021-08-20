@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'id-to-divinebonus',
+  selector: 'app-id-to-divinebonus',
   templateUrl: '../html/id-to-divinebonus.sub-component.html'
 })
 
-export class IdToDivineBonus {
+export class IdToDivineBonusSubComponent {
   @Input()
   id: any;
   

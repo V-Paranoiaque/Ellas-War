@@ -1,4 +1,4 @@
-<common-top-bar active="city"></common-top-bar>
+<app-common-top-bar active="city"></app-common-top-bar>
 
 
 <div class="modal fade" id="FavorInfo" tabindex="-1" aria-hidden="true">
@@ -19,7 +19,7 @@
       </div>
       <div class="modal-body">
         <strong translate>Cost:</strong>
-        1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
@@ -44,7 +44,7 @@
             <div translate>Add 15 bonus attack. You can make a maximum of 5 per day.</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
-              1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </div>
           </div>
           <div class="card-button card-button-primary" (click)="selectFavor(1)"
@@ -62,7 +62,7 @@
             <div translate>+200 Spies</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
-              1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </div>
           </div>
           <div class="card-button card-button-primary" (click)="selectFavor(2)"
@@ -78,7 +78,7 @@
             <div translate>You will not pay fee on your withdrawals in your treasure for 7 days</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
-              1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </div>
           </div>
           <div class="card-button card-button-primary" (click)="selectFavor(4)"
@@ -96,7 +96,7 @@
             <div translate>+800,000 Drachmas</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
-              1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </div>
           </div>
           <div class="card-button card-button-primary" (click)="selectFavor(5)"
@@ -112,7 +112,7 @@
             <div translate>Your losses resources in the attacks will be reduced by 50% during 7 days</div>
             <div class="text-center">
               <strong translate>Cost:</strong>
-              1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </div>
           </div>
           <div class="card-button card-button-primary" (click)="selectFavor(6)"
@@ -124,5 +124,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

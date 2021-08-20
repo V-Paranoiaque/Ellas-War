@@ -6,11 +6,11 @@ import { User } from '../../../services/user.service';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
-  selector: 'alliance-rank-popup',
+  selector: 'app-alliance-rank-popup',
   templateUrl: '../html/alliance-rank-popup.sub-component.html'
 })
 
-export class AllianceRankPopup {
+export class AllianceRankPopupSubComponent {
   
   @Input() info:any;
    

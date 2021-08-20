@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { EwIcon } from '../services/ew-icon.service';
+import { EwIconSubComponent } from '../services/ew-icon.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { Socket } from '../services/socketio.service';
 import { User } from '../services/user.service';
@@ -29,7 +29,7 @@ import { PrivateComponent } from './private/private.component';
     PublicComponent,
     PrivateComponent,
     AppComponent,
-    EwIcon
+    EwIconSubComponent
   ],
   imports: [
     BrowserModule,

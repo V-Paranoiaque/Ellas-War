@@ -1,14 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'success-card',
+  selector: 'app-success-card',
   templateUrl: '../html/success-card.sub-component.html'
 })
 
-export class SuccessCard {
+export class SuccessCardSubComponent {
   @Input()
   title:string;
   @Input()
@@ -18,7 +17,7 @@ export class SuccessCard {
   @Input()
   point:string;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(public user: User, public translate: TranslateService) {
     this.title = '';
     this.text = '';
     this.currently = false;

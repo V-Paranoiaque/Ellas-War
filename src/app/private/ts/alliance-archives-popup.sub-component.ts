@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-archives-popup',
+  selector: 'app-alliance-archives-popup',
   templateUrl: '../html/alliance-archives-popup.sub-component.html'
 })
 
-export class AllianceArchivesPopup {
+export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
   public archiveCurrent:number;
   public archivePages:number;
   public archiveList:any;

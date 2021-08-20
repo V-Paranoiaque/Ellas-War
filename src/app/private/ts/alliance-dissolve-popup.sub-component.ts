@@ -5,11 +5,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-dissolve-popup',
+  selector: 'app-alliance-dissolve-popup',
   templateUrl: '../html/alliance-dissolve-popup.sub-component.html'
 })
 
-export class AllianceDissolvePopup {
+export class AllianceDissolvePopupSubComponent {
   
   constructor(private router: Router, private socket: Socket, public user: User, public translate: TranslateService) {
   }

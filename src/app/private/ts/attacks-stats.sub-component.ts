@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -7,12 +7,12 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordCross from '@iconify/icons-mdi/sword-cross';
 
 @Component({
-  selector: 'attacks-stats',
+  selector: 'app-attacks-stats',
   templateUrl: '../html/attacks-stats.sub-component.html',
   styleUrls: ['../css/attacks.component.css']
 })
 
-export class AttacksStats {
+export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   
   public attackStats:any;
   public countdown:any;

@@ -1,5 +1,5 @@
-import { Component, Output  } from '@angular/core';
-import { EwIcon } from '../../../services/ew-icon.service';
+import { Component, Output, OnInit, OnDestroy  } from '@angular/core';
+import { EwIconSubComponent } from '../../../services/ew-icon.service';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -14,7 +14,7 @@ import swordCross from '@iconify/icons-mdi/sword-cross';
   styleUrls: ['../css/city.component.css']
 })
 
-export class City {
+export class CityComponent implements OnInit, OnDestroy {
 
   @Output() public armyInfo:any
             public buildingInfo:any
@@ -34,7 +34,7 @@ export class City {
   //Icons
   cloud = cloud;
   cog = cog;
-  EwIcon = EwIcon;
+  EwIcon = EwIconSubComponent;
   questionCircle = questionCircle;
   swordCross = swordCross;
   

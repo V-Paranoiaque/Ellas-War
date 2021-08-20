@@ -30,7 +30,7 @@
       <tbody>
         <tr *ngFor="let res of ressList" class="align-middle">
           <td class="text-center">
-            <id-to-ress [ress_id]="res"></id-to-ress>
+            <app-id-to-ress [ress_id]="res"></app-id-to-ress>
           </td>
           <td *ngIf="user.getPropertyNb('treasurer') > 0">
             <input class="form-control" type="number" step="1" [attr.min]="0"

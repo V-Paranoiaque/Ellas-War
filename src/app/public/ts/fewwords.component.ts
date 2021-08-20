@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -10,7 +10,9 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   templateUrl: '../html/fewwords.component.html'
 })
 
-export class FewWords {
+export class FewWordsComponent implements OnInit, OnDestroy {
+  private sub:any;
+  
   facebookIcon  = facebookIcon;
   githubOctocat = githubOctocat;
   
@@ -19,8 +21,12 @@ export class FewWords {
   }
   
   ngOnInit() {
-    this.translate.get('A few words about Ellas War').subscribe((res: string) => {
+    this.sub = this.translate.get('A few words about Ellas War').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

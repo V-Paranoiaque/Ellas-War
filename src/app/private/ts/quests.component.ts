@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -10,7 +10,7 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
   styleUrls: ['../css/quests.component.css']
 })
 
-export class Quests {
+export class QuestsComponent implements OnInit, OnDestroy {
   
   public altarConditionDivineunits:any;
   public altarConditionPrometheus:any;

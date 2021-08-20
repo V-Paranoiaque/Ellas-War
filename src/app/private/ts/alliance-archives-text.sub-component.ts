@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-archives-text',
+  selector: 'app-alliance-archives-text',
   templateUrl: '../html/alliance-archives-text.sub-component.html'
 })
 
-export class AllianceArchivesText {
+export class AllianceArchivesTextSubComponent {
   @Input() msg:any;
   
   constructor(public translate: TranslateService, public user: User) {}

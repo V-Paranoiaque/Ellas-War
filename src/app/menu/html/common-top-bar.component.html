@@ -1,8 +1,8 @@
 <div [ngSwitch]="user.info.mstatus">
-  <public-top-bar    *ngSwitchCase="0" active="{{ active }}"></public-top-bar>
-  <connected-top-bar *ngSwitchCase="1" active="{{ active }}"></connected-top-bar>
-  <blocked-top-bar   *ngSwitchCase="3" active="{{ active }}"></blocked-top-bar>
-  <paused-top-bar    *ngSwitchCase="4" active="{{ active }}"></paused-top-bar>
+  <app-public-top-bar    *ngSwitchCase="0" active="{{ active }}"></app-public-top-bar>
+  <app-connected-top-bar *ngSwitchCase="1" active="{{ active }}"></app-connected-top-bar>
+  <app-blocked-top-bar   *ngSwitchCase="3" active="{{ active }}"></app-blocked-top-bar>
+  <app-paused-top-bar    *ngSwitchCase="4" active="{{ active }}"></app-paused-top-bar>
 </div>
 
 <div *ngIf="displayServerModal" [config]="{ show: true }" (onHidden)="onHidden()"

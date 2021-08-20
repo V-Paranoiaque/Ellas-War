@@ -70,7 +70,7 @@
       <th scope="row"
           *ngIf="info.lost_ress[ress] > 0"
           class="col-6 text-start">
-        <id-to-ress [ress_id]=ress></id-to-ress>
+        <app-id-to-ress [ress_id]=ress></app-id-to-ress>
       </th>
     </tr>
   </table>
@@ -99,7 +99,7 @@
   <table class="table"  aria-describedby="CorruptedResDesc">
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.sanctuary2[ress] > 0">{{info.sanctuary2[ress]| number:'1.0-0': this.translate.currentLang}}</td>
-      <th scope="row" *ngIf="info.sanctuary2[ress] > 0"><id-to-ress [ress_id]=ress></id-to-ress></th>
+      <th scope="row" *ngIf="info.sanctuary2[ress] > 0"><app-id-to-ress [ress_id]=ress></app-id-to-ress></th>
     </tr>
   </table>
 </div>

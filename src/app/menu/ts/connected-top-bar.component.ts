@@ -1,22 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 
-import { CommonTopBar } from './common-top-bar.component';
+import { CommonTopBarComponent } from './common-top-bar.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 import cog from '@iconify/icons-fa-solid/cog';
 import powerOff from '@iconify/icons-fa-solid/power-off';
 
 @Component({
-  selector: 'connected-top-bar',
+  selector: 'app-connected-top-bar',
   templateUrl: '../html/connected-top-bar.component.html',
   styleUrls: ['../css/connected-top-bar.component.css']
 })
 
-export class ConnectedTopBar extends CommonTopBar {
+export class ConnectedTopBarComponent extends CommonTopBarComponent implements OnInit, OnDestroy {
   
   @Input()
   

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -10,7 +10,7 @@ import { environment } from './../../../environments/environment';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminResources {
+export class AdminResourcesComponent implements OnInit, OnDestroy {
   public ressList:any;
   public give:any;
   public error:number

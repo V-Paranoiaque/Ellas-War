@@ -8,11 +8,11 @@ import sun from '@iconify/icons-fa-solid/sun';
 import wind from '@iconify/icons-fa-solid/wind';
 
 @Component({
-  selector: 'id-to-weather',
+  selector: 'app-id-to-weather',
   templateUrl: '../html/id-to-weather.sub-component.html'
 })
 
-export class IdToWeather {
+export class IdToWeatherSubComponent {
   @Input()
   weather: any;
   

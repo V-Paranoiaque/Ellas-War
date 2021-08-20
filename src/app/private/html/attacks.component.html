@@ -1,4 +1,4 @@
-<common-top-bar active="attacks"></common-top-bar>
+<app-common-top-bar active="attacks"></app-common-top-bar>
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
@@ -11,7 +11,7 @@
             </span>
             <br/>
             <span *ngFor="let res of realWaveAttackCheck.ress | keyvalue">
-              <id-to-ress [ress_id]="res.key"></id-to-ress>
+              <app-id-to-ress [ress_id]="res.key"></app-id-to-ress>
             </span>
           </div>
           <div *ngIf="Object.keys(realWaveAttackCheck.habitation).length > 0">
@@ -39,25 +39,25 @@
                                'col-12': user.getLevel() >= 10}">
                 <button class="btn btn-primary" (click)="setMenuMode(4)"
                         *ngIf="myAllianceWar.length > 0">
-                  <ew-icon name="smenu-war"></ew-icon>
+                  <app-ew-icon name="smenu-war"></app-ew-icon>
                   <span class="d-none d-sm-block" translate>Wars</span>
                 </button>
                 <button class="btn btn-danger"  (click)="setMenuMode(0)">
-                  <ew-icon name="smenu-attacks"></ew-icon>
+                  <app-ew-icon name="smenu-attacks"></app-ew-icon>
                   <span class="d-none d-sm-block" translate>Attacks</span>
                 </button>
                 <button class="btn btn-success" (click)="setMenuMode(1)">
-                  <ew-icon name="smenu-stats"></ew-icon>
+                  <app-ew-icon name="smenu-stats"></app-ew-icon>
                   <span class="d-none d-sm-block" translate>Stats</span>
                 </button>
                 <button class="btn btn-info"    (click)="setMenuMode(2)"
                         *ngIf="user.getLevel() >= 10">
-                  <ew-icon name="smenu-diamond"></ew-icon>
+                  <app-ew-icon name="smenu-diamond"></app-ew-icon>
                   <span class="d-none d-sm-block" translate>Diamond</span>
                 </button>
                 <button class="btn btn-warning" (click)="setMenuMode(3)"
                         *ngIf="user.getLevel() >= 10">
-                  <ew-icon name="smenu-sanctuary"></ew-icon>
+                  <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
                   <span class="d-none d-sm-block" translate>Sanctuaries</span>
                 </button>
               </div>
@@ -194,7 +194,7 @@
             </div>
           </div>
           <div class="card-body" *ngIf="menuMode == 1">
-            <attacks-stats></attacks-stats>
+            <app-attacks-stats></app-attacks-stats>
           </div>
           <div class="card-body" *ngIf="menuMode == 2">
             <div class="text-center">
@@ -374,9 +374,9 @@
               <div class="card mb-3" *ngIf="i > 0">
                 <div class="row g-0">
                   <div class="col-md-4">
-                    <ew-icon title="{{sanctuary.sanctuaries_name|translate}}"
+                    <app-ew-icon title="{{sanctuary.sanctuaries_name|translate}}"
                              name="sanctuary_{{sanctuary.sanctuaries_id}}"
-                             class="revert"></ew-icon>
+                             class="revert"></app-ew-icon>
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -576,7 +576,7 @@
             <div *ngFor="let msg of msgList" class="d-flex bd-highlight"
                role="button" (click)="messageLoad(msg)">
               <div class="p-2 flex-grow-1 bd-highlight border-top">
-                <messages-title [msg]="msg"></messages-title>
+                <app-messages-title [msg]="msg"></app-messages-title>
                 <div class="fw-lighter">
                   {{ msg.last_date | date:'dd/MM/yyyy, HH:mm' }}
                 </div>
@@ -586,7 +586,7 @@
         </div>
         <div class="card card-normal" *ngIf="getCurrentMsg().id > 0">
           <div class="card-header card-header-auto">
-            <messages-title [msg]="getCurrentMsg()"></messages-title>
+            <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
             &nbsp;
             <button class="btn btn-warning" (click)="shareMsg()">
               <ic-icon [icon]="share"></ic-icon>
@@ -606,9 +606,9 @@
           </div>
           <div class="card-body">
             <span [ngSwitch]="getCurrentMsg().msg_type">
-              <span *ngSwitchCase="1"><attacks-message [info]="getCurrentMsg().msg[0].content"></attacks-message></span>
-              <span *ngSwitchCase="3"><fury-message [info]="getCurrentMsg().msg[0].content"></fury-message></span>
-              <span *ngSwitchCase="8"><lost-message [info]="getCurrentMsg().msg[0].content"></lost-message></span>
+              <span *ngSwitchCase="1"><app-attacks-message [info]="getCurrentMsg().msg[0].content"></app-attacks-message></span>
+              <span *ngSwitchCase="3"><app-fury-message [info]="getCurrentMsg().msg[0].content"></app-fury-message></span>
+              <span *ngSwitchCase="8"><app-lost-message [info]="getCurrentMsg().msg[0].content"></app-lost-message></span>
               <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
             </span>
           </div>
@@ -716,7 +716,7 @@
                   <br/>
                   <div class="row">
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'food'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
                                            'low': spyInfo.ress.food    == 2,
@@ -725,7 +725,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'water'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'water'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
                                            'low': spyInfo.ress.water    == 2,
@@ -734,7 +734,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
                                            'low': spyInfo.ress.wood    == 2,
@@ -743,7 +743,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
                                            'low': spyInfo.ress.iron    == 2,
@@ -752,7 +752,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
                                            'low': spyInfo.ress.stone    == 2,
@@ -761,7 +761,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
                                            'low': spyInfo.ress.marble    == 2,
@@ -770,7 +770,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
                                            'low': spyInfo.ress.grapes    == 2,
@@ -779,7 +779,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'wine'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'wine'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
                                            'low': spyInfo.ress.wine    == 2,
@@ -788,7 +788,7 @@
                                [icon]="dotCircle"></ic-icon>
                     </div>
                     <div class="col-4">
-                      <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                      <app-id-to-ress [ress_id]="'gold'"></app-id-to-ress>
                       &nbsp;
                       <ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
                                            'low': spyInfo.ress.gold    == 2,
@@ -939,7 +939,7 @@
           
           <!-- Result from an attack -->
           <div class="card-body text-center" *ngIf="attackMode == 4">
-            <attacks-message [info]="attackInfo"></attacks-message>
+            <app-attacks-message [info]="attackInfo"></app-attacks-message>
           </div>
           
           <!-- Prepare to send a fury -->
@@ -962,7 +962,7 @@
           
           <!-- Result from a fury -->
           <div class="card-body text-center" *ngIf="attackMode == 6">
-            <fury-message [info]="furyInfo"></fury-message>
+            <app-fury-message [info]="furyInfo"></app-fury-message>
           </div>
           
           <!-- Prepare to send a lightning -->
@@ -985,7 +985,7 @@
           
           <!-- Result from a lightning -->
           <div class="card-body text-center" *ngIf="attackMode == 8">
-            <lost-message [info]="lightningInfo"></lost-message>
+            <app-lost-message [info]="lightningInfo"></app-lost-message>
           </div>
           
           <!-- Spying a sanctuary -->
@@ -1061,7 +1061,7 @@
           
           <!-- Attacking a sanctuary -->
           <div class="card-body" *ngIf="attackMode == 11">
-            <sanctuary-message [info]="sanctuariesAttackInfo"></sanctuary-message>
+            <app-sanctuary-message [info]="sanctuariesAttackInfo"></app-sanctuary-message>
           </div>
           
           <!-- Sanctuary info -->
@@ -1100,8 +1100,8 @@
                     </tr>
                     <tr>
                       <td class="center" rowspan="2">
-                        <ew-icon title="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}" 
-                                 name="{{ getArmy()[i].unit }}" height="70px"></ew-icon>
+                        <app-ew-icon title="{{ user.info.datas.army[getArmy()[i].unit].names | translate }}" 
+                                 name="{{ getArmy()[i].unit }}" height="70px"></app-ew-icon>
                       </td>
                       <td></td>
                     </tr>
@@ -1142,5 +1142,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

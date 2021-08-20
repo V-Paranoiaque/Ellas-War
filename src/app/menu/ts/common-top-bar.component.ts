@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
@@ -10,16 +10,18 @@ import greekcolumnIcon from '@iconify/icons-whh/greekcolumn';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
-  selector: 'common-top-bar',
+  selector: 'app-common-top-bar',
   templateUrl: '../html/common-top-bar.component.html'
 })
 
-export class CommonTopBar implements OnInit {
+export class CommonTopBarComponent implements OnInit, OnDestroy {
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
   displayServerModal = false;
   
   @Input()
   active: string;
+  
+  private sub:any;
   
   greekcolumnIcon = greekcolumnIcon;
   questionCircle  = questionCircle;
@@ -52,6 +54,7 @@ export class CommonTopBar implements OnInit {
     this.socket.removeListener('user');
     this.socket.removeListener('ress');
     this.socket.removeListener('redirect');
+    this.sub.unsubscribe();
   }
   
   disconnect() {
@@ -60,7 +63,7 @@ export class CommonTopBar implements OnInit {
   
   getApi() {
     let url = this.socket.url+'/api.json';
-    this.http.get(url).subscribe((result:any) => {
+    this.sub = this.http.get(url).subscribe((result:any) => {
       try {
         if(result && !result.min) {
           this.displayServerModal = true;

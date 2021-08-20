@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -6,7 +6,7 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/admin-stats-units.component.html'
 })
 
-export class AdminStatsUnits {
+export class AdminStatsUnitsComponent implements OnInit {
   public armyArray:any;
   public armyFirst:any;
   public towersArray:any;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -8,7 +8,7 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/favors.component.css']
 })
 
-export class Favors {
+export class FavorsComponent implements OnInit, OnDestroy {
   public favor:any;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {

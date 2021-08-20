@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -8,7 +8,7 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/paused.component.css']
 })
 
-export class Paused {
+export class PausedComponent implements OnInit {
 
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     

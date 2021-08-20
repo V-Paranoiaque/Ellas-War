@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'lost-message',
+  selector: 'app-lost-message',
   templateUrl: '../html/lost-message.sub-component.html'
 })
 
-export class LostMessage {
+export class LostMessageSubComponent {
   @Input() info: any;
   
   constructor(public user: User, public translate: TranslateService) {

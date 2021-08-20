@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-join-popup',
+  selector: 'app-alliance-join-popup',
   templateUrl: '../html/alliance-join-popup.sub-component.html'
 })
 
-export class AllianceJoinPopup {
+export class AllianceJoinPopupSubComponent {
   
   @Input() info:any;
   

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -12,7 +12,7 @@ import eyeIcon from '@iconify/icons-fa-solid/eye';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminSupport {
+export class AdminSupportComponent implements OnInit, OnDestroy {
   public adminSupportList:any;
   public adminSupportMax:number;
   public adminSupportPage:number;

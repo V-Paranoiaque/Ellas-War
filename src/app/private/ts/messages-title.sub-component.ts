@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'messages-title',
+  selector: 'app-messages-title',
   templateUrl: '../html/messages-title.sub-component.html'
 })
 
-export class MessagesTitle {
+export class MessagesTitleSubComponent {
   @Input()
   msg: any;
 }

@@ -1,21 +1,20 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-pact-ask-popup',
+  selector: 'app-alliance-pact-ask-popup',
   templateUrl: '../html/alliance-pact-ask-popup.sub-component.html'
 })
 
-export class AlliancePactAskPopup {
+export class AlliancePactAskPopupSubComponent implements OnInit, OnDestroy {
   
   @Input() info:any;
   
   public myAllianceProfile:any;
   
-  constructor(private router: Router, private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }
   
   ngOnInit() {

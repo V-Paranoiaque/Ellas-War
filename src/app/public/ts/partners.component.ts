@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -7,15 +7,20 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/partners.component.html'
 })
 
-export class Partners {
-
+export class PartnersComponent implements OnInit, OnDestroy {
+  private sub:any;
+  
   constructor(private titleService: Title, public translate: TranslateService,
               public user: User) {
   }
   
   ngOnInit() {
-    this.translate.get('Ellas War Partners').subscribe((res: string) => {
+    this.sub = this.translate.get('Ellas War Partners').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
-  selector: 'alliance-create-popup',
+  selector: 'app-alliance-create-popup',
   templateUrl: '../html/alliance-create-popup.sub-component.html'
 })
 
-export class AllianceCreatePopup {
+export class AllianceCreatePopupSubComponent {
   
   public alliance:any;
   

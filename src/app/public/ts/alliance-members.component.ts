@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,10 +10,14 @@ import { Title } from '@angular/platform-browser';
   templateUrl: '../html/alliance-members.component.html'
 })
 
-export class AllianceMembers {
+export class AllianceMembersComponent implements OnInit, OnDestroy {
   
-  allianceMembers:any;
-  allianceProfile:any;
+  public allianceMembers:any;
+  public allianceProfile:any;
+  
+  private subMembers:any;
+  private subProfile:any;
+  private subTitle:any;
   
   constructor(private http: HttpClient, private route: ActivatedRoute,
               private socket: Socket, public user: User,
@@ -33,6 +37,12 @@ export class AllianceMembers {
   
   ngOnDestroy() {
     this.socket.removeListener('allianceMembersRefresh');
+    this.subMembers.unsubscribe();
+    this.subProfile.unsubscribe();
+    
+    if(this.subTitle) {
+      this.subTitle.unsubscribe();
+    }
   }
   
   getMembers() {
@@ -40,7 +50,7 @@ export class AllianceMembers {
     
     let url = this.socket.url+'/api/allianceMembers/'+id+'.json';
     
-    this.http.get(url).subscribe((res:any) => {
+    this.subMembers = this.http.get(url).subscribe((res:any) => {
       if(res) {
         this.allianceMembers = res;
       }
@@ -52,11 +62,11 @@ export class AllianceMembers {
     
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.http.get(url).subscribe((alli:any) => {
+    this.subProfile = this.http.get(url).subscribe((alli:any) => {
       if(alli) {
         this.allianceProfile = alli;
         
-        this.translate.get('Alliance members:').subscribe((res: string) => {
+        this.subTitle = this.translate.get('Alliance members:').subscribe((res: string) => {
           this.titleService.setTitle(res+' '+alli.alliance_name);
         });
       }

@@ -37,11 +37,11 @@
         10 bonus attacks
       </li>
       <li *ngIf="user.getLevel() >= user.getDatas().ress_lvl.ambrosia" translate>
-        40 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress> (you can't have more than 400 of Ambrosia)
+        40 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress> (you can't have more than 400 of Ambrosia)
       </li>
       <li *ngIf="user.getLevel() < user.getDatas().ress_lvl.ambrosia">
         {{200000| number:'': this.translate.currentLang }}
-        <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+        <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
       </li>
     </ul>
   </div>

@@ -1,4 +1,4 @@
-<common-top-bar active="admin"></common-top-bar>
+<app-common-top-bar active="admin"></app-common-top-bar>
 
 <div class="col-xs-12 main">
   <div class="container-fluid">
@@ -49,12 +49,12 @@
                 <td [ngClass]="{'text-danger': checkBest('d_f', unit) }">{{ unit.d_f | number:'': this.translate.currentLang }}</td>
                 <td>
                   <span *ngFor="let res of unit.cost | keyvalue">
-                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                    <app-id-to-ress [ress_id]="res.key"></app-id-to-ress>
                   </span>
                 </td>
                 <td>
                   <span *ngFor="let res of unit.consumption | keyvalue">
-                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                    <app-id-to-ress [ress_id]="res.key"></app-id-to-ress>
                   </span>
                 </td>
               </tr>
@@ -84,7 +84,7 @@
                 <td>{{ unit.defense/unit.field | number:'': this.translate.currentLang }}</td>
                 <td>
                   <span *ngFor="let res of unit.cost | keyvalue">
-                    <id-to-ress [ress_id]="res.key"></id-to-ress>
+                    <app-id-to-ress [ress_id]="res.key"></app-id-to-ress>
                   </span>
                 </td>
                 <td>
@@ -98,4 +98,4 @@
 </div>
 </div>
 
-<common-bottom-bar></common-bottom-bar>
+<app-common-bottom-bar></app-common-bottom-bar>

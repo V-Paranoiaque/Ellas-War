@@ -15,12 +15,12 @@ import trophy from '@iconify/icons-fa-solid/trophy';
 
 
 @Component({
-  selector: 'connected-right-menu',
+  selector: 'app-connected-right-menu',
   templateUrl: '../html/connected-right-menu.component.html',
   styleUrls: ['../css/connected-right-menu.component.css']
 })
 
-export class ConnectedRightMenu {
+export class ConnectedRightMenuComponent {
   public selectedWeather:string;
   public ressList:any;
   

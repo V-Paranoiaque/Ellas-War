@@ -1,8 +1,8 @@
-<common-top-bar active="allianceprofile"></common-top-bar>
+<app-common-top-bar active="allianceprofile"></app-common-top-bar>
 
 <div class="modal fade" id="AllianceJoin" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-join-popup [info]="allianceProfile"></alliance-join-popup>
+    <app-alliance-join-popup [info]="allianceProfile"></app-alliance-join-popup>
   </div>
 </div>
 
@@ -95,5 +95,5 @@
   </div>
 </div>
 
-<connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

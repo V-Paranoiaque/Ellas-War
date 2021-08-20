@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-emergency-popup',
+  selector: 'app-alliance-emergency-popup',
   templateUrl: '../html/alliance-emergency-popup.sub-component.html'
 })
 
-export class AllianceEmergencyPopup {
+export class AllianceEmergencyPopupSubComponent {
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
   }

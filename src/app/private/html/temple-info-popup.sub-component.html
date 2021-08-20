@@ -53,7 +53,7 @@
       <div *ngIf="furyCostMissing().length > 0" class="fw-bold text-danger">
         <span translate>Missing resources:</span>
         <span *ngFor="let res of furyCostMissing()">
-          <id-to-ress [ress_id]="res"></id-to-ress>
+          <app-id-to-ress [ress_id]="res"></app-id-to-ress>
         </span>
       </div>
       
@@ -63,7 +63,7 @@
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of furyCost | keyvalue">
           {{ Number(resource.value) | number:'': this.translate.currentLang }}	
-          <id-to-ress [ress_id]="resource.key"></id-to-ress>
+          <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
         </span>
       </div>
       <div class="input-group">
@@ -95,7 +95,7 @@
             
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 360}">
         <strong translate>Cost:</strong>
-        360 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        360 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       {{ preUseList.length }}
       <select class="form-select"
@@ -139,7 +139,7 @@
       <table class="table" aria-describedby="ProtectiveGoddessDesc">
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 12}">
-            12 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 30 minutes</span>
           </th>
           <td class="text-end">
@@ -152,7 +152,7 @@
         </tr>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 20}">
-            20 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            20 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 60 minutes</span>
           </th>
           <td class="text-end">
@@ -193,7 +193,7 @@
   
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 4}">
         <strong translate>Cost:</strong>
-        4 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        4 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <br/>
@@ -224,7 +224,7 @@
       
       <div *ngIf="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
         <strong translate>Cost:</strong>
-        200 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        200 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <button *ngIf="user.getPropertyNb('ambrosia') >= 200"
@@ -262,7 +262,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 1}">
         <strong translate>Cost:</strong>
-        1 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        1 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       <button class="btn btn-success" translate 
               (click)="powerUse(7, 0)"
@@ -292,7 +292,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 180}">
         <strong translate>Cost:</strong>
-        180 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        180 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       <input type="text" class="form-control" aria-label="Player" 
              placeholder="{{'Player'|translate}}" [(ngModel)]="idToUser"
@@ -332,7 +332,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 80}">
         <strong translate>Cost:</strong>
-        80 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        80 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       <button class="btn btn-success" translate 
               (click)="powerUse(5, 0)"
@@ -356,7 +356,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 120}">
         <strong translate>Cost:</strong>
-        120 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        120 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <br/><br/>
@@ -390,7 +390,7 @@
       <div *ngIf="lightningCostMissing().length > 0" class="fw-bold text-danger">
         <span translate>Missing resources:</span>
         <span *ngFor="let res of lightningCostMissing()">
-          <id-to-ress [ress_id]="res"></id-to-ress>
+          <app-id-to-ress [ress_id]="res"></app-id-to-ress>
         </span>
       </div>
       
@@ -398,7 +398,7 @@
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of lightningCost | keyvalue">
           {{ Number(resource.value) | number:'': this.translate.currentLang }}	
-          <id-to-ress [ress_id]="resource.key"></id-to-ress>
+          <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
         </span>
       </div>
       <div class="input-group">
@@ -429,7 +429,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
         <strong translate>Cost:</strong>
-        200 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        200 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <button class="btn btn-success" translate 
@@ -462,7 +462,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 200}">
         <strong translate>Cost:</strong>
-        200 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        200 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
         <span translate>For 15 minutes</span>
       </div>
       
@@ -501,7 +501,7 @@
       <table class="table" aria-describedby="ProtectiveGoddessDesc">
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 16}">
-            12 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 30 minutes</span>
           </th>
           <td class="text-end">
@@ -514,7 +514,7 @@
         </tr>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 30}">
-            20 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            20 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 60 minutes</span>
           </th>
           <td class="text-end">
@@ -559,7 +559,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 400}">
         <strong translate>Cost:</strong>
-        400 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        400 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <div class="col-xs-12">
@@ -597,7 +597,7 @@
       <table class="table" aria-describedby="ProtectiveGoddessDesc">
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 24}">
-            12 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 30 minutes</span>
           </th>
           <td class="text-end">
@@ -610,7 +610,7 @@
         </tr>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 40}">
-            20 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+            20 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             <span translate>For 60 minutes</span>
           </th>
           <td class="text-end">
@@ -639,21 +639,21 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 40}">
         <strong translate>Cost:</strong>
-        40 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        40 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       <button class="btn btn-primary" 
               (click)="powerUse(14, 1)"
               *ngIf="user.getPropertyNb('ambrosia') >= 80">
         <span translate>Get</span> 
         {{'40000'| number:'': this.translate.currentLang }}
-        <id-to-ress [ress_id]="'stone'"></id-to-ress>
+        <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
       </button>
       <button class="btn btn-success" 
               (click)="powerUse(14, 2)"
               *ngIf="user.getPropertyNb('ambrosia') >= 40">
         <span translate>Get</span> 
         400
-        <id-to-ress [ress_id]="'marble'"></id-to-ress>
+        <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
       </button>
     </div>
   </div>
@@ -680,15 +680,15 @@
             <th scope="row">
               <span [ngClass]="{'text-danger': user.getPropertyNb('water') < user.info.datas.poseidon_wall.water}">
                 {{user.info.datas.poseidon_wall.water| number:'': this.translate.currentLang }}
-                <id-to-ress [ress_id]="'water'"></id-to-ress>
+                <app-id-to-ress [ress_id]="'water'"></app-id-to-ress>
               </span>
               <span [ngClass]="{'text-danger': user.getPropertyNb('marble') < user.info.datas.poseidon_wall.marble}">
                 {{user.info.datas.poseidon_wall.marble| number:'': this.translate.currentLang }}
-                <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
               </span>
               <span [ngClass]="{'text-danger': user.getPropertyNb('gold') < user.info.datas.poseidon_wall.gold}">
                 {{user.info.datas.poseidon_wall.gold| number:'': this.translate.currentLang }}
-                <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                <app-id-to-ress [ress_id]="'gold'"></app-id-to-ress>
               </span>
             </th>
             <td>
@@ -702,7 +702,7 @@
           <tr>
             <th scope="row"
                 [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 160}">
-              160 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+              160 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
             </th>
             <td>
               <button class="btn btn-primary" (click)="powerUse(15, 0)"
@@ -725,7 +725,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 150}">
         <strong translate>Cost:</strong>
-        150 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        150 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
         
         <div *ngIf="user.getPropertyNb('poseidon_wall') == 0">
           <button class="btn btn-success" translate
@@ -744,7 +744,7 @@
       
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 100}">
         <strong translate>Cost:</strong>
-        100 <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+        100 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
       
       <input type="text" class="form-control" aria-label="Player" 

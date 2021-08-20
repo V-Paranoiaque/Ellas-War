@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'fury-message',
+  selector: 'app-fury-message',
   templateUrl: '../html/fury-message.sub-component.html'
 })
 
-export class FuryMessage {
+export class FuryMessageSubComponent {
   @Input() info: any;
 
   constructor(public user: User, public translate: TranslateService) {

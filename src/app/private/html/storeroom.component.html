@@ -1,4 +1,4 @@
-<common-top-bar active="storeroom"></common-top-bar>
+<app-common-top-bar active="storeroom"></app-common-top-bar>
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main main-top" role="main">
   <div class="container">
@@ -12,13 +12,13 @@
             <span *ngIf="storeroomMin.rate > 0">
               <span translate>Current rate</span>
               <span translate>:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
-              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
               <span *ngIf="storeroomMin.you > 0">-</span>
             </span>
             
             <span *ngIf="storeroomMin.you > 0">
               <span translate>You</span><span translate>:</span> {{ storeroomMin.you| number:'': this.translate.currentLang}}
-              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
             </span>
             
             <div class="input-group d-flex flex-row">
@@ -114,7 +114,7 @@
                       <span *ngIf="trade.remaining > 0">{{trade.remaining | number:'': this.translate.currentLang }}</span>
                       <span *ngIf="trade.remaining == 0">{{trade.mremaining | number:'': this.translate.currentLang }}</span>
                       &nbsp;
-                      <id-to-ress [ress_id]="trade.resource_id"></id-to-ress>
+                      <app-id-to-ress [ress_id]="trade.resource_id"></app-id-to-ress>
                     </td>
                     <td>
                       <span *ngIf="trade.remaining > 0">{{trade.rate | number:'': this.translate.currentLang }}</span>
@@ -193,12 +193,12 @@
                                'bg-green': (trade.mrate > 0 && trade.mrate > trade.rate) || (trade.rate > 0 && trade.mrate == 0)}">
                   <td>
                     {{trade.remaining| number:'': this.translate.currentLang}}
-                    <id-to-ress [ress_id]=trade.resource_id></id-to-ress>
+                    <app-id-to-ress [ress_id]=trade.resource_id></app-id-to-ress>
                   </td>
                   <td>{{trade.rate | number:'': this.translate.currentLang }}</td>
                   <td>
                     {{trade.rate*trade.remaining | number:'': this.translate.currentLang }}
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </td>
                   <td class="center">{{trade.return_time*1000| date:'dd/MM, HH:mm'}}</td>
                   <td class="center">
@@ -239,7 +239,7 @@
               <tbody>
                 <tr *ngFor="let batch of getStoreroomStats();let id=index;" class="text-end">
                   <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
-                    <td class="text-center"><id-to-ress [ress_id]="id"></id-to-ress></td>
+                    <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
                     <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
                     <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
                     <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
@@ -254,5 +254,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

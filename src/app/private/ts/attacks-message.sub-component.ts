@@ -1,19 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'attacks-message',
+  selector: 'app-attacks-message',
   templateUrl: '../html/attacks-message.sub-component.html'
 })
 
-export class AttacksMessage {
+export class AttacksMessageSubComponent {
   @Input() info: any;
   public resources:any;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(public user: User, public translate: TranslateService) {
     this.resources = environment.resources;
   }
   

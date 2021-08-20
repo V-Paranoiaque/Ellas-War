@@ -1,8 +1,8 @@
-<common-top-bar active="quests"></common-top-bar>
+<app-common-top-bar active="quests"></app-common-top-bar>
 
 <div class="modal fade" id="QuestsInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <quests-info-popup></quests-info-popup>
+    <app-quests-info-popup></app-quests-info-popup>
   </div>
 </div>
 
@@ -10,23 +10,23 @@
   <div class="container">
     <div class="row">
       <div class="col-block-half" [ngClass]="{'col-xl-6 col-xs-12': user.getLevel() > 0, 'col-xs-12': user.getLevel() == 0}">
-        <quests-missions *ngIf="user.getLevel() < 10"></quests-missions>
-        <quests-altar *ngIf="user.getLevel() == 10"
+        <app-quests-missions *ngIf="user.getLevel() < 10"></app-quests-missions>
+        <app-quests-altar *ngIf="user.getLevel() == 10"
                       title="{{'Gaia\'s defense'| translate}}"
                       code="gaia_defender" id="1"
-                      [condition]="altarConditionGaia"></quests-altar>
-        <quests-altar *ngIf="user.getLevel() == 10"
+                      [condition]="altarConditionGaia"></app-quests-altar>
+        <app-quests-altar *ngIf="user.getLevel() == 10"
                       title="{{'Hospitality of Hestia'| translate}}"
                       code="hestia" id="2"
-                      [condition]="altarConditionHestia"></quests-altar>
-        <quests-altar *ngIf="user.getLevel() == 10"
+                      [condition]="altarConditionHestia"></app-quests-altar>
+        <app-quests-altar *ngIf="user.getLevel() == 10"
                       title="{{'Dream of Prometheus'| translate}}"
                       code="prometheus" id="3"
-                      [condition]="altarConditionPrometheus"></quests-altar>
-        <quests-altar *ngIf="user.getLevel() == 10"
+                      [condition]="altarConditionPrometheus"></app-quests-altar>
+        <app-quests-altar *ngIf="user.getLevel() == 10"
                       title="{{'Divine units'| translate}}"
                       code="divine_units" id="4"
-                      [condition]="altarConditionDivineunits"></quests-altar>
+                      [condition]="altarConditionDivineunits"></app-quests-altar>
       </div>
       <div class="col-xl-6 col-block-half" *ngIf="user.getLevel() > 0">
         <div class="card">
@@ -78,113 +78,113 @@
         </div>
         <div *ngFor="let quest of getMyQuestList()" class="card">
           <div [ngSwitch]="quest.quest_type">
-            <quests-daily *ngSwitchCase="1"
+            <app-quests-daily *ngSwitchCase="1"
                           subject="{{'Strenuous attacker'|translate}}"
                           description="{{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="attacks"></quests-daily>
+                          link="attacks"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="2"
+            <app-quests-daily *ngSwitchCase="2"
                           subject="{{'Worshiper of the Gods'|translate}}"
                           description="{{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="divine"></quests-daily>
+                          link="divine"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="3"
+            <app-quests-daily *ngSwitchCase="3"
                           subject="{{'Precision launcher'|translate}}"
                           description="{{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="city"></quests-daily>
+                          link="city"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="4"
+            <app-quests-daily *ngSwitchCase="4"
                           subject="{{'Faithful of the Gods'|translate}}"
                           description="{{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="city"></quests-daily>
+                          link="city"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="5"
+            <app-quests-daily *ngSwitchCase="5"
                           subject="{{'Builder'|translate}}"
                           description="{{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="city"></quests-daily>
+                          link="city"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="6"
+            <app-quests-daily *ngSwitchCase="6"
                           subject="{{'Recruiter'|translate}}"
                           description="{{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="city"></quests-daily>
+                          link="city"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="7"
+            <app-quests-daily *ngSwitchCase="7"
                           subject="{{'Monster Hunter'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Attack 1 sanctuary'  | translate) : 
                                           ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="sanctuaries"></quests-daily>
+                          link="sanctuaries"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="8"
+            <app-quests-daily *ngSwitchCase="8"
                           subject="{{'Monster killer'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Conquest 1 sanctuary'|translate) : 
                                           ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="sanctuaries"></quests-daily>
+                          link="sanctuaries"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="9"
+            <app-quests-daily *ngSwitchCase="9"
                           subject="{{'Monster killer'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Win 1 war'|translate) : 
                                           ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="attacks"></quests-daily>
+                          link="attacks"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="10"
+            <app-quests-daily *ngSwitchCase="10"
                           subject="{{'Honorary Warrior'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Win the Honnor challenge'|translate) : 
                                           ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="attacks"></quests-daily>
+                          link="attacks"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="11"
+            <app-quests-daily *ngSwitchCase="11"
                           subject="{{'Diamond thief'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Take the Diamond'|translate) : 
                                           ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="attacks"></quests-daily>
+                          link="attacks"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="12"
+            <app-quests-daily *ngSwitchCase="12"
                           subject="{{'Diamond Keeper'|translate}}"
                           description="{{ quest.quest_goal == 1 ?
                                           ('Win the Diamond challenge'|translate) : 
                                           ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
                           [quest]="quest"
-                          link="attacks"></quests-daily>
+                          link="attacks"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="13"
+            <app-quests-daily *ngSwitchCase="13"
                           subject="{{'Future millionaire'|translate}}"
                           description="{{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="lotto"></quests-daily>
+                          link="lotto"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="14"
+            <app-quests-daily *ngSwitchCase="14"
                           subject="{{'Food of the Gods'|translate}}"
                           description="{{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="city"></quests-daily>
+                          link="city"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="15"
+            <app-quests-daily *ngSwitchCase="15"
                           subject="{{'Tickler'|translate}}"
                           description="{{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="tickets"></quests-daily>
+                          link="tickets"></app-quests-daily>
             
-            <quests-daily *ngSwitchCase="16"
+            <app-quests-daily *ngSwitchCase="16"
                           subject="{{'Scraper winner'|translate}}"
                           description="{{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}"
                           [quest]="quest"
-                          link="tickets"></quests-daily>
+                          link="tickets"></app-quests-daily>
           </div>
         </div>
       </div>
@@ -192,5 +192,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

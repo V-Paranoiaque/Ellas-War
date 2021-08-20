@@ -38,7 +38,7 @@
   <div class="modal-body container-fluid">
     <div class="row">
       <div class="col-4 offset-4">
-        <ew-icon name="{{ info?.code }}" title="{{ info?.name | translate }}"></ew-icon>
+        <app-ew-icon name="{{ info?.code }}" title="{{ info?.name | translate }}"></app-ew-icon>
       </div>
       
       <div class="col-12 text-center fw-bold text-danger">
@@ -106,7 +106,7 @@
         <div *ngIf="missingResource().length > 0">
           <span translate>Missing resources:</span>&nbsp;
           <span *ngFor="let res of missingResource()">
-            <id-to-ress [ress_id]="res"></id-to-ress>
+            <app-id-to-ress [ress_id]="res"></app-id-to-ress>
           </span>
         </div>
         
@@ -141,7 +141,7 @@
           <br/>
           <span *ngFor="let resource of info.cost | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
         
@@ -151,7 +151,7 @@
           <br/>
           <span *ngFor="let resource of info.resale | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
         
@@ -161,7 +161,7 @@
           <br/>
           <span *ngFor="let resource of info.consumption | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
         

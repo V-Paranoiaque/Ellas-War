@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { Socket } from '../../../services/socketio.service';
 
@@ -6,7 +6,7 @@ import { Socket } from '../../../services/socketio.service';
   templateUrl: '../html/pagenotfound.component.html'
 })
 
-export class PageNotFound {
+export class PageNotFoundComponent implements OnInit {
   
   constructor(private router: Router, private socket: Socket) {
     

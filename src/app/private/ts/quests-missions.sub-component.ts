@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,13 +7,14 @@ import { User } from '../../../services/user.service';
 import facebookIcon from '@iconify-icons/logos/facebook';
 
 @Component({
-  selector: 'quests-missions',
+  selector: 'app-quests-missions',
   templateUrl: '../html/quests-missions.sub-component.html',
   styleUrls: ['../css/quests-missions.sub-component.css']
 })
 
-export class QuestsMissions {
+export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   public localevars:any;
+  private sub:any;
   
   facebookIcon = facebookIcon;
   
@@ -23,10 +24,13 @@ export class QuestsMissions {
   }
   
   ngOnInit() {
-    this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe(data =>{
+    this.sub = this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe((data:any) =>{
       this.localevars = data;
     });
-    
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
   
   getDefenseCurrent() {

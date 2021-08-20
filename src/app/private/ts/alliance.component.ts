@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,7 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
   templateUrl: '../html/alliance.component.html'
 })
 
-export class Alliance {
+export class AllianceComponent implements OnInit, OnDestroy {
   
   public allianceProfile:any;
   public allowDissolve:any;

@@ -12,9 +12,9 @@
     <br/>
     <strong translate>Weather</strong>
     <strong translate>:</strong>
-    <id-to-weather [weather]="user.getConfig().weather"
+    <app-id-to-weather [weather]="user.getConfig().weather"
                    data-bs-toggle="modal" data-bs-target="#weatherInfo"
-                   role="button"></id-to-weather>
+                   role="button"></app-id-to-weather>
     <span data-bs-toggle="modal" data-bs-target="#weatherHelp"
           role="button" title="{{'Help'|translate}}" translate>
       <ic-icon [icIcon]="questionCircle"></ic-icon>
@@ -45,18 +45,18 @@
         <span *ngIf="user.getProperty('var_ress')[res] == 0">=</span>
         <ic-icon class="text-danger" *ngIf="user.getProperty('var_ress')[res] < 0" [icIcon]="angleDown"></ic-icon>
         {{ user.getPropertyNb(res) | number:'1.0-2': this.translate.currentLang }}
-        <id-to-ress [ress_id]="res"></id-to-ress>
+        <app-id-to-ress [ress_id]="res"></app-id-to-ress>
       </div>
     </div>
     <div *ngIf="user.hasLevelRess('ambrosia')">
       <ic-icon class="text-success" [icIcon]="angleUp"></ic-icon>
       {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
-      <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+      <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
     </div>
     <div *ngIf="user.hasLevelRess('favor')">
       <span>=</span>
       {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
-      <id-to-ress [ress_id]="'favor'"></id-to-ress>
+      <app-id-to-ress [ress_id]="'favor'"></app-id-to-ress>
       <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
                role="button"></ic-icon>
     </div>

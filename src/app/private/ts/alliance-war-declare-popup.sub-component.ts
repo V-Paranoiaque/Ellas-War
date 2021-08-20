@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-war-declare-popup',
+  selector: 'app-alliance-war-declare-popup',
   templateUrl: '../html/alliance-war-declare-popup.sub-component.html'
 })
 
-export class AllianceWarDeclarePopup {
+export class AllianceWarDeclarePopupSubComponent {
   
   @Input() info:any;
   

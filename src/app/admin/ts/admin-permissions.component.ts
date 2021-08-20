@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -10,7 +10,7 @@ import brushIcon from '@iconify/icons-bi/brush';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminPermissions {
+export class AdminPermissionsComponent implements OnInit, OnDestroy {
   
   public adminPermissionsList:any;
   public selectedPlayer:any;

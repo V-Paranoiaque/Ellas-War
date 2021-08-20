@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import facebookIcon from '@iconify-icons/logos/facebook';
@@ -10,7 +10,7 @@ import { environment } from './../../../environments/environment';
   templateUrl: '../html/auth.component.html'
 })
 
-export class Auth {
+export class AuthComponent implements OnInit {
   public confirmResult:number;
   public provider:string;
   

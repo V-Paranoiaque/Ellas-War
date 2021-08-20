@@ -1,4 +1,4 @@
-<common-top-bar active="admin"></common-top-bar>
+<app-common-top-bar active="admin"></app-common-top-bar>
 
 <div class="modal fade" id="AdminPrayersRequest" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -113,7 +113,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <admin-left-menu active="prayers" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
+    <app-admin-left-menu active="prayers" class="col-lg-2 col-md-3 col-sm-3"></app-admin-left-menu>
   
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
@@ -144,35 +144,35 @@
                 <td [ngSwitch]="p.divinebonus_id">
                   <span *ngSwitchCase="1">
                     {{10000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="2">
                     {{10000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="3">
                     {{2000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="4">
                     {{2000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="5">
                     {{250| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="6">
                     {{2000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wine'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wine'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="7">
                     {{2000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'gold'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="8">
                     {{1| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'favor'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'favor'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="9">
                     {{80| number:'': this.translate.currentLang}} 
@@ -192,74 +192,74 @@
                   </span>
                   <span *ngSwitchCase="14">
                     {{20000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="15">
                     {{100000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                     {{100000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                     {{100000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'food'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
                     <br/>
                     {{100000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                     {{1000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
                     {{1000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="16">
                     {{500000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="17">
                     {{1000000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="18">
                     {{25000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                     {{25000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                     {{25000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'food'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
                     {{25000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="19">
                     {{50000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'iron'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                     {{50000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wood'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                     {{50000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'food'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
                     {{50000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                     {{1000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'stone'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="20">
                     {{5000000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="21">
                     {{10000000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="22">
                     {{20000000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                   </span>
                   <span *ngSwitchCase="23">
                     {{10000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'grapes'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                     {{10000| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'marble'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
                     {{2500| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'wine'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'wine'"></app-id-to-ress>
                     {{2500| number:'': this.translate.currentLang}} 
-                    <id-to-ress [ress_id]="'gold'"></id-to-ress>
+                    <app-id-to-ress [ress_id]="'gold'"></app-id-to-ress>
                   </span>
                 </td>
                 <td class="text-center">{{p.ask_nb}}</td>
@@ -288,4 +288,4 @@
   </div>
 </div>
 
-<common-bottom-bar></common-bottom-bar>
+<app-common-bottom-bar></app-common-bottom-bar>

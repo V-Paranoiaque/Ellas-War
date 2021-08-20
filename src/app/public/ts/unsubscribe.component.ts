@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
@@ -8,9 +8,10 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/unsubscribe.component.html'
 })
 
-export class Unsubscribe {
+export class UnsubscribeComponent implements OnInit, OnDestroy {
   public id:any;
   public check:any;
+  public sub:any;
   public unsubscribeResult:any;
   
   constructor(public user: User, private socket: Socket,
@@ -29,9 +30,13 @@ export class Unsubscribe {
           encodeURIComponent(this.id)+'/'+
           encodeURIComponent(this.check)+'.json';
     
-    this.http.get(url).subscribe((result:any) => {
+    this.sub = this.http.get(url).subscribe((result:any) => {
       this.unsubscribeResult = result;
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
   
   unsubscribeConfirm() {

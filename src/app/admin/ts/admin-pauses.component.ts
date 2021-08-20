@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -8,7 +8,7 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminPauses {
+export class AdminPausesComponent implements OnInit, OnDestroy {
   public adminPause:any[];
   
   constructor(private socket: Socket, public user: User,

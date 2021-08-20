@@ -6,11 +6,11 @@ import { User } from '../../../services/user.service';
 import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 @Component({
-  selector: 'quests-info-popup',
+  selector: 'app-quests-info-popup',
   templateUrl: '../html/quests-info-popup.sub-component.html'
 })
 
-export class QuestsInfoPopup {
+export class QuestsInfoPopupSubComponent {
   
   treasureChest = treasureChest;
   

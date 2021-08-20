@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -6,11 +6,11 @@ import { User } from '../../../services/user.service';
 import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 @Component({
-  selector: 'treasure-popup',
+  selector: 'app-treasure-popup',
   templateUrl: '../html/treasure-popup.sub-component.html'
 })
 
-export class TreasurePopup {
+export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   @Input() info: any;
   
   public deposit:any;

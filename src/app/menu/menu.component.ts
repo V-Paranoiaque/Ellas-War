@@ -1,33 +1,33 @@
-import { PublicBottomBar } from './ts/public-bottom-bar.component';
-import { CommonBottomBar } from './ts/common-bottom-bar.component';
-import { CommonTopBar } from './ts/common-top-bar.component';
-import { ConnectedBottomBar } from './ts/connected-bottom-bar.component';
-import { ConnectedTopBar } from './ts/connected-top-bar.component';
-import { BlockedTopBar } from './ts/blocked-top-bar.component';
-import { PausedTopBar } from './ts/paused-top-bar.component';
-import { PublicTopBar } from './ts/public-top-bar.component';
-import { ConnectedRightMenu } from './ts/connected-right-menu.component';
+import { PublicBottomBarComponent } from './ts/public-bottom-bar.component';
+import { CommonBottomBarComponent } from './ts/common-bottom-bar.component';
+import { CommonTopBarComponent } from './ts/common-top-bar.component';
+import { ConnectedBottomBarComponent } from './ts/connected-bottom-bar.component';
+import { ConnectedTopBarComponent } from './ts/connected-top-bar.component';
+import { BlockedTopBarComponent } from './ts/blocked-top-bar.component';
+import { PausedTopBarComponent } from './ts/paused-top-bar.component';
+import { PublicTopBarComponent } from './ts/public-top-bar.component';
+import { ConnectedRightMenuComponent } from './ts/connected-right-menu.component';
 
-import { AdminLeftMenu } from './ts/admin-left-menu.component';
+import { AdminLeftMenuComponent } from './ts/admin-left-menu.component';
 
-import { PlayerInfoPopup } from './ts/player-info-popup.sub-component';
+import { PlayerInfoPopupSubComponent } from './ts/player-info-popup.sub-component';
 
 export const MenuComponent = [
-    CommonBottomBar,
-    CommonTopBar,
+    CommonBottomBarComponent,
+    CommonTopBarComponent,
     
-    BlockedTopBar,
+    BlockedTopBarComponent,
     
-    ConnectedBottomBar,
-    ConnectedRightMenu,
-    ConnectedTopBar,
+    ConnectedBottomBarComponent,
+    ConnectedRightMenuComponent,
+    ConnectedTopBarComponent,
     
-    PausedTopBar,
+    PausedTopBarComponent,
     
-    PublicBottomBar,
-    PublicTopBar,
+    PublicBottomBarComponent,
+    PublicTopBarComponent,
     
-    AdminLeftMenu,
+    AdminLeftMenuComponent,
     
-    PlayerInfoPopup
+    PlayerInfoPopupSubComponent
 ];

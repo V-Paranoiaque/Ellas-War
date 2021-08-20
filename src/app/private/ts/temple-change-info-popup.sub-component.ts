@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'temple-change-info-popup',
+  selector: 'app-temple-change-info-popup',
   templateUrl: '../html/temple-change-info-popup.sub-component.html',
   styleUrls: ['../css/temple-change-info-popup.sub-component.css']
 })
 
-export class TempleChangeInfoPopup {
+export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
   public temple:number;
   public templeChangeError:number;
   public templeChangeHistory:any;

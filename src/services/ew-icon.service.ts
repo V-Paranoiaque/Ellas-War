@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/
 import { ewIcons } from '../environments/ew-icons';
 
 @Component({
-  selector: 'ew-icon',
+  selector: 'app-ew-icon',
   template: `
     <ng-content></ng-content>
   `,
@@ -10,7 +10,7 @@ import { ewIcons } from '../environments/ew-icons';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class EwIcon {
+export class EwIconSubComponent {
   @Input()
   
   set name(iconName:string) {

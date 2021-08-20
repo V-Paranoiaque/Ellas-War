@@ -1,22 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 
-import { CommonTopBar } from './common-top-bar.component';
+import { CommonTopBarComponent } from './common-top-bar.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 import cog from '@iconify/icons-fa-solid/cog';
 import powerOff from '@iconify/icons-fa-solid/power-off';
 
 @Component({
-  selector: 'paused-top-bar',
+  selector: 'app-paused-top-bar',
   templateUrl: '../html/paused-top-bar.component.html',
   styleUrls: ['../css/paused-top-bar.component.css']
 })
 
-export class PausedTopBar extends CommonTopBar {
+export class PausedTopBarComponent extends CommonTopBarComponent implements OnInit {
   
   cog      = cog;
   powerOff = powerOff;

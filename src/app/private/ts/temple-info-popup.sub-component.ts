@@ -1,15 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'temple-info-popup',
+  selector: 'app-temple-info-popup',
   templateUrl: '../html/temple-info-popup.sub-component.html'
 })
 
-export class TempleInfoPopup {
+export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   @Input() temple: any;
   
   public wallDefense:number;
@@ -20,6 +20,8 @@ export class TempleInfoPopup {
   public furyCost:any;
   public lightningCost:any;
   public lightningNb:any;
+  
+  private sub:any;
   
   Number = Number;
   
@@ -63,6 +65,10 @@ export class TempleInfoPopup {
     this.socket.removeListener('wallDefense');
     this.socket.removeListener('myAttacksList');
     this.socket.removeListener('powersUse');
+    
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
   
   furyBuy(nb:number) {
@@ -114,7 +120,7 @@ export class TempleInfoPopup {
     if(this.idToUser.length > 0) {
       let url = this.socket.url+'/api/playerProfile/'+this.idToUser+'.json'
       
-      this.http.get(url).subscribe((res:any) => {
+      this.sub = this.http.get(url).subscribe((res:any) => {
         if(res && res.membre_id) {
           info = {
             'id': this.temple.power,

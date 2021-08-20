@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -6,11 +6,11 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
-  selector: 'army-summary-popup',
+  selector: 'app-army-summary-popup',
   templateUrl: '../html/army-summary-popup.sub-component.html'
 })
 
-export class ArmySummaryPopup {
+export class ArmySummaryPopupSubComponent implements OnInit {
   private army:any;
   private buildings:any;
   

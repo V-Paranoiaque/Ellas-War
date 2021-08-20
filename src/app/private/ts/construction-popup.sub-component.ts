@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -8,12 +8,12 @@ import { environment } from './../../../environments/environment';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 
 @Component({
-  selector: 'construction-popup',
+  selector: 'app-construction-popup',
   templateUrl: '../html/construction-popup.sub-component.html',
   styleUrls: ['../css/construction-popup.sub-component.css']
 })
 
-export class ConstructionPopup {
+export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   @Input() info: any;
   
   Number =  Number;

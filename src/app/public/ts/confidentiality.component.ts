@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -6,14 +6,19 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: '../html/confidentiality.component.html'
 })
 
-export class Confidentiality {
+export class ConfidentialityComponent implements OnInit, OnDestroy {
+  private sub:any;
   
   constructor(private titleService: Title, public translate: TranslateService) {
   }
   
   ngOnInit() {
-    this.translate.get('Privacy Policy of the game').subscribe((res: string) => {
+    this.sub = this.translate.get('Privacy Policy of the game').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

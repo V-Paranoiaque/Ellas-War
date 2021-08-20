@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['../css/blocked.component.css']
 })
 
-export class Blocked {
+export class BlockedComponent implements OnInit, OnDestroy {
   constructor(public user: User, private socket: Socket, private router: Router) {
   }
   

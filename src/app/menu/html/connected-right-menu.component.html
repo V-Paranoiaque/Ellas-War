@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header" [ngSwitch]="selectedWeather">
         <h5>
-          <id-to-weather [weather]="user.getConfig().weather"></id-to-weather>
+          <app-id-to-weather [weather]="user.getConfig().weather"></app-id-to-weather>
           &nbsp;
           <span *ngSwitchCase="'sun'" class="modal-title" translate>Sun</span>
           <span *ngSwitchCase="'rain'" class="modal-title" translate>Rain</span>
@@ -21,7 +21,7 @@
         <span *ngFor="let item of getPrice()"
               [ngClass]="{'text-danger': user.getPropertyNb(item.res) < item.nb}">
           {{ item.nb | number:'': this.translate.currentLang }}
-          <id-to-ress [ress_id]="item.res"></id-to-ress>
+          <app-id-to-ress [ress_id]="item.res"></app-id-to-ress>
         </span>
         
         <br/>
@@ -115,24 +115,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header d-flex flex-row">
-        <id-to-weather [weather]="'sun'" (click)="selectWeather('sun')"
+        <app-id-to-weather [weather]="'sun'" (click)="selectWeather('sun')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'sun'}"></id-to-weather>
-        <id-to-weather [weather]="'rain'" (click)="selectWeather('rain')"
+                       [ngClass]="{'text-danger': selectedWeather == 'sun'}"></app-id-to-weather>
+        <app-id-to-weather [weather]="'rain'" (click)="selectWeather('rain')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'rain'}"></id-to-weather>
-        <id-to-weather [weather]="'storm'" (click)="selectWeather('storm')"
+                       [ngClass]="{'text-danger': selectedWeather == 'rain'}"></app-id-to-weather>
+        <app-id-to-weather [weather]="'storm'" (click)="selectWeather('storm')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'storm'}"></id-to-weather>
-        <id-to-weather [weather]="'snow'" (click)="selectWeather('snow')"
+                       [ngClass]="{'text-danger': selectedWeather == 'storm'}"></app-id-to-weather>
+        <app-id-to-weather [weather]="'snow'" (click)="selectWeather('snow')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'snow'}"></id-to-weather>
-        <id-to-weather [weather]="'heatwave'" (click)="selectWeather('heatwave')"
+                       [ngClass]="{'text-danger': selectedWeather == 'snow'}"></app-id-to-weather>
+        <app-id-to-weather [weather]="'heatwave'" (click)="selectWeather('heatwave')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'heatwave'}"></id-to-weather>
-        <id-to-weather [weather]="'wind'" (click)="selectWeather('wind')"
+                       [ngClass]="{'text-danger': selectedWeather == 'heatwave'}"></app-id-to-weather>
+        <app-id-to-weather [weather]="'wind'" (click)="selectWeather('wind')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'wind'}"></id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather == 'wind'}"></app-id-to-weather>
         
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 aria-label="Close"></button>
@@ -247,10 +247,10 @@
       <br/>
       <strong translate>Weather</strong>
       <strong translate>:</strong>
-      <id-to-weather [weather]="user.getConfig().weather"
+      <app-id-to-weather [weather]="user.getConfig().weather"
                      data-bs-toggle="modal" data-bs-target="#weatherInfo"
                      title="{{'Weather information'|translate}}"
-                     role="button"></id-to-weather>
+                     role="button"></app-id-to-weather>
       <span data-bs-toggle="modal" data-bs-target="#weatherHelp"
             role="button" title="{{'Help'|translate}}" translate>
         <ic-icon [icIcon]="questionCircle"></ic-icon>
@@ -302,7 +302,7 @@
             {{ user.getPropertyNb(res) | number:'1.0-0': this.translate.currentLang }}
           </div>
           <div class="p-2 icon">
-            <id-to-ress [ress_id]="res"></id-to-ress>
+            <app-id-to-ress [ress_id]="res"></app-id-to-ress>
           </div>
         </div>
       </div>
@@ -320,7 +320,7 @@
           {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
         </div>
         <div class="p-2 icon">
-          <id-to-ress [ress_id]="'ambrosia'"></id-to-ress>
+          <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
         </div>
       </div>
       <div *ngIf="user.hasLevelRess('favor')" class="d-flex">
@@ -336,7 +336,7 @@
           {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
         </div>
         <div class="p-2 icon">
-          <id-to-ress [ress_id]="'favor'"></id-to-ress>
+          <app-id-to-ress [ress_id]="'favor'"></app-id-to-ress>
         </div>
       </div>
     </div>

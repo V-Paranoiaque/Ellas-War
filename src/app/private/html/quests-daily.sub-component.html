@@ -30,7 +30,7 @@
     <div>
       <strong translate>Reward:</strong>
       {{ quest.reward_quantity | number:'': this.translate.currentLang }}
-      <ew-icon name="{{quest.reward_ress}}" class="small-icon"></ew-icon>
+      <app-ew-icon name="{{quest.reward_ress}}" class="small-icon"></app-ew-icon>
     </div>
   </div>
   <div class="card-button card-button-primary" *ngIf="quest.quest_validated == 0">

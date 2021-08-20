@@ -1,19 +1,19 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
-import { CommonBottomBar } from './common-bottom-bar.component';
+import { CommonBottomBarComponent } from './common-bottom-bar.component';
 
 import comments from '@iconify/icons-fa-solid/comments';
 
 @Component({
-  selector: 'connected-bottom-bar',
+  selector: 'app-connected-bottom-bar',
   templateUrl: '../html/connected-bottom-bar.component.html',
   styleUrls: ['../css/connected-bottom-bar.component.css']
 })
 
-export class ConnectedBottomBar extends CommonBottomBar {
+export class ConnectedBottomBarComponent extends CommonBottomBarComponent implements OnInit, OnDestroy {
   
   public chatActive:string;
   

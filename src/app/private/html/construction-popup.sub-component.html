@@ -7,15 +7,15 @@
   <div class="modal-body container-fluid">
     <div class="row">
       <div class="col-4 offset-4">
-        <ew-icon name="{{info?.code}}"
-                 title="{{ info?.name | translate }}"></ew-icon>
+        <app-ew-icon name="{{info?.code}}"
+                 title="{{ info?.name | translate }}"></app-ew-icon>
       </div>
       
       <div class="col-12 text-center fw-bold text-danger">
         <div *ngIf="missingResource().length > 0">
           <span translate>Missing resources:</span>&nbsp;
           <span *ngFor="let res of missingResource()">
-            <id-to-ress [ress_id]="res"></id-to-ress>
+            <app-id-to-ress [ress_id]="res"></app-id-to-ress>
           </span>
         </div>
         <span *ngIf="(info.placen && 
@@ -71,7 +71,7 @@
           <br/>
           <span *ngFor="let resource of info.cost | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
         
@@ -81,7 +81,7 @@
           <br/>
           <span *ngFor="let resource of info.destruct | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="resource.key"></id-to-ress>
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
         
@@ -90,7 +90,7 @@
           <br/>
           <span *ngFor="let i of getProduction()">
             {{ i.nb | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="i.code"></id-to-ress>
+            <app-id-to-ress [ress_id]="i.code"></app-id-to-ress>
           </span>
         </div>
         
@@ -100,7 +100,7 @@
           <br/>
           <span *ngFor="let i of getConsumption()">
             {{ i.nb | number:'': this.translate.currentLang }}
-            <id-to-ress [ress_id]="i.code"></id-to-ress>
+            <app-id-to-ress [ress_id]="i.code"></app-id-to-ress>
           </span>
         </div>
         
@@ -179,7 +179,7 @@
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.archerschool.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
       {{ resource.value ? (Number(resource.value) | number:'': this.translate.currentLang) : 0 }}
-      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+      <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
     </span>
     <br/>
     <button class="btn btn-success" (click)="updateCamp()" translate>
@@ -192,7 +192,7 @@
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.cavalryschool.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
       {{ resource.value ? (Number(resource.value) | number:'': this.translate.currentLang) : 0 }}
-      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+      <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
     </span>
     <br/>
     <button class="btn btn-success" (click)="updateCamp()" translate>
@@ -205,7 +205,7 @@
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.academy.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
       {{ resource.value ? (Number(resource.value) | number:'': this.translate.currentLang) : 0 }}
-      <id-to-ress [ress_id]="resource.key"></id-to-ress>
+      <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
     </span>
     <br/>
     <button class="btn btn-success" (click)="updateCamp()" translate>

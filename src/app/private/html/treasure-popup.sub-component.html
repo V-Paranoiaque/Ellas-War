@@ -20,7 +20,7 @@
           <span *ngIf="user.getLevel() > 5">{{ user.getPropertyNb('treasure') | number:'1.0-0': this.translate.currentLang }}</span>
           <span (click)="setTreasure(treasureMax-user.getPropertyNb('treasure'))" role="button"
                 *ngIf="user.getLevel() <= 5">{{ user.getPropertyNb('treasure') | number:'1.0-0': this.translate.currentLang }}/{{ treasureMax | number:'': this.translate.currentLang }}</span>
-          <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+          <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
         </td>
       </thead>
       <tbody>
@@ -106,14 +106,14 @@
           <td>
             <span *ngIf="key.deposit.amount > 0">
               {{key.deposit.amount| number:'': this.translate.currentLang}} 
-              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
               {{key.deposit.date*1000 | date:'d/M, HH:mm'}}
             </span>
           </td>
           <td>
             <span *ngIf="key.pull.amount > 0">
               {{key.pull.amount| number:'': this.translate.currentLang}} 
-              <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+              <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
               {{key.pull.date*1000 | date:'d/M, HH:mm'}}
             </span>
           </td>

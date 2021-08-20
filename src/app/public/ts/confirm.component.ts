@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
@@ -8,8 +8,9 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/confirm.component.html'
 })
 
-export class Confirm {
+export class ConfirmComponent implements OnInit, OnDestroy {
   public confirmResult:number;
+  private sub:any;
   
   constructor(public user: User, private http: HttpClient,
               private route: ActivatedRoute,
@@ -25,8 +26,12 @@ export class Confirm {
         encodeURIComponent(id)+'/'+
         encodeURIComponent(check)+'.json';
   
-    this.http.get(url).subscribe((result:any) => {
+    this.sub = this.http.get(url).subscribe((result:any) => {
       this.confirmResult = result.error;
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

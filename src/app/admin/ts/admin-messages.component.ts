@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -8,7 +8,7 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminMessages {
+export class AdminMessagesComponent implements OnInit, OnDestroy {
   
   public msgError:number;
   public messageTest:boolean;

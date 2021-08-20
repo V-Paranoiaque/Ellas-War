@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
-  selector: 'divinebonus-info-popup',
+  selector: 'app-divinebonus-info-popup',
   templateUrl: '../html/divinebonus-info-popup.sub-component.html'
 })
 
-export class DivineBonusInfoPopup {
+export class DivineBonusInfoPopupSubComponent {
   @Input() divineBonus: any;
   
   constructor(private socket: Socket, public translate: TranslateService) {

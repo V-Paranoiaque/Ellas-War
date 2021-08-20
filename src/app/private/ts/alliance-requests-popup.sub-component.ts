@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -7,11 +7,11 @@ import check from '@iconify/icons-fa-solid/check';
 import times from '@iconify/icons-fa-solid/times';
 
 @Component({
-  selector: 'alliance-requests-popup',
+  selector: 'app-alliance-requests-popup',
   templateUrl: '../html/alliance-requests-popup.sub-component.html'
 })
 
-export class AllianceRequestsPopup {
+export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
   
   @Input() info:any;
   @Input() profile:any;

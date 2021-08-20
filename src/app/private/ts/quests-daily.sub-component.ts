@@ -4,12 +4,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'quests-daily',
+  selector: 'app-quests-daily',
   templateUrl: '../html/quests-daily.sub-component.html',
   styleUrls: ['../css/quests-daily.sub-component.css']
 })
 
-export class QuestsDaily {
+export class QuestsDailySubComponent {
   @Input()
   subject:string;
   @Input()

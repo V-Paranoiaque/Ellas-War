@@ -1,69 +1,69 @@
-<common-top-bar active="alliance"></common-top-bar>
+<app-common-top-bar active="alliance"></app-common-top-bar>
 
 <div class="modal fade" id="AllianceArchives" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-archives-popup></alliance-archives-popup>
+    <app-alliance-archives-popup></app-alliance-archives-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceCandidate" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-candidate-popup [candidate]="selectedPlayer"></alliance-candidate-popup>
+    <app-alliance-candidate-popup [candidate]="selectedPlayer"></app-alliance-candidate-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceDissolve" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-dissolve-popup></alliance-dissolve-popup>
+    <app-alliance-dissolve-popup></app-alliance-dissolve-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceEmergency" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-emergency-popup></alliance-emergency-popup>
+    <app-alliance-emergency-popup></app-alliance-emergency-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceEvict" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-evict-popup [info]="selectedPlayer"></alliance-evict-popup>
+    <app-alliance-evict-popup [info]="selectedPlayer"></app-alliance-evict-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceGift" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-gift-popup [info]="selectedPlayer"></alliance-gift-popup>
+    <app-alliance-gift-popup [info]="selectedPlayer"></app-alliance-gift-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceLeave" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-leave-popup></alliance-leave-popup>
+    <app-alliance-leave-popup></app-alliance-leave-popup>
   </div>
 </div>
 <div class="modal fade" id="AlliancePactManage" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-pact-manage-popup [info]="allianceProfile"></alliance-pact-manage-popup>
+    <app-alliance-pact-manage-popup [info]="allianceProfile"></app-alliance-pact-manage-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceProfile" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-profile-popup [allianceProfile]="myAllianceProfile" ></alliance-profile-popup>
+    <app-alliance-profile-popup [allianceProfile]="myAllianceProfile" ></app-alliance-profile-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceRank" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-rank-popup [info]="selectedPlayer"></alliance-rank-popup>
+    <app-alliance-rank-popup [info]="selectedPlayer"></app-alliance-rank-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceRequests" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-requests-popup [profile]="myAllianceProfile"
-                             [info]="selectedRequest"></alliance-requests-popup>
+    <app-alliance-requests-popup [profile]="myAllianceProfile"
+                             [info]="selectedRequest"></app-alliance-requests-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceTaxes" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-taxes-popup [taxes]="taxes"></alliance-taxes-popup>
+    <app-alliance-taxes-popup [taxes]="taxes"></app-alliance-taxes-popup>
   </div>
 </div>
 <div class="modal fade" id="AllianceWarArchives" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-war-archives-popup [info]="selectedWar"></alliance-war-archives-popup>
+    <app-alliance-war-archives-popup [info]="selectedWar"></app-alliance-war-archives-popup>
   </div>
 </div>
 
@@ -234,7 +234,7 @@
               <tbody>
                 <tr *ngFor="let res of ressList">
                   <th scope="row" class="text-center">
-                    <id-to-ress [ress_id]="res"></id-to-ress>
+                    <app-id-to-ress [ress_id]="res"></app-id-to-ress>
                   </th>
                   <td class="text-end">
                     {{ myAllianceProfile['stock_'+res] | number:'1.0-0': this.translate.currentLang }}
@@ -403,5 +403,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

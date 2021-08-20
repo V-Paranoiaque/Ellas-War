@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -10,7 +10,7 @@ import plusIcon from '@iconify/icons-bi/plus';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminPrayers {
+export class AdminPrayersComponent implements OnInit, OnDestroy {
   
   public adminPrayersList:any;
   public request:any;

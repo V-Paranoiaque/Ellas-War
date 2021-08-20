@@ -1,104 +1,104 @@
-<common-top-bar active="city"></common-top-bar>
+<app-common-top-bar active="city"></app-common-top-bar>
 
 <div class="modal fade" id="DailyInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <daily-popup [info]="dailyCo"></daily-popup>
+    <app-daily-popup [info]="dailyCo"></app-daily-popup>
   </div>
 </div>
 <div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <army-popup [info]="armyInfo"></army-popup>
+    <app-army-popup [info]="armyInfo"></app-army-popup>
   </div>
 </div>
 <div class="modal fade" id="ArmySummary" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <army-summary-popup></army-summary-popup>
+    <app-army-summary-popup></app-army-summary-popup>
   </div>
 </div>
 <div class="modal fade" id="ArmyHelp" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <army-help-popup></army-help-popup>
+    <app-army-help-popup></app-army-help-popup>
   </div>
 </div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <construction-popup [info]="buildingInfo"></construction-popup>
+    <app-construction-popup [info]="buildingInfo"></app-construction-popup>
   </div>
 </div>
 <div class="modal fade" id="BuildingSummary" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <construction-summary-popup></construction-summary-popup>
+    <app-construction-summary-popup></app-construction-summary-popup>
   </div>
 </div>
 <div class="modal fade" id="FirstInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <first-info-popup></first-info-popup>
+    <app-first-info-popup></app-first-info-popup>
   </div>
 </div>
 <div class="modal fade" id="TreasureInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <treasure-popup [info]="treasureInfo"></treasure-popup>
+    <app-treasure-popup [info]="treasureInfo"></app-treasure-popup>
   </div>
 </div>
 
 <div class="modal fade" id="DivineBonusInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <divinebonus-info-popup [divineBonus]="divinBonusSelected">
-    </divinebonus-info-popup>
+    <app-divinebonus-info-popup [divineBonus]="divinBonusSelected">
+    </app-divinebonus-info-popup>
   </div>
 </div>
 <div class="modal fade" id="DivineBonusList" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <divinebonus-list-popup [divineBonus]="divinBonusListSelected">
-    </divinebonus-list-popup>
+    <app-divinebonus-list-popup [divineBonus]="divinBonusListSelected">
+    </app-divinebonus-list-popup>
   </div>
 </div>
 <div class="modal fade" id="DivineBonusHelp" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <divinebonus-help-popup></divinebonus-help-popup>
+    <app-divinebonus-help-popup></app-divinebonus-help-popup>
   </div>
 </div>
 
 <div class="modal fade" id="SuccessInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <success-info-popup [successType]="success"></success-info-popup>
+    <app-success-info-popup [successType]="success"></app-success-info-popup>
   </div>
 </div>
 
 <div class="modal fade" id="Temple1Info" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple1-popup></temple1-popup>
+    <app-temple1-popup></app-temple1-popup>
   </div>
 </div>
 <div class="modal fade" id="Temple2Info" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple2-popup></temple2-popup>
+    <app-temple2-popup></app-temple2-popup>
   </div>
 </div>
 <div class="modal fade" id="Temple3Info" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple3-popup></temple3-popup>
+    <app-temple3-popup></app-temple3-popup>
   </div>
 </div>
 <div class="modal fade" id="Temple4Info" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple4-popup></temple4-popup>
+    <app-temple4-popup></app-temple4-popup>
   </div>
 </div>
 <div class="modal fade" id="TempleInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple-info-popup [temple]="templeSelected"></temple-info-popup>
+    <app-temple-info-popup [temple]="templeSelected"></app-temple-info-popup>
   </div>
 </div>
 <div class="modal fade" id="TempleChangeInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <temple-change-info-popup></temple-change-info-popup>
+    <app-temple-change-info-popup></app-temple-change-info-popup>
   </div>
 </div>
 
 <div class="modal fade" id="QuestsInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <quests-info-popup></quests-info-popup>
+    <app-quests-info-popup></app-quests-info-popup>
   </div>
 </div>
 
@@ -204,7 +204,7 @@
                  class="frame frame-db"
                  data-bs-toggle="modal" data-bs-target="#DivineBonusInfo"
                  (click)="selectDivinBonus(bonus)">
-              <ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></ew-icon>
+              <app-ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></app-ew-icon>
               <div class="badge bg-secondary">{{ bonus.nb }}</div>
             </div>
           </div>
@@ -237,7 +237,7 @@
                    (click)="selectArmy(army.code)"
                    title="{{ army.name | translate }}"
                    *ngIf="armyDisplay(army)">
-                <ew-icon name="{{ army.code }}"></ew-icon>
+                <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                 <div class="badge bg-secondary"
                      [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
                   {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
@@ -264,7 +264,7 @@
                  *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11"
                  [ngClass]="{'level-quest': levelQuest('treasure')}"
                  title="{{ 'Treasure' | translate }}" role="button">
-              <ew-icon name="treasure"></ew-icon>
+              <app-ew-icon name="treasure"></app-ew-icon>
             </div>
             
             <div *ngFor="let building of user.getBuildings()"
@@ -273,7 +273,7 @@
                  data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                  (click)="selectBuilding(building.code)"
                  title="{{ building.name | translate }}">
-              <ew-icon name="{{ building.code }}"></ew-icon>
+              <app-ew-icon name="{{ building.code }}"></app-ew-icon>
               <div class="badge bg-secondary">
                 {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}
               </div>
@@ -295,21 +295,21 @@
                  (click)="selectTemples(1)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Hermes' | translate}}" >
-              <ew-icon name="hermes"></ew-icon>
+              <app-ew-icon name="hermes"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('apollo') == 1"
                  (click)="selectTemples(2)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Apollo' | translate}}" >
-              <ew-icon name="apollo"></ew-icon>
+              <app-ew-icon name="apollo"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('demeter') == 1"
                  (click)="selectTemples(3)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Demeter' | translate}}" >
-              <ew-icon name="demeter"></ew-icon>
+              <app-ew-icon name="demeter"></app-ew-icon>
             </div>
             
             <div class="frame frame-20"
@@ -317,14 +317,14 @@
                  (click)="selectTemples(4)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Ares' | translate}}" >
-              <ew-icon name="ares"></ew-icon>
+              <app-ew-icon name="ares"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('athena') == 1"
                  (click)="selectTemples(5)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Athena' | translate}}" >
-              <ew-icon name="athena"></ew-icon>
+              <app-ew-icon name="athena"></app-ew-icon>
             </div>
             
             <div class="frame frame-20"
@@ -332,21 +332,21 @@
                  (click)="selectTemples(6)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Artemis' | translate}}" >
-              <ew-icon name="artemis"></ew-icon>
+              <app-ew-icon name="artemis"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('dionysus') == 1"
                  (click)="selectTemples(8)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Dionysus' | translate}}" >
-              <ew-icon name="dionysus"></ew-icon>
+              <app-ew-icon name="dionysus"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('hephaestus') == 1"
                  (click)="selectTemples(7)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Hephaestus' | translate}}" >
-              <ew-icon name="hephaestus"></ew-icon>
+              <app-ew-icon name="hephaestus"></app-ew-icon>
             </div>
             
             <div class="frame frame-20"
@@ -354,21 +354,21 @@
                  (click)="selectTemples(9)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Zeus' | translate}}">
-              <ew-icon name="zeus"></ew-icon>
+              <app-ew-icon name="zeus"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('hades') == 1"
                  (click)="selectTemples(10)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Hades' | translate}}">
-              <ew-icon name="hades"></ew-icon>
+              <app-ew-icon name="hades"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.getPropertyNb('poseidon') == 1"
                  (click)="selectTemples(11)" role="button"
                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
                  title="{{'Poseidon' | translate}}">
-              <ew-icon name="poseidon"></ew-icon>
+              <app-ew-icon name="poseidon"></app-ew-icon>
             </div>
             
             <!-- Frames to build temples -->
@@ -377,34 +377,34 @@
                  [ngClass]="{'level-quest': levelQuest('temple1')}"
                  data-bs-toggle="modal" data-bs-target="#Temple1Info"
                  title="{{'Build a new temple' | translate}}" >
-              <ew-icon name="olympus"></ew-icon>
+              <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple2Allowed() == 0"
                  [ngClass]="{'level-quest': levelQuest('temple2')}"
                  data-bs-toggle="modal" data-bs-target="#Temple2Info"
                  title="{{'Build a new temple' | translate}}" >
-              <ew-icon name="olympus"></ew-icon>
+              <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple3Allowed() == 0"
                  [ngClass]="{'level-quest': levelQuest('temple3')}"
                  data-bs-toggle="modal" data-bs-target="#Temple3Info"
                  title="{{'Build a new temple' | translate}}" >
-              <ew-icon name="olympus"></ew-icon>
+              <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="frame frame-20"
                  *ngIf="user.buildTemple4Allowed() == 0"
                  [ngClass]="{'level-quest': levelQuest('temple4')}"
                  data-bs-toggle="modal" data-bs-target="#Temple4Info"
                  title="{{'Build a new temple' | translate}}" >
-              <ew-icon name="olympus"></ew-icon>
+              <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="frame frame-20" role="button"
                  *ngIf="user.hasTemples() > 0"
                  data-bs-toggle="modal" data-bs-target="#TempleChangeInfo"
                  title="{{'Change a temple' | translate}}" >
-              <ew-icon name="olympus"></ew-icon>
+              <app-ew-icon name="olympus"></app-ew-icon>
             </div>
           </div>
         </div>
@@ -416,30 +416,30 @@
             Success
           </div>
           <div class="card-body no-padding align-items-center" id="successBlock">
-            <ew-icon name="{{ getDivinBonusIcon(1) }}" role="button"
+            <app-ew-icon name="{{ getDivinBonusIcon(1) }}" role="button"
                      title="{{'General' | translate }}"
                      (click)="selectSuccess(1)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(2) }}" role="button"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <app-ew-icon name="{{ getDivinBonusIcon(2) }}" role="button"
                      title="{{'Constructions' | translate }}"
                      (click)="selectSuccess(2)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(3) }}" role="button"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <app-ew-icon name="{{ getDivinBonusIcon(3) }}" role="button"
                      title="{{'Alliance' | translate }}"
                      (click)="selectSuccess(3)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(5) }}" role="button"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <app-ew-icon name="{{ getDivinBonusIcon(5) }}" role="button"
                      title="{{'Attacks' | translate }}"
                      (click)="selectSuccess(5)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(6) }}" role="button"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <app-ew-icon name="{{ getDivinBonusIcon(6) }}" role="button"
                      title="{{'Mythology' | translate }}"
                      (click)="selectSuccess(6)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
-            <ew-icon name="{{ getDivinBonusIcon(7) }}" role="button"
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <app-ew-icon name="{{ getDivinBonusIcon(7) }}" role="button"
                      title="{{'Feats of Strength' | translate }}"
                      (click)="selectSuccess(7)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></ew-icon>
+                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
           </div>
         </div>
       </div>
@@ -447,5 +447,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

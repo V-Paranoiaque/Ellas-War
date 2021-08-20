@@ -1,4 +1,4 @@
-<common-top-bar active="alliancemembers"></common-top-bar>
+<app-common-top-bar active="alliancemembers"></app-common-top-bar>
 
 <div class="col-sm-12 col-xs-12 main" role="main"
      [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') == 1}">
@@ -53,5 +53,5 @@
   </div>
 </div>
 
-<connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

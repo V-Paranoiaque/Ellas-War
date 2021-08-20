@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -13,11 +13,14 @@ import sortUP from '@iconify/icons-fa-solid/sort-up';
   templateUrl: '../html/rankingalliances.component.html'
 })
 
-export class RankingAlliances {
+export class RankingAlliancesComponent implements OnInit, OnDestroy {
   public rankingList:any;
   public rankingMax:number;
   public rankingOrder:string;
   public rankingPage:number;
+  
+  private subRank:any;
+  private subTitle:any;
   
   sortUP = sortUP;
   users  = users;
@@ -47,19 +50,21 @@ export class RankingAlliances {
       this.getPage();
     });
     
-    this.translate.get('Watch the power of other alliances').subscribe((res: string) => {
+    this.subTitle = this.translate.get('Watch the power of other alliances').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
   }
   
   ngOnDestroy() {
     this.socket.removeListener('rankingAlliancesRefresh');
+    this.subRank.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   getPage() {
     let url = this.socket.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
     
-    this.http.get(url).subscribe((result:any) => {
+    this.subRank = this.http.get(url).subscribe((result:any) => {
       this.rankingPage = result.cPage;
       this.rankingMax  = result.max;
       this.rankingList = result.ranking;

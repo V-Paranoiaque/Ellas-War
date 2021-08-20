@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-gift-popup',
+  selector: 'app-alliance-gift-popup',
   templateUrl: '../html/alliance-gift-popup.sub-component.html'
 })
 
-export class AllianceGiftPopup {
+export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
   
   @Input() info:any;
   

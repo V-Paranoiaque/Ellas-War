@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -12,7 +12,7 @@ import plusIcon from '@iconify/icons-bi/plus';
   styleUrls: ['../css/storeroom.component.css']
 })
 
-export class Storeroom {
+export class StoreroomComponent implements OnInit, OnDestroy {
   private storeroomList:any;
   private storeroomMyList:any;
   private storeroomStats:any;

@@ -103,28 +103,28 @@
        [ngClass]="{'inactive': router.url != '/city',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-city"></ew-icon>
+      <app-ew-icon name="menu-city"></app-ew-icon>
     </a>
     <a [routerLink]="['/attacks']"
        title="{{'Access to the attacks'|translate}}"
        [ngClass]="{'inactive': router.url != '/attacks',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-attack"></ew-icon>
+      <app-ew-icon name="menu-attack"></app-ew-icon>
     </a>
     <a [routerLink]="['/messages']" 
        title="{{'Access to your messages'|translate}}"
        [ngClass]="{'inactive': router.url != '/messages',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-messages"></ew-icon>
+      <app-ew-icon name="menu-messages"></app-ew-icon>
     </a>
     <a [routerLink]="['/quests']"
        title="{{'Access to the quests'|translate}}"
        [ngClass]="{'inactive': router.url != '/quests',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-quests"></ew-icon>
+      <app-ew-icon name="menu-quests"></app-ew-icon>
     </a>
     <a [routerLink]="['/diplomacy']"
        *ngIf="user.getPropertyNb('alliance') == 0"
@@ -132,7 +132,7 @@
        [ngClass]="{'inactive': router.url != '/diplomacy',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-alliance"></ew-icon>
+      <app-ew-icon name="menu-alliance"></app-ew-icon>
     </a>
     <a [routerLink]="['/alliance']"
        *ngIf="user.getPropertyNb('alliance') > 0"
@@ -140,20 +140,20 @@
        [ngClass]="{'inactive': router.url != '/alliance',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-alliance"></ew-icon>
+      <app-ew-icon name="menu-alliance"></app-ew-icon>
     </a>
     <a [routerLink]="['/storeroom']"
        title="{{'Access to the agora'|translate}}"
        [ngClass]="{'inactive': router.url != '/storeroom',
                    'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-agora"></ew-icon>
+      <app-ew-icon name="menu-agora"></app-ew-icon>
     </a>
     <a role="button" data-bs-toggle="modal" data-bs-target="#PlayerInfo"
        title="{{'Display your resources'|translate}}"
        [ngClass]="{'menu-5': user.getLevel() == 0,
                    'menu-7': user.getLevel() > 0}">
-      <ew-icon name="menu-resources"></ew-icon>
+      <app-ew-icon name="menu-resources"></app-ew-icon>
     </a>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<common-top-bar active="admin"></common-top-bar>
+<app-common-top-bar active="admin"></app-common-top-bar>
 
 <div class="modal fade" id="QuestEdit" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -127,7 +127,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <admin-left-menu active="quests" class="col-lg-2 col-md-3 col-sm-3"></admin-left-menu>
+    <app-admin-left-menu active="quests" class="col-lg-2 col-md-3 col-sm-3"></app-admin-left-menu>
 
     <div class="col-lg-5 col-md-9 col-sm-9 col-xs-12" role="main">
       <div class="card">
@@ -154,7 +154,7 @@
             <tbody>
               <tr *ngFor="let quest of adminQuestList">
                 <td>
-                  <admin-quests-title [quest]="quest"></admin-quests-title>
+                  <app-admin-quests-title [quest]="quest"></app-admin-quests-title>
                 </td>
                 <td class="text-center">{{ quest.quest_reward }}</td>
                 <td class="text-center">{{ quest.quest_difficulty }}</td>
@@ -196,7 +196,7 @@
                 <td class="text-center">{{ p.reward_type }}</td>
                 <td class="text-end">
                   {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                  <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
+                  <app-ew-icon name="{{p.reward_ress}}" class="small-icon"></app-ew-icon>
                 </td>
                 <td class="text-center">{{ p.reward_level }}</td>
                 <td class="text-center">
@@ -214,4 +214,4 @@
   </div>
 </div>
 
-<common-bottom-bar></common-bottom-bar>
+<app-common-bottom-bar></app-common-bottom-bar>

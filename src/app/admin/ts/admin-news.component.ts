@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -11,7 +11,7 @@ import trash2Icon from '@iconify/icons-bi/trash2';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminNews {
+export class AdminNewsComponent implements OnInit, OnDestroy {
   
   public adminNewsList:any;
   public newsSelected:any;

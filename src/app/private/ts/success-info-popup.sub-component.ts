@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'success-info-popup',
+  selector: 'app-success-info-popup',
   templateUrl: '../html/success-info-popup.sub-component.html'
 })
 
-export class SuccessInfoPopup {
+export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
   @Input() successType: any;
   
   public statsPlayer:any;

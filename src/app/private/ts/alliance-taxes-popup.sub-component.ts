@@ -1,15 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-taxes-popup',
+  selector: 'app-alliance-taxes-popup',
   templateUrl: '../html/alliance-taxes-popup.sub-component.html'
 })
 
-export class AllianceTaxesPopup {
+export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
   
   @Input() taxes:any;
   

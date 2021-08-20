@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../../environments/environment';
@@ -11,7 +11,7 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   templateUrl: '../html/register.component.html'
 })
 
-export class Register implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   
   registerForm: FormGroup;
   public rerror: number;

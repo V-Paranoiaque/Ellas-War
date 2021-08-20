@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
@@ -12,7 +12,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   templateUrl: '../html/strategies.component.html',
 })
 
-export class Strategies {
+export class StrategiesComponent implements OnInit, OnDestroy {
   @Output() public armyInfo:any
             public buildingInfo:any;
   

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -6,12 +6,12 @@ import { User } from '../../../services/user.service';
 import outlineStars from '@iconify-icons/ic/outline-stars';
 
 @Component({
-  selector: 'quests-altar',
+  selector: 'app-quests-altar',
   templateUrl: '../html/quests-altar.sub-component.html',
   styleUrls: ['../css/quests-altar.sub-component.css']
 })
 
-export class QuestsAltar {
+export class QuestsAltarSubComponent implements OnInit, OnDestroy {
   
   @Input() code:any;
   @Input() condition:any;

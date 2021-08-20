@@ -2,7 +2,7 @@
   <div class="modal-header">
     <h5 class="modal-title">
       <span translate>Request resources:</span>&nbsp;
-      <id-to-ress [ress_id]="info.resource"></id-to-ress>
+      <app-id-to-ress [ress_id]="info.resource"></app-id-to-ress>
     </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
@@ -40,7 +40,7 @@
         <tr *ngFor="let req of myAllianceAskList">
           <td class="text-end">
             {{req.quantity | number:'1.0-0': this.translate.currentLang }}
-            <id-to-ress [ress_id]="req.resource_id"></id-to-ress>
+            <app-id-to-ress [ress_id]="req.resource_id"></app-id-to-ress>
           </td>
           <th scope="row">
             <a [routerLink]="['/profile/'+req.membre_id]"
@@ -80,7 +80,7 @@
         <tr *ngFor="let req of myAllianceAskMy">
           <th scope="row" class="text-end">
             {{req.quantity | number:'1.0-0': this.translate.currentLang }}
-            <id-to-ress [ress_id]="req.resource_id"></id-to-ress>
+            <app-id-to-ress [ress_id]="req.resource_id"></app-id-to-ress>
           </th>
           <td class="text-center">
             <button class="btn btn-danger"

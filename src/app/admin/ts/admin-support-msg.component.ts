@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
@@ -10,7 +10,7 @@ import angellistIcon from '@iconify-icons/fa-brands/angellist';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminSupportMsg {
+export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   
   public adminSupportInfo:any;
   public answertext:string;

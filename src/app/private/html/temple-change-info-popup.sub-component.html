@@ -23,21 +23,21 @@
            *ngIf="user.getPropertyNb('hermes') == 1"
            (click)="selectTemples(1)"
            title="{{'Hermes' | translate}}">
-        <ew-icon name="hermes"></ew-icon>
+        <app-ew-icon name="hermes"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 2}"
            *ngIf="user.getPropertyNb('apollo') == 1"
            (click)="selectTemples(2)"
            title="{{'Apollo' | translate}}">
-        <ew-icon name="apollo"></ew-icon>
+        <app-ew-icon name="apollo"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 3}"
            *ngIf="user.getPropertyNb('demeter') == 1"
            (click)="selectTemples(3)"
            title="{{'Demeter' | translate}}">
-        <ew-icon name="demeter"></ew-icon>
+        <app-ew-icon name="demeter"></app-ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
@@ -45,14 +45,14 @@
            *ngIf="user.getPropertyNb('ares') == 1"
            (click)="selectTemples(4)"
              title="{{'Ares' | translate}}">
-        <ew-icon name="ares"></ew-icon>
+        <app-ew-icon name="ares"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 5}"
            *ngIf="user.getPropertyNb('athena') == 1"
            (click)="selectTemples(5)"
              title="{{'Athena' | translate}}">
-        <ew-icon name="athena"></ew-icon>
+        <app-ew-icon name="athena"></app-ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
@@ -60,21 +60,21 @@
            *ngIf="user.getPropertyNb('artemis') == 1"
            (click)="selectTemples(6)"
            title="{{'Artemis' | translate}}">
-        <ew-icon name="artemis"></ew-icon>
+        <app-ew-icon name="artemis"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 8}"
            *ngIf="user.getPropertyNb('dionysus') == 1"
            (click)="selectTemples(8)"
            title="{{'Dionysus' | translate}}">
-        <ew-icon name="dionysus"></ew-icon>
+        <app-ew-icon name="dionysus"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 7}"
            *ngIf="user.getPropertyNb('hephaestus') == 1"
            (click)="selectTemples(7)"
            title="{{'Hephaestus' | translate}}">
-        <ew-icon name="hephaestus"></ew-icon>
+        <app-ew-icon name="hephaestus"></app-ew-icon>
       </div>
       
       <div class="frame frame-25" role="button"
@@ -82,21 +82,21 @@
            *ngIf="user.getPropertyNb('zeus') == 1"
            (click)="selectTemples(9)"
            title="{{'Zeus' | translate}}">
-        <ew-icon name="zeus"></ew-icon>
+        <app-ew-icon name="zeus"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 10}"
            *ngIf="user.getPropertyNb('hades') == 1"
            (click)="selectTemples(10)"
            title="{{'Hades' | translate}}">
-        <ew-icon name="hades"></ew-icon>
+        <app-ew-icon name="hades"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
            [ngClass]="{'grey': temple > 0 && temple != 11}"
            *ngIf="user.getPropertyNb('poseidon') == 1"
            (click)="selectTemples(11)"
            title="{{'Poseidon' | translate}}">
-        <ew-icon name="poseidon"></ew-icon>
+        <app-ew-icon name="poseidon"></app-ew-icon>
       </div>
     </div>
   </div>
@@ -107,7 +107,7 @@
       <span [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < res.quantity}">
         {{ res.quantity | number:'': this.translate.currentLang }}
       </span>
-      <id-to-ress [ress_id]=res.resource></id-to-ress>
+      <app-id-to-ress [ress_id]=res.resource></app-id-to-ress>
     </span>
   </div>
   

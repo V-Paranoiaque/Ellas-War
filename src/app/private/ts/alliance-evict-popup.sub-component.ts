@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-evict-popup',
+  selector: 'app-alliance-evict-popup',
   templateUrl: '../html/alliance-evict-popup.sub-component.html'
 })
 
-export class AllianceEvictPopup {
+export class AllianceEvictPopupSubComponent {
   
   @Input() info:any;
   

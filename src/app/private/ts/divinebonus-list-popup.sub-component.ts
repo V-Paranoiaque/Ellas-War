@@ -1,19 +1,19 @@
-import { Component, Input } from '@angular/core';
-import { EwIcon } from '../../../services/ew-icon.service';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { EwIconSubComponent } from '../../../services/ew-icon.service';
 import { Socket } from '../../../services/socketio.service';
 
 @Component({
-  selector: 'divinebonus-list-popup',
+  selector: 'app-divinebonus-list-popup',
   templateUrl: '../html/divinebonus-info-list.sub-component.html',
   styleUrls: ['../css/divinebonus-info-list.sub-component.css']
 })
 
-export class DivineBonusListPopup {
+export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
   @Input() divineBonus: any;
   
   public divineBonusList:any;
   
-  EwIcon = EwIcon;
+  EwIcon = EwIconSubComponent;
   
   constructor(private socket: Socket) {
     this.divineBonus = [];

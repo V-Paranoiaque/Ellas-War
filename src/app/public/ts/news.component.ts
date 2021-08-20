@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -9,8 +9,10 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/news.component.html'
 })
 
-export class News implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
   private newsList:any;
+  private subNews:any;
+  private subTitle:any;
   
   constructor(private titleService: Title, public translate: TranslateService,
               public user: User, private socket: Socket, private http: HttpClient) {
@@ -19,13 +21,18 @@ export class News implements OnInit {
   
   ngOnInit() {
     let url = this.socket.url+'/api/news.json';
-    this.http.get(url).subscribe(res => {
+    this.subNews = this.http.get(url).subscribe((res:any) => {
       this.newsList = res;
     });
     
-    this.translate.get('Ellas War news').subscribe((res: string) => {
+    this.subTitle = this.translate.get('Ellas War news').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.subNews.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   getNews() {

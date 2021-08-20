@@ -28,7 +28,7 @@
   <ul>
     <li *ngFor="let res of getLostResources()">
       {{res.nb| number:'1.0-0': this.translate.currentLang}}
-      <id-to-ress [ress_id]="res.code"></id-to-ress>
+      <app-id-to-ress [ress_id]="res.code"></app-id-to-ress>
     </li>
   </ul>
 </div>

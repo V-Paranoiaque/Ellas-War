@@ -4,12 +4,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'temple2-popup',
+  selector: 'app-temple2-popup',
   templateUrl: '../html/temple2-popup.sub-component.html',
   styleUrls: ['../css/temple-popup.sub-component.css']
 })
 
-export class Temple2Popup {
+export class Temple2PopupSubComponent {
   
   public temple:number;
   public price:any;

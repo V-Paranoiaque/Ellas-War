@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,7 @@ import redo from '@iconify/icons-fa-solid/redo';
   styleUrls: ['../css/options.component.css']
 })
 
-export class Options {
+export class OptionsComponent implements OnInit, OnDestroy {
   public accountPasswordPossible:number;
   private accountRenameCost:number;
   

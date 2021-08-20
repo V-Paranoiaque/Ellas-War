@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -9,7 +9,7 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
   styleUrls: ['../css/details.component.css']
 })
 
-export class Details {
+export class DetailsComponent implements OnInit {
 
   public nbvariation:any;
   public variation:any;

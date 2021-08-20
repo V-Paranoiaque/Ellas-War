@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -13,8 +13,9 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   templateUrl: '../html/login.component.html'
 })
 
-export class Login implements OnInit {
-
+export class LoginComponent implements OnInit, OnDestroy {
+  private sub:any;
+  
   loginForm: FormGroup;
   loginError: number;
   
@@ -48,13 +49,14 @@ export class Login implements OnInit {
       mobile: environment.mobile
     });
     
-    this.translate.get('Connect and Join your City').subscribe((res: string) => {
+    this.sub = this.translate.get('Connect and Join your City').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
   }
   
   ngOnDestroy() {
     this.socket.removeListener('connection');
+    this.sub.unsubscribe();
   }
   
   onSubmit(data:object) {

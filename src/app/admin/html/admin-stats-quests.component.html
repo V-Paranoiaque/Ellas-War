@@ -1,4 +1,4 @@
-<common-top-bar active="admin"></common-top-bar>
+<app-common-top-bar active="admin"></app-common-top-bar>
 
 <div class="col-xs-12 main">
   <div class="container-fluid">
@@ -17,14 +17,14 @@
             <ng-container *ngFor="let quest of adminQuestList">
               <tr *ngIf="quest.quest_level <= 10">
                 <td>
-                  <admin-quests-title [quest]="quest"></admin-quests-title>
+                  <app-admin-quests-title [quest]="quest"></app-admin-quests-title>
                 </td>
                 <td class="text-center">
                 {{ quest.quest_reward }}
                   <ng-container *ngIf="adminQuestReward[quest.quest_reward]">
                     <ng-container *ngFor="let p of adminQuestReward[quest.quest_reward]">
                       {{ p.reward_quantity | number:'': this.translate.currentLang }}
-                      <ew-icon name="{{p.reward_ress}}" class="small-icon"></ew-icon>
+                      <app-ew-icon name="{{p.reward_ress}}" class="small-icon"></app-ew-icon>
                       ({{ p.reward_level }})
                       <br/>
                     </ng-container>
@@ -41,4 +41,4 @@
   </div>
 </div>
 
-<common-bottom-bar></common-bottom-bar>
+<app-common-bottom-bar></app-common-bottom-bar>

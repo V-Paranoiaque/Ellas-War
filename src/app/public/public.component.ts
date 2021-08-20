@@ -1,65 +1,65 @@
-import { Auth } from './ts/auth.component';
-import { Confirm } from './ts/confirm.component';
-import { ContactUs } from './ts/contactus.component';
-import { DiscoverTheGame } from './ts/discoverthegame.component';
-import { Home } from './ts/home.component';
-import { Login } from './ts/login.component';
-import { LostPassword } from './ts/lostpassword.component';
-import { News } from './ts/news.component';
-import { Register } from './ts/register.component';
-import { Unsubscribe } from './ts/unsubscribe.component';
+import { AuthComponent } from './ts/auth.component';
+import { ConfirmComponent } from './ts/confirm.component';
+import { ContactUsComponent } from './ts/contactus.component';
+import { DiscoverTheGameComponent } from './ts/discoverthegame.component';
+import { HomeComponent } from './ts/home.component';
+import { LoginComponent } from './ts/login.component';
+import { LostPasswordComponent } from './ts/lostpassword.component';
+import { NewsComponent } from './ts/news.component';
+import { RegisterComponent } from './ts/register.component';
+import { UnsubscribeComponent } from './ts/unsubscribe.component';
 
-import { AllianceMembers } from './ts/alliance-members.component';
-import { AllianceProfile } from './ts/alliance-profile.component';
-import { Community } from './ts/community.component';
-import { Confidentiality } from './ts/confidentiality.component';
-import { ConnectedPlayers } from './ts/connectedplayers.component';
-import { Credits } from './ts/credits.component';
-import { FewWords } from './ts/fewwords.component';
-import { FreeGame } from './ts/free-game.component';
-import { Help } from './ts/help.component';
-import { Honnor } from './ts/honnor.component';
-import { PageNotFound } from './ts/pagenotfound.component';
-import { Partners } from './ts/partners.component';
-import { Profile } from './ts/profile.component';
-import { RankingAlliances } from './ts/rankingalliances.component';
-import { RankingPlayers } from './ts/rankingplayers.component';
-import { SiteMap } from './ts/sitemap.component';
-import { StrategyGame } from './ts/strategy-game.component';
-import { TAndCs } from './ts/tandcs.component';
-import { Team } from './ts/team.component';
-import { TeamRecruitment } from './ts/teamrecruitment.component';
+import { AllianceMembersComponent } from './ts/alliance-members.component';
+import { AllianceProfileComponent } from './ts/alliance-profile.component';
+import { CommunityComponent } from './ts/community.component';
+import { ConfidentialityComponent } from './ts/confidentiality.component';
+import { ConnectedPlayersComponent } from './ts/connectedplayers.component';
+import { CreditsComponent } from './ts/credits.component';
+import { FewWordsComponent } from './ts/fewwords.component';
+import { FreeGameComponent } from './ts/free-game.component';
+import { HelpComponent } from './ts/help.component';
+import { HonnorComponent } from './ts/honnor.component';
+import { PageNotFoundComponent } from './ts/pagenotfound.component';
+import { PartnersComponent } from './ts/partners.component';
+import { ProfileComponent } from './ts/profile.component';
+import { RankingAlliancesComponent } from './ts/rankingalliances.component';
+import { RankingPlayersComponent } from './ts/rankingplayers.component';
+import { SiteMapComponent } from './ts/sitemap.component';
+import { StrategyGameComponent } from './ts/strategy-game.component';
+import { TAndCsComponent } from './ts/tandcs.component';
+import { TeamComponent } from './ts/team.component';
+import { TeamRecruitmentComponent } from './ts/teamrecruitment.component';
 
 export const PublicComponent = [
-  Auth,
-  Confirm,
-  ContactUs,
-  DiscoverTheGame,
-  Home,
-  Login,
-  LostPassword,
-  News,
-  Register,
-  Unsubscribe,
+  AuthComponent,
+  ConfirmComponent,
+  ContactUsComponent,
+  DiscoverTheGameComponent,
+  HomeComponent,
+  LoginComponent,
+  LostPasswordComponent,
+  NewsComponent,
+  RegisterComponent,
+  UnsubscribeComponent,
   
-  AllianceMembers,
-  AllianceProfile,
-  Community,
-  Confidentiality,
-  ConnectedPlayers,
-  Credits,
-  FewWords,
-  FreeGame,
-  Help,
-  Honnor,
-  PageNotFound,
-  Partners,
-  Profile,
-  RankingAlliances,
-  RankingPlayers,
-  SiteMap,
-  StrategyGame,
-  TAndCs,
-  Team,
-  TeamRecruitment
+  AllianceMembersComponent,
+  AllianceProfileComponent,
+  CommunityComponent,
+  ConfidentialityComponent,
+  ConnectedPlayersComponent,
+  CreditsComponent,
+  FewWordsComponent,
+  FreeGameComponent,
+  HelpComponent,
+  HonnorComponent,
+  PageNotFoundComponent,
+  PartnersComponent,
+  ProfileComponent,
+  RankingAlliancesComponent,
+  RankingPlayersComponent,
+  SiteMapComponent,
+  StrategyGameComponent,
+  TAndCsComponent,
+  TeamComponent,
+  TeamRecruitmentComponent
 ];

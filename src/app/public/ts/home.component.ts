@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,11 +17,15 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   encapsulation: ViewEncapsulation.None,
 })
 
-export class Home {
+export class HomeComponent implements OnInit, OnDestroy {
   public localevars:any;
   public menu:number;
   public newsList:any;
   public rerror: number;
+  
+  private subLang:any;
+  private subNews:any;
+  private subTitle:any;
   
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -45,12 +49,12 @@ export class Home {
   }
   
   ngOnInit() {
-    this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe(data =>{
+    this.subLang = this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe((data:any) =>{
       this.localevars = data;
     });
     
     let url = this.socket.url+'/api/news-4.json';
-    this.http.get(url).subscribe(res => {
+    this.subNews = this.http.get(url).subscribe((res: any) => {
       this.newsList = res;
     });
     
@@ -67,7 +71,7 @@ export class Home {
       password: ''
     });
     
-    this.translate.get('Ellas War, free online strategy game').subscribe((res: string) => {
+    this.subTitle = this.translate.get('Ellas War, free online strategy game').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
     
@@ -78,6 +82,9 @@ export class Home {
   
   ngOnDestroy() {
     this.socket.removeListener('register');
+    this.subLang.unsubscribe();
+    this.subNews.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   onSubmit(data:object) {

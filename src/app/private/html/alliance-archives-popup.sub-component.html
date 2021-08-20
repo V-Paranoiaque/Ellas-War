@@ -6,9 +6,9 @@
   </div>
   <div class="modal-body container-fluid">
     <div *ngFor="let msg of archiveList">
-      <alliance-archives-title class="fw-bold" [type]="msg.type" [title]="msg.title"></alliance-archives-title>
+      <app-alliance-archives-title class="fw-bold" [type]="msg.type" [title]="msg.title"></app-alliance-archives-title>
       <div class="text-end fw-lighter">{{msg.alliance_history_date*1000| date:'dd/MM/yyyy, HH:mm'}}</div>
-      <alliance-archives-text [msg]="msg"></alliance-archives-text>
+      <app-alliance-archives-text [msg]="msg"></app-alliance-archives-text>
       <br/>
       <br/>
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,7 @@ import xIcon from '@iconify/icons-bi/x';
   styleUrls: ['../css/messages.component.css']
 })
 
-export class Messages {
+export class MessagesComponent implements OnInit, OnDestroy {
   public addDestError: number;
   public answerText: string;
   public currentPage: number;
@@ -34,6 +34,7 @@ export class Messages {
   private currentMsg: any;
   private deleteMode: number;
   private destList: any;
+  private sub:any;
   
   //Icons
   brushIcon    = brushIcon;
@@ -101,6 +102,7 @@ export class Messages {
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
     this.socket.removeListener('msgRefresh');
+    this.sub.unsubscribe();
   }
   
   addDest(username:string, callback:any=null) {
@@ -114,7 +116,7 @@ export class Messages {
     
     let url = this.socket.url+'/api/playerProfile/'+username+'.json';
     
-    this.http.get(url).subscribe((res:any) => {
+    this.sub = this.http.get(url).subscribe((res:any) => {
       if(res && res.membre_id) {
         this.removeDest(res.membre_id);
         this.destList.push({

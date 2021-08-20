@@ -6,7 +6,7 @@
     <br/>
     <br/>
     <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
-    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="2" translate>
     <strong>{{msg.title.attacker}}:</strong> {{msg.content.attacker}}
@@ -15,7 +15,7 @@
     <br/>
     <br/>
     <strong translate>Reward:</strong> {{msg.content.benefits/10| number:'': this.translate.currentLang}} 
-    <id-to-ress [ress_id]="'drachma'"></id-to-ress>
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="3">
     {{'{ value } has requested a pact to the alliance { name }.' | translate: { value: msg.content.username, name: msg.content.dst_name } }}

@@ -3,11 +3,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'sanctuary-message',
+  selector: 'app-sanctuary-message',
   templateUrl: '../html/sanctuary-message.sub-component.html'
 })
 
-export class SanctuaryMessage {
+export class SanctuaryMessageSubComponent {
   @Input() info: any;
 
   constructor(public user: User, public translate: TranslateService) {

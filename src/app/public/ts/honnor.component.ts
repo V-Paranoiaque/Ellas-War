@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -11,10 +11,13 @@ import { User } from '../../../services/user.service';
   styleUrls: ['../css/honnor.component.css']
 })
 
-export class Honnor {
+export class HonnorComponent implements OnInit, OnDestroy {
   public id: any;
   public list:any;
   public levels:any
+  
+  private subRank:any;
+  private subTitle:any;
   
   constructor(private router: Router, private route: ActivatedRoute,
               private socket: Socket, private http: HttpClient,
@@ -31,9 +34,7 @@ export class Honnor {
       id = '0';
     }
     
-    setTimeout(() => {
-      this.load(id);
-    }, 0);
+    this.load(id);
     
     this.socket.on('rankingHonnorRefresh', () => {
       this.load(this.id);
@@ -42,6 +43,8 @@ export class Honnor {
   
   ngOnDestroy() {
     this.socket.removeListener('rankingHonnorRefresh');
+    this.subRank.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   load(level:any) {
@@ -53,18 +56,18 @@ export class Honnor {
     }
     
     if(this.id > 0) {
-      this.translate.get('Ranking of Honor, page').subscribe((res: string) => {
+      this.subTitle = this.translate.get('Ranking of Honor, page').subscribe((res: string) => {
         this.titleService.setTitle(res+' '+this.id);
       });
     }
     else {
-      this.translate.get('Honnor ranking, the best fighters').subscribe((res: string) => {
+      this.subTitle = this.translate.get('Honnor ranking, the best fighters').subscribe((res: string) => {
         this.titleService.setTitle(res);
       });
     }
     
     let url = this.socket.url+'/api/rankingHonnor/'+this.id+'.json';
-    this.http.get(url).subscribe(res => {
+    this.subRank = this.http.get(url).subscribe((res: any) => {
       this.list = res;
     });
   }

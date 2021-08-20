@@ -33,7 +33,7 @@
         <span *ngFor="let res of getPrice()"
               [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < parseInt(res.quantity)*(user.getPropertyNb(code)+1)}">
           {{ parseInt(res.quantity)*(user.getPropertyNb(code)+1) | number:'': this.translate.currentLang}}
-          <id-to-ress [ress_id]="res.resource"></id-to-ress>
+          <app-id-to-ress [ress_id]="res.resource"></app-id-to-ress>
         </span>
         <br/>
       </div>

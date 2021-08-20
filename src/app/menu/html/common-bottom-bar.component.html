@@ -1,6 +1,6 @@
 <div [ngSwitch]="user.info.mstatus">
-  <public-bottom-bar    *ngSwitchCase="0"></public-bottom-bar>
-  <connected-bottom-bar *ngSwitchCase="1"></connected-bottom-bar>
-  <public-bottom-bar    *ngSwitchCase="3" ></public-bottom-bar>
-  <public-bottom-bar    *ngSwitchCase="4"></public-bottom-bar>
+  <app-public-bottom-bar    *ngSwitchCase="0"></app-public-bottom-bar>
+  <app-connected-bottom-bar *ngSwitchCase="1"></app-connected-bottom-bar>
+  <app-public-bottom-bar    *ngSwitchCase="3" ></app-public-bottom-bar>
+  <app-public-bottom-bar    *ngSwitchCase="4"></app-public-bottom-bar>
 </div>

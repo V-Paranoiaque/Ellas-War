@@ -8,18 +8,18 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-header">
-    <ew-icon name="zeus" role="button"
+    <app-ew-icon name="zeus" role="button"
              [ngClass]="{'grey': temple > 0 && temple != 9}"
              title="{{'Build a new temple' | translate}}"
-             (click)="setTemple(9)"></ew-icon>
-    <ew-icon name="hades" role="button"
+             (click)="setTemple(9)"></app-ew-icon>
+    <app-ew-icon name="hades" role="button"
              [ngClass]="{'grey': temple > 0 && temple != 10}"
              title="{{'Build a new temple' | translate}}"
-             (click)="setTemple(10)"></ew-icon>
-    <ew-icon name="poseidon" role="button"
+             (click)="setTemple(10)"></app-ew-icon>
+    <app-ew-icon name="poseidon" role="button"
              [ngClass]="{'grey': temple > 0 && temple != 11}"
              title="{{'Build a new temple' | translate}}"
-             (click)="setTemple(11)"></ew-icon>
+             (click)="setTemple(11)"></app-ew-icon>
   </div>
   <div class="modal-body">
     <strong translate>Price</strong><strong translate>:</strong>
@@ -28,7 +28,7 @@
       <span [ngClass]="{'text-danger': user.getPropertyNb(res.resource) < res.quantity}">
         {{ res.quantity | number:'': this.translate.currentLang }}
       </span>
-      <id-to-ress [ress_id]=res.resource></id-to-ress>
+      <app-id-to-ress [ress_id]=res.resource></app-id-to-ress>
     </span>
   </div>
   <div class="modal-body">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { Socket } from '../services/socketio.service';
@@ -14,7 +14,7 @@ import localeFr from '@angular/common/locales/fr';
   templateUrl: './app.component.html'
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Ellas War';
   
   public cssUrl: any;

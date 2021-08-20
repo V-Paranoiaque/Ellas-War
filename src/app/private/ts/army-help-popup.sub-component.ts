@@ -11,11 +11,11 @@ import {default as sword}  from '@iconify-icons/whh/sword';
 import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
-  selector: 'army-help-popup',
+  selector: 'app-army-help-popup',
   templateUrl: '../html/army-help-popup.sub-component.html'
 })
 
-export class ArmyHelpPopup {
+export class ArmyHelpPopupSubComponent {
 
   animalDog20Filled = animalDog20Filled;
   footPrint = footPrint;

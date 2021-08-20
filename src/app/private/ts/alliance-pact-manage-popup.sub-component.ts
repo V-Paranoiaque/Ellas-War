@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'alliance-pact-manage-popup',
+  selector: 'app-alliance-pact-manage-popup',
   templateUrl: '../html/alliance-pact-manage-popup.sub-component.html'
 })
 
-export class AlliancePactManagePopup {
+export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
   
   @Input() info:any;
   

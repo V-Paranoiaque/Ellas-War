@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import { environment } from './../../../environments/environment';
-import { EwIcon } from '../../../services/ew-icon.service';
+import { EwIconSubComponent } from '../../../services/ew-icon.service';
 
 import brushIcon from '@iconify/icons-bi/brush';
 
@@ -13,7 +13,7 @@ import brushIcon from '@iconify/icons-bi/brush';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminQuests {
+export class AdminQuestsComponent implements OnInit, OnDestroy {
   public adminQuestList:any;
   public adminQuestReward: any;
   public questInfo:any;
@@ -22,7 +22,7 @@ export class AdminQuests {
   
   //Icons
   brushIcon = brushIcon;
-  EwIcon    = EwIcon;
+  EwIcon    = EwIconSubComponent;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.ressList = environment.resources;

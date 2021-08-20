@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../../../services/user.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,9 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   templateUrl: '../html/free-game.component.html'
 })
 
-export class FreeGame {
+export class FreeGameComponent implements OnInit, OnDestroy {
+  private sub:any;
+  
   facebookIcon  = facebookIcon;
   githubOctocat = githubOctocat;
   
@@ -19,8 +21,12 @@ export class FreeGame {
   }
   
   ngOnInit() {
-    this.translate.get('Visit Ancient Greece for free').subscribe((res: string) => {
+    this.sub = this.translate.get('Visit Ancient Greece for free').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -6,14 +6,19 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: '../html/tandcs.component.html'
 })
 
-export class TAndCs {
+export class TAndCsComponent implements OnInit, OnDestroy {
+  private sub:any;
   
   constructor(private titleService: Title, public translate: TranslateService) {
   }
   
   ngOnInit() {
-    this.translate.get('Terms and Conditions of use').subscribe((res: string) => {
+    this.sub = this.translate.get('Terms and Conditions of use').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

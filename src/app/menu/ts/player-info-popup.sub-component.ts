@@ -9,11 +9,11 @@ import angleUp from '@iconify/icons-fa-solid/angle-up';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
-  selector: 'player-info-popup',
+  selector: 'app-player-info-popup',
   templateUrl: '../html/player-info-popup.sub-component.html'
 })
 
-export class PlayerInfoPopup {
+export class PlayerInfoPopupSubComponent {
   public ressList:any;
 
   //Icons

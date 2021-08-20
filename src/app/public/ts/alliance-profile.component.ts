@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,10 @@ import userPlus from '@iconify/icons-fa-solid/user-plus';
   templateUrl: '../html/alliance-profile.component.html'
 })
 
-export class AllianceProfile {
+export class AllianceProfileComponent implements OnInit, OnDestroy {
+  private subMembers:any;
+  private subProfile1:any;
+  private subProfile2:any;
   
   allianceProfile:any;
   userPlus = userPlus;
@@ -33,6 +36,12 @@ export class AllianceProfile {
   
   ngOnDestroy() {
     this.socket.removeListener('allianceMembersRefresh');
+    this.subMembers.unsubscribe();
+    
+    if(this.subProfile1) {
+      this.subProfile1.unsubscribe();
+      this.subProfile2.unsubscribe();
+    }
   }
   
   getProfile() {
@@ -44,8 +53,8 @@ export class AllianceProfile {
       if(alli) {
         this.allianceProfile = alli;
         
-        this.translate.get('Alliance profile').subscribe((res1: string) => {
-          this.translate.get(':').subscribe((res2: string) => {
+        this.subProfile1 = this.translate.get('Alliance profile').subscribe((res1: string) => {
+          this.subProfile2 = this.translate.get(':').subscribe((res2: string) => {
             this.titleService.setTitle(res1+res2+alli.alliance_name);
           });
         });

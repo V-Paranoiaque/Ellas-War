@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Socket } from '../../../services/socketio.service';
@@ -15,12 +15,13 @@ import users from '@iconify/icons-fa-solid/users';
   templateUrl: '../html/diplomacy.component.html'
 })
 
-export class Diplomacy {
+export class DiplomacyComponent implements OnInit, OnDestroy {
   
   public allianceList:any;
   public allianceProfile:any;
   public allianceWait:any;
   public order:string;
+  private sub:any;
   
   fileAlt  = fileAlt;
   flag     = flag;
@@ -72,6 +73,7 @@ export class Diplomacy {
     this.socket.removeListener('alliancePactAsk');
     this.socket.removeListener('allianceRankingRefresh');
     this.socket.removeListener('allianceWait');
+    this.sub.unsubscribe();
   }
   
   allianceListOrder(order:string) {
@@ -86,7 +88,7 @@ export class Diplomacy {
   getProfile(id:number) {
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.http.get(url).subscribe((res:any) => {
+    this.sub = this.http.get(url).subscribe((res:any) => {
       if(res) {
         this.allianceProfile = res;
       }

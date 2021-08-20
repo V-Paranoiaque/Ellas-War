@@ -1,5 +1,5 @@
 import { Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,12 +9,14 @@ import { User } from '../../../services/user.service';
   templateUrl: '../html/contactus.component.html'
 })
 
-export class ContactUs {
+export class ContactUsComponent implements OnInit, OnDestroy {
   
   public contactemail:string;
   public contactError:number;
   public contactname:string;
   public contacttext:string;
+  
+  private sub:any;
   
   constructor(private router: Router, public user: User, private socket: Socket,
               public translate: TranslateService, private titleService: Title) {
@@ -30,7 +32,7 @@ export class ContactUs {
       this.router.navigate(['/support']);
     }
     
-    this.translate.get('Contact the game team').subscribe((res: string) => {
+    this.sub = this.translate.get('Contact the game team').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
     
@@ -41,6 +43,7 @@ export class ContactUs {
   
   ngOnDestroy() {
     this.socket.removeListener('contact');
+    this.sub.unsubscribe();
   }
   
   contactsend() {

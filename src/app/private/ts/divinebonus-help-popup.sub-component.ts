@@ -1,17 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Socket } from '../../../services/socketio.service';
 import { User } from '../../../services/user.service';
 
 @Component({
-  selector: 'divinebonus-help-popup',
+  selector: 'app-divinebonus-help-popup',
   templateUrl: '../html/divinebonus-help-popup.sub-component.html'
 })
 
-export class DivineBonusHelpPopup {
+export class DivineBonusHelpPopupSubComponent implements OnInit {
   @Input() divineBonus: any;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(public user: User, public translate: TranslateService) {
   }
   
   ngOnInit() {

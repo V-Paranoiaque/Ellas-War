@@ -1,31 +1,31 @@
-<common-top-bar active="diplomacy"></common-top-bar>
+<app-common-top-bar active="diplomacy"></app-common-top-bar>
 
 <div class="modal fade" id="AllianceCreate" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-create-popup></alliance-create-popup>
+    <app-alliance-create-popup></app-alliance-create-popup>
   </div>
 </div>
 
 <div class="modal fade" id="AlliancePactAsk" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-pact-ask-popup [info]="allianceProfile"></alliance-pact-ask-popup>
+    <app-alliance-pact-ask-popup [info]="allianceProfile"></app-alliance-pact-ask-popup>
   </div>
 </div>
 <div class="modal fade" id="AlliancePactManage" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-pact-manage-popup [info]="allianceProfile"></alliance-pact-manage-popup>
+    <app-alliance-pact-manage-popup [info]="allianceProfile"></app-alliance-pact-manage-popup>
   </div>
 </div>
 
 <div class="modal fade" id="AllianceJoin" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-join-popup [info]="allianceProfile"></alliance-join-popup>
+    <app-alliance-join-popup [info]="allianceProfile"></app-alliance-join-popup>
   </div>
 </div>
 
 <div class="modal fade" id="AllianceWarDeclare" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
-    <alliance-war-declare-popup [info]="allianceProfile"></alliance-war-declare-popup>
+    <app-alliance-war-declare-popup [info]="allianceProfile"></app-alliance-war-declare-popup>
   </div>
 </div>
 
@@ -226,5 +226,5 @@
   </div>
 </div>
 
-<connected-right-menu></connected-right-menu>
-<common-bottom-bar></common-bottom-bar>
+<app-connected-right-menu></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -11,7 +11,7 @@ import angellistIcon from '@iconify-icons/fa-brands/angellist';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminContact {
+export class AdminContactComponent implements OnInit, OnDestroy {
   
   public adminContactList:any;
   public adminContactMax:number;

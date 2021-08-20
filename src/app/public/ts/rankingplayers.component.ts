@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router'
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -12,11 +12,14 @@ import sortUP from '@iconify/icons-fa-solid/sort-up';
   templateUrl: '../html/rankingplayers.component.html'
 })
 
-export class RankingPlayers implements OnInit {
+export class RankingPlayersComponent implements OnInit, OnDestroy {
   public rankingList:any;
   public rankingMax:number;
   public rankingOrder:string;
   public rankingPage:number;
+  
+  private subRank:any;
+  private subTitle:any;
   
   sortUP = sortUP;
   
@@ -41,15 +44,20 @@ export class RankingPlayers implements OnInit {
     
     this.getPage();
     
-    this.translate.get('Watch your enemies on the player rankings').subscribe((res: string) => {
+    this.subTitle = this.translate.get('Watch your enemies on the player rankings').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
+  }
+  
+  ngOnDestroy() {
+    this.subRank.unsubscribe();
+    this.subTitle.unsubscribe();
   }
   
   getPage() {
     let url = this.socket.url+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
     
-    this.http.get(url).subscribe((result:any) => {
+    this.subRank = this.http.get(url).subscribe((result:any) => {
       this.rankingPage = result.cPage;
       this.rankingMax  = result.max;
       this.rankingList = result.ranking;

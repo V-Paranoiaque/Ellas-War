@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
@@ -11,7 +11,7 @@ import volumeOff from '@iconify/icons-fa-solid/volume-off';
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminChat {
+export class AdminChatComponent implements OnInit, OnDestroy {
   
   public adminChatList:any;
   
