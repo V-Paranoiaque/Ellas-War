@@ -15,7 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PublicComponent } from './public/public.component';
 import { PrivateComponent } from './private/private.component';
 
-import { EwIcon } from '../services/ew-icon.service';
+import { EwIconSubComponent } from '../services/ew-icon.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -26,7 +26,7 @@ describe('AppComponent', () => {
         PublicComponent,
         PrivateComponent,
         AppComponent,
-        EwIcon
+        EwIconSubComponent
       ],
       imports: [
         RouterTestingModule,
