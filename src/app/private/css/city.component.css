@@ -63,7 +63,7 @@
   display: flex;
 }
 
-#successBlock ew-icon {
+#successBlock app-ew-icon {
   flex: 1;
   padding: 0.8rem;
 }
