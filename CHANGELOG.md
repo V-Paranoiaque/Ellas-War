@@ -45,7 +45,7 @@
 * Update weekly reward popup
 
 # 1.0.10
-* Add Google Play Store look
+* Add Google Play Store link
 * Add missing headers for old presentation url
 * Add missing icons in the options page
 * Admin page to contact the users
@@ -59,3 +59,10 @@
 * Optimize subscribe/unsubscribe
 * Preload sub modules to accelerate the game
 * Save 404 for stats purpose
+
+# 1.0.11
+* Fix performance problem with blink/webkit
+* Improve code quality
+* Reduce icon size in the options page
+* Remove marble background
+* Use a lighter green for success buttons
