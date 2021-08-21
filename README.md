@@ -38,9 +38,10 @@ It's possible to build the project for more platforms using Electron, for more i
 - macOS
 
 ### Stores
-- Amazon Store
-- Google Play Store
-- Microsoft Store
+- [Amazon Store](https://www.amazon.fr/Virgil-Ellas-War/dp/B079CHD5BX)
+- [Google Play Store](https://play.google.com/store/apps/details?id=com.ellaswar.ewnextmobile)
+- [Microsoft Store](https://www.microsoft.com/p/ellas-war/9p12xq81l3qp)
+- [Snapcraft](https://snapcraft.io/ellaswar)
 
 ## Contributions
 Any contributions you make are greatly appreciated. To ease the contribution process, we ask to each contributor to assign copyright to the project.
