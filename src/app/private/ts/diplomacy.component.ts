@@ -73,7 +73,10 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.removeListener('alliancePactAsk');
     this.socket.removeListener('allianceRankingRefresh');
     this.socket.removeListener('allianceWait');
-    this.sub.unsubscribe();
+    
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
   
   allianceListOrder(order:string) {

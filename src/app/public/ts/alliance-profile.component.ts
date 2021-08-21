@@ -36,7 +36,10 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.socket.removeListener('allianceMembersRefresh');
-    this.subMembers.unsubscribe();
+    
+    if(this.subMembers) {
+      this.subMembers.unsubscribe();
+    }
     
     if(this.subProfile1) {
       this.subProfile1.unsubscribe();
@@ -49,7 +52,7 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.http.get(url).subscribe((alli:any) => {
+    this.subMembers = this.http.get(url).subscribe((alli:any) => {
       if(alli) {
         this.allianceProfile = alli;
         
