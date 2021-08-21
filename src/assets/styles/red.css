@@ -142,4 +142,6 @@ input.form-control, textarea.form-control,
   border-color: darkgrey;
 }
 
-
+.btn.btn-success {
+  background-image: linear-gradient(#398439,#449d44);
+}
