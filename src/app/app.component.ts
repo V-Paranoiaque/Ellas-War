@@ -66,7 +66,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.translate.use(language);
     }
     else {
-      	let language = this.socket.detectLanguage();
+      let language = this.socket.detectLanguage();
       this.translate.use(language);
     }
     
@@ -123,7 +123,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.removeListener('user');
     this.socket.removeListener('config');
     this.socket.removeListener('connectionFB');
-    this.sub.unsubscribe();
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
   
   detectBrowserLanguage() {

@@ -54,7 +54,10 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
     this.socket.removeListener('user');
     this.socket.removeListener('ress');
     this.socket.removeListener('redirect');
-    this.sub.unsubscribe();
+    
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
   
   disconnect() {
