@@ -57,11 +57,6 @@ a {
   box-shadow: none;
 }
 
-.card {
-  background-image: url("../img/backgrounds/marble-background.svg");
-  text-shadow: -1px 1px 0 #FFF, 1px 1px 0 #FFF, 1px -1px 0 #FFF, -1px -1px 0 #FFF;
-}
-
 .card-footer:first-letter {
   color: var(--color-menu-text);
 }

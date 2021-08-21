@@ -29,8 +29,6 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
 }
 
 #infoMenu .card {
-  background: url("../../../assets/img/backgrounds/stone-background.svg");
-  background-clip: content-box;
   padding-top: 15px;
   padding-bottom: 15px;
   border-width: 0px;
