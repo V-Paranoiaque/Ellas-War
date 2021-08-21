@@ -102,7 +102,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
     this.socket.removeListener('msgRefresh');
-    this.sub.unsubscribe();
+    if(this.sub) {
+      this.sub.unsubscribe();
+    }
   }
   
   addDest(username:string, callback:any=null) {
