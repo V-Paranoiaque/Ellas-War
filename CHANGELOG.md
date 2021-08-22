@@ -66,3 +66,7 @@
 * Reduce icon size in the options page
 * Remove marble background
 * Use a lighter green for success buttons
+
+# 1.0.12
+* Add Flatpak packaging support
+* Fix attacked list refresh in the divine powers

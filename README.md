@@ -25,7 +25,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 | Platform | Supported |  |
 | ------------- |:-------------:| ----- |
 | Android | :white_check_mark: | Cordova |
-| Flatpack | :x: |  |
+| Flatpack | :white_check_mark: | Cordova + Electron |
 | Snap | :white_check_mark: | Cordova + Electron |
 | Web | :white_check_mark: | |
 | Windows | :white_check_mark: | Cordova + Electron |

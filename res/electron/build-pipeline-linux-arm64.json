@@ -1,7 +1,7 @@
 {
   "electron": {
     "linux": {
-      "package": ["AppImage", "apk", "rpm"],
+      "package": ["AppImage", "apk", "flatpak", "rpm"],
       "arch": [ "arm64" ],
       "category": "Game"
     }
