@@ -142,11 +142,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update -qq
-          sudo apt install -y -qq 
-          sudo apt install -y -qq flatpak-builder rpm 
-          sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          sudo flatpak install flathub org.electronjs.Electron2.BaseApp/i386/18.08 -y
-          sudo flatpak install flathub org.freedesktop.Sdk/i386/18.08 -y
+          sudo apt install -y -qq rpm 
           npm install -g cordova
       
       - name: Build packages
@@ -240,10 +236,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update -qq
-          sudo apt install -y -qq flatpak-builder rpm 
-          sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          sudo flatpak install flathub org.electronjs.Electron2.BaseApp/arm/19.08 -y
-          sudo flatpak install flathub org.freedesktop.Sdk/arm/19.08 -y
+          sudo apt install -y -qq rpm 
           npm install -g cordova
       
       - name: Build packages
