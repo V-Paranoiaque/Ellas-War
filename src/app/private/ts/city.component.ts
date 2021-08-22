@@ -302,6 +302,7 @@ export class CityComponent implements OnInit, OnDestroy {
       'power': 0,
       'error': 0
     };
+    this.socket.emit('myAttacksList');
   }
   selectTreasure() {
     this.treasureInfo = {

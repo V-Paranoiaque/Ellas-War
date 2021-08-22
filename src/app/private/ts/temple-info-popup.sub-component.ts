@@ -58,6 +58,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     
     this.socket.on('powersUse', (result:any) => {
       this.temple.error = result.error;
+      this.socket.emit('myAttacksList');
     });
   }
   
