@@ -92,12 +92,21 @@
       <div class="text-danger fw-bold" *ngIf="temple.error == 1" translate>
         Power validated
       </div>
+      <div class="text-danger fw-bold" *ngIf="temple.error == 2" translate>
+        Error in the target
+      </div>
+      <div class="text-danger fw-bold" *ngIf="temple.error == 3" translate>
+        This city has suffered a lot, it needs time to recover
+      </div>
+      <div class="text-danger fw-bold" *ngIf="temple.error == 4" translate>
+        This city has received too many attacks
+      </div>
             
       <div [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 360}">
         <strong translate>Cost:</strong>
         360 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
       </div>
-      {{ preUseList.length }}
+      
       <select class="form-select"
               *ngIf="user.getPropertyNb('ambrosia') >= 360 &&
                      preUseList.length > 0"
