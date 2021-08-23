@@ -225,8 +225,14 @@
             <span id="resourcesDesc" translate>
               Resources
             </span>
-            <ic-icon [icIcon]="cog" role="button" (click)="taxesInit()"
-                     data-bs-toggle="modal" data-bs-target="#AllianceTaxes"></ic-icon>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#AllianceTaxes"
+                   title="{{'Building details'|translate}}"
+                   (click)="taxesInit()">
+                <ic-icon [icIcon]="cog"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <table class="table table-striped table-middle align-middle"
@@ -279,11 +285,16 @@
             <span id="pactsDesc" translate>
               Pacts
             </span>
-            <ic-icon [icon]="flag" role="button"
-                     [routerLink]="['/diplomacy']"></ic-icon>
+            <div class="card-header-group">
+              <a class="card-header-button" [routerLink]="['/diplomacy']"
+                   data-bs-toggle="modal" data-bs-target="#BuildingSummary"
+                   title="{{'Building details'|translate}}">
+                <ic-icon [icon]="flag"></ic-icon>
+              </a>
+            </div>
           </div>
           <div class="card-body">
-            <div class="card-body text-center fw-bold"
+            <div class="text-center fw-bold"
                  *ngIf="pactList.length == 0" translate>
               You don't have any pact
             </div>
@@ -340,8 +351,13 @@
             <span id="warsDesc" translate>
               Wars
             </span>
-            <ic-icon [icon]="swordIcon" role="button"
-                     [routerLink]="['/diplomacy']"></ic-icon>
+            <div class="card-header-group">
+              <a class="card-header-button" [routerLink]="['/diplomacy']"
+                 data-bs-toggle="modal" data-bs-target="#BuildingSummary"
+                 title="{{'Building details'|translate}}">
+                <ic-icon [icIcon]="swordIcon"></ic-icon>
+              </a>
+            </div>
           </div>
           <div class="card-body">
             <div class="card-body text-center fw-bold"

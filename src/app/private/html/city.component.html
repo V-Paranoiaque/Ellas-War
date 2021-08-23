@@ -109,18 +109,20 @@
         <div class="card">
           <div class="card-header">
             <span translate>General</span>
-            <span data-bs-toggle="modal" data-bs-target="#FirstInfo"
-                  *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
-                  id="FirstInfoOpen"
-                  role="button" translate>
-              <ic-icon [icIcon]="questionCircle"></ic-icon>
-            </span>
-            <span data-bs-toggle="modal" data-bs-target="#DailyInfo"
-                  *ngIf="dailCo() > 0 && dailyCoCheck == 1"
-                  id="DailyCoCheckOpen"
-                  role="button" translate>
-              <ic-icon [icIcon]="questionCircle"></ic-icon>
-            </span>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#FirstInfo"
+                   *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
+                   id="FirstInfoOpen">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#DailyInfo"
+                   *ngIf="dailCo() > 0 && dailyCoCheck == 1"
+                   id="DailyCoCheckOpen">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body d-flex align-items-center">
             <div class="flex-grow-1 text-center">
@@ -177,19 +179,20 @@
            class="col-xl-6 col-block-half">
         <div class="card">
           <div class="card-header">
+            <div class="card-header-group">
+              <div class="card-header-button text-warning" role="button"
+                   data-bs-toggle="modal" data-bs-target="#DivineBonusList"
+                   *ngIf="divineBonus.length > 0" (click)="divineBonusReset()"
+                   title="{{'All your divine bonuses'|translate}}">
+                <ic-icon [icIcon]="cloud"></ic-icon>
+              </div>
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
+                   title="{{'About the Divine Bonuses'|translate}}">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+            </div>
             <span translate>Divine Bonus</span>
-            
-            <span data-bs-toggle="modal" data-bs-target="#DivineBonusList"
-                  role="button" *ngIf="divineBonus.length > 0"
-                  title="{{'All your divine bonuses'|translate}}"
-                  class="text-warning" (click)="divineBonusReset()">
-              <ic-icon [icIcon]="cloud"></ic-icon>
-            </span>
-            <span data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
-                  title="{{'About the Divine Bonuses'|translate}}"
-                  role="button" translate>
-              <ic-icon [icIcon]="questionCircle"></ic-icon>
-            </span>
           </div>
           <div class="card-body no-padding text-center" *ngIf="divineBonus.length == 0">
             <br/>
@@ -218,16 +221,18 @@
             <span translate>
               Army
             </span>
-            <span data-bs-toggle="modal" data-bs-target="#ArmySummary"
-                  title="{{'Army summary'|translate}}"
-                  role="button" translate>
-              <ic-icon [icIcon]="swordCross"></ic-icon>
-            </span>
-            <span data-bs-toggle="modal" data-bs-target="#ArmyHelp"
-                  title="{{'Army information'|translate}}"
-                  role="button" translate>
-              <ic-icon [icIcon]="questionCircle"></ic-icon>
-            </span>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#ArmySummary"
+                  title="{{'Army summary'|translate}}">
+                <ic-icon [icIcon]="swordCross"></ic-icon>
+              </div>
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#ArmyHelp"
+                  title="{{'Army information'|translate}}">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body no-padding">
             <div *ngFor="let army of user.getArmy()">
@@ -252,11 +257,13 @@
         <div class="card">
           <div class="card-header">
             <span translate>Buildings</span>
-            <span data-bs-toggle="modal" data-bs-target="#BuildingSummary"
-                  title="{{'Building details'|translate}}"
-                  role="button" translate>
-              <ic-icon [icIcon]="questionCircle"></ic-icon>
-            </span>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#BuildingSummary"
+                   title="{{'Building details'|translate}}">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body no-padding">
             <div class="frame frame-20" (click)="selectTreasure()"

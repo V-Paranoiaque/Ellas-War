@@ -82,6 +82,28 @@ a.no-padding {
   height: auto;
 }
 
+.card-header .card-header-group {
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  float: left;
+}
+
+.card-header .card-header-group .card-header-button {
+  padding: 0px 3px;
+  float:left;
+  height: 30px;
+  width: 30px;
+  margin: 0px;
+  font-size: 1.1em;
+  color: white;
+  background-color: var(--color-menu-dark);
+}
+
+.card-header .card-header-group .card-header-button:hover {
+  background-color: var(--color-menu-clear);
+}
+
 .card.card-column {
   background-clip: content-box;
   background-color: white;
