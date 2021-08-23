@@ -131,6 +131,25 @@
               </tr>
             </tbody>
           </table>
+          <div *ngIf="adminNewsMax > 1">
+            <br/>
+            <div class="input-group">
+              <span class="input-group-text" role="button"
+                    (click)="adminNewsPageChange(1)">&lt;&lt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminNewsPageChange(adminNewsPage-1)">&lt;</span>
+              <select class="form-select" [ngModel]="adminNewsPage" 
+                      (change)="adminNewsPageChange(mySelect.value)"
+                      title="{{'Change page'|translate}}" #mySelect>
+                <option *ngFor="let id of user.range(1, adminNewsMax)"
+                        value="{{id}}" translate>Page {{id}}</option>
+              </select>
+              <span class="input-group-text" role="button"
+                    (click)="adminNewsPageChange(adminNewsPage+1)">&gt;</span>
+              <span class="input-group-text" role="button"
+                    (click)="adminNewsPageChange(adminNewsMax)">&gt;&gt;</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,23 +15,42 @@ import trash2Icon from '@iconify/icons-bi/trash2';
 export class AdminNewsComponent implements OnInit, OnDestroy {
   
   public adminNewsList:any;
+  public adminNewsMax:number;
+  public adminNewsPage:any;
   public newsSelected:any;
   
   brushIcon = brushIcon;
   trash2Icon= trash2Icon;
   
-  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(private router: Router, private route: ActivatedRoute, 
+              private socket: Socket, public user: User,
+              public translate: TranslateService) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    let id = this.route.snapshot.paramMap.get('id');
+    
+    if(id) {
+      this.adminNewsPage = parseInt(id);
+    }
+    else {
+      this.adminNewsPage = 1;
+    }
+    
     this.adminNewsList = [];
     this.newsSelected = {};
+    this.adminNewsMax = 1;
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
     
-    this.socket.emit('adminNewsList');
+    this.socket.emit('adminNewsList', this.adminNewsPage);
     
     this.socket.on('adminNewsList', (msg:any) => {
-      this.adminNewsList = msg;
+      console.log(msg);
+      
+      this.adminNewsList = msg.list;
+      this.adminNewsPage = msg.cPage;
+      this.adminNewsMax = msg.max;
     });
     this.socket.on('adminNewsNew', () => {
       this.socket.emit('adminNewsList');
@@ -86,4 +106,17 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
       this.socket.emit('adminNewsNew', msg)
     }
   }
+  
+  adminNewsPageChange(page:any) {
+    if(!page || page < 1) {
+      page = 1;
+    }
+    
+    if(page > this.adminNewsMax) {
+      page = this.adminNewsMax;
+    }
+    
+    this.router.navigate(['/admin/support/'+page])
+  }
+  
 }

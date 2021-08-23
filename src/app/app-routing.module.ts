@@ -140,6 +140,7 @@ routes = [
       { path: 'emails', component: AdminEmailsComponent },
       { path: 'messages', component: AdminMessagesComponent },
       { path: 'news', component: AdminNewsComponent },
+      { path: 'news/:id', component: AdminNewsComponent },
       { path: 'pauses', component: AdminPausesComponent },
       { path: 'permissions', component: AdminPermissionsComponent },
       { path: 'players', component: AdminPlayersComponent },

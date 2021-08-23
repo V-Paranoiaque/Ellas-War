@@ -366,4 +366,12 @@ export class User {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
   }
+  
+  range(a:number, b:number) {
+    let list = []
+    for(a;a<=b;a++) {
+      list.push(a);
+    }
+    return list;
+  }
 }
