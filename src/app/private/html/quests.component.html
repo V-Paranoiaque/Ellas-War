@@ -30,8 +30,16 @@
       </div>
       <div class="col-xl-6 col-block-half" *ngIf="user.getLevel() > 0">
         <div class="card">
-          <div class="card-header" translate>
-            Quest progress
+          <div class="card-header">
+            <span translate>
+              Quest progress
+            </span>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#QuestsInfo">
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="containBar">

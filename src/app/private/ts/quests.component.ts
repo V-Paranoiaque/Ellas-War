@@ -3,6 +3,7 @@ import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import treasureChest from '@iconify-icons/mdi/treasure-chest';
 
 @Component({
@@ -20,6 +21,7 @@ export class QuestsComponent implements OnInit, OnDestroy {
   private myQuestList:any;
   public selectedQuest:any;
   
+  questionCircle = questionCircle;
   treasureChest = treasureChest;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
