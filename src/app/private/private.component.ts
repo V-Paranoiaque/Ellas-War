@@ -56,12 +56,14 @@ import { QuestsInfoPopupSubComponent } from './ts/quests-info-popup.sub-componen
 import { QuestsMissionsSubComponent } from './ts/quests-missions.sub-component';
 import { SanctuaryMessageSubComponent } from './ts/sanctuary-message.sub-component';
 import { SuccessCardSubComponent } from './ts/success-card.sub-component';
+import { SuccessHelpPopupSubComponent } from './ts/success-help-popup.sub-component';
 import { SuccessInfoPopupSubComponent } from './ts/success-info-popup.sub-component';
 import { Temple1PopupSubComponent } from './ts/temple1-popup.sub-component';
 import { Temple2PopupSubComponent } from './ts/temple2-popup.sub-component';
 import { Temple3PopupSubComponent } from './ts/temple3-popup.sub-component';
 import { Temple4PopupSubComponent } from './ts/temple4-popup.sub-component';
 import { TempleChangeInfoPopupSubComponent } from './ts/temple-change-info-popup.sub-component';
+import { TempleHelpPopupSubComponent } from './ts/temple-help-popup.sub-component';
 import { TempleInfoPopupSubComponent } from './ts/temple-info-popup.sub-component';
 import { TreasurePopupSubComponent } from './ts/treasure-popup.sub-component';
 
@@ -125,12 +127,14 @@ export const PrivateComponent = [
   QuestsMissionsSubComponent,
   SanctuaryMessageSubComponent,
   SuccessCardSubComponent,
+  SuccessHelpPopupSubComponent,
   SuccessInfoPopupSubComponent,
   Temple1PopupSubComponent,
   Temple2PopupSubComponent,
   Temple3PopupSubComponent,
   Temple4PopupSubComponent,
   TempleChangeInfoPopupSubComponent,
+  TempleHelpPopupSubComponent,
   TempleInfoPopupSubComponent,
   TreasurePopupSubComponent
 ];
