@@ -33,6 +33,7 @@ div.col-lg-2, div.col-md-2, div.col-sm-3 {
   padding-bottom: 15px;
   border-width: 0px;
   font-size: 0.9em;
+  background-clip: content-box;
 }
 
 #infoMenu .card-body {
