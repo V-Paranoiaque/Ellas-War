@@ -1,28 +1,28 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 *ngIf="temple.id == 1" translate>Hermes</h5>
-    <h5 *ngIf="temple.id == 2" translate>Apollo</h5>
-    <h5 *ngIf="temple.id == 3" translate>Demeter</h5>
-    <h5 *ngIf="temple.id == 4" translate>Ares</h5>
-    <h5 *ngIf="temple.id == 5" translate>Athena</h5>
-    <h5 *ngIf="temple.id == 6" translate>Artemis</h5>
-    <h5 *ngIf="temple.id == 7" translate>Hephaestus</h5>
-    <h5 *ngIf="temple.id == 8" translate>Dionysus</h5>
-    <h5 *ngIf="temple.id == 9" translate>Zeus</h5>
-    <h5 *ngIf="temple.id == 10" translate>Hades</h5>
-    <h5 *ngIf="temple.id == 11" translate>Poseidon</h5>
+    <h5 *ngIf="temple.id === 1" translate>Hermes</h5>
+    <h5 *ngIf="temple.id === 2" translate>Apollo</h5>
+    <h5 *ngIf="temple.id === 3" translate>Demeter</h5>
+    <h5 *ngIf="temple.id === 4" translate>Ares</h5>
+    <h5 *ngIf="temple.id === 5" translate>Athena</h5>
+    <h5 *ngIf="temple.id === 6" translate>Artemis</h5>
+    <h5 *ngIf="temple.id === 7" translate>Hephaestus</h5>
+    <h5 *ngIf="temple.id === 8" translate>Dionysus</h5>
+    <h5 *ngIf="temple.id === 9" translate>Zeus</h5>
+    <h5 *ngIf="temple.id === 10" translate>Hades</h5>
+    <h5 *ngIf="temple.id === 11" translate>Poseidon</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
   </div>
   
-  <div class="modal-body" *ngIf="temple.id == 1">
+  <div class="modal-body" *ngIf="temple.id === 1">
     <ul>
       <li translate>In the Agora, when you redeem your batches, you get 97.5% instead of 80%</li>
       <li translate>Until the level 6, you can store 50% more Drachmas in your treasure</li>
       <li translate>From the level 6, treasure your treasure taxes are reduced by 20%</li>
     </ul>
   </div>
-  <div class="modal-body" *ngIf="temple.id == 2">
+  <div class="modal-body" *ngIf="temple.id === 2">
     <p>
       <span translate>
         You can spy on your enemies with the oracle of the Apollo's temple.
@@ -32,7 +32,7 @@
       </span>
     </p>
   </div>
-  <div *ngIf="temple.id == 3">
+  <div *ngIf="temple.id === 3">
     <div class="modal-body">
       <p translate>
         Demeter increase the production of your wine farms and farms. You can thanks to the furies, destroying farms, wine farms and reserves grape and food of your opponents.
@@ -77,7 +77,7 @@
     </div>
   </div>
   <!-- Ares -->
-  <div *ngIf="temple.id == 4">
+  <div *ngIf="temple.id === 4">
     <div class="modal-body">
       <p translate>
         When you attack, Ares watch over your men strengthening their ardor. It will also allow you to hire his terrible spartans.
@@ -89,16 +89,16 @@
         You are allowed to attack an enemy a second time. Works even in war but the second attack does not come into play in the score.
       </div>
       
-      <div class="text-danger fw-bold" *ngIf="temple.error == 1" translate>
+      <div class="text-danger fw-bold" *ngIf="temple.error === 1" translate>
         Power validated
       </div>
-      <div class="text-danger fw-bold" *ngIf="temple.error == 2" translate>
+      <div class="text-danger fw-bold" *ngIf="temple.error === 2" translate>
         Error in the target
       </div>
-      <div class="text-danger fw-bold" *ngIf="temple.error == 3" translate>
+      <div class="text-danger fw-bold" *ngIf="temple.error === 3" translate>
         This city has suffered a lot, it needs time to recover
       </div>
-      <div class="text-danger fw-bold" *ngIf="temple.error == 4" translate>
+      <div class="text-danger fw-bold" *ngIf="temple.error === 4" translate>
         This city has received too many attacks
       </div>
             
@@ -124,7 +124,7 @@
     </div>
   </div>
   <!-- Athena -->
-  <div *ngIf="temple.id == 5">
+  <div *ngIf="temple.id === 5">
     <div class="modal-body">
       <p translate>
         Athena increases by 15% the defensive strength of your troops and your defensive buildings and reduce by 20% the cost of enrollment and the consumption of your infantry.
@@ -137,7 +137,7 @@
       <div translate>
         Athena temporarily increases the defense of units in your city by 25%.
       </div>
-      <div class="text-danger fw-bold" *ngIf="temple.error == 1" translate>
+      <div class="text-danger fw-bold" *ngIf="temple.error === 1" translate>
         Power validated
       </div>
       <div *ngIf="user.getPropertyNb('protective_goddess') > 0">
@@ -145,7 +145,7 @@
         {{user.getPropertyNb('protective_goddess')*1000| date:'dd/MM, HH:mm'}}
       </div>
       
-      <table class="table" aria-describedby="ProtectiveGoddessDesc">
+      <table class="table" aria-describedby="ProtectiveGoddessDesc"><tbody>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 12}">
             12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
@@ -172,11 +172,11 @@
             </button>
           </td>
         </tr>
-      </table>
+      </tbody></table>
     </div>
   </div>
   <!-- Artemis -->
-  <div *ngIf="temple.id == 6">
+  <div *ngIf="temple.id === 6">
     <div class="modal-body">
       <p translate>
         Artemis surveys the wood and helps the loggers in their task. It also will lend you his ferocious Amazons go to the battle.
@@ -185,7 +185,7 @@
     <div class="modal-footer" *ngIf="user.hasTemples()">
       <strong translate>Hunt of Artemis</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1 && temple.power == 3" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 3" 
            translate>
         Artemis heard your call
       </div>
@@ -216,7 +216,7 @@
     <div class="modal-footer" *ngIf="user.hasTemples()">
       <strong translate>Forest Help</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1 && temple.power == 4" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 4" 
            translate>
         Artemis heard your call
       </div>
@@ -246,7 +246,7 @@
   </div>
   
   <!-- Hephaestus -->
-  <div *ngIf="temple.id == 7">
+  <div *ngIf="temple.id === 7">
     <div class="modal-body">
       <p translate>
         Hephaestus increases the return on your money hype workshops and automata defend the gates of your city.
@@ -259,7 +259,7 @@
         Hephaestus improves the defensive power of the automatons by 200% for 2 hours.
       </div>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1 && temple.power == 7" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 7" 
            translate>
         Hephaestus heard your call
       </div>
@@ -286,15 +286,15 @@
         The lava falls on the enemies preventing them from building buildings for 20 min.
       </div>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1 && temple.power == 8" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 8" 
            translate>
         Hephaestus heard your call
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 2 && temple.power == 8" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 2 && temple.power === 8" 
            translate>
         This player does not exist
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 3 && temple.power == 8" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 3 && temple.power === 8" 
            translate>
         You can't use this power on this player
       </div>
@@ -314,7 +314,7 @@
   </div>
   
   <!-- Dionysus -->
-  <div *ngIf="temple.id == 8">
+  <div *ngIf="temple.id === 8">
     <div class="modal-body">
       <p translate>
         Dionysus increases the efficiency of your pressing workshops, they will produce more wine to drink your troops. Centaurs seeing that you support, will join you.
@@ -329,7 +329,7 @@
       </div>
       
       <div class="alert alert-success"
-           *ngIf="temple.error == 1 && temple.power == 5"
+           *ngIf="temple.error === 1 && temple.power === 5"
            translate>
         Dionysus heard your call
       </div>
@@ -358,7 +358,7 @@
       </div>
       
       <div class="alert alert-success center"
-           *ngIf="temple.error == 1 && temple.power == 6"
+           *ngIf="temple.error === 1 && temple.power === 6"
            translate>
         Dionysus heard your call
       </div>
@@ -378,7 +378,7 @@
   </div>
   
   <!-- Zeus -->
-  <div *ngIf="temple.id == 9">
+  <div *ngIf="temple.id === 9">
     <div class="modal-body">
       <p translate>
         Zeus does lightning strike your enemies with your wishes, burning down buildings. It will also allow you to hire his terrible myrmidons.
@@ -431,7 +431,7 @@
         These units must be housed in adapted housing.
       </div>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Zeus heard your call
       </div>
@@ -451,15 +451,15 @@
     <div class="modal-footer">
       <strong translate>Lord of Lightning</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Zeus heard your call
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 2" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 2" 
            translate>
         This player does not exist
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 3" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 3" 
            translate>
         You can't use this power on this player
       </div>
@@ -492,7 +492,7 @@
     <div class="modal-footer">
       <strong translate>Strength</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Zeus heard your call
       </div>
@@ -507,7 +507,7 @@
         Infantry units gain 25% attack power for 1 hour.
       </div>
       
-      <table class="table" aria-describedby="ProtectiveGoddessDesc">
+      <table class="table" aria-describedby="ProtectiveGoddessDesc"><tbody>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 16}">
             12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
@@ -534,12 +534,12 @@
             </button>
           </td>
         </tr>
-      </table>
+      </tbody></table>
     </div>
   </div>
   
   <!-- Hades -->
-  <div *ngIf="temple.id == 10">
+  <div *ngIf="temple.id === 10">
     <div class="modal-body">
       <p translate>
         Hades will increase the production of your mines and quarries. It could also lend its invisibility helmet for you to visit the cities of friends and enemies. During your terrible battles, the souls of your men come back to fight for you.
@@ -548,15 +548,15 @@
     <div class="modal-footer">
       <strong translate>Peste</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Poseidon heard your call
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 2" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 2" 
            translate>
         This player does not exist
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error == 3" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 3" 
            translate>
         You can't use this power on this player
       </div>
@@ -588,7 +588,7 @@
     <div class="modal-footer">
       <strong translate>Ereb's Favor</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Hades heard your call
       </div>
@@ -603,7 +603,7 @@
         Hades returns 5 to 10% of your dead human and temple units in battle.
       </div>
       
-      <table class="table" aria-describedby="ProtectiveGoddessDesc">
+      <table class="table" aria-describedby="ProtectiveGoddessDesc"><tbody>
         <tr>
           <th scope="row" [ngClass]="{'text-danger': user.getPropertyNb('ambrosia') < 24}">
             12 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
@@ -630,13 +630,13 @@
             </button>
           </td>
         </tr>
-      </table>
+      </tbody></table>
     </div>
     
     <div class="modal-footer">
       <strong translate>Treasure from beyond grave</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error == 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1" 
            translate>
         Hades heard your call
       </div>
@@ -667,7 +667,7 @@
     </div>
   </div>
   <!-- Poseidon -->
-  <div *ngIf="temple.id == 11">
+  <div *ngIf="temple.id === 11">
     <div class="modal-body">
       <p class="text-justify" translate>
         With Poseidon, your cavalry units cost less and consume fewer resources. It will also build a wall around your city to repel enemies. The defense of your wall increases with your field. As the god of the oceans will increase the production of your wells.
@@ -679,12 +679,12 @@
         <strong translate>:</strong>
         {{ wallDefense | number:'': this.translate.currentLang }}
         <br/>
-        <div *ngIf="user.getPropertyNb('poseidon_wall') == 1" 
+        <div *ngIf="user.getPropertyNb('poseidon_wall') === 1" 
              class="fw-bold text-danger"
              translate>The Poseidon wall protects your city.</div>
         
         <table class="table" aria-describedby="WallDesc"
-               *ngIf="user.getPropertyNb('poseidon_wall') == 0">
+               *ngIf="user.getPropertyNb('poseidon_wall') === 0"><tbody>
           <tr>
             <th scope="row">
               <span [ngClass]="{'text-danger': user.getPropertyNb('water') < user.info.datas.poseidon_wall.water}">
@@ -718,7 +718,7 @@
                       translate>Build the wall</button>
             </td>
           </tr>
-        </table>
+        </tbody></table>
       </div>
     </div>
     <div class="modal-footer">
@@ -736,7 +736,7 @@
         <strong translate>Cost:</strong>
         150 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
         
-        <div *ngIf="user.getPropertyNb('poseidon_wall') == 0">
+        <div *ngIf="user.getPropertyNb('poseidon_wall') === 0">
           <button class="btn btn-success" translate
                   (click)="powerUse(16, 0)"
                   *ngIf="user.getPropertyNb('ambrosia') >= 150">
