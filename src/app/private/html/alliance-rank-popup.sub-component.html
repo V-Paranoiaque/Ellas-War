@@ -1,6 +1,6 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title" id="playerDesc" translate>
+    <h5 class="modal-title" id="playerDesc">
       {{ info.username }}
     </h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
@@ -19,7 +19,7 @@
     <br/>
     <div class="text-center fw-bold"
          *ngIf="user.getId() == user.getPropertyNb('chief') && info.membre_id != user.getPropertyNb('chief')">
-      <span (click)="setHelp(5)" role="button" translate>
+      <span (click)="setHelp(5)" role="button">
        {{'Name { value } chief of the alliance' | translate: { value: info.username } }} 
       </span>
       <br/>

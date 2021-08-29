@@ -65,10 +65,8 @@
   <span *ngSwitchCase="22" translate>Sanctuary Spy Archives</span>
   <span *ngSwitchCase="23" translate>You have won the diamond challenge</span>
   <span *ngSwitchCase="25">
-    <span *ngIf="msg.title.ask_id == msg.title.destroy"
-         translate>{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.dst_name} }}</span>
-    <span *ngIf="msg.title.dst_id == msg.title.destroy"
-         translate>{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.ask_name} }}</span>
+    <span *ngIf="msg.title.ask_id == msg.title.destroy">{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.dst_name} }}</span>
+    <span *ngIf="msg.title.dst_id == msg.title.destroy">{{'Your alliance destroyed a pact with the alliance { value }' | translate: { value: msg.title.ask_name} }}</span>
   </span>
   <span *ngSwitchCase="26">
     <span *ngIf="msg.title.dst_id == msg.title.destroy">{{'The pact with the alliance { value } has been destroyed' | translate: { value: msg.title.dst_name} }}</span>
