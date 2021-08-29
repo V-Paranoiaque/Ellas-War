@@ -267,7 +267,7 @@
             {{ user.getPropertyNb('victory') | number:'': this.translate.currentLang}}<br/>
           </div>
         </a>
-        <a class="col-6 d-flex" [routerLink]="['/rankingplayers']">
+        <a class="col-12 col-lg-6 d-flex" [routerLink]="['/rankingplayers']">
           <div class="p-2 icon">
             <ic-icon [icIcon]="trophy"></ic-icon>
           </div>
@@ -275,7 +275,7 @@
             {{ user.getPropertyNb('xp') | number:'': this.translate.currentLang}}
           </div>
         </a>
-        <a class="col-6 d-flex" [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
+        <a class="col-6 col-lg-6 d-flex" [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
           <div class="p-2 icon">
             <ic-icon [icIcon]="crown"></ic-icon>
           </div>
