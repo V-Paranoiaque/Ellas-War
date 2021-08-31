@@ -8,6 +8,7 @@ import { AdminPausesComponent } from './ts/admin-pauses.component';
 import { AdminPermissionsComponent } from './ts/admin-permissions.component';
 import { AdminPlayersComponent } from './ts/admin-players.component';
 import { AdminPrayersComponent } from './ts/admin-prayers.component';
+import { AdminProfileComponent } from './ts/admin-profile.component';
 import { AdminQuestsComponent } from './ts/admin-quests.component';
 import { AdminResourcesComponent } from './ts/admin-resources.component';
 import { AdminStatsQuestsComponent } from './ts/admin-stats-quests.component';
@@ -29,6 +30,7 @@ export const AdminComponent = [
   AdminPermissionsComponent,
   AdminPlayersComponent,
   AdminPrayersComponent,
+  AdminProfileComponent,
   AdminQuestsComponent,
   AdminResourcesComponent,
   AdminStatsQuestsComponent,

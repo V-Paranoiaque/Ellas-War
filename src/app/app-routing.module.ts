@@ -62,6 +62,7 @@ import { AdminPausesComponent } from './admin/ts/admin-pauses.component';
 import { AdminPermissionsComponent } from './admin/ts/admin-permissions.component';
 import { AdminPlayersComponent } from './admin/ts/admin-players.component';
 import { AdminPrayersComponent } from './admin/ts/admin-prayers.component';
+import { AdminProfileComponent } from './admin/ts/admin-profile.component';
 import { AdminQuestsComponent } from './admin/ts/admin-quests.component';
 import { AdminResourcesComponent } from './admin/ts/admin-resources.component';
 import { AdminStatsQuestsComponent } from './admin/ts/admin-stats-quests.component';
@@ -145,6 +146,7 @@ routes = [
       { path: 'permissions', component: AdminPermissionsComponent },
       { path: 'players', component: AdminPlayersComponent },
       { path: 'prayers', component: AdminPrayersComponent },
+      { path: 'profile/:id', component: AdminProfileComponent },
       { path: 'quests', component: AdminQuestsComponent },
       { path: 'resources', component: AdminResourcesComponent },
       { path: 'stats/units', component: AdminStatsUnitsComponent },
