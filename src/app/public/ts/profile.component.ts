@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.profile = player;
         
         this.subTitle = this.translate.get('Player profile:').subscribe((res: string) => {
-          this.titleService.setTitle(res+player.username);
+          this.titleService.setTitle(res+' '+player.username);
         });
       }
     });
