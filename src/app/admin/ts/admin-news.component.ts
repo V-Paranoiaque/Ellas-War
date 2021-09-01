@@ -46,8 +46,6 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminNewsList', this.adminNewsPage);
     
     this.socket.on('adminNewsList', (msg:any) => {
-      console.log(msg);
-      
       this.adminNewsList = msg.list;
       this.adminNewsPage = msg.cPage;
       this.adminNewsMax = msg.max;
