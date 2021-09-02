@@ -4,7 +4,14 @@
   <div class="row">
     <div class="card card-column col-12">
       <div class="card-body">
-        <h1 class="text-center">{{ profile.username }}</h1>
+        <h1 class="text-center">
+          {{ profile.username }}
+          <a [routerLink]="['/admin/profile/'+profile.membre_id]"
+             *ngIf="user.getPropertyNb('rank') > 1"
+             class="btn btn-danger">
+            <ic-icon [icon]="userShield"></ic-icon>
+          </a>
+        </h1>
         <br/>
         <br/>
         <div class="row justify-content-center">

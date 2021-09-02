@@ -6,6 +6,8 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import userShield from '@iconify/icons-fa-solid/user-shield';
+
 @Component({
   templateUrl: '../html/profile.component.html'
 })
@@ -16,6 +18,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   
   private subPlayer:any;
   private subTitle:any;
+  
+  userShield = userShield;
   
   constructor(private http: HttpClient, public user: User,
               private route: ActivatedRoute, public translate: TranslateService,
