@@ -17,8 +17,13 @@
   flex-grow: 1;
 }
 
+.card-body.attack-menu > .row {
+  width:100%;
+}
+
 .card-body.attack-menu button {
   flex: 1;
+  max-width: 125px;
 }
 
 .card-body table {
