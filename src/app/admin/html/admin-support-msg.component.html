@@ -16,9 +16,7 @@
           </h2>
           
           <div *ngFor="let msg of adminSupportInfo.msg">
-            <div class="text-prewrap">
-              {{msg.support_msg}}
-            </div>
+            <div class="text-prewrap">{{msg.support_msg}}</div>
             <br/>
             <div class="text-end fw-bold">
               <a [routerLink]="['/profile/'+msg.support_membre]">

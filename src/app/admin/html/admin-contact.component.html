@@ -11,9 +11,7 @@
           <table class="table" aria-labelledby="contactDesc">
             <tbody>
               <tr *ngFor="let msg of adminContactList">
-                <td class="text-prewrap">
-                  {{msg.text}}
-                </td>
+                <td class="text-prewrap">{{msg.text}}</td>
                 <th scope="row">
                   {{msg.send_date*1000| date:'dd/MM/yyyy, HH:mm'}}
                   <br/>
