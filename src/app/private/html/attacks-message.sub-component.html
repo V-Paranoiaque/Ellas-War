@@ -26,18 +26,20 @@
   <div class="clearfix"><br/></div>
 </div>
 
-<strong translate>Army sent</strong>
-<div *ngFor="let unit of getSentUnits()" class="col-xs-12">
-    {{unit.nb| number:'': this.translate.currentLang}}
-    <span *ngIf="user.info.datas.army[unit.code]">
-      {{user.info.datas.army[unit.code].names|translate}} 
-    </span>
-    <span *ngIf="user.info.datas.building[unit.code]">
-      {{user.info.datas.building[unit.code].names|translate}} 
-    </span>
+<div *ngIf="getSentUnits().length > 0">
+  <strong translate>Army sent</strong>
+  <div *ngFor="let unit of getSentUnits()" class="col-xs-12">
+      {{unit.nb| number:'': this.translate.currentLang}}
+      <span *ngIf="user.info.datas.army[unit.code]">
+        {{user.info.datas.army[unit.code].names|translate}} 
+      </span>
+      <span *ngIf="user.info.datas.building[unit.code]">
+        {{user.info.datas.building[unit.code].names|translate}} 
+      </span>
+  </div>
+  <div class="clearfix"><br/></div>
 </div>
 
-<div class="clearfix"><br/></div>
 
 <div class="row">
   <div *ngIf="getAttackLost().length > 0"  class="col-6">
