@@ -6,6 +6,9 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
+import { EventEmitter } from '@angular/core';
+
+import brushIcon from '@iconify/icons-bi/brush';
 import userShield from '@iconify/icons-fa-solid/user-shield';
 
 @Component({
@@ -13,17 +16,20 @@ import userShield from '@iconify/icons-fa-solid/user-shield';
 })
 
 export class ProfileComponent implements OnInit, OnDestroy {
+  public onChange: EventEmitter<any> = new EventEmitter<any>();
+  
   public id: any;
   public profile: any;
   
   private subPlayer:any;
   private subTitle:any;
   
+  brushIcon    = brushIcon;
   userShield = userShield;
   
-  constructor(private http: HttpClient, public user: User,
-              private route: ActivatedRoute, public translate: TranslateService,
-              private titleService: Title, private socket: Socket) {
+  constructor(protected http: HttpClient, public user: User,
+              protected socket: Socket, public translate: TranslateService,
+              private route: ActivatedRoute, private titleService: Title) {
     this.profile = {
       'username': ''
     }
@@ -40,6 +46,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.subTitle = this.translate.get('Player profile:').subscribe((res: string) => {
           this.titleService.setTitle(res+' '+player.username);
         });
+        this.socket.onChange.emit({action: 'addDest', username: player.username});
       }
     });
   }

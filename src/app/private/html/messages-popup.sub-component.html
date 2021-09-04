@@ -1,0 +1,44 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" translate>Write a new message</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" 
+              aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <span class="badge bg-primary" *ngFor="let user of getDestList()">
+        {{ user.username }}
+        <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+      </span>
+      
+      <div class="input-group">
+        <span class="input-group-text" translate>To: </span>
+        <input type="text" class="form-control" aria-label="Player" 
+               placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
+               (keydown.enter)="addDest(msgToUser)" >
+        <span class="input-group-text text-center" role="button" 
+              (click)="addDest(msgToUser)">
+          <ic-icon [icon]="plusIcon"></ic-icon>
+        </span>
+      </div>
+      <div *ngIf="addDestError > 0" class="alert alert-danger"
+           translate>This player doesn't exist</div>
+    </div>
+    <div class="modal-body">
+      <input type="text" class="form-control" 
+             placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
+      <br/>
+      <div class="input-group">
+        <textarea class="form-control mobile-textarea" placeholder="{{'Message'|translate}}"
+                  [(ngModel)]="msgText"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" 
+              data-bs-dismiss="modal" translate>Close</button>
+      <button type="button" class="btn btn-primary"
+              (click)="send()"
+              data-bs-dismiss="modal" translate>Confirm</button>
+    </div>
+  </div>
+</div>

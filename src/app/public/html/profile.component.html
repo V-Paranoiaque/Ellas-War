@@ -1,11 +1,22 @@
 <app-common-top-bar active="profile"></app-common-top-bar>
 
+<div class="modal fade" id="MsgNew" tabindex="-1" aria-hidden="true">
+  <app-messages-popup></app-messages-popup>
+</div>
+
 <div class="container main-full" role="main">
   <div class="row">
     <div class="card card-column col-12">
       <div class="card-body">
         <h1 class="text-center">
           {{ profile.username }}
+          
+          <button class="btn btn-primary"
+                  *ngIf="user.getPropertyNb('mstatus') == 1"
+                  data-bs-toggle="modal" data-bs-target="#MsgNew"
+                  title="{{'Write a new message'| translate}}">
+            <ic-icon [icon]="brushIcon"></ic-icon>
+          </button>
           <a [routerLink]="['/admin/profile/'+profile.membre_id]"
              *ngIf="user.getPropertyNb('rank') > 1"
              class="btn btn-danger">

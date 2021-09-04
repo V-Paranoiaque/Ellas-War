@@ -49,8 +49,9 @@ import { IdToDivineBonusSubComponent } from './ts/id-to-divinebonus.sub-componen
 import { IdToRessSubComponent } from './ts/id-to-ress.sub-component';
 import { IdToWeatherSubComponent } from './ts/id-to-weather.sub-component';
 import { LostMessageSubComponent } from './ts/lost-message.sub-component';
-import { MessagesTitleSubComponent } from './ts/messages-title.sub-component';
 import { MessagesContentSubComponent } from './ts/messages-content.sub-component';
+import { MessagesPopupSubComponent } from './ts/messages-popup.sub-component';
+import { MessagesTitleSubComponent } from './ts/messages-title.sub-component';
 import { QuestsAltarSubComponent } from './ts/quests-altar.sub-component';
 import { QuestsDailySubComponent } from './ts/quests-daily.sub-component';
 import { QuestsInfoPopupSubComponent } from './ts/quests-info-popup.sub-component';
@@ -121,8 +122,9 @@ export const PrivateComponent = [
   IdToRessSubComponent,
   IdToWeatherSubComponent,
   LostMessageSubComponent,
-  MessagesTitleSubComponent,
   MessagesContentSubComponent,
+  MessagesPopupSubComponent,
+  MessagesTitleSubComponent,
   QuestsAltarSubComponent,
   QuestsDailySubComponent,
   QuestsInfoPopupSubComponent,

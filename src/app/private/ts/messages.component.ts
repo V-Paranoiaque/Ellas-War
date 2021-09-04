@@ -35,6 +35,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   private deleteMode: number;
   private destList: any;
   private sub:any;
+  private subMsg:any;
   
   //Icons
   brushIcon    = brushIcon;
@@ -46,7 +47,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
   trashIcon    = trashIcon;
   xIcon        = xIcon;
   
-  constructor(private http: HttpClient, public user: User, private socket: Socket, public translate: TranslateService) {
+  constructor(protected http: HttpClient, public user: User, protected socket: Socket,
+              public translate: TranslateService) {
     this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;
@@ -70,6 +72,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+    
+    this.subMsg = this.socket.onChange.subscribe({
+      next: (event: any) => {
+        if(event.action == 'addDest') {
+          this.addDest(event.username);
+        }
+      }
+    })
     
     this.socket.on('msgPage', (newMsgList:any) => {
       for(let i in newMsgList.list) {
@@ -104,6 +114,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.socket.removeListener('msgRefresh');
     if(this.sub) {
       this.sub.unsubscribe();
+    }
+    if(this.subMsg) {
+      this.subMsg.unsubscribe();
     }
   }
   
