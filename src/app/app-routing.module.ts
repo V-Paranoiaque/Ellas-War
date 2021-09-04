@@ -21,6 +21,7 @@ import { LoginComponent } from './public/ts/login.component';
 import { LostPasswordComponent } from './public/ts/lostpassword.component';
 import { NewsComponent } from './public/ts/news.component';
 import { PartnersComponent } from './public/ts/partners.component';
+import { PermalinkComponent } from './public/ts/permalink.component';
 import { ProfileComponent } from './public/ts/profile.component';
 import { RankingAlliancesComponent } from './public/ts/rankingalliances.component';
 import { RankingPlayersComponent } from './public/ts/rankingplayers.component';
@@ -97,6 +98,8 @@ routes = [
   { path: 'lostpassword', component: LostPasswordComponent },
   { path: 'news', component: NewsComponent },
   { path: 'partners', component: PartnersComponent },
+  { path: 'permalink', component: PermalinkComponent },
+  { path: 'permalink/:id', component: PermalinkComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'rankingalliances', component: RankingAlliancesComponent },

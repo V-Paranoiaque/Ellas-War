@@ -21,6 +21,7 @@ import { HelpComponent } from './ts/help.component';
 import { HonnorComponent } from './ts/honnor.component';
 import { PageNotFoundComponent } from './ts/pagenotfound.component';
 import { PartnersComponent } from './ts/partners.component';
+import { PermalinkComponent } from './ts/permalink.component';
 import { ProfileComponent } from './ts/profile.component';
 import { RankingAlliancesComponent } from './ts/rankingalliances.component';
 import { RankingPlayersComponent } from './ts/rankingplayers.component';
@@ -54,6 +55,7 @@ export const PublicComponent = [
   HonnorComponent,
   PageNotFoundComponent,
   PartnersComponent,
+  PermalinkComponent,
   ProfileComponent,
   RankingAlliancesComponent,
   RankingPlayersComponent,
