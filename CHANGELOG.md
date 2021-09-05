@@ -70,3 +70,24 @@
 # 1.0.12
 * Add Flatpak packaging support
 * Fix attacked list refresh in the divine powers
+
+# 1.0.13
+* Add a help popup for the quests and some explanations
+* Add a help popup for the successes
+* Add a help popup for the temples
+* Add the player management admin page
+* A popup to send directly a private message to a member
+* Add ambrosia/favors to the admin panel to give resources
+* Code cleaning
+* Fix a typo in the user profile title
+* Fix the background on the user menu
+* Fix missing translations
+* Fix the link to the alliance's profile page
+* Fix the permalink feature
+* Reduce the max icon size in the attack menu
+* Remove forced left padding on some texts
+* Remove the subtitle "army sent" if no unit sent
+* Start the admin profile page
+* The option buttons are now in the right corners of each frame
+* The XP and the victories are clearer on a single column when < lg
+* Use pages in the Admin news page
