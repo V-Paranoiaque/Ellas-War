@@ -119,6 +119,8 @@ export class StoreroomComponent implements OnInit, OnDestroy {
       'ress_id': resource_id
     }
     this.socket.emit('storeroomBuy', msg);
+    
+    this.storeroom_ress[resource_id] = '';
   }
   
   storeroomRedeem(id:number, quantity:number) {
