@@ -351,8 +351,9 @@ export class User {
   }
   
   disconnect() {
+    let localToken = localStorage.getItem('token');
     localStorage.removeItem('token');
-    this.socket.emit('deconnection');
+    this.socket.emit('deconnection', localToken);
     
     this.info.id = 0;
     this.info.mstatus = 0;
