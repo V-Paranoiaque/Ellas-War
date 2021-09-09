@@ -316,18 +316,19 @@ export class User {
                              '&scope=email&response_type=token';
     }
     else {
-      facebookConnectPlugin.login(["public_profile", "email"])
-      .then(() => {
-        facebookConnectPlugin.getAccessToken()
-        .then((success:any) => {
-          // success
-          var msg = {
-            'id': success.id,
-            'token': success
-          };
-          this.socket.emit('mobileFB', msg);
-        });
-      });
+      facebookConnectPlugin.login(["public_profile"],
+        () => {
+          facebookConnectPlugin.getAccessToken((token:any) => {
+            var msg = {
+              'token': token
+            };
+            this.socket.emit('mobileFB', msg);
+          });
+        },
+        function (error:any) {
+          alert(error)
+        }
+      );
     }
   }
   
