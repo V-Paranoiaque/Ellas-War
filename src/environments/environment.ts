@@ -16,7 +16,7 @@ export const environment = {
   },
   SERVER_DEV: 'https://dev.ellaswar.com',
   facebook: {
-    client_id: 989771815127197
+    client_id: 173897253017254
   },
   google: {
     client_id: '516434350883-uqounu7irl3u2jl42dph661dsqg0vvnj.apps.googleusercontent.com'
