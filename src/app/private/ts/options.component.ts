@@ -182,7 +182,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
     }
     else {
       let msg = {
-        'oldPassword': this.oldPassword,
+        'oldpassword': this.oldPassword,
         'newpassword': this.newPassword
       };
       this.socket.emit('accountPassword', msg);
