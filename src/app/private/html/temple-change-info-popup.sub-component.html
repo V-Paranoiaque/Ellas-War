@@ -7,8 +7,8 @@
     <h5 *ngIf="temple == 4" translate>Replace the Ares Temple</h5>
     <h5 *ngIf="temple == 5" translate>Replace the Athena Temple</h5>
     <h5 *ngIf="temple == 6" translate>Replace the Artemis Temple</h5>
-    <h5 *ngIf="temple == 7" translate>Replace the Hephaestus Temple</h5>
-    <h5 *ngIf="temple == 8" translate>Replace the Dionysus Temple</h5>
+    <h5 *ngIf="temple == 7" translate>Replace the Dionysus Temple</h5>
+    <h5 *ngIf="temple == 8" translate>Replace the Hephaestus Temple</h5>
     <h5 *ngIf="temple == 9" translate>Replace the Zeus Temple</h5>
     <h5 *ngIf="temple == 10" translate>Replace the Hades Temple</h5>
     <h5 *ngIf="temple == 11" translate>Replace the Poseidon Temple</h5>
@@ -63,16 +63,16 @@
         <app-ew-icon name="artemis"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
-           [ngClass]="{'grey': temple > 0 && temple != 8}"
+           [ngClass]="{'grey': temple > 0 && temple != 7}"
            *ngIf="user.getPropertyNb('dionysus') == 1"
-           (click)="selectTemples(8)"
+           (click)="selectTemples(7)"
            title="{{'Dionysus' | translate}}">
         <app-ew-icon name="dionysus"></app-ew-icon>
       </div>
       <div class="frame frame-25" role="button"
-           [ngClass]="{'grey': temple > 0 && temple != 7}"
+           [ngClass]="{'grey': temple > 0 && temple != 8}"
            *ngIf="user.getPropertyNb('hephaestus') == 1"
-           (click)="selectTemples(7)"
+           (click)="selectTemples(8)"
            title="{{'Hephaestus' | translate}}">
         <app-ew-icon name="hephaestus"></app-ew-icon>
       </div>
@@ -205,12 +205,12 @@
         </div>
       </div>
       <div *ngIf="temple == 6 || temple == 8">
-        <strong translate>Hephaestus</strong>
+        <strong translate>Dionysus</strong>
         <ul>
-          <li translate>+30% Drachmas production</li>
-          <li>{{'New unity: { unit }'| translate: { unit: 'Automatons' | translate } }}</li>
-          <li translate>Hephaestus improves the defensive power of the automatons by 200% for 2 hours.</li>
-          <li translate>The lava falls on the enemies preventing them from building buildings for 20 min.</li>
+          <li translate>+30% wine production</li>
+          <li>{{'New unity: { unit }'| translate: { unit: 'Centaurs' | translate } }}</li>
+          <li translate>Dionysus increases grape production by 60% for 6 hours.</li>
+          <li translate>Dionysus offers 500 satyrs to help you destroy your enemies.</li>
         </ul>
         <div class="text-end">
           <button type="button" class="btn btn-success" data-bs-dismiss="modal"
@@ -219,12 +219,12 @@
         </div>
       </div>
       <div *ngIf="temple == 6 || temple == 7">
-        <strong translate>Dionysus</strong>
+        <strong translate>Hephaestus</strong>
         <ul>
-          <li translate>+30% wine production</li>
-          <li>{{'New unity: { unit }'| translate: { unit: 'Centaurs' | translate } }}</li>
-          <li translate>Dionysus increases grape production by 60% for 6 hours.</li>
-          <li translate>Dionysus offers 500 satyrs to help you destroy your enemies.</li>
+          <li translate>+30% Drachmas production</li>
+          <li>{{'New unity: { unit }'| translate: { unit: 'Automatons' | translate } }}</li>
+          <li translate>Hephaestus improves the defensive power of the automatons by 200% for 2 hours.</li>
+          <li translate>The lava falls on the enemies preventing them from building buildings for 20 min.</li>
         </ul>
         <div class="text-end">
           <button type="button" class="btn btn-success" data-bs-dismiss="modal"
