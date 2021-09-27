@@ -4,6 +4,10 @@
   <app-messages-popup></app-messages-popup>
 </div>
 
+<div class="modal fade" id="AccountInformation" tabindex="-1" aria-hidden="true">
+  <app-options-account-information-popup></app-options-account-information-popup>
+</div>
+
 <div class="container main-full" role="main">
   <div class="row">
     <div class="card card-column col-12">
@@ -11,6 +15,12 @@
         <h1 class="text-center">
           {{ profile.username }}
           
+          <button class="btn btn-success"
+                  *ngIf="user.getId() == profile.membre_id"
+                  data-bs-toggle="modal" data-bs-target="#AccountInformation"
+                  title="{{'Change account information'| translate}}">
+            <ic-icon [icon]="userCircle"></ic-icon>
+          </button>
           <button class="btn btn-primary"
                   *ngIf="user.getPropertyNb('mstatus') == 1"
                   data-bs-toggle="modal" data-bs-target="#MsgNew"

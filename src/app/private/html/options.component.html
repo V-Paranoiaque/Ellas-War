@@ -1,44 +1,7 @@
 <app-common-top-bar active="options"></app-common-top-bar>
 
 <div class="modal fade" id="AccountInformation" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" translate>Information</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" 
-                aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row text-center">
-          <img src="{{ user.getConfig().url }}/pprofile/{{ imageProfile }}" *ngIf="imageProfile != ''"
-               class="img-responsive center-block" alt="{{'Profile picture'| translate}}">
-        </div>
-        <div class="row text-center">
-          <span translate>Send a picture</span>
-          <input type="file" accept="image/*" (change)="uploadImage($event)"
-                 [(ngModel)]="image" />
-        </div>
-        
-        <div *ngIf="errorAccountSave == 1"
-             class="text-center fw-bold text-danger" translate>
-          Information saved
-        </div>
-        <strong for="localisation" translate>Location</strong>
-        <input type="text" class="form-control" placeholder="{{'Location'|translate}}"
-               [(ngModel)]="location" />
-        <strong for="description" translate>Description</strong>
-        <textarea class="form-control" placeholder="{{'Your description'|translate}}"
-                  [(ngModel)]="description" ></textarea>
-        <br/>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-                data-bs-dismiss="modal" translate>Close</button>
-        <button type="button" class="btn btn-primary" (click)="accountSave()" 
-                translate>Save</button>
-      </div>
-    </div>
-  </div>
+  <app-options-account-information-popup></app-options-account-information-popup>
 </div>
 
 <div class="modal fade" id="GameSettings" tabindex="-1" aria-hidden="true">

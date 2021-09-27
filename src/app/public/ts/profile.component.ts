@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
 import brushIcon from '@iconify/icons-bi/brush';
+import userCircle from '@iconify/icons-fa-solid/user-circle';
 import userShield from '@iconify/icons-fa-solid/user-shield';
 
 @Component({
@@ -22,7 +23,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private subPlayer:any;
   private subTitle:any;
   
-  brushIcon    = brushIcon;
+  brushIcon  = brushIcon;
+  userCircle = userCircle;
   userShield = userShield;
   
   constructor(protected http: HttpClient, public user: User,
@@ -34,8 +36,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
+    this.load();
+    
+    this.socket.on('accountRefresh', () => {
+      this.load();
+    });
+  }
+  
+  ngOnDestroy() {
+    this.subPlayer.unsubscribe();
+    
+    if(this.subTitle) {
+      this.subTitle.unsubscribe();
+    }
+    
+    this.socket.removeListener('accountRefresh');
+  }
+  
+  load() {
     let userId = this.route.snapshot.paramMap.get('id');
     let url = this.socket.url+'/api/playerProfile/'+userId+'.json';
+    this.socket.emit('accountInfo');
     
     this.subPlayer = this.http.get(url).subscribe((player:any) => {
       if(player && player.membre_id) {
@@ -47,13 +68,5 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.socket.onChange.emit({action: 'addDest', username: player.username});
       }
     });
-  }
-  
-  ngOnDestroy() {
-    this.subPlayer.unsubscribe();
-    
-    if(this.subTitle) {
-      this.subTitle.unsubscribe();
-    }
   }
 }
