@@ -992,13 +992,16 @@
           <div class="card-body text-center" *ngIf="attackMode == 9">
             <span [ngSwitch]="sanctuariesSpyInfo.error">
               <div *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</div>
-              <div *ngSwitchCase="2" translate>
-                Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.
+              <div *ngSwitchCase="2">
+                <span translate>
+                  Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.
+                </span>
+                <br/><br/>
               </div>
               <div *ngSwitchCase="4" translate>You do not have spies.</div>
             </span>
             
-            <div *ngIf="sanctuariesSpyInfo.error == 0 || sanctuariesSpyInfo.error == 2">
+            <div *ngIf="sanctuariesSpyInfo.error == 2 || sanctuariesSpyInfo.error == 3">
               <div *ngIf="sanctuariesSpyInfo.unitiesNb > 0">
                 <strong translate>Unities</strong><strong translate>:</strong> 
                 {{sanctuariesSpyInfo.unitiesNb| number:'': this.translate.currentLang}}
@@ -1014,25 +1017,25 @@
                    translate>
                 This sancturary is not protected by any army, fight directly the monster!
               </div>
-              <div>
-                <br/>
-                <br/>
-                <button class="btn btn-primary"
-                        (click)="sanctuariesSpy(sanctuariesSpyInfo.id)"
-                        *ngIf="user.getPropertyNb('apollo') == 0">
-                  <ic-icon [icon]="fistRaised"></ic-icon>
-                </button>
-                <button class="btn btn-primary"
-                        (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
-                        *ngIf="user.getPropertyNb('apollo') == 1">
-                  <ic-icon [icon]="eyeIcon"></ic-icon>
-                </button>
-                
-                <button class="btn"
-                        (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
-                  <ic-icon [icon]="swordIcon"></ic-icon>
-                </button>
-              </div>
+            </div>
+            <div>
+              <br/>
+              <br/>
+              <button class="btn btn-primary"
+                      (click)="sanctuariesSpy(sanctuariesSpyInfo.id)"
+                      *ngIf="user.getPropertyNb('apollo') == 0">
+                <ic-icon [icon]="fistRaised"></ic-icon>
+              </button>
+              <button class="btn btn-primary"
+                      (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
+                      *ngIf="user.getPropertyNb('apollo') == 1">
+                <ic-icon [icon]="eyeIcon"></ic-icon>
+              </button>
+              
+              <button class="btn"
+                      (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
+                <ic-icon [icon]="swordIcon"></ic-icon>
+              </button>
             </div>
           </div>
           
