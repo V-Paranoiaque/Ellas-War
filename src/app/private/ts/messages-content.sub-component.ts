@@ -8,8 +8,8 @@ import { User } from '../../../services/user.service';
 })
 
 export class MessagesContentSubComponent {
-  @Input()
-  msg: any;
+  @Input() msg: any;
+  @Input() full: any;
   
   constructor(public user: User, public translate: TranslateService) {
     

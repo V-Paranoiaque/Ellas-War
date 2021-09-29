@@ -13,8 +13,8 @@
     <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="3"><app-fury-message [info]="msg.content"></app-fury-message></span>
-  <span *ngSwitchCase="4">{{'Attempted espionage from { value }' | translate: { value: msg.title.username } }}</span>
-  <span *ngSwitchCase="5">{{'Espionage from { value }' | translate: { value: msg.title.username} }}</span>
+  <span *ngSwitchCase="4">{{'Attempted espionage from { value }' | translate: { value: full.title.username } }}</span>
+  <span *ngSwitchCase="5">{{'Espionage from { value }' | translate: { value: full.title.username} }}</span>
   <span *ngSwitchCase="6">
       {{'{ value } has triggered the hostilities.' | translate: { value: msg.content.player_name} }}
       <br/>
@@ -148,10 +148,10 @@
   <span *ngSwitchCase="16"><app-sanctuary-message [info]="msg.content"></app-sanctuary-message></span>
   <span *ngSwitchCase="17">
     <h3 translate>Result</h3>
-    <strong>{{msg.title.attacker}}</strong><strong translate>:</strong> 
+    <strong>{{full.title.attacker}}</strong><strong translate>:</strong> 
     {{msg.content.attacker}}
     <br/>
-    <strong>{{msg.title.defender}}</strong><strong translate>:</strong> 
+    <strong>{{full.title.defender}}</strong><strong translate>:</strong> 
     {{msg.content.defender}}
     <br/>
     <br/>
@@ -160,10 +160,10 @@
   </span>
   <span *ngSwitchCase="18">
     <h3 translate>Result</h3>
-    <strong>{{msg.title.attacker}}</strong><strong translate>:</strong> 
+    <strong>{{full.title.attacker}}</strong><strong translate>:</strong> 
     {{msg.content.attacker}}
     <br/>
-    <strong>{{msg.title.defender}}</strong><strong translate>:</strong> 
+    <strong>{{full.title.defender}}</strong><strong translate>:</strong> 
     {{msg.content.defender}}
     <br/>
     <br/>
@@ -171,8 +171,8 @@
     <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="19"><app-lost-message [info]="msg.content"></app-lost-message></span>
-  <span *ngSwitchCase="20">{{'Attempted espionage of your sanctuary from { value }' | translate: { value: msg.title.username } }}</span>
-  <span *ngSwitchCase="21">{{'Espionage of your sanctuary from { value }' | translate: { value: msg.title.username } }}</span>
+  <span *ngSwitchCase="20">{{'Attempted espionage of your sanctuary from { value }' | translate: { value: full.title.username } }}</span>
+  <span *ngSwitchCase="21">{{'Espionage of your sanctuary from { value }' | translate: { value: full.title.username } }}</span>
   <span *ngSwitchCase="22">
     <h2>{{ msg.content.sanctuaries_name | translate}}</h2>
     

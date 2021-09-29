@@ -175,7 +175,7 @@
             </div>
           </div>
           <div *ngFor="let msg of getCurrentMsg().msg" class="card-body">
-            <app-messages-content [msg]="msg"></app-messages-content>
+            <app-messages-content [msg]="msg" [full]="getCurrentMsg()"></app-messages-content>
           </div>
         </div>
       </div>
