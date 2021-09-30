@@ -1,5 +1,9 @@
 <app-common-top-bar active="attacks"></app-common-top-bar>
 
+<div class="modal fade" id="sanctuaryStrengthHelp" tabindex="-1" aria-hidden="true">
+  <app-sanctuary-strength-help-popup></app-sanctuary-strength-help-popup>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row" *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0 || Object.keys(realWaveAttackCheck.habitation).length > 0">
@@ -387,6 +391,16 @@
                         <strong translate>Controlled by</strong>
                         <strong translate>:</strong>
                         {{ sanctuary.username }}
+                        <br/>
+                        <strong translate>Strength</strong>
+                        <strong translate>:</strong>
+                        <span [ngClass]="{'text-danger': sanctuary.sanctuaries_power == 0}">
+                          {{ sanctuary.sanctuaries_power }}%
+                        </span>
+                        <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
+                              role="button" title="{{'Help'|translate}}" translate>
+                          <ic-icon [icIcon]="questionCircle"></ic-icon>
+                        </span>
                         <br/>
                         <strong translate>Power</strong>
                         <strong translate>:</strong>
@@ -1069,19 +1083,29 @@
           
           <!-- Sanctuary info -->
           <div class="card-body" *ngIf="attackMode == 12">
-            <span *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
+            <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
               Your city is protected against the fury of Demeter
-            </span>
-            <span *ngIf="sanctuariesInfo.sanctuaries_id == 2" translate>
+            </div>
+            <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 2" translate>
               The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
-            </span>
-            <span *ngIf="sanctuariesInfo.sanctuaries_id == 3" translate>
+            </div>
+            <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 3" translate>
               Your city produces 24 additional Ambrosia a day
-            </span>
-            <span *ngIf="sanctuariesInfo.sanctuaries_id == 4" translate>
+            </div>
+            <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 4" translate>
               Your city is protected against the Zeus lightning
-            </span>
-            
+            </div>
+            <div class="text-center">
+              <strong translate>Strength</strong>
+              <strong translate>:</strong>
+              <span [ngClass]="{'text-danger': sanctuariesInfo.sanctuaries_power == 0}">
+                {{ sanctuariesInfo.sanctuaries_power }}%
+              </span>
+              <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
+                    role="button" title="{{'Help'|translate}}" translate>
+                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              </span>
+            </div>
             <div class="fw-bold text-danger text-center"
                  id="sanctuariesWaveTabDesc" translate>
               Units you send to a sanctuary cannot return to your city. They also don't consume any resources.

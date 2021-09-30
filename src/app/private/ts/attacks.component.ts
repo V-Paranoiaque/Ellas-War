@@ -12,6 +12,7 @@ import fireIcon from '@iconify/icons-fa-solid/fire';
 import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import share from '@iconify/icons-bi/share';
 import sortDown from '@iconify/icons-fa-solid/sort-down';
 import sortUP from '@iconify/icons-fa-solid/sort-up';
@@ -73,6 +74,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   fistRaised = fistRaised;
   gemIcon    = gemIcon;
   plusIcon   = plusIcon;
+  questionCircle = questionCircle;
   share      = share;
   sortDown   = sortDown;
   sortUP     = sortUP;
