@@ -91,3 +91,23 @@
 * The option buttons are now in the right corners of each frame
 * The XP and the victories are clearer on a single column when < lg
 * Use pages in the Admin news page
+
+# 1.0.14
+* Add a popup to explain about sanctuary strength
+* Add an admin page to calculate XP
+* Bashing is now after 2 attacks and not 3
+* Better system to handle crashes
+* Edit profile directly from the public page
+* Fix amount reset after buying on the Agora
+* Fix image width in the profiles
+* Fix language for blocked and paused users
+* Fix member calculation in the alliances
+* Fix spying Sanctuaries
+* Fix third temple modification
+* Fix titles in the Sanctuaries
+* Improve password modification
+* Modify XP system
+* Optimize backend code
+* New feature: Sanctuaries are loosing Strength
+* New connection system
+* Show the end of the pause on the home page
