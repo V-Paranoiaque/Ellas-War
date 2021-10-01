@@ -1,0 +1,45 @@
+<div class="modal-dialog" *ngIf="info">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        {{ info.sanctuaries_name | translate }}
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" 
+              aria-label="Close"></button>
+    </div>
+    <div class="modal-body text-center">
+      <strong translate>Strength</strong>
+      <strong translate>:</strong>
+      <span [ngClass]="{'text-danger': info.sanctuaries_power == 0}">
+        {{ info.sanctuaries_power }}%
+      </span>
+      <br/>
+      <span translate>
+        Each day the sanctuaries lose 5% of strength. According to this strength, the defense of the unities keeping it will decrease.
+      </span>
+      <br/>
+      <span translate>
+        To recharge them, you need to pay a fee based on the units defending it. 
+      </span>
+      
+      <div *ngIf="info.sanctuaries_power < 100">
+        <br/>
+        <strong translate>Strengthen your sanctuary</strong>
+        <br/>
+        <span *ngFor="let resource of info.price | keyvalue">
+          <span *ngIf="Number(resource.value) > 0"
+                [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key)}">
+            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal" translate>Close</button>
+      <button type="button" class="btn btn-primary" (click)="strengthen()"
+              *ngIf="canUpdate()" translate>Strengthen</button>
+    </div>
+  </div>
+</div>

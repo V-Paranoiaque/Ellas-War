@@ -4,6 +4,10 @@
   <app-sanctuary-strength-help-popup></app-sanctuary-strength-help-popup>
 </div>
 
+<div class="modal fade" id="sanctuaryStrengthUpdate" tabindex="-1" aria-hidden="true">
+  <app-sanctuary-strength-update-popup [info]="sanctuariesInfo"></app-sanctuary-strength-update-popup>
+</div>
+
 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
   <div class="container">
     <div class="row" *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0 || Object.keys(realWaveAttackCheck.habitation).length > 0">
@@ -384,7 +388,7 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title" translate>
+                      <h5 class="card-title">
                         {{ sanctuary.sanctuaries_name | translate }}
                       </h5>
                       <p class="card-text">
@@ -398,7 +402,7 @@
                           {{ sanctuary.sanctuaries_power }}%
                         </span>
                         <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
-                              role="button" title="{{'Help'|translate}}" translate>
+                              role="button" title="{{'Help'|translate}}">
                           <ic-icon [icIcon]="questionCircle"></ic-icon>
                         </span>
                         <br/>
@@ -648,6 +652,11 @@
                *ngIf="attackMode == 12">
             <h2 id="playerDesc">
               {{ sanctuariesInfo.sanctuaries_name | translate }}
+              
+              <span class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#sanctuaryStrengthUpdate" role="button">
+                <ic-icon [icon]="shieldShaded"></ic-icon>
+              </span>
             </h2>
           </div>
           

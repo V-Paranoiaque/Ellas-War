@@ -14,6 +14,7 @@ import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import share from '@iconify/icons-bi/share';
+import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import sortDown from '@iconify/icons-fa-solid/sort-down';
 import sortUP from '@iconify/icons-fa-solid/sort-up';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -76,6 +77,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   plusIcon   = plusIcon;
   questionCircle = questionCircle;
   share      = share;
+  shieldShaded   = shieldShaded;
   sortDown   = sortDown;
   sortUP     = sortUP;
   swordIcon  = swordIcon;
@@ -141,6 +143,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.sanctuariesSpyInfo = {};
     this.sanctuariesAttackInfo = {};
     this.sanctuariesDefense = [];
+    this.sanctuariesInfo = {};
     this.sanctuariesWave = []
     this.sanctuariesWaveTab = [];
   }
@@ -270,6 +273,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
         this.attackMode = 12;
       }
     });
+    this.socket.on('sanctuariesInfoRefresh', () => {
+      if(this.sanctuariesInfo.sanctuaries_id) {
+        this.socket.emit('sanctuariesInfo', this.sanctuariesInfo.sanctuaries_id);
+      }
+    });
     
     this.socket.on('myAllianceWar', (data:any) => {
       this.myAllianceWar = data;
@@ -307,6 +315,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.removeListener('sanctuariesDefense');
     this.socket.removeListener('sanctuariesSpy');
     this.socket.removeListener('sanctuariesInfo');
+    this.socket.removeListener('sanctuariesInfoRefresh');
     this.socket.removeListener('myAllianceWar');
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
@@ -507,7 +516,6 @@ export class AttacksComponent implements OnInit, OnDestroy {
   sanctuariesPrepareUnit(id:number, nb:number) {
     this.attackMode = 10;
     this.sanctuariesWave[id] = nb;
-    this.socket.emit('sanctuariesInfo', id);
   }
   sanctuariesEye(id:number) {
     this.targetProfile = {};
