@@ -18,9 +18,46 @@
   border-right: 0px;
 }
 
+.chat-players {
+  overflow-y: scroll;
+}
+
 @media (max-width: 575px) {
   .chat-players {
     border-top: solid var(--color-menu-dark) 1px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    max-height: 36px;
+  }
+  .chat-players .chat-player {
+    display: inline-block;
+    margin: 0px 0.3em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: initial;
+  }
+  .chat-players .chat-player a {
+    padding: 0.35em;
+    font-size: .9em;
+    white-space: nowrap;
+    border-radius: .25rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    display: inline-block;
+  }
+  .chat-players .chat-player a.text-danger {
+    border-color: rgba(var(--bs-danger-rgb));
+  }
+}
+
+@media (min-width: 576px) {
+  .chat-players {
+    height: 191px;
+  }
+  .chat-players .chat-player {
+    width: 100%;
+    float: left;
   }
 }
 

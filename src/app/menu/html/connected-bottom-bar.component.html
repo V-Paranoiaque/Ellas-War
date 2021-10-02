@@ -11,12 +11,13 @@
       </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 chat-players">
-      <div *ngFor="let user of chat_user_players">
+      <span *ngFor="let user of chat_user_players"
+            class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
            [ngClass]="{'text-danger': user.rank == 5,
                       'text-warning': user.chat_allowed == 0}"
-           class="fw-bold">{{user.username}}</a><br/>
-      </div>
+           class="fw-bold">{{user.username}}</a>
+      </span>
     </div>
     <div class="col-12">
       <div class="input-group" *ngIf="user.getPropertyNb('chat_allowed') == 1">
@@ -49,12 +50,13 @@
       </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 chat-players">
-      <div *ngFor="let user of chat_alli_players">
+      <span *ngFor="let user of chat_alli_players"
+            class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
            [ngClass]="{'text-danger': user.rank == 5,
                       'text-warning': user.chat_allowed == 0}"
-           class="fw-bold">{{user.username}}</a><br/>
-      </div>
+           class="fw-bold">{{user.username}}</a>
+      </span>
     </div>
     <div class="col-12">
       <div class="input-group">

@@ -106,6 +106,7 @@
 * Fix third temple modification
 * Fix titles in the Sanctuaries
 * Improve password modification
+* Improve the list of the players connected on the chat on mobile
 * Modify XP system
 * Optimize backend code
 * New feature: Sanctuaries are loosing Strength
