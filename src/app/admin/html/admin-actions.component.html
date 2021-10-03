@@ -1,0 +1,33 @@
+<app-common-top-bar active="admin"></app-common-top-bar>
+
+<div class="container-fluid">
+  <div class="row">
+    <app-admin-left-menu active="actions" class="col-lg-2 col-md-3 col-sm-3"></app-admin-left-menu>
+  
+    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
+      <div class="container">
+        <div class="row text-center">
+          <h1 translate>Run an action</h1>
+          
+          <select class="form-select" [(ngModel)]="adminActions">
+            <option value="" translate>
+              Select an action
+            </option>
+            <option value="Diamondrun" translate>
+              Run the diamond
+            </option>
+            <option value="HonnorRanking" translate>
+              Run the Honnor Ranking
+            </option>
+          </select>
+          
+          <div class="btn btn-primary" (click)="run()">
+            Run
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-common-bottom-bar></app-common-bottom-bar>

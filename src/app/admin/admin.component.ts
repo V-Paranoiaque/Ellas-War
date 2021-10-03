@@ -1,3 +1,4 @@
+import { AdminActionsComponent } from './ts/admin-actions.component';
 import { AdminChatComponent } from './ts/admin-chat.component';
 import { AdminContactComponent } from './ts/admin-contact.component';
 import { AdminEmailsComponent } from './ts/admin-emails.component';
@@ -21,6 +22,7 @@ import { AdminXpComponent } from './ts/admin-xp.component';
 import { AdminQuestsTitleSubComponent } from './ts/admin-quests-title.sub-component';
 
 export const AdminComponent = [
+  AdminActionsComponent,
   AdminChatComponent,
   AdminContactComponent,
   AdminEmailsComponent,

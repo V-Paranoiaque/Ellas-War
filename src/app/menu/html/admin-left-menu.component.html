@@ -32,6 +32,9 @@
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/permissions']"
       [ngClass]="{'active': active == 'permissions'}"
       role="button" translate>Permissions</a>
+  <a class="list-group-item list-group-item-action" [routerLink]="['/admin/actions']"
+     [ngClass]="{'active': active == 'action'}" *ngIf="user.getPropertyNb('rank') >= 5" 
+     role="button" translate>Actions</a>
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/contact']"
       [ngClass]="{'active': active == 'contact'}"
       role="button" translate>Contact</a>
