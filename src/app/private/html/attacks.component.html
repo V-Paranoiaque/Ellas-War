@@ -1024,7 +1024,7 @@
               <div *ngSwitchCase="4" translate>You do not have spies.</div>
             </span>
             
-            <div *ngIf="sanctuariesSpyInfo.error == 2 || sanctuariesSpyInfo.error == 3">
+            <div *ngIf="sanctuariesSpyInfo.error == 0 || sanctuariesSpyInfo.error == 2 || sanctuariesSpyInfo.error == 3">
               <div *ngIf="sanctuariesSpyInfo.unitiesNb > 0">
                 <strong translate>Unities</strong><strong translate>:</strong> 
                 {{sanctuariesSpyInfo.unitiesNb| number:'': this.translate.currentLang}}
@@ -1045,8 +1045,7 @@
               <br/>
               <br/>
               <button class="btn btn-primary"
-                      (click)="sanctuariesSpy(sanctuariesSpyInfo.id)"
-                      *ngIf="user.getPropertyNb('apollo') == 0">
+                      (click)="sanctuariesSpy(sanctuariesSpyInfo.id)">
                 <ic-icon [icon]="fistRaised"></ic-icon>
               </button>
               <button class="btn btn-primary"
