@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="card-body text-center" *ngIf="id == 0">
+          <div class="card-body text-center" *ngIf="msg == 0">
             <div *ngIf="contactNb == 0"
                  translate>You do not have message on the support page</div>
             <br/>
@@ -52,7 +52,7 @@
               <tbody>
                 <tr *ngFor="let info of contactList">
                   <th scope="row" class="text-start">
-                    <a [routerLink]="['/support/'+info.support_id]">
+                    <a [routerLink]="['/support/'+contactC+'/'+info.support_id]">
                       {{info.support_topic}}
                     </a>
                   </th>
@@ -64,7 +64,7 @@
                   </td>
                   <td>
                     <a class="btn btn-primary"
-                       [routerLink]="['/support/'+info.support_id]">
+                       [routerLink]="['/support/'+contactC+'/'+info.support_id]">
                        <ic-icon [icon]="eye"></ic-icon>
                       <span class="visually-hidden" translate>Read and reply to the message:</span> 
                       <span class="visually-hidden">{{info.support_id}}</span>
@@ -73,11 +73,31 @@
                 </tr>
               </tbody>
             </table>
+            
+            <div *ngIf="contactNb > 1">
+              <br/>
+              <div class="input-group">
+                <span class="input-group-text" role="button"
+                      (click)="supportPageChange(1)">&lt;&lt;</span>
+                <span class="input-group-text" role="button"
+                      (click)="supportPageChange(contactC-1)">&lt;</span>
+                <select class="form-select" [ngModel]="contactC" 
+                        (change)="supportPageChange(mySelect.value)"
+                        title="{{'Change page'|translate}}" #mySelect>
+                  <option *ngFor="let id of range(1, contactNb)"
+                          value="{{id}}" translate>Page {{id}}</option>
+                </select>
+                <span class="input-group-text" role="button"
+                      (click)="supportPageChange(contactC+1)">&gt;</span>
+                <span class="input-group-text" role="button"
+                      (click)="supportPageChange(contactNb)">&gt;&gt;</span>
+              </div>
+            </div>
           </div>
-          <div class="card-body"  *ngIf="id > 0">
+          <div class="card-body" *ngIf="msg > 0">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a [routerLink]="['/support']">Support</a></li>
+                <li class="breadcrumb-item"><a [routerLink]="['/support/'+contactC]">Support</a></li>
                 <li class="breadcrumb-item active">{{contactInfo.title}}</li>
               </ol>
             </nav>

@@ -133,6 +133,7 @@ routes = [
   { path: 'storeroom', component: StoreroomComponent },
   { path: 'support', component: SupportComponent },
   { path: 'support/:id', component: SupportComponent },
+  { path: 'support/:id/:msg', component: SupportComponent },
   
   { path: 'blocked', component: BlockedComponent },
   

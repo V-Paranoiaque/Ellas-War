@@ -11,10 +11,10 @@ import eye from '@iconify/icons-fa-solid/eye';
 })
 
 export class SupportComponent implements OnInit, OnDestroy {
-  public id: any;
+  public msg: any;
   public answerMsg:string;
   public contactList:any;
-  public contactC:number;
+  public contactC:any;
   public contactInfo:any;
   public contactNb:number;
   public contactNewTitle:string;
@@ -24,19 +24,26 @@ export class SupportComponent implements OnInit, OnDestroy {
   
   constructor(private router: Router, public user: User, private route: ActivatedRoute, private socket: Socket) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    let id = this.route.snapshot.paramMap.get('id');
     
+    let id = this.route.snapshot.paramMap.get('id');
     if(id) {
-      this.id = id;
+      this.contactC = id;
     }
     else {
-      this.id = 0;
+      this.contactC = 1;
+    }
+    
+    let msg = this.route.snapshot.paramMap.get('msg');
+    if(msg) {
+      this.msg = msg;
+    }
+    else {
+      this.msg = 0;
     }
     
     this.answerMsg = '';
     this.contactList = [];
     this.contactNb = 0;
-    this.contactC  = 1;
     this.contactInfo = {
       'msg': []
     }
@@ -49,8 +56,7 @@ export class SupportComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.user.checkPermissions([1,2,3,4,5]);
-    
-    this.socket.emit('contactList');
+    this.socket.emit('contactList', this.contactC);
     this.loadSupport();
     
     this.socket.on('contactList', (data:any) => {
@@ -65,7 +71,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('contactNew', (data:number) => {
-      this.router.navigate(['/support', data])
+      this.router.navigate(['/support/1/'+data])
     });
     
     this.socket.on('contactInfo', (data:any) => {
@@ -83,7 +89,7 @@ export class SupportComponent implements OnInit, OnDestroy {
   contactAnswer() {
     if(this.answerMsg.trim().length > 0) {
       let info = ({
-        'id': this.id,
+        'id': this.msg,
         'text': this.answerMsg.trim()
       });
       this.socket.emit('contactAnswer', info);
@@ -111,8 +117,28 @@ export class SupportComponent implements OnInit, OnDestroy {
   }
   
   loadSupport() {
-    if(this.id > 0) {
-      this.socket.emit('contactInfo', this.id);
+    if(this.msg > 0) {
+      this.socket.emit('contactInfo', this.msg);
     }
+  }
+  
+  supportPageChange(page:any) {
+    if(!page || page < 1) {
+      page = 1;
+    }
+    
+    if(page > this.contactNb) {
+      page = this.contactNb;
+    }
+    
+    this.router.navigate(['/support/'+page])
+  }
+  
+  range(a:number, b:number) {
+    let list = []
+    for(a;a<=b;a++) {
+      list.push(a);
+    }
+    return list;
   }
 }
