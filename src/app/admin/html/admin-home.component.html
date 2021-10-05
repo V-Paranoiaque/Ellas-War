@@ -6,9 +6,15 @@
   
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <div class="container">
-        <div class="row">
-          test
-        </div>
+          <strong translate>Last honnor reset:</strong> {{ adminStats.honnor_last_time*1000| date:'EEEE dd MMMM, HH:mm'}}
+          <br/>
+          <strong translate>Last diamond reset:</strong> {{ adminStats.diamond_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+          <br/>
+          
+          <strong translate>Last daily reset:</strong> {{ adminStats.daily_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+          <br/>
+          <strong translate>Last weekly reset:</strong> {{ adminStats.weekly_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+          <br/>
       </div>
     </div>
   </div>
