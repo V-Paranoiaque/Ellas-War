@@ -52,13 +52,18 @@
       <ic-icon class="text-success" [icIcon]="angleUp"></ic-icon>
       {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
       <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
+      <ic-icon data-bs-toggle="modal" data-bs-target="#ambrosiaHelp"
+               data-bs-dismiss="modal" [icIcon]="questionCircle" 
+               title="{{'About Ambrosia'|translate}}"
+               role="button"></ic-icon>
     </div>
     <div *ngIf="user.hasLevelRess('favor')">
       <span>=</span>
       {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}
       <app-id-to-ress [ress_id]="'favor'"></app-id-to-ress>
       <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
-               role="button"></ic-icon>
+               title="{{'Access to the Favors'|translate}}"
+               role="button" data-bs-dismiss="modal"></ic-icon>
     </div>
   </div>
   
