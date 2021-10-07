@@ -112,3 +112,10 @@
 * New feature: Sanctuaries are loosing Strength
 * New connection system
 * Show the end of the pause on the home page
+
+# 1.0.15
+* Add reset stats to the admin home page
+* Add pages to the support page
+* Fix the diplomacy page when there is no alliances
+* Fix when spying sanctuaries
+* New admin page to run crons manually
