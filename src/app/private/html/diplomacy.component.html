@@ -60,11 +60,10 @@
               {{'To start wars, your alliance must have at least { value } members.'| translate:{ value: user.info.datas.war.minmembers } }}
               <br/>
             </div>
-            
             <div class="visually-hidden" id="allianceListDesc"
                  translate>List of the alliances</div>
             <table class="table table-striped table-middle align-middle"
-                   *ngIf="allianceList" aria-labelledby="allianceListDesc">
+                   *ngIf="allianceList.length > 0" aria-labelledby="allianceListDesc">
               <thead>
                 <tr>
                   <th (click)="allianceListOrder('mbs')" scope="col"
@@ -216,7 +215,7 @@
               </tbody>
             </table>
             
-            <div class="text-center" *ngIf="!allianceList" translate>
+            <div class="text-center" *ngIf="allianceList.length == 0" translate>
               There is no alliance available currently
             </div>
           </div>
