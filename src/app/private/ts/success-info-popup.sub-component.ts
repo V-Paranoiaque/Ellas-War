@@ -43,12 +43,18 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
       this.hfDisplay = data;
       this.calculate();
     });
+    
+    this.socket.on('successRefresh', () => {
+      this.socket.emit('hfNext');
+      this.socket.emit('statsPlayer');
+    });
   }
   
   ngOnDestroy() {
     this.socket.removeListener('statsPlayer');
     this.socket.removeListener('hfNext');
     this.socket.removeListener('hfDisplay');
+    this.socket.removeListener('successRefresh');
   }
   
   calculate() {
