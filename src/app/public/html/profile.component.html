@@ -11,7 +11,13 @@
 <div class="container main-full" role="main">
   <div class="row">
     <div class="card card-column col-12">
-      <div class="card-body">
+      <div class="card-body text-center" *ngIf="!profile.username">
+        <br/>
+        <span translate>This account does not exist</span>
+        <br/>
+        <br/>
+      </div>
+      <div class="card-body" *ngIf="profile.username">
         <h1 class="text-center">
           {{ profile.username }}
           
