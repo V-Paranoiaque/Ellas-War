@@ -5,17 +5,24 @@
     <app-admin-left-menu active="home" class="col-lg-2 col-md-3 col-sm-3"></app-admin-left-menu>
   
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
-      <div class="container">
-          <strong translate>Last honnor reset:</strong> {{ adminStats.honnor_last_time*1000| date:'EEEE dd MMMM, HH:mm'}}
-          <br/>
-          <strong translate>Last diamond reset:</strong> {{ adminStats.diamond_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
-          <br/>
-          
-          <strong translate>Last daily reset:</strong> {{ adminStats.daily_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
-          <br/>
-          <strong translate>Last weekly reset:</strong> {{ adminStats.weekly_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
-          <br/>
-      </div>
+      <h2 translate>General</h2>
+      <strong translate>Uptime:</strong> {{ apiInfo.uptime }}s
+      <br/>
+      <strong translate>Date:</strong> {{ apiInfo.timestamp*1000 | date:'EEEE dd MMMM, HH:mm'}}
+      <br/>
+      <strong translate>Min version:</strong> {{ apiInfo.min }}
+      <br/>
+      
+      <h2 translate>Crons</h2>
+      <strong translate>Last honnor reset:</strong> {{ adminStats.honnor_last_time*1000| date:'EEEE dd MMMM, HH:mm'}}
+      <br/>
+      <strong translate>Last diamond reset:</strong> {{ adminStats.diamond_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+      <br/>
+      
+      <strong translate>Last daily reset:</strong> {{ adminStats.daily_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+      <br/>
+      <strong translate>Last weekly reset:</strong> {{ adminStats.weekly_last_time*1000| date:'EEEE dd MMMM, HH:mm' }}
+      <br/>
     </div>
   </div>
 </div>
