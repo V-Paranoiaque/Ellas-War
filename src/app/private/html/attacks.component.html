@@ -1124,8 +1124,7 @@
                 <table aria-labelledby="sanctuariesWaveTabDesc">
                   <tbody *ngFor="let unit of sanctuariesWaveTab; let i = index">
                     <tr>
-                      <th (click)="sanctuariesPrepareUnit(i, getArmy()[i].nb)" 
-                          scope="col" role="button" colspan="2">
+                      <th scope="col" role="button" colspan="2">
                         <strong>
                           {{ user.info.datas.army[getArmy()[i].unit].names | translate }}
                           {{":"|translate}}
