@@ -277,6 +277,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
       if(this.sanctuariesInfo.sanctuaries_id) {
         this.socket.emit('sanctuariesInfo', this.sanctuariesInfo.sanctuaries_id);
       }
+      this.socket.emit('sanctuariesList');
     });
     
     this.socket.on('myAllianceWar', (data:any) => {
