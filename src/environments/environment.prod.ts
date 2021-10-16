@@ -10,7 +10,7 @@ export const environment = {
     default: 'en',
     allowed: ['en', 'fr']
   },
-  SERVER_DEV: 'https://next.ellaswar.com',
+  SERVER_DEV: 'https://dev.ellaswar.com',
   facebook: {
     client_id: 173897253017254
   },

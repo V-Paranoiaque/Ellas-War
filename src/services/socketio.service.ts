@@ -117,13 +117,12 @@ export class Socket {
   getServerUrl(server: string) {
     switch(server) {
       case 'dev':
+      case 'next':
         return 'https://dev.ellaswar.com';
       case 'en':
         return 'https://ellaswar.co.uk';
       case 'fr':
         return 'https://www.ellaswar.com';
-      case 'next':
-        return 'https://next.ellaswar.com';
     }
     return '';
   }
@@ -131,15 +130,14 @@ export class Socket {
   getUrlServer(url:string) {
     switch(url) {
       case 'dev.ellaswar.com':
+      case 'next.ellaswar.com':
         return 'dev';
       case 'ellaswar.co.uk':
         return 'en';
       case 'www.ellaswar.com':
         return 'fr';
-      case 'next.ellaswar.com':
-        return 'next';
       
-      default: return 'next';
+      default: return 'dev';
     }
   }
   
@@ -161,7 +159,7 @@ export class Socket {
   }
   
   detectServerLanguage() {
-    if(this.server == 'fr' || this.server == 'next') {
+    if(this.server == 'fr') {
       return 'fr';
     }
     return 'en';
