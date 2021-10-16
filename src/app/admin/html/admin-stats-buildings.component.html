@@ -1,0 +1,54 @@
+<app-common-top-bar active="admin"></app-common-top-bar>
+
+<div class="col-xs-12 main">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header" id="buildDesc" translate>Buildings</div>
+        <div class="card-body">
+          <table class="table" aria-labelledby="buildDesc">
+            <thead>
+              <tr>
+               <th scope="column" translate>Name</th>
+               <th scope="column" translate>Field</th>
+               <th scope="column" translate>Defense</th>
+               <th scope="column" translate>Price</th>
+               <th scope="column" translate>Production</th>
+               <th scope="column" translate>Consumption</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let building of user.getBuildings()">
+                <td>{{ building.name | translate }}</td>
+                <td>{{ building.field | number:'': this.translate.currentLang }}</td>
+                <td>{{ building.defense | number:'': this.translate.currentLang }}</td>
+                <td>
+                  <span *ngFor="let i of building.cost | keyvalue">
+                    {{ i.value+'' | number:'': this.translate.currentLang }}
+                    <app-id-to-ress [ress_id]="i.key+''"></app-id-to-ress>
+                  </span>
+                </td>
+                <td>
+                  <span *ngFor="let i of building.production | keyvalue">
+                    {{ i.value+'' | number:'': this.translate.currentLang }}
+                    <app-id-to-ress [ress_id]="i.key+''"></app-id-to-ress>
+                  </span>
+                </td>
+                <td>
+                  <span *ngFor="let i of building.consumption | keyvalue">
+                    {{ i.value+'' | number:'': this.translate.currentLang }}
+                    <app-id-to-ress [ress_id]="i.key+''"></app-id-to-ress>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<app-common-bottom-bar></app-common-bottom-bar>

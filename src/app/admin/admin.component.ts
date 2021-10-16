@@ -12,6 +12,7 @@ import { AdminPrayersComponent } from './ts/admin-prayers.component';
 import { AdminProfileComponent } from './ts/admin-profile.component';
 import { AdminQuestsComponent } from './ts/admin-quests.component';
 import { AdminResourcesComponent } from './ts/admin-resources.component';
+import { AdminStatsBuildingsComponent } from './ts/admin-stats-buildings.component';
 import { AdminStatsQuestsComponent } from './ts/admin-stats-quests.component';
 import { AdminStatsUnitsComponent } from './ts/admin-stats-units.component';
 import { AdminStoreroomComponent } from './ts/admin-storeroom.component';
@@ -36,6 +37,7 @@ export const AdminComponent = [
   AdminProfileComponent,
   AdminQuestsComponent,
   AdminResourcesComponent,
+  AdminStatsBuildingsComponent,
   AdminStatsQuestsComponent,
   AdminStatsUnitsComponent,
   AdminStoreroomComponent,
