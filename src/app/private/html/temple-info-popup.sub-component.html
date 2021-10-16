@@ -431,7 +431,7 @@
         These units must be housed in adapted housing.
       </div>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 9" 
            translate>
         Zeus heard your call
       </div>
@@ -451,15 +451,15 @@
     <div class="modal-footer">
       <strong translate>Lord of Lightning</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 10" 
            translate>
         Zeus heard your call
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error === 2" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 2 && temple.power === 10" 
            translate>
         This player does not exist
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error === 3" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 3 && temple.power === 10" 
            translate>
         You can't use this power on this player
       </div>
@@ -492,7 +492,7 @@
     <div class="modal-footer">
       <strong translate>Strength</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 11" 
            translate>
         Zeus heard your call
       </div>
@@ -548,15 +548,15 @@
     <div class="modal-footer">
       <strong translate>Peste</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 12" 
            translate>
         Hades heard your call
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error === 2" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 2&& temple.power === 12" 
            translate>
         This player does not exist
       </div>
-      <div class="alert alert-danger center" *ngIf="temple.error === 3" 
+      <div class="alert alert-danger center" *ngIf="temple.error === 3&& temple.power === 12" 
            translate>
         You can't use this power on this player
       </div>
@@ -588,7 +588,7 @@
     <div class="modal-footer">
       <strong translate>Ereb's Favor</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1&& temple.power === 13" 
            translate>
         Hades heard your call
       </div>
@@ -636,7 +636,7 @@
     <div class="modal-footer">
       <strong translate>Treasure from beyond grave</strong>
       
-      <div class="alert alert-success center" *ngIf="temple.error === 1" 
+      <div class="alert alert-success center" *ngIf="temple.error === 1&& temple.power === 14" 
            translate>
         Hades heard your call
       </div>
