@@ -6,7 +6,7 @@
   
     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main">
       <h2 translate>General</h2>
-      <strong translate>Uptime:</strong> {{ apiInfo.uptime }}s
+      <strong translate>Uptime:</strong> {{ apiInfo.uptime | number:'1.0-0': this.translate.currentLang }}s
       <br/>
       <strong translate>Date:</strong> {{ apiInfo.timestamp*1000 | date:'EEEE dd MMMM, HH:mm'}}
       <br/>
