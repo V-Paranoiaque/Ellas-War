@@ -119,3 +119,16 @@
 * Fix the diplomacy page when there is no alliances
 * Fix when spying sanctuaries
 * New admin page to run crons manually
+
+# 1.0.16
+* Better sanctuary refresh
+* Change sanctuary management button color
+* Display an error message on the profile page when doesn't exist
+* Fix a bug making the game unusable because of a shadow background
+* Fix error messages in the temple powers
+* Fix Success refresh
+* Fix redirect when adding unities in a sanctuary
+* More information on the admin home page
+* New admin page to show buildings stats
+* Reduce building destruction
+* Remove the test server
