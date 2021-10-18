@@ -139,8 +139,8 @@
               <tbody>
                 <tr *ngFor="let p of myAllianceMembers">
                   <td>
-                    <a [ngClass]="{'player_blocked': p.membre_status == '3' || p.membre_status == '5',
-                                   'player_pause': p.membre_status == '4'}"
+                    <a [ngClass]="{'text-danger': p.membre_status == '3' || p.membre_status == '5',
+                                  'text-warning': p.membre_status == '4'}"
                        [routerLink]="['/profile/'+p.membre_id]">
                       {{p.username}}
                       ({{p.level}})
