@@ -78,7 +78,7 @@
               <select class="form-select" #mySelect
                       (change)="rankingPageChange(mySelect.value)"
                       [ngModel]="rankingPage" title="{{'Change page'|translate}}">
-                <option *ngFor="let id of range(1, rankingMax)"
+                <option *ngFor="let id of Tools.range(1, rankingMax)"
                         value="{{id}}" translate>Page {{id}}</option>
               </select>
               <span class="input-group-text" role="button"

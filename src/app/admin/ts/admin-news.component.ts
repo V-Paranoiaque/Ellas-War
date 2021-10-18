@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -18,6 +19,8 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   public adminNewsMax:number;
   public adminNewsPage:any;
   public newsSelected:any;
+  
+  Tools = Tools;
   
   brushIcon = brushIcon;
   trash2Icon= trash2Icon;

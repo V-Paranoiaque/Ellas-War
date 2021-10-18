@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -17,6 +18,8 @@ export class QuestsAltarSubComponent implements OnInit, OnDestroy {
   @Input() condition:any;
   @Input() id:any;
   @Input() title:any;
+  
+  Tools = Tools;
   
   public altarValidateInfo:any;
   
@@ -64,14 +67,6 @@ export class QuestsAltarSubComponent implements OnInit, OnDestroy {
         'resource': res,
         'quantity': resList[res]
       })
-    }
-    return list;
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
     }
     return list;
   }

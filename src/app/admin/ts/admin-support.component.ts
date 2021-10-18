@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -16,6 +17,8 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   public adminSupportList:any;
   public adminSupportMax:number;
   public adminSupportPage:number;
+  
+  Tools = Tools;
   
   angellistIcon = angellistIcon;
   eyeIcon = eyeIcon;
@@ -75,13 +78,5 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   
   adminSupportStatus(id:number) {
     this.socket.emit('adminSupportStatus', id);
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
 }

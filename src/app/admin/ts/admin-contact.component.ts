@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -16,6 +17,8 @@ export class AdminContactComponent implements OnInit, OnDestroy {
   public adminContactList:any;
   public adminContactMax:number;
   public adminContactPage:number;
+  
+  Tools = Tools;
   
   angellistIcon = angellistIcon;
   
@@ -65,13 +68,5 @@ export class AdminContactComponent implements OnInit, OnDestroy {
   
   adminContactResolve(id:number) {
     this.socket.emit('adminContactResolve', id);
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
 }

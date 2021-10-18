@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { EwIconSubComponent } from '../services/ew-icon.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { Socket } from '../services/socketio.service';
+import { Tools } from '../services/tools.service';
 import { User } from '../services/user.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -50,7 +51,7 @@ import { PrivateComponent } from './private/private.component';
     DragDropModule,
     ModalModule.forRoot(),
   ],
-  providers: [Socket, User],
+  providers: [Socket, Tools, User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

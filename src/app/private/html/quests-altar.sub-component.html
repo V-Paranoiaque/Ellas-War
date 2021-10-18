@@ -80,15 +80,15 @@
                 condition && condition.possible == 0">
       <strong translate>Progression:</strong>
       <br/>
-      <ic-icon *ngFor="let n of range(1, condition.error.green)"
+      <ic-icon *ngFor="let n of Tools.range(1, condition.error.green)"
                class="fs-2 text-success" [icIcon]="outlineStars"
                title="{{'Validated'|translate}}"></ic-icon>
   
-      <ic-icon *ngFor="let n of range(1, condition.error.orange)"
+      <ic-icon *ngFor="let n of Tools.range(1, condition.error.orange)"
                class="fs-2 text-warning" [icIcon]="outlineStars"
                title="{{'In progress'|translate}}"></ic-icon>
   
-      <ic-icon *ngFor="let n of range(1, condition.error.red)"
+      <ic-icon *ngFor="let n of Tools.range(1, condition.error.red)"
                class="fs-2 text-danger" [icIcon]="outlineStars"
                title="{{'Not validated'|translate}}"></ic-icon>
     </div>

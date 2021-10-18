@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { User } from '../../../services/user.service';
 
 import eye from '@iconify/icons-fa-solid/eye';
@@ -19,6 +20,8 @@ export class SupportComponent implements OnInit, OnDestroy {
   public contactNb:number;
   public contactNewTitle:string;
   public contactNewMsg:string;
+  
+  Tools = Tools;
   
   eye = eye;
   
@@ -132,13 +135,5 @@ export class SupportComponent implements OnInit, OnDestroy {
     }
     
     this.router.navigate(['/support/'+page])
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
 }

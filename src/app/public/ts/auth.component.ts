@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { User } from '../../../services/user.service';
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -45,7 +46,7 @@ export class AuthComponent implements OnInit {
         this.provider = provider;
         {
           let fragment:any = this.route.snapshot.fragment;
-          let token = this.user.paramToObject(fragment).id_token;
+          let token = Tools.paramToObject(fragment).id_token;
           
           this.socket.emit('mobileGoogle', {
             'token': token,

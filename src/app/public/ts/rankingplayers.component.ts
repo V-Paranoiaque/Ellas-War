@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Tools } from '../../../services/tools.service';
 import { User } from '../../../services/user.service';
 
 import sortUP from '@iconify/icons-fa-solid/sort-up';
@@ -21,10 +22,12 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   private subRank:any;
   private subTitle:any;
   
+  Tools = Tools;
+  
   sortUP = sortUP;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
-              private router: Router, public user: User, 
+              private router: Router, public user: User,
               private socket: Socket,public translate: TranslateService,
               private titleService: Title) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -63,14 +66,6 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
       this.rankingList = result.ranking;
       this.rankingOrder= result.order
     });
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
   
   rankingChooseOrder(order:string) {

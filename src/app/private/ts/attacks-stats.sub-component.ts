@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -16,6 +17,8 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   
   public attackStats:any;
   public countdown:any;
+  
+  Tools = Tools;
   
   shieldShaded = shieldShaded;
   swordCross   = swordCross;
@@ -97,13 +100,5 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.socket.removeListener('attackStats');
     this.socket.removeListener('attackStatsRefresh');
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
 }

@@ -87,7 +87,7 @@
                 <select class="form-select" #mySelect
                         (change)="adminStoreroomChange(mySelect.value)"
                         [ngModel]="currentPage" title="{{'Change page'|translate}}">
-                  <option *ngFor="let id of range(1, msgPageNb)"
+                  <option *ngFor="let id of Tools.range(1, msgPageNb)"
                           value="{{id}}" translate>Page {{id}}</option>
                 </select>
                 <span class="input-group-text" role="button"

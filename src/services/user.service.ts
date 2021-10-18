@@ -187,24 +187,6 @@ export class User {
     }
   }
   
-  getResId(name:string) {
-    switch(name) {
-      case 'drachma': return 0;
-      case 'food': return 1;
-      case 'water': return 2;
-      case 'wood': return 3;
-      case 'iron': return 4;
-      case 'stone': return 5;
-      case 'marble': return 6;
-      case 'grapes': return 7;
-      case 'wine': return 8;
-      case 'gold': return 9;
-      case 'favor': return 10;
-      case 'ambrosia': return 11;
-    }
-    
-    return name;
-  }
   getSanctuary(sanctuary:any) {
     if(this.info.sanctuary && this.info.sanctuary[sanctuary]) {
       return this.info.sanctuary[sanctuary];
@@ -290,21 +272,6 @@ export class User {
     return this.newMsg;
   }
   
-  paramToObject(url:string) {
-    let resultList:any = {};
-    
-    let list = url.split('&')
-    let size:number = list.length;
-    for(let i=0;i<size;i++){
-      let tmp:any = list[i].split('=');
-      if(tmp.length >= 2) {
-        resultList[tmp[0]] = tmp[1];
-      }
-    }
-    
-    return resultList;
-  }
-  
   oauthFB() {
     if(environment.mobile == 0) {
       let clientId = environment.facebook.client_id;
@@ -367,13 +334,5 @@ export class User {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
 }

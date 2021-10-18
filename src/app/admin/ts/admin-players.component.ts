@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -18,6 +19,8 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
   public pause:boolean;
   public research:string;
   public searchType:string;
+  
+  Tools = Tools;
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {

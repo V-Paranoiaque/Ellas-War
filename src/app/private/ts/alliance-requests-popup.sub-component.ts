@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -34,7 +35,7 @@ export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
       this.myAllianceAskAcceptError = data;
     });
     this.socket.on('myAllianceAskList', (data:any) => {
-      let res_id = this.user.getResId(this.info.resource);
+      let res_id = Tools.getResId(this.info.resource);
       this.myAllianceAskList = [];
       for(let row in data) {
         if(data[row].resource_id == res_id) {
@@ -61,7 +62,7 @@ export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
   
   askRess() {
     let res = {
-      'type': this.user.getResId(this.info.resource),
+      'type': Tools.getResId(this.info.resource),
       'qtt': this.info.quantity
     };
     if(res.qtt > 0) {

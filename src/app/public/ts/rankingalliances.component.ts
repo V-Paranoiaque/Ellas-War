@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -22,11 +23,13 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   private subRank:any;
   private subTitle:any;
   
+  Tools = Tools;
+  
   sortUP = sortUP;
   users  = users;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
-              private router: Router, public user: User, 
+              private router: Router, public user: User,
               private socket: Socket, private titleService: Title, 
               public translate: TranslateService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -70,14 +73,6 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
       this.rankingList = result.ranking;
       this.rankingOrder= result.order
     });
-  }
-  
-  range(a:number, b:number) {
-    let list = []
-    for(a;a<=b;a++) {
-      list.push(a);
-    }
-    return list;
   }
   
   rankingChooseOrder(order:string) {
