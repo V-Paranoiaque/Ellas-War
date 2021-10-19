@@ -58,7 +58,7 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
   }
   
   calculate() {
-    let nbFS = 0;
+    let nbFS:number = 0;
     this.listDisplay = [];
     
     let hfNextLength = this.hfNext.length;
@@ -70,21 +70,33 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
     
     let hfDisplayLength = this.hfDisplay.length;
     for(let i=0;i<hfDisplayLength;i++) {
-      if(this.hfDisplay[i] && this.hfDisplay[i].id) {
-        if(this.successType.selected == 0 || 
-           this.successType.selected == this.hfDisplay[i].type) {
-          if(this.listDisplay[this.hfDisplay[i].id] != 1) {
-            this.listDisplay[this.hfDisplay[i].id] = 2;
-            if(this.successType.selected == 7) {
-              nbFS++;
-            }
-          }
-        }
-        else {
-          this.listDisplay[this.hfDisplay[i].id] = 0;
-        }
+      if(!this.hfDisplay[i] || !this.hfDisplay[i].id) {
+        continue;
+      }
+      
+      //Hide by default
+      this.listDisplay[this.hfDisplay[i].id] = 0;
+      
+      //Not all or selected
+      if(this.successType.selected != 0 && this.successType.selected != this.hfDisplay[i].type) {
+        continue;
+      }
+      
+      //Already displayed
+      if(this.listDisplay[this.hfDisplay[i].id] == 1) {
+        continue;
+      }
+      
+      this.listDisplay[this.hfDisplay[i].id] = 2;
+      if(this.successType.selected == 7) {
+        nbFS++;
       }
     }
+    this.calculateNext(nbFS);
+  }
+  
+  calculateNext(nbFS:number) {
+    let hfNextLength = this.hfNext.length;
     for(let i=0;i<hfNextLength;i++) {
       if(this.hfNext[i] && this.hfNext[i].id) {
         if(this.successType.selected == 0 || this.successType.selected == this.hfNext[i].type) {

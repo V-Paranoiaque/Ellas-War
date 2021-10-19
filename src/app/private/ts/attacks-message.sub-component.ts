@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -15,6 +16,7 @@ export class AttacksMessageSubComponent {
   constructor(public user: User, public translate: TranslateService) {
     this.resources = environment.resources;
   }
+  
   
   getLostBuildings() {
     let list = [];
@@ -36,14 +38,11 @@ export class AttacksMessageSubComponent {
     let list = []
     
     for(let i in this.info.unitSend) {
-      if(i) {
-        for(let j in this.info.unitSend[i]) {
-          if(!listUnits[j]) {
-            listUnits[j] = 0;
-          }
-          listUnits[j] += this.info.unitSend[i][j];
-        }
+      if(!i) {
+        continue
       }
+      
+      listUnits = Tools.addToObject(listUnits, this.info.unitSend[i]);
     }
     
     for(let i in listUnits) {
@@ -63,24 +62,17 @@ export class AttacksMessageSubComponent {
     let list = []
     
     for(let i in this.info.lost_wall_unit) {
-      if(i) {
-        for(let j in this.info.lost_wall_unit[i]) {
-          if(!listUnits[j]) {
-            listUnits[j] = 0;
-          }
-          listUnits[j] += this.info.lost_wall_unit[i][j];
-        }
+      if(!i) {
+        continue
       }
+      
+      listUnits = Tools.addToObject(listUnits, this.info.lost_wall_unit[i]);
     }
     for(let i in this.info.unitAttackLost) {
-      if(i) {
-        for(let j in this.info.unitAttackLost[i]) {
-          if(!listUnits[j]) {
-            listUnits[j] = 0;
-          }
-          listUnits[j] += this.info.unitAttackLost[i][j];
-        }
+      if(!i) {
+        continue
       }
+      listUnits = Tools.addToObject(listUnits, this.info.unitAttackLost[i]);
     }
     
     for(let i in listUnits) {
@@ -100,14 +92,10 @@ export class AttacksMessageSubComponent {
     let list = []
     
     for(let i in this.info.unitDefenseLost) {
-      if(i) {
-        for(let j in this.info.unitDefenseLost[i]) {
-          if(!listUnits[j]) {
-            listUnits[j] = 0;
-          }
-          listUnits[j] += this.info.unitDefenseLost[i][j];
-        }
+      if(!i) {
+        continue
       }
+      listUnits = Tools.addToObject(listUnits, this.info.unitDefenseLost[i]);
     }
     
     for(let i in listUnits) {

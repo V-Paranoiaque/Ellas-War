@@ -66,28 +66,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     
     this.socket.on('waveAttackList', (data:any) => {
       if(data.list.length > 0) {
-        this.waveAttackList  = data.list;
-        this.waveAttackPower = data.power;
-        this.waveAttackUnit  = {};
-        
-        this.waveAttackDropList = [];
-        this.waveAttackDropList.push('wave-attack-0');
-        
-        var waveNb = data.list.length;
-        for(let i=1;i<=waveNb;i++) {
-          for(let unit in this.waveAttackList[i]) {
-            if(this.waveAttackList[i].hasOwnProperty(unit)) {
-              if(!this.waveAttackUnit[unit]) {
-                this.waveAttackUnit[unit] = 0;
-              }
-              this.waveAttackUnit[unit] += this.waveAttackList[i][unit];
-            }
-          }
-          this.waveAttackDropList.push('wave-attack-'+i);
-        }
-        if(data.list.length < this.waveAttackMax) {
-          this.waveAttackDropList.push('wave-attack-'+data.list.length);
-        }
+        this.waveAttackProcess(data);
       }
       else {
         this.waveAttackList = [''];
@@ -99,28 +78,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     
     this.socket.on('waveDefenseList', (data:any) => {
       if(data.list.length > 0) {
-        this.waveDefenseList = data.list;
-        this.waveDefensePower= data.power;
-        this.waveDefenseUnit = {};
-        
-        this.waveDefenseDropList = [];
-        this.waveDefenseDropList.push('wave-defense-0');
-        
-        var waveNb = data.list.length;
-        for(var i=1;i<=waveNb;i++) {
-          for(var unit in this.waveDefenseList[i]) { 
-            if(this.waveDefenseList[i].hasOwnProperty(unit)) {
-              if(!this.waveDefenseUnit[unit]) {
-                this.waveDefenseUnit[unit] = 0;
-              }
-              this.waveDefenseUnit[unit] += this.waveDefenseList[i][unit];
-            }
-          }
-          this.waveDefenseDropList.push('wave-defense-'+i);
-        }
-        if(data.list.length < this.waveDefenseMax) {
-          this.waveDefenseDropList.push('wave-defense-'+data.list.length);
-        }
+        this.waveDefenseProcess(data);
       }
       else {
         this.waveDefenseList = [''];
@@ -258,6 +216,56 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     
     for(let res in this.buildingInfo.cost) {
       this.buildingInfo.destruct[res] = this.buildingInfo.cost[res]*0.6;
+    }
+  }
+  
+  waveAttackProcess(data:any) {
+    this.waveAttackList  = data.list;
+    this.waveAttackPower = data.power;
+    this.waveAttackUnit  = {};
+    
+    this.waveAttackDropList = [];
+    this.waveAttackDropList.push('wave-attack-0');
+    
+    var waveNb = data.list.length;
+    for(let i=1;i<=waveNb;i++) {
+      for(let unit in this.waveAttackList[i]) {
+        if(this.waveAttackList[i].hasOwnProperty(unit)) {
+          if(!this.waveAttackUnit[unit]) {
+            this.waveAttackUnit[unit] = 0;
+          }
+          this.waveAttackUnit[unit] += this.waveAttackList[i][unit];
+        }
+      }
+      this.waveAttackDropList.push('wave-attack-'+i);
+    }
+    if(data.list.length < this.waveAttackMax) {
+      this.waveAttackDropList.push('wave-attack-'+data.list.length);
+    }
+  }
+  
+  waveDefenseProcess(data:any) {
+    this.waveDefenseList = data.list;
+    this.waveDefensePower= data.power;
+    this.waveDefenseUnit = {};
+    
+    this.waveDefenseDropList = [];
+    this.waveDefenseDropList.push('wave-defense-0');
+    
+    var waveNb = data.list.length;
+    for(var i=1;i<=waveNb;i++) {
+      for(var unit in this.waveDefenseList[i]) { 
+        if(this.waveDefenseList[i].hasOwnProperty(unit)) {
+          if(!this.waveDefenseUnit[unit]) {
+            this.waveDefenseUnit[unit] = 0;
+          }
+          this.waveDefenseUnit[unit] += this.waveDefenseList[i][unit];
+        }
+      }
+      this.waveDefenseDropList.push('wave-defense-'+i);
+    }
+    if(data.list.length < this.waveDefenseMax) {
+      this.waveDefenseDropList.push('wave-defense-'+data.list.length);
     }
   }
   

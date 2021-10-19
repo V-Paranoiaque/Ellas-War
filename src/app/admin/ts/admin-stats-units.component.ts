@@ -59,6 +59,11 @@ export class AdminStatsUnitsComponent implements OnInit {
       unit.code = i;
       unit.globalCost = 0;
       unit.globalConsu = 0;
+      unit.a_f   = 0;
+      unit.d_f   = 0;
+      unit.p_a = 0;
+      unit.c_a = 0;
+      
       for(let res in unit.cost) {
         unit.globalCost += unit.cost[res]*this.priceList[res];
       }
@@ -66,39 +71,17 @@ export class AdminStatsUnitsComponent implements OnInit {
         unit.globalConsu += unit.consumption[res]*this.priceList[res];
       }
       
-      if(unit.placen && unit.placen > 0) {
-        unit.field = this.data.building.habitation.placen/
-                     this.data.building.habitation.field;
-        unit.globalCost += this.priceHosting.habitation;
-      }
-      else if(unit.placep && unit.placep > 0) {
-        unit.field = this.data.building.palace.placep/
-                     this.data.building.palace.field;
-        unit.globalCost += this.priceHosting.palace;
-      }
-      else if(unit.placec && unit.placec > 0) {
-        unit.field = this.data.building.cursedcave.placec/
-                     this.data.building.cursedcave.field;
-        unit.globalCost += this.priceHosting.cursedcave;
-      }
-      else {
-        unit.field = 0;
-        unit.a_f   = 0;
-        unit.d_f   = 0;
-      }
+      let unitInfo:any = this.unitGetCalculateHosting(unit);
+      unit.field       = unitInfo.field;
+      unit.globalCost += unitInfo.globalCost;
       
       if(unit.attack > 0) {
         unit.p_a = unit.globalCost/unit.attack;
         unit.c_a = unit.globalConsu/unit.attack;
       }
-      else {
-        unit.p_a = 0;
-        unit.c_a = 0;
-      }
       
       unit.p_d = unit.globalCost/unit.defense;
       unit.c_d = unit.globalConsu/unit.defense;
-      
       
       if(unit.field > 0) {
         unit.a_f = unit.globalCost/unit.field;
@@ -109,7 +92,7 @@ export class AdminStatsUnitsComponent implements OnInit {
     }
   }
   
-  calculateArmyFirst() {
+  generateArmyFirst() {
     let max = 9999999;
     let min = 0;
     for(let i=1; i<=8; i++) {
@@ -122,6 +105,10 @@ export class AdminStatsUnitsComponent implements OnInit {
         'd_f': {'unit': '', value: min},
       }
     }
+  }
+  
+  calculateArmyFirst() {
+    this.generateArmyFirst();
     
     for(let i in this.armyArray) {
       let unit = this.armyArray[i];
@@ -130,42 +117,45 @@ export class AdminStatsUnitsComponent implements OnInit {
       if(unit.lvlmini > 10) {
         continue;
       }
-      
-      if(unit.p_a > 0 && unit.p_a < this.armyFirst[unit.type].p_a.value) {
-        this.armyFirst[unit.type].p_a = {
-          'unit': unit.code,
-          'value': unit.p_a
-        }
+      this.calculateArmyInfo(unit);
+    }
+  }
+  
+  calculateArmyInfo(unit:any) {
+    if(unit.p_a > 0 && unit.p_a < this.armyFirst[unit.type].p_a.value) {
+      this.armyFirst[unit.type].p_a = {
+        'unit': unit.code,
+        'value': unit.p_a
       }
-      if(unit.p_d < this.armyFirst[unit.type].p_d.value) {
-        this.armyFirst[unit.type].p_d = {
-          'unit': unit.code,
-          'value': unit.p_d
-        }
+    }
+    if(unit.p_d < this.armyFirst[unit.type].p_d.value) {
+      this.armyFirst[unit.type].p_d = {
+        'unit': unit.code,
+        'value': unit.p_d
       }
-      if(unit.c_a > 0 && unit.c_a < this.armyFirst[unit.type].c_a.value) {
-        this.armyFirst[unit.type].c_a = {
-          'unit': unit.code,
-          'value': unit.c_a
-        }
+    }
+    if(unit.c_a > 0 && unit.c_a < this.armyFirst[unit.type].c_a.value) {
+      this.armyFirst[unit.type].c_a = {
+        'unit': unit.code,
+        'value': unit.c_a
       }
-      if(unit.c_d > 0 && unit.c_d < this.armyFirst[unit.type].c_d.value) {
-        this.armyFirst[unit.type].c_d = {
-          'unit': unit.code,
-          'value': unit.c_d
-        }
+    }
+    if(unit.c_d > 0 && unit.c_d < this.armyFirst[unit.type].c_d.value) {
+      this.armyFirst[unit.type].c_d = {
+        'unit': unit.code,
+        'value': unit.c_d
       }
-      if(unit.a_f > this.armyFirst[unit.type].a_f.value) {
-        this.armyFirst[unit.type].a_f = {
-          'unit': unit.code,
-          'value': unit.a_f
-        }
+    }
+    if(unit.a_f > this.armyFirst[unit.type].a_f.value) {
+      this.armyFirst[unit.type].a_f = {
+        'unit': unit.code,
+        'value': unit.a_f
       }
-      if(unit.d_f > this.armyFirst[unit.type].d_f.value) {
-        this.armyFirst[unit.type].d_f = {
-          'unit': unit.code,
-          'value': unit.d_f
-        }
+    }
+    if(unit.d_f > this.armyFirst[unit.type].d_f.value) {
+      this.armyFirst[unit.type].d_f = {
+        'unit': unit.code,
+        'value': unit.d_f
       }
     }
   }
@@ -214,6 +204,30 @@ export class AdminStatsUnitsComponent implements OnInit {
       
       this.towersArray.push(Object.assign({}, building));
     }
+  }
+  
+  unitGetCalculateHosting(unit:any) {
+    let info:any = {
+      'field': 0,
+      'globalCost': 0
+    }
+    if(unit.placen && unit.placen > 0) {
+      info.field = this.data.building.habitation.placen/
+                   this.data.building.habitation.field;
+      info.globalCost = this.priceHosting.habitation;
+    }
+    else if(unit.placep && unit.placep > 0) {
+      info.field = this.data.building.palace.placep/
+                   this.data.building.palace.field;
+      info.globalCost = this.priceHosting.palace;
+    }
+    else if(unit.placec && unit.placec > 0) {
+      info.field = this.data.building.cursedcave.placec/
+                   this.data.building.cursedcave.field;
+      info.globalCost = this.priceHosting.cursedcave;
+    }
+    
+    return info;
   }
   
   checkBest(attr:string, unit:any) {
