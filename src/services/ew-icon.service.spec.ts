@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EwIconSubComponent } from '../services/ew-icon.service';
+import { EwIconSubComponent } from './ew-icon.service';
 
 describe('EwIconSubComponent', () => {
   beforeEach(async () => {

@@ -1,7 +1,13 @@
-import { EventEmitter } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
+@Component({
+  selector: 'socket',
+  template: `
+    <ng-content></ng-content>
+  `
+})
 export class Socket {
   
   public onChange: EventEmitter<any> = new EventEmitter<any>();

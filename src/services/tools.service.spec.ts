@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Tools } from '../services/tools.service';
+import { Tools } from './tools.service';
 
 describe('Tools', () => {
   beforeEach(async () => {
@@ -28,6 +28,7 @@ describe('Tools', () => {
   
   it(`test empty paramToObject`, () => {
     expect(Tools.paramToObject('')).toEqual({});
+    expect(Tools.paramToObject('foo=bar')).toEqual({'foo': 'bar'});
   });
   
   it(`test getResId default return`, () => {
