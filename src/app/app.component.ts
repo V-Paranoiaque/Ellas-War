@@ -32,8 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
     translate.setDefaultLang(environment.language.default);
     
     this.cssBase = './assets/styles/';
-    this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
-    this.cssPlatform = this.sanitizer.bypassSecurityTrustResourceUrl(this.cssBase+'platform.css');
+    this.cssUrl = this.setUrl(this.setStyle());
+    this.cssPlatform = this.setUrl(this.cssBase+'platform.css');
     
     let authConfig:AuthConfig = {
       issuer: 'https://accounts.google.com',
@@ -82,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy {
         
         let newStyle = this.setStyle();
         if(this.cssUrl != newStyle) {
-          this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
+          this.cssUrl = this.setUrl(this.setStyle());
         }
         
         this.translate.use(this.user.getProperty('language'));
@@ -98,7 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.on('user', () => {
       let newStyle = this.setStyle();
       if(this.cssUrl != newStyle) {
-        this.cssUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.setStyle());
+        this.cssUrl = this.setUrl(this.setStyle());
       }
     });
     
@@ -144,6 +144,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     
     return this.cssBase+style + '.css';
+  }
+  
+  setUrl(style:any) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(style);
   }
   
   public setTitle(newTitle: string) {

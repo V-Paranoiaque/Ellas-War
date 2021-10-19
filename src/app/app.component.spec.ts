@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { Socket } from '../services/socketio.service';
 import { User } from '../services/user.service';
-import { OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
+import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -37,6 +37,7 @@ describe('AppComponent', () => {
             deps: [HttpClient]
           }
         }),
+        OAuthModule.forRoot(),
         LoggerModule.forRoot({
           level: NgxLoggerLevel.DEBUG,
           serverLogLevel: NgxLoggerLevel.DEBUG,

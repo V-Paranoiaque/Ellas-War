@@ -51,7 +51,7 @@ import { PrivateComponent } from './private/private.component';
     DragDropModule,
     ModalModule.forRoot(),
   ],
-  providers: [Socket, Tools, User],
+  providers: [Socket, User, Tools],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

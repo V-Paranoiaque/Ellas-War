@@ -1,3 +1,12 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'tools',
+  template: `
+    <ng-content></ng-content>
+  `
+})
+
 export class Tools {
   static range(a:number, b:number) {
     let list = []
@@ -39,5 +48,15 @@ export class Tools {
     }
     
     return name;
+  }
+  
+  static addToObject(resultArray:any, newArray:any) {
+    for(let j in newArray) {
+      if(!resultArray[j]) {
+        resultArray[j] = 0;
+      }
+      resultArray[j] += newArray[j];
+    }
+    return resultArray;
   }
 }

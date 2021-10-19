@@ -1,10 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
 import { Socket } from './socketio.service';
 
 declare var facebookConnectPlugin:any;
+
+@Component({
+  selector: 'user',
+  template: `
+    <ng-content></ng-content>
+  `
+})
 
 @Injectable()
 export class User {

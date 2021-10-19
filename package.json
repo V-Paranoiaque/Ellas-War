@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --disable-host-check true",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner"
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.2.10",
     "@angular-eslint/builder": "12.5.0",
-    "@angular-eslint/eslint-plugin": "12.5.0",
+    "@angular-eslint/eslint-plugin": "^12.5.0",
     "@angular-eslint/eslint-plugin-template": "12.5.0",
     "@angular-eslint/schematics": "12.5.0",
     "@angular-eslint/template-parser": "12.5.0",
@@ -73,8 +73,8 @@
     "@types/karma-jasmine": "^4.0.1",
     "@types/karma-jasmine-html-reporter": "^1.5.2",
     "@types/node": "^16.11.1",
-    "@typescript-eslint/eslint-plugin": "5.0.0",
-    "@typescript-eslint/parser": "5.0.0",
+    "@typescript-eslint/eslint-plugin": "5.1.0",
+    "@typescript-eslint/parser": "5.1.0",
     "@visurel/iconify-angular": "^11.0.0",
     "cordova-android": "^10.1.1",
     "cordova-electron": "^3.0.0",
@@ -94,7 +94,7 @@
     "ngx-logger": "^4.3.3",
     "postcss": "^8.3.9",
     "protractor": "~7.0.0",
-    "sonar-scanner": "^3.1.0",
+    "sonarqube-scanner": "^2.8.1",
     "ts-node": "~10.3.0",
     "tslint": "^6.1.3",
     "typescript": "~4.3.5"
