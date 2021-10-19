@@ -9,12 +9,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
 import { AdminProfileComponent } from './admin-profile.component';
 
-describe('AdminPrayersComponent', () => {
+describe('AdminProfileComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
@@ -38,7 +38,7 @@ describe('AdminPrayersComponent', () => {
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService, FormBuilder, FormGroup
+        BsModalService, FormBuilder
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
