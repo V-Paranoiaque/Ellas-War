@@ -75,11 +75,8 @@ export class AdminStatsUnitsComponent implements OnInit {
       unit.field       = unitInfo.field;
       unit.globalCost += unitInfo.globalCost;
       
-      if(unit.attack > 0) {
-        unit.p_a = unit.globalCost/unit.attack;
-        unit.c_a = unit.globalConsu/unit.attack;
-      }
-      
+      unit.p_a = unit.globalCost/unit.attack;
+      unit.c_a = unit.globalConsu/unit.attack;
       unit.p_d = unit.globalCost/unit.defense;
       unit.c_d = unit.globalConsu/unit.defense;
       
