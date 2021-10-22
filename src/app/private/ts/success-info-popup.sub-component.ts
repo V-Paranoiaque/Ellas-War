@@ -74,20 +74,13 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
         continue;
       }
       
-      //Hide by default
-      this.listDisplay[this.hfDisplay[i].id] = 0;
-      
       //Not all or selected
       if(this.successType.selected != 0 && this.successType.selected != this.hfDisplay[i].type) {
         continue;
       }
       
-      //Already displayed
-      if(this.listDisplay[this.hfDisplay[i].id] == 1) {
-        continue;
-      }
-      
       this.listDisplay[this.hfDisplay[i].id] = 2;
+      
       if(this.successType.selected == 7) {
         nbFS++;
       }

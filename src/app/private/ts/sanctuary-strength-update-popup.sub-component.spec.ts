@@ -12,17 +12,17 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
+import { SanctuaryStrengthUpdatePopupSubComponent } from './sanctuary-strength-update-popup.sub-component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminProfileComponent', () => {
+describe('SanctuaryStrengthUpdatePopupSubComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        SanctuaryStrengthUpdatePopupSubComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -47,84 +47,72 @@ describe('AdminProfileComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    fixture.detectChanges();
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canUpdate', () => {
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
     const app = fixture.componentInstance;
     fixture.detectChanges();
     
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
+    expect(app.canUpdate()).toBeTrue();
   });
   
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canUpdate too much power', () => {
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
+    app.info = {
+      'sanctuaries_id': 0,
+      'price': {'drachma': 1},
+      'sanctuaries_power': 100
     };
-    app.adminUserBlock();
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
-    
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
+    expect(app.canUpdate()).toBeFalse();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canUpdate not enough resources', () => {
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
     const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
-    
     fixture.detectChanges();
-    expect(app).toBeTruthy();
+    
+    app.user.setUser({'drachma': 1, 'wood': 10});
+    app.info = {
+      'sanctuaries_id': 0,
+      'price': {'drachma': 1000, 'wood': 1000},
+      'sanctuaries_power': 0
+    };
+    
+    expect(app.canUpdate()).toBeFalse();
   });
   
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canUpdate enough resources', () => {
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    
+    app.user.setUser({'drachma': 100000, 'wood': 1000000});
+    app.info = {
+      'sanctuaries_id': 0,
+      'price': {'drachma': 1000, 'wood': 1000},
+      'sanctuaries_power': 0
+    };
+    
+    expect(app.canUpdate()).toBeTrue();
+  });
+  
+  it('test strengthen', () => {
+    const fixture = TestBed.createComponent(SanctuaryStrengthUpdatePopupSubComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
+    app.info = {
+      'sanctuaries_id': 0
+    };
+    app.strengthen();
     
     fixture.detectChanges();
     expect(app).toBeTruthy();

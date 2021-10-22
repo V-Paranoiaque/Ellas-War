@@ -12,17 +12,17 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
+import { QuestsAltarSubComponent } from './quests-altar.sub-component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminProfileComponent', () => {
+describe('QuestsAltarSubComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        QuestsAltarSubComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -47,84 +47,76 @@ describe('AdminProfileComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    fixture.detectChanges();
+    const fixture = TestBed.createComponent(QuestsAltarSubComponent);
     const app = fixture.componentInstance;
+    
+    app.user.info.datas.altars = {
+      'test': {
+        'drachma': 1
+      }
+    }
+    
+    app.code = 'test';
+    app.condition = 'test';
+    app.id = 'test';
+    app.title = 'test';
+    
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test altarValidate', () => {
+    const fixture = TestBed.createComponent(QuestsAltarSubComponent);
     const app = fixture.componentInstance;
+    
+    app.user.info.datas.altars = {
+      'test': {
+        'drachma': 1
+      }
+    }
+    app.altarValidate(0);
+    
     fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
     expect(app).toBeTruthy();
   });
   
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canGet not enought', () => {
+    const fixture = TestBed.createComponent(QuestsAltarSubComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
+    app.code = 'test';
+    app.user.info = {
+      'drachma': 1,
+      'datas': {
+        'altars': {
+          'test': {
+            'drachma': 10
+          }
+        }
+      }
     };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
+    app.canGet();
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test canGet enought', () => {
+    const fixture = TestBed.createComponent(QuestsAltarSubComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
-    
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
+    app.code = 'test';
+    app.user.info = {
+      'drachma': 5000,
+      'datas': {
+        'altars': {
+          'test': {
+            'drachma': 10
+          }
+        }
+      }
+    };
+    app.canGet();
     
     fixture.detectChanges();
     expect(app).toBeTruthy();

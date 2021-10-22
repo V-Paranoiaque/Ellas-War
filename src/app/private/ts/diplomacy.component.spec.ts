@@ -9,20 +9,22 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
-import { FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
-import { environment } from '../../../environments/environment';
+import { PrivateComponent } from '../private.component';
+import { DiplomacyComponent } from './diplomacy.component';
+import { EwIconSubComponent } from '../../../services/ew-icon.service';
 
-describe('AdminProfileComponent', () => {
+describe('DiplomacyComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        PrivateComponent,
+        EwIconSubComponent
       ],
       imports: [
         RouterTestingModule,
@@ -36,95 +38,61 @@ describe('AdminProfileComponent', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
+        ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService, FormBuilder
+        BsModalService
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
-    socket.setupSocketConnection(environment.SERVER_DEV);
+    socket.setupSocketConnection('dev.ellaswar.com');
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+    const fixture = TestBed.createComponent(DiplomacyComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test allianceListOrder', () => {
+    const fixture = TestBed.createComponent(DiplomacyComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
+    app.allianceListOrder('test');
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test allianceWaitCancel', () => {
+    const fixture = TestBed.createComponent(DiplomacyComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
+    app.allianceWaitCancel();
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test allianceListOrder', () => {
+    const fixture = TestBed.createComponent(DiplomacyComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
+    app.getProfile(0);
+    app.getProfile(17);
+    
+    fixture.detectChanges();
+    expect(app).toBeTruthy();
+  });
+  
+  it('test setAlliance', () => {
+    const fixture = TestBed.createComponent(DiplomacyComponent);
+    const app = fixture.componentInstance;
+    
+    app.setAlliance({});
+    app.setAlliance({'pact_id': 1});
     
     fixture.detectChanges();
     expect(app).toBeTruthy();

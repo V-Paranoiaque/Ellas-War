@@ -12,17 +12,17 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
+import { SuccessInfoPopupSubComponent } from './success-info-popup.sub-component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminProfileComponent', () => {
+describe('SuccessInfoPopupSubComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        SuccessInfoPopupSubComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -47,84 +47,52 @@ describe('AdminProfileComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    fixture.detectChanges();
+    const fixture = TestBed.createComponent(SuccessInfoPopupSubComponent);
     const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-  
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
+    app.successType = 0;
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('should create the service on mobile', () => {
+    const fixture = TestBed.createComponent(SuccessInfoPopupSubComponent);
     const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
+    app.successType = 0;
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test calculate', () => {
+    const fixture = TestBed.createComponent(SuccessInfoPopupSubComponent);
     const app = fixture.componentInstance;
+
+    app.hfNext = [
+      null,
+      {'test': 'test'},
+      {'id': 1, 'type': 1},
+      {'id': 2, 'type': 2},
+      {'id': 3, 'type': 3},
+      {'id': 7, 'type': 7}
+    ];
     
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
+    app.hfDisplay = [
+      null,
+      {'test': 'test'},
+      {'id': 1, 'type': 1},
+      {'id': 2, 'type': 2},
+      {'id': 7, 'type': 7}
+    ];
+    
+    app.successType = {'selected': 0};
+    app.calculate();
+    
+    app.successType = {'selected': 1};
+    app.calculate();
+    
+    app.successType = {'selected': 7};
+    app.calculate();
     
     fixture.detectChanges();
     expect(app).toBeTruthy();

@@ -9,20 +9,22 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
-import { FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
-import { environment } from '../../../environments/environment';
+import { PrivateComponent } from '../private.component';
+import { StoreroomComponent } from './storeroom.component';
+import { EwIconSubComponent } from '../../../services/ew-icon.service';
 
-describe('AdminProfileComponent', () => {
+describe('StoreroomComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        PrivateComponent,
+        EwIconSubComponent
       ],
       imports: [
         RouterTestingModule,
@@ -36,99 +38,54 @@ describe('AdminProfileComponent', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
+        ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService, FormBuilder
+        BsModalService
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
-    socket.setupSocketConnection(environment.SERVER_DEV);
+    socket.setupSocketConnection('dev.ellaswar.com');
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+    const fixture = TestBed.createComponent(StoreroomComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('Check storeroomBuy', () => {
+    const fixture = TestBed.createComponent(StoreroomComponent);
     const app = fixture.componentInstance;
+    app.storeroomBuy(0, 0, 0);
     fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
+    expect(app.storeroom_ress[0]).toBe('');
   });
   
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('Check storeroomRedeem', () => {
+    const fixture = TestBed.createComponent(StoreroomComponent);
     const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
-    
+    app.storeroomRedeem(0, 0);
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('Check storeroomSell', () => {
+    const fixture = TestBed.createComponent(StoreroomComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
+    //Fake data
+    app.storeroomQuantity = '0';
+    app.storeroomRate = '0';
+    app.storeroomRess = 0;
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
-    
+    app.storeroomSell();
     fixture.detectChanges();
-    expect(app).toBeTruthy();
+    expect(app.storeroomQuantity).toBe('');
   });
   
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
-    
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
 });
 
 // AOT compilation support

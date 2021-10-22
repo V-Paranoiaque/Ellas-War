@@ -12,17 +12,17 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
+import { AdminStoreroomComponent } from './admin-storeroom.component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminProfileComponent', () => {
+describe('AdminStoreroomComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        AdminStoreroomComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -47,88 +47,35 @@ describe('AdminProfileComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+    const fixture = TestBed.createComponent(AdminStoreroomComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test adminStoreroomChange', () => {
+    const fixture = TestBed.createComponent(AdminStoreroomComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
+    app.adminStoreroomChange(1);
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test adminStoreroomList', () => {
+    const fixture = TestBed.createComponent(AdminStoreroomComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
+    app.adminStoreroomList(1);
     
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
+    app.begining = '1';
+    app.adminStoreroomList(0);
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
-    
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
 });
 
 // AOT compilation support

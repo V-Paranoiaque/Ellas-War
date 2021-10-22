@@ -12,17 +12,17 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminProfileComponent } from './admin-profile.component';
+import { AdminMessagesComponent } from './admin-messages.component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminProfileComponent', () => {
+describe('AdminMessagesComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         MenuComponent,
-        AdminProfileComponent,
+        AdminMessagesComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -47,84 +47,28 @@ describe('AdminProfileComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+    const fixture = TestBed.createComponent(AdminMessagesComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
   
-  it('test getProfile', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
-    
-    app.profile = {
-      'membre_id': 0
-    }
-    app.getProfile();
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.getProfile();
-    
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminUserBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
+  it('test sendMessage', () => {
+    const fixture = TestBed.createComponent(AdminMessagesComponent);
     const app = fixture.componentInstance;
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 0
-    };
-    app.adminUserBlock();
+    app.sendMessage()
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 1
-    };
-    app.adminUserBlock();
+    app.messageTest = false;
+    app.messageTitle = 'Title';
+    app.sendMessage()
     
-    app.profile = {
-      'membre_id': 1,
-      'membre_status': 3
-    };
-    app.adminUserBlock();
+    app.messageText = 'Text';
+    app.sendMessage()
     
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminChatBlock', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 0
-    }
-    app.adminChatBlock();
-    
-    app.profile = {
-      'membre_id': 1,
-      'chat_allowed': 1
-    }
-    app.adminChatBlock();
-    
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-  
-  it('test adminAllianceChief', () => {
-    const fixture = TestBed.createComponent(AdminProfileComponent);
-    const app = fixture.componentInstance;
-    
-    app.profile = {
-      'membre_id': 1
-    }
-    app.adminAllianceChief();
+    app.messageTest = true;
+    app.messageType = 'other';
+    app.sendMessage()
     
     fixture.detectChanges();
     expect(app).toBeTruthy();

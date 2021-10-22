@@ -6,26 +6,21 @@ import { User } from '../../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MenuComponent } from '../../menu/menu.component';
-import { PrivateComponent } from '../private.component';
-import { StrategiesComponent } from './strategies.component';
-import { EwIconSubComponent } from '../../../services/ew-icon.service';
+import { AuthComponent } from './auth.component';
+import { environment } from '../../../environments/environment';
 
-describe('StrategiesComponent', () => {
-  let socket: Socket;
+describe('AuthComponent', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        MenuComponent,
-        PrivateComponent,
-        EwIconSubComponent
+        AuthComponent
       ],
       imports: [
         RouterTestingModule,
@@ -42,92 +37,28 @@ describe('StrategiesComponent', () => {
         ReactiveFormsModule, FormsModule
       ],
       providers: [
-        Socket, User, OAuthService,
+        Socket, User, OAuthService, 
+        TranslateService,
         BsModalService
       ],
     }).compileComponents();
-    socket = TestBed.inject(Socket);
-    socket.setupSocketConnection('dev.ellaswar.com');
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+    const fixture = TestBed.createComponent(AuthComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-  
-  it('test waveAttackProcess', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
-    const app = fixture.componentInstance;
-    app.waveAttackProcess({
-      'list': [{},{
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
-    
-    fixture.detectChanges();
-    
-    app.waveAttackMax = 1;
-    app.waveAttackProcess({
-      'list': [null, {
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
-    
-    expect(app).toBeTruthy();
-  });
-  
-  it('test waveDefenseProcess', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
-    const app = fixture.componentInstance;
-    app.waveDefenseProcess({
-      'list': [{},{
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
-    
-    fixture.detectChanges();
-    
-    app.waveDefenseMax = 1;
-    app.waveDefenseProcess({
-      'list': [null, {
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
-    
-    expect(app).toBeTruthy();
-  });
-  
 });
 
-describe('StrategiesComponent', () => {
+describe('AuthComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        StrategiesComponent
+        AuthComponent
       ],
       imports: [
         RouterTestingModule,
@@ -145,15 +76,15 @@ describe('StrategiesComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'defense' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'facebook' } ), 'fragment': 'test&test' } } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
-    socket.setupSocketConnection('dev.ellaswar.com');
+    socket.setupSocketConnection(environment.SERVER_DEV);
   });
   
-  it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+  it('test facebook', () => {
+    const fixture = TestBed.createComponent(AuthComponent);
     const app = fixture.componentInstance;
     
     fixture.detectChanges();
@@ -161,13 +92,13 @@ describe('StrategiesComponent', () => {
   });
 });
 
-describe('StrategiesComponent', () => {
+describe('AuthComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        StrategiesComponent
+        AuthComponent
       ],
       imports: [
         RouterTestingModule,
@@ -185,21 +116,22 @@ describe('StrategiesComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'test' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'google' } ), 'fragment': 'id_token=test' } } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
-    socket.setupSocketConnection('dev.ellaswar.com');
+    socket.setupSocketConnection(environment.SERVER_DEV);
   });
   
-  it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+  it('test google', () => {
+    const fixture = TestBed.createComponent(AuthComponent);
     const app = fixture.componentInstance;
     
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
 });
+
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {

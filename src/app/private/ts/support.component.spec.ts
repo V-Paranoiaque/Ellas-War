@@ -14,10 +14,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
 import { PrivateComponent } from '../private.component';
-import { StrategiesComponent } from './strategies.component';
+import { SupportComponent } from './support.component';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
+import { environment } from '../../../environments/environment';
 
-describe('StrategiesComponent', () => {
+describe('SupportComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
@@ -51,83 +52,61 @@ describe('StrategiesComponent', () => {
   });
   
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+    const fixture = TestBed.createComponent(SupportComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
   
-  it('test waveAttackProcess', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+  it('test contactAnswer', () => {
+    const fixture = TestBed.createComponent(SupportComponent);
     const app = fixture.componentInstance;
-    app.waveAttackProcess({
-      'list': [{},{
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
+    
+    app.contactAnswer();
+    
+    app.msg = 0;
+    app.answerMsg = 'test';
+    app.contactAnswer();
     
     fixture.detectChanges();
-    
-    app.waveAttackMax = 1;
-    app.waveAttackProcess({
-      'list': [null, {
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
-    
     expect(app).toBeTruthy();
   });
   
-  it('test waveDefenseProcess', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
+  it('test contactNewSend', () => {
+    const fixture = TestBed.createComponent(SupportComponent);
     const app = fixture.componentInstance;
-    app.waveDefenseProcess({
-      'list': [{},{
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
     
-    fixture.detectChanges();
+    app.contactNewSend();
     
-    app.waveDefenseMax = 1;
-    app.waveDefenseProcess({
-      'list': [null, {
-        'spartan': 1
-      },{
-        'spartan': 1, 'myrmidon': 2
-      },{
-        'myrmidon': 2
-      }],
-      'power': 0
-    });
+    app.contactNewTitle = 'test';
+    app.contactNewSend();
     
-    expect(app).toBeTruthy();
+    app.contactNewMsg = 'test';
+    app.contactNewSend();
   });
   
+  it('test loadSupport', () => {
+    const fixture = TestBed.createComponent(SupportComponent);
+    const app = fixture.componentInstance;
+    
+    app.msg = 0;
+    app.loadSupport();
+    
+    app.msg = 1;
+    app.loadSupport();
+    
+    fixture.detectChanges();
+    expect(app).toBeTruthy();
+  });
 });
 
-describe('StrategiesComponent', () => {
+describe('SupportComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        StrategiesComponent
+        SupportComponent
       ],
       imports: [
         RouterTestingModule,
@@ -145,58 +124,17 @@ describe('StrategiesComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'defense' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'id': '1' , 'msg': '1'} ) } } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
-    socket.setupSocketConnection('dev.ellaswar.com');
+    socket.setupSocketConnection(environment.SERVER_DEV);
   });
   
-  it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
-    const app = fixture.componentInstance;
-    
+  it('should create the service with parameters', () => {
+    const fixture = TestBed.createComponent(SupportComponent);
     fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-});
-
-describe('StrategiesComponent', () => {
-  let socket: Socket;
-  
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        StrategiesComponent
-      ],
-      imports: [
-        RouterTestingModule,
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: httpTranslateLoader,
-            deps: [HttpClient]
-          }
-        }),
-        OAuthModule.forRoot(),
-        HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
-      ],
-      providers: [
-        Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'test' } ) } } },
-      ],
-    }).compileComponents();
-    socket = TestBed.inject(Socket);
-    socket.setupSocketConnection('dev.ellaswar.com');
-  });
-  
-  it('should create the service', () => {
-    const fixture = TestBed.createComponent(StrategiesComponent);
     const app = fixture.componentInstance;
-    
-    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
 });
