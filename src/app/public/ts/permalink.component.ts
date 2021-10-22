@@ -16,6 +16,7 @@ export class PermalinkComponent implements OnInit, OnDestroy {
   constructor(private titleService: Title, public translate: TranslateService,
               private socket: Socket, public user: User,
               private route: ActivatedRoute) {
+    this.currentMsg = {};
   }
   
   ngOnInit() {
