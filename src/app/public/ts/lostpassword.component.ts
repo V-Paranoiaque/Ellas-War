@@ -30,7 +30,9 @@ export class LostPasswordComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
-    this.subLost.unsubscribe();
+    if(this.subLost) {
+      this.subLost.unsubscribe();
+    }
     this.subTitle.unsubscribe();
   }
   
