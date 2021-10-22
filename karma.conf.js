@@ -40,6 +40,9 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Firefox'],
     singleRun: true,
-    restartOnFileChange: true
+    restartOnFileChange: true,
+    browserConsoleLogOptions: {
+      level: 'log'
+    },
   });
 };
