@@ -59,7 +59,7 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
     
-    let elements = document.getElementsByClassName("modal-backdrop");
+    let elements = document.getElementsByClassName("modal");
     while(elements.length > 0){
       if(elements[0]) {
         if(elements[0].parentNode) {
