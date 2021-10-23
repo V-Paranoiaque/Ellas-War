@@ -132,3 +132,10 @@
 * New admin page to show buildings stats
 * Reduce building destruction
 * Remove the test server
+
+# Next
+* Display a popup when the server is down
+* Increase looting during the first attack
+* The number of victories required to win a war is now 50
+* The resources on sales are not protected anymore from the attacks
+* Wood taxes maximum is now 100'000
