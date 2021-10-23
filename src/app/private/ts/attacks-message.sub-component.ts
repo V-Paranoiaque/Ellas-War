@@ -17,6 +17,22 @@ export class AttacksMessageSubComponent {
     this.resources = environment.resources;
   }
   
+  getLostStoreroom() {
+    let list = [];
+    
+    if(this.info.lost_storeroom) {
+      for(let code in this.info.lost_storeroom) {
+        if(this.info.lost_storeroom[code] > 0) {
+          list.push({
+            'res_id': code,
+            'quantity': this.info.lost_storeroom[code]
+          });
+        }
+      }
+    }
+    
+    return list;
+  }
   
   getLostBuildings() {
     let list = [];

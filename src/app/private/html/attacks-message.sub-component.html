@@ -78,6 +78,20 @@
   </table>
 </div>
 
+<div class="col-table text-center" *ngIf="getLostStoreroom().length > 0">
+  <strong id="LostResStoreDesc" translate>Stolen on the agora</strong>
+  <table class="table" aria-describedby="LostResStoreDesc">
+    <tr *ngFor="let res of getLostStoreroom()">
+      <td class="col-6 text-end">
+        {{ res.quantity | number:'1.0-0': this.translate.currentLang}}
+      </td>
+      <th scope="row" class="col-6 text-start">
+        <app-id-to-ress [ress_id]=res.res_id></app-id-to-ress>
+      </th>
+    </tr>
+  </table>
+</div>
+
 <div class="col-table text-center" *ngIf="getLostBuildings().length > 0">
   <strong id="LostBuildingDesc" translate>Lost buildings</strong>
   <table class="table" aria-describedby="LostBuildingDesc">

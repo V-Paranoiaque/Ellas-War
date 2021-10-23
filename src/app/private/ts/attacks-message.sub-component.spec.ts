@@ -81,6 +81,7 @@ describe('AttacksMessageSubComponent', () => {
     };
     
     app.getSentUnits();
+    app.getLostStoreroom();
     app.getLostBuildings();
     app.getAttackLost();
     app.getDefenseLost();
@@ -117,6 +118,10 @@ describe('AttacksMessageSubComponent', () => {
           'mymidon': 0
         }
       ],
+      'lost_storeroom': {
+        'drachma': 1,
+        'wood': 0
+      }
     };
     
     app.user.info.datas.building = {
@@ -133,6 +138,7 @@ describe('AttacksMessageSubComponent', () => {
     expect(app.getSentUnits()).toEqual([{'code': 'spartan', 'nb': 1}]);
     
     app.getLostBuildings();
+    app.getLostStoreroom();
     app.getAttackLost();
     
     expect(app.getDefenseLost()).toEqual([{'code': 'spartan', 'nb': 1}]);
