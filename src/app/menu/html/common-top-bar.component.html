@@ -10,11 +10,27 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Impossible to join the server</h4>
+        <h4 class="modal-title" translate>Impossible to join the server</h4>
       </div>
-      <div class="modal-body text-center">
-        <button class="btn btn-primary" (click)="refresh()"
-                translate>Refresh</button>
+      <div class="modal-body">
+        <div translate>
+          The server is currently not reachable, possible causes are:
+        </div>
+        <ul>
+          <li translate>The game is down</li>
+          <li translate>Your application or web browser needs to be restarted</li>
+          <li translate>Your internet connection is down</li>
+        </ul>
+        
+        <div class="text-danger text-center" translate>
+          This popup will close automatically when the game will be reachable again.
+        </div>
+        
+        <div class="text-center">
+          <br/>
+          <button class="btn btn-primary" (click)="refresh()"
+                  translate>Refresh</button>
+        </div>
       </div>
     </div>
   </div>

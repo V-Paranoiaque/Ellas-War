@@ -75,13 +75,31 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
   
   getApi() {
     let url = this.socket.url+'/api.json';
-    this.sub = this.http.get(url).subscribe((result:any) => {
-      try {
-        if(result && !result.min) {
+    this.sub = this.http.get(url).subscribe({
+      next: (result:any) => {
+        try {
+          if(result && !result.min) {
+            this.displayServerModal = true;
+          }
+          else {
+            this.displayServerModal = false;
+          }
+        }
+        catch (e) {
           this.displayServerModal = true;
         }
-      } catch (e) {
+        if(this.displayServerModal == true) {
+          setTimeout(() => {
+            this.getApi();
+          }, 5000);
+        }
+      },
+      error: () => {
         this.displayServerModal = true;
+        
+        setTimeout(() => {
+          this.getApi();
+        }, 5000);
       }
     });
   }
