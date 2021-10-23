@@ -108,9 +108,6 @@ export class AttacksMessageSubComponent {
     let list = []
     
     for(let i in this.info.unitDefenseLost) {
-      if(!i) {
-        continue
-      }
       listUnits = Tools.addToObject(listUnits, this.info.unitDefenseLost[i]);
     }
     
