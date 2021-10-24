@@ -134,6 +134,7 @@
 * Remove the test server
 
 # Next
+* Checking the application version on startup
 * Display a popup when the server is down
 * Increase looting during the first attack
 * The number of victories required to win a war is now 50
