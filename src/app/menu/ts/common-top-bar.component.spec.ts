@@ -54,6 +54,45 @@ describe('CommonTopBarComponent', () => {
     expect(app).toBeTruthy();
   });
   
+  it('disconnect', () => {
+    const fixture = TestBed.createComponent(CommonTopBarComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    
+    app.disconnect();
+    
+    expect(app).toBeTruthy();
+  });
+  
+  it('checkVersion', () => {
+    const fixture = TestBed.createComponent(CommonTopBarComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    
+    app.onHidden();
+    
+    expect(app).toBeTruthy();
+  });
+  
+  it('checkVersion', () => {
+    const fixture = TestBed.createComponent(CommonTopBarComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    
+    app.localVersion = 0;
+    app.checkVersion();
+    
+    app.localVersion  = 1;
+    app.remoteVersion = 2;
+    app.checkVersion();
+    
+    app.localVersion  = 2;
+    app.remoteVersion = 1;
+    app.checkVersion();
+    
+    expect(app).toBeTruthy();
+  });
+  
 });
 
 // AOT compilation support
