@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   mobile: 0,
+  version: 0,
   resources: ['drachma', 'food', 'water', 'wood', 'iron', 'stone', 'marble', 'grapes', 'wine', 'gold'],
   style: {
     default: 'red',

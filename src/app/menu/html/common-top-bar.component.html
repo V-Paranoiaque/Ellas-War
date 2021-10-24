@@ -35,3 +35,23 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="displayVersionModal" [config]="{ show: true }" (onHidden)="onHidden()"
+     bsModal #versionModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" translate>Your game version id too old</h4>
+      </div>
+      <div class="modal-body" translate>
+        The version of the client that you use to access to the game is too old.
+        If you use an application, try to update it, else restart your web browser.
+      </div>
+      <div class="modal-body text-center">
+        <strong translate>Minimum version:</strong> {{ remoteVersion }}
+        <br/>
+        <strong translate>Your version:</strong> {{ localVersion }}
+      </div>
+    </div>
+  </div>
+</div>

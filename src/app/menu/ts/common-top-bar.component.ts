@@ -16,11 +16,14 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 export class CommonTopBarComponent implements OnInit, OnDestroy {
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
-  displayServerModal = false;
+  displayServerModal  = false;
+  displayVersionModal = false;
   
   @Input()
   active: string;
   
+  public localVersion:number;
+  public remoteVersion:number;
   private sub:any;
   
   greekcolumnIcon = greekcolumnIcon;
@@ -30,6 +33,8 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
               protected router: Router, public user: User,
               protected modalService: BsModalService) {
     this.active = '';
+    this.localVersion  = environment.version;
+    this.remoteVersion = 0;
   }
   
   ngOnInit() {
@@ -83,12 +88,15 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
           }
           else {
             this.displayServerModal = false;
+            this.remoteVersion = result.min;
+            this.checkVersion();
           }
         }
         catch (e) {
           this.displayServerModal = true;
         }
-        if(this.displayServerModal == true) {
+        
+        if(this.displayServerModal) {
           setTimeout(() => {
             this.getApi();
           }, 5000);
@@ -115,6 +123,19 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
   }
   
   onHidden(): void {
-    this.displayServerModal = false;
+    this.displayServerModal  = false;
+    this.displayVersionModal = false;
+  }
+  
+  checkVersion() {
+    if(this.localVersion == 0) {
+      this.displayVersionModal = false;
+    }
+    else if(this.localVersion < this.remoteVersion) {
+      this.displayVersionModal = true;
+    }
+    else {
+      this.displayVersionModal = false;
+    }
   }
 }
