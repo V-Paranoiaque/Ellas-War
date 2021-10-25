@@ -28,7 +28,7 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   sortUP = sortUP;
   users  = users;
   
-  constructor(private http: HttpClient, private route: ActivatedRoute, 
+  constructor(public http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User,
               private socket: Socket, private titleService: Title, 
               public translate: TranslateService) {
