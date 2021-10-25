@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { AllianceMembersComponent } from './alliance-members.component';
 import { environment } from '../../../environments/environment';
@@ -51,6 +52,48 @@ describe('AllianceMembersComponent', () => {
     fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
+  });
+  
+  it('Test getMembers null', () => {
+    const fixture = TestBed.createComponent(AllianceMembersComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    
+    spyOn(app.http, 'get').and.returnValue(of(null));
+    app.getMembers();
+    expect(app.allianceMembers).toEqual([]);
+  });
+  
+  it('Test getProfile null', () => {
+    const fixture = TestBed.createComponent(AllianceMembersComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    
+    spyOn(app.http, 'get').and.returnValue(of(null));
+    app.getProfile();
+    expect(app.allianceProfile).toEqual('');
+  });
+  
+  it('Test getMembers working', () => {
+    const fixture = TestBed.createComponent(AllianceMembersComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    let info = [{'name': 'test'}];
+    
+    spyOn(app.http, 'get').and.returnValue(of(info));
+    app.getMembers();
+    expect(app.allianceMembers).toEqual(info);
+  });
+  
+  it('Test getProfile working', () => {
+    const fixture = TestBed.createComponent(AllianceMembersComponent);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    let info = {'alliance_name': 'test'};
+    
+    spyOn(app.http, 'get').and.returnValue(of(info));
+    app.getProfile();
+    expect(app.allianceProfile).toEqual(info);
   });
 });
 

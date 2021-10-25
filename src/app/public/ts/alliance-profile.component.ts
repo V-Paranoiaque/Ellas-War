@@ -20,7 +20,7 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
   allianceProfile:any;
   userPlus = userPlus;
   
-  constructor(private http: HttpClient, private route: ActivatedRoute,
+  constructor(public http: HttpClient, private route: ActivatedRoute,
               private socket: Socket, public user: User,
               private titleService: Title, public translate: TranslateService) {
     this.allianceProfile = {};
@@ -52,16 +52,18 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.subMembers = this.http.get(url).subscribe((alli:any) => {
-      if(alli) {
-        this.allianceProfile = alli;
-        
-        this.subProfile1 = this.translate.get('Alliance profile').subscribe((res1: string) => {
-          this.subProfile2 = this.translate.get(':').subscribe((res2: string) => {
-            this.titleService.setTitle(res1+res2+alli.alliance_name);
+    if(id) {
+      this.subMembers = this.http.get(url).subscribe((alli:any) => {
+        if(alli) {
+          this.allianceProfile = alli;
+          
+          this.subProfile1 = this.translate.get('Alliance profile').subscribe((res1: string) => {
+            this.subProfile2 = this.translate.get(':').subscribe((res2: string) => {
+              this.titleService.setTitle(res1+res2+alli.alliance_name);
+            });
           });
-        });
-      }
-    });
+        }
+      });
+    }
   }
 }

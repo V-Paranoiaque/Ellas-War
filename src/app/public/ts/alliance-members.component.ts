@@ -19,7 +19,7 @@ export class AllianceMembersComponent implements OnInit, OnDestroy {
   private subProfile:any;
   private subTitle:any;
   
-  constructor(private http: HttpClient, private route: ActivatedRoute,
+  constructor(public http: HttpClient, private route: ActivatedRoute,
               private socket: Socket, public user: User,
               private titleService: Title, public translate: TranslateService) {
     this.allianceMembers = [];
