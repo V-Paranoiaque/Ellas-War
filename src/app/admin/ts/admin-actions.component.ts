@@ -1,24 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
+
+import { environment } from '../../../environments/environment';
 
 @Component({
   templateUrl: '../html/admin-actions.component.html',
   styleUrls: ['../css/admin.component.css']
 })
 
-export class AdminActionsComponent implements OnInit {
+export class AdminActionsComponent implements OnInit, OnDestroy {
   
   public adminActions:any;
+  public adminStoreroom:any;
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {
     this.adminActions ='';
+    this.adminStoreroom = {};
+    for(let res of environment.resources) {
+      this.adminStoreroom[res] = {
+        'quantity': 0,
+        'price': 0
+      };
+    }
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+    
+    this.socket.emit('adminStoreroomAutoList');
+    
+    this.socket.on('adminStoreroomAutoList', (list:any) => {
+      for(let res in list) {
+        this.adminStoreroom[res] = list[res];
+      }
+    });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('adminStoreroomAutoList');
   }
   
   run() {
@@ -26,5 +48,9 @@ export class AdminActionsComponent implements OnInit {
       this.socket.emit('adminActions', this.adminActions);
       this.adminActions = '';
     }
+  }
+  
+  storeroomSave() {
+    this.socket.emit('adminStoreroomAutoSave', this.adminStoreroom);
   }
 }

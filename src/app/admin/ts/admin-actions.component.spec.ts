@@ -55,6 +55,8 @@ describe('AdminActionsComponent', () => {
     app.adminActions = 'test';
     app.run();
     
+    app.storeroomSave();
+    
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });

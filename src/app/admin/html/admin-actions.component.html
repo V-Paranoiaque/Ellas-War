@@ -21,10 +21,96 @@
             <option value="reinitStatsWeekly" translate>
               Reinitialize weekly stats
             </option>
+            <option value="adminAutosell" translate>
+              Run the autosell
+            </option>
           </select>
           
           <div class="btn btn-primary" (click)="run()">
             Run
+          </div>
+        </div>
+        <div class="row">
+          <h1 class="text-center" id="adminActionsStoreroomDesc"
+              translate>Auto sell</h1>
+          
+          <table class="table" aria-labelledby="adminActionsStoreroomDesc">
+            <thead>
+              <tr>
+                <th scope="column"></th>
+                <th scope="column" translate>Quantity</th>
+                <th scope="column" translate>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" translate>Food</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.food.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.food.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Water</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.water.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.water.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Wood</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.wood.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.wood.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Iron</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.iron.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.iron.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Stone</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.stone.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.stone.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Marble</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.marble.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.marble.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Grapes</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.grapes.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.grapes.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Wine</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.wine.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.wine.price" /></td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Gold</th>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.gold.quantity" /></td>
+                <td><input class="form-control" type="number" [attr.min]="0"
+                           [(ngModel)]="adminStoreroom.gold.price" /></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <button class="btn btn-success" (click)="storeroomSave()"
+                    translate>Save</button>
           </div>
         </div>
       </div>
