@@ -129,6 +129,11 @@
                 {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
                 <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
               </div>
+              <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0">
+                <span translate>The wall of Poseidon protects this city.</span>
+                ({{ wallDefense | number:'': this.translate.currentLang }} 
+                 <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+              </div>
               <div class="row d-flex"
                    cdkDropList
                    id="wave-defense-0"

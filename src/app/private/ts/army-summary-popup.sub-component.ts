@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from '../../../services/user.service';
 
@@ -10,20 +11,32 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   templateUrl: '../html/army-summary-popup.sub-component.html'
 })
 
-export class ArmySummaryPopupSubComponent implements OnInit {
+export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
   private army:any;
   private buildings:any;
+  
+  public wallDefense:number;
   
   shieldShaded = shieldShaded;
   swordIcon= swordIcon;
   
-  constructor(public user: User, public translate: TranslateService) {
-    
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+    this.wallDefense = 0;
   }
   
   ngOnInit(){
     this.army      = this.user.getArmy();
     this.buildings = this.user.getBuildings();
+    
+    this.socket.emit('wallDefense');
+    
+    this.socket.on('wallDefense', (data:number) => {
+      this.wallDefense = data;
+    });
+  }
+  
+  ngOnDestroy() {
+    this.socket.removeListener('wallDefense');
   }
   
   getAttack() {
@@ -50,6 +63,8 @@ export class ArmySummaryPopupSubComponent implements OnInit {
         nb += this.user.getPropertyNb(building.code)*building.defense; 
       }
     }
+    
+    nb += this.wallDefense;
     
     return nb;
   }

@@ -39,6 +39,17 @@
             </td>
           </tr>
         </ng-container>
+        <tr *ngIf="user.getPropertyNb('poseidon_wall') > 0">
+          <th scope="row" translate>
+            Wall of Poseidon
+          </th>
+          <td class="text-end">
+            0
+          </td>
+          <td class="text-end">
+            {{ wallDefense | number:'': this.translate.currentLang}}
+          </td>
+        </tr>
       </tbody>
       <tfoot>
         <tr>
