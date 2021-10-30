@@ -136,7 +136,10 @@
 # Next
 * Checking the application version on startup
 * Display a popup when the server is down
+* Display the Wall of Poseidon in the Army
 * Increase looting during the first attack
+* New type of wall
+* Reduce some unities consumptions
 * The number of victories required to win a war is now 50
 * The resources on sales are not protected anymore from the attacks
 * Wood taxes maximum is now 100'000
