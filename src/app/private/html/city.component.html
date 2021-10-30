@@ -40,6 +40,11 @@
     <app-treasure-popup [info]="treasureInfo"></app-treasure-popup>
   </div>
 </div>
+<div class="modal fade" id="DefenseWallInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-defense-wall-popup></app-defense-wall-popup>
+  </div>
+</div>
 
 <div class="modal fade" id="DivineBonusInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -294,6 +299,16 @@
               <app-ew-icon name="{{ building.code }}"></app-ew-icon>
               <div class="badge bg-secondary">
                 {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}
+              </div>
+            </div>
+            
+            <div class="frame frame-20"
+                 data-bs-toggle="modal" data-bs-target="#DefenseWallInfo"
+                 *ngIf="user.getPropertyNb('defense_wall') >= 1"
+                 title="{{ 'Defense wall' | translate }}" role="button">
+              <app-ew-icon name="defense_wall"></app-ew-icon>
+              <div class="badge bg-secondary">
+                {{ user.getPropertyNb('defense_wall') | number:'': this.translate.currentLang }}
               </div>
             </div>
           </div>

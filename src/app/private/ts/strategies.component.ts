@@ -27,6 +27,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   public waveDefenseList:any;
   public waveDefensePower:number;
   public waveDefenseUnit:any;
+  public defenseWallStrength:number;
   public wallDefense:number;
   
   public waveAttackMax:number;
@@ -45,6 +46,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     
     this.waveDefenseList = [];
     this.waveDefensePower = 0;
+    this.defenseWallStrength = 0;
     this.wallDefense = 0;
     
     this.type = '';
@@ -61,6 +63,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     
     if(this.type && this.type == 'defense') {
       this.socket.emit("waveDefenseList");
+      this.socket.emit('defenseWallStrength');
       this.socket.emit('wallDefense');
     }
     else {
@@ -90,7 +93,10 @@ export class StrategiesComponent implements OnInit, OnDestroy {
         this.waveDefenseDropList = ['wave-defense-0', 'wave-defense-1'];
       }
     });
-    
+
+    this.socket.on('defenseWallStrength', (data:number) => {
+      this.defenseWallStrength = data;
+    });
     this.socket.on('wallDefense', (data:number) => {
       this.wallDefense = data;
     });
@@ -106,6 +112,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.socket.removeListener('engage');
+    this.socket.removeListener('defenseWallStrength');
     this.socket.removeListener('wallDefense');
     this.socket.removeListener('waveAttackList');
     this.socket.removeListener('waveDefenseList');

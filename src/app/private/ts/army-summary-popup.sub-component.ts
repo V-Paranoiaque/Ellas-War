@@ -15,12 +15,14 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
   private army:any;
   private buildings:any;
   
+  public defenseWallStrength:number;
   public wallDefense:number;
   
   shieldShaded = shieldShaded;
   swordIcon= swordIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
+    this.defenseWallStrength = 0;
     this.wallDefense = 0;
   }
   
@@ -28,14 +30,19 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
     this.army      = this.user.getArmy();
     this.buildings = this.user.getBuildings();
     
+    this.socket.emit('defenseWallStrength');
     this.socket.emit('wallDefense');
     
+    this.socket.on('defenseWallStrength', (data:number) => {
+      this.defenseWallStrength = data;
+    });
     this.socket.on('wallDefense', (data:number) => {
       this.wallDefense = data;
     });
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('defenseWallStrength');
     this.socket.removeListener('wallDefense');
   }
   
@@ -64,6 +71,7 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
       }
     }
     
+    nb += this.defenseWallStrength;
     nb += this.wallDefense;
     
     return nb;
