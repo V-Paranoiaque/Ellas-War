@@ -49,6 +49,13 @@
             <br/>
             <table class="table table-middle table-striped align-middle"
                    *ngIf="contactNb > 0" aria-labelledby="contactDesc">
+              <thead>
+                <tr>
+                  <th scope="column" translate>Subject</th>
+                  <th scope="column" translate>Last message</th>
+                  <th scope="column"></th>
+                </tr>
+              </thead>
               <tbody>
                 <tr *ngFor="let info of contactList">
                   <th scope="row" class="text-start">
@@ -57,10 +64,7 @@
                     </a>
                   </th>
                   <td>
-                    {{ info?.support_lastdate }}
-                  </td>
-                  <td>
-                    {{info.last_username}}
+                    {{info.last_username}}, {{ info.support_lastdate*1000| date:'dd/MM, HH:mm'}}
                   </td>
                   <td>
                     <a class="btn btn-primary"

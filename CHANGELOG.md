@@ -134,6 +134,7 @@
 * Remove the test server
 
 # Next
+* Better support page display
 * Checking the application version on startup
 * Display a popup when the server is down
 * Display the Wall of Poseidon in the Army
