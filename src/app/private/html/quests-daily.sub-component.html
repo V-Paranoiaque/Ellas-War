@@ -23,7 +23,7 @@
              [ngStyle]="{'width.%': 100*quest.quest_current/quest.quest_goal }"></div>
         <div class="progress-text">
           <span translate>Progress:</span>
-          {{quest.quest_current}}/{{quest.quest_goal}}
+          {{quest.quest_current | number:'': this.translate.currentLang}}/{{quest.quest_goal | number:'': this.translate.currentLang}}
         </div>
       </div>
     </div>

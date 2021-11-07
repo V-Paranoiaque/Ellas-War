@@ -112,13 +112,13 @@
             
             <app-quests-daily *ngSwitchCase="5"
                           subject="{{'Builder'|translate}}"
-                          description="{{ 'Construct { value } buildings' | translate: { value: quest.quest_goal } }}"
+                          description="{{ 'Construct { value } buildings' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
                           [quest]="quest"
                           link="city"></app-quests-daily>
             
             <app-quests-daily *ngSwitchCase="6"
                           subject="{{'Recruiter'|translate}}"
-                          description="{{ 'Engage { value } Units' | translate: { value: quest.quest_goal } }}"
+                          description="{{ 'Engage { value } Units' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
                           [quest]="quest"
                           link="city"></app-quests-daily>
             
