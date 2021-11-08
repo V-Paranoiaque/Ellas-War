@@ -114,6 +114,9 @@
           <strong translate>Minimum level</strong><strong translate>:</strong>
           <input class="form-control" type="number" [attr.min]="0" [attr.max]="10"
                  [(ngModel)]="rewardInfo.level">
+          <strong translate>Maximum level</strong><strong translate>:</strong>
+          <input class="form-control" type="number" [attr.min]="0" [attr.max]="10"
+                 [(ngModel)]="rewardInfo.levelmax">
         </div>
       </div>
       <div class="modal-footer">
@@ -200,7 +203,7 @@
                   {{ p.reward_quantity | number:'': this.translate.currentLang }}
                   <app-ew-icon name="{{p.reward_ress}}" class="small-icon"></app-ew-icon>
                 </td>
-                <td class="text-center">{{ p.reward_level }}</td>
+                <td class="text-center">{{ p.reward_level }}-{{ p.reward_levelmax }}</td>
                 <td class="text-center">
                   <button class="btn btn-success" (click)="setReward(p)"
                           data-bs-toggle="modal" data-bs-target="#RewardEdit">

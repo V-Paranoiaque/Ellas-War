@@ -100,7 +100,8 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
       'quantity': '',
       'ress': 0,
       'reward': '',
-      'level': 0
+      'level': 0,
+      'levelmax': 0
     }
   }
   
@@ -110,7 +111,8 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
         'nb': this.rewardInfo.quantity,
         'ress': this.rewardInfo.ress,
         'reward': this.rewardInfo.reward,
-        'level': this.rewardInfo.level
+        'level': this.rewardInfo.level,
+        'levelmax': this.rewardInfo.levelmax
       });
     }
     else {
@@ -119,7 +121,8 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
         'nb': this.rewardInfo.quantity,
         'ress': this.rewardInfo.ress,
         'reward': this.rewardInfo.reward,
-        'level': this.rewardInfo.level
+        'level': this.rewardInfo.level,
+        'levelmax': this.rewardInfo.levelmax
       });
     }
   }
@@ -142,7 +145,8 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
       'quantity': reward.reward_quantity,
       'ress': reward.reward_ress,
       'reward': reward.reward_type,
-      'level': reward.reward_level
+      'level': reward.reward_level,
+      'levelmax': reward.reward_levelmax
     }
   }
 }
