@@ -45,6 +45,9 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     this.socket.on('engagePossible', (nb:number) => {
       this.info.rEngagePossible = nb;
     });
+    this.socket.on('freeUnits', (nb:number) => {
+      this.info.free = nb;
+    });
     this.socket.on('build', () => {
       this.socket.emit('engagePossible', this.info.code);
     });
@@ -65,6 +68,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.socket.removeListener('engagePossible');
+    this.socket.removeListener('freeUnits');
     this.socket.removeListener('build');
     this.socket.removeListener('destruct');
     this.socket.removeListener('engage');

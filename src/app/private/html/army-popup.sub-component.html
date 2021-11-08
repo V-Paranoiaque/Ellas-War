@@ -179,6 +179,12 @@
           </span>
         </div>
         
+        <div *ngIf="info.free > 0">
+          <strong translate>Free units</strong>
+          <strong translate>:</strong>
+          {{ info.free | number:'': this.translate.currentLang }}
+        </div>
+        
         <div *ngIf="info.rEngagePossible > 0" role="button" (click)="setEngage(info.rEngagePossible)">
           <strong>{{"Max possible"|translate}}{{":"|translate}}</strong>
           {{ info.rEngagePossible | number:'': this.translate.currentLang }}
@@ -208,6 +214,10 @@
                     translate>Liberate</button>
           </div>
         </div>
+      </div>
+      <div class="col-12 text-danger fw-bold text-center"
+           *ngIf="info.free > 0" translate>
+        When you liberate free units, you don't get any resources back
       </div>
     </div>
   </div>

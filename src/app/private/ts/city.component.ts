@@ -261,9 +261,11 @@ export class CityComponent implements OnInit, OnDestroy {
     this.armyInfo.rEngageNb      = 0;
     this.armyInfo.rLiberateNb    = 0;
     this.armyInfo.rEngagePossible= 0;
-    this.armyInfo.error          = 0; 
+    this.armyInfo.error          = 0;
+    this.armyInfo.free           = 0;
     
     this.socket.emit('engagePossible', name);
+    this.socket.emit('freeUnits', name);
     
     for(let res in this.armyInfo.cost) {
       this.armyInfo.resale[res] = this.armyInfo.cost[res]*0.6;
