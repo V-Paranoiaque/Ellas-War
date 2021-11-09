@@ -11,11 +11,13 @@ import { User } from '../../../services/user.service';
 export class AdminStatsQuestsComponent implements OnInit, OnDestroy {
   public adminQuestList:any;
   public adminQuestReward:any;
+  public levelList:number[];
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {
     this.adminQuestList = [];
     this.adminQuestReward = [];
+    this.levelList = [1,2,3,4,5];
   }
   
   ngOnInit() {
@@ -25,7 +27,13 @@ export class AdminStatsQuestsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminQuestReward');
     
     this.socket.on('adminQuestList', (msg:any) => {
-      this.adminQuestList = msg;
+      this.adminQuestList = [];
+      for(let i of msg) {
+        if(!this.adminQuestList[i.quest_reward]) {
+          this.adminQuestList[i.quest_reward] = []
+        }
+        this.adminQuestList[i.quest_reward].push(i);
+      }
     });
     this.socket.on('adminQuestListRefresh', () => {
       this.socket.emit('adminQuestList');
