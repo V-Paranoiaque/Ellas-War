@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
 @Component({
-  selector: 'socket',
+  selector: 'app-socket',
   template: `
     <ng-content></ng-content>
   `

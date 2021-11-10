@@ -7,7 +7,7 @@ import { Socket } from './socketio.service';
 declare var facebookConnectPlugin:any;
 
 @Component({
-  selector: 'user',
+  selector: 'app-user',
   template: `
     <ng-content></ng-content>
   `
