@@ -53,6 +53,7 @@ import { BlockedComponent } from './private/ts/blocked.component';
 import { PausedComponent } from './private/ts/paused.component';
 
 //Admin
+import { Admin404Component } from './admin/ts/admin-404.component';
 import { AdminActionsComponent } from './admin/ts/admin-actions.component';
 import { AdminChatComponent } from './admin/ts/admin-chat.component';
 import { AdminContactComponent } from './admin/ts/admin-contact.component';
@@ -142,6 +143,7 @@ routes = [
   
   { path: 'admin',
     children: [
+      { path: '404', component: Admin404Component },
       { path: 'actions', component: AdminActionsComponent },
       { path: 'chat', component: AdminChatComponent },
       { path: 'contact', component: AdminContactComponent },
