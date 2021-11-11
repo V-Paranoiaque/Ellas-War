@@ -102,7 +102,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
     this.socket.on('msgRefresh', () => {
       this.setPage(this.currentPage);
-      this.messageLoad({'id': this.currentMsg});
+      this.messageLoad({'msg_id': this.currentMsg.id});
     });
     
     this.setPage(this.currentPage);
@@ -210,7 +210,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
       this.msgText = '';
       this.destList = [];
     }
-    this.answerText = '';
+    
+    if(id != this.currentMsg.id) {
+      this.answerText = '';
+    }
   }
   
   messageDelete() {
