@@ -226,3 +226,7 @@
   <span *ngSwitchCase="27">{{'{ value } from the alliance { name } has requested a pact to your alliance.' | translate: { value: msg.content.username, name: msg.content.ask_name } }}</span>
   <span *ngSwitchDefault>TODO {{ msg.msg_type }}</span>
 </div>
+
+<div *ngIf="msg.content_type > 0" class="text-end fw-lighter">
+  {{ msg.time | date:'dd/MM/yyyy, HH:mm' }}
+</div>
