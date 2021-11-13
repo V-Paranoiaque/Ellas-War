@@ -137,10 +137,18 @@
 * Better support page display
 * Checking the application version on startup
 * Display a popup when the server is down
+* Display information about free units
 * Display the Wall of Poseidon in the Army
+* Fix taxes displayed in the treasure, with Hermes
+* Fix numbers in quests
+* Fix when a message is reloaded
 * Increase looting during the first attack
+* New admin page to trace 404 errors
+* New presentation for the quest summary admin page
 * New type of wall
+* Players can store 4 quests instead of 3
 * Reduce some unities consumptions
+* The date was missing in game's messages
 * The number of victories required to win a war is now 50
 * The resources on sales are not protected anymore from the attacks
 * Wood taxes maximum is now 100'000
