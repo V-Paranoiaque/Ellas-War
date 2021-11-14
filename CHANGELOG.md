@@ -149,6 +149,7 @@
 * New type of wall
 * Players can store 4 quests instead of 3
 * Reduce some unities consumptions
+* The big reward for the diamond is reached with 8 players instead of 10
 * The date was missing in game's messages
 * The number of victories required to win a war is now 50
 * The resources on sales are not protected anymore from the attacks
