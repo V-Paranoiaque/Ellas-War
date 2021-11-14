@@ -228,9 +228,19 @@
               <strong translate>:</strong>
               {{diamondInfo.victory| number:'': this.translate.currentLang}}
               <br/>
+              
+              <strong translate>Last week</strong>
+              <strong translate>:</strong>
+              <a [routerLink]="['/profile/'+diamondInfo.last_id]">
+                {{diamondInfo.last_username}}
+              </a>
+              <br/>
             </div>
             
-            <div class="text-center" *ngIf="diamondInfo.membre_id != user.getPropertyNb('id') && user.getLevel() >= 10">
+            <div *ngIf="diamondInfo.membre_id != user.getPropertyNb('id') &&
+                        user.getLevel() >= 10 && 
+                        user.getPropertyNb('id') != diamondInfo.last_id"
+                 class="text-center">
               <span *ngIf="diamondInfo.possible_field == 1">
                 <button class="btn btn-info"
                         (click)="spy(diamondInfo.membre_id)"
@@ -269,6 +279,11 @@
                   {{'Impossible to attack the city:'|translate}} {{diamondInfo.username}}
                 </span>
               </button>
+            </div>
+            
+            <div *ngIf="user.getPropertyNb('id') == diamondInfo.last_id"
+                 class="text-center text-danger fw-bold" translate>
+              You won the diamond last week, you can't participate until need week
             </div>
             
             <div class="row">

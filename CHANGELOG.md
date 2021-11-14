@@ -143,6 +143,7 @@
 * Fix numbers in quests
 * Fix when a message is reloaded
 * Increase looting during the first attack
+* It's not possible anymore to win the diamond two weeks in a row
 * New admin page to trace 404 errors
 * New presentation for the quest summary admin page
 * New type of wall
