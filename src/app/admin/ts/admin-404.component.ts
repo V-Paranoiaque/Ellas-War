@@ -14,7 +14,7 @@ export class Admin404Component implements OnInit, OnDestroy {
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {
-    
+    this.pageList = [];
   }
   
   ngOnInit() {
