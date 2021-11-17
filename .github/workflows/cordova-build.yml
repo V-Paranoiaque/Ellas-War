@@ -42,6 +42,7 @@ jobs:
           zip -r web.zip web
           #Prepare for the apps
           npm run build -- --configuration=mobile
+          zip -r mobile.zip www
 
       - name: Upload web zip file to release
         uses: svenstaro/upload-release-action@v2
@@ -49,6 +50,14 @@ jobs:
           repo_token: ${{ secrets.GH_TOKEN }}
           file: /home/runner/work/Ellas-War/Ellas-War/web.zip
           asset_name: web.zip
+          tag: ${{ github.ref }}
+
+      - name: Upload mobile zip file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/mobile.zip
+          asset_name: mobile.zip
           tag: ${{ github.ref }}
 
   #X64 Arch
