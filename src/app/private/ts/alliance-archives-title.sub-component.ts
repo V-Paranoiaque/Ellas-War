@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-alliance-archives-title',

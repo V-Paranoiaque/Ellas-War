@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   templateUrl: '../html/help.component.html',

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Socket } from '../../../services/socketio.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { UserComponent as User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { environment } from './../../../environments/environment';

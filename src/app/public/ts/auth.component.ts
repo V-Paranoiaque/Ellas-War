@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
-import { Tools } from '../../../services/tools.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
+import { UserComponent as User } from '../../../services/user.service';
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
 import { environment } from './../../../environments/environment';

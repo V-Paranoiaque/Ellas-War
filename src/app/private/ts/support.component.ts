@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
-import { Tools } from '../../../services/tools.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import eye from '@iconify/icons-fa-solid/eye';
 

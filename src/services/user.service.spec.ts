@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Socket } from './socketio.service';
+import { SocketComponent as Socket } from './socketio.service';
 
-import { User } from './user.service';
+import { UserComponent as User } from './user.service';
 
 describe('User', () => {
   beforeEach(async () => {

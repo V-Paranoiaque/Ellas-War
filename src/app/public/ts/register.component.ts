@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../../environments/environment';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';

@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Tools } from '../../../services/tools.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-attacks-message',

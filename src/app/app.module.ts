@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 
 import { EwIconSubComponent } from '../services/ew-icon.service';
 import { ClipboardModule } from 'ngx-clipboard';
-import { Socket } from '../services/socketio.service';
-import { Tools } from '../services/tools.service';
-import { User } from '../services/user.service';
+import { SocketComponent as Socket } from '../services/socketio.service';
+import { ToolsComponent as Tools } from '../services/tools.service';
+import { UserComponent as User } from '../services/user.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';

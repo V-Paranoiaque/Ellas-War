@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-common-bottom-bar',

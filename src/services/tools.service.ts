@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   `
 })
 
-export class Tools {
+export class ToolsComponent {
   static range(a:number, b:number) {
     let list = []
     for(a;a<=b;a++) {

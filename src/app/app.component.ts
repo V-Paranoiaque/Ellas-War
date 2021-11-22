@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
-import { Socket } from '../services/socketio.service';
+import { SocketComponent as Socket } from '../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../services/user.service';
+import { UserComponent as User } from '../services/user.service';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { registerLocaleData } from '@angular/common';

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Socket } from './/socketio.service';
+import { SocketComponent as Socket } from './/socketio.service';
 
 describe('Socket', () => {
   beforeEach(async () => {

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 
 @Component({
   selector: 'app-divinebonus-list-popup',

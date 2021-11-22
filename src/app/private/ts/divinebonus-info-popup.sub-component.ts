@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 
 @Component({
   selector: 'app-divinebonus-info-popup',

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Socket } from '../../../services/socketio.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { UserComponent as User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router'
 

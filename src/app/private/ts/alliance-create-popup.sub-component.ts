@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 
 @Component({
   selector: 'app-alliance-create-popup',

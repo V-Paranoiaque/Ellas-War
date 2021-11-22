@@ -1,8 +1,8 @@
 import { Component, Output, OnInit, OnDestroy  } from '@angular/core';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import cloud from '@iconify/icons-fa-solid/cloud';
 import cog from '@iconify/icons-fa-solid/cog';

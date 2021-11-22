@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
 import boltIcon from '@iconify/icons-fa-solid/bolt';

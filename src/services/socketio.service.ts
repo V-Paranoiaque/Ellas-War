@@ -8,7 +8,7 @@ import { environment } from './../environments/environment';
     <ng-content></ng-content>
   `
 })
-export class Socket {
+export class SocketComponent {
   
   public onChange: EventEmitter<any> = new EventEmitter<any>();
   

@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
-import { Socket } from './socketio.service';
+import { SocketComponent as Socket } from './socketio.service';
 
 declare var facebookConnectPlugin:any;
 
@@ -14,7 +14,7 @@ declare var facebookConnectPlugin:any;
 })
 
 @Injectable()
-export class User {
+export class UserComponent {
   config: any;
   info: any;
   init: number;

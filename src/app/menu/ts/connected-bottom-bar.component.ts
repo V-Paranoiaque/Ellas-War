@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router'
-import { Socket } from '../../../services/socketio.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import { CommonBottomBarComponent } from './common-bottom-bar.component';
 

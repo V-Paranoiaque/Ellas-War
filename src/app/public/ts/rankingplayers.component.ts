@@ -1,11 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Socket } from '../../../services/socketio.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { Tools } from '../../../services/tools.service';
-import { User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import sortUP from '@iconify/icons-fa-solid/sort-up';
 

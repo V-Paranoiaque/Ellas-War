@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { Router, ActivatedRoute , convertToParamMap} from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing';
-import { Socket } from '../../../services/socketio.service';
-import { User } from '../../../services/user.service';
+import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { UserComponent as User } from '../../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

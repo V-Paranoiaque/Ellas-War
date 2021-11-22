@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { Socket } from '../services/socketio.service';
-import { User } from '../services/user.service';
+import { SocketComponent as Socket } from '../services/socketio.service';
+import { UserComponent as User } from '../services/user.service';
 import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

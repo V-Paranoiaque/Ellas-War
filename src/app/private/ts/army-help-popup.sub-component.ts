@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../../services/user.service';
+import { UserComponent as User } from '../../../services/user.service';
 
 import animalDog20Filled from '@iconify-icons/fluent/animal-dog-20-filled';
 import bowAndArrow from '@iconify-icons/emojione-monotone/bow-and-arrow';

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Tools } from './tools.service';
+import { ToolsComponent as Tools } from './tools.service';
 
 describe('Tools', () => {
   beforeEach(async () => {
