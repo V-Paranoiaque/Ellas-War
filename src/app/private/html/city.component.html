@@ -210,7 +210,7 @@
             </div>
             <span translate>Divine Bonus</span>
           </div>
-          <div class="card-body no-padding text-center" *ngIf="divineBonus.length == 0">
+          <div class="card-body no-padding text-center" *ngIf="divineBonus.length === 0">
             <br/>
             <strong translate>Ongoing streak:</strong>
             {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>

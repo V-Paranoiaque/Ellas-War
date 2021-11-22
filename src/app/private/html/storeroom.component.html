@@ -75,7 +75,7 @@
             Buy resources
           </div>
           <div class="card-body">
-            <div *ngIf="getStoreroomList().length == 0"
+            <div *ngIf="getStoreroomList().length === 0"
                  class="text-center" translate>
               No resource available on the Agora
             </div>
@@ -168,7 +168,7 @@
             </div>
             
             <div class="text-center fw-bold"
-                 *ngIf="getStoreroomMyList().length == 0">
+                 *ngIf="getStoreroomMyList().length === 0">
               <br/>
               <span translate>
                 You currently don't have any batch on sales

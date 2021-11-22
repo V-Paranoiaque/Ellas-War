@@ -263,7 +263,7 @@
             Recruitment
           </div>
           <div class="card-body text-center fw-bold"
-               *ngIf="myAllianceWaitList.length == 0" translate>
+               *ngIf="myAllianceWaitList.length === 0" translate>
             There is no member waiting to enter in your alliance
           </div>
           <div class="card-body" *ngIf="myAllianceWaitList.length > 0">
@@ -295,7 +295,7 @@
           </div>
           <div class="card-body">
             <div class="text-center fw-bold"
-                 *ngIf="pactList.length == 0" translate>
+                 *ngIf="pactList.length === 0" translate>
               You don't have any pact
             </div>
             <table class="table table-striped table-middle align-middle"
@@ -361,7 +361,7 @@
           </div>
           <div class="card-body">
             <div class="text-center fw-bold"
-                 *ngIf="myAllianceWar.length == 0" translate>
+                 *ngIf="myAllianceWar.length === 0" translate>
               You don't have any war
             </div>
             

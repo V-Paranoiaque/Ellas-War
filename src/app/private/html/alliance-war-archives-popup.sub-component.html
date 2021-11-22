@@ -12,7 +12,7 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body container-fluid text-center fw-bold"
-       *ngIf="list.length == 0" translate>
+       *ngIf="list.length === 0" translate>
     No attack has been made yet
   </div>
   <div *ngIf="user.getId() > 0"

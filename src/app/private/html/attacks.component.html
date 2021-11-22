@@ -72,7 +72,7 @@
             </div>
           </div>
           <div class="card-body text-center"
-               *ngIf="menuMode == 0 && getAttackList().length == 0">
+               *ngIf="menuMode == 0 && getAttackList().length === 0">
             <p translate>
               Your attack list is empty. You can only see cities who have between 50% and 200% of your field.
             </p>
@@ -467,7 +467,7 @@
           </div>
           
           <div class="card-body text-center"
-               *ngIf="menuMode == 4 && getAttackWarsList().length == 0">
+               *ngIf="menuMode == 4 && getAttackWarsList().length === 0">
             <p translate>
               Your attack list is empty. You can only see cities who have between 50% and 200% of your field.
             </p>
@@ -1051,7 +1051,7 @@
                 </div>
                 <br/>
               </div>
-              <div *ngIf="sanctuariesSpyInfo.unitiesNb == 0 && sanctuariesSpyInfo.unities.length == 0"
+              <div *ngIf="sanctuariesSpyInfo.unitiesNb == 0 && sanctuariesSpyInfo.unities.length === 0"
                    translate>
                 This sancturary is not protected by any army, fight directly the monster!
               </div>
