@@ -470,7 +470,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
   
   launchAttack(id:number) {
-    this.socket.emit('attackPossible', id);
+    this.attackPossible = -1;
     this.socket.emit('attack', id);
   }
   
