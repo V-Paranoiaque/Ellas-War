@@ -102,7 +102,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@2.0.0
+          cordova platform add electron@^3.0.0
           cp res/electron/build-pipeline-linux-x64.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -155,7 +155,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@2.0.0
+          cordova platform add electron@^3.0.0
           cp res/electron/build-pipeline-linux-x86.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -204,7 +204,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@2.0.0
+          cordova platform add electron@^3.0.0
           cp res/electron/build-pipeline-linux-arm64.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -249,7 +249,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@2.0.0
+          cordova platform add electron@^3.0.0
           cp res/electron/build-pipeline-linux-armv7l.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -398,7 +398,7 @@ jobs:
         run: |
           cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
           cp res/electron/build-pipeline-windows.json build.json
-          cordova platform add electron@2.0.0
+          cordova platform add electron@^3.0.0
           cp -r res/electron/appx platforms/electron/build-res/
           cordova build electron --no-telemetry --release
           rm sign_TemporaryKey.pfx
