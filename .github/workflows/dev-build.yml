@@ -32,7 +32,7 @@ jobs:
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
         with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
+          snapcraft_token: ${{ secrets.snapcraft_token_edge }}
       
       - name: Install dependencies
         run: |
