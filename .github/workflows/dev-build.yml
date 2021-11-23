@@ -1,0 +1,56 @@
+name: Build Dev
+
+on: push
+
+jobs:
+  main:
+    name: "Build the EW project"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+      
+      - name: Install dependencies
+        run: |
+          npm install
+  
+      - name: Build the project
+        run: |
+          npm run build -- --configuration=mobile
+
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          snapcraft_token: ${{ secrets.snapcraft_token }}
+      
+      - name: Install dependencies
+        run: |
+          npm install -g cordova
+      
+      - name: Build packages
+        run: |
+          cordova platform add electron@^3.0.0
+          cp res/electron/build-snap-dev.json build.json
+          cordova build electron --no-telemetry --edge
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=edge $i
+          done
+  
