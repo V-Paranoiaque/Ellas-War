@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main main-top">
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main main-top" role="main">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -122,7 +122,7 @@
                     role="button">(<span translate>Cancel</span>)</span>
             </div>
             
-            <div class="visually-hidden" id="detailsDesc"
+            <div class="visually-hidden" id="myAllianceMembersDesc"
                  translate>Alliance members</div>
             <table class="table table-striped align-middle"
                    aria-labelledby="myAllianceMembersDesc">
@@ -158,10 +158,10 @@
                   <td class="text-center">
                     <button class="btn btn-success" (click)="setPlayer(p, 3)"
                             data-bs-toggle="modal" data-bs-target="#AllianceRank" 
-                            title="{{''|translate}}">
+                            title="{{'Modify the rank'|translate}}">
                       <ic-icon [icon]="sportsMedal"></ic-icon>
                       <span class="visually-hidden">
-                        
+                        {{'Modify the rank'|translate}}
                       </span>
                     </button>
                     
@@ -247,7 +247,8 @@
                   </td>
                   <td class="text-center">
                     <button class="btn btn-primary" (click)="setRequest(res)"
-                            data-bs-toggle="modal" data-bs-target="#AllianceRequests">
+                            data-bs-toggle="modal" data-bs-target="#AllianceRequests"
+                            title="{{'Request resources'|translate}}">
                       <ic-icon [icon]="handHolding"></ic-icon>
                     </button>
                   </td>
