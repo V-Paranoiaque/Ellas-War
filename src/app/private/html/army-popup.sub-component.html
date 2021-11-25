@@ -149,7 +149,7 @@
           <strong translate>Liberation</strong>
           <strong translate>:</strong>
           <br/>
-          <span *ngFor="let resource of info.resale | keyvalue">
+          <span *ngFor="let resource of info.resaler | keyvalue">
             {{ Number(resource.value) | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>

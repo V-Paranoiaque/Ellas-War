@@ -257,7 +257,7 @@ export class CityComponent implements OnInit, OnDestroy {
     this.armyInfo = this.user.info.datas.army[name];
     this.armyInfo.engageNb   = '';
     this.armyInfo.liberatenb = '';
-    this.armyInfo.resale     = {};
+    this.armyInfo.resaler    = {};
     this.armyInfo.rEngageNb      = 0;
     this.armyInfo.rLiberateNb    = 0;
     this.armyInfo.rEngagePossible= 0;
@@ -268,7 +268,8 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.emit('freeUnits', name);
     
     for(let res in this.armyInfo.cost) {
-      this.armyInfo.resale[res] = this.armyInfo.cost[res]*0.6;
+      this.armyInfo.resaler[res] = this.armyInfo.cost[res] *
+                                   this.armyInfo.resale;
     }
   }
   selectBuilding(name:string) {
