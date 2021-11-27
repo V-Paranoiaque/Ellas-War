@@ -133,7 +133,7 @@
 * Reduce building destruction
 * Remove the test server
 
-# Next
+# 1.1.0
 * Better support page display
 * Checking the application version on startup
 * Display a popup when the server is down
