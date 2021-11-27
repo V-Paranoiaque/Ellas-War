@@ -1,6 +1,7 @@
 import { AllianceComponent } from './ts/alliance.component';
 import { AttacksComponent } from './ts/attacks.component';
 import { BlockedComponent } from './ts/blocked.component';
+import { BuyFavorsComponent } from './ts/buyfavors.component';
 import { CityComponent } from './ts/city.component';
 import { DetailsComponent } from './ts/details.component';
 import { DiplomacyComponent } from './ts/diplomacy.component';
@@ -78,6 +79,7 @@ export const PrivateComponent = [
   AllianceComponent,
   AttacksComponent,
   BlockedComponent,
+  BuyFavorsComponent,
   CityComponent,
   DetailsComponent,
   DiplomacyComponent,

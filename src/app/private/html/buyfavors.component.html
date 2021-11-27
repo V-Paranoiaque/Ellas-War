@@ -1,0 +1,53 @@
+<app-common-top-bar active="buyfavors"></app-common-top-bar>
+
+<div class="col-sm-12 col-xs-12 main main-full" role="main"
+     [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') == 1}">
+  <div class="container main-full">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="card card-column">
+          <div class="card-body text-center">
+            <p translate>
+              The Ellas War team is a volunteer. The money that we get from the favors helps use to pay our infrastructure and the domains linked to the game.
+            </p>
+            
+            <div [ngSwitch]="error" class="text-danger">
+              <div *ngSwitchCase="1" translate>Error in the purchase</div>
+              <div *ngSwitchCase="2" translate>The transaction was approved, treatment in progress</div>
+              <div *ngSwitchCase="3" translate>The transaction was approved, your favors have been added</div>
+            </div>
+            
+            <select class="form-select form-select-lg text-center"
+                    (change)="onChange($event.target)"
+                    #paypal>
+              <option *ngFor="let i of favorList;let index=index;"
+                      value="{{index}}"
+                      [selected]="i.default===1">
+                {{i.item | translate }},
+                {{ i.price | number:'': this.translate.currentLang}}{{ environment.paypal.symbol }}
+              </option>
+            </select>
+            
+            <br/>
+            
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            
+            <a *ngIf="user.getPropertyNb('mstatus') == 1"
+               class="btn btn-primary btn-lg" [routerLink]="['/favors']"
+               translate>
+              Use your Favors
+            </a>
+            <a *ngIf="user.getPropertyNb('mstatus') == 4"
+               class="btn btn-primary btn-lg" [routerLink]="['/paused']"
+               translate>
+              Return to the home page
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></app-connected-right-menu>
+<app-common-bottom-bar></app-common-bottom-bar>

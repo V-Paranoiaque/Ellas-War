@@ -20,22 +20,19 @@ To scan the code and export the results to SonarQube, run `npm run sonar`.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `www/` directory. Use the `--configuration=production` flag for the web version and `--configuration=mobile` for the mobile version.
 
-### Officially supported platforms
-
-| Platform | Supported |  |
-| ------------- |:-------------:| ----- |
-| Android | :white_check_mark: | Cordova |
-| Flatpack | :white_check_mark: | Cordova + Electron |
-| Snap | :white_check_mark: | Cordova + Electron |
-| Web | :white_check_mark: | |
-| Windows | :white_check_mark: | Cordova + Electron |
-
-### Unofficially supported platforms
+### Supported platforms
 
 It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
 
-- iOS
-- macOS
+| Platform | Supported | Details | In App purchases |
+| ------------- |:-------------:| ----- |:-----:|
+| Android | :white_check_mark: | Cordova | :x: |
+| Flatpack | :white_check_mark: | Cordova + Electron | :x: |
+| iOS | :ballot_box_with_check: | Cordova | :x: |
+| MacOS | :ballot_box_with_check: | Cordova + Electron | :x: |
+| Snap | :white_check_mark: | Cordova + Electron | :x: |
+| Web | :white_check_mark: | | :white_check_mark: | 
+| Windows | :white_check_mark: | Cordova + Electron | :x: |
 
 ### Stores
 - [Amazon Store](https://www.amazon.fr/Virgil-Ellas-War/dp/B079CHD5BX)

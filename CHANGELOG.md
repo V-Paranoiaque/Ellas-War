@@ -142,6 +142,7 @@
 * Fix taxes displayed in the treasure, with Hermes
 * Fix numbers in quests
 * Fix when a message is reloaded
+* In app purchases, web version only
 * Increase looting during the first attack
 * It's not possible anymore to win the diamond two weeks in a row
 * New admin page to trace 404 errors

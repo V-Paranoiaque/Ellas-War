@@ -17,6 +17,7 @@ import { IconModule } from '@visurel/iconify-angular';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { AdminComponent } from './admin/admin.component';
 import { MenuComponent } from './menu/menu.component';
@@ -50,6 +51,7 @@ import { PrivateComponent } from './private/private.component';
     OAuthModule.forRoot(),
     DragDropModule,
     ModalModule.forRoot(),
+    NgxPayPalModule
   ],
   providers: [Socket, User, Tools],
   bootstrap: [AppComponent]

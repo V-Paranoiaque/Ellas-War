@@ -35,6 +35,7 @@ import { UnsubscribeComponent } from './public/ts/unsubscribe.component';
 //Connected
 import { AllianceComponent } from './private/ts/alliance.component';
 import { AttacksComponent } from './private/ts/attacks.component';
+import { BuyFavorsComponent } from './private/ts/buyfavors.component';
 import { CityComponent } from './private/ts/city.component';
 import { DetailsComponent } from './private/ts/details.component';
 import { DiplomacyComponent } from './private/ts/diplomacy.component';
@@ -123,6 +124,7 @@ routes = [
   { path: 'alliancemembers/:id', component: AllianceMembersComponent },
   { path: 'allianceprofile/:id', component: AllianceProfileComponent },
   { path: 'attacks', component: AttacksComponent },
+  { path: 'buyfavors', component: BuyFavorsComponent },
   { path: 'city', component: CityComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'diplomacy', component: DiplomacyComponent },

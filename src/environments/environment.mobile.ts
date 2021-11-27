@@ -17,5 +17,10 @@ export const environment = {
   },
   google: {
     client_id: '516434350883-uqounu7irl3u2jl42dph661dsqg0vvnj.apps.googleusercontent.com'
+  },
+  paypal: {
+    client_id: 'AVVRXtQZXoKoUmkpN6rHEqrMEtgawwjTRin4irS8DDd53r2LOHjiXjeyig8gxHuPg0Zk504pzUeW4jOl',
+    currency: 'EUR',
+    symbol: '€'
   }
 };
