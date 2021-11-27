@@ -1,3 +1,9 @@
+/* Generic */
+.no-ios {
+  display: none;
+}
+
+/* Components */
 public-top-bar .navbar-menu .container-fluid {
   padding-bottom: 30px;
 }
