@@ -24,13 +24,13 @@
   
   <div class="modal-body container-fluid" 
        *ngIf="info.war == 1">
-    <strong *ngIf="started == 0">
+    <strong *ngIf="info.started == 0">
       {{'You are at the point of declare war to { value } alliance, it will start in 24h.'| translate: { value: info.alliance_name} }}
       {{'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'| translate:
         { value: user.getDatas().war.victory, value2: user.getDatas().war.diff } }}
     </strong>
     
-    <strong class="text-danger" *ngIf="started == 1">
+    <strong class="text-danger" *ngIf="info.started == 1">
       {{'You just declared war to { value } alliance, it will start in 24h.'| translate: { value: info.alliance_name} }}
     </strong>
   </div>

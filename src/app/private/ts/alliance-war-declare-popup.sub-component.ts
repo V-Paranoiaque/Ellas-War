@@ -12,19 +12,16 @@ export class AllianceWarDeclarePopupSubComponent {
   
   @Input() info:any;
   
-  public started:number;
-  
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.started = 0;
   }
   
   allianceWar() {
-    this.started = 1;
+    this.info.started = 1;
     this.socket.emit('allianceWar', this.info.alliance_id);
   }
   
   warPossible() {
-    if(this.info.war == 1 && this.started == 0) {
+    if(this.info.war == 1 && this.info.started == 0) {
       return true;
     }
     
