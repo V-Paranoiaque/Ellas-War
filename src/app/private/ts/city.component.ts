@@ -8,6 +8,7 @@ import cloud from '@iconify/icons-fa-solid/cloud';
 import cog from '@iconify/icons-fa-solid/cog';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import swordCross from '@iconify/icons-mdi/sword-cross';
+import waterWave from '@iconify/icons-emojione-monotone/water-wave';
 
 @Component({
   templateUrl: '../html/city.component.html',
@@ -37,6 +38,7 @@ export class CityComponent implements OnInit, OnDestroy {
   EwIcon = EwIconSubComponent;
   questionCircle = questionCircle;
   swordCross = swordCross;
+  waterWave = waterWave;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     //We set a default building to avoid errors

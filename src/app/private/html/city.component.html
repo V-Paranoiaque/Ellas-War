@@ -239,6 +239,12 @@
             </span>
             <div class="card-header-group">
               <div class="card-header-button" role="button"
+                   *ngIf="user.getLevel() >= 1"
+                   [routerLink]="['/strategies/attack']"
+                   title="{{'Manage your waves to optimize your losses'|translate}}">
+                <ic-icon [icIcon]="waterWave"></ic-icon>
+              </div>
+              <div class="card-header-button" role="button"
                    data-bs-toggle="modal" data-bs-target="#ArmySummary"
                   title="{{'Army summary'|translate}}">
                 <ic-icon [icIcon]="swordCross"></ic-icon>
