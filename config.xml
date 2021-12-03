@@ -110,7 +110,7 @@
     </plugin>
     <variable name="APP_ID" value="173897253017254" />
     <variable name="APP_NAME" value="EllasWar" />
-    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="AndroidInsecureFileModeEnabled" value="false" />
     <preference name="windows-target-version" value="10.0" />
     <preference name="WindowsStoreDisplayName" value="Ellas War" />
 </widget>
