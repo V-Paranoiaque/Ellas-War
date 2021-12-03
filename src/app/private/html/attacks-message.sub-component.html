@@ -42,6 +42,10 @@
 
 
 <div class="row">
+  <div *ngIf="info.lost_wall == 1" translate>
+    The wall protecting the city has been destroyed
+  </div>
+  
   <div *ngIf="getAttackLost().length > 0 && user.info.datas.army"  class="col-6">
     <strong translate>Attacker losses</strong>
     <div *ngFor="let unit of getAttackLost()">
