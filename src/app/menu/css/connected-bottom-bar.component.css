@@ -1,6 +1,7 @@
 .mosaic {
   position: fixed;
   bottom: 0px;
+  z-index: 1000;
 }
 
 .chat-text {
@@ -16,6 +17,7 @@
   border-width:1px;
   border-style: solid;
   border-right: 0px;
+  z-index: 1000;
 }
 
 .chat-players {
@@ -124,6 +126,7 @@
   position: fixed;
   bottom: 24px;
   right: 0px;
+  z-index: 1000;
 }
 
 .chat-button-mobile {
