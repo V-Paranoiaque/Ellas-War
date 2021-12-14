@@ -13,6 +13,8 @@ export class AttacksMessageSubComponent {
   @Input() info: any;
   public resources:any;
   
+  Object = Object;
+  
   constructor(public user: User, public translate: TranslateService) {
     this.resources = environment.resources;
   }
