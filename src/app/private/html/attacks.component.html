@@ -717,11 +717,11 @@
                    class="text-center" translate>
                 The wall of Poseidon protects this city.
               </div>
-              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall == 1 && (!spyInfo.poseidon_wall || spyInfo.poseidon_wall == 0)"
+              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall >= 1 && (!spyInfo.poseidon_wall || spyInfo.poseidon_wall == 0)"
                    class="text-center" translate>
                 A wall is protecting this city.
               </div>
-              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall == 1 && spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1"
+              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall >= 1 && spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1"
                    class="text-center" translate>
                 Many walls are protecting this city.
               </div>

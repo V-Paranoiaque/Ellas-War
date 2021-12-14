@@ -103,11 +103,11 @@
          translate>
       The wall of Poseidon protects this city.
     </div>
-    <div *ngIf="msg.content.defense_wall && msg.content.defense_wall == 1 && (!msg.content.poseidon_wall || msg.content.poseidon_wall == 0)"
+    <div *ngIf="msg.content.defense_wall && msg.content.defense_wall >= 1 && (!msg.content.poseidon_wall || msg.content.poseidon_wall == 0)"
          translate>
       A wall is protecting this city.
     </div>
-    <div *ngIf="msg.content.defense_wall && msg.content.defense_wall == 1 && msg.content.poseidon_wall && msg.content.poseidon_wall == 1"
+    <div *ngIf="msg.content.defense_wall && msg.content.defense_wall >= 1 && msg.content.poseidon_wall && msg.content.poseidon_wall == 1"
          translate>
       Many walls are protecting this city.
     </div>
