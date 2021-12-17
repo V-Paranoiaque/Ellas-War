@@ -154,3 +154,26 @@
 * The number of victories required to win a war is now 50
 * The resources on sales are not protected anymore from the attacks
 * Wood taxes maximum is now 100'000
+
+# 1.1.1
+* Add a direct button to access to the waves
+* Add a text when a wall is destroyed
+* Add the 15% in Ares description
+* Add the walls to the constructions summary
+* Display all the walls on the spying reports
+* Fix android App startup
+* Fix displayed price for Ereb's power
+* Fix refresh after a war declaration
+* Need to spy to attack a sanctuary
+
+# 1.1.2
+* Change the color of the sanctuary attack button
+* Fix display when no resources are stolen
+* Fix the chat who was sometimes going under the page
+* Fix the walls in the spying reports
+* Fix wall's description in French
+
+# 1.1.3
+* Fix the resources in the attack reports
+* Fix width on small screens in many pages
+* Hide resources at 0 in attack reports
