@@ -6,7 +6,8 @@ import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-attacks-message',
-  templateUrl: '../html/attacks-message.sub-component.html'
+  templateUrl: '../html/attacks-message.sub-component.html',
+  styleUrls: ['../css/attacks-message.sub-component.css']
 })
 
 export class AttacksMessageSubComponent {
@@ -41,6 +42,9 @@ export class AttacksMessageSubComponent {
     
     if(this.info.lost_build) {
       for(let code in this.info.lost_build) {
+        if(this.info.lost_build[code] == 0) {
+          continue;
+        }
         list.push({
           'code': code,
           'nb': this.info.lost_build[code]
