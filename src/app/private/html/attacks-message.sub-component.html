@@ -28,7 +28,7 @@
 
 <div *ngIf="getSentUnits().length > 0 && user.info.datas.army">
   <strong translate>Army sent</strong>
-  <div *ngFor="let unit of getSentUnits()" class="col-xs-12">
+  <div *ngFor="let unit of getSentUnits()">
       {{unit.nb| number:'': this.translate.currentLang}}
       <span *ngIf="user.info.datas.army[unit.code]">
         {{user.info.datas.army[unit.code].names|translate}} 

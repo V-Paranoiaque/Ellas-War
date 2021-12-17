@@ -42,11 +42,11 @@
         <br/>
         <br/>
         <div class="row justify-content-center">
-          <div class="col-lg-8 col-sm-6 col-xs-12">
+          <div class="col-lg-8 col-sm-6 col-12">
             <img src="{{ user.getConfig().url }}/pprofile/{{profile.membre_img}}" class="img-fluid center-block"
                  alt="{{profile.username}}" *ngIf="profile.membre_img">
           </div>
-          <div class="col-lg-4 col-sm-6 col-xs-12">
+          <div class="col-lg-4 col-sm-6 col-12">
             <strong translate>Level</strong><strong translate>:</strong>
             {{profile.level}}
             <br/>
@@ -84,7 +84,7 @@
               {{profile.inscription*1000| date:'dd/MM/yyyy'}}
             </div>
           </div>
-          <div class="col-8 col-xs-12">
+          <div class="col-8 col-12">
             <br/><br/>
             
             <div class="text-justify text-prewrap">{{profile.description}}</div>
