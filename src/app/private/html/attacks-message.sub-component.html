@@ -40,7 +40,6 @@
   <div class="clearfix"><br/></div>
 </div>
 
-
 <div class="row">
   <div *ngIf="info.lost_wall == 1" translate>
     The wall protecting the city has been destroyed
@@ -65,7 +64,7 @@
   </div>
 </div>
 
-<div class="col-table text-center" *ngIf="Object(info.lost_ress).length > 0">
+<div class="col-table text-center" *ngIf="Object.keys(info.lost_ress).length > 0">
   <strong id="LostResDesc" translate>Lost resources</strong>
   <table class="table" aria-describedby="LostResDesc">
     <tr *ngFor="let ress of resources">
