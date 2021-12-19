@@ -42,7 +42,7 @@ export class AttacksMessageSubComponent {
     
     if(this.info.lost_build) {
       for(let code in this.info.lost_build) {
-        if(this.info.lost_build[code] == 0) {
+        if(!this.user.info.datas.building || this.info.lost_build[code] == 0) {
           continue;
         }
         list.push({
