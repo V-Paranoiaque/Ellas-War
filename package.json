@@ -27,7 +27,7 @@
     "bootstrap": "^5.1.3",
     "cordova-plugin-facebook-connect": "3.2.0",
     "cordova-plugin-googleplus": "8.5.2",
-    "ngx-bootstrap": "^7.1.2",
+    "ngx-bootstrap": "^8.0.0-RC.4",
     "ngx-clipboard": "^15.0.1",
     "rxjs": "~7.4.0",
     "socket.io-client": "^4.4.0",
@@ -74,17 +74,16 @@
     "@types/karma-jasmine": "^4.0.2",
     "@types/karma-jasmine-html-reporter": "^1.7.0",
     "@types/node": "^16.11.13",
-    "@typescript-eslint/eslint-plugin": "5.7.0",
-    "@typescript-eslint/parser": "5.7.0",
+    "@typescript-eslint/eslint-plugin": "5.8.0",
+    "@typescript-eslint/parser": "5.8.0",
     "@visurel/iconify-angular": "^11.0.0",
     "cordova-android": "^10.1.1",
     "cordova-electron": "^3.0.0",
     "cordova-ios": "^6.2.0",
     "cordova-osx": "^6.0.0",
-    "cordova-plugin-ios-localized-strings": "^1.0.6",
     "cordova-windows": "^7.0.1",
     "electron-builder": "^22.14.5",
-    "eslint": "^8.4.1",
+    "eslint": "^8.5.0",
     "jasmine-core": "~3.10.1",
     "jasmine-spec-reporter": "~7.0.0",
     "karma": "~6.3.9",
@@ -118,10 +117,6 @@
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.516434350883-qo9nfv1jnp5jvgqjikcnjdvf9g0piutp",
         "WEB_APPLICATION_CLIENT_ID": "516434350883-qo9nfv1jnp5jvgqjikcnjdvf9g0piutp.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "15.0.1"
-      },
-      "cordova-plugin-ios-localized-strings": {
-        "MAIN_LANGUAGE": "English",
-        "ADDITIONAL_LANGUAGES": "fr"
       }
     }
   },

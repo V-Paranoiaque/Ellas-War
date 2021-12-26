@@ -182,3 +182,4 @@
 * Display a different messages depending the wall destroyed
 * Fix display error on Safari
 * Fix error message when no army
+* The classic wall is displayed when spying, even without Hades
