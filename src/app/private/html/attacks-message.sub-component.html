@@ -41,8 +41,14 @@
 </div>
 
 <div class="row">
-  <div *ngIf="info.lost_wall == 1" translate>
+  <div *ngIf="info.lost_wall >= 1 && !(info.lost_wall_poseidon)" translate>
     The wall protecting the city has been destroyed
+  </div>
+  <div *ngIf="info.lost_wall == 0 && info.lost_wall_poseidon" translate>
+    The wall of Poseidon protecting the city has been destroyed
+  </div>
+  <div *ngIf="info.lost_wall >= 1 && info.lost_wall_poseidon" translate>
+    The walls protecting the city have been destroyed
   </div>
   
   <div *ngIf="getAttackLost().length > 0 && user.info.datas.army"  class="col-6">
