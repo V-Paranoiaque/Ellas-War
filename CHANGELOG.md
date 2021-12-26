@@ -177,3 +177,7 @@
 * Fix the resources in the attack reports
 * Fix width on small screens in many pages
 * Hide resources at 0 in attack reports
+
+# 1.1.4
+* Display a different messages depending the wall destroyed
+* Fix display error on Safari
