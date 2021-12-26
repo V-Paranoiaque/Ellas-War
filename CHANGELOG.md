@@ -181,3 +181,4 @@
 # 1.1.4
 * Display a different messages depending the wall destroyed
 * Fix display error on Safari
+* Fix error message when no army

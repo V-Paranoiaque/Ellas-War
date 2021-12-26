@@ -918,7 +918,7 @@
             
             <div class="text-center fw-bold text-danger"
                  [ngSwitch]="attackPossibleError"
-                 *ngIf="attackPossible == 0">
+                 *ngIf="attackPossible <= 0">
               <br/>
               <div *ngSwitchCase="2" translate>Your army is empty</div>
               <div *ngSwitchCase="3" translate>Error in the target</div>
@@ -948,7 +948,6 @@
               <div *ngSwitchCase="28" translate>You have done too many attacks</div>
               <div *ngSwitchCase="29" translate>Artemis is protecting this city</div>
               <div *ngSwitchDefault>{{ attackPossibleError }}</div>
-              <div *ngSwitchCase="" translate></div>
             </div>
           </div>
           
