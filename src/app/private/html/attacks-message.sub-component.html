@@ -70,7 +70,7 @@
   </div>
 </div>
 
-<div class="col-table text-center" *ngIf="Object.keys(info.lost_ress).length > 0">
+<div class="col-table text-center" *ngIf="info.lost_ress && Object.keys(info.lost_ress).length > 0">
   <strong id="LostResDesc" translate>Lost resources</strong>
   <table class="table" aria-describedby="LostResDesc">
     <tr *ngFor="let ress of resources">
