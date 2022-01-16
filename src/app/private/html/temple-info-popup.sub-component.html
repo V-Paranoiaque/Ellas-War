@@ -62,7 +62,7 @@
       <div>
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of furyCost | keyvalue">
-          {{ Number(resource.value) | number:'': this.translate.currentLang }}	
+          {{ Number(resource.value) | number:'': this.translate.currentLang }}  
           <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
         </span>
       </div>
@@ -243,6 +243,35 @@
         Enable
       </button>
     </div>
+    <div class="modal-footer" *ngIf="user.hasTemples()">
+      <strong translate>Amazons</strong><strong *ngIf="user.getPropertyNb('amazon') > 0">({{user.getPropertyNb('amazon')}})</strong>
+      
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 18" 
+           translate>
+        Artemis heard your call
+      </div>
+      
+      <br/>
+      <div>
+        {{'Artemis will help you to protect your city and give you { value } Amazons.'| translate : { value: temple3Units } }}
+      </div>
+      <div *ngIf="{'text-danger': user.getPropertyNb('ambrosia') < 2}">
+        <strong translate>Cost:</strong>
+        2 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
+      </div>
+      
+      <div *ngIf="user.getPropertyNb('amazon')+temple3Units > user.getDatas().army.amazon.nbmax"
+           class="text-danger text-end">
+        {{'You can\'t have more than { value } { name }' | translate : { value: user.getDatas().army.amazon.nbmax, name: user.getDatas().army.amazon.names | translate } }}
+      </div>
+      
+      <button *ngIf="user.getPropertyNb('ambrosia') >= 2 && (user.getPropertyNb('amazon')+temple3Units <= user.getDatas().army.amazon.nbmax)"
+              class="btn btn-success"
+              (click)="powerUse(18, 0)"
+              translate>
+        Enable
+      </button>
+    </div>
   </div>
   
   <!-- Hephaestus -->
@@ -311,6 +340,35 @@
         Enable
       </button>
     </div>
+    <div class="modal-footer" *ngIf="user.hasTemples()">
+      <strong translate>Automatons</strong><strong *ngIf="user.getPropertyNb('automaton') > 0">({{user.getPropertyNb('automaton')}})</strong>
+      
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 19" 
+           translate>
+        Hephaestus heard your call
+      </div>
+      
+      <br/>
+      <div>
+        {{'Hephaestus will help you to protect your city and give you { value } Automatons.'| translate : { value: temple3Units } }}
+      </div>
+      <div *ngIf="{'text-danger': user.getPropertyNb('ambrosia') < 2}">
+        <strong translate>Cost:</strong>
+        2 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
+      </div>
+      
+      <div *ngIf="user.getPropertyNb('automaton')+temple3Units > user.getDatas().army.automaton.nbmax"
+           class="text-danger text-end">
+        {{'You can\'t have more than { value } { name }' | translate : { value: user.getDatas().army.automaton.nbmax, name: user.getDatas().army.automaton.names | translate } }}
+      </div>
+      
+      <button *ngIf="user.getPropertyNb('ambrosia') >= 2 && (user.getPropertyNb('automaton')+temple3Units <= user.getDatas().army.automaton.nbmax)"
+              class="btn btn-success"
+              (click)="powerUse(19, 0)"
+              translate>
+        Enable
+      </button>
+    </div>
   </div>
   
   <!-- Dionysus -->
@@ -375,6 +433,35 @@
         Enable
       </button>
     </div>
+    <div class="modal-footer" *ngIf="user.hasTemples()">
+      <strong translate>Centaurs</strong><strong *ngIf="user.getPropertyNb('centaur') > 0">({{user.getPropertyNb('centaur')}})</strong>
+      
+      <div class="alert alert-success center" *ngIf="temple.error === 1 && temple.power === 20" 
+           translate>
+        Dionysus heard your call
+      </div>
+      
+      <br/>
+      <div>
+        {{'Dionysus will help you to protect your city and give you { value } Centaurs.'| translate : { value: temple3Units } }}
+      </div>
+      <div *ngIf="{'text-danger': user.getPropertyNb('ambrosia') < 2}">
+        <strong translate>Cost:</strong>
+        2 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
+      </div>
+      
+      <div *ngIf="user.getPropertyNb('centaur')+temple3Units > user.getDatas().army.centaur.nbmax"
+           class="text-danger text-end">
+        {{'You can\'t have more than { value } { name }' | translate : { value: user.getDatas().army.centaur.nbmax, name: user.getDatas().army.centaur.names | translate } }}
+      </div>
+      
+      <button *ngIf="user.getPropertyNb('ambrosia') >= 2 && (user.getPropertyNb('centaur')+temple3Units <= user.getDatas().army.centaur.nbmax)"
+              class="btn btn-success"
+              (click)="powerUse(20, 0)"
+              translate>
+        Enable
+      </button>
+    </div>
   </div>
   
   <!-- Zeus -->
@@ -406,7 +493,7 @@
       <div>
         <strong translate>Cost:</strong>
         <span *ngFor="let resource of lightningCost | keyvalue">
-          {{ Number(resource.value) | number:'': this.translate.currentLang }}	
+          {{ Number(resource.value) | number:'': this.translate.currentLang }}  
           <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
         </span>
       </div>
