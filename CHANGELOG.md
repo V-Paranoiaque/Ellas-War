@@ -183,3 +183,11 @@
 * Fix display error on Safari
 * Fix error message when no army
 * The classic wall is displayed when spying, even without Hades
+
+# 1.1.5
+* Fix attack messages when disconnected
+* Fix possible display bug when resisting against an attack
+* Missing alliance's taxes translation in French
+* Missing error message when no barracks + rename barracks in French
+* New admin page to calculate mint Drachma production
+* New feature to buy temple units using Ambrosia
