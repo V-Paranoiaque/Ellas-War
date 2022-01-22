@@ -69,6 +69,7 @@ import { AdminProfileComponent } from './admin/ts/admin-profile.component';
 import { AdminQuestsComponent } from './admin/ts/admin-quests.component';
 import { AdminResourcesComponent } from './admin/ts/admin-resources.component';
 import { AdminStatsBuildingsComponent } from './admin/ts/admin-stats-buildings.component';
+import { AdminStatsMintsComponent } from './admin/ts/admin-stats-mints.component';
 import { AdminStatsQuestsComponent } from './admin/ts/admin-stats-quests.component';
 import { AdminStatsUnitsComponent } from './admin/ts/admin-stats-units.component';
 import { AdminStoreroomComponent } from './admin/ts/admin-storeroom.component';
@@ -160,8 +161,9 @@ routes = [
       { path: 'quests', component: AdminQuestsComponent },
       { path: 'resources', component: AdminResourcesComponent },
       { path: 'stats/buildings', component: AdminStatsBuildingsComponent },
-      { path: 'stats/units', component: AdminStatsUnitsComponent },
+      { path: 'stats/mints', component: AdminStatsMintsComponent },
       { path: 'stats/quests', component: AdminStatsQuestsComponent },
+      { path: 'stats/units', component: AdminStatsUnitsComponent },
       { path: 'storeroom', component: AdminStoreroomComponent },
       { path: 'support', component: AdminSupportComponent },
       { path: 'support/:id', component: AdminSupportComponent },
