@@ -72,6 +72,7 @@ import { TempleChangeInfoPopupSubComponent } from './ts/temple-change-info-popup
 import { TempleHelpPopupSubComponent } from './ts/temple-help-popup.sub-component';
 import { TempleInfoPopupSubComponent } from './ts/temple-info-popup.sub-component';
 import { TreasurePopupSubComponent } from './ts/treasure-popup.sub-component';
+import { WaveDividePopupSubComponent } from './ts/app-wave-divide-popup.sub-component';
 
 
 export const PrivateComponent = [
@@ -148,5 +149,6 @@ export const PrivateComponent = [
   TempleChangeInfoPopupSubComponent,
   TempleHelpPopupSubComponent,
   TempleInfoPopupSubComponent,
-  TreasurePopupSubComponent
+  TreasurePopupSubComponent,
+  WaveDividePopupSubComponent
 ];
