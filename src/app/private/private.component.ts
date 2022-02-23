@@ -61,6 +61,7 @@ import { QuestsMissionsSubComponent } from './ts/quests-missions.sub-component';
 import { SanctuaryMessageSubComponent } from './ts/sanctuary-message.sub-component';
 import { SanctuaryStrengthHelpPopupSubComponent } from './ts/sanctuary-strength-help-popup.sub-component';
 import { SanctuaryStrengthUpdatePopupSubComponent } from './ts/sanctuary-strength-update-popup.sub-component';
+import { StoreroomHistoryPopupSubComponent } from './ts/storeroom-history-popup.sub-component';
 import { SuccessCardSubComponent } from './ts/success-card.sub-component';
 import { SuccessHelpPopupSubComponent } from './ts/success-help-popup.sub-component';
 import { SuccessInfoPopupSubComponent } from './ts/success-info-popup.sub-component';
@@ -139,6 +140,7 @@ export const PrivateComponent = [
   SanctuaryMessageSubComponent,
   SanctuaryStrengthHelpPopupSubComponent,
   SanctuaryStrengthUpdatePopupSubComponent,
+  StoreroomHistoryPopupSubComponent,
   SuccessCardSubComponent,
   SuccessHelpPopupSubComponent,
   SuccessInfoPopupSubComponent,

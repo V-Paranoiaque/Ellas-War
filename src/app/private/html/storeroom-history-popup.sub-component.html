@@ -1,0 +1,37 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="storeroomHistoryDesc" translate>
+      Storeroom history
+    </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body container-fluid">
+    <table class="table align-middle table-middle" aria-labelledby="storeroomHistoryDesc">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center" translate>Date</th>
+          <th scope="col" class="text-center" translate>Resources</th>
+          <th scope="col" class="text-center" translate>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let l of list">
+          <th scope="row">
+            {{ l.day*1000| date:'dd/MM/yyyy' }}
+          </th>
+          <td class="text-end">
+            {{ l.quantity | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="l.resource"></app-id-to-ress>
+          </td>
+          <td class="text-end">
+            {{ l.price | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"
+            data-bs-dismiss="modal" translate>Close</button>
+  </div>
+</div>

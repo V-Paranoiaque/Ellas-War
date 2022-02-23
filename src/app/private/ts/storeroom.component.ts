@@ -6,6 +6,7 @@ import { UserComponent as User } from '../../../services/user.service';
 import bagIcon  from '@iconify/icons-bi/bag';
 import jarIcon  from '@iconify-icons/akar-icons/jar';
 import plusIcon from '@iconify/icons-bi/plus';
+import clockIcon from '@iconify/icons-fa-regular/clock';
 
 @Component({
   templateUrl: '../html/storeroom.component.html',
@@ -23,6 +24,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   public storeroomRate:string;
   public storeroomRess:number;
   
+  clockIcon = clockIcon;
   bagIcon  = bagIcon;
   jarIcon  = jarIcon;
   plusIcon = plusIcon;
@@ -47,6 +49,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     });
     this.socket.on('storeroomListReload', () => {
       this.socket.emit('storeroomList');
+      this.storeroomHistory();
     });
     this.socket.on('storeroomMyList', (data:any) => {
       this.storeroomMyList = data;
@@ -54,6 +57,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.socket.on('storeroomMyListReload', () => {
       this.socket.emit('storeroomMyList');
       this.socket.emit("storeroomMin", 1);
+      this.storeroomHistory();
     });
     this.socket.on('storeroomMin', (data:any) => {
       this.storeroomMin = data;
@@ -140,5 +144,9 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.socket.emit('storeroomSell', msg);
     this.storeroomQuantity = '';
     this.storeroomRate = '';
+  }
+  
+  storeroomHistory() {
+    this.socket.emit('storeroomHistory');
   }
 }
