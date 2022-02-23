@@ -32,10 +32,10 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Unofficially supported platforms
 
-It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
-
 - iOS
 - macOS
+
+It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
 
 ### Stores
 - [Amazon Store](https://www.amazon.fr/Virgil-Ellas-War/dp/B079CHD5BX)
