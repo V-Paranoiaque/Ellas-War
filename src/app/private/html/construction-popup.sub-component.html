@@ -130,7 +130,7 @@
           </span>
         </div>
         
-        <div *ngIf="info.code == 'militarycamp' && user.getPropertyNb('camp_level') > 0">
+        <div *ngIf="info.code === 'militarycamp' && user.getPropertyNb('camp_level') > 0">
           <strong translate>Level</strong>
           <strong translate>:</strong>
           {{ user.getPropertyNb('camp_level') }}
@@ -174,7 +174,7 @@
   </div>
   
   <div class="modal-footer"
-       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 3 && user.getPropertyNb('camp_level') == 1">
+       *ngIf="info.code === 'militarycamp' && user.getPropertyNb('level') >= 3 && user.getPropertyNb('camp_level') == 1">
     <div class="col-12" translate>Update to recruit archers</div>
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.archerschool.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
@@ -187,7 +187,7 @@
     </button>
   </div>
   <div class="modal-footer"
-       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 6 && user.getPropertyNb('camp_level') == 2">
+       *ngIf="info.code === 'militarycamp' && user.getPropertyNb('level') >= 6 && user.getPropertyNb('camp_level') == 2">
     <div class="col-12" translate>Update to recruit cavalry</div>
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.cavalryschool.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
@@ -200,7 +200,7 @@
     </button>
   </div>
   <div class="modal-footer"
-       *ngIf="info.code == 'militarycamp' && user.getPropertyNb('level') >= 9 && user.getPropertyNb('camp_level') == 3">
+       *ngIf="info.code === 'militarycamp' && user.getPropertyNb('level') >= 9 && user.getPropertyNb('camp_level') == 3">
     <div class="col-12" translate>Update to recruit elit units</div>
     <strong translate>Cost:</strong><br/>
     <span *ngFor="let resource of user.info.datas.building.academy.cost | keyvalue" [ngClass]="{'text-danger': Number(resource.value) > user.getPropertyNb(resource.key) }">
@@ -214,70 +214,70 @@
   </div>
   
   <div class="modal-footer">
-    <div *ngIf="info.code == 'ironmine'" translate>
+    <div *ngIf="info.code === 'ironmine'" translate>
       This mine will produce iron for use by your craftsmen or your army.
     </div>
-    <div *ngIf="info.code == 'mint'" translate>
+    <div *ngIf="info.code === 'mint'" translate>
       The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.
     </div>
-    <div *ngIf="info.code == 'sawmill'" translate>
+    <div *ngIf="info.code === 'sawmill'" translate>
       The sawmill will produce wood for your archers and your buildings.
     </div>
-    <div *ngIf="info.code == 'watchtower'" translate>
+    <div *ngIf="info.code === 'watchtower'" translate>
       The watchtower is a modest wooden tower with a few units, its low strength and limited range make it a very poor defense.
     </div>
-    <div *ngIf="info.code == 'well'" translate>
+    <div *ngIf="info.code === 'well'" translate>
       The wells will allow you to irrigate your crops and quench the thirst of your population.
     </div>
-    <div *ngIf="info.code == 'farm'" translate>
+    <div *ngIf="info.code === 'farm'" translate>
       The farms produce food for your soldiers and for export.
     </div>
-    <div *ngIf="info.code == 'growers'" translate>
+    <div *ngIf="info.code === 'growers'" translate>
       The growers produces grapes to allow your presses to produce wine, for your soldiers or for export.
     </div>
-    <div *ngIf="info.code == 'winery'" translate>
+    <div *ngIf="info.code === 'winery'" translate>
       The winery will press your grape to make a juice and then ferment it in amphorae. This wine will serve to water your troops and export.
     </div>
-    <div *ngIf="info.code == 'goldmine'" translate>
+    <div *ngIf="info.code === 'goldmine'" translate>
       The gold extracted from the mines, you used to pay your elite troops and honor the gods.
     </div>
-    <div *ngIf="info.code == 'quarry'" translate>
+    <div *ngIf="info.code === 'quarry'" translate>
       The quarry will produce stone and marble for building your temples and some of your buildings. It will spread your men on different productions to maximize your returns.
     </div>
-    <div *ngIf="info.code == 'denofspies'" translate>
+    <div *ngIf="info.code === 'denofspies'" translate>
       Spies are mysterious characters and eager for wealth. By engaging in this place you will take risks to your city, but it does not have to take risks to become the most powerful Greek cities?
     </div>
-    <div *ngIf="info.code == 'militarycamp'" translate>
+    <div *ngIf="info.code === 'militarycamp'" translate>
       The barracks will train your army, you can update it to be able to engage better unities.
     </div>
-    <div *ngIf="info.code == 'archerschool'" translate>
+    <div *ngIf="info.code === 'archerschool'" translate>
       The Archers School will train your infantry and cavalry from a distance.
     </div>
-    <div *ngIf="info.code == 'cavalryschool'" translate>
+    <div *ngIf="info.code === 'cavalryschool'" translate>
       The cavalry school will train your mounted units, these units although expensive, are superior to the basic infantry.
     </div>
-    <div *ngIf="info.code == 'academy'" translate>
+    <div *ngIf="info.code === 'academy'" translate>
       Military complement the barracks or the Cavalry School, the academy will train the elite of your army.
     </div>
-    <div *ngIf="info.code == 'hut'" translate>
+    <div *ngIf="info.code === 'hut'" translate>
       Your huts will allow you to house the base of your army.
     </div>
-    <div *ngIf="info.code == 'habitation'" translate>
+    <div *ngIf="info.code === 'habitation'" translate>
       This is where live the base of your army, the advantage compared to the huts is that in a home you can put the equivalent of 4 huts while having a lower field.
     </div>
-    <div *ngIf="info.code == 'palace'" translate>
+    <div *ngIf="info.code === 'palace'" translate>
       This is where your elite units will stay away from the dirt and noise of the city.
     </div>
-    <div *ngIf="info.code == 'cursedcave'" translate>
+    <div *ngIf="info.code === 'cursedcave'" translate>
       In the caverns are buried the most powerful creatures, created by the gods themselves. The caverns can house only a few of these creatures, most of whom prefer to live in small groups.
     </div>
-    <div *ngIf="info.code == 'observationtower'" translate>
+    <div *ngIf="info.code === 'observationtower'" translate>
       The observation tower will be your first tower built in hard, despite its effectiveness is limited but it can repel armies of small sizes by itself.
     </div>
-    <div *ngIf="info.code == 'towerofduty'" translate>
+    <div *ngIf="info.code === 'towerofduty'" translate>
       This imposing stone and marble tower will be one of your best defensive weapons, in return for its enormous cost, its effectiveness is no longer to be demonstrated.
     </div>
-    <div *ngIf="info.code == 'mirrortower'" translate>
+    <div *ngIf="info.code === 'mirrortower'" translate>
       This imposing gold and marble tower will be one of your best defensive weapons. In return for its enormous cost, its effectiveness is well established.
     </div>
   </div>

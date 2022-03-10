@@ -667,7 +667,7 @@
       <br/>
       <button class="btn btn-success" translate 
               (click)="powerUseTarget(12)"
-              *ngIf="user.getPropertyNb('ambrosia') >= 400 && idToUser != ''">
+              *ngIf="user.getPropertyNb('ambrosia') >= 400 && idToUser !== ''">
         Enable
       </button>
     </div>

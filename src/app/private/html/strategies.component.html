@@ -32,15 +32,15 @@
             </div>
             <div class="d-flex">
               <a [routerLink]="['/strategies/attack']" class="flex-grow-1 btn"
-                   [ngClass]="{'btn-danger': type != 'defense',
-                               'btn-outline-danger': type == 'defense'}" translate>Offensive</a>
+                   [ngClass]="{'btn-danger': type !== 'defense',
+                               'btn-outline-danger': type === 'defense'}" translate>Offensive</a>
               <a [routerLink]="['/strategies/defense']" class="flex-grow-1 btn"
-                   [ngClass]="{'btn-primary': type == 'defense',
-                               'btn-outline-primary': type != 'defense'}" translate>Defensive</a>
+                   [ngClass]="{'btn-primary': type === 'defense',
+                               'btn-outline-primary': type !== 'defense'}" translate>Defensive</a>
             </div>
             
             <!-- Attack -->
-            <ng-container *ngIf="type != 'defense'">
+            <ng-container *ngIf="type !== 'defense'">
               <div class="text-center">
                 <strong translate>Total:</strong>
                 {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
@@ -93,7 +93,7 @@
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
                           <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'d-none': army.code == 'soul'}">
+                               [ngClass]="{'d-none': army.code === 'soul'}">
                             <div class="flex-grow-1 btn btn-warning"
                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                  (click)="setWaveUnit(army, wave[army.code], i, 1)"
@@ -137,7 +137,7 @@
             </ng-container>
             
             <!-- Defense -->
-            <ng-container *ngIf="type == 'defense'">
+            <ng-container *ngIf="type === 'defense'">
               <div class="text-center">
                 <strong translate>Total:</strong>
                 {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
@@ -224,7 +224,7 @@
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
                           <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'d-none': army.code == 'soul'}">
+                               [ngClass]="{'d-none': army.code === 'soul'}">
                             <div class="flex-grow-1 btn btn-warning"
                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                  (click)="setWaveUnit(army, wave[army.code], i, 2)"

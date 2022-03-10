@@ -146,7 +146,7 @@
                       ({{p.level}})
                     </a>
                     <div class="d-block d-sm-none"
-                         *ngIf="p.rank_name !=''">{{p.rank_name}}</div>
+                         *ngIf="p.rank_name !==''">{{p.rank_name}}</div>
                   </td>
                   <td class="d-none d-sm-table-cell">{{p.rank_name}}</td>
                   <td class="text-end">{{p.xp | number:'': this.translate.currentLang}}</td>

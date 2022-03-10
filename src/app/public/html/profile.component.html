@@ -22,13 +22,13 @@
           {{ profile.username }}
           
           <button class="btn btn-success"
-                  *ngIf="user.getId() == profile.membre_id"
+                  *ngIf="user.getId() === profile.membre_id"
                   data-bs-toggle="modal" data-bs-target="#AccountInformation"
                   title="{{'Change account information'| translate}}">
             <ic-icon [icon]="userCircle"></ic-icon>
           </button>
           <button class="btn btn-primary"
-                  *ngIf="user.getPropertyNb('mstatus') == 1"
+                  *ngIf="user.getPropertyNb('mstatus') === 1"
                   data-bs-toggle="modal" data-bs-target="#MsgNew"
                   title="{{'Write a new message'| translate}}">
             <ic-icon [icon]="brushIcon"></ic-icon>
@@ -70,12 +70,12 @@
             <div *ngIf="profile.alliance > 0">
               <strong>{{'Alliance'|translate}}{{':'|translate}}</strong> 
               <a [routerLink]="['/allianceprofile/'+profile.alliance]">{{profile.alliance_name}}</a>
-              <div *ngIf="profile.rank_name != ''">
+              <div *ngIf="profile.rank_name !== ''">
                 <strong translate>Rank</strong><strong translate>:</strong> {{profile.rank_name}}
               </div>
             </div>
             
-            <div *ngIf="profile.location != ''">
+            <div *ngIf="profile.location !== ''">
               <strong translate>Location</strong><strong translate>:</strong>
               {{profile.location}}
             </div>

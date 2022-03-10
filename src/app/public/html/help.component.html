@@ -15,7 +15,7 @@
              [routerLink]="['/support']" role="button" translate>
             Contact us
           </a>
-          <a class="btn btn-primary" *ngIf="user.getId() == 0"
+          <a class="btn btn-primary" *ngIf="user.getId() === 0"
              [routerLink]="['/contactus']" role="button" translate>
             Contact us
           </a>

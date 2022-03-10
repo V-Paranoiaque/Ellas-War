@@ -8,22 +8,22 @@
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/city']"
-             [ngClass]="{'active': active == 'city'}"
+             [ngClass]="{'active': active === 'city'}"
              translate>City</a>
         </li>
         <li class="nav-item" *ngIf="this.user.getLevel() > 0 || user.getQuest() >= 8">
           <a class="nav-link" [routerLink]="['/attacks']"
-             [ngClass]="{'active': active == 'attacks'}"
+             [ngClass]="{'active': active === 'attacks'}"
              translate>Attacks</a>
         </li>
         <li class="nav-item" 
             *ngIf="user.getLevel() >= 1 || user.getQuest() >= 2">
           <a class="nav-link" [routerLink]="['/messages']"
-             [ngClass]="{'active': active == 'messages'}"
+             [ngClass]="{'active': active === 'messages'}"
              *ngIf="user.getNewMsg() == 0"
              translate>Messages</a>
           <a class="nav-link text-warning" [routerLink]="['/messages']"
-             [ngClass]="{'active': active == 'messages'}"
+             [ngClass]="{'active': active === 'messages'}"
              *ngIf="user.getNewMsg() > 0">
             <span translate>Messages</span>
             ({{user.getNewMsg()}})
@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/quests']"
-             [ngClass]="{'active': active == 'quests',
+             [ngClass]="{'active': active === 'quests',
                          'text-warning': user.getPropertyNb('quest_validate') > 0 || 
                                          user.getPropertyNb('dquest_validated') ||
                                          user.getPropertyNb('altar_available') > 0 }"
@@ -39,17 +39,17 @@
         </li>
         <li class="nav-item" *ngIf="this.user.getLevel() > 1">
           <a class="nav-link" [routerLink]="['/diplomacy']"
-             [ngClass]="{'active': active == 'diplomacy'}"
+             [ngClass]="{'active': active === 'diplomacy'}"
              *ngIf="user.getPropertyNb('alliance') == 0"
              translate>Alliance</a>
           <a class="nav-link" [routerLink]="['/alliance']"
-             [ngClass]="{'active': active == 'alliance'}"
+             [ngClass]="{'active': active === 'alliance'}"
              *ngIf="user.getPropertyNb('alliance') > 0"
              translate>Alliance</a>
         </li>
         <li class="nav-item" *ngIf="this.user.getLevel() > 0">
           <a class="nav-link" [routerLink]="['/storeroom']"
-             [ngClass]="{'active': active == 'storeroom'}"
+             [ngClass]="{'active': active === 'storeroom'}"
              translate>Agora</a>
         </li>
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
@@ -64,14 +64,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/options']"
-             [ngClass]="{'active': active == 'options'}"
+             [ngClass]="{'active': active === 'options'}"
              title="{{'Game options'|translate}}">
             <ic-icon [icIcon]="cog"></ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/support']"
-             [ngClass]="{'active': active == 'support'}"
+             [ngClass]="{'active': active === 'support'}"
              title="{{'Send a message to the staff'|translate}}">
             <ic-icon [icIcon]="questionCircle"></ic-icon>
           </a>
@@ -93,12 +93,12 @@
         <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
       </a>
       <a class="nav-link" [routerLink]="['/options']"
-         [ngClass]="{'active': active == 'options'}"
+         [ngClass]="{'active': active === 'options'}"
          title="{{'Game options'|translate}}">
         <ic-icon [icIcon]="cog"></ic-icon>
       </a>
       <a class="nav-link" [routerLink]="['/support']"
-         [ngClass]="{'active': active == 'support'}"
+         [ngClass]="{'active': active === 'support'}"
          title="{{'Send a message to the staff'|translate}}">
         <ic-icon [icIcon]="questionCircle"></ic-icon>
       </a>

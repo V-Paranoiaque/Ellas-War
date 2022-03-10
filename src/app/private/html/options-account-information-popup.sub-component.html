@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
       <div class="row text-center">
-        <img src="{{ user.getConfig().url }}/pprofile/{{ imageProfile }}" *ngIf="imageProfile != ''"
+        <img src="{{ user.getConfig().url }}/pprofile/{{ imageProfile }}" *ngIf="imageProfile !== ''"
              class="img-fluid center-block" alt="{{'Profile picture'| translate}}">
       </div>
       <div class="row text-center">

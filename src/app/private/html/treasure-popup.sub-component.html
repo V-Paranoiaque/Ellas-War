@@ -46,7 +46,7 @@
             <span translate>Pull</span>
           </td>
         </tr>
-        <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
+        <tr *ngIf="user.getLevel() > 5 && deposit === 'pull'">
           <th scope="row" translate>Computation</th>
           <td>
             <input type="radio" id="computation" [checked]="true"
@@ -61,7 +61,7 @@
             <span translate>Absolute</span>
           </td>
         </tr>
-        <tr *ngIf="user.getLevel() > 5 && deposit == 'pull'">
+        <tr *ngIf="user.getLevel() > 5 && deposit === 'pull'">
           <th scope="row" translate>Tax:</th>
           <td colspan="2">
             <span *ngIf="user.getPropertyNb('bonus_treasure') == 0">

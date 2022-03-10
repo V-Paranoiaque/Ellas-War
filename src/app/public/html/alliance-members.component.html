@@ -1,7 +1,7 @@
 <app-common-top-bar active="alliancemembers"></app-common-top-bar>
 
 <div class="col-sm-12 col-12 main" role="main"
-     [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') == 1}">
+     [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') === 1}">
   <div class="container main-full">
     <div class="row">
       <div class="col-12">
@@ -53,5 +53,5 @@
   </div>
 </div>
 
-<app-connected-right-menu *ngIf="user.getPropertyNb('mstatus') == 1"></app-connected-right-menu>
+<app-connected-right-menu *ngIf="user.getPropertyNb('mstatus') === 1"></app-connected-right-menu>
 <app-common-bottom-bar></app-common-bottom-bar>

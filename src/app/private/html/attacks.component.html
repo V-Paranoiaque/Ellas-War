@@ -91,10 +91,10 @@
                   <th scope="col" class="d-none d-sm-table-cell"
                       (click)="setOrder('victory')" role="button">
                     <span translate>V</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'victory'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'victory'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>
@@ -102,19 +102,19 @@
                              user.getLevel() >= user.getDatas().attack.level_xp_min"
                       scope="col" (click)="setOrder('xp')" role="button">
                     <span translate>XP</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'xp'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'xp'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>
                   <th scope="col" (click)="setOrder('field')" role="button">
                     <span translate>Field</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'field'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'field'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>
@@ -484,10 +484,10 @@
                   <th scope="col" class="d-none d-sm-table-cell"
                       (click)="setOrder('victory')" role="button">
                     <span translate>V</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'victory'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'victory'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>
@@ -495,19 +495,19 @@
                              user.getLevel() >= user.getDatas().attack.level_xp_min"
                       scope="col" (click)="setOrder('xp')" role="button">
                     <span translate>XP</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'xp'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'xp'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>
                   <th scope="col" (click)="setOrder('field')" role="button">
                     <span translate>Field</span>
-                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort == 'field'"
+                    <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortDown"></ic-icon>
-                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort == 'field'"
+                    <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
                              title="{{'Current order'|translate}}"
                              [icon]="sortUP"></ic-icon>
                   </th>

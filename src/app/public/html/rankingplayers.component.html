@@ -14,39 +14,39 @@
                 <span role="button" translate>Player</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'player'"></ic-icon>
+                         *ngIf="rankingOrder === 'player'"></ic-icon>
               </th>
               <th scope="col" (click)="rankingChooseOrder('level')" class="d-none d-sm-table-cell">
                 <span role="button" translate>Level</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'level'"></ic-icon>
+                         *ngIf="rankingOrder === 'level'"></ic-icon>
               </th>
               <th scope="col" (click)="rankingChooseOrder('xp')">
                 <span role="button" translate>XP</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'xp'"></ic-icon>
+                         *ngIf="rankingOrder === 'xp'"></ic-icon>
               </th>
               <th scope="col" (click)="rankingChooseOrder('victory')">
                 <span role="button" translate>Victories</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'victory'"></ic-icon>
+                         *ngIf="rankingOrder === 'victory'"></ic-icon>
               </th>
               <th scope="col" (click)="rankingChooseOrder('field')"
                   class="d-none d-sm-table-cell">
                 <span role="button" translate>Field</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'field'"></ic-icon>
+                         *ngIf="rankingOrder === 'field'"></ic-icon>
               </th>
               <th scope="col" (click)="rankingChooseOrder('honnor')"
                   class="d-none d-sm-table-cell">
                 <span role="button" translate>Honnor</span>
                 <ic-icon role="button" [icon]="sortUP"
                          title="{{'Current order'|translate}}"
-                         *ngIf="rankingOrder == 'honnor'"></ic-icon>
+                         *ngIf="rankingOrder === 'honnor'"></ic-icon>
               </th>
             </tr>
           </thead>

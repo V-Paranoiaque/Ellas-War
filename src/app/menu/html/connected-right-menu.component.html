@@ -117,22 +117,22 @@
       <div class="modal-header d-flex flex-row">
         <app-id-to-weather [weather]="'sun'" (click)="selectWeather('sun')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'sun'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'sun'}"></app-id-to-weather>
         <app-id-to-weather [weather]="'rain'" (click)="selectWeather('rain')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'rain'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'rain'}"></app-id-to-weather>
         <app-id-to-weather [weather]="'storm'" (click)="selectWeather('storm')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'storm'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'storm'}"></app-id-to-weather>
         <app-id-to-weather [weather]="'snow'" (click)="selectWeather('snow')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'snow'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'snow'}"></app-id-to-weather>
         <app-id-to-weather [weather]="'heatwave'" (click)="selectWeather('heatwave')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'heatwave'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'heatwave'}"></app-id-to-weather>
         <app-id-to-weather [weather]="'wind'" (click)="selectWeather('wind')"
                        role="button"
-                       [ngClass]="{'text-danger': selectedWeather == 'wind'}"></app-id-to-weather>
+                       [ngClass]="{'text-danger': selectedWeather === 'wind'}"></app-id-to-weather>
         
         <button type="button" class="btn-close" data-bs-dismiss="modal" 
                 aria-label="Close"></button>
