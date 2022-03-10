@@ -191,3 +191,8 @@
 * Missing error message when no barracks + rename barracks in French
 * New admin page to calculate mint Drachma production
 * New feature to buy temple units using Ambrosia
+
+# Next
+* In app purchases, web version only
+* New feature, storeroom history
+* New feature, unities can be removed from waves
