@@ -5,6 +5,7 @@ import { CityComponent } from './ts/city.component';
 import { DetailsComponent } from './ts/details.component';
 import { DiplomacyComponent } from './ts/diplomacy.component';
 import { FavorsComponent } from './ts/favors.component';
+import { GetFavorsComponent } from './ts/getfavors.component';
 import { MessagesComponent } from './ts/messages.component';
 import { OptionsComponent } from './ts/options.component';
 import { PausedComponent } from './ts/paused.component';
@@ -84,6 +85,7 @@ export const PrivateComponent = [
   DetailsComponent,
   DiplomacyComponent,
   FavorsComponent,
+  GetFavorsComponent,
   MessagesComponent,
   OptionsComponent,
   PausedComponent,

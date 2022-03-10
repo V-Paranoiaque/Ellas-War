@@ -39,6 +39,7 @@ import { CityComponent } from './private/ts/city.component';
 import { DetailsComponent } from './private/ts/details.component';
 import { DiplomacyComponent } from './private/ts/diplomacy.component';
 import { FavorsComponent } from './private/ts/favors.component';
+import { GetFavorsComponent } from './private/ts/getfavors.component';
 import { MessagesComponent } from './private/ts/messages.component';
 import { OptionsComponent } from './private/ts/options.component';
 import { QuestsComponent } from './private/ts/quests.component';
@@ -128,6 +129,7 @@ routes = [
   { path: 'details', component: DetailsComponent },
   { path: 'diplomacy', component: DiplomacyComponent },
   { path: 'favors', component: FavorsComponent },
+  { path: 'getfavors', component: GetFavorsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'options', component: OptionsComponent },
   { path: 'quests', component: QuestsComponent },

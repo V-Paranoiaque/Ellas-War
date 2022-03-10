@@ -26,6 +26,11 @@
              translate>
           Return to the game
         </div>
+        <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') == 0"
+             class="card-button card-button-primary no-android no-ios no-electron" [routerLink]="['/getfavors']"
+             role="button" translate>
+          Get a favor and return to the game
+        </div>
       </div>
     </div>
   </div>

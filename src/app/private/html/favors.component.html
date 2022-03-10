@@ -35,6 +35,27 @@
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-12 main">
   <div class="container">
+    <div class="row no-android no-ios no-electron">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body text-center">
+            <div translate>
+              Get Favors and improve your progress on the game!
+            </div>
+            <div class="fw-bold">
+              <span translate>Favors</span>
+              <span translate>:</span>
+              {{ user.getPropertyNb('favor') | number:'': this.translate.currentLang }}
+              <app-id-to-ress [ress_id]="'favor'"></app-id-to-ress>
+            </div>
+          </div>
+          <div class="card-button card-button-primary" 
+               [routerLink]="['/getfavors']"
+               role="button" translate>Get Favors</div>
+        </div>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="col-6 col-block-half">
         <div class="card">
