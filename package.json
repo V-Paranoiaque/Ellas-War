@@ -81,8 +81,6 @@
     "cordova-android": "^10.1.1",
     "cordova-electron": "^3.0.0",
     "cordova-ios": "^6.2.0",
-    "cordova-osx": "^6.0.0",
-    "cordova-windows": "^7.0.1",
     "electron-builder": "^22.14.13",
     "eslint": "^8.10.0",
     "jasmine-core": "~4.0.1",
@@ -103,8 +101,6 @@
     "platforms": [
       "ios",
       "android",
-      "windows",
-      "osx",
       "electron"
     ],
     "plugins": {
