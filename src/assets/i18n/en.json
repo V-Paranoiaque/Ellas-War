@@ -26,6 +26,7 @@
   
   "Against { value }": "Against {{ value }}",
   "Are you sure that you want to name { value } chief of your alliance?": "Are you sure that you want to name {{ value }} chief of your alliance?",
+  "Artemis will help you to protect your city and give you { value } Amazons.": "Artemis will help you to protect your city and give you {{ value }} Amazons.",
   "Attack { value } sanctuaries": "Attack {{ value }} sanctuaries",
   "Attempted espionage from { value }": "Attempted espionage from {{ value }}",
   "Attempted espionage of your sanctuary from { value }": "Attempted espionage of your sanctuary from {{ value }}",
@@ -45,6 +46,7 @@
   "Declaration of war to the alliance { value }": "Declaration of war to the alliance {{ value }}",
   "Defeat against { value }": "Defeat against {{ value }}",
   "Defeat of { value } against { player }": "Defeat of {{ value }} against {{ player }}",
+  "Dionysus will help you to protect your city and give you { value } Centaurs.": "Dionysus will help you to protect your city and give you {{ value }} Centaurs.",
   "Do stocks through your purse or spend any to improve": "Do stockss through your purse or spend any to improve <a href=\"/discoverthegame/army\">your army</a>. Remember that every choice can have consequences. But does he not have to take risks to become the most powerful Greek cities?",
   
   "Each temple gives a unique advantage. It is up to you to choose them according to": "Each temple gives a unique advantage. It is up to you to choose them according to <a href=\"/strategy-game\">your strategy</a>.",
@@ -70,6 +72,7 @@
   "Get { value } defensive victories": "Get {{ value }} defensive victories",
   
   "Have { value } XP with the old system": "Have {{ value }} XP with the old system",
+  "Hephaestus will help you to protect your city and give you { value } Automatons.": "Hephaestus will help you to protect your city and give you {{ value }} Automatons.",
   
   "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
   "In addition to the site, Ellas War also has a Facebook page and a GitHub repository.": "In addition to the site, Ellas War also has a Facebook page and a GitHub repository. On the Facebook page you can exchange with the rest of <a href=\"/community\" class=\"link-secondary\">the community</a> and staff. It is animated and moderated by the team of the game, you will find information and ask questions. Ellas War has a GitHub repository where you can find the source code of the client part of the game. You can submit bug reports or provide improvement requests directly from this repository.",
@@ -146,6 +149,7 @@
   "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
   "You can't eject { value } from the alliance": "You can't eject {{ value }} from the alliance",
+  "You can't have more than { value } { name }": "You can't have more than {{ value }} {{ name }}",
   "You can't have more than { value } buildings of this type": "You can't have more than {{ value }} buildings of this type",
   "You currently have { value } available bonus attacks": "You currently have {{ value }} available bonus attacks",
   "You have satisfied Gaia and got these { value } deffensers as a reward.": "You have satisfied Gaia and got these {{ value }} deffensers as a reward. ",

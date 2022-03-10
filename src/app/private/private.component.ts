@@ -6,6 +6,7 @@ import { CityComponent } from './ts/city.component';
 import { DetailsComponent } from './ts/details.component';
 import { DiplomacyComponent } from './ts/diplomacy.component';
 import { FavorsComponent } from './ts/favors.component';
+import { GetFavorsComponent } from './ts/getfavors.component';
 import { MessagesComponent } from './ts/messages.component';
 import { OptionsComponent } from './ts/options.component';
 import { PausedComponent } from './ts/paused.component';
@@ -62,6 +63,7 @@ import { QuestsMissionsSubComponent } from './ts/quests-missions.sub-component';
 import { SanctuaryMessageSubComponent } from './ts/sanctuary-message.sub-component';
 import { SanctuaryStrengthHelpPopupSubComponent } from './ts/sanctuary-strength-help-popup.sub-component';
 import { SanctuaryStrengthUpdatePopupSubComponent } from './ts/sanctuary-strength-update-popup.sub-component';
+import { StoreroomHistoryPopupSubComponent } from './ts/storeroom-history-popup.sub-component';
 import { SuccessCardSubComponent } from './ts/success-card.sub-component';
 import { SuccessHelpPopupSubComponent } from './ts/success-help-popup.sub-component';
 import { SuccessInfoPopupSubComponent } from './ts/success-info-popup.sub-component';
@@ -73,6 +75,7 @@ import { TempleChangeInfoPopupSubComponent } from './ts/temple-change-info-popup
 import { TempleHelpPopupSubComponent } from './ts/temple-help-popup.sub-component';
 import { TempleInfoPopupSubComponent } from './ts/temple-info-popup.sub-component';
 import { TreasurePopupSubComponent } from './ts/treasure-popup.sub-component';
+import { WaveDividePopupSubComponent } from './ts/app-wave-divide-popup.sub-component';
 
 
 export const PrivateComponent = [
@@ -84,6 +87,7 @@ export const PrivateComponent = [
   DetailsComponent,
   DiplomacyComponent,
   FavorsComponent,
+  GetFavorsComponent,
   MessagesComponent,
   OptionsComponent,
   PausedComponent,
@@ -140,6 +144,7 @@ export const PrivateComponent = [
   SanctuaryMessageSubComponent,
   SanctuaryStrengthHelpPopupSubComponent,
   SanctuaryStrengthUpdatePopupSubComponent,
+  StoreroomHistoryPopupSubComponent,
   SuccessCardSubComponent,
   SuccessHelpPopupSubComponent,
   SuccessInfoPopupSubComponent,
@@ -150,5 +155,6 @@ export const PrivateComponent = [
   TempleChangeInfoPopupSubComponent,
   TempleHelpPopupSubComponent,
   TempleInfoPopupSubComponent,
-  TreasurePopupSubComponent
+  TreasurePopupSubComponent,
+  WaveDividePopupSubComponent
 ];

@@ -20,6 +20,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   public furyCost:any;
   public lightningCost:any;
   public lightningNb:any;
+  public temple3Units:number;
   
   private sub:any;
   
@@ -43,6 +44,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       'wine': 80000,
       'gold': 60000
     }
+    this.temple3Units = 125;
   }
   
   ngOnInit() {

@@ -28,7 +28,7 @@
 
 <div *ngIf="getSentUnits().length > 0 && user.info.datas.army">
   <strong translate>Army sent</strong>
-  <div *ngFor="let unit of getSentUnits()" class="col-xs-12">
+  <div *ngFor="let unit of getSentUnits()">
       {{unit.nb| number:'': this.translate.currentLang}}
       <span *ngIf="user.info.datas.army[unit.code]">
         {{user.info.datas.army[unit.code].names|translate}} 
@@ -40,8 +40,17 @@
   <div class="clearfix"><br/></div>
 </div>
 
-
 <div class="row">
+  <div *ngIf="info.lost_wall >= 1 && !(info.lost_wall_poseidon)" translate>
+    The wall protecting the city has been destroyed
+  </div>
+  <div *ngIf="info.lost_wall == 0 && info.lost_wall_poseidon" translate>
+    The wall of Poseidon protecting the city has been destroyed
+  </div>
+  <div *ngIf="info.lost_wall >= 1 && info.lost_wall_poseidon" translate>
+    The walls protecting the city have been destroyed
+  </div>
+  
   <div *ngIf="getAttackLost().length > 0 && user.info.datas.army"  class="col-6">
     <strong translate>Attacker losses</strong>
     <div *ngFor="let unit of getAttackLost()">
@@ -61,7 +70,7 @@
   </div>
 </div>
 
-<div class="col-table text-center" *ngIf="info.lost_ress">
+<div class="col-table text-center" *ngIf="info.lost_ress && Object.keys(info.lost_ress).length > 0">
   <strong id="LostResDesc" translate>Lost resources</strong>
   <table class="table" aria-describedby="LostResDesc">
     <tr *ngFor="let ress of resources">

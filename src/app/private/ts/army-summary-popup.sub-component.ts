@@ -72,7 +72,7 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
     }
     
     nb += this.defenseWallStrength;
-    nb += this.wallDefense;
+    nb += this.wallDefense*this.user.getPropertyNb('poseidon_wall');
     
     return nb;
   }

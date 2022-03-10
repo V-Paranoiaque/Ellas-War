@@ -8,7 +8,7 @@
   <app-sanctuary-strength-update-popup [info]="sanctuariesInfo"></app-sanctuary-strength-update-popup>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-12 main">
   <div class="container">
     <div class="row" *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0 || Object.keys(realWaveAttackCheck.habitation).length > 0">
       <div class="col-12">
@@ -383,7 +383,7 @@
               </div>
             </div>
             
-            <div class="col-xs-12 text-center bold">
+            <div class="text-center bold">
               <div translate>
                 Each week, the player and the alliance has kept the longer diamond win 2'500'000 Drachmas. If 4 to 7 players got it, the reward goes to 5'000'000, and to 10'000'000 if 8 or more got it.
               </div>
@@ -453,11 +453,6 @@
                               (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
                               *ngIf="user.getPropertyNb('apollo') == 1">
                         <ic-icon [icon]="eyeIcon"></ic-icon>
-                      </button>
-                      
-                      <button class="btn"
-                              (click)="sanctuariesPrepare(sanctuary.sanctuaries_id)">
-                        <ic-icon [icon]="swordIcon"></ic-icon>
                       </button>
                     </div>
                   </div>
@@ -718,9 +713,17 @@
                 </div>
               </span>
               
-              <div class="text-center" translate
-                   *ngIf="spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1">
+              <div *ngIf="spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1 && (!spyInfo.defense_wall || spyInfo.defense_wall == 0)"
+                   class="text-center" translate>
                 The wall of Poseidon protects this city.
+              </div>
+              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall >= 1 && (!spyInfo.poseidon_wall || spyInfo.poseidon_wall == 0)"
+                   class="text-center" translate>
+                A wall is protecting this city.
+              </div>
+              <div *ngIf="spyInfo.defense_wall && spyInfo.defense_wall >= 1 && spyInfo.poseidon_wall && spyInfo.poseidon_wall == 1"
+                   class="text-center" translate>
+                Many walls are protecting this city.
               </div>
               
               <div class="text-center">
@@ -915,7 +918,7 @@
             
             <div class="text-center fw-bold text-danger"
                  [ngSwitch]="attackPossibleError"
-                 *ngIf="attackPossible == 0">
+                 *ngIf="attackPossible <= 0">
               <br/>
               <div *ngSwitchCase="2" translate>Your army is empty</div>
               <div *ngSwitchCase="3" translate>Error in the target</div>
@@ -945,7 +948,6 @@
               <div *ngSwitchCase="28" translate>You have done too many attacks</div>
               <div *ngSwitchCase="29" translate>Artemis is protecting this city</div>
               <div *ngSwitchDefault>{{ attackPossibleError }}</div>
-              <div *ngSwitchCase="" translate></div>
             </div>
           </div>
           
@@ -1069,7 +1071,7 @@
                 <ic-icon [icon]="eyeIcon"></ic-icon>
               </button>
               
-              <button class="btn"
+              <button class="btn btn-success"
                       (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
                 <ic-icon [icon]="swordIcon"></ic-icon>
               </button>
@@ -1090,7 +1092,7 @@
               {{ getOffensivePower() | number:'': this.translate.currentLang}}
               <br/><br/>
               <div class="text-center">
-                <button class="btn btn-primary"
+                <button class="btn btn-success"
                         (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
                   <ic-icon [icon]="swordIcon"></ic-icon>
                   &nbsp;<span translate>Attack</span>

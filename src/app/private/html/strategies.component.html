@@ -10,16 +10,21 @@
     <app-army-help-popup></app-army-help-popup>
   </div>
 </div>
+<div class="modal fade" id="WaveDivide" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-wave-divide-popup [info]="waveUnit"></app-wave-divide-popup>
+  </div>
+</div>
 <div class="modal fade" id="BuildingInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <app-construction-popup [info]="buildingInfo"></app-construction-popup>
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main main-top">
+<div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <div class="card">
           <div class="card-body">
             <div class="fw-bold text-center" translate>
@@ -87,10 +92,19 @@
                           <app-ew-icon name="{{ army.code }}"
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
-                          <button [ngClass]="{'d-none': army.code == 'soul'}"
-                                  class="btn btn-danger mt-1"
-                                  (click)="waveAttackDelete(army.code, i)"
-                                  translate>Remove</button>
+                          <div class="d-flex flex-row mt-1"
+                               [ngClass]="{'d-none': army.code == 'soul'}">
+                            <div class="flex-grow-1 btn btn-warning"
+                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                 (click)="setWaveUnit(army, wave[army.code], i, 1)"
+                                 *ngIf="wave[army.code] > 1">
+                              <ic-icon [icon]="splitIcon"></ic-icon>
+                            </div>
+                            <div (click)="waveAttackDelete(army.code, i)"
+                                 class="flex-grow-1 btn btn-danger" translate>
+                              <ic-icon [icon]="times"></ic-icon>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </ng-container>
@@ -209,10 +223,19 @@
                           <app-ew-icon name="{{ army.code }}"
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
-                          <button [ngClass]="{'d-none': army.code == 'soul'}"
-                                  class="btn btn-danger mt-1"
-                                  (click)="waveDefenseDelete(army.code, i)"
-                                  translate>Remove</button>
+                          <div class="d-flex flex-row mt-1"
+                               [ngClass]="{'d-none': army.code == 'soul'}">
+                            <div class="flex-grow-1 btn btn-warning"
+                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                 (click)="setWaveUnit(army, wave[army.code], i, 2)"
+                                 *ngIf="wave[army.code] > 1">
+                              <ic-icon [icon]="splitIcon"></ic-icon>
+                            </div>
+                            <div (click)="waveDefenseDelete(army.code, i)"
+                                 class="flex-grow-1 btn btn-danger" translate>
+                              <ic-icon [icon]="times"></ic-icon>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </ng-container>
@@ -230,9 +253,18 @@
                           <app-ew-icon name="{{ building.code }}"
                                    data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                                    (click)="selectBuilding(building.code)"></app-ew-icon>
-                          <button class="btn btn-danger mt-1"
-                                  (click)="waveDefenseDelete(building.code, i)"
-                                  translate>Remove</button>
+                          <div class="d-flex flex-row mt-1">
+                            <div class="flex-grow-1 btn btn-warning"
+                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                 (click)="setWaveUnit(building, wave[building.code], i, 2)"
+                                 *ngIf="wave[building.code] > 1">
+                              <ic-icon [icon]="splitIcon"></ic-icon>
+                            </div>
+                            <div (click)="waveDefenseDelete(building.code, i)"
+                                 class="flex-grow-1 btn btn-danger" translate>
+                              <ic-icon [icon]="times"></ic-icon>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </ng-container>

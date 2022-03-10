@@ -93,6 +93,9 @@
         <div *ngIf="info.camp_level && info.camp_level > user.getPropertyNb('camp_level') " translate>
           You need to update your barracks to engage this unity
         </div>
+        <div *ngIf="info.building && info.building.militarycamp && info.building.militarycamp > user.getPropertyNb('militarycamp')" translate>
+          You need to have a barrack to engage this unity
+        </div>
         
         
         <div *ngIf="user.getPropertyNb('lord_lightning') > 0" class="text-danger text-center">

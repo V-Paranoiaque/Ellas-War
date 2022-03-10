@@ -60,11 +60,7 @@ export class SocketComponent {
   
   loadUser() {
     this.emit('loadConfig');
-    
-    let localToken = localStorage.getItem('token');
-    if(localToken) {
-      this.emit('ewAuth', {'token': localToken});
-    }
+    this.emit('ewAuth', {'token': localStorage.getItem('token')});
   }
   
   on(socketName: string, callback:any) {

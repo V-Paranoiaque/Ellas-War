@@ -1,9 +1,15 @@
 <app-common-top-bar active="storeroom"></app-common-top-bar>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main main-top" role="main">
+<div class="modal fade" id="StoreroomHistory" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-storeroom-history-popup></app-storeroom-history-popup>>
+  </div>
+</div>
+
+<div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top" role="main">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-xs-12 col-block-half d-flex">
+      <div class="col-md-6 col-12 col-block-half d-flex">
         <div class="card col-12">
           <div class="card-header" translate>
             Drop resources to the Agora
@@ -69,7 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-xs-12 col-block-half d-flex">
+      <div class="col-md-6 col-12 col-block-half d-flex">
         <div class="card col-12">
           <div id="BuyResourcesDesc" class="card-header" translate>
             Buy resources
@@ -143,10 +149,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 col-xs-12 col-block-half d-flex">
+      <div class="col-md-6 col-12 col-block-half d-flex">
         <div class="card col-12">
-          <div class="card-header" id="MySalesDesc" translate>
-            Currently for sale
+          <div class="card-header" id="MySalesDesc">
+            <span translate>
+              Currently for sale
+            </span>
+            <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   data-bs-toggle="modal" data-bs-target="#StoreroomHistory"
+                   (click)="storeroomHistory()">
+                <ic-icon [icIcon]="clockIcon"></ic-icon>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <div class="fw-bold text-center">
@@ -215,7 +230,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-xs-12 col-block-half d-flex">
+      <div class="col-md-6 col-12 col-block-half d-flex">
         <div class="card col-12">
           <div class="card-header" id="titleLastWeek" translate>
             Last week

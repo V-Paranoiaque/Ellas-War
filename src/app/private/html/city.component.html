@@ -118,7 +118,7 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main" role="main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-12 main" role="main">
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-block-half">
@@ -238,6 +238,12 @@
               Army
             </span>
             <div class="card-header-group">
+              <div class="card-header-button" role="button"
+                   *ngIf="user.getLevel() >= 1"
+                   [routerLink]="['/strategies/attack']"
+                   title="{{'Manage your waves to optimize your losses'|translate}}">
+                <ic-icon [icIcon]="waterWave"></ic-icon>
+              </div>
               <div class="card-header-button" role="button"
                    data-bs-toggle="modal" data-bs-target="#ArmySummary"
                   title="{{'Army summary'|translate}}">

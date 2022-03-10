@@ -6,12 +6,15 @@ import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-attacks-message',
-  templateUrl: '../html/attacks-message.sub-component.html'
+  templateUrl: '../html/attacks-message.sub-component.html',
+  styleUrls: ['../css/attacks-message.sub-component.css']
 })
 
 export class AttacksMessageSubComponent {
   @Input() info: any;
   public resources:any;
+  
+  Object = Object;
   
   constructor(public user: User, public translate: TranslateService) {
     this.resources = environment.resources;
@@ -39,6 +42,9 @@ export class AttacksMessageSubComponent {
     
     if(this.info.lost_build) {
       for(let code in this.info.lost_build) {
+        if(!this.user.info.datas.building || this.info.lost_build[code] == 0) {
+          continue;
+        }
         list.push({
           'code': code,
           'nb': this.info.lost_build[code]

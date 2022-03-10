@@ -6,10 +6,10 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 main">
+<div class="col-lg-10 col-md-10 col-sm-12 col-12 main">
   <div class="container">
     <div class="row">
-      <div class="col-block-half" [ngClass]="{'col-xl-6 col-xs-12': user.getLevel() > 0, 'col-xs-12': user.getLevel() == 0}">
+      <div class="col-block-half" [ngClass]="{'col-xl-6 col-12': user.getLevel() > 0, 'col-12': user.getLevel() == 0}">
         <app-quests-missions *ngIf="user.getLevel() < 10"></app-quests-missions>
         <app-quests-altar *ngIf="user.getLevel() == 10"
                       title="{{'Gaia\'s defense'| translate}}"

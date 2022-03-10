@@ -40,6 +40,7 @@ import { CityComponent } from './private/ts/city.component';
 import { DetailsComponent } from './private/ts/details.component';
 import { DiplomacyComponent } from './private/ts/diplomacy.component';
 import { FavorsComponent } from './private/ts/favors.component';
+import { GetFavorsComponent } from './private/ts/getfavors.component';
 import { MessagesComponent } from './private/ts/messages.component';
 import { OptionsComponent } from './private/ts/options.component';
 import { QuestsComponent } from './private/ts/quests.component';
@@ -70,6 +71,7 @@ import { AdminProfileComponent } from './admin/ts/admin-profile.component';
 import { AdminQuestsComponent } from './admin/ts/admin-quests.component';
 import { AdminResourcesComponent } from './admin/ts/admin-resources.component';
 import { AdminStatsBuildingsComponent } from './admin/ts/admin-stats-buildings.component';
+import { AdminStatsMintsComponent } from './admin/ts/admin-stats-mints.component';
 import { AdminStatsQuestsComponent } from './admin/ts/admin-stats-quests.component';
 import { AdminStatsUnitsComponent } from './admin/ts/admin-stats-units.component';
 import { AdminStoreroomComponent } from './admin/ts/admin-storeroom.component';
@@ -129,6 +131,7 @@ routes = [
   { path: 'details', component: DetailsComponent },
   { path: 'diplomacy', component: DiplomacyComponent },
   { path: 'favors', component: FavorsComponent },
+  { path: 'getfavors', component: GetFavorsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'options', component: OptionsComponent },
   { path: 'quests', component: QuestsComponent },
@@ -162,8 +165,9 @@ routes = [
       { path: 'quests', component: AdminQuestsComponent },
       { path: 'resources', component: AdminResourcesComponent },
       { path: 'stats/buildings', component: AdminStatsBuildingsComponent },
-      { path: 'stats/units', component: AdminStatsUnitsComponent },
+      { path: 'stats/mints', component: AdminStatsMintsComponent },
       { path: 'stats/quests', component: AdminStatsQuestsComponent },
+      { path: 'stats/units', component: AdminStatsUnitsComponent },
       { path: 'storeroom', component: AdminStoreroomComponent },
       { path: 'support', component: AdminSupportComponent },
       { path: 'support/:id', component: AdminSupportComponent },

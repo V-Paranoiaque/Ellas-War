@@ -13,6 +13,7 @@ export class AdminStatsUnitsComponent implements OnInit {
   public data:any;
   private priceHosting:any;
   private priceList:any
+  public templeArray:any;
   
   constructor(public user: User, public translate: TranslateService) {
     this.priceList = {
@@ -26,6 +27,9 @@ export class AdminStatsUnitsComponent implements OnInit {
       'grapes': 0.967,
       'wine': 1350,
       'gold': 1493
+    }
+    this.data = {
+      'army': []
     }
   }
   
@@ -42,6 +46,7 @@ export class AdminStatsUnitsComponent implements OnInit {
       this.calculateArmy();
       this.calculateArmyFirst();
       this.calculateTowers();
+      this.calculateTemple();
     }
   }
   
@@ -86,6 +91,8 @@ export class AdminStatsUnitsComponent implements OnInit {
       }
       
       this.armyArray.push(Object.assign({}, unit));
+      
+      this.data.army[i].globalCost = unit.globalCost;
     }
   }
   
@@ -233,6 +240,34 @@ export class AdminStatsUnitsComponent implements OnInit {
     }
     else {
       return false;
+    }
+  }
+  
+  calculateTemple() {
+    this.templeArray = [];
+    
+    let units1:string[] = ['spartan', 'elitehoplite'];
+    let units2:string[] = ['amazon', 'automaton', 'centaur'];
+    let units3:string[] = ['myrmidon', 'soul'];
+    
+    // Override to consider athena
+    this.data.army.hoplite.nbmax = this.data.army.spartan.nbmax;
+    this.data.army.elitehoplite.nbmax = this.data.army.spartan.nbmax;
+    
+    for(let u1 of units1) {
+      for(let u2 of units2) {
+        for(let u3 of units3) {
+          let result = {
+            'names': [u1, u2, u3],
+            'price': {
+              'drachma': this.data.army[u1].globalCost*this.data.army[u1].nbmax+
+                         this.data.army[u2].globalCost*this.data.army[u2].nbmax+
+                         this.data.army[u3].globalCost*this.data.army[u3].nbmax
+            }
+          }
+          this.templeArray.push(result)
+        }
+      }
     }
   }
 }

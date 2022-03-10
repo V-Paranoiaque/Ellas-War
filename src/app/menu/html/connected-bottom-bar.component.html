@@ -1,6 +1,6 @@
 <div class="chat-text" *ngIf="chatActive != ''">
   <div class="chat-general row" *ngIf="chatActive == 'general'">
-    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 chat-inner" #chatGeneral>
+    <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatGeneral>
       <div *ngFor="let msg of chat_user_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
            [ngClass]="{'text-danger': msg.rank == 5 }"
@@ -10,7 +10,7 @@
         {{msg.msg}}<br/>
       </div>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 chat-players">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-4 chat-players">
       <span *ngFor="let user of chat_user_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="chat-alliance row" *ngIf="user.getPropertyNb('alliance') > 0 && chatActive == 'alliance'">
-    <div class="col-lg-10 col-md-9 col-sm-8 col-xs-8 chat-inner" #chatAlliance>
+    <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatAlliance>
       <div *ngFor="let msg of chat_alli_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
            [ngClass]="{'text-danger fw-bold': msg.rank == 5 }"
@@ -49,7 +49,7 @@
         {{msg.msg}}<br/>
       </div>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 chat-players">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-4 chat-players">
       <span *ngFor="let user of chat_alli_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 

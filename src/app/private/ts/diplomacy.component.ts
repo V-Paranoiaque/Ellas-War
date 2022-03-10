@@ -103,5 +103,6 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
       this.socket.emit('alliancePactInfo', alliance.pact_id);
     }
     this.allianceProfile = alliance;
+    this.allianceProfile.started = 0;
   }
 }

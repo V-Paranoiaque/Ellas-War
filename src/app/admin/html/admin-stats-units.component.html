@@ -1,6 +1,6 @@
 <app-common-top-bar active="admin"></app-common-top-bar>
 
-<div class="col-xs-12 main">
+<div class="main">
   <div class="container-fluid">
     <div class="row">
     <div class="col-12">
@@ -88,6 +88,33 @@
                   </span>
                 </td>
                 <td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table class="table" aria-labelledby="unitDesc">
+            <thead>
+              <tr>
+               <th scope="column" translate>Name</th>
+               <th scope="column" translate>Unit 1</th>
+               <th scope="column" translate>Unit 2</th>
+               <th scope="column" translate>Unit 3</th>
+               <th scope="column" translate>Total price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unit of templeArray">
+                <td>
+                  <span *ngFor="let name of unit.names">
+                    {{ data.army[name].name }}
+                  </span>
+                </td>
+                <td *ngFor="let name of unit.names">
+                  {{ data.army[name].globalCost*data.army[name].nbmax | number:'': this.translate.currentLang }}
+                </td>
+                <td>
+                  {{ unit.price.drachma | number:'': this.translate.currentLang }}
+                </td>
               </tr>
             </tbody>
           </table>

@@ -6,7 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
+import splitIcon from '@iconify/icons-carbon/split';
 import swordIcon from '@iconify/icons-vaadin/sword';
+import times from '@iconify/icons-fa-solid/times';
 
 @Component({
   templateUrl: '../html/strategies.component.html',
@@ -32,9 +34,12 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   
   public waveAttackMax:number;
   public waveDefenseMax:number;
+  public waveUnit:any={};
   
   shieldShaded = shieldShaded;
-  swordIcon= swordIcon;
+  splitIcon = splitIcon;
+  swordIcon = swordIcon;
+  times         = times;
   
   constructor(private socket: Socket, private route: ActivatedRoute,
               public user: User, public translate: TranslateService) {
@@ -299,4 +304,11 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.socket.emit("waveDefenseDelete", msg);
   }
   
+  setWaveUnit(army:any, nb:number, wave:number, type:number) {
+    this.waveUnit       = army;
+    this.waveUnit.nb    = nb;
+    this.waveUnit.nbUnit= nb;
+    this.waveUnit.wave  = wave;
+    this.waveUnit.strategy  = type;
+  }
 }
