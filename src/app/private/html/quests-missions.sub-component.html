@@ -1,9 +1,10 @@
-
 <div class="card">
-  <div class="card-header" translate>Level quests</div>
-  
   <div class="card-body"
        [ngClass]="{'no-bottom': user.getQuestValidate() == 1}">
+    <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5"
+         translate>
+      Level quests
+    </div>
     <div class="progress">
       <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
            aria-valuemin="0" aria-valuemax="100"
@@ -28,10 +29,10 @@
         </span>
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Mints produce Drachmas. Through them you can construct buildings and raise armies.</p>
               <p>{{'Build a total of { value } { building }.'| translate: { value: 4, building: 'mints' | translate } }}</p>
               <strong translate>Reward:</strong>
@@ -49,10 +50,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="ironmine"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Iron mines produce Iron. It's will help you to produce Drachmas and arm your city.</p>
               <p>{{'Build a total of { value } { building }.'| translate: { value: 4, building: 'iron mines' | translate } }}</p>
               <strong translate>Reward:</strong>
@@ -70,10 +71,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="well"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Water is used by your buildings and your army.</p>
               <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'wells' | translate } }}</p>
               <strong translate>Reward:</strong>
@@ -90,10 +91,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="sawmill"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To build your buildings you'll need wood. Build a total of 6 mills to cover your future wood needs.</p>
               <strong translate>Reward:</strong>
               {{8000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -110,10 +111,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="ironmine"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will need more Iron for your city.</p>
               <p>{{'Build a total of { value } { building }.'| translate: { value: 8, building: 'iron mines' | translate } }}</p>
               <strong translate>Reward:</strong>
@@ -132,10 +133,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="spartan"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.</p>
               <p translate>Go to City and validate a Divine Bonus to get spartans.</p>
               <strong translate>Reward:</strong> 
@@ -154,10 +155,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>I offered to you my terrible Spartans, go to the attack page and engage the fight against our common enemy, the Persian city of Hagmatana.</p>
               <strong translate>Reward:</strong>
               {{4000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -175,10 +176,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="spartan"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Go to City, and liberate the Spartans. You can again engage them if you build the temple of Ares, level 6.</p>
               <strong translate>Reward:</strong>
               {{20000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -196,10 +197,10 @@
         
         <span *ngSwitchCase="10">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="watchtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To protect your city, you can also build towers. These have the advantage on the units to not have consumption. But they can not attack. Go to your City and build a total of 5 towers.</p>
               <strong translate>Reward:</strong>
               {{20000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -217,10 +218,10 @@
         
         <span *ngSwitchCase="11">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>The treasure will allow you to protect your Drachmas, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your Drachmas. Go to City and put 20,000 Drachmas into your treasure.</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -238,10 +239,10 @@
         
         <span *ngSwitchCase="12">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Your city will need more drachmas to expand, build a total of 10 mints.</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -257,10 +258,10 @@
         
         <span *ngSwitchCase="13">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="watchtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Build a total of 10 towers, this will be your first defense.</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -299,10 +300,10 @@
       <span *ngSwitchCase="1" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="silver_man"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To have a strong city, you will need brave men. Engage at least 50 men in your ranks and return to me. Remember that you must build huts to house them.</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -318,10 +319,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="spy"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>I like to know as much as possible about my enemies before fighting them. Hire 10 spies to gain information on other cities.</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -337,10 +338,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You are still there?</p>
               <p translate>You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the faibles. Win 5 victories and return to me.</p>
               <strong translate>Reward:</strong>
@@ -357,10 +358,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will have to drachmas to build your city. Build a total of 15 mints. If you lack resources, have a look on the Agora.</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -376,10 +377,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 100000  | number:"": this.translate.currentLang } }}</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -396,10 +397,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="hut"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Build a total of 10 huts to house your army.</p>
               <strong translate>Reward:</strong>
               {{40000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -415,10 +416,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 10  | number:"": this.translate.currentLang } }}</p>
               <strong translate>Reward:</strong>
               {{20000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -435,10 +436,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="farm"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will need food for your people, build a total of 10 farms.</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -454,10 +455,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 20, building: 'mints' | translate } }}</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -473,10 +474,10 @@
         
         <span *ngSwitchCase="10">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 15  | number:"": this.translate.currentLang } }}</p>
               <strong translate>Reward:</strong>
               {{25000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -492,10 +493,10 @@
         
         <span *ngSwitchCase="11">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 200000  | number:"": this.translate.currentLang } }}</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -511,10 +512,10 @@
         
         <span *ngSwitchCase="12">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Engage a stronger defense than 6,000.</p>
               <strong translate>Current defense:</strong> {{ getDefenseCurrent() }}
               <br/>
@@ -532,10 +533,10 @@
         
         <span *ngSwitchCase="13">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 20  | number:"": this.translate.currentLang } }}</p>
               <strong translate>Reward:</strong>
               {{30000 | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -558,10 +559,10 @@
       <span *ngSwitchCase="2" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 30  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -575,10 +576,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="quarry"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will need stone and marble to build your temples. Build a total of 5 quarries.</p>
             </div>
           </div>
@@ -592,10 +593,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 25, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -609,10 +610,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 300000  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -626,10 +627,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 40  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -643,10 +644,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="quarry"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will need more stone and marble to build your temples. Build a total of 10 quarries.</p>
             </div>
           </div>
@@ -660,10 +661,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 50  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -677,10 +678,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Put a total of { value } Drachmas into your treasure.'| translate: { value: 400000  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -694,10 +695,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To engage new units, you will need to train them. Build a barracks.</p>
             </div>
           </div>
@@ -711,10 +712,10 @@
         
         <span *ngSwitchCase="10">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="peltast"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Engage 500 Peltasts</p>
             </div>
           </div>
@@ -728,10 +729,10 @@
         
         <span *ngSwitchCase="11">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>
                   This is the last step. Go to City, Temple and build your first temple.
                 </p>
@@ -754,10 +755,10 @@
       <span *ngSwitchCase="3" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 60  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -771,10 +772,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="observationtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'Observation towers' | translate } }}</p>
             </div>
           </div>
@@ -788,10 +789,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 30, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -805,10 +806,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 80  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -822,10 +823,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To recruit archers you will need to train them. Update your barracks.</p>
             </div>
           </div>
@@ -839,10 +840,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="slinger"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Engage 1000 Slingers to protect your city.</p>
             </div>
           </div>
@@ -856,10 +857,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="observationtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 20, building: 'Observation towers' | translate } }}</p>
             </div>
           </div>
@@ -873,10 +874,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 100  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -897,10 +898,10 @@
       <span *ngSwitchCase="4" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 120  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -914,10 +915,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="growers"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>You will need grapes, build a total of 10 Growers.</p>
             </div>
           </div>
@@ -931,10 +932,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="shortbow"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Engage 2.000 Short bow archeries.</p>
             </div>
           </div>
@@ -948,10 +949,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 35, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -965,10 +966,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 140  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -982,10 +983,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="observationtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 40, building: 'Observation towers' | translate } }}</p>
             </div>
           </div>
@@ -999,10 +1000,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="growers"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 25, building: 'Grower\'s lodges' | translate } }}</p>
             </div>
           </div>
@@ -1016,10 +1017,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 160  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1033,10 +1034,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="observationtower"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 50, building: 'Observation towers' | translate } }}</p>
             </div>
           </div>
@@ -1057,10 +1058,10 @@
       <span *ngSwitchCase="5" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="habitation"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 100, building: 'Habitations' | translate } }}</p>
             </div>
           </div>
@@ -1074,10 +1075,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 200  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1091,10 +1092,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 40, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1108,10 +1109,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="habitation"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 250, building: 'Habitations' | translate } }}</p>
             </div>
           </div>
@@ -1125,10 +1126,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="longbow"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 5000, unit: 'Long bow archeries' | translate } }}</p>
             </div>
           </div>
@@ -1142,10 +1143,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 250  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1166,10 +1167,10 @@
       <span *ngSwitchCase="6" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To cavalry archers you will need to train them. Update your barracks.</p>
             </div>
           </div>
@@ -1183,10 +1184,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="hippeis"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 2000, unit: 'Hippeus' | translate } }}</p>
             </div>
           </div>
@@ -1200,10 +1201,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 300  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1217,10 +1218,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 45, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1234,10 +1235,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>
                   The temples allow you to specialize your city. Choose your second temple and build the temple of Athena or Ares.
                 </p>
@@ -1253,10 +1254,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="hippeis"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 6000, unit: 'Hippeus' | translate } }}</p>
             </div>
           </div>
@@ -1270,10 +1271,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 350  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1294,10 +1295,10 @@
       <span *ngSwitchCase="7" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 400  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1311,10 +1312,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mountedarchery"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 3000, unit: 'Mounted archeries' | translate } }}</p>
             </div>
           </div>
@@ -1328,10 +1329,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 450  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1345,10 +1346,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 50, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1362,10 +1363,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mountedarchery"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 6000, unit: 'Mounted archeries' | translate } }}</p>
             </div>
           </div>
@@ -1379,10 +1380,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 500  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1403,10 +1404,10 @@
       <span *ngSwitchCase="8" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 550  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1420,10 +1421,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="hoplite"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 2500, unit: 'Hoplites' | translate } }}</p>
             </div>
           </div>
@@ -1437,10 +1438,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 55, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1454,10 +1455,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 600  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1471,10 +1472,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="hoplite"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 5000, unit: 'Hoplites' | translate } }}</p>
             </div>
           </div>
@@ -1488,10 +1489,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 650  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1505,10 +1506,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 60, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1522,10 +1523,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>Build your third temple. Choose between Artemis, Dionysus and Hephaestus.</p>
             </div>
           </div>
@@ -1539,10 +1540,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 750  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1563,10 +1564,10 @@
       <span *ngSwitchCase="9" [ngSwitch]="user.getQuest()">
         <span *ngSwitchCase="1">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To engage the elite of your army, you will have to train it, update your barrack.</p>
             </div>
           </div>
@@ -1580,10 +1581,10 @@
         
         <span *ngSwitchCase="2">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="palace"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p translate>To host your new unities, you will have to build palaces. Build 160 palaces.</p>
             </div>
           </div>
@@ -1597,10 +1598,10 @@
         
         <span *ngSwitchCase="3">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mountedhoplite"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 2500 | number:"": this.translate.currentLang, unit: 'Mounted hoplites' | translate } }}</p>
             </div>
           </div>
@@ -1614,10 +1615,10 @@
         
         <span *ngSwitchCase="4">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 65, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1631,10 +1632,10 @@
         
         <span *ngSwitchCase="5">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="winery"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'Wineries' | translate } }}</p>
             </div>
           </div>
@@ -1648,10 +1649,10 @@
         
         <span *ngSwitchCase="6">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="goldmine"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 5, building: 'Gold mines' | translate } }}</p>
             </div>
           </div>
@@ -1665,10 +1666,10 @@
         
         <span *ngSwitchCase="7">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 800  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1682,10 +1683,10 @@
         
         <span *ngSwitchCase="8">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mountedhoplite"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Engage a total of { value } { unit }.'| translate: { value: 5000 | number:"": this.translate.currentLang, unit: 'Mounted hoplites' | translate } }}</p>
             </div>
           </div>
@@ -1699,10 +1700,10 @@
         
         <span *ngSwitchCase="9">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 70, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1716,10 +1717,10 @@
         
         <span *ngSwitchCase="10">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="winery"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 25, building: 'Wineries' | translate } }}</p>
             </div>
           </div>
@@ -1733,10 +1734,10 @@
         
         <span *ngSwitchCase="11">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="goldmine"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 10, building: 'Gold mines' | translate } }}</p>
             </div>
           </div>
@@ -1750,10 +1751,10 @@
         
         <span *ngSwitchCase="12">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 900  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>
@@ -1777,10 +1778,10 @@
         
         <span *ngSwitchCase="14">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 80, building: 'mints' | translate } }}</p>
             </div>
           </div>
@@ -1794,10 +1795,10 @@
         
         <span *ngSwitchCase="15">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="winery"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 50, building: 'Wineries' | translate } }}</p>
             </div>
           </div>
@@ -1811,10 +1812,10 @@
         
         <span *ngSwitchCase="16">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Build a total of { value } { building }.'| translate: { value: 20, building: 'Gold mines' | translate } }}</p>
             </div>
           </div>
@@ -1828,10 +1829,10 @@
         
         <span *ngSwitchCase="17">
           <div class="row g-0">
-            <div class="col-md-4 p-2">
+            <div class="col-lg-2 col-md-4 p-2">
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
-            <div class="col-md-8 p-2">
+            <div class="col-lg-10 col-md-8 p-2">
               <p>{{'Win { value } victories'| translate: { value: 1000  | number:"": this.translate.currentLang } }}</p>
             </div>
           </div>

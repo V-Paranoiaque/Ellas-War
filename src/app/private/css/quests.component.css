@@ -1,17 +1,14 @@
-.row {
+.container > .row {
   margin-top: calc(var(--bs-gutter-x)/ 2);
-  margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
 
-.col-12 {
-  margin-top: calc(var(--bs-gutter-x)/ 2);
-  margin-bottom: calc(var(--bs-gutter-x)/ 2);
+#quest-component .dail-quest-menu button {
+  border-width: 0px;
 }
 
 .card {
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
 }
-
 
 @media (max-width: 767px) {
   .card {
@@ -19,16 +16,20 @@
   }
 }
 
-.card-body a.btn {
-  width: 100%;
-  color: #fff;
+#dailyQuestList .dailyquestblock:nth-child(1) > div {
+  border-width: 0px;
 }
 
-.card-button.card-button-success button,
-.card-button.card-button-primary .btn {
-  width: 100%;
-  font-weight: bold;
+@media (min-width: 768px) {
+  #dailyQuestList .dailyquestblock:nth-child(2) > div {
+    border-width: 0px;
+  }
 }
+
+#dailyQuestList .dailyquestblock > div {
+  border-top: 1px black solid;
+}
+
 div.containBar {
   display: flex;
   justify-content: space-around;

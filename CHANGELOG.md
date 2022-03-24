@@ -194,5 +194,6 @@
 
 # Next
 * In app purchases, web version only
+* New display for the altars and the quests
 * New feature, storeroom history
 * New feature, unities can be removed from waves

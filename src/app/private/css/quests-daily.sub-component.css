@@ -1,10 +1,4 @@
-.card-header .btn-close {
-  position: absolute;
-  right: 3px;
-  top: 3px;
-}
-
-.card-body .progress {
+.progress {
   height: 30px;
   margin-bottom: 12px;
   background-color: grey;
@@ -12,7 +6,7 @@
   color: white;
 }
 
-.card-body .progress .progress-text {
+.progress .progress-text {
   box-sizing: border-box;
   text-align: center;
   line-height: 30px;
@@ -22,7 +16,7 @@
   left: 0;
 }
 
-.card-body .small-icon {
+.small-icon {
   width: 20px;
   display: inline-block;
 }

@@ -20,6 +20,7 @@ export class QuestsComponent implements OnInit, OnDestroy {
   
   private myQuestList:any;
   public selectedQuest:any;
+  public page:number=0;
   
   questionCircle = questionCircle;
   treasureChest = treasureChest;
@@ -72,5 +73,9 @@ export class QuestsComponent implements OnInit, OnDestroy {
   
   getMyQuestList() {
     return this.myQuestList;
+  }
+  
+  setPage(page:number) {
+    this.page = page;
   }
 }
