@@ -41,6 +41,7 @@ import { DiplomacyComponent } from './private/ts/diplomacy.component';
 import { FavorsComponent } from './private/ts/favors.component';
 import { GetFavorsComponent } from './private/ts/getfavors.component';
 import { MessagesComponent } from './private/ts/messages.component';
+import { MintsComponent } from './private/ts/mints.component';
 import { OptionsComponent } from './private/ts/options.component';
 import { QuestsComponent } from './private/ts/quests.component';
 import { StrategiesComponent } from './private/ts/strategies.component';
@@ -131,6 +132,7 @@ routes = [
   { path: 'favors', component: FavorsComponent },
   { path: 'getfavors', component: GetFavorsComponent },
   { path: 'messages', component: MessagesComponent },
+  { path: 'mints', component: MintsComponent },
   { path: 'options', component: OptionsComponent },
   { path: 'quests', component: QuestsComponent },
   { path: 'strategies', component: StrategiesComponent },

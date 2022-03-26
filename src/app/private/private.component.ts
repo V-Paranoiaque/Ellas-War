@@ -7,6 +7,7 @@ import { DiplomacyComponent } from './ts/diplomacy.component';
 import { FavorsComponent } from './ts/favors.component';
 import { GetFavorsComponent } from './ts/getfavors.component';
 import { MessagesComponent } from './ts/messages.component';
+import { MintsComponent } from './ts/mints.component';
 import { OptionsComponent } from './ts/options.component';
 import { PausedComponent } from './ts/paused.component';
 import { QuestsComponent } from './ts/quests.component';
@@ -87,6 +88,7 @@ export const PrivateComponent = [
   FavorsComponent,
   GetFavorsComponent,
   MessagesComponent,
+  MintsComponent,
   OptionsComponent,
   PausedComponent,
   QuestsComponent,

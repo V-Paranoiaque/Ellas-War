@@ -217,8 +217,15 @@
     <div *ngIf="info.code === 'ironmine'" translate>
       This mine will produce iron for use by your craftsmen or your army.
     </div>
-    <div *ngIf="info.code === 'mint'" translate>
-      The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.
+    <div *ngIf="info.code === 'mint'">
+      <div translate>
+        The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.
+      </div>
+      <br/>
+      <div class="text-center">
+        <a [routerLink]="['/mints']" data-bs-dismiss="modal"
+           class="link" translate>Drachma production</a>
+      </div>
     </div>
     <div *ngIf="info.code === 'sawmill'" translate>
       The sawmill will produce wood for your archers and your buildings.
