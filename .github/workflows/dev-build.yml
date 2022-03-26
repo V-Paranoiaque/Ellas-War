@@ -53,4 +53,5 @@ jobs:
           do
             snapcraft upload --release=edge $i
           done
+        if: ${{ github.ref == 'refs/heads/master' }}
   
