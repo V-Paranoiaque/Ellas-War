@@ -58,7 +58,13 @@
                       <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.production, ress.key) > 0">
                         +{{ getRess(building.production, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
                         <app-id-to-ress [ress_id]="ress.key"></app-id-to-ress>
-                        {{building.name|translate}}<br/>
+                        {{building.name|translate}}
+                        <a [routerLink]="['/mints']"
+                           title="{{'Production of drachmas by number of mints'|translate}}"
+                           *ngIf="building.code === 'mint'">
+                          <ic-icon [icIcon]="questionCircle"></ic-icon>
+                        </a>
+                        <br/>
                       </span>
                     </span>
                   </td>
