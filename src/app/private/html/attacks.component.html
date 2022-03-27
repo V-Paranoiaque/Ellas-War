@@ -152,7 +152,7 @@
                   </td>
                   <td class="text-center">
                     <button class="btn btn-primary"
-                            *ngIf="user.getPropertyNb('apollo') == 0"
+                            *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0"
                             (click)="spy(player.membre_id)">
                       <ic-icon [icon]="fistRaised"></ic-icon>
                     </button>
@@ -446,7 +446,7 @@
                     <div class="card-body text-center" *ngIf="sanctuary.membre_id != user.getId()">
                       <button class="btn btn-primary"
                               (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
-                              *ngIf="user.getPropertyNb('apollo') == 0">
+                              *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0">
                         <ic-icon [icon]="fistRaised"></ic-icon>
                       </button>
                       <button class="btn btn-primary"
@@ -546,7 +546,7 @@
                   </td>
                   <td class="text-center">
                     <button class="btn btn-primary"
-                            *ngIf="user.getPropertyNb('apollo') == 0"
+                            *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0"
                             (click)="spy(player.membre_id)">
                       <ic-icon [icon]="fistRaised"></ic-icon>
                     </button>
