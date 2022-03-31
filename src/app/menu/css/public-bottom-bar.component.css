@@ -3,7 +3,6 @@
 }
 
 #frame-bottom nav {
-  margin-top: calc(var(--bs-gutter-x)/ 2);
   background: #B62F21;
   justify-content: center;
   align-items: center;

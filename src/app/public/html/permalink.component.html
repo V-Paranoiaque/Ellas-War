@@ -1,14 +1,16 @@
 <app-common-top-bar active="permalink"></app-common-top-bar>
 
-<div class="container main-full" role="main">
-  <div class="row">
-    <div class="card card-column col-12">
-      <div class="card-body">
-        <h2 class="text-center">
-          <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
-        </h2>
-        <div *ngFor="let msg of getCurrentMsg().msg"  class="text-center">
-          <app-messages-content [msg]="msg"></app-messages-content>
+<div class="home-bg container-flexible" role="main">
+  <div class="container main-full">
+    <div class="row">
+      <div class="card card-column col-12">
+        <div class="card-body">
+          <h2 class="text-center">
+            <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
+          </h2>
+          <div *ngFor="let msg of getCurrentMsg().msg"  class="text-center">
+            <app-messages-content [msg]="msg"></app-messages-content>
+          </div>
         </div>
       </div>
     </div>

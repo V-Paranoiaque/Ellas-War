@@ -1,70 +1,72 @@
 <app-common-top-bar active="partners"></app-common-top-bar>
 
-<div class="container main-full" role="main"
+<div class="home-bg container-flexible" role="main"
      [attr.aria-label]="['Main content of the page'|translate]">
-  <div class="row">
-    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
-      <div class="card card-column">
-        <div class="card-body">
-          <h1 class="text-center" translate>Connect</h1>
-          
-          <div *ngIf="loginError == 1">
-            <div class="alert alert-danger text-center" 
-                 role="alert" translate>
-              Wrong username or password
+  <div class="container main-full">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
+        <div class="card card-column">
+          <div class="card-body">
+            <h1 class="text-center" translate>Connect</h1>
+            
+            <div *ngIf="loginError == 1">
+              <div class="alert alert-danger text-center" 
+                   role="alert" translate>
+                Wrong username or password
+              </div>
             </div>
-          </div>
-          
-          <form method="POST" action="/login" 
-                [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-            <fieldset>
-              <legend class="visually-hidden" translate>Login to the game</legend>
-              
-              <label class="fw-bold" for="server" translate>Server</label>
-              <select class="form-select mb-2" name="server"
-                      id="server" formControlName="server"
-                      [attr.aria-label]="['Select the server you want to play on'|translate]"
-                      (change)="selectServer()">
-                <option value="fr" translate>French</option>
-                <option value="en" translate>English</option>
-                <option value="dev" translate>Development (International)</option>
-              </select>
-              
-              <label id="username-label"class="fw-bold" for="username"
-                     translate>Username</label>
-              <input class="form-control mb-2" type="text" id="username"
-                     placeholder="{{'Login'|translate}}" name="username" 
-                     formControlName="username" aria-labelledby="username-label"
-                     required="required" />
-              
-              <label id="password-label" class="fw-bold" for="password"
-                     translate>Password</label>
-              <input class="form-control mb-4" type="password" id="password"
-                     placeholder="{{'Password'|translate}}" name="password" 
-                     formControlName="password" aria-labelledby="password-label"
-                     required="required" />
-              
-              <div class="text-center mb-2">
-                <input type="hidden" formControlName="mobile" name="mobile" />
-                <button class="btn btn-success btn-primary mb-2" type="submit" 
-                        translate>Connect</button>
-              </div>
-              <div class="text-center">
-                <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
-                   translate>Forgot your password?</a>
-              </div>
-            </fieldset>
-          </form>
-          <br/>
-          <div class="d-flex">
-            <button class="btn btn-primary flex-grow-1" (click)="user.oauthFB()">
-              <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
-              {{'Login with Facebook'|translate}}
-            </button>
-            <button class="btn btn-grey flex-grow-1" (click)="user.oauthGoogle()">
-              <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
-              {{'Login with Google'|translate}}
-            </button>
+            
+            <form method="POST" action="/login" 
+                  [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+              <fieldset>
+                <legend class="visually-hidden" translate>Login to the game</legend>
+                
+                <label class="fw-bold" for="server" translate>Server</label>
+                <select class="form-select mb-2" name="server"
+                        id="server" formControlName="server"
+                        [attr.aria-label]="['Select the server you want to play on'|translate]"
+                        (change)="selectServer()">
+                  <option value="fr" translate>French</option>
+                  <option value="en" translate>English</option>
+                  <option value="dev" translate>Development (International)</option>
+                </select>
+                
+                <label id="username-label"class="fw-bold" for="username"
+                       translate>Username</label>
+                <input class="form-control mb-2" type="text" id="username"
+                       placeholder="{{'Login'|translate}}" name="username" 
+                       formControlName="username" aria-labelledby="username-label"
+                       required="required" />
+                
+                <label id="password-label" class="fw-bold" for="password"
+                       translate>Password</label>
+                <input class="form-control mb-4" type="password" id="password"
+                       placeholder="{{'Password'|translate}}" name="password" 
+                       formControlName="password" aria-labelledby="password-label"
+                       required="required" />
+                
+                <div class="text-center mb-2">
+                  <input type="hidden" formControlName="mobile" name="mobile" />
+                  <button class="btn btn-success btn-primary mb-2" type="submit" 
+                          translate>Connect</button>
+                </div>
+                <div class="text-center">
+                  <a [routerLink]="['/lostpassword']" class="text-danger fw-light"
+                     translate>Forgot your password?</a>
+                </div>
+              </fieldset>
+            </form>
+            <br/>
+            <div class="d-flex">
+              <button class="btn btn-primary flex-grow-1" (click)="user.oauthFB()">
+                <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+                {{'Login with Facebook'|translate}}
+              </button>
+              <button class="btn btn-grey flex-grow-1" (click)="user.oauthGoogle()">
+                <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
+                {{'Login with Google'|translate}}
+              </button>
+            </div>
           </div>
         </div>
       </div>

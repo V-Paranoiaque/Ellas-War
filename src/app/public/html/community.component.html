@@ -1,30 +1,32 @@
 <app-common-top-bar active="tandcs"></app-common-top-bar>
 
-<div class="container main-full" role="main">
-  <div class="row">
-    <div class="col-12 col-lg-10 offset-lg-1">
-      <div class="card card-column">
-        <div class="card-body">
-          <h1 class="text-center" translate>Community</h1>
-          
-          <br/>
-          <div translate>
-            The Ellas War community is found on the Facebook Page. You can find help and communicate with other players.
+<div class="home-bg container-flexible" role="main">
+  <div class="container main-full">
+    <div class="row">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <div class="card card-column">
+          <div class="card-body">
+            <h1 class="text-center" translate>Community</h1>
+            
+            <br/>
+            <div translate>
+              The Ellas War community is found on the Facebook Page. You can find help and communicate with other players.
+            </div>
+            <br>
+            <p class="text-center">
+              <a href="{{ user.config.fb_page }}"
+                 title="{{'Follow us on our Facebook Page'|translate}}"
+                 target="_blank" rel="external nofollow noopener">
+                <ic-icon [icon]="facebookIcon" class="fs-1"></ic-icon>
+              </a>
+              &nbsp;
+              <a href="https://github.com/V-Paranoiaque/Ellas-War/"
+                 title="{{'Access to our GitHub repository'|translate}}"
+                 target="_blank" rel="external nofollow noopener">
+                <ic-icon [icon]="githubOctocat" class="fs-1"></ic-icon>
+              </a>
+            </p>
           </div>
-          <br>
-          <p class="text-center">
-            <a href="{{ user.config.fb_page }}"
-               title="{{'Follow us on our Facebook Page'|translate}}"
-               target="_blank" rel="external nofollow noopener">
-              <ic-icon [icon]="facebookIcon" class="fs-1"></ic-icon>
-            </a>
-            &nbsp;
-            <a href="https://github.com/V-Paranoiaque/Ellas-War/"
-               title="{{'Access to our GitHub repository'|translate}}"
-               target="_blank" rel="external nofollow noopener">
-              <ic-icon [icon]="githubOctocat" class="fs-1"></ic-icon>
-            </a>
-          </p>
         </div>
       </div>
     </div>

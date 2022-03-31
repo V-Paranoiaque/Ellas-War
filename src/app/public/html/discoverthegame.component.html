@@ -1,243 +1,245 @@
 <app-common-top-bar active="discoverthegame"></app-common-top-bar>
 
-<div class="container main-full" role="main">
-  <div class="row">
-    <div class="card card-column" [ngSwitch]="page">
-      <!-- Old pages -->
-      <div class="card-body" *ngSwitchCase="'treeofthegods'">
-        <div class="row">
-          <div class="col-12 text-center">
-            <p translate>The tree of the gods has been removed in Ellas War Next V2.</p>
-            <br/>
-            <a [routerLink]="['/discoverthegame']"
-               class="btn btn-primary" translate>
-              Discover the game
-            </a>
+<div class="home-bg container-flexible" role="main">
+  <div class="container main-full">
+    <div class="row">
+      <div class="card card-column" [ngSwitch]="page">
+        <!-- Old pages -->
+        <div class="card-body" *ngSwitchCase="'treeofthegods'">
+          <div class="row">
+            <div class="col-12 text-center">
+              <p translate>The tree of the gods has been removed in Ellas War Next V2.</p>
+              <br/>
+              <a [routerLink]="['/discoverthegame']"
+                 class="btn btn-primary" translate>
+                Discover the game
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'games'">
-        <div class="row">
-          <div class="col-12 text-center">
-            <p translate>The games have been removed in Ellas War Next V2.</p>
-            <br/>
-            <a [routerLink]="['/discoverthegame']"
-               class="btn btn-primary" translate>
-              Discover the game
-            </a>
+        <div class="card-body" *ngSwitchCase="'games'">
+          <div class="row">
+            <div class="col-12 text-center">
+              <p translate>The games have been removed in Ellas War Next V2.</p>
+              <br/>
+              <a [routerLink]="['/discoverthegame']"
+                 class="btn btn-primary" translate>
+                Discover the game
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Description pages -->
-      <div class="card-body" *ngSwitchCase="'constructions'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Constructions</span>
-          <a [routerLink]="['/discoverthegame/treasure']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
         
-        <div class="fw-bold text-center" translate>
-          The different buildings that make up the city.
+        <!-- Description pages -->
+        <div class="card-body" *ngSwitchCase="'constructions'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Constructions</span>
+            <a [routerLink]="['/discoverthegame/treasure']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            The different buildings that make up the city.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/buildings.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Construct buildings to make up your Greek city'|translate}}">
+          </div>
         </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/buildings.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Construct buildings to make up your Greek city'|translate}}">
+        <div class="card-body" *ngSwitchCase="'treasure'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/constructions']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Treasure</span>
+            <a [routerLink]="['/discoverthegame/temples']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            The treasure will allow you to shelter your wealth, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your drachmas.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/treasure.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Hide your drachmas in your treasure'|translate}}">
+          </div>
         </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'treasure'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/constructions']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Treasure</span>
-          <a [routerLink]="['/discoverthegame/temples']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          The treasure will allow you to shelter your wealth, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your drachmas.
+        <div class="card-body" *ngSwitchCase="'temples'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/treasure']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Temples</span>
+            <a [routerLink]="['/discoverthegame/recruitment']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center"
+               [innerHTML]="'Each temple gives a unique advantage. It is up to you to choose them according to'|translate">
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/temples.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Build temples and enjoy the powers of the Gods'|translate}}">
+          </div>
         </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/treasure.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Hide your drachmas in your treasure'|translate}}">
+        <div class="card-body" *ngSwitchCase="'recruitment'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/temples']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Recruitment</span>
+            <a [routerLink]="['/discoverthegame/army']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            The hoplites constitute the heavy infantry of the ancient Greek cities, made up of citizens who could not support a horse but who had the means to equip themselves with armor and provide for their families when They were in campaign.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/recruitment.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Recruit your army to defend your city from invaders'|translate}}">
+          </div>
         </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'temples'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/treasure']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Temples</span>
-          <a [routerLink]="['/discoverthegame/recruitment']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center"
-             [innerHTML]="'Each temple gives a unique advantage. It is up to you to choose them according to'|translate">
+        <div class="card-body" *ngSwitchCase="'army'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/recruitment']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Army</span>
+            <a [routerLink]="['/discoverthegame/attack']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center"
+            [innerHTML]="'Your army will do its utmost to defend'|translate">
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/army.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Build a varied army and make your strategy'|translate}}">
+          </div>
         </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/temples.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Build temples and enjoy the powers of the Gods'|translate}}">
+        <div class="card-body" *ngSwitchCase="'attack'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/army']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Offensive strategy</span>
+            <a [routerLink]="['/discoverthegame/defense']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            Choose the units that will go to battle and the order in which they will enter the enemy cities.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/attack.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Choose the units that will go to battle and the order in which they will enter the enemy cities.'|translate}}">
+          </div>
         </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'recruitment'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/temples']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Recruitment</span>
-          <a [routerLink]="['/discoverthegame/army']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          The hoplites constitute the heavy infantry of the ancient Greek cities, made up of citizens who could not support a horse but who had the means to equip themselves with armor and provide for their families when They were in campaign.
+        <div class="card-body" *ngSwitchCase="'defense'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/attack']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Defensive strategy</span>
+            <a [routerLink]="['/discoverthegame/trade']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            Choose the units that will defend your city and the order in which they will go to battle.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/defense.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Choose the units that will defend your city and the order in which they will go to battle.'|translate}}">
+          </div>
         </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/recruitment.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Recruit your army to defend your city from invaders'|translate}}">
+        <div class="card-body" *ngSwitchCase="'trade'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/defense']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Agora</span>
+            <a [routerLink]="['/discoverthegame']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            Buy the resources you need for your city or army.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/agora.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Buy the resources you need for your city or army.'|translate}}">
+          </div>
         </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'army'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/recruitment']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Army</span>
-          <a [routerLink]="['/discoverthegame/attack']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center"
-          [innerHTML]="'Your army will do its utmost to defend'|translate">
+        <div class="card-body" *ngSwitchCase="'sell'">
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/trade']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>Sell resources</span>
+            <a [routerLink]="['/discoverthegame']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            Sell the resources looted during your attacks or from your production.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/agora.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Sell the resources looted during your attacks or from your production.'|translate}}">
+          </div>
         </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/army.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Build a varied army and make your strategy'|translate}}">
-        </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'attack'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/army']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Offensive strategy</span>
-          <a [routerLink]="['/discoverthegame/defense']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          Choose the units that will go to battle and the order in which they will enter the enemy cities.
-        </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/attack.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Choose the units that will go to battle and the order in which they will enter the enemy cities.'|translate}}">
-        </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'defense'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/attack']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Defensive strategy</span>
-          <a [routerLink]="['/discoverthegame/trade']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          Choose the units that will defend your city and the order in which they will go to battle.
-        </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/defense.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Choose the units that will defend your city and the order in which they will go to battle.'|translate}}">
-        </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'trade'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/defense']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Agora</span>
-          <a [routerLink]="['/discoverthegame']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          Buy the resources you need for your city or army.
-        </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/agora.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Buy the resources you need for your city or army.'|translate}}">
-        </div>
-      </div>
-      <div class="card-body" *ngSwitchCase="'sell'">
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/trade']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>Sell resources</span>
-          <a [routerLink]="['/discoverthegame']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          Sell the resources looted during your attacks or from your production.
-        </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/agora.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Sell the resources looted during your attacks or from your production.'|translate}}">
-        </div>
-      </div>
-      <div class="card-body" *ngSwitchDefault>
-        <h1 class="pb-2 text-center d-flex justify-content-center">
-          <a [routerLink]="['/discoverthegame/trade']">
-            <ic-icon [icon]="arrowLeft"></ic-icon>
-          </a>
-          <span translate>City</span>
-          <a [routerLink]="['/discoverthegame/constructions']">
-            <ic-icon [icon]="arrowRight"></ic-icon>
-          </a>
-        </h1>
-        
-        <div class="fw-bold text-center" translate>
-          Visualize your city and quickly access the different actions.
-        </div>
-        
-        <div class="text-center">
-          <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/city.png'"
-               class="img-fluid img-thumbnail"
-               alt="{{'Discover Ellas War and explore the Ancient Greece'|translate}}">
+        <div class="card-body" *ngSwitchDefault>
+          <h1 class="pb-2 text-center d-flex justify-content-center">
+            <a [routerLink]="['/discoverthegame/trade']">
+              <ic-icon [icon]="arrowLeft"></ic-icon>
+            </a>
+            <span translate>City</span>
+            <a [routerLink]="['/discoverthegame/constructions']">
+              <ic-icon [icon]="arrowRight"></ic-icon>
+            </a>
+          </h1>
+          
+          <div class="fw-bold text-center" translate>
+            Visualize your city and quickly access the different actions.
+          </div>
+          
+          <div class="text-center">
+            <img [src]="'assets/i18n/'+translate.currentLang+'/screenshot/'+dir+'/city.png'"
+                 class="img-fluid img-thumbnail"
+                 alt="{{'Discover Ellas War and explore the Ancient Greece'|translate}}">
+          </div>
         </div>
       </div>
     </div>

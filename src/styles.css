@@ -39,11 +39,20 @@ a.no-padding {
   }
 }
 .main-full {
-  min-height: calc(100vh - 161px);
+  min-height: calc(100vh - 162px);
 }
 .main-full.container .card {
   margin-top: calc(var(--bs-gutter-x)/ 2);
   margin-bottom: calc(var(--bs-gutter-x)/ 2);
+}
+
+/*** Public ***/
+.home-bg {
+  background-image: url("./assets/img/backgrounds/poseidon.svg");
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 12px;
 }
 
 /*** Cards **/
@@ -124,7 +133,7 @@ a.no-padding {
                 url("./assets/img/ornaments/column-top.png") no-repeat top left,
                 url("./assets/img/ornaments/column-mid.png") repeat-y bottom left;
     min-height: 100px;
-    margin: -16px -45px;
+    margin: -16px -43px;
     padding: 31px 55px;
   }
 }

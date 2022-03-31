@@ -1,23 +1,25 @@
 <app-common-top-bar active="confirm"></app-common-top-bar>
 
-<div class="container" role="main">
-  <div class="row">
-    <div class="col-12 col-lg-10 offset-lg-1">
-      <div class="card card-column">
-        <div class="card-body">
-          <div class="text-center" [ngSwitch]="confirmResult">
-            <div *ngSwitchCase="1">
-              <div class="text-danger" translate>
-                This link is invalid, if have forgotten your password, ask a new again.
+<div class="home-bg container-flexible" role="main">
+  <div class="container main-full">
+    <div class="row">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <div class="card card-column">
+          <div class="card-body">
+            <div class="text-center" [ngSwitch]="confirmResult">
+              <div *ngSwitchCase="1">
+                <div class="text-danger" translate>
+                  This link is invalid, if have forgotten your password, ask a new again.
+                </div>
+                <br/><br/>
+                <a [routerLink]="['/lostpassword']" translate>
+                  Forgot your password?
+                </a>
               </div>
-              <br/><br/>
-              <a [routerLink]="['/lostpassword']" translate>
-                Forgot your password?
-              </a>
-            </div>
-            <div *ngSwitchCase="2">
-              <div class="text-danger" translate>
-                Password changed successfully
+              <div *ngSwitchCase="2">
+                <div class="text-danger" translate>
+                  Password changed successfully
+                </div>
               </div>
             </div>
           </div>

@@ -207,11 +207,7 @@ h3 {
 
 #home-home {
   position: relative;
-  background-image: url("../../../assets/img/backgrounds/poseidon.svg");
-  background-position: center right;
   min-height: calc(100vh - 64px);
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 #home-home .row {
@@ -248,6 +244,10 @@ h3 {
     margin-right: calc(var(--bs-gutter-x)/ -2);
     margin-left: calc(var(--bs-gutter-x)/ -2);
   }
+}
+
+#home-discover {
+  padding-bottom: 8px;
 }
 
 #home-discover .card {

@@ -1,44 +1,46 @@
 <app-common-top-bar active="help"></app-common-top-bar>
 
-<div class="container main-full" role="main">
-  <div class="row">
-    <div class="col-12 col-lg-4 col-md-6 offset-lg-2">
-      <div class="card">
-        <div class="card-header" translate>
-          Contact us
-        </div>
-        <div class="card-body" translate>
-          Contact directly Ellas War staff. The Ellas War team will try to answer you as quickly as possible. For more difficult cases, it meets every Tuesday.
-        </div>
-        <div class="card-body text-center" >
-          <a class="btn btn-primary" *ngIf="user.getId() > 0"
-             [routerLink]="['/support']" role="button" translate>
+<div class="home-bg container-flexible" role="main">
+  <div class="container main-full">
+    <div class="row">
+      <div class="col-12 col-lg-4 col-md-6 offset-lg-2">
+        <div class="card">
+          <div class="card-header" translate>
             Contact us
-          </a>
-          <a class="btn btn-primary" *ngIf="user.getId() === 0"
-             [routerLink]="['/contactus']" role="button" translate>
-            Contact us
-          </a>
+          </div>
+          <div class="card-body" translate>
+            Contact directly Ellas War staff. The Ellas War team will try to answer you as quickly as possible. For more difficult cases, it meets every Tuesday.
+          </div>
+          <div class="card-body text-center" >
+            <a class="btn btn-primary" *ngIf="user.getId() > 0"
+               [routerLink]="['/support']" role="button" translate>
+              Contact us
+            </a>
+            <a class="btn btn-primary" *ngIf="user.getId() === 0"
+               [routerLink]="['/contactus']" role="button" translate>
+              Contact us
+            </a>
+          </div>
         </div>
-      </div>
-    </div>   
-    <div class="col-12 col-lg-4 col-md-6 offset-lg-0">
-      <div class="card">
-        <div class="card-header" translate>
-          Facebook page
-        </div>
-        <div class="card-body" translate>
-          The Ellas War community is found on the Facebook Page. You can find help and communicate with other players.
-        </div>
-        <div class="card-body text-center">
-          <a class="btn btn-primary" target="_blank"
-             rel="external nofollow noopener"
-             role="button" href="{{ user.config.fb_page }}" translate>
+      </div>   
+      <div class="col-12 col-lg-4 col-md-6 offset-lg-0">
+        <div class="card">
+          <div class="card-header" translate>
             Facebook page
-          </a>
+          </div>
+          <div class="card-body" translate>
+            The Ellas War community is found on the Facebook Page. You can find help and communicate with other players.
+          </div>
+          <div class="card-body text-center">
+            <a class="btn btn-primary" target="_blank"
+               rel="external nofollow noopener"
+               role="button" href="{{ user.config.fb_page }}" translate>
+              Facebook page
+            </a>
+          </div>
         </div>
-      </div>
-    </div>   
+      </div>   
+    </div>
   </div>
 </div>
 
