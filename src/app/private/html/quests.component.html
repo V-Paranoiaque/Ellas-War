@@ -32,7 +32,7 @@
         </div>
         <app-quests-missions *ngIf="user.getLevel() < 10"></app-quests-missions>
       </div>
-      <div class="col-12">
+      <div class="col-12" *ngIf="user.getLevel() > 0">
         <div class="card">
           <div class="card-body" *ngIf="user.getLevel() < 10 || page === 0">
             <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
