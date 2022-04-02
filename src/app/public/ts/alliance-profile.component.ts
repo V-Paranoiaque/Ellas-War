@@ -59,7 +59,7 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
           
           this.subProfile1 = this.translate.get('Alliance profile').subscribe((res1: string) => {
             this.subProfile2 = this.translate.get(':').subscribe((res2: string) => {
-              this.titleService.setTitle(res1+res2+alli.alliance_name);
+              this.titleService.setTitle(res1+res2+' '+alli.alliance_name);
             });
           });
         }
