@@ -193,7 +193,7 @@
 * New feature to buy temple units using Ambrosia
 
 # Next
-* The Spy button is now hidden when the player is level 0
+* Add a new popup to explain about level quests
 * In app purchases, web version only
 * Increase number of quests from 4 to 10
 * New display for the altars and the quests
@@ -201,4 +201,5 @@
 * New feature, unities can be removed from waves
 * New page to summarize drachma production
 * Reduce 3rd temple unit cost to 1 ambrosia
+* The Spy button is now hidden when the player is level 0
 * Use the Poseidon background for all the public pages

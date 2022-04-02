@@ -1,9 +1,13 @@
 <div class="card">
   <div class="card-body"
        [ngClass]="{'no-bottom': user.getQuestValidate() == 1}">
-    <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5"
-         translate>
-      Level quests
+    <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
+      <span translate>
+        Level quests
+      </span>
+      <ic-icon [icIcon]="questionCircle" role="button"
+               class="ms-2" data-bs-toggle="modal"
+               data-bs-target="#MissionsInfo"></ic-icon>
     </div>
     <div class="progress">
       <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"

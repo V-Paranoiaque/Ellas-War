@@ -55,6 +55,7 @@ import { LostMessageSubComponent } from './ts/lost-message.sub-component';
 import { MessagesContentSubComponent } from './ts/messages-content.sub-component';
 import { MessagesPopupSubComponent } from './ts/messages-popup.sub-component';
 import { MessagesTitleSubComponent } from './ts/messages-title.sub-component';
+import { MissionsInfoPopupSubComponent } from './ts/missions-info-popup.sub-component';
 import { OptionsAccountInformationPopupSubComponent } from './ts/options-account-information-popup.sub-component';
 import { QuestsAltarSubComponent } from './ts/quests-altar.sub-component';
 import { QuestsDailySubComponent } from './ts/quests-daily.sub-component';
@@ -136,6 +137,7 @@ export const PrivateComponent = [
   MessagesContentSubComponent,
   MessagesPopupSubComponent,
   MessagesTitleSubComponent,
+  MissionsInfoPopupSubComponent,
   OptionsAccountInformationPopupSubComponent,
   QuestsAltarSubComponent,
   QuestsDailySubComponent,

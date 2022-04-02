@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
   selector: 'app-quests-missions',
@@ -17,6 +18,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   private sub:any;
   
   facebookIcon = facebookIcon;
+  questionCircle = questionCircle;
   
   constructor(private socket: Socket, public user: User,
               private http: HttpClient, public translate: TranslateService) {

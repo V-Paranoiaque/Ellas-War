@@ -117,6 +117,11 @@
     <app-quests-info-popup></app-quests-info-popup>
   </div>
 </div>
+<div class="modal fade" id="MissionsInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-missions-info-popup></app-missions-info-popup>
+  </div>
+</div>
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-12 main" role="main">
   <div class="container">
@@ -168,6 +173,9 @@
                   <strong translate>Quests</strong><strong translate>:</strong> 
                   {{ user.getQuest() }}/{{ user.getQuestMax() }}
                 </a>
+                <ic-icon [icIcon]="questionCircle" role="button"
+                         data-bs-toggle="modal"
+                         data-bs-target="#MissionsInfo"></ic-icon>
               </div>
               <div *ngIf="user.getLevel() >= 1">
                 <strong id="questProgressLabel" translate>Quest progress</strong>
