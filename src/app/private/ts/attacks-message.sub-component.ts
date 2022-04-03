@@ -129,6 +129,25 @@ export class AttacksMessageSubComponent {
     return list;
   }
   
+  getSaved() {
+    if(!this.info.saved_attack) {
+      return [];
+    }
+    
+    let list = []
+    
+    for(let i in this.info.saved_attack) {
+      if(this.info.saved_attack[i] > 0) {
+        list.push({
+          'code': i,
+          'nb': this.info.saved_attack[i]
+        });
+      }
+    }
+    
+    return list;
+  }
+  
   hasCorruptedRes() {
     if(this.info.sanctuary2 && this.info.sanctuary2.length > 0) {
       return true;

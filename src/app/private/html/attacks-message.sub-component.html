@@ -119,6 +119,15 @@
   {{info.hades_saving| number:'': this.translate.currentLang}}
 </div>
 
+<div class="col-table text-center" *ngIf="getSaved().length > 0 && user.info.datas.army">
+  <strong translate>Units saved</strong>
+  <div *ngFor="let unit of getSaved()">
+    {{unit.nb| number:'': this.translate.currentLang}} 
+    {{ (user.info.datas.army[unit.code]) ? (user.info.datas.army[unit.code].names | translate) : (user.info.datas.building[unit.code].names |translate) }} 
+  </div>
+  <div class="clearfix"><br/></div>
+</div>
+
 <div class="col-table text-center" *ngIf="hasCorruptedRes()">
   <strong id="CorruptedResDesc" translate>Corrupted resources</strong>
   <table class="table"  aria-describedby="CorruptedResDesc">
