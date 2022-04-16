@@ -50,17 +50,17 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   }
   
   ngOnInit() {
-    this.socket.emit("chatUserPlayers");
-    this.socket.emit("chatUserMsgs");
-    this.socket.emit("chatAlliPlayers");
-    this.socket.emit("chatAlliMsgs");
+    this.socket.emit('chatUserPlayers');
+    this.socket.emit('chatUserMsgs');
+    this.socket.emit('chatAlliPlayers');
+    this.socket.emit('chatAlliMsgs');
     
     /*** General Chat ***/
     this.socket.on('chatUserPlayers', (players:any) => {
       this.chat_user_players = players;
     });
     this.socket.on('chatUserPlayersRefresh', () => {
-      this.socket.emit("chatUserPlayers");
+      this.socket.emit('chatUserPlayers');
     });
     this.socket.on('chatUserMsgs', (msgs:any) => {
       this.chat_user_msgs = msgs;
@@ -81,7 +81,7 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
       this.chat_alli_players = players;
     });
     this.socket.on('chatAlliPlayersRefresh', () => {
-      this.socket.emit("chatAlliPlayers");
+      this.socket.emit('chatAlliPlayers');
     });
     this.socket.on('chatAlliMsgs', (msgs:any) => {
       this.chat_alli_msgs = msgs;
@@ -112,7 +112,7 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   chatUserSend() {
     let msg = this.chatUserMsg.trim();
     if(msg.length > 0) {
-      this.socket.emit("chatUserMsg", msg);
+      this.socket.emit('chatUserMsg', msg);
       this.chatUserMsg = '';
     }
     
@@ -120,7 +120,7 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   chatAlliSend() {
     let msg = this.chatAlliMsg.trim();
     if(msg.length > 0) {
-      this.socket.emit("chatAlliMsg", msg);
+      this.socket.emit('chatAlliMsg', msg);
       this.chatAlliMsg = '';
     }
   }

@@ -109,8 +109,8 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.emit('divineBonus');
     this.socket.emit('dailyCoCheck');
     
-    this.socket.emit("waveAttackList");
-    this.socket.emit("waveDefenseList");
+    this.socket.emit('waveAttackList');
+    this.socket.emit('waveDefenseList');
   }
   
   ngOnDestroy() {

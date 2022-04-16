@@ -58,7 +58,7 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
         'id': this.msg,
         'text': this.answertext.trim()
       };
-      this.socket.emit("adminSupportAnswer", msg);
+      this.socket.emit('adminSupportAnswer', msg);
       this.answertext = '';
     }
   }

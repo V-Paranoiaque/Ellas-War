@@ -557,7 +557,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
   
   refreshAttacksPage() {
-    this.socket.emit("attackList", {
+    this.socket.emit('attackList', {
       'page': this.attackPage,
       'order': this.attackOrderSort,
       'reverse': this.attackOrderReverse,
@@ -566,7 +566,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
   
   refreshAttacksWarsPage() {
-    this.socket.emit("attackWarsList", {
+    this.socket.emit('attackWarsList', {
       'page': this.attackPage,
       'order': this.attackOrderSort,
       'reverse': this.attackOrderReverse,
@@ -611,7 +611,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
   
   shareMsg() {
-    this.socket.emit("msgShare", this.currentMsg.id);
+    this.socket.emit('msgShare', this.currentMsg.id);
     this.currentMsg.msg_shared = (this.currentMsg.msg_shared+1)%2;
   }
   

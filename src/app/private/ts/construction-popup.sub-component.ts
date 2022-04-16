@@ -75,7 +75,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
         'nb': nb
       };
       
-      this.socket.emit("build", msg);
+      this.socket.emit('build', msg);
     }
   }
   
@@ -98,7 +98,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
         'building': building,
         'nb': nb
       };
-      this.socket.emit("destruct", msg);
+      this.socket.emit('destruct', msg);
     }
   }
   

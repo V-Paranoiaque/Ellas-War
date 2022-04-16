@@ -20,7 +20,7 @@ export class DivineBonusInfoPopupSubComponent {
     
     if(this.divineBonus.nb > 0) {
       this.divineBonus.nb--;
-      this.socket.emit("divineBonusUse", msg);
+      this.socket.emit('divineBonusUse', msg);
       this.divineBonus.error = 1;
     }
     else {

@@ -53,6 +53,6 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   }
   
   questValidate() {
-    this.socket.emit("questValidate");
+    this.socket.emit('questValidate');
   }
 }

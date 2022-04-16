@@ -239,7 +239,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
     if(id >= 1) {
       this.currentPage = id;
-      this.socket.emit("msgPage", {
+      this.socket.emit('msgPage', {
         'page': this.currentPage,
         'category': this.currentCategory
       });
@@ -289,7 +289,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     id += i;
     if(id >= 1 && id <= this.getMsgPageNb()) {
       this.currentPage = id;
-      this.socket.emit("msgPage", {
+      this.socket.emit('msgPage', {
         'page': this.currentPage,
         'category': this.currentCategory
       });
@@ -297,7 +297,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
   
   shareMsg() {
-    this.socket.emit("msgShare", this.currentMsg.id);
+    this.socket.emit('msgShare', this.currentMsg.id);
     this.currentMsg.msg_shared = (this.currentMsg.msg_shared+1)%2;
   }
   

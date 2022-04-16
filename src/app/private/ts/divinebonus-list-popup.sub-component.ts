@@ -38,7 +38,7 @@ export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
     let msg = {
       'bonus_id': bonus_id
     };
-    this.socket.emit("divineBonusUse", msg);
+    this.socket.emit('divineBonusUse', msg);
     this.divineBonus.error = 1;
   }
 }

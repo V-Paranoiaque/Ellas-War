@@ -67,12 +67,12 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.type = this.route.snapshot.paramMap.get('type');
     
     if(this.type && this.type == 'defense') {
-      this.socket.emit("waveDefenseList");
+      this.socket.emit('waveDefenseList');
       this.socket.emit('defenseWallStrength');
       this.socket.emit('wallDefense');
     }
     else {
-      this.socket.emit("waveAttackList");
+      this.socket.emit('waveAttackList');
     }
     
     this.socket.on('waveAttackList', (data:any) => {
@@ -106,12 +106,12 @@ export class StrategiesComponent implements OnInit, OnDestroy {
       this.wallDefense = data;
     });
     this.socket.on('engage', () => {
-      this.socket.emit("waveAttackList");
-      this.socket.emit("waveDefenseList");
+      this.socket.emit('waveAttackList');
+      this.socket.emit('waveDefenseList');
     }); 
     this.socket.on('waveRefresh', () => {
-      this.socket.emit("waveAttackList");
-      this.socket.emit("waveDefenseList");
+      this.socket.emit('waveAttackList');
+      this.socket.emit('waveDefenseList');
     }); 
   }
   
@@ -152,7 +152,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
         'unit': unit,
         'wave': wavePrevious
       };
-      this.socket.emit("waveAttackDelete", msg);
+      this.socket.emit('waveAttackDelete', msg);
     }
     else {
       let msg = {
@@ -160,7 +160,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
         'previous': wavePrevious,
         'wave': waveNew
       };
-      this.socket.emit("waveAttackMove", msg);
+      this.socket.emit('waveAttackMove', msg);
     }
   }
   
@@ -192,7 +192,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
         'unit': unit,
         'wave': wavePrevious
       };
-      this.socket.emit("waveDefenseDelete", msg);
+      this.socket.emit('waveDefenseDelete', msg);
     }
     else {
       let msg = {
@@ -200,7 +200,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
         'previous': wavePrevious,
         'wave': waveNew
       };
-      this.socket.emit("waveDefenseMove", msg);
+      this.socket.emit('waveDefenseMove', msg);
     }
   }
   
@@ -293,7 +293,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
       'unit': unit,
       'wave': wave
     };
-    this.socket.emit("waveAttackDelete", msg);
+    this.socket.emit('waveAttackDelete', msg);
   }
   
   waveDefenseDelete(unit:string, wave:number) {
@@ -301,7 +301,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
       'unit': unit,
       'wave': wave
     };
-    this.socket.emit("waveDefenseDelete", msg);
+    this.socket.emit('waveDefenseDelete', msg);
   }
   
   setWaveUnit(army:any, nb:number, wave:number, type:number) {

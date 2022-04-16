@@ -46,7 +46,7 @@ export class QuestsAltarSubComponent implements OnInit, OnDestroy {
   }
   
   altarValidate(id:number) {
-    this.socket.emit("altarValidate", id);
+    this.socket.emit('altarValidate', id);
   }
   
   canGet() {

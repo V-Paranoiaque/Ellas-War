@@ -38,25 +38,25 @@ export class QuestsComponent implements OnInit, OnDestroy {
       this.socket.emit('myQuestList');
     });
     
-    this.socket.emit("questCheck");
-    this.socket.emit("statsTmp");
+    this.socket.emit('questCheck');
+    this.socket.emit('statsTmp');
     this.socket.emit('myQuestList');
     
-    this.socket.emit("altarConditionDivineunits");
-    this.socket.emit("altarConditionPrometheus");
-    this.socket.emit("altarConditionHestia");
-    this.socket.emit("altarConditionGaia");
+    this.socket.emit('altarConditionDivineunits');
+    this.socket.emit('altarConditionPrometheus');
+    this.socket.emit('altarConditionHestia');
+    this.socket.emit('altarConditionGaia');
     
-    this.socket.on("altarConditionDivineunits", (data:any) => {
+    this.socket.on('altarConditionDivineunits', (data:any) => {
       this.altarConditionDivineunits = data;
     });
-    this.socket.on("altarConditionPrometheus", (data:any) => {
+    this.socket.on('altarConditionPrometheus', (data:any) => {
       this.altarConditionPrometheus = data;
     });
-    this.socket.on("altarConditionHestia", (data:any) => {
+    this.socket.on('altarConditionHestia', (data:any) => {
       this.altarConditionHestia = data;
     });
-    this.socket.on("altarConditionGaia", (data:any) => {
+    this.socket.on('altarConditionGaia', (data:any) => {
       this.altarConditionGaia = data;
     });
   }

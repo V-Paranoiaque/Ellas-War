@@ -95,7 +95,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
       };
       
       this.info.engageNb = '';
-      this.socket.emit("engage", msg);
+      this.socket.emit('engage', msg);
     }
   }
   
@@ -115,7 +115,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
         'unit': unit,
         'nb': nb
       };
-      this.socket.emit("liberate", msg);
+      this.socket.emit('liberate', msg);
     }
   }
   

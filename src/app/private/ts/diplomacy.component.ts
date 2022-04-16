@@ -81,7 +81,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   
   allianceListOrder(order:string) {
     this.order = order;
-    this.socket.emit("allianceList", this.order);
+    this.socket.emit('allianceList', this.order);
   }
   
   allianceWaitCancel() {

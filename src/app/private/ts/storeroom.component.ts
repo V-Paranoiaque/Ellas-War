@@ -56,7 +56,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     });
     this.socket.on('storeroomMyListReload', () => {
       this.socket.emit('storeroomMyList');
-      this.socket.emit("storeroomMin", 1);
+      this.socket.emit('storeroomMin', 1);
       this.storeroomHistory();
     });
     this.socket.on('storeroomMin', (data:any) => {
@@ -66,10 +66,10 @@ export class StoreroomComponent implements OnInit, OnDestroy {
       this.storeroomStats = data;
     });
     
-    this.socket.emit("storeroomList");
-    this.socket.emit("storeroomMyList");
-    this.socket.emit("storeroomStats");
-    this.socket.emit("storeroomMin", this.storeroomRess);
+    this.socket.emit('storeroomList');
+    this.socket.emit('storeroomMyList');
+    this.socket.emit('storeroomStats');
+    this.socket.emit('storeroomMin', this.storeroomRess);
   }
   
   ngOnDestroy() {
@@ -113,7 +113,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   }
   
   setRess() {
-    this.socket.emit("storeroomMin", this.storeroomRess);
+    this.socket.emit('storeroomMin', this.storeroomRess);
   }
   
   storeroomBuy(resource_id:any, quantity:any, rate:any) {
