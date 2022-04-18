@@ -1569,6 +1569,7 @@
   "Your description": "Votre description",
   "Your email": "Votre adresse mail",
   "Your email is empty or invalid": "Votre adresse mail est vide ou invalide",
+  "Your enemies has saved { value } unities of his lost": "Votre ennemis a sauvé {{ value }} unités parmis ses pertes",
   "Your espionage team was caught and executed in a public place.": "Votre équipe d'espionnage a été attrapée et exécutée sur la place publique.",
   "Your game version id too old": "Votre version du jeu est trop ancienne",
   "Your huts will allow you to house the base of your army.": "Vos huttes vous permettront de loger la base de votre armée.",

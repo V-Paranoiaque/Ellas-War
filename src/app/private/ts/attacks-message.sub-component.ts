@@ -148,6 +148,13 @@ export class AttacksMessageSubComponent {
     return list;
   }
   
+  getSavedOther() {
+    if(!this.info.saved_defense) {
+      return 0;
+    }
+    return this.info.saved_defense;
+  }
+  
   hasCorruptedRes() {
     if(this.info.sanctuary2 && this.info.sanctuary2.length > 0) {
       return true;

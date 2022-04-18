@@ -127,6 +127,8 @@
   </div>
   <div class="clearfix"><br/></div>
 </div>
+<div class="col-table text-center"
+     *ngIf="getSavedOther() > 0">{{'Your enemies has saved { value } unities of his lost'| translate : { value: getSavedOther() } }} </div>
 
 <div class="col-table text-center" *ngIf="hasCorruptedRes()">
   <strong id="CorruptedResDesc" translate>Corrupted resources</strong>

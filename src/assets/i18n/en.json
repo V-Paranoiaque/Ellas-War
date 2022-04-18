@@ -166,5 +166,6 @@
   "Your army will do its utmost to defend": "Your army will do its utmost to defend <a href=\"/discoverthegame\">your city</a> or invade the enemy cities.",
   "Your city has resisted against { value }": "Your city has resisted against {{ value }}",
   "Your city was sacked by { value }": "Your city was sacked by {{ value }}",
+  "Your enemies has saved { value } unities of his lost": "Your enemies has saved {{ value }} unities of his lost",
   "Your production field can't be over { value }": "Your production field can't be over {{ value }}"
 }
