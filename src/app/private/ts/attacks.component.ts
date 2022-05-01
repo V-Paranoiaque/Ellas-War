@@ -13,6 +13,7 @@ import fistRaised from '@iconify/icons-fa-solid/fist-raised';
 import gemIcon from '@iconify/icons-fa-regular/gem';
 import plusIcon from '@iconify/icons-bi/plus';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+import search from '@iconify/icons-fa-solid/search';
 import share from '@iconify/icons-bi/share';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import sortDown from '@iconify/icons-fa-solid/sort-down';
@@ -63,6 +64,9 @@ export class AttacksComponent implements OnInit, OnDestroy {
   public sanctuariesWave:any[];
   public sanctuariesWaveTab:any;
   
+  public attackSearchError=0;
+  public attackSearchText='';
+
   Object = Object;
   parseInt = parseInt;
   
@@ -76,6 +80,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   gemIcon    = gemIcon;
   plusIcon   = plusIcon;
   questionCircle = questionCircle;
+  search     = search;
   share      = share;
   shieldShaded   = shieldShaded;
   sortDown   = sortDown;
@@ -170,6 +175,9 @@ export class AttacksComponent implements OnInit, OnDestroy {
       for(let city in datas.list) {
         this.attackListInfo.list.push(datas.list[city]);
       }
+    });
+    this.socket.on('attackSearchError', (data:number) => {
+      this.attackSearchError = data;
     });
     this.socket.on('attackWarsList', (datas:any) => {
       this.attackWarsListInfo = Object.assign([], datas);
@@ -296,6 +304,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.socket.removeListener('attack');
     this.socket.removeListener('attackList');
+    this.socket.removeListener('attackSearchError');
     this.socket.removeListener('attackWarsList');
     this.socket.removeListener('diamondInfo');
     this.socket.removeListener('diamondRankingPlayers');
@@ -572,6 +581,21 @@ export class AttacksComponent implements OnInit, OnDestroy {
       'reverse': this.attackOrderReverse,
       'nbpp': this.nbpp
     });
+  }
+
+  attackSearch() {
+    this.attackSearchText = this.attackSearchText.trim();
+    this.attackSearchError = 0;
+    if(this.attackSearchText.length === 0) {
+      this.refreshAttacksPage();
+    }
+    else {
+      this.socket.emit('attackSearch', {
+        'order': this.attackOrderSort,
+        'reverse': this.attackOrderReverse,
+        'username': this.attackSearchText
+      });
+    }
   }
   
   setMenuMode(id:number) {

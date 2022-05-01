@@ -194,6 +194,8 @@
 
 # Next
 * Add a new popup to explain about level quests
+* Add a search feature to the attacks
+* During an attack, units can be saved from death
 * In app purchases, web version only
 * Increase number of quests from 4 to 10
 * New display for the altars and the quests
@@ -202,6 +204,5 @@
 * New page to summarize drachma production
 * Reduce 3rd temple unit cost to 1 ambrosia
 * The Spy button is now hidden when the player is level 0
-* During an attack, units can be saved from death
-* Waiting time before temple modification is now 60 days instead of 90
 * Use the Poseidon background for all the public pages
+* Waiting time before temple modification is now 60 days instead of 90
