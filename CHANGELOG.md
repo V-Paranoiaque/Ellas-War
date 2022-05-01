@@ -203,4 +203,5 @@
 * Reduce 3rd temple unit cost to 1 ambrosia
 * The Spy button is now hidden when the player is level 0
 * During an attack, units can be saved from death
+* Waiting time before temple modification is now 60 days instead of 90
 * Use the Poseidon background for all the public pages
