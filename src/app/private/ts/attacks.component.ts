@@ -566,12 +566,21 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
   
   refreshAttacksPage() {
-    this.socket.emit('attackList', {
-      'page': this.attackPage,
-      'order': this.attackOrderSort,
-      'reverse': this.attackOrderReverse,
-      'nbpp': this.nbpp
-    });
+    if(this.attackSearchError === 0) {
+      this.socket.emit('attackList', {
+        'page': this.attackPage,
+        'order': this.attackOrderSort,
+        'reverse': this.attackOrderReverse,
+        'nbpp': this.nbpp
+      });
+    }
+    else {
+      this.socket.emit('attackSearch', {
+        'order': this.attackOrderSort,
+        'reverse': this.attackOrderReverse,
+        'username': this.attackSearchText
+      });
+    }
   }
   
   refreshAttacksWarsPage() {
@@ -586,6 +595,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   attackSearch() {
     this.attackSearchText = this.attackSearchText.trim();
     this.attackSearchError = 0;
+
     if(this.attackSearchText.length === 0) {
       this.refreshAttacksPage();
     }
@@ -605,6 +615,8 @@ export class AttacksComponent implements OnInit, OnDestroy {
         this.attackMode = 0;
         this.attackOrderSort = 'other';
         this.attackOrderReverse = 0;
+        this.attackSearchError=0;
+        this.attackSearchText='';
         this.attackListInit();
         this.currentMsgReset();
         this.sanctuariesSpyInfo = {};

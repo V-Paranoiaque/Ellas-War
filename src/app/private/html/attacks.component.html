@@ -96,7 +96,7 @@
               <thead>
                 <tr class="text-center">
                   <th scope="col">
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm" *ngIf="user.getLevel() >= 1">
                       <input type="text" class="form-control" placeholder="{{'Look for a city'|translate}}"
                              [(ngModel)]="attackSearchText"
                              attr.aria-label="{{'Look for a city'|translate}}" aria-describedby="attack-search">
