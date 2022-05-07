@@ -42,6 +42,7 @@ import { AttacksStatsSubComponent } from './ts/attacks-stats.sub-component';
 import { ConstructionPopupSubComponent } from './ts/construction-popup.sub-component';
 import { ConstructionSummaryPopupSubComponent } from './ts/construction-summary-popup.sub-component';
 import { DailyPopupSubComponent } from './ts/daily-popup.sub-component';
+import { DefenseEmptyPopupSubComponent } from './ts/defense-empty-popup.sub-component';
 import { DefenseWallPopupSubComponent } from './ts/defense-wall-popup.sub-component';
 import { DivineBonusHelpPopupSubComponent } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopupSubComponent } from './ts/divinebonus-info-popup.sub-component';
@@ -124,6 +125,7 @@ export const PrivateComponent = [
   ConstructionPopupSubComponent,
   ConstructionSummaryPopupSubComponent,
   DailyPopupSubComponent,
+  DefenseEmptyPopupSubComponent,
   DefenseWallPopupSubComponent,
   DivineBonusHelpPopupSubComponent,
   DivineBonusInfoPopupSubComponent,

@@ -20,6 +20,11 @@
     <app-construction-popup [info]="buildingInfo"></app-construction-popup>
   </div>
 </div>
+<div class="modal fade" id="DefenseEmpty" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-defense-empty-popup></app-defense-empty-popup>
+  </div>
+</div>
 
 <div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
   <div class="container">
@@ -284,6 +289,14 @@
               <div *ngIf="waveDefensePower == 0">
                 <div class="text-center fw-bold" translate>
                   Your army is empty
+                </div>
+                <div class="text-center text-danger fw-bold">
+                  <span translate>
+                    Without defense, your resource losses will be greater in the event of an attack
+                  </span>
+                  <ic-icon [icIcon]="questionCircle" role="button"
+                           data-bs-toggle="modal"
+                           data-bs-target="#DefenseEmpty"></ic-icon>
                 </div>
                 <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
                 <div cdkDropList class="text-center"

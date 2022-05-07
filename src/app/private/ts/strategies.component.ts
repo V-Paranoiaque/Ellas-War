@@ -5,6 +5,7 @@ import { UserComponent as User } from '../../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import splitIcon from '@iconify/icons-carbon/split';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -36,6 +37,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   public waveDefenseMax:number;
   public waveUnit:any={};
   
+  questionCircle = questionCircle;
   shieldShaded = shieldShaded;
   splitIcon = splitIcon;
   swordIcon = swordIcon;

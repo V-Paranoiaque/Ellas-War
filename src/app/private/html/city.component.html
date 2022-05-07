@@ -5,6 +5,12 @@
     <app-daily-popup [info]="dailyCo"></app-daily-popup>
   </div>
 </div>
+<div class="modal fade" id="DefenseEmpty" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-defense-empty-popup></app-defense-empty-popup>
+  </div>
+</div>
+
 <div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <app-army-popup [info]="armyInfo"></app-army-popup>
@@ -156,13 +162,21 @@
                     <ic-icon [icIcon]="cog"></ic-icon>
                   </a>
                 </div>
-                <div class="col-6">
+                <div class="col-6" [ngClass]="{'text-danger': waveDefensePower === 0 }">
                   <strong translate>Defense</strong>
                   <strong translate>:</strong>
                   {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
                   <a [routerLink]="['/strategies/defense']">
                     <ic-icon [icIcon]="cog"></ic-icon>
                   </a>
+                </div>
+                <div class="col-12 text-center text-danger fw-bold">
+                  <span translate>
+                    Without defense, your resource losses will be greater in the event of an attack
+                  </span>
+                  <ic-icon [icIcon]="questionCircle" role="button"
+                           data-bs-toggle="modal"
+                           data-bs-target="#DefenseEmpty"></ic-icon>
                 </div>
                 <br/>
               </div>
