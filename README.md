@@ -8,7 +8,7 @@ Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app 
 
 ### Running tests
 
-Run `ng test --code-coverage` to execute the unit tests via [Karma](https://karma-runner.github.io). Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test --code-coverage` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ### Scan with SonarQube
 
