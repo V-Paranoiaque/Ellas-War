@@ -206,3 +206,6 @@
 * The Spy button is now hidden when the player is level 0
 * Use the Poseidon background for all the public pages
 * Waiting time before temple modification is now 60 days instead of 90
+
+# 1.2.1
+* Disable connection using Facebook
