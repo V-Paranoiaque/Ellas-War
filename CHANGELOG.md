@@ -192,7 +192,7 @@
 * New admin page to calculate mint Drachma production
 * New feature to buy temple units using Ambrosia
 
-# Next
+# 1.2.0
 * Add a new popup to explain about level quests
 * Add a search feature to the attacks
 * During an attack, units can be saved from death
