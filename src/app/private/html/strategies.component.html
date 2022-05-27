@@ -98,7 +98,7 @@
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
                           <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'d-none': army.code === 'soul'}">
+                               [ngClass]="{'invisible': army.code === 'soul'}">
                             <div class="flex-grow-1 btn btn-warning"
                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                  (click)="setWaveUnit(army, wave[army.code], i, 1)"
@@ -229,7 +229,7 @@
                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                                    (click)="selectArmy(army.code)"></app-ew-icon>
                           <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'d-none': army.code === 'soul'}">
+                               [ngClass]="{'invisible': army.code === 'soul'}">
                             <div class="flex-grow-1 btn btn-warning"
                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                  (click)="setWaveUnit(army, wave[army.code], i, 2)"
