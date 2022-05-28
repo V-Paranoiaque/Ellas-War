@@ -103,6 +103,9 @@
           </div>
           <div class="card-body"
                [ngClass]="{'no-bottom': getMsgPageNb() > 1}">
+            <div class="text-center mt-2 mb-2" *ngIf="getMsgList().length === 0" translate>
+              Your message box is empty
+            </div>
             <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight"
                  [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
                  role="button" (click)="messageLoad(msg)">
