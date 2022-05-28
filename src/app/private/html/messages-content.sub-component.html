@@ -165,8 +165,10 @@
     {{msg.content.defender}}
     <br/>
     <br/>
-    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
-    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+    <div *ngIf="msg.content.benefits">
+      <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+      <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+    </div>
   </span>
   <span *ngSwitchCase="18">
     <h3 translate>Result</h3>
