@@ -619,6 +619,8 @@
         <div class="card" *ngIf="getCurrentMsg().id == 0">
           <div class="card-header" translate>Last attacks</div>
           <div class="card-body">
+            <div class="text-center mt-2 mb-2" *ngIF="msgList.length === 0"
+                 translate>This list is empty</div>
             <div *ngFor="let msg of msgList" class="d-flex bd-highlight"
                role="button" (click)="messageLoad(msg)">
               <div class="p-2 flex-grow-1 bd-highlight border-top">
