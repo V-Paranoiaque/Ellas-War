@@ -209,3 +209,13 @@
 
 # 1.2.1
 * Disable connection using Facebook
+
+# 1.2.2
+* Add a msg when the attack list is empty
+* Add a msg when the message list is empty
+* Fix the permalink
+* Fix the size of the Soul icon in the waves
+* Hide the war reward if empty
+* Missing Taxes translation
+* Reduce the price of the towers
+* The defense can also save units
