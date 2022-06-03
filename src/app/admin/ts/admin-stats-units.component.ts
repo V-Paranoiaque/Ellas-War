@@ -20,16 +20,17 @@ export class AdminStatsUnitsComponent implements OnInit {
       'drachma': 1,
       'food': 0.11,
       'water': 0.078,
-      'wood': 0.276,
-      'iron': 0.147,
-      'stone': 0.799,
-      'marble': 396.999,
+      'wood': 1,
+      'iron': 1,
+      'stone': 1,
+      'marble': 800,
       'grapes': 0.967,
       'wine': 1350,
-      'gold': 1493
+      'gold': 100
     }
     this.data = {
-      'army': []
+      'army': [],
+      'building': []
     }
   }
   
