@@ -129,7 +129,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
             'id': this.temple.power,
             'param': res.membre_id
           }
-          this.socket.emit('powersUse', info);
+          //this.socket.emit('powersUse', info);
         }
         else {
           this.idToUser = '';
@@ -141,13 +141,6 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       this.idToUser = '';
       this.temple.error = 2;
     }
-    
-    info = {
-      'id': powerid,
-      'param': this.idToUser
-    }
-    this.temple.power = powerid;
-    this.socket.emit('powersUse', info);
   }
   
   wallErect() {
