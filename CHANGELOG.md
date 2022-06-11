@@ -219,3 +219,7 @@
 * Missing Taxes translation
 * Reduce the price of the towers
 * The defense can also save units
+
+# 1.2.3
+* Fix powers in the temples
+* Missing translations in the temples
