@@ -3,4 +3,4 @@ docker run --rm -ti -v $(pwd):/root/ew -w /root/ew \
            -ti ew-build \
            sh -c "npm install && \
                   node_modules/.bin/ng build --configuration=mobile && \
-                  cordova platform add electron@2; cordova build electron"
+                  cordova platform add electron@3.1.0; cordova build electron"

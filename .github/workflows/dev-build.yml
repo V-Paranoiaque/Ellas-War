@@ -40,7 +40,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^3.0.0
+          cordova platform add electron@^3.1.0
           cp res/electron/build-snap-dev.json build.json
           cordova build electron --no-telemetry --edge
         env:
