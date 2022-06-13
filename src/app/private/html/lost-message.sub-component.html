@@ -2,7 +2,7 @@
   No loss in the city
 </div>
 
-<div *ngIf="getLostUnitsNb() > 0">
+<div *ngIf="getLostUnitsNb() > 0 && user.info.datas.army">
   <strong translate>Lost units</strong><strong translate>:</strong>
   <ul>
     <li *ngFor="let unit of getLostUnits()">
