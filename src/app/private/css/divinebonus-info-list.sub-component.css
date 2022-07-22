@@ -21,3 +21,13 @@
   right: 8px;
   font-weight: 500;
 }
+
+.col-2 div div.bg-secondary {
+  width: auto;
+  bottom: 1px;
+  right: 1px;
+  border: 1px white solid;
+  border-radius: 50%;
+  background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));
+  padding: .35em .65em;
+}
