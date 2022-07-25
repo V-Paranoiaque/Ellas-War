@@ -114,7 +114,7 @@ jobs:
             snapcraft upload --release=stable $i
           done
         env:
-          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.snapcraft_token }}'
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
   
   #X86 Arch
   package-x86:
@@ -189,8 +189,6 @@ jobs:
       
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
       
       - name: Install dependencies
         run: |
@@ -238,8 +236,6 @@ jobs:
       
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
       
       - name: Install dependencies
         run: |
@@ -262,6 +258,8 @@ jobs:
           do
             snapcraft upload --release=stable $i
           done
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
   
   #Android
   package-android:
