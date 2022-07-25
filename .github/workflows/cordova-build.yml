@@ -88,8 +88,6 @@ jobs:
       
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
       
       - name: Install dependencies
         run: |
@@ -115,6 +113,8 @@ jobs:
           do
             snapcraft upload --release=stable $i
           done
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.snapcraft_token }}'
   
   #X86 Arch
   package-x86:
