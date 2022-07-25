@@ -223,3 +223,8 @@
 # 1.2.3
 * Fix powers in the temples
 * Missing translations in the temples
+
+# 1.2.4
+* Game optimization
+* Missing translations
+* The Spartan Favor is now giving a Divine bonus
