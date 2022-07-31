@@ -7,7 +7,11 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body container-fluid">
-    <table class="table align-middle table-middle" aria-labelledby="storeroomHistoryDesc">
+    <div class="text-center" translate>
+      Your history is empty
+    </div>
+    <table class="table align-middle table-middle" aria-labelledby="storeroomHistoryDesc"
+           *ngIf="list.length > 0">
       <thead>
         <tr>
           <th scope="col" class="text-center" translate>Date</th>
