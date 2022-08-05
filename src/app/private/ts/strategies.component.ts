@@ -248,7 +248,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.waveAttackDropList = [];
     this.waveAttackDropList.push('wave-attack-0');
     
-    var waveNb = data.list.length;
+    const waveNb = data.list.length;
     for(let i=1;i<=waveNb;i++) {
       for(let unit in this.waveAttackList[i]) {
         if(this.waveAttackList[i].hasOwnProperty(unit)) {
@@ -273,9 +273,9 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.waveDefenseDropList = [];
     this.waveDefenseDropList.push('wave-defense-0');
     
-    var waveNb = data.list.length;
-    for(var i=1;i<=waveNb;i++) {
-      for(var unit in this.waveDefenseList[i]) { 
+    let waveNb = data.list.length;
+    for(let i=1;i<=waveNb;i++) {
+      for(let unit in this.waveDefenseList[i]) { 
         if(this.waveDefenseList[i].hasOwnProperty(unit)) {
           if(!this.waveDefenseUnit[unit]) {
             this.waveDefenseUnit[unit] = 0;

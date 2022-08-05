@@ -4,6 +4,7 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
 import { Router } from '@angular/router'
 import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import { Subscription } from 'rxjs';
 import { environment } from './../../../environments/environment';
 
 import greekcolumnIcon from '@iconify/icons-whh/greekcolumn';
@@ -24,7 +25,7 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
   
   public localVersion:number;
   public remoteVersion:number;
-  private sub:any;
+  private sub:Subscription;
   
   greekcolumnIcon = greekcolumnIcon;
   questionCircle  = questionCircle;
@@ -35,6 +36,7 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
     this.active = '';
     this.localVersion  = environment.version;
     this.remoteVersion = 0;
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

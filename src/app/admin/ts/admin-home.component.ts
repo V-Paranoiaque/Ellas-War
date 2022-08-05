@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: '../html/admin-home.component.html',
@@ -14,12 +15,13 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
   public adminStats:any;
   public apiInfo:any;
   
-  private sub:any;
+  private sub:Subscription;
   
   constructor(protected http: HttpClient, private socket: Socket,
               public user: User, public translate: TranslateService) {
     this.adminStats = {};
     this.apiInfo = {};
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

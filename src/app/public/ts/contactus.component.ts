@@ -2,6 +2,7 @@ import { Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -16,7 +17,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   public contactname:string;
   public contacttext:string;
   
-  private sub:any;
+  private sub:Subscription;
   
   constructor(private router: Router, public user: User, private socket: Socket,
               public translate: TranslateService, private titleService: Title) {
@@ -24,6 +25,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
     this.contactError = 0;
     this.contactname = '';
     this.contacttext = '';
+    this.sub = new Subscription();
   }
   
   ngOnInit() {
@@ -48,7 +50,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   
   contactsend() {
     this.contactError = 0;
-    var info = ({
+    const info = ({
       'name': this.contactname,
       'email': this.contactemail,
       'text': this.contacttext

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../../services/user.service';
 
 import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
@@ -34,7 +35,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   private currentMsg: any;
   private deleteMode: number;
   private destList: any;
-  private sub:any;
+  private sub:Subscription;
   private subMsg:any;
   
   //Icons
@@ -68,6 +69,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     };
     this.deleteMode = 0;
     this.destList = [];
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

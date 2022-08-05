@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { ToolsComponent as Tools } from '../../../services/tools.service';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -20,8 +21,8 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   public rankingOrder:string;
   public rankingPage:number;
   
-  private subRank:any;
-  private subTitle:any;
+  private subRank:Subscription;
+  private subTitle:Subscription;
   
   Tools = Tools;
   
@@ -38,6 +39,8 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
     this.rankingMax = 1;
     this.rankingOrder = 'level';
     this.rankingPage = 1;
+    this.subRank = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

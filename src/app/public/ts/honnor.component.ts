@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -16,8 +17,8 @@ export class HonnorComponent implements OnInit, OnDestroy {
   public list:any;
   public levels:any
   
-  private subRank:any;
-  private subTitle:any;
+  private subRank:Subscription;
+  private subTitle:Subscription;
   
   constructor(private router: Router, private route: ActivatedRoute,
               private socket: Socket, private http: HttpClient,
@@ -25,6 +26,8 @@ export class HonnorComponent implements OnInit, OnDestroy {
               private titleService: Title) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.levels = Array(10);
+    this.subRank = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {  

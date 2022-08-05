@@ -10,7 +10,7 @@ import { UserComponent as User } from '../../../services/user.service';
 
 export class Admin404Component implements OnInit, OnDestroy {
   
-  public pageList:any;
+  public pageList:{ url:string, nb:number }[];
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {

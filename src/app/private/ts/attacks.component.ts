@@ -684,7 +684,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     let army = this.getArmy()[i];
     let unit = army.unit
     if(nb > 0 && nb <= army.nb) {
-      var msg = {
+      let msg = {
         'unit':unit,
         'wave': 1,
         'nb': nb,

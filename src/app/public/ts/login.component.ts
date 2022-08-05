@@ -4,6 +4,7 @@ import { UserComponent as User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../../environments/environment';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
@@ -14,7 +15,7 @@ import googleIcon from '@iconify-icons/logos/google-icon';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  private sub:any;
+  private sub:Subscription;
   
   loginForm: FormGroup;
   loginError: number;
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});
     this.loginError = 0;
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

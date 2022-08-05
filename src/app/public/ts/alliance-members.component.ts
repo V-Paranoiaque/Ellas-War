@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 import { Title } from '@angular/platform-browser';
@@ -15,15 +16,18 @@ export class AllianceMembersComponent implements OnInit, OnDestroy {
   public allianceMembers:any;
   public allianceProfile:any;
   
-  private subMembers:any;
-  private subProfile:any;
-  private subTitle:any;
+  private subMembers:Subscription;
+  private subProfile:Subscription;
+  private subTitle:Subscription;
   
   constructor(public http: HttpClient, private route: ActivatedRoute,
               private socket: Socket, public user: User,
               private titleService: Title, public translate: TranslateService) {
     this.allianceMembers = [];
     this.allianceProfile = '';
+    this.subMembers = new Subscription();
+    this.subProfile = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

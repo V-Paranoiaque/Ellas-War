@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -20,8 +21,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public id: any;
   public profile: any;
   
-  private subPlayer:any;
-  private subTitle:any;
+  private subPlayer:Subscription;
+  private subTitle:Subscription;
   
   brushIcon  = brushIcon;
   userCircle = userCircle;
@@ -33,6 +34,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.profile = {
       'username': ''
     }
+    this.subPlayer = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

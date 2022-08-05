@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { environment } from './../../../environments/environment';
 
 import arrowLeft from '@iconify/icons-fa-solid/arrow-left';
@@ -17,7 +18,7 @@ export class DiscoverTheGameComponent implements OnInit, OnDestroy {
   public dir:string;
   public page:string;
   
-  private sub:any;
+  private sub:Subscription;
   
   arrowLeft = arrowLeft;
   arrowRight= arrowRight;
@@ -27,6 +28,7 @@ export class DiscoverTheGameComponent implements OnInit, OnDestroy {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.page = '';
     this.dir = 'web';
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

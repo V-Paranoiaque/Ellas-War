@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 
 export class AdminActionsComponent implements OnInit, OnDestroy {
   
-  public adminActions:any;
+  public adminActions:string;
   public adminStoreroom:any;
   
   constructor(private socket: Socket, public user: User,

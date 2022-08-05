@@ -12,7 +12,7 @@ import { UserComponent as User } from '../../../services/user.service';
 export class Temple2PopupSubComponent {
   
   public temple:number;
-  public price:any;
+  public price:{resource: string, quantity: number}[];
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.temple = 0;

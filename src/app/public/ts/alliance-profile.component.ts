@@ -2,6 +2,7 @@ import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 import { Title } from '@angular/platform-browser';
@@ -13,9 +14,9 @@ import userPlus from '@iconify/icons-fa-solid/user-plus';
 })
 
 export class AllianceProfileComponent implements OnInit, OnDestroy {
-  private subMembers:any;
-  private subProfile1:any;
-  private subProfile2:any;
+  private subMembers:Subscription;
+  private subProfile1:Subscription;
+  private subProfile2:Subscription;
   
   allianceProfile:any;
   userPlus = userPlus;
@@ -24,6 +25,9 @@ export class AllianceProfileComponent implements OnInit, OnDestroy {
               private socket: Socket, public user: User,
               private titleService: Title, public translate: TranslateService) {
     this.allianceProfile = {};
+    this.subMembers  = new Subscription();
+    this.subProfile1 = new Subscription();
+    this.subProfile2 = new Subscription();
   }
   
   ngOnInit() {

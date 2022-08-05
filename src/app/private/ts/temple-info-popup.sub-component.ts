@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -22,7 +23,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   public lightningNb:any;
   public temple3Units:number;
   
-  private sub:any;
+  private sub:Subscription;
   
   Number = Number;
   
@@ -45,6 +46,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       'gold': 60000
     }
     this.temple3Units = 125;
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

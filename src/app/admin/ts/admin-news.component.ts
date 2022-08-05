@@ -85,7 +85,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     let author= this.newsSelected.author;
     
     if(title && link && author && title.trim() != '' && link.trim() != '' && author.trim() != '') {
-      var msg = {
+      let msg = {
         'id':     this.newsSelected.news_id,
         'title':  title.trim(),
         'link':   link.trim(),
@@ -100,7 +100,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     let link  = this.newsSelected.link;
     
     if(title && link && title.trim() != '' && link.trim() != '') {
-      var msg = {
+      let msg = {
         'title': title.trim(),
         'link': link.trim()
       };

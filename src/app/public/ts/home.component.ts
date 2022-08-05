@@ -3,6 +3,7 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
@@ -23,9 +24,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public newsList:any;
   public rerror: number;
   
-  private subLang:any;
-  private subNews:any;
-  private subTitle:any;
+  private subLang:Subscription;
+  private subNews:Subscription;
+  private subTitle:Subscription;
   
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -46,6 +47,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.registerForm = this.formBuilder.group({});
     this.menu = 0;
     this.rerror = 0;
+    this.subLang = new Subscription();
+    this.subNews = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

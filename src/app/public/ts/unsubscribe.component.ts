@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: '../html/unsubscribe.component.html'
@@ -11,7 +12,7 @@ import { UserComponent as User } from '../../../services/user.service';
 export class UnsubscribeComponent implements OnInit, OnDestroy {
   public id:any;
   public check:any;
-  public sub:any;
+  public sub:Subscription;
   public unsubscribeResult:any;
   
   constructor(public user: User, private socket: Socket,
@@ -19,6 +20,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
     this.unsubscribeResult = {
       error: 0
     }
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

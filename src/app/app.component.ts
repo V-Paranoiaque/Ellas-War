@@ -7,6 +7,7 @@ import { UserComponent as User } from '../services/user.service';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { registerLocaleData } from '@angular/common';
+import { Subscription } from 'rxjs';
 import localeFr from '@angular/common/locales/fr';
 
 @Component({
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public cssUrl: any;
   public cssPlatform: any;
   private cssBase: string;
-  private sub:any;
+  private sub:Subscription;
   
   constructor(private socket: Socket, public user: User,
               private router: Router,

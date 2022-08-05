@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -20,8 +21,8 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
   
   public profile: any;
   
-  private subPlayer:any;
-  private subTitle:any;
+  private subPlayer:Subscription;
+  private subTitle:Subscription;
   
   bomb = bomb;
   comments = comments;
@@ -34,6 +35,8 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     this.profile = {
       'username': ''
     }
+    this.subPlayer = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

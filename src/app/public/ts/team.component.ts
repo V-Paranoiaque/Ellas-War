@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class TeamComponent implements OnInit, OnDestroy {
-  private sub:any;
+  private sub:Subscription;
   
   constructor(private titleService: Title, public translate: TranslateService) {
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
@@ -10,10 +11,11 @@ import { UserComponent as User } from '../../../services/user.service';
 
 
 export class HelpComponent implements OnInit, OnDestroy {
-  private sub:any;
+  private sub:Subscription;
   
   constructor(public user: User, private titleService: Title,
               public translate: TranslateService) {
+    this.sub = new Subscription();
   }
   
   ngOnInit() {

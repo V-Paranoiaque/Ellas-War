@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
 import { SocketComponent as Socket } from './socketio.service';
 
-declare var facebookConnectPlugin:any;
+declare let facebookConnectPlugin:any;
 
 @Component({
   selector: 'app-user',
@@ -293,10 +293,9 @@ export class UserComponent {
       facebookConnectPlugin.login(["public_profile"],
         () => {
           facebookConnectPlugin.getAccessToken((token:any) => {
-            var msg = {
+            this.socket.emit('mobileFB', {
               'token': token
-            };
-            this.socket.emit('mobileFB', msg);
+            });
           });
         },
         function (error:any) {

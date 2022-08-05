@@ -86,7 +86,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
       this.currentPage = 1;
       this.msgPageNb = 1;
     }
-    var beginDate;
+    let beginDate;
     if(this.begining != '') {
       let beginDateTmp = this.begining.split('/');
       beginDate = parseInt((new Date(beginDateTmp[1]+"/"+beginDateTmp[0]+"/"+beginDateTmp[2]).getTime() / 1000).toFixed(0))

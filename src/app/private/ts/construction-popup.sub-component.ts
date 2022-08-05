@@ -70,7 +70,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
     }
     
     if(nb > 0) {
-      var msg = {
+      let msg = {
         'building': building,
         'nb': nb
       };
@@ -94,7 +94,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
     }
     
     if(nb > 0) {
-      var msg = {
+      let msg = {
         'building': building,
         'nb': nb
       };

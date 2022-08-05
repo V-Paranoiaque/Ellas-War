@@ -54,7 +54,7 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   
   adminMsgAnswer() {
     if(this.answertext && this.answertext.length > 0) {
-      var msg = {
+      let msg = {
         'id': this.msg,
         'text': this.answertext.trim()
       };

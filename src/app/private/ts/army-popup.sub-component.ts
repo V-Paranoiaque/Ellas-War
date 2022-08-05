@@ -89,7 +89,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     }
     
     if(nb > 0) {
-      var msg = {
+      let msg = {
         'unit': unit,
         'nb': nb
       };
@@ -111,7 +111,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     }
     
     if(nb > 0) {
-      var msg = {
+      let msg = {
         'unit': unit,
         'nb': nb
       };

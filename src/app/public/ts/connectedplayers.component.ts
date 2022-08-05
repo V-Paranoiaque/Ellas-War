@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -12,12 +13,14 @@ import { UserComponent as User } from '../../../services/user.service';
 export class ConnectedPlayersComponent implements OnInit, OnDestroy {
   
   public connected:any;
-  private subList:any;
-  private subTitle:any;
+  private subList:Subscription;
+  private subTitle:Subscription;
   
   constructor(public user: User, private http: HttpClient, private socket: Socket, 
               public translate: TranslateService, private titleService: Title) {
     this.connected = [];
+    this.subList = new Subscription();
+    this.subTitle = new Subscription();
   }
   
   ngOnInit() {

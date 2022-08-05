@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../../services/user.service';
 
 import fileAlt from '@iconify/icons-fa-solid/file-alt';
@@ -21,7 +22,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   public allianceProfile:any;
   public allianceWait:any;
   public order:string;
-  private sub:any;
+  private sub:Subscription;
   
   fileAlt  = fileAlt;
   flag     = flag;
@@ -36,6 +37,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     }
     this.allianceWait = '';
     this.order = '';
+    this.sub = new Subscription();
   }
   
   ngOnInit() {
