@@ -150,6 +150,19 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     }
     return list;
   }
+
+  missingConsumption() {
+    let list = [];
+    if(this.info.consumption) {
+      for(let id in environment.resources) {
+        let res = environment.resources[id];
+        if(this.info.consumption[res] && this.user.getPropertyNb(res) <= 0) {
+          list.push(res);
+        }
+      }
+    }
+    return list;
+  }
   
   setEngage(nb:number) {
     this.info.engageNb = nb;

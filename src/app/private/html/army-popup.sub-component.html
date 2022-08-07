@@ -112,6 +112,12 @@
             <app-id-to-ress [ress_id]="res"></app-id-to-ress>
           </span>
         </div>
+        <div *ngIf="missingConsumption().length > 0">
+          <span translate>Missing resources for consumption:</span>&nbsp;
+          <span *ngFor="let res of missingConsumption()">
+            <app-id-to-ress [ress_id]="res"></app-id-to-ress>
+          </span>
+        </div>
         
         <span *ngIf="!hasHosting()"
               class="bold red" translate>
