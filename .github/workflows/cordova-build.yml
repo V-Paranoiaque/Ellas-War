@@ -112,15 +112,13 @@ jobs:
           image: tonistiigi/binfmt:latest
           platforms: arm64
 
+      - name: Install Docker
+        uses: docker-practice/actions-setup-docker@master
       - name: Build snap arm64
-        uses: addnab/docker-run-action@v3
-        with:
-            image: vparanoiaque/cordova-snap:latest
-            options: -v ${{ github.workspace }}:/var/www -v ${{ github.workspace }}/res/electron/build-snap-arm64.json:/var/www/build.json -w /var/www --platform linux/arm64/v8 --privileged 
-            run: |
-                bash /bin/entrypoint.sh
-                cordova build electron --no-telemetry
-
+        run: |
+          docker run --rm -v $WORKSPACE:/ew -v $WORKSPACE/res/electron/build-snap-arm64.json:/ew/build.json  -w /ew --platform linux/arm64/v8 --privileged -t docker.io/library/test sh -c "cordova build electron --no-telemetry"
+        env:
+          WORKSPACE: '${{ github.workspace }}'
 
       - name: Publish Snap
         run: |
