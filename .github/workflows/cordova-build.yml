@@ -118,6 +118,7 @@ jobs:
             image: vparanoiaque/cordova-snap:latest
             options: -v ${{ github.workspace }}:/var/www -v ${{ github.workspace }}/res/electron/build-snap-arm64.json:/var/www/build.json -w /var/www --platform linux/arm64/v8 --privileged 
             run: |
+                bash /bin/entrypoint.sh
                 cordova build electron --no-telemetry
 
 
