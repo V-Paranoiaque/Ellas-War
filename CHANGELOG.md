@@ -228,3 +228,10 @@
 * Game optimization
 * Missing translations
 * The Spartan Favor is now giving a Divine bonus
+
+# 1.2.5
+* Add an error when missing consumption
+* Fix typo in the French translation
+* Fix when the storeroom history is empty
+* Game optimization
+* Missing war declaration english translation
