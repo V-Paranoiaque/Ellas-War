@@ -1,4 +1,4 @@
-ARG UBUNTU=focal
+ARG UBUNTU=jammy
 FROM ubuntu:${UBUNTU}
 ARG UBUNTU
 ARG DEBIAN_FRONTEND=noninteractive
