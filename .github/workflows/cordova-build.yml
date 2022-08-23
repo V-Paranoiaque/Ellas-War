@@ -105,7 +105,22 @@ jobs:
           cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-      
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64
+
+      - name: Build snap arm64
+        uses: addnab/docker-run-action@v3
+        with:
+            image: vparanoiaque/cordova-snap:latest
+            options: -v ${{ github.workspace }}:/var/www -v {{ github.workspace }}/res/electron/build-snap-arm64.json:/var/www/build.json -w /var/www --platform linux/arm64/v8 --privileged 
+            run: |
+                cordova build electron --no-telemetry
+
+
       - name: Publish Snap
         run: |
           FILE=$(ls platforms/electron/build/*.snap)
