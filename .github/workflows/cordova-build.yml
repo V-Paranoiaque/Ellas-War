@@ -116,7 +116,7 @@ jobs:
         uses: docker-practice/actions-setup-docker@master
       - name: Build snap arm64
         run: |
-          docker run --rm -v $WORKSPACE:/ew -v $WORKSPACE/res/electron/build-snap-arm64.json:/ew/build.json  -w /ew --platform linux/arm64/v8 --privileged -t docker.io/library/test sh -c "cordova build electron --no-telemetry"
+          docker run --rm -v $WORKSPACE:/ew -v $WORKSPACE/res/electron/build-snap-arm64.json:/ew/build.json  -w /ew --platform linux/arm64/v8 --privileged -t vparanoiaque/cordova-snap sh -c "cordova build electron --no-telemetry"
         env:
           WORKSPACE: '${{ github.workspace }}'
 
