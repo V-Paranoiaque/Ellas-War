@@ -29,8 +29,12 @@
               </li>
             </ul>
           </nav>
+
+          <div *ngIf="list.length === 0"
+               class="text-center" translate>This ranking is empty</div>
           
-          <table class="table table-striped table-middle" aria-describedby="honnorDesc">
+          <table class="table table-striped table-middle" aria-describedby="honnorDesc"
+                 *ngIf="list.length > 0">
             <thead>
               <tr>
                 <th scope="col" translate>Player</th>
