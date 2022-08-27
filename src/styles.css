@@ -54,6 +54,11 @@ a.no-padding {
   background-size: cover;
   padding-bottom: 12px;
 }
+.home-bg-private {
+  width:100%;
+  float: left;
+  min-height: calc(100vh - 91px);
+}
 
 /*** Cards **/
 .card {

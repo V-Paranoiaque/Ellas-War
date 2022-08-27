@@ -1,35 +1,37 @@
 <app-common-top-bar active="paused"></app-common-top-bar>
 
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="text-center" translate>Your account is currently paused</h2>
-          <br/>
-          <br/>
-          <p>{{'You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.' | translate: {value : user.getPropertyNb('exit_hours') } }}</p>
-          
-          <div class="text-center">
-            <span translate>End the</span> {{user.getPropertyNb('times')*1000 | date:'dd/MM/YYYY, HH:mm'}}
+<div class="home-bg home-bg-private">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center" translate>Your account is currently paused</h2>
+            <br/>
+            <br/>
+            <p>{{'You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.' | translate: {value : user.getPropertyNb('exit_hours') } }}</p>
+            
+            <div class="text-center">
+              <span translate>End the</span> {{user.getPropertyNb('times')*1000 | date:'dd/MM/YYYY, HH:mm'}}
+            </div>
+            
           </div>
-          
-        </div>
-        <div *ngIf="user.getPropertyNb('freereturn') == 1"
-             class="card-button card-button-primary" (click)="pauseReturn()" role="button"
-             translate>
-          Return to the game
-        </div>
-        <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') > 0"
-             class="card-button card-button-primary" (click)="pauseReturn()" role="button"
-             translate>
-          Return to the game
-        </div>
-        <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') == 0"
-             class="card-button card-button-primary no-android no-ios no-electron" [routerLink]="['/getfavors']"
-             role="button" translate>
-          Get a favor and return to the game
+          <div *ngIf="user.getPropertyNb('freereturn') == 1"
+              class="card-button card-button-primary" (click)="pauseReturn()" role="button"
+              translate>
+            Return to the game
+          </div>
+          <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') > 0"
+              class="card-button card-button-primary" (click)="pauseReturn()" role="button"
+              translate>
+            Return to the game
+          </div>
+          <div *ngIf="user.getPropertyNb('freereturn') == 0 && user.getPropertyNb('favor') == 0"
+              class="card-button card-button-primary no-android no-ios no-electron" [routerLink]="['/getfavors']"
+              role="button" translate>
+            Get a favor and return to the game
+          </div>
         </div>
       </div>
     </div>

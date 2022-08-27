@@ -129,400 +129,403 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-12 main" role="main">
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-6 col-block-half">
-        <div class="card">
-          <div class="card-header">
-            <span translate>General</span>
-            <div class="card-header-group">
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#FirstInfo"
-                   *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
-                   id="FirstInfoOpen">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
-              </div>
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#DailyInfo"
-                   *ngIf="dailCo() > 0 && dailyCoCheck == 1"
-                   id="DailyCoCheckOpen">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+<div class="home-bg home-bg-private">
+  <div class="col-lg-10 col-md-10 col-sm-12 col-12 main" role="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-6 col-block-half">
+          <div class="card">
+            <div class="card-header">
+              <span translate>General</span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#FirstInfo"
+                    *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
+                    id="FirstInfoOpen">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#DailyInfo"
+                    *ngIf="dailCo() > 0 && dailyCoCheck == 1"
+                    id="DailyCoCheckOpen">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body d-flex align-items-center">
-            <div class="flex-grow-1 text-center">
-              
-              <div class="row" *ngIf="user.getLevel() >= 1">
-                <div class="col-6">
-                  <strong translate>Attack:</strong>
-                  {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
-                  <a [routerLink]="['/strategies/attack']">
-                    <ic-icon [icIcon]="cog"></ic-icon>
-                  </a>
+            <div class="card-body d-flex align-items-center">
+              <div class="flex-grow-1 text-center">
+                
+                <div class="row" *ngIf="user.getLevel() >= 1">
+                  <div class="col-6">
+                    <strong translate>Attack:</strong>
+                    {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
+                    <a [routerLink]="['/strategies/attack']">
+                      <ic-icon [icIcon]="cog"></ic-icon>
+                    </a>
+                  </div>
+                  <div class="col-6" [ngClass]="{'text-danger': waveDefensePower === 0 }">
+                    <strong translate>Defense</strong>
+                    <strong translate>:</strong>
+                    {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
+                    <a [routerLink]="['/strategies/defense']">
+                      <ic-icon [icIcon]="cog"></ic-icon>
+                    </a>
+                  </div>
+                  <div class="col-12 text-center text-danger fw-bold">
+                    <span translate>
+                      Without defense, your resource losses will be greater in the event of an attack
+                    </span>
+                    <ic-icon [icIcon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#DefenseEmpty"></ic-icon>
+                  </div>
+                  <br/>
                 </div>
-                <div class="col-6" [ngClass]="{'text-danger': waveDefensePower === 0 }">
-                  <strong translate>Defense</strong>
-                  <strong translate>:</strong>
-                  {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
-                  <a [routerLink]="['/strategies/defense']">
-                    <ic-icon [icIcon]="cog"></ic-icon>
+                
+                <div *ngIf="user.getLevel() < 10">
+                  <a [routerLink]="['/quests']"
+                    title="{{'Access to the quests'|translate}}">
+                    <strong translate>Quests</strong><strong translate>:</strong> 
+                    {{ user.getQuest() }}/{{ user.getQuestMax() }}
                   </a>
-                </div>
-                <div class="col-12 text-center text-danger fw-bold">
-                  <span translate>
-                    Without defense, your resource losses will be greater in the event of an attack
-                  </span>
                   <ic-icon [icIcon]="questionCircle" role="button"
-                           data-bs-toggle="modal"
-                           data-bs-target="#DefenseEmpty"></ic-icon>
+                          data-bs-toggle="modal"
+                          data-bs-target="#MissionsInfo"></ic-icon>
                 </div>
-                <br/>
-              </div>
-              
-              <div *ngIf="user.getLevel() < 10">
-                <a [routerLink]="['/quests']"
-                   title="{{'Access to the quests'|translate}}">
-                  <strong translate>Quests</strong><strong translate>:</strong> 
-                  {{ user.getQuest() }}/{{ user.getQuestMax() }}
-                </a>
-                <ic-icon [icIcon]="questionCircle" role="button"
-                         data-bs-toggle="modal"
-                         data-bs-target="#MissionsInfo"></ic-icon>
-              </div>
-              <div *ngIf="user.getLevel() >= 1">
-                <strong id="questProgressLabel" translate>Quest progress</strong>
-                <strong translate>:</strong>
-                <ic-icon [icIcon]="questionCircle"
-                         data-bs-toggle="modal" data-bs-target="#QuestsInfo"
-                         title="{{'Quest progress'|translate}}"
-                         role="button"></ic-icon>
-                <div class="progress" role="button" [routerLink]="['/quests']">
-                  <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
-                       aria-valuemin="0" aria-valuemax="100"
-                       aria-labelledby="questProgressLabel"
-                       [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
-                  <div class="progress-text">
-                    {{ user.getPropertyNb('quest_step') }}/{{7}}
+                <div *ngIf="user.getLevel() >= 1">
+                  <strong id="questProgressLabel" translate>Quest progress</strong>
+                  <strong translate>:</strong>
+                  <ic-icon [icIcon]="questionCircle"
+                          data-bs-toggle="modal" data-bs-target="#QuestsInfo"
+                          title="{{'Quest progress'|translate}}"
+                          role="button"></ic-icon>
+                  <div class="progress" role="button" [routerLink]="['/quests']">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="100"
+                        aria-labelledby="questProgressLabel"
+                        [ngStyle]="{'width.%': 100*user.getPropertyNb('quest_step')/7 }"></div>
+                    <div class="progress-text">
+                      {{ user.getPropertyNb('quest_step') }}/{{7}}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div *ngIf="user.getLevel() >= 1 || user.getQuest() >= 7"
-           class="col-xl-6 col-block-half">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-group">
-              <div class="card-header-button text-warning" role="button"
-                   data-bs-toggle="modal" data-bs-target="#DivineBonusList"
-                   *ngIf="divineBonus.length > 0" (click)="divineBonusReset()"
-                   title="{{'All your divine bonuses'|translate}}">
-                <ic-icon [icIcon]="cloud"></ic-icon>
+        
+        <div *ngIf="user.getLevel() >= 1 || user.getQuest() >= 7"
+            class="col-xl-6 col-block-half">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-group">
+                <div class="card-header-button text-warning" role="button"
+                    data-bs-toggle="modal" data-bs-target="#DivineBonusList"
+                    *ngIf="divineBonus.length > 0" (click)="divineBonusReset()"
+                    title="{{'All your divine bonuses'|translate}}">
+                  <ic-icon [icIcon]="cloud"></ic-icon>
+                </div>
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
+                    title="{{'About the Divine Bonuses'|translate}}">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
               </div>
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
-                   title="{{'About the Divine Bonuses'|translate}}">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+              <span translate>Divine Bonus</span>
+            </div>
+            <div class="card-body no-padding text-center" *ngIf="divineBonus.length === 0">
+              <br/>
+              <strong translate>Ongoing streak:</strong>
+              {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+              <div>
+                {{ 'Next goal: { value } Days' | translate: { value: user.getGoalDays() | number:'': this.translate.currentLang } }}
               </div>
             </div>
-            <span translate>Divine Bonus</span>
-          </div>
-          <div class="card-body no-padding text-center" *ngIf="divineBonus.length === 0">
-            <br/>
-            <strong translate>Ongoing streak:</strong>
-            {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
-            <div>
-              {{ 'Next goal: { value } Days' | translate: { value: user.getGoalDays() | number:'': this.translate.currentLang } }}
-            </div>
-          </div>
-          <div class="card-body no-padding" *ngIf="divineBonus.length > 0">
-            <div *ngFor="let bonus of divineBonus" role="button"
-                 class="frame frame-db"
-                 data-bs-toggle="modal" data-bs-target="#DivineBonusInfo"
-                 (click)="selectDivinBonus(bonus)">
-              <app-ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></app-ew-icon>
-              <div class="badge bg-secondary">{{ bonus.nb }}</div>
+            <div class="card-body no-padding" *ngIf="divineBonus.length > 0">
+              <div *ngFor="let bonus of divineBonus" role="button"
+                  class="frame frame-db"
+                  data-bs-toggle="modal" data-bs-target="#DivineBonusInfo"
+                  (click)="selectDivinBonus(bonus)">
+                <app-ew-icon name="{{ EwIcon.getDivineBonus(bonus.bonus_id) }}"></app-ew-icon>
+                <div class="badge bg-secondary">{{ bonus.nb }}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div class="col-xl-6 col-block-half"
-           *ngIf="user.getLevel() >= 1 || user.getPropertyNb('spartan') > 0">
-        <div class="card">
-          <div class="card-header">
-            <span translate>
-              Army
-            </span>
-            <div class="card-header-group">
-              <div class="card-header-button" role="button"
-                   *ngIf="user.getLevel() >= 1"
-                   [routerLink]="['/strategies/attack']"
-                   title="{{'Manage your waves to optimize your losses'|translate}}">
-                <ic-icon [icIcon]="waterWave"></ic-icon>
-              </div>
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#ArmySummary"
-                  title="{{'Army summary'|translate}}">
-                <ic-icon [icIcon]="swordCross"></ic-icon>
-              </div>
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#ArmyHelp"
-                  title="{{'Army information'|translate}}">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+        
+        <div class="col-xl-6 col-block-half"
+            *ngIf="user.getLevel() >= 1 || user.getPropertyNb('spartan') > 0">
+          <div class="card">
+            <div class="card-header">
+              <span translate>
+                Army
+              </span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    *ngIf="user.getLevel() >= 1"
+                    [routerLink]="['/strategies/attack']"
+                    title="{{'Manage your waves to optimize your losses'|translate}}">
+                  <ic-icon [icIcon]="waterWave"></ic-icon>
+                </div>
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#ArmySummary"
+                    title="{{'Army summary'|translate}}">
+                  <ic-icon [icIcon]="swordCross"></ic-icon>
+                </div>
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#ArmyHelp"
+                    title="{{'Army information'|translate}}">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body no-padding">
-            <div *ngFor="let army of user.getArmy()">
-              <div class="frame frame-20" role="button"
-                   [ngClass]="{'level-quest': levelQuest(army.code)}"
-                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                   (click)="selectArmy(army.code)"
-                   title="{{ army.name | translate }}"
-                   *ngIf="armyDisplay(army)">
-                <app-ew-icon name="{{ army.code }}"></app-ew-icon>
-                <div class="badge bg-secondary"
-                     [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
-                  {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
+            <div class="card-body no-padding">
+              <div *ngFor="let army of user.getArmy()">
+                <div class="frame frame-20" role="button"
+                    [ngClass]="{'level-quest': levelQuest(army.code)}"
+                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                    (click)="selectArmy(army.code)"
+                    title="{{ army.name | translate }}"
+                    *ngIf="armyDisplay(army)">
+                  <app-ew-icon name="{{ army.code }}"></app-ew-icon>
+                  <div class="badge bg-secondary"
+                      [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
+                    {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div class="col-xl-6 col-block-half">
-        <div class="card">
-          <div class="card-header">
-            <span translate>Buildings</span>
-            <div class="card-header-group">
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#BuildingSummary"
-                   title="{{'Building details'|translate}}">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+        
+        <div class="col-xl-6 col-block-half">
+          <div class="card">
+            <div class="card-header">
+              <span translate>Buildings</span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#BuildingSummary"
+                    title="{{'Building details'|translate}}">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body no-padding">
-            <div class="frame frame-20" (click)="selectTreasure()"
-                 data-bs-toggle="modal" data-bs-target="#TreasureInfo"
-                 *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11"
-                 [ngClass]="{'level-quest': levelQuest('treasure')}"
-                 title="{{ 'Treasure' | translate }}" role="button">
-              <app-ew-icon name="treasure"></app-ew-icon>
-            </div>
-            
-            <div *ngFor="let building of user.getBuildings()"
-                 class="frame frame-20" role="button"
-                 [ngClass]="{'level-quest': levelQuest(building.code)}"
-                 data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                 (click)="selectBuilding(building.code)"
-                 title="{{ building.name | translate }}">
-              <app-ew-icon name="{{ building.code }}"></app-ew-icon>
-              <div class="badge bg-secondary">
-                {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}
+            <div class="card-body no-padding">
+              <div class="frame frame-20" (click)="selectTreasure()"
+                  data-bs-toggle="modal" data-bs-target="#TreasureInfo"
+                  *ngIf="user.getLevel() >= 1 || user.getQuest() >= 11"
+                  [ngClass]="{'level-quest': levelQuest('treasure')}"
+                  title="{{ 'Treasure' | translate }}" role="button">
+                <app-ew-icon name="treasure"></app-ew-icon>
               </div>
-            </div>
-            
-            <div class="frame frame-20"
-                 data-bs-toggle="modal" data-bs-target="#DefenseWallInfo"
-                 *ngIf="user.getPropertyNb('defense_wall') >= 1"
-                 title="{{ 'Defense wall' | translate }}" role="button">
-              <app-ew-icon name="defense_wall"></app-ew-icon>
-              <div class="badge bg-secondary">
-                {{ user.getPropertyNb('defense_wall') | number:'': this.translate.currentLang }}
+              
+              <div *ngFor="let building of user.getBuildings()"
+                  class="frame frame-20" role="button"
+                  [ngClass]="{'level-quest': levelQuest(building.code)}"
+                  data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                  (click)="selectBuilding(building.code)"
+                  title="{{ building.name | translate }}">
+                <app-ew-icon name="{{ building.code }}"></app-ew-icon>
+                <div class="badge bg-secondary">
+                  {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}
+                </div>
+              </div>
+              
+              <div class="frame frame-20"
+                  data-bs-toggle="modal" data-bs-target="#DefenseWallInfo"
+                  *ngIf="user.getPropertyNb('defense_wall') >= 1"
+                  title="{{ 'Defense wall' | translate }}" role="button">
+                <app-ew-icon name="defense_wall"></app-ew-icon>
+                <div class="badge bg-secondary">
+                  {{ user.getPropertyNb('defense_wall') | number:'': this.translate.currentLang }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      <div class="col-xl-6 col-block-half"
-           *ngIf="user.getLevel() >= 3 || (user.getLevel() == 2 && user.getQuest() >= 11)">
-        <div class="card">
-          <div class="card-header">
-            <span translate>Temples</span>
-            <div class="card-header-group">
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#TempleHelp"
-                  title="{{'Temples information'|translate}}">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+        
+        <div class="col-xl-6 col-block-half"
+            *ngIf="user.getLevel() >= 3 || (user.getLevel() == 2 && user.getQuest() >= 11)">
+          <div class="card">
+            <div class="card-header">
+              <span translate>Temples</span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#TempleHelp"
+                    title="{{'Temples information'|translate}}">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
+              </div>
+            </div>
+            <div class="card-body no-padding" id="templesBlock">
+              <!-- Temple informations -->
+              <div class="frame frame-20" role=""
+                  *ngIf="user.getPropertyNb('hermes') == 1"
+                  (click)="selectTemples(1)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Hermes' | translate}}" >
+                <app-ew-icon name="hermes"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('apollo') == 1"
+                  (click)="selectTemples(2)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Apollo' | translate}}" >
+                <app-ew-icon name="apollo"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('demeter') == 1"
+                  (click)="selectTemples(3)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Demeter' | translate}}" >
+                <app-ew-icon name="demeter"></app-ew-icon>
+              </div>
+              
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('ares') == 1"
+                  (click)="selectTemples(4)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Ares' | translate}}" >
+                <app-ew-icon name="ares"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('athena') == 1"
+                  (click)="selectTemples(5)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Athena' | translate}}" >
+                <app-ew-icon name="athena"></app-ew-icon>
+              </div>
+              
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('artemis') == 1"
+                  (click)="selectTemples(6)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Artemis' | translate}}" >
+                <app-ew-icon name="artemis"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('dionysus') == 1"
+                  (click)="selectTemples(8)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Dionysus' | translate}}" >
+                <app-ew-icon name="dionysus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('hephaestus') == 1"
+                  (click)="selectTemples(7)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Hephaestus' | translate}}" >
+                <app-ew-icon name="hephaestus"></app-ew-icon>
+              </div>
+              
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('zeus') == 1"
+                  (click)="selectTemples(9)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Zeus' | translate}}">
+                <app-ew-icon name="zeus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('hades') == 1"
+                  (click)="selectTemples(10)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Hades' | translate}}">
+                <app-ew-icon name="hades"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.getPropertyNb('poseidon') == 1"
+                  (click)="selectTemples(11)" role="button"
+                  data-bs-toggle="modal" data-bs-target="#TempleInfo"
+                  title="{{'Poseidon' | translate}}">
+                <app-ew-icon name="poseidon"></app-ew-icon>
+              </div>
+              
+              <!-- Frames to build temples -->
+              <div class="frame frame-20"
+                  *ngIf="user.buildTemple1Allowed() == 0"
+                  [ngClass]="{'level-quest': levelQuest('temple1')}"
+                  data-bs-toggle="modal" data-bs-target="#Temple1Info"
+                  title="{{'Build a new temple' | translate}}" >
+                <app-ew-icon name="olympus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.buildTemple2Allowed() == 0"
+                  [ngClass]="{'level-quest': levelQuest('temple2')}"
+                  data-bs-toggle="modal" data-bs-target="#Temple2Info"
+                  title="{{'Build a new temple' | translate}}" >
+                <app-ew-icon name="olympus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.buildTemple3Allowed() == 0"
+                  [ngClass]="{'level-quest': levelQuest('temple3')}"
+                  data-bs-toggle="modal" data-bs-target="#Temple3Info"
+                  title="{{'Build a new temple' | translate}}" >
+                <app-ew-icon name="olympus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20"
+                  *ngIf="user.buildTemple4Allowed() == 0"
+                  [ngClass]="{'level-quest': levelQuest('temple4')}"
+                  data-bs-toggle="modal" data-bs-target="#Temple4Info"
+                  title="{{'Build a new temple' | translate}}" >
+                <app-ew-icon name="olympus"></app-ew-icon>
+              </div>
+              <div class="frame frame-20" role="button"
+                  *ngIf="user.hasTemples() > 0"
+                  data-bs-toggle="modal" data-bs-target="#TempleChangeInfo"
+                  title="{{'Change a temple' | translate}}" >
+                <app-ew-icon name="olympus"></app-ew-icon>
               </div>
             </div>
           </div>
-          <div class="card-body no-padding" id="templesBlock">
-            <!-- Temple informations -->
-            <div class="frame frame-20" role=""
-                 *ngIf="user.getPropertyNb('hermes') == 1"
-                 (click)="selectTemples(1)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Hermes' | translate}}" >
-              <app-ew-icon name="hermes"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('apollo') == 1"
-                 (click)="selectTemples(2)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Apollo' | translate}}" >
-              <app-ew-icon name="apollo"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('demeter') == 1"
-                 (click)="selectTemples(3)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Demeter' | translate}}" >
-              <app-ew-icon name="demeter"></app-ew-icon>
-            </div>
-            
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('ares') == 1"
-                 (click)="selectTemples(4)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Ares' | translate}}" >
-              <app-ew-icon name="ares"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('athena') == 1"
-                 (click)="selectTemples(5)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Athena' | translate}}" >
-              <app-ew-icon name="athena"></app-ew-icon>
-            </div>
-            
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('artemis') == 1"
-                 (click)="selectTemples(6)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Artemis' | translate}}" >
-              <app-ew-icon name="artemis"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('dionysus') == 1"
-                 (click)="selectTemples(8)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Dionysus' | translate}}" >
-              <app-ew-icon name="dionysus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('hephaestus') == 1"
-                 (click)="selectTemples(7)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Hephaestus' | translate}}" >
-              <app-ew-icon name="hephaestus"></app-ew-icon>
-            </div>
-            
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('zeus') == 1"
-                 (click)="selectTemples(9)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Zeus' | translate}}">
-              <app-ew-icon name="zeus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('hades') == 1"
-                 (click)="selectTemples(10)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Hades' | translate}}">
-              <app-ew-icon name="hades"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.getPropertyNb('poseidon') == 1"
-                 (click)="selectTemples(11)" role="button"
-                 data-bs-toggle="modal" data-bs-target="#TempleInfo"
-                 title="{{'Poseidon' | translate}}">
-              <app-ew-icon name="poseidon"></app-ew-icon>
-            </div>
-            
-            <!-- Frames to build temples -->
-            <div class="frame frame-20"
-                 *ngIf="user.buildTemple1Allowed() == 0"
-                 [ngClass]="{'level-quest': levelQuest('temple1')}"
-                 data-bs-toggle="modal" data-bs-target="#Temple1Info"
-                 title="{{'Build a new temple' | translate}}" >
-              <app-ew-icon name="olympus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.buildTemple2Allowed() == 0"
-                 [ngClass]="{'level-quest': levelQuest('temple2')}"
-                 data-bs-toggle="modal" data-bs-target="#Temple2Info"
-                 title="{{'Build a new temple' | translate}}" >
-              <app-ew-icon name="olympus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.buildTemple3Allowed() == 0"
-                 [ngClass]="{'level-quest': levelQuest('temple3')}"
-                 data-bs-toggle="modal" data-bs-target="#Temple3Info"
-                 title="{{'Build a new temple' | translate}}" >
-              <app-ew-icon name="olympus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20"
-                 *ngIf="user.buildTemple4Allowed() == 0"
-                 [ngClass]="{'level-quest': levelQuest('temple4')}"
-                 data-bs-toggle="modal" data-bs-target="#Temple4Info"
-                 title="{{'Build a new temple' | translate}}" >
-              <app-ew-icon name="olympus"></app-ew-icon>
-            </div>
-            <div class="frame frame-20" role="button"
-                 *ngIf="user.hasTemples() > 0"
-                 data-bs-toggle="modal" data-bs-target="#TempleChangeInfo"
-                 title="{{'Change a temple' | translate}}" >
-              <app-ew-icon name="olympus"></app-ew-icon>
-            </div>
-          </div>
         </div>
-      </div>
-      
-      <div class="col-xl-6 col-block-half" *ngIf="user.getLevel() >= 1">
-        <div class="card">
-          <div class="card-header">
-            <span translate>
-              Success
-            </span>
-            <div class="card-header-group">
-              <div class="card-header-button" role="button"
-                   data-bs-toggle="modal" data-bs-target="#SuccessHelp"
-                  title="{{'Success information'|translate}}">
-                <ic-icon [icIcon]="questionCircle"></ic-icon>
+        
+        <div class="col-xl-6 col-block-half" *ngIf="user.getLevel() >= 1">
+          <div class="card">
+            <div class="card-header">
+              <span translate>
+                Success
+              </span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#SuccessHelp"
+                    title="{{'Success information'|translate}}">
+                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body no-padding align-items-center" id="successBlock">
-            <app-ew-icon name="{{ getDivinBonusIcon(1) }}" role="button"
-                     title="{{'General' | translate }}"
-                     (click)="selectSuccess(1)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
-            <app-ew-icon name="{{ getDivinBonusIcon(2) }}" role="button"
-                     title="{{'Constructions' | translate }}"
-                     (click)="selectSuccess(2)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
-            <app-ew-icon name="{{ getDivinBonusIcon(3) }}" role="button"
-                     title="{{'Alliance' | translate }}"
-                     (click)="selectSuccess(3)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
-            <app-ew-icon name="{{ getDivinBonusIcon(5) }}" role="button"
-                     title="{{'Attacks' | translate }}"
-                     (click)="selectSuccess(5)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
-            <app-ew-icon name="{{ getDivinBonusIcon(6) }}" role="button"
-                     title="{{'Mythology' | translate }}"
-                     (click)="selectSuccess(6)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
-            <app-ew-icon name="{{ getDivinBonusIcon(7) }}" role="button"
-                     title="{{'Feats of Strength' | translate }}"
-                     (click)="selectSuccess(7)"
-                     data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            <div class="card-body no-padding align-items-center" id="successBlock">
+              <app-ew-icon name="{{ getDivinBonusIcon(1) }}" role="button"
+                      title="{{'General' | translate }}"
+                      (click)="selectSuccess(1)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+              <app-ew-icon name="{{ getDivinBonusIcon(2) }}" role="button"
+                      title="{{'Constructions' | translate }}"
+                      (click)="selectSuccess(2)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+              <app-ew-icon name="{{ getDivinBonusIcon(3) }}" role="button"
+                      title="{{'Alliance' | translate }}"
+                      (click)="selectSuccess(3)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+              <app-ew-icon name="{{ getDivinBonusIcon(5) }}" role="button"
+                      title="{{'Attacks' | translate }}"
+                      (click)="selectSuccess(5)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+              <app-ew-icon name="{{ getDivinBonusIcon(6) }}" role="button"
+                      title="{{'Mythology' | translate }}"
+                      (click)="selectSuccess(6)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+              <app-ew-icon name="{{ getDivinBonusIcon(7) }}" role="button"
+                      title="{{'Feats of Strength' | translate }}"
+                      (click)="selectSuccess(7)"
+                      data-bs-toggle="modal" data-bs-target="#SuccessInfo"></app-ew-icon>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
+        </div>
+    </div>
   </div>
+  
+  <app-connected-right-menu></app-connected-right-menu>
 </div>
 
-<app-connected-right-menu></app-connected-right-menu>
 <app-common-bottom-bar></app-common-bottom-bar>

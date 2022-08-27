@@ -22,25 +22,27 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div clas="card-body">
-          <h2 class="text-center" translate>Your account is currently blocked</h2>
-          <br/>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="card-button card-button-primary" [routerLink]="['/support']"
-                 role="button" translate>
-              Contact support
-            </div>
+<div class="home-bg home-bg-private">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div clas="card-body">
+            <h2 class="text-center" translate>Your account is currently blocked</h2>
+            <br/>
           </div>
-          <div class="col-6">
-            <div class="card-button card-button-primary" data-bs-toggle="modal" 
-                 role="button" data-bs-target="#ResetAccount" translate>
-              Reinitialize your account
+          <div class="row">
+            <div class="col-6">
+              <div class="card-button card-button-primary" [routerLink]="['/support']"
+                  role="button" translate>
+                Contact support
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="card-button card-button-primary" data-bs-toggle="modal" 
+                  role="button" data-bs-target="#ResetAccount" translate>
+                Reinitialize your account
+              </div>
             </div>
           </div>
         </div>

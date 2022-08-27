@@ -26,294 +26,297 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="fw-bold text-center" translate>
-              Drag and drop units on a wave to add them
-            </div>
-            <div class="d-flex">
-              <a [routerLink]="['/strategies/attack']" class="flex-grow-1 btn"
-                   [ngClass]="{'btn-danger': type !== 'defense',
-                               'btn-outline-danger': type === 'defense'}" translate>Offensive</a>
-              <a [routerLink]="['/strategies/defense']" class="flex-grow-1 btn"
-                   [ngClass]="{'btn-primary': type === 'defense',
-                               'btn-outline-primary': type !== 'defense'}" translate>Defensive</a>
-            </div>
-            
-            <!-- Attack -->
-            <ng-container *ngIf="type !== 'defense'">
-              <div class="text-center">
-                <strong translate>Total:</strong>
-                {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
-                <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
+<div class="home-bg home-bg-private">
+  <div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="fw-bold text-center" translate>
+                Drag and drop units on a wave to add them
               </div>
-              <div class="row d-flex"
-                   cdkDropList
-                   id="wave-attack-0"
-                   [cdkDropListData]="user.getArmy()"
-                   [cdkDropListConnectedTo]="waveAttackDropList"
-                   (cdkDropListDropped)="onDropAttack($event)">
-                <ng-container *ngFor="let army of user.getArmy()">
-                  <div *ngIf="waveAttackUnit && army.attack > 0 &&
-                              (user.getPropertyNb(army.code) > (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0))"
-                       class="col-3 col-md-2 d-flex flex-column" role="button"
-                       id="{{army.code}}-0-{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}"
-                       data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                       (click)="selectArmy(army.code)"
-                       cdkDrag>
-                    <div class="text-center">
-                      <strong translate>{{ army.name }}</strong>
-                      (<strong>{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}</strong>)
-                    </div>
-                    <div class="mt-auto m-1-xs m-4-md">
-                      <app-ew-icon name="{{ army.code }}"></app-ew-icon>
-                    </div>
-                  </div>
-                </ng-container>
+              <div class="d-flex">
+                <a [routerLink]="['/strategies/attack']" class="flex-grow-1 btn"
+                    [ngClass]="{'btn-danger': type !== 'defense',
+                                'btn-outline-danger': type === 'defense'}" translate>Offensive</a>
+                <a [routerLink]="['/strategies/defense']" class="flex-grow-1 btn"
+                    [ngClass]="{'btn-primary': type === 'defense',
+                                'btn-outline-primary': type !== 'defense'}" translate>Defensive</a>
               </div>
-              <ng-container *ngFor="let wave of waveAttackList; index as i">
-                <div *ngIf="i > 0" class="row"
-                     cdkDropList
-                     id="wave-attack-{{i}}"
-                     [cdkDropListData]="wave"
-                     [cdkDropListConnectedTo]="waveAttackDropList"
-                     (cdkDropListDropped)="onDropAttack($event)">
-                  <h3>{{'Wave { value }'| translate: { value: i } }}</h3>
-                  <div class="d-flex row">
-                    <ng-container *ngFor="let army of user.getArmy()">
-                      <div *ngIf="wave[army.code] > 0" role="button"
-                           id="{{army.code}}-{{i}}-{{wave[army.code]}}"
-                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
-                        <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                             class="text-center" (click)="selectArmy(army.code)">
-                          <strong translate>{{ army.name }}</strong>
-                          (<strong>{{ wave[army.code] }}</strong>)
-                        </div>
-                        <div class="mt-auto m-1-xs m-4-md text-center">
-                          <app-ew-icon name="{{ army.code }}"
-                                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                                   (click)="selectArmy(army.code)"></app-ew-icon>
-                          <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'invisible': army.code === 'soul'}">
-                            <div class="flex-grow-1 btn btn-warning"
-                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
-                                 (click)="setWaveUnit(army, wave[army.code], i, 1)"
-                                 *ngIf="wave[army.code] > 1">
-                              <ic-icon [icon]="splitIcon"></ic-icon>
-                            </div>
-                            <div (click)="waveAttackDelete(army.code, i)"
-                                 class="flex-grow-1 btn btn-danger" translate>
-                              <ic-icon [icon]="times"></ic-icon>
+              
+              <!-- Attack -->
+              <ng-container *ngIf="type !== 'defense'">
+                <div class="text-center">
+                  <strong translate>Total:</strong>
+                  {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
+                  <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
+                </div>
+                <div class="row d-flex"
+                    cdkDropList
+                    id="wave-attack-0"
+                    [cdkDropListData]="user.getArmy()"
+                    [cdkDropListConnectedTo]="waveAttackDropList"
+                    (cdkDropListDropped)="onDropAttack($event)">
+                  <ng-container *ngFor="let army of user.getArmy()">
+                    <div *ngIf="waveAttackUnit && army.attack > 0 &&
+                                (user.getPropertyNb(army.code) > (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0))"
+                        class="col-3 col-md-2 d-flex flex-column" role="button"
+                        id="{{army.code}}-0-{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}"
+                        data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                        (click)="selectArmy(army.code)"
+                        cdkDrag>
+                      <div class="text-center">
+                        <strong translate>{{ army.name }}</strong>
+                        (<strong>{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}</strong>)
+                      </div>
+                      <div class="mt-auto m-1-xs m-4-md">
+                        <app-ew-icon name="{{ army.code }}"></app-ew-icon>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+                <ng-container *ngFor="let wave of waveAttackList; index as i">
+                  <div *ngIf="i > 0" class="row"
+                      cdkDropList
+                      id="wave-attack-{{i}}"
+                      [cdkDropListData]="wave"
+                      [cdkDropListConnectedTo]="waveAttackDropList"
+                      (cdkDropListDropped)="onDropAttack($event)">
+                    <h3>{{'Wave { value }'| translate: { value: i } }}</h3>
+                    <div class="d-flex row">
+                      <ng-container *ngFor="let army of user.getArmy()">
+                        <div *ngIf="wave[army.code] > 0" role="button"
+                            id="{{army.code}}-{{i}}-{{wave[army.code]}}"
+                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                          <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                              class="text-center" (click)="selectArmy(army.code)">
+                            <strong translate>{{ army.name }}</strong>
+                            (<strong>{{ wave[army.code] }}</strong>)
+                          </div>
+                          <div class="mt-auto m-1-xs m-4-md text-center">
+                            <app-ew-icon name="{{ army.code }}"
+                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                                    (click)="selectArmy(army.code)"></app-ew-icon>
+                            <div class="d-flex flex-row mt-1"
+                                [ngClass]="{'invisible': army.code === 'soul'}">
+                              <div class="flex-grow-1 btn btn-warning"
+                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                  (click)="setWaveUnit(army, wave[army.code], i, 1)"
+                                  *ngIf="wave[army.code] > 1">
+                                <ic-icon [icon]="splitIcon"></ic-icon>
+                              </div>
+                              <div (click)="waveAttackDelete(army.code, i)"
+                                  class="flex-grow-1 btn btn-danger" translate>
+                                <ic-icon [icon]="times"></ic-icon>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+                <div *ngIf="waveAttackPower > 0 && waveAttackList.length < waveAttackMax">
+                  <h3>{{'Wave { value }'| translate: { value: waveAttackList.length } }}</h3>
+                  <div cdkDropList class="text-center"
+                      id="wave-attack-{{waveAttackList.length}}"
+                      [cdkDropListData]="['']"
+                      [cdkDropListConnectedTo]="waveAttackDropList"
+                      (cdkDropListDropped)="onDropAttack($event)" translate>
+                    Drag and drop units on a wave to add them
+                  </div>
+                </div>
+                <div *ngIf="waveAttackPower == 0">
+                  <div class="text-center fw-bold" translate>
+                    Your army is empty
+                  </div>
+                  <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
+                  <div cdkDropList class="text-center"
+                      id="wave-attack-1"
+                      [cdkDropListData]="['']"
+                      [cdkDropListConnectedTo]="waveAttackDropList"
+                      (cdkDropListDropped)="onDropAttack($event)" translate>
+                    Drag and drop units on a wave to add them
                   </div>
                 </div>
               </ng-container>
-              <div *ngIf="waveAttackPower > 0 && waveAttackList.length < waveAttackMax">
-                <h3>{{'Wave { value }'| translate: { value: waveAttackList.length } }}</h3>
-                <div cdkDropList class="text-center"
-                     id="wave-attack-{{waveAttackList.length}}"
-                     [cdkDropListData]="['']"
-                     [cdkDropListConnectedTo]="waveAttackDropList"
-                     (cdkDropListDropped)="onDropAttack($event)" translate>
-                  Drag and drop units on a wave to add them
-                </div>
-              </div>
-              <div *ngIf="waveAttackPower == 0">
-                <div class="text-center fw-bold" translate>
-                  Your army is empty
-                </div>
-                <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
-                <div cdkDropList class="text-center"
-                     id="wave-attack-1"
-                     [cdkDropListData]="['']"
-                     [cdkDropListConnectedTo]="waveAttackDropList"
-                     (cdkDropListDropped)="onDropAttack($event)" translate>
-                  Drag and drop units on a wave to add them
-                </div>
-              </div>
-            </ng-container>
-            
-            <!-- Defense -->
-            <ng-container *ngIf="type === 'defense'">
-              <div class="text-center">
-                <strong translate>Total:</strong>
-                {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
-                <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
-              </div>
               
-              <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') == 0">
-                <span translate>The wall of Poseidon protects this city.</span>
-                ({{ wallDefense | number:'': this.translate.currentLang }} 
-                 <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
-              </div>
-              <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') == 0 && user.getPropertyNb('defense_wall') > 0">
-                <span translate>A wall is protecting this city.</span>
-                ({{ defenseWallStrength | number:'': this.translate.currentLang }} 
-                 <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
-              </div>
-              <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') > 0">
-                <span translate>Many walls are protecting this city.</span>
-                ({{ wallDefense+defenseWallStrength | number:'': this.translate.currentLang }} 
-                 <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
-              </div>
-              
-              <div class="row d-flex"
-                   cdkDropList
-                   id="wave-defense-0"
-                   [cdkDropListData]="user.getArmy()"
-                   [cdkDropListConnectedTo]="waveDefenseDropList"
-                   (cdkDropListDropped)="onDropDefense($event)">
-                <ng-container *ngFor="let army of user.getArmy()">
-                  <div *ngIf="waveDefenseUnit && army.defense > 0 &&
-                              (user.getPropertyNb(army.code) > (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0))"
-                       class="col-3 col-md-2 d-flex flex-column" role="button"
-                       id="{{army.code}}-0-{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}"
-                       data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                       (click)="selectArmy(army.code)"
-                       cdkDrag>
-                    <div class="text-center">
-                      <strong translate>{{ army.name }}</strong>
-                      (<strong>{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}</strong>)
+              <!-- Defense -->
+              <ng-container *ngIf="type === 'defense'">
+                <div class="text-center">
+                  <strong translate>Total:</strong>
+                  {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
+                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+                </div>
+                
+                <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') == 0">
+                  <span translate>The wall of Poseidon protects this city.</span>
+                  ({{ wallDefense | number:'': this.translate.currentLang }} 
+                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                </div>
+                <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') == 0 && user.getPropertyNb('defense_wall') > 0">
+                  <span translate>A wall is protecting this city.</span>
+                  ({{ defenseWallStrength | number:'': this.translate.currentLang }} 
+                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                </div>
+                <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') > 0">
+                  <span translate>Many walls are protecting this city.</span>
+                  ({{ wallDefense+defenseWallStrength | number:'': this.translate.currentLang }} 
+                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                </div>
+                
+                <div class="row d-flex"
+                    cdkDropList
+                    id="wave-defense-0"
+                    [cdkDropListData]="user.getArmy()"
+                    [cdkDropListConnectedTo]="waveDefenseDropList"
+                    (cdkDropListDropped)="onDropDefense($event)">
+                  <ng-container *ngFor="let army of user.getArmy()">
+                    <div *ngIf="waveDefenseUnit && army.defense > 0 &&
+                                (user.getPropertyNb(army.code) > (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0))"
+                        class="col-3 col-md-2 d-flex flex-column" role="button"
+                        id="{{army.code}}-0-{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}"
+                        data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                        (click)="selectArmy(army.code)"
+                        cdkDrag>
+                      <div class="text-center">
+                        <strong translate>{{ army.name }}</strong>
+                        (<strong>{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}</strong>)
+                      </div>
+                      <div class="mt-auto m-1-xs m-4-md">
+                        <app-ew-icon name="{{ army.code }}"></app-ew-icon>
+                      </div>
                     </div>
-                    <div class="mt-auto m-1-xs m-4-md">
-                      <app-ew-icon name="{{ army.code }}"></app-ew-icon>
+                  </ng-container>
+                  <ng-container *ngFor="let building of user.getBuildings()">
+                    <div *ngIf="waveDefenseUnit && building.type == 2 &&
+                                (user.getPropertyNb(building.code) > (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0))"
+                        class="col-3 col-md-2 d-flex flex-column" role="button"
+                        id="{{building.code}}-0-{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}"
+                        data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                        (click)="selectBuilding(building.code)"
+                        cdkDrag>
+                      <div class="text-center">
+                        <strong translate>{{ building.name }}</strong>
+                        (<strong>{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}</strong>)
+                      </div>
+                      <div class="mt-auto m-1-xs m-4-md">
+                        <app-ew-icon name="{{ building.code }}"></app-ew-icon>
+                      </div>
                     </div>
-                  </div>
-                </ng-container>
-                <ng-container *ngFor="let building of user.getBuildings()">
-                  <div *ngIf="waveDefenseUnit && building.type == 2 &&
-                              (user.getPropertyNb(building.code) > (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0))"
-                       class="col-3 col-md-2 d-flex flex-column" role="button"
-                       id="{{building.code}}-0-{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}"
-                       data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                       (click)="selectBuilding(building.code)"
-                       cdkDrag>
-                    <div class="text-center">
-                      <strong translate>{{ building.name }}</strong>
-                      (<strong>{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}</strong>)
-                    </div>
-                    <div class="mt-auto m-1-xs m-4-md">
-                      <app-ew-icon name="{{ building.code }}"></app-ew-icon>
-                    </div>
-                  </div>
-                </ng-container>
-              </div>
-              <ng-container *ngFor="let wave of waveDefenseList; index as i">
-                <div *ngIf="i > 0" class="row"
-                     cdkDropList
-                     id="wave-defense-{{i}}"
-                     [cdkDropListData]="wave"
-                     [cdkDropListConnectedTo]="waveDefenseDropList"
-                     (cdkDropListDropped)="onDropDefense($event)">
-                  <h3>{{'Wave { value }'| translate: { value: i } }}</h3>
-                  <div class="d-flex row">
-                    <ng-container *ngFor="let army of user.getArmy()">
-                      <div *ngIf="wave[army.code] > 0" role="button"
-                           id="{{army.code}}-{{i}}-{{wave[army.code]}}"
-                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
-                        <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                             class="text-center" (click)="selectArmy(army.code)">
-                          <strong translate>{{ army.name }}</strong>
-                          (<strong>{{ wave[army.code] }}</strong>)
-                        </div>
-                        <div class="mt-auto m-1-xs m-4-md text-center">
-                          <app-ew-icon name="{{ army.code }}"
-                                   data-bs-toggle="modal" data-bs-target="#ArmyInfo"
-                                   (click)="selectArmy(army.code)"></app-ew-icon>
-                          <div class="d-flex flex-row mt-1"
-                               [ngClass]="{'invisible': army.code === 'soul'}">
-                            <div class="flex-grow-1 btn btn-warning"
-                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
-                                 (click)="setWaveUnit(army, wave[army.code], i, 2)"
-                                 *ngIf="wave[army.code] > 1">
-                              <ic-icon [icon]="splitIcon"></ic-icon>
-                            </div>
-                            <div (click)="waveDefenseDelete(army.code, i)"
-                                 class="flex-grow-1 btn btn-danger" translate>
-                              <ic-icon [icon]="times"></ic-icon>
+                  </ng-container>
+                </div>
+                <ng-container *ngFor="let wave of waveDefenseList; index as i">
+                  <div *ngIf="i > 0" class="row"
+                      cdkDropList
+                      id="wave-defense-{{i}}"
+                      [cdkDropListData]="wave"
+                      [cdkDropListConnectedTo]="waveDefenseDropList"
+                      (cdkDropListDropped)="onDropDefense($event)">
+                    <h3>{{'Wave { value }'| translate: { value: i } }}</h3>
+                    <div class="d-flex row">
+                      <ng-container *ngFor="let army of user.getArmy()">
+                        <div *ngIf="wave[army.code] > 0" role="button"
+                            id="{{army.code}}-{{i}}-{{wave[army.code]}}"
+                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                          <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                              class="text-center" (click)="selectArmy(army.code)">
+                            <strong translate>{{ army.name }}</strong>
+                            (<strong>{{ wave[army.code] }}</strong>)
+                          </div>
+                          <div class="mt-auto m-1-xs m-4-md text-center">
+                            <app-ew-icon name="{{ army.code }}"
+                                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                                    (click)="selectArmy(army.code)"></app-ew-icon>
+                            <div class="d-flex flex-row mt-1"
+                                [ngClass]="{'invisible': army.code === 'soul'}">
+                              <div class="flex-grow-1 btn btn-warning"
+                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                  (click)="setWaveUnit(army, wave[army.code], i, 2)"
+                                  *ngIf="wave[army.code] > 1">
+                                <ic-icon [icon]="splitIcon"></ic-icon>
+                              </div>
+                              <div (click)="waveDefenseDelete(army.code, i)"
+                                  class="flex-grow-1 btn btn-danger" translate>
+                                <ic-icon [icon]="times"></ic-icon>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </ng-container>
-                    <ng-container *ngFor="let building of user.getBuildings()">
-                      <div *ngIf="wave[building.code] > 0" role="button"
-                           id="{{building.code}}-{{i}}-{{wave[building.code]}}"
-                           class="col-3 col-md-2 d-flex flex-column" cdkDrag>
-                        <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                             class="text-center"
-                             (click)="selectBuilding(building.code)">
-                          <strong translate>{{ building.name }}</strong>
-                          (<strong>{{ wave[building.code] }}</strong>)
-                        </div>
-                        <div class="mt-auto m-1-xs m-4-md text-center">
-                          <app-ew-icon name="{{ building.code }}"
-                                   data-bs-toggle="modal" data-bs-target="#BuildingInfo"
-                                   (click)="selectBuilding(building.code)"></app-ew-icon>
-                          <div class="d-flex flex-row mt-1">
-                            <div class="flex-grow-1 btn btn-warning"
-                                 data-bs-toggle="modal" data-bs-target="#WaveDivide"
-                                 (click)="setWaveUnit(building, wave[building.code], i, 2)"
-                                 *ngIf="wave[building.code] > 1">
-                              <ic-icon [icon]="splitIcon"></ic-icon>
-                            </div>
-                            <div (click)="waveDefenseDelete(building.code, i)"
-                                 class="flex-grow-1 btn btn-danger" translate>
-                              <ic-icon [icon]="times"></ic-icon>
+                      </ng-container>
+                      <ng-container *ngFor="let building of user.getBuildings()">
+                        <div *ngIf="wave[building.code] > 0" role="button"
+                            id="{{building.code}}-{{i}}-{{wave[building.code]}}"
+                            class="col-3 col-md-2 d-flex flex-column" cdkDrag>
+                          <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                              class="text-center"
+                              (click)="selectBuilding(building.code)">
+                            <strong translate>{{ building.name }}</strong>
+                            (<strong>{{ wave[building.code] }}</strong>)
+                          </div>
+                          <div class="mt-auto m-1-xs m-4-md text-center">
+                            <app-ew-icon name="{{ building.code }}"
+                                    data-bs-toggle="modal" data-bs-target="#BuildingInfo"
+                                    (click)="selectBuilding(building.code)"></app-ew-icon>
+                            <div class="d-flex flex-row mt-1">
+                              <div class="flex-grow-1 btn btn-warning"
+                                  data-bs-toggle="modal" data-bs-target="#WaveDivide"
+                                  (click)="setWaveUnit(building, wave[building.code], i, 2)"
+                                  *ngIf="wave[building.code] > 1">
+                                <ic-icon [icon]="splitIcon"></ic-icon>
+                              </div>
+                              <div (click)="waveDefenseDelete(building.code, i)"
+                                  class="flex-grow-1 btn btn-danger" translate>
+                                <ic-icon [icon]="times"></ic-icon>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+                <div *ngIf="waveDefensePower > 0 && waveDefenseList.length < waveDefenseMax">
+                  <h3>{{'Wave { value }'| translate: { value: waveDefenseList.length } }}</h3>
+                  <div cdkDropList class="text-center"
+                      id="wave-defense-{{waveDefenseList.length}}"
+                      [cdkDropListData]="['']"
+                      [cdkDropListConnectedTo]="waveDefenseDropList"
+                      (cdkDropListDropped)="onDropDefense($event)" translate>
+                    Drag and drop units on a wave to add them
+                  </div>
+                </div>
+                <div *ngIf="waveDefensePower == 0">
+                  <div class="text-center fw-bold" translate>
+                    Your army is empty
+                  </div>
+                  <div class="text-center text-danger fw-bold">
+                    <span translate>
+                      Without defense, your resource losses will be greater in the event of an attack
+                    </span>
+                    <ic-icon [icIcon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#DefenseEmpty"></ic-icon>
+                  </div>
+                  <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
+                  <div cdkDropList class="text-center"
+                      id="wave-defense-1"
+                      [cdkDropListData]="['']"
+                      [cdkDropListConnectedTo]="waveDefenseDropList"
+                      (cdkDropListDropped)="onDropDefense($event)" translate>
+                    Drag and drop units on a wave to add them
                   </div>
                 </div>
               </ng-container>
-              <div *ngIf="waveDefensePower > 0 && waveDefenseList.length < waveDefenseMax">
-                <h3>{{'Wave { value }'| translate: { value: waveDefenseList.length } }}</h3>
-                <div cdkDropList class="text-center"
-                     id="wave-defense-{{waveDefenseList.length}}"
-                     [cdkDropListData]="['']"
-                     [cdkDropListConnectedTo]="waveDefenseDropList"
-                     (cdkDropListDropped)="onDropDefense($event)" translate>
-                  Drag and drop units on a wave to add them
-                </div>
-              </div>
-              <div *ngIf="waveDefensePower == 0">
-                <div class="text-center fw-bold" translate>
-                  Your army is empty
-                </div>
-                <div class="text-center text-danger fw-bold">
-                  <span translate>
-                    Without defense, your resource losses will be greater in the event of an attack
-                  </span>
-                  <ic-icon [icIcon]="questionCircle" role="button"
-                           data-bs-toggle="modal"
-                           data-bs-target="#DefenseEmpty"></ic-icon>
-                </div>
-                <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
-                <div cdkDropList class="text-center"
-                     id="wave-defense-1"
-                     [cdkDropListData]="['']"
-                     [cdkDropListConnectedTo]="waveDefenseDropList"
-                     (cdkDropListDropped)="onDropDefense($event)" translate>
-                  Drag and drop units on a wave to add them
-                </div>
-              </div>
-            </ng-container>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <app-connected-right-menu></app-connected-right-menu>
 </div>
 
-<app-connected-right-menu></app-connected-right-menu>
 <app-common-bottom-bar></app-common-bottom-bar>

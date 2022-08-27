@@ -11,218 +11,221 @@
   </div>
 </div>
 
-<div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top" role="main">
-  <div class="container">
-    <div class="row" id="quest-component">
-      <div class="col-12">
-        <div class="d-flex dail-quest-menu" *ngIf="user.getLevel() >= 10">
-          <button class="btn btn-primary flex-grow-1 fw-bold"
-                  [ngClass]="{'text-warning': user.getPropertyNb('dquest_validated') > 0,
-                              'bg-white': page == 0,
-                              'text-dark': page == 0 && user.getPropertyNb('dquest_validated') == 0}"
-                  data-bs-toggle="modal" data-bs-target="#MsgNew"
-                  title="{{'Quests'| translate}}"
-                  (click)="setPage(0)" translate>
-            Quests
-          </button>
-          <button class="btn btn-danger flex-grow-1 fw-bold"
-                  [ngClass]="{'text-warning': user.getPropertyNb('altar_available') > 0,
-                              'bg-white': page == 1,
-                              'text-dark': page == 1 && user.getPropertyNb('altar_available') == 0}"
-                  data-bs-toggle="modal" data-bs-target="#MsgNew"
-                  title="{{'Altars of the Gods'| translate}}"
-                  (click)="setPage(1)" translate>
-            Altars of the Gods
-          </button>
+<div class="home-bg home-bg-private">
+  <div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top" role="main">
+    <div class="container">
+      <div class="row" id="quest-component">
+        <div class="col-12">
+          <div class="d-flex dail-quest-menu" *ngIf="user.getLevel() >= 10">
+            <button class="btn btn-primary flex-grow-1 fw-bold"
+                    [ngClass]="{'text-warning': user.getPropertyNb('dquest_validated') > 0,
+                                'bg-white': page == 0,
+                                'text-dark': page == 0 && user.getPropertyNb('dquest_validated') == 0}"
+                    data-bs-toggle="modal" data-bs-target="#MsgNew"
+                    title="{{'Quests'| translate}}"
+                    (click)="setPage(0)" translate>
+              Quests
+            </button>
+            <button class="btn btn-danger flex-grow-1 fw-bold"
+                    [ngClass]="{'text-warning': user.getPropertyNb('altar_available') > 0,
+                                'bg-white': page == 1,
+                                'text-dark': page == 1 && user.getPropertyNb('altar_available') == 0}"
+                    data-bs-toggle="modal" data-bs-target="#MsgNew"
+                    title="{{'Altars of the Gods'| translate}}"
+                    (click)="setPage(1)" translate>
+              Altars of the Gods
+            </button>
+          </div>
+          <app-quests-missions *ngIf="user.getLevel() < 10"></app-quests-missions>
         </div>
-        <app-quests-missions *ngIf="user.getLevel() < 10"></app-quests-missions>
-      </div>
-      <div class="col-12" *ngIf="user.getLevel() > 0">
-        <div class="card">
-          <div class="card-body" *ngIf="user.getLevel() < 10 || page === 0">
-            <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
-              <span translate>
-                Quest progress
-              </span>
-              &nbsp;
-              <ic-icon [icIcon]="questionCircle" data-bs-toggle="modal" 
-                       role="button" data-bs-target="#QuestsInfo"></ic-icon>
-            </div>
-            <div class="containBar">
-               <div class="progression-quest-container">
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 1,
-                                  'quest_available': user.getPropertyNb('quest_step') == 0 && user.getPropertyNb('quest_today') == 0}">
-                   <p>1</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 2,
-                                  'quest_available': user.getPropertyNb('quest_step') == 1 && user.getPropertyNb('quest_today') == 0}">
-                   <p>2</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 3,
-                                  'quest_available': user.getPropertyNb('quest_step') == 2 && user.getPropertyNb('quest_today') == 0}">
-                   <p>3</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 4,
-                                  'quest_available': user.getPropertyNb('quest_step') == 3 && user.getPropertyNb('quest_today') == 0}">
-                   <p>4</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 5,
-                                  'quest_available': user.getPropertyNb('quest_step') == 4 && user.getPropertyNb('quest_today') == 0}">
-                   <p>5</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 6,
-                                  'quest_available': user.getPropertyNb('quest_step') == 5 && user.getPropertyNb('quest_today') == 0}">
-                   <p>6</p>
-                 </div>
-                 <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 7,
-                                  'quest_available': user.getPropertyNb('quest_step') == 6 && user.getPropertyNb('quest_today') == 0}"
-                      data-bs-toggle="modal" data-bs-target="#QuestsInfo" role="button">
-                   <p class="quest_final">
-                     <ic-icon class="fs-2" [icIcon]="treasureChest"></ic-icon>
-                   </p>
-                 </div>
-               </div>
-            </div>
-            <div class="row" id="dailyQuestList">
-              <div *ngFor="let quest of getMyQuestList()" class="col-md-6 col-12 mt-2 mb-2 d-flex dailyquestblock">
-                <div [ngSwitch]="quest.quest_type" class="d-flex flex-grow-1">
-                  <app-quests-daily *ngSwitchCase="1" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Strenuous attacker'|translate}}"
-                                description="{{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="attacks"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="2" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Worshiper of the Gods'|translate}}"
-                                description="{{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="divine"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="3" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Precision launcher'|translate}}"
-                                description="{{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="city"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="4" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Faithful of the Gods'|translate}}"
-                                description="{{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="city"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="5" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Builder'|translate}}"
-                                description="{{ 'Construct { value } buildings' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
-                                [quest]="quest"
-                                link="city"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="6" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Recruiter'|translate}}"
-                                description="{{ 'Engage { value } Units' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
-                                [quest]="quest"
-                                link="city"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="7" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Monster Hunter'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Attack 1 sanctuary'  | translate) : 
-                                                ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="sanctuaries"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="8" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Monster killer'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Conquest 1 sanctuary'|translate) : 
-                                                ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="sanctuaries"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="9" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Monster killer'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Win 1 war'|translate) : 
-                                                ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="attacks"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="10" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Honorary Warrior'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Win the Honnor challenge'|translate) : 
-                                                ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="attacks"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="11" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Diamond thief'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Take the Diamond'|translate) : 
-                                                ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="attacks"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="12" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Diamond Keeper'|translate}}"
-                                description="{{ quest.quest_goal == 1 ?
-                                                ('Win the Diamond challenge'|translate) : 
-                                                ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
-                                [quest]="quest"
-                                link="attacks"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="13" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Future millionaire'|translate}}"
-                                description="{{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="lotto"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="14" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Food of the Gods'|translate}}"
-                                description="{{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="city"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="15" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Tickler'|translate}}"
-                                description="{{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="tickets"></app-quests-daily>
-                  
-                  <app-quests-daily *ngSwitchCase="16" class="flex-grow-1 d-flex flex-column"
-                                subject="{{'Scraper winner'|translate}}"
-                                description="{{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}"
-                                [quest]="quest"
-                                link="tickets"></app-quests-daily>
+        <div class="col-12" *ngIf="user.getLevel() > 0">
+          <div class="card">
+            <div class="card-body" *ngIf="user.getLevel() < 10 || page === 0">
+              <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
+                <span translate>
+                  Quest progress
+                </span>
+                &nbsp;
+                <ic-icon [icIcon]="questionCircle" data-bs-toggle="modal" 
+                        role="button" data-bs-target="#QuestsInfo"></ic-icon>
+              </div>
+              <div class="containBar">
+                <div class="progression-quest-container">
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 1,
+                                    'quest_available': user.getPropertyNb('quest_step') == 0 && user.getPropertyNb('quest_today') == 0}">
+                    <p>1</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 2,
+                                    'quest_available': user.getPropertyNb('quest_step') == 1 && user.getPropertyNb('quest_today') == 0}">
+                    <p>2</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 3,
+                                    'quest_available': user.getPropertyNb('quest_step') == 2 && user.getPropertyNb('quest_today') == 0}">
+                    <p>3</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 4,
+                                    'quest_available': user.getPropertyNb('quest_step') == 3 && user.getPropertyNb('quest_today') == 0}">
+                    <p>4</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 5,
+                                    'quest_available': user.getPropertyNb('quest_step') == 4 && user.getPropertyNb('quest_today') == 0}">
+                    <p>5</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 6,
+                                    'quest_available': user.getPropertyNb('quest_step') == 5 && user.getPropertyNb('quest_today') == 0}">
+                    <p>6</p>
+                  </div>
+                  <div [ngClass]="{'quest_validated': user.getPropertyNb('quest_step') >= 7,
+                                    'quest_available': user.getPropertyNb('quest_step') == 6 && user.getPropertyNb('quest_today') == 0}"
+                        data-bs-toggle="modal" data-bs-target="#QuestsInfo" role="button">
+                    <p class="quest_final">
+                      <ic-icon class="fs-2" [icIcon]="treasureChest"></ic-icon>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="dailyQuestList">
+                <div *ngFor="let quest of getMyQuestList()" class="col-md-6 col-12 mt-2 mb-2 d-flex dailyquestblock">
+                  <div [ngSwitch]="quest.quest_type" class="d-flex flex-grow-1">
+                    <app-quests-daily *ngSwitchCase="1" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Strenuous attacker'|translate}}"
+                                  description="{{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="attacks"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="2" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Worshiper of the Gods'|translate}}"
+                                  description="{{ 'Use { value } Divine powers' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="divine"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="3" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Precision launcher'|translate}}"
+                                  description="{{ 'Win { value } times in the javelin game' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="4" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Faithful of the Gods'|translate}}"
+                                  description="{{ 'Use { value } Divine bonus' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="5" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Builder'|translate}}"
+                                  description="{{ 'Construct { value } buildings' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="6" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Recruiter'|translate}}"
+                                  description="{{ 'Engage { value } Units' | translate: { value: quest.quest_goal | number:'': this.translate.currentLang} }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="7" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Monster Hunter'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Attack 1 sanctuary'  | translate) : 
+                                                  ('Attack { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="sanctuaries"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="8" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Monster killer'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Conquest 1 sanctuary'|translate) : 
+                                                  ('Conquest { value } sanctuaries'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="sanctuaries"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="9" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Monster killer'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Win 1 war'|translate) : 
+                                                  ('Win { value } wars'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="attacks"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="10" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Honorary Warrior'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Win the Honnor challenge'|translate) : 
+                                                  ('Win the Honnor challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="attacks"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="11" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Diamond thief'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Take the Diamond'|translate) : 
+                                                  ('Take the Diamond { value } times'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="attacks"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="12" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Diamond Keeper'|translate}}"
+                                  description="{{ quest.quest_goal == 1 ?
+                                                  ('Win the Diamond challenge'|translate) : 
+                                                  ('Win the Diamond challenge { value } times'  | translate: { value: quest.quest_goal }) }}"
+                                  [quest]="quest"
+                                  link="attacks"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="13" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Future millionaire'|translate}}"
+                                  description="{{ 'Buy { value } lotto tickets'  | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="lotto"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="14" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Food of the Gods'|translate}}"
+                                  description="{{ 'Spend { value } Ambrosia' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="15" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Tickler'|translate}}"
+                                  description="{{ 'Scratch { value } tickets' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="tickets"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="16" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Scraper winner'|translate}}"
+                                  description="{{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="tickets"></app-quests-daily>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card-body" *ngIf="user.getLevel() === 10 && page === 1">
-            <div class="row">
-              <h2 class="text-center fw-bold fs-3 mb-4" translate>Altars of the Gods</h2>
-              <app-quests-altar title="{{'Gaia\'s defense'| translate}}"
-                                code="gaia_defender" id="1"
-                                [condition]="altarConditionGaia"
-                                class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
-              <app-quests-altar title="{{'Hospitality of Hestia'| translate}}"
-                                code="hestia" id="2"
-                                [condition]="altarConditionHestia"
-                                class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
-              <app-quests-altar title="{{'Dream of Prometheus'| translate}}"
-                                code="prometheus" id="3"
-                                [condition]="altarConditionPrometheus"
-                                class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
-              <app-quests-altar title="{{'Divine units'| translate}}"
-                                code="divine_units" id="4"
-                                [condition]="altarConditionDivineunits"
-                                class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
+            <div class="card-body" *ngIf="user.getLevel() === 10 && page === 1">
+              <div class="row">
+                <h2 class="text-center fw-bold fs-3 mb-4" translate>Altars of the Gods</h2>
+                <app-quests-altar title="{{'Gaia\'s defense'| translate}}"
+                                  code="gaia_defender" id="1"
+                                  [condition]="altarConditionGaia"
+                                  class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
+                <app-quests-altar title="{{'Hospitality of Hestia'| translate}}"
+                                  code="hestia" id="2"
+                                  [condition]="altarConditionHestia"
+                                  class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
+                <app-quests-altar title="{{'Dream of Prometheus'| translate}}"
+                                  code="prometheus" id="3"
+                                  [condition]="altarConditionPrometheus"
+                                  class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
+                <app-quests-altar title="{{'Divine units'| translate}}"
+                                  code="divine_units" id="4"
+                                  [condition]="altarConditionDivineunits"
+                                  class="col-md-6 col-12 mt-1 mb-2 d-flex"></app-quests-altar>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <app-connected-right-menu></app-connected-right-menu>
 </div>
 
-<app-connected-right-menu></app-connected-right-menu>
 <app-common-bottom-bar></app-common-bottom-bar>
