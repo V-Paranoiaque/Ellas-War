@@ -19,7 +19,7 @@
         <ng-container *ngFor="let unit of user.getArmy()">
           <tr *ngIf="user.getPropertyNb(unit.code) > 0 && (unit.attack > 0 || unit.defense > 0)">
             <th scope="row">
-              {{ unit.name | translate }} 
+              {{ user.getName(unit.code, user.getPropertyNb(unit.code)) | translate }} 
               ({{user.getPropertyNb(unit.code) | number:'': this.translate.currentLang }})
             </th>
             <td class="text-end">
@@ -32,7 +32,7 @@
         </ng-container>
         <ng-container *ngFor="let building of user.getBuildings()">
           <tr *ngIf="user.getPropertyNb(building.code) > 0 && building.type == 2">
-            <th scope="row">{{ building.name | translate }} ({{user.getPropertyNb(building.code)}})</th>
+            <th scope="row">{{ user.getName(building.code, user.getPropertyNb(building.code)) | translate }} ({{user.getPropertyNb(building.code)}})</th>
             <td class="text-end">0</td>
             <td class="text-end">
               {{ user.getPropertyNb(building.code)*building.defense | number:'': this.translate.currentLang }}

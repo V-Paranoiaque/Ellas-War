@@ -1,7 +1,7 @@
 <div class="modal-content">
   <div class="modal-header">
     <h5 class="modal-title">
-      {{ info.name | translate }}
+      {{ user.getName(info.code) | translate }}
       
       <span *ngIf="info.attack > 0 || info.defense > 0">
         <ic-icon title="{{'Infantryman'|translate}}"
@@ -38,7 +38,7 @@
   <div class="modal-body container-fluid">
     <div class="row">
       <div class="col-4 offset-4">
-        <app-ew-icon name="{{ info?.code }}" title="{{ info?.name | translate }}"></app-ew-icon>
+        <app-ew-icon name="{{ info?.code }}" title="{{ user.getName(info?.code) | translate }}"></app-ew-icon>
       </div>
       
       <div class="col-12 text-center fw-bold text-danger">

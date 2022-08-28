@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-wave-divide-popup',
@@ -10,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class WaveDividePopupSubComponent {
   @Input() info:any;
   
-  constructor(private socket: Socket, public translate: TranslateService) {
+  constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     
   }
   

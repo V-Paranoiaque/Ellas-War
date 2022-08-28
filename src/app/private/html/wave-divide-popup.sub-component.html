@@ -5,7 +5,7 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body text-center">
-    <h2>{{ info.names | translate }}</h2>
+    <h2>{{ user.getName(info.code, info.nb) | translate }}</h2>
     
     <strong>
       {{ info.nbUnit| number:'': this.translate.currentLang }}/{{ info.nb | number:'': this.translate.currentLang}}

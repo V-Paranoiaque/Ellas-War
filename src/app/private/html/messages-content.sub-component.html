@@ -134,14 +134,14 @@
     <div *ngIf="msg.content.buildings && msg.content.buildings.length > 0">
       <strong translate>Buildings</strong><strong translate>:</strong>
       <div *ngFor="let build of msg.content.buildings">
-        {{user.info.datas.building[build].name|translate}}
+        {{ user.getName(build) | translate }}
       </div>
     </div>
     
     <div *ngIf="msg.content.unities && msg.content.unities.length > 0">
       <strong translate>Unities</strong><strong translate>:</strong>
       <div *ngFor="let unit of msg.content.unities">
-        {{user.info.datas.army[unit].name|translate}}
+        {{ user.getName(unit) | translate }}
       </div>
       <br/>
     </div>
@@ -197,7 +197,7 @@
         <div *ngIf="msg.content.unities && msg.content.unities.length > 0">
           <br/>
           <div *ngFor="let unit of msg.content.unities">
-            {{user.info.datas.army[unit].name|translate}}
+            {{ user.getName(unit) | translate }}
           </div>
           <br/>
         </div>
@@ -207,7 +207,7 @@
         <div *ngIf="msg.content.unities && msg.content.unities.length > 0">
           <br/>
           <div *ngFor="let unit of msg.content.unities">
-            {{user.info.datas.army[unit].name|translate}}
+            {{ user.getName(unit) | translate }}
           </div>
           <br/>
         </div>

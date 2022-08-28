@@ -65,7 +65,7 @@
           </th>
           <td>
             <ng-container *ngFor="let army of user.getArmy()">
-              <span *ngIf="i == army.type">{{ army.name |translate}}<br/></span>
+              <span *ngIf="i == army.type">{{ user.getName(army.code) |translate}}<br/></span>
             </ng-container>
           </td>
           <td>

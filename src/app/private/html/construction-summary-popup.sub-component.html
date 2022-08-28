@@ -19,7 +19,7 @@
       <tbody>
         <ng-container *ngFor="let building of user.getBuildings()">
           <tr>
-            <th scope="row">{{ building.name | translate }} ({{user.getPropertyNb(building.code)}})</th>
+            <th scope="row">{{ user.getName(building.code, user.getPropertyNb(building.code)) | translate }} ({{user.getPropertyNb(building.code)}})</th>
             <td class="text-end">
               {{ building.field | number:'': this.translate.currentLang }}
             </td>
