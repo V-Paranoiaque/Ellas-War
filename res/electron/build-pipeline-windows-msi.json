@@ -1,0 +1,14 @@
+{
+  "electron": {
+    "windows": {
+      "package": [ "msi" ],
+      "arch": [ "x64", "ia32" ],
+      "category": "Game",
+      "signing": {
+        "release": {
+          "certificateFile": "sign_TemporaryKey.pfx"
+        }
+      }
+    }
+  }
+}
