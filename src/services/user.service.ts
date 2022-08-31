@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
 import { SocketComponent as Socket } from './socketio.service';
 
-import * as codeList from '../assets/codename.json'
+import * as codeList from '../assets/codeName.json'
 declare let facebookConnectPlugin:any;
 
 @Component({

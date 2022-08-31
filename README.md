@@ -23,7 +23,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Supported platforms
 
 | Platform | Supported | Details | Google Auth | In App purchases |
-| ------------- |:-------------:| ----- |:-----:|
+| ------------- |:-------------:| ----- |:-----:|:-----:|
 | Android | :white_check_mark: | Cordova | :white_check_mark: | :x: |
 | Flatpack | :white_check_mark: | Cordova + Electron | :x: | :x: |
 | iOS | :ballot_box_with_check: | Cordova | :white_check_mark: | :x: |
