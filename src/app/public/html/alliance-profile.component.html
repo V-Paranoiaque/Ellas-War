@@ -17,7 +17,7 @@
               {{allianceProfile.alliance_name}}
               
               <button class="btn btn-success" 
-                      *ngIf="user.getPropertyNb('level') > 0 && user.getPropertyNb('alliance') == 0"
+                      *ngIf="user.getPropertyNb('level') > 0 && user.getPropertyNb('alliance') === 0 && allianceProfile.alliance_type == 0"
                       data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                       title="{{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}"
                       [ngClass]="{'btn-invisible': allianceProfile.recruitement_open == 0}">

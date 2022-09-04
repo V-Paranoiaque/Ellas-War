@@ -129,7 +129,7 @@
                         title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
                         data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                         (click)="setAlliance(alli)"
-                        [ngClass]="{'btn-invisible': alli.recruitement_open == 0}">
+                        [ngClass]="{'btn-invisible': alli.recruitement_open == 0 || alli.alliance_type > 0}">
                         <ic-icon [icon]="userPlus"></ic-icon>
                         <span class="visually-hidden">
                           {{'Join the alliance:'|translate}} {{alli.alliance_name}}
@@ -140,7 +140,7 @@
                           *ngIf="user.getPropertyNb('strategist') > 0" />
                       
                       <a class="btn btn-success" 
-                        *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id"
+                        *ngIf="user.getPropertyNb('strategist') > 0 && user.getPropertyNb('alliance') > 0 && alli.pact == 0 && user.getPropertyNb('alliance') != alli.alliance_id && alli.alliance_type == 0"
                         data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
                         (click)="setAlliance(alli)"
                         title="{{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}">
@@ -182,7 +182,7 @@
                         </span>
                       </a>
                       <a class="btn btn-danger"
-                        *ngIf="user.getPropertyNb('strategist') >0 && user.getPropertyNb('alliance') == alli.alliance_id"
+                        *ngIf="user.getPropertyNb('strategist') > 0 && (user.getPropertyNb('alliance') == alli.alliance_id || alli.alliance_type > 0)"
                         data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
                         (click)="setAlliance(alli)">
                         <ic-icon [icon]="flag"></ic-icon>
