@@ -8,6 +8,7 @@ import { UserComponent as User } from '../../../services/user.service';
 
 import fileAlt from '@iconify/icons-fa-solid/file-alt';
 import flag from '@iconify/icons-fa-solid/flag';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import swordIcon from '@iconify/icons-vaadin/sword';
 import userPlus from '@iconify/icons-fa-solid/user-plus';
 import users from '@iconify/icons-fa-solid/users';
@@ -26,6 +27,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   
   fileAlt  = fileAlt;
   flag     = flag;
+  questionCircle = questionCircle;
   swordIcon= swordIcon;
   userPlus = userPlus;
   users    = users;

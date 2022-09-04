@@ -29,6 +29,12 @@
   </div>
 </div>
 
+<div class="modal fade" id="InvasionHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-invasion-help-popup></app-invasion-help-popup>
+  </div>
+</div>
+
 <div class="home-bg home-bg-private">
   <div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
     <div class="container">
@@ -94,6 +100,11 @@
                       <a [routerLink]="['/allianceprofile/'+alli.alliance_id]">
                         {{alli.alliance_name}}
                       </a>
+                      <span data-bs-toggle="modal" data-bs-target="#InvasionHelp"
+                            *ngIf="alli.alliance_type > 0"
+                            role="button" title="{{'Help'|translate}}" translate>
+                        <ic-icon [icIcon]="questionCircle"></ic-icon>
+                      </span>
                       <div class="d-block d-sm-none">
                         <a [routerLink]="['/profile/'+alli.chief_id]">
                           {{alli.username}}

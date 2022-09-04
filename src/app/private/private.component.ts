@@ -52,6 +52,7 @@ import { FuryMessageSubComponent } from './ts/fury-message.sub-component';
 import { IdToDivineBonusSubComponent } from './ts/id-to-divinebonus.sub-component';
 import { IdToRessSubComponent } from './ts/id-to-ress.sub-component';
 import { IdToWeatherSubComponent } from './ts/id-to-weather.sub-component';
+import { InvasionHelpPopupSubCompoent } from './ts/invasion-help-popup.sub-component';
 import { LostMessageSubComponent } from './ts/lost-message.sub-component';
 import { MessagesContentSubComponent } from './ts/messages-content.sub-component';
 import { MessagesPopupSubComponent } from './ts/messages-popup.sub-component';
@@ -135,6 +136,7 @@ export const PrivateComponent = [
   IdToDivineBonusSubComponent,
   IdToRessSubComponent,
   IdToWeatherSubComponent,
+  InvasionHelpPopupSubCompoent,
   LostMessageSubComponent,
   MessagesContentSubComponent,
   MessagesPopupSubComponent,
