@@ -20,7 +20,7 @@
                       *ngIf="user.getPropertyNb('level') > 0 && user.getPropertyNb('alliance') === 0 && allianceProfile.alliance_type == 0"
                       data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                       title="{{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}"
-                      [ngClass]="{'btn-invisible': allianceProfile.recruitement_open == 0}">
+                      [ngClass]="{'invisible': allianceProfile.recruitement_open == 0}">
                 <ic-icon [icon]="userPlus"></ic-icon>
                 <span class="visually-hidden">
                   {{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}

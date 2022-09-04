@@ -129,7 +129,7 @@
                         title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
                         data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                         (click)="setAlliance(alli)"
-                        [ngClass]="{'btn-invisible': alli.recruitement_open == 0 || alli.alliance_type > 0}">
+                        [ngClass]="{'invisible': alli.recruitement_open == 0 || alli.alliance_type > 0}">
                         <ic-icon [icon]="userPlus"></ic-icon>
                         <span class="visually-hidden">
                           {{'Join the alliance:'|translate}} {{alli.alliance_name}}
