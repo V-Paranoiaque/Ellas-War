@@ -48,5 +48,10 @@
   "griffin": { "name": "Griffin", "names": "Griffins" },
   "hecatoncheir": { "name": "Hecatoncheir", "names": "Hecatoncheires" },
   "manticore": { "name": "Manticore", "names": "Manticores" },
-  "lampad": { "name": "Lampad", "names": "Lampads" }
+  "lampad": { "name": "Lampad", "names": "Lampads" },
+
+  "hoplitemercenary": { "name": "Hoplite Mercenary", "names": "Hoplite Mercenaries" },
+  "immortal": { "name": "Immortal", "names": "Immortals" },
+  "scythedchariot": { "name": "Scythed chariot", "names": "Scythed chariots" },
+  "warelephant": { "name": "War elephant", "names": "War elephants" }
 }
