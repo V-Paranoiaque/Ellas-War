@@ -124,6 +124,20 @@
 <div class="col-table text-center"
      *ngIf="getSavedOther() > 0">{{'Your enemies has saved { value } unities of his lost'| translate : { value: getSavedOther() } }} </div>
 
+<div class="col-table text-center" *ngIf="getSavedRes().length > 0">
+  <strong id="SavedResDesc" translate>Resources saved</strong>
+  <table class="table" aria-describedby="SavedResDesc">
+    <tr *ngFor="let res of getSavedRes()">
+      <td class="col-6 text-end">
+        {{ res.quantity | number:'1.0-0': this.translate.currentLang}}
+      </td>
+      <th scope="row" class="col-6 text-start">
+        <app-id-to-ress [ress_id]=res.res_id></app-id-to-ress>
+      </th>
+    </tr>
+  </table>
+</div>
+
 <div class="col-table text-center" *ngIf="hasCorruptedRes()">
   <strong id="CorruptedResDesc" translate>Corrupted resources</strong>
   <table class="table"  aria-describedby="CorruptedResDesc">

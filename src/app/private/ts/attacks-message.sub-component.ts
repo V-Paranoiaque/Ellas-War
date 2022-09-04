@@ -147,6 +147,23 @@ export class AttacksMessageSubComponent {
     
     return list;
   }
+
+  getSavedRes() {
+    let list = [];
+    
+    if(this.info.ress_def) {
+      for(let code in this.info.ress_def) {
+        if(this.info.ress_def[code] > 0) {
+          list.push({
+            'res_id': code,
+            'quantity': this.info.ress_def[code]
+          });
+        }
+      }
+    }
+    
+    return list;
+  }
   
   getSavedOther() {
     if(!this.info.saved_defense) {
