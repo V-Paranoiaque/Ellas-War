@@ -235,3 +235,13 @@
 * Fix when the storeroom history is empty
 * Game optimization
 * Missing war declaration english translation
+
+# 1.2.6
+* Add saved resources to the attack repports
+* Clean old images
+* Fix invisible buttons
+* Fix public alliance pages display
+* Generate appx and msi files, for windows
+* Prepare for the invasions
+* Store units and buildings names locally
+* Use a bacground in all the pages
