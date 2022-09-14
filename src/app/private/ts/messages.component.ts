@@ -190,10 +190,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
   
   messageLoad(msg:any) {
     let id = msg.msg_id;
-    this.msgSent = 0;
     this.linkSaved = 0;
     
     if(id > 0) {
+      this.msgSent = 0;
+      
       if(!msg.msg_read) {
         msg.msg_read = 1;
       }
