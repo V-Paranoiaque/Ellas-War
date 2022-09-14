@@ -184,18 +184,23 @@
           </div>
         </div>
         
-        <div class="col-xl-6 col-block-half text-center d-none d-lg-block" *ngIf="getCurrentMsg().id == 0">
-          <div class="alert alert-success" *ngIf="msgSent > 0" translate>
-            Message sent
-          </div>
-          <div class="card card-normal">
-            <div class="card-body">
-              <span class="badge bg-primary" *ngFor="let user of getDestList()">
-                {{ user.username }}
-                <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
-              </span>
+        <div class="col-xl-6 col-block-half text-center d-none d-lg-flex flex-grow-1"
+             *ngIf="getCurrentMsg().id == 0">
+          <div class="card card-normal d-flex flex-grow-1">
+            <div class="card-body d-flex flex-column">
+              <div class="alert alert-success" *ngIf="msgSent > 0" translate>
+                Message sent
+              </div>
+
+              <div class="mb-2" *ngIf="getDestList().length > 0">
+
+                <span class="badge bg-primary" *ngFor="let user of getDestList()">
+                  {{ user.username }}
+                  <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+                </span>
+              </div>
               
-              <div class="input-group">
+              <div class="input-group mb-2">
                 <span class="input-group-text" translate>To: </span>
                 <input type="text" class="form-control" aria-label="Player" 
                       placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
@@ -207,16 +212,16 @@
               </div>
               <div *ngIf="addDestError > 0" class="alert alert-danger"
                   translate>This player doesn't exist</div>
-            </div>
-            <div class="card-body">
               <input type="text" class="form-control" 
                     placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
-              <br/>
-              <div class="input-group">
+              
+              <div class="input-group d-flex flex-grow-1 mt-2">
                 <textarea class="form-control" placeholder="{{'Message'|translate}}"
                           [(ngModel)]="msgText"></textarea>
-                <span class="input-group-addon btn btn-primary" 
-                      role="button" (click)="send()" translate>Send</span>
+                <span class="input-group-addon btn btn-primary d-flex align-items-center"
+                      role="button" (click)="send()">
+                  <span translate>Send</span>
+                </span>
               </div>
             </div>
           </div>
