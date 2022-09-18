@@ -23,6 +23,7 @@ import { AdminSupportMsgComponent } from './ts/admin-support-msg.component';
 import { AdminXpComponent } from './ts/admin-xp.component';
 
 import { AdminQuestsTitleSubComponent } from './ts/admin-quests-title.sub-component';
+import { AdminSupportPopupSubComponent } from './ts/admin-support-popup.sub-component';
 
 export const AdminComponent = [
   Admin404Component,
@@ -50,4 +51,5 @@ export const AdminComponent = [
   AdminXpComponent,
   
   AdminQuestsTitleSubComponent,
+  AdminSupportPopupSubComponent
 ];

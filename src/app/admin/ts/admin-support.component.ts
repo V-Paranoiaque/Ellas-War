@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
 import angellistIcon from '@iconify-icons/fa-brands/angellist';
+import brushIcon from '@iconify/icons-bi/brush';
 import eyeIcon from '@iconify/icons-fa-solid/eye';
 
 @Component({
@@ -21,6 +22,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   Tools = Tools;
   
   angellistIcon = angellistIcon;
+  brushIcon = brushIcon;
   eyeIcon = eyeIcon;
   
   constructor(private router: Router, private route: ActivatedRoute,
