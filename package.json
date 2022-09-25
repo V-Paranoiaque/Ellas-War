@@ -1,6 +1,20 @@
 {
   "name": "ew",
+  "description": "Front-end of the Ellas War Game",
   "version": "0.0.0",
+  "homepage": "https://ellaswar.eu",
+  "author": {
+    "name": "Ellas War Team",
+    "email": "contact@ellaswar.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V-Paranoiaque/Ellas-War.git"
+  },
+  "bugs": {
+    "url": "https://github.com/V-Paranoiaque/Ellas-War/issues"
+  },
+  "license": "AGPL-3.0-or-later",
   "main": "index.js",
   "scripts": {
     "ng": "ng",
