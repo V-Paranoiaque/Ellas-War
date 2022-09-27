@@ -747,7 +747,7 @@
                   Many walls are protecting this city.
                 </div>
                 
-                <div class="text-center">
+                <div class="text-center" *ngIf="Object.keys(spyInfo).length > 0">
                   <div *ngIf="!spyInfo.error || spyInfo.error >= 3">
                     <strong translate>Unities</strong><strong translate>:</strong> {{spyInfo.unitiesNb| number:'': this.translate.currentLang}}
                     <br/>
