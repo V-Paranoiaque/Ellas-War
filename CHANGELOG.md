@@ -245,3 +245,9 @@
 * Prepare for the invasions
 * Store units and buildings names locally
 * Use a bacground in all the pages
+
+# 1.2.7
+* Fix message when sending a PM
+* Improve the new message frame
+* Hide spying information when the result is empty
+* New popup to open a support case with a player in the admin panel
