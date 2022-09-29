@@ -9,7 +9,7 @@ on:
 jobs:
   prepare:
     name: "Build the EW project"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v2
@@ -63,7 +63,7 @@ jobs:
   #X64 Arch
   package-x64:
     name: "Build x64 packages"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: prepare
 
     steps:
@@ -134,7 +134,7 @@ jobs:
   #X86 Arch
   package-x86:
     name: "Build x86 packages"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: prepare
 
     steps:
@@ -179,7 +179,7 @@ jobs:
   #arm64 Arch
   package-arm64:
     name: "Build arm64 packages"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: prepare
 
     steps:
@@ -226,7 +226,7 @@ jobs:
   #armhf Arch
   package-armv7l:
     name: "Build armv7l packages"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: prepare
 
     steps:
@@ -279,7 +279,7 @@ jobs:
   #Android
   package-android:
     name: "Build android package"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: prepare
 
     steps:
