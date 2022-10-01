@@ -1,0 +1,7 @@
+{
+  "electron": {
+    "mac": {
+      "package": [ "dmg" ]
+    }
+  }
+}
