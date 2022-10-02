@@ -38,6 +38,7 @@ It's possible to build the project for more platforms using Electron, for more i
 - [Amazon Store](https://www.amazon.fr/Virgil-Ellas-War/dp/B079CHD5BX)
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.ellaswar.ewnextmobile)
 - [Microsoft Store](https://www.microsoft.com/p/ellas-war/9p12xq81l3qp)
+- [Pling Store](https://www.pling.com/p/1891540)
 - [Snapcraft](https://snapcraft.io/ellaswar)
 
 ## Contributions
