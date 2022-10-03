@@ -4,6 +4,7 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 @Component({
   selector: 'app-temple-info-popup',
@@ -26,6 +27,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   private sub:Subscription;
   
   Number = Number;
+  Tools = Tools;
   
   constructor(private http: HttpClient, private socket: Socket, public user: User, public translate: TranslateService) {
     this.wallDefense = 0;

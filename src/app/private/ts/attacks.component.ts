@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import clipboardCheck from '@iconify/icons-fa-solid/clipboard-check';
 import boltIcon from '@iconify/icons-fa-solid/bolt';
@@ -69,6 +70,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
 
   Object = Object;
   parseInt = parseInt;
+  Tools = Tools;
   
   //Icons
   boltIcon   = boltIcon;

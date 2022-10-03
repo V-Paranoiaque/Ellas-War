@@ -27,7 +27,7 @@
         {{info.lost_build.farm| number:'': this.translate.currentLang}}
       </td>
       <th scope="row" class="text-start">
-        {{ user.getName('farm', info.lost_build.farm) |translate}}
+        {{ Tools.getName('farm', info.lost_build.farm) |translate}}
       </th>
     </tr>
     <tr *ngIf="info.lost_build.growers > 0">
@@ -35,7 +35,7 @@
         {{info.lost_build.growers| number:'': this.translate.currentLang}}
       </td>
       <th scope="row" class="text-start">
-        {{ user.getName('growers', info.lost_build.growers) |translate}}
+        {{ Tools.getName('growers', info.lost_build.growers) |translate}}
       </th>
     </tr>
   </table>

@@ -15,6 +15,7 @@ export class AttacksMessageSubComponent {
   public resources:any;
   
   Object = Object;
+  Tools = Tools;
   
   constructor(public user: User, public translate: TranslateService) {
     this.resources = environment.resources;

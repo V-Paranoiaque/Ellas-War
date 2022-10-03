@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 @Component({
   templateUrl: '../html/admin-stats-units.component.html'
@@ -14,6 +15,8 @@ export class AdminStatsUnitsComponent implements OnInit {
   private priceHosting:any;
   private priceList:any
   public templeArray:any;
+
+  Tools = Tools;
   
   constructor(public user: User, public translate: TranslateService) {
     this.priceList = {

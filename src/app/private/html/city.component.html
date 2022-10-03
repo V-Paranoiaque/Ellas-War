@@ -285,7 +285,7 @@
                     [ngClass]="{'level-quest': levelQuest(army.code)}"
                     data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                     (click)="selectArmy(army.code)"
-                    title="{{ user.getName(army.code) | translate }}"
+                    title="{{ Tools.getName(army.code) | translate }}"
                     *ngIf="armyDisplay(army)">
                   <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                   <div class="badge bg-secondary"
@@ -324,7 +324,7 @@
                   [ngClass]="{'level-quest': levelQuest(building.code)}"
                   data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                   (click)="selectBuilding(building.code)"
-                  title="{{ user.getName(building.code) | translate }}">
+                  title="{{ Tools.getName(building.code) | translate }}">
                 <app-ew-icon name="{{ building.code }}"></app-ew-icon>
                 <div class="badge bg-secondary">
                   {{ user.getPropertyNb(building.code) | number:'': this.translate.currentLang }}

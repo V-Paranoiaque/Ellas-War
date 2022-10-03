@@ -3,6 +3,7 @@ import { EwIconSubComponent } from '../../../services/ew-icon.service';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import cloud from '@iconify/icons-fa-solid/cloud';
 import cog from '@iconify/icons-fa-solid/cog';
@@ -32,6 +33,8 @@ export class CityComponent implements OnInit, OnDestroy {
   public waveAttackPower:number;
   public waveDefensePower:number;
   
+  Tools = Tools;
+
   //Icons
   cloud = cloud;
   cog = cog;

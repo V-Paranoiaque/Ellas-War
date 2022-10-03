@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -17,6 +18,8 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
   
   public defenseWallStrength:number;
   public wallDefense:number;
+  
+  Tools = Tools;
   
   shieldShaded = shieldShaded;
   swordIcon= swordIcon;

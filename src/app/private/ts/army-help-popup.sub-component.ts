@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import animalDog20Filled from '@iconify-icons/fluent/animal-dog-20-filled';
 import bowAndArrow from '@iconify-icons/emojione-monotone/bow-and-arrow';
@@ -16,6 +17,8 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 })
 
 export class ArmyHelpPopupSubComponent {
+
+  Tools = Tools;
 
   animalDog20Filled = animalDog20Filled;
   footPrint = footPrint;

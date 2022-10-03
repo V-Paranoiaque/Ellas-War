@@ -4,7 +4,6 @@ import { Router } from '@angular/router'
 import { environment } from './../environments/environment';
 import { SocketComponent as Socket } from './socketio.service';
 
-import * as codeList from '../assets/codeName.json'
 declare let facebookConnectPlugin:any;
 
 @Component({
@@ -341,21 +340,5 @@ export class UserComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
-  }
-
-  getName(code:string, nb=1) {
-    const res = codeList[code as keyof typeof codeList] as {
-      name: string,
-      names: string
-    };
-
-    if(!res) {
-      return 'Unknown name';
-    }
-
-    if(nb > 1) {
-      return res.names;
-    }
-    return res.name;
   }
 }

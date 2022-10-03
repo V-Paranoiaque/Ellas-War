@@ -100,7 +100,7 @@
             <option value="volunteer" translate>Volunteer</option>
             <option *ngFor="let unit of user.getArmy(); let index = index;"
                     value="{{ unit.code }}">
-              {{ user.getName(unit.code) | translate }}
+              {{ Tools.getName(unit.code) | translate }}
             </option>
             
             <option value="defense_wall" translate>Defense wall</option>

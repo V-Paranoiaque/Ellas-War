@@ -35,7 +35,7 @@
                               'table-warning': unit.type == 6,
                               'table-info': unit.type == 7,
                               'table-dark': unit.type == 8}">
-                <td>{{ user.getName(unit.code) | translate }}</td>
+                <td>{{ Tools.getName(unit.code) | translate }}</td>
                 <td>{{ unit.attack | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
@@ -75,7 +75,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let unit of towersArray">
-                <td>{{ user.getName(unit.code) | translate }}</td>
+                <td>{{ Tools.getName(unit.code) | translate }}</td>
                 <td>{{ unit.field | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.defense | number:'': this.translate.currentLang }}</td>
                 <td>{{ unit.globalCost | number:'': this.translate.currentLang }}</td>
@@ -106,7 +106,7 @@
               <tr *ngFor="let unit of templeArray">
                 <td>
                   <span *ngFor="let name of unit.names">
-                    {{ user.getName(name) | translate }}
+                    {{ Tools.getName(name) | translate }}
                   </span>
                 </td>
                 <td *ngFor="let name of unit.names">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
@@ -10,7 +11,8 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 })
 
 export class DetailsComponent implements OnInit {
-
+  Tools = Tools;
+  
   public nbvariation:any;
   public variation:any;
   public menuMode:number;

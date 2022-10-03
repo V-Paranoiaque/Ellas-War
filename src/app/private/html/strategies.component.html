@@ -67,7 +67,7 @@
                         (click)="selectArmy(army.code)"
                         cdkDrag>
                       <div class="text-center">
-                        <strong translate>{{ user.getName(army.code, user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)) | translate }}</strong>
+                        <strong translate>{{ Tools.getName(army.code, user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)) | translate }}</strong>
                         (<strong>{{user.getPropertyNb(army.code) - (waveAttackUnit[army.code] ? waveAttackUnit[army.code] : 0)}}</strong>)
                       </div>
                       <div class="mt-auto m-1-xs m-4-md">
@@ -91,7 +91,7 @@
                             class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                           <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                               class="text-center" (click)="selectArmy(army.code)">
-                            <strong translate>{{ user.getName(army.code, wave[army.code]) }}</strong>
+                            <strong translate>{{ Tools.getName(army.code, wave[army.code]) }}</strong>
                             (<strong>{{ wave[army.code] }}</strong>)
                           </div>
                           <div class="mt-auto m-1-xs m-4-md text-center">
@@ -181,7 +181,7 @@
                         (click)="selectArmy(army.code)"
                         cdkDrag>
                       <div class="text-center">
-                        <strong translate>{{ user.getName(army.code, user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)) | translate }}</strong>
+                        <strong translate>{{ Tools.getName(army.code, user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)) | translate }}</strong>
                         (<strong>{{user.getPropertyNb(army.code) - (waveDefenseUnit[army.code] ? waveDefenseUnit[army.code] : 0)}}</strong>)
                       </div>
                       <div class="mt-auto m-1-xs m-4-md">
@@ -198,7 +198,7 @@
                         (click)="selectBuilding(building.code)"
                         cdkDrag>
                       <div class="text-center">
-                        <strong translate>{{ user.getName(building.code, user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)) | translate}}</strong>
+                        <strong translate>{{ Tools.getName(building.code, user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)) | translate}}</strong>
                         (<strong>{{user.getPropertyNb(building.code) - (waveDefenseUnit[building.code] ? waveDefenseUnit[building.code] : 0)}}</strong>)
                       </div>
                       <div class="mt-auto m-1-xs m-4-md">
@@ -222,7 +222,7 @@
                             class="col-3 col-md-2 d-flex flex-column" cdkDrag>
                           <div data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                               class="text-center" (click)="selectArmy(army.code)">
-                            <strong translate>{{ user.getName(army.code, wave[army.code]) }}</strong>
+                            <strong translate>{{ Tools.getName(army.code, wave[army.code]) }}</strong>
                             (<strong>{{ wave[army.code] }}</strong>)
                           </div>
                           <div class="mt-auto m-1-xs m-4-md text-center">
@@ -252,7 +252,7 @@
                           <div data-bs-toggle="modal" data-bs-target="#BuildingInfo"
                               class="text-center"
                               (click)="selectBuilding(building.code)">
-                            <strong translate>{{ user.getName(building.code, wave[building.code]) }}</strong>
+                            <strong translate>{{ Tools.getName(building.code, wave[building.code]) }}</strong>
                             (<strong>{{ wave[building.code] }}</strong>)
                           </div>
                           <div class="mt-auto m-1-xs m-4-md text-center">

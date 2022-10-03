@@ -759,14 +759,14 @@
                   <div *ngIf="spyInfo.buildings && spyInfo.buildings.length > 0">
                     <strong translate>Buildings</strong><strong translate>:</strong>
                     <div *ngFor="let build of spyInfo.buildings">
-                      {{ user.getName(build) | translate }}
+                      {{ Tools.getName(build) | translate }}
                     </div>
                   </div>
                   
                   <div *ngIf="spyInfo.unities && spyInfo.unities.length > 0">
                     <strong translate>Unities</strong><strong translate>:</strong>
                     <div *ngFor="let unit of spyInfo.unities">
-                      {{ user.getName(unit) | translate }}
+                      {{ Tools.getName(unit) | translate }}
                     </div>
                     <br/>
                   </div>
@@ -989,7 +989,7 @@
                 <br/>
                 <strong translate>Army summary</strong>
                 <div *ngFor="let i of getArmy()">
-                  {{ i.nb | number:'': this.translate.currentLang }} {{ user.getName(i.unit, i.nb) | translate }}
+                  {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
                 </div>
                 <br/>
                 <strong translate>Offensive power</strong>
@@ -1070,7 +1070,7 @@
                 <div *ngIf="sanctuariesSpyInfo.unities.length > 0">
                   <strong translate>Unities</strong><strong translate>:</strong>
                   <div *ngFor="let unit of sanctuariesSpyInfo.unities">
-                    {{ user.getName(unit) | translate }}
+                    {{ Tools.getName(unit) | translate }}
                   </div>
                   <br/>
                 </div>
@@ -1105,7 +1105,7 @@
                 <br/>
                 <strong translate>Army summary</strong>
                 <div *ngFor="let i of getArmy()">
-                  {{ i.nb | number:'': this.translate.currentLang }} {{ user.getName(i.unit, i.nb) | translate }}
+                  {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
                 </div>
                 <br/>
                 <strong translate>Offensive power</strong>
@@ -1164,7 +1164,7 @@
                       <tr>
                         <th scope="col" role="button" colspan="2">
                           <strong>
-                            {{ user.getName(getArmy()[i].unit, getArmy()[i].nb) | translate }}
+                            {{ Tools.getName(getArmy()[i].unit, getArmy()[i].nb) | translate }}
                             {{":"|translate}}
                           </strong> 
                           {{ getArmy()[i].nb | number:'': this.translate.currentLang }}
@@ -1172,7 +1172,7 @@
                       </tr>
                       <tr>
                         <td class="center" rowspan="2">
-                          <app-ew-icon title="{{ user.getName(getArmy()[i].unit, getArmy()[i].nb) | translate }}" 
+                          <app-ew-icon title="{{ Tools.getName(getArmy()[i].unit, getArmy()[i].nb) | translate }}" 
                                   name="{{ getArmy()[i].unit }}" height="70px"></app-ew-icon>
                         </td>
                         <td></td>
@@ -1198,7 +1198,7 @@
                 <div class="col-6">
                   <div *ngFor="let unit of getSanctuariesDefense()">
                     {{ unit.nb | number:'': this.translate.currentLang }}
-                    {{ user.getName(unit.unit, parseInt(unit.nb)) | translate }}
+                    {{ Tools.getName(unit.unit, parseInt(unit.nb)) | translate }}
                   </div>
                 </div>
               </div>

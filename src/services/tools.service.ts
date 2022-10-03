@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as codeList from '../assets/codeName.json'
 
 @Component({
   selector: 'app-tools',
@@ -58,5 +59,40 @@ export class ToolsComponent {
       resultArray[j] += newArray[j];
     }
     return resultArray;
+  }
+
+  static nameTranslate(code:string, kind:number) {
+    //Persian
+    if(kind == 1) {
+      const newNames = {
+        'hoplite': 'hoplitemercenary',
+        'myrmidon': 'immortal',
+        'mountedarchery': 'scythedchariot',
+        'mountedhoplite': 'warelephant'
+      };
+      if(newNames[code as keyof typeof newNames]) {
+        return newNames[code as keyof typeof newNames];
+      }
+    }
+
+    return code;
+  }
+
+  static getName(code:string, nb=1, kind=0) {
+    let res: { name: string, names:string };
+
+    res = codeList[this.nameTranslate(code, kind) as keyof typeof codeList] as {
+      name: string,
+      names: string
+    };
+
+    if(!res) {
+      return 'Unknown name';
+    }
+
+    if(nb > 1) {
+      return res.names;
+    }
+    return res.name;
   }
 }

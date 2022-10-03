@@ -4,6 +4,7 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
@@ -37,6 +38,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   public waveDefenseMax:number;
   public waveUnit:any={};
   
+  Tools = Tools;
+
   questionCircle = questionCircle;
   shieldShaded = shieldShaded;
   splitIcon = splitIcon;

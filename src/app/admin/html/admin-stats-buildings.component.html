@@ -20,7 +20,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let building of user.getBuildings()">
-                <td>{{ user.getName(building.code) | translate }}</td>
+                <td>{{ Tools.getName(building.code) | translate }}</td>
                 <td>{{ building.field | number:'': this.translate.currentLang }}</td>
                 <td>{{ building.defense | number:'': this.translate.currentLang }}</td>
                 <td>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import { environment } from './../../../environments/environment';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
@@ -20,6 +21,8 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
   public ressList:any;
   public rewardInfo:any;
   
+  Tools = Tools;
+
   //Icons
   brushIcon = brushIcon;
   EwIcon    = EwIconSubComponent;

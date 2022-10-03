@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 @Component({
   selector: 'app-construction-summary-popup',
@@ -8,8 +9,10 @@ import { UserComponent as User } from '../../../services/user.service';
 })
 
 export class ConstructionSummaryPopupSubComponent implements OnInit {
+  Tools = Tools;
+
   private buildings:any;
-  
+
   constructor(public user: User, public translate: TranslateService) {
     
   }

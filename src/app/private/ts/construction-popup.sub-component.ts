@@ -2,6 +2,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import { environment } from './../../../environments/environment';
 
@@ -17,6 +18,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   @Input() info: any;
   
   Number =  Number;
+  Tools = Tools;
   
   shieldShaded = shieldShaded;
   
