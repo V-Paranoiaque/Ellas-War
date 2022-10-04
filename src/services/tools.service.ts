@@ -67,7 +67,7 @@ export class ToolsComponent {
       const newNames = {
         'hoplite': 'hoplitemercenary',
         'myrmidon': 'immortal',
-        'mountedarchery': 'scythedchariot',
+        'hippeis': 'scythedchariot',
         'mountedhoplite': 'warelephant'
       };
       if(newNames[code as keyof typeof newNames]) {
