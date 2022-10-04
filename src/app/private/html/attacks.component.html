@@ -766,7 +766,7 @@
                   <div *ngIf="spyInfo.unities && spyInfo.unities.length > 0">
                     <strong translate>Unities</strong><strong translate>:</strong>
                     <div *ngFor="let unit of spyInfo.unities">
-                      {{ Tools.getName(unit) | translate }}
+                      {{ Tools.getName(unit, 1, spyInfo.defenseType) | translate }}
                     </div>
                     <br/>
                   </div>

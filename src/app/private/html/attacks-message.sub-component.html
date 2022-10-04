@@ -50,7 +50,7 @@
     <strong translate>Attacker losses</strong>
     <div *ngFor="let unit of getAttackLost()">
       {{unit.nb| number:'': this.translate.currentLang}} 
-      {{ Tools.getName(unit.code, unit.nb) | translate }}
+      {{ Tools.getName(unit.code, unit.nb, info.attackType) | translate }}
     </div>
     <div class="clearfix"><br/></div>
   </div>
@@ -59,7 +59,7 @@
     <strong translate>Defender losses</strong>
     <div *ngFor="let unit of getDefenseLost()">
       {{unit.nb| number:'': this.translate.currentLang}} 
-      {{ Tools.getName(unit.code, unit.nb) | translate }}
+      {{ Tools.getName(unit.code, unit.nb, info.defenseType) | translate }}
     </div>
     <div class="clearfix"><br/></div>
   </div>

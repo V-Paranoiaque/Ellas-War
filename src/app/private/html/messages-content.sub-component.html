@@ -141,7 +141,7 @@
     <div *ngIf="msg.content.unities && msg.content.unities.length > 0">
       <strong translate>Unities</strong><strong translate>:</strong>
       <div *ngFor="let unit of msg.content.unities">
-        {{ Tools.getName(unit) | translate }}
+        {{ Tools.getName(unit, 1, msg.content.defenseType) | translate }}
       </div>
       <br/>
     </div>
