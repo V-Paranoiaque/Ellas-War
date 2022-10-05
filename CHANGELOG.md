@@ -251,3 +251,6 @@
 * Improve the new message frame
 * Hide spying information when the result is empty
 * New popup to open a support case with a player in the admin panel
+
+# 1.2.8
+* Prepare the Persian invasion
