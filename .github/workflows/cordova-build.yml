@@ -452,6 +452,7 @@ jobs:
       
       - name: Build packages
         run: |
+          cp res/electron/build-pipeline-mac.json build.json
           cordova platform add electron@^3.1.0
           cordova build electron --no-telemetry --release
         env:
