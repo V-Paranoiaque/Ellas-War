@@ -6,6 +6,10 @@ on:
       - published
   workflow_dispatch:
 
+env:
+  node: 18
+  electron: 3.1.0
+
 jobs:
   prepare:
     name: "Build the EW project"
@@ -15,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -70,7 +74,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -101,7 +105,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cp res/electron/build-pipeline-linux-x64.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -141,7 +145,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -170,7 +174,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cp res/electron/build-pipeline-linux-x86.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -186,7 +190,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -217,7 +221,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cp res/electron/build-pipeline-linux-arm64.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -233,7 +237,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -260,7 +264,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cp res/electron/build-pipeline-linux-armv7l.json build.json
           cordova build electron --no-telemetry --release
         env:
@@ -286,7 +290,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -376,7 +380,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
   
       - name: Get npm cache directory
         id: npm-cache
@@ -411,7 +415,7 @@ jobs:
         run: |
           cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
           cp res/electron/build-pipeline-windows-appx.json build.json
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cp -r res/electron/appx platforms/electron/build-res/
           cordova build electron --no-telemetry --release
           cp res/electron/build-pipeline-windows-msi.json build.json
@@ -431,7 +435,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ env.node }}
       
       - name: Cache node modules
         uses: actions/cache@v2
@@ -453,7 +457,7 @@ jobs:
       - name: Build packages
         run: |
           cp res/electron/build-pipeline-mac.json build.json
-          cordova platform add electron@^3.1.0
+          cordova platform add electron@^${{ env.electron }}
           cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
