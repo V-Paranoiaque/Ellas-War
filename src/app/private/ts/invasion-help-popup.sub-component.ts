@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: '../html/invasion-help-popup.sub-component.html'
 })
 
-export class InvasionHelpPopupSubCompoent {
+export class InvasionHelpPopupSubComponent {
 
 }
