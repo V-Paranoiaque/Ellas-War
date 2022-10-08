@@ -56,6 +56,12 @@ a {
   text-shadow: none;
   box-shadow: none;
 }
+.input-group-text.btn-primary {
+  border-color: var(--color-menu-clear);
+}
+.input-group-text.btn-primary:hover {
+  border-color: var(--color-menu-dark);
+}
 
 .card-footer:first-letter {
   color: var(--color-menu-text);
