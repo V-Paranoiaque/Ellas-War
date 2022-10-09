@@ -370,6 +370,13 @@ jobs:
           file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
           asset_name: app-release.apk
           tag: ${{ github.ref }}
+      - name: Upload to the Amazon AppStore
+        uses: ALJAZEERAPLUS/amazon-appstore-action@v1
+        with:
+          client-id: ${{secrets.AMAZON_APPSTORE_CLIENT_ID}}
+          client-secret: ${{secrets.AMAZON_APPSTORE_CLIENT_SECRET}}
+          app-id: ${{ secrets.AMAZON_APPSTORE_APP_ID }}
+          apk-file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
   
   #Windows
   package-windows:
