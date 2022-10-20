@@ -25,12 +25,12 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 | Platform | Supported | Details | Google Auth | In App purchases |
 | ------------- |:-------------:| ----- |:-----:|:-----:|
 | Android | :white_check_mark: | Cordova | :white_check_mark: | :x: |
-| Flatpack | :white_check_mark: | Cordova + Electron | :x: | :x: |
+| Flatpack | :white_check_mark: | Cordova + Electron | :white_check_mark: | :x: |
 | iOS | :ballot_box_with_check: | Cordova | :white_check_mark: | :x: |
-| MacOS | :ballot_box_with_check: | Cordova + Electron | :x: | :x: |
-| Snap | :white_check_mark: | Cordova + Electron | :x: | :x: |
+| MacOS | :ballot_box_with_check: | Cordova + Electron | :white_check_mark: | :x: |
+| Snap | :white_check_mark: | Cordova + Electron | :white_check_mark: | :x: |
 | Web | :white_check_mark: | | :white_check_mark: | :white_check_mark: |
-| Windows | :white_check_mark: | Cordova + Electron | :x: | :x: |
+| Windows | :white_check_mark: | Cordova + Electron | :white_check_mark: | :x: |
 
 It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
 

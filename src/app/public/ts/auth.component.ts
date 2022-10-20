@@ -45,11 +45,15 @@ export class AuthComponent implements OnInit {
       case 'google':
         this.provider = provider;
         {
-          let fragment:any = this.route.snapshot.fragment;
-          let token = Tools.paramToObject(fragment).id_token;
+          const fragment:any = this.route.snapshot.fragment;
+          const fragmentTab = Tools.paramToObject(fragment);
+          
+          const token = fragmentTab.id_token;
+          const state = fragmentTab.state;
           
           this.socket.emit('mobileGoogle', {
             'token': token,
+            'state': state,
             'mobile': environment.mobile
           });
         }
