@@ -254,3 +254,6 @@
 
 # 1.2.8
 * Prepare the Persian invasion
+
+# 1.2.9
+* Oauth2 for all the platforms

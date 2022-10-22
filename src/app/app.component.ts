@@ -10,6 +10,8 @@ import { registerLocaleData } from '@angular/common';
 import { Subscription } from 'rxjs';
 import localeFr from '@angular/common/locales/fr';
 
+declare let cordova:any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
@@ -117,6 +119,23 @@ export class AppComponent implements OnInit, OnDestroy {
         this.router.navigate(['/city']);
       }
     });
+
+    this.socket.on('oauth2Server', (token:string) => {
+      const url = 'https://accounts.google.com/o/oauth2/v2/auth/identifier'+
+      '?client_id='+environment.google.client_id+
+      '&response_type=id_token token'+
+      '&state='+token+
+      '&redirect_uri='+this.user.config.url+'/auth/google'+
+      '&scope=profile email'+
+      '&flowName=GeneralOAuthFlow'+
+      '&nonce='+token;
+      cordova.InAppBrowser.open(url, '_system', 'location=yes,clearsessioncache=yes');
+    });
+
+    this.socket.on('oauth2Close', () => {
+      if(window.self)
+      window.self.close();
+    });
   }
   
   ngOnDestroy() {
@@ -124,6 +143,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.removeListener('user');
     this.socket.removeListener('config');
     this.socket.removeListener('connectionFB');
+    this.socket.removeListener('oauth2Server');
+    this.socket.removeListener('oauth2Close');
+    
     if(this.sub) {
       this.sub.unsubscribe();
     }
