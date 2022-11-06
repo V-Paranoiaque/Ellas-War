@@ -256,4 +256,5 @@
 * Prepare the Persian invasion
 
 # 1.2.9
+* New admin action to clean the DB
 * Oauth2 for all the platforms
