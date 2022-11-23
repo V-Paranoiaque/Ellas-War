@@ -249,17 +249,24 @@ export class AdminStatsUnitsComponent implements OnInit {
   
   calculateTemple() {
     this.templeArray = [];
-    
+
     let units1:string[] = ['spartan', 'elitehoplite'];
     let units2:string[] = ['amazon', 'automaton', 'centaur'];
     let units3:string[] = ['myrmidon', 'soul'];
     
     // Override to consider athena
-    this.data.army.hoplite.nbmax = this.data.army.spartan.nbmax;
-    this.data.army.elitehoplite.nbmax = this.data.army.spartan.nbmax;
+    if(this.data.army.hoplite) {
+      this.data.army.hoplite.nbmax = this.data.army.spartan.nbmax;
+    }
+    if(this.data.army.elitehoplite) {
+      this.data.army.elitehoplite.nbmax = this.data.army.spartan.nbmax;
+    }
     
     for(let u1 of units1) {
       for(let u2 of units2) {
+        if(!this.data.army[u2]) {
+          continue;
+        }
         for(let u3 of units3) {
           let result = {
             'names': [u1, u2, u3],

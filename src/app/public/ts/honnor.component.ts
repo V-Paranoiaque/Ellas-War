@@ -28,6 +28,7 @@ export class HonnorComponent implements OnInit, OnDestroy {
     this.levels = Array(10);
     this.subRank = new Subscription();
     this.subTitle = new Subscription();
+    this.list = [];
   }
   
   ngOnInit() {  
