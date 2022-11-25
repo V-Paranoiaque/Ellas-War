@@ -1,4 +1,5 @@
 {
+  "{ old } is not leading your alliance anymore, { new } is now the new chief.": "{{ old }} is not leading your alliance anymore, {{ new }} is now the new chief.",
   "{ value } by Vecteezy": "{{ value }} by Vecteezy",
   "{ value } can still receive { qtt } Drachmas": "{{ value }} can still receive {{ qtt }} Drachmas",
   "{ value } from the alliance { name } has requested a pact to your alliance.": "{{ value }} from the alliance {{ name }} has requested a pact to your alliance.",
@@ -86,6 +87,7 @@
   "Make { value } victories": "Make {{ value }} victories",
   
   "Name { value } chief of the alliance":"Name {{ value }} chief of the alliance",
+  "New chief: { value }": "New chief: {{ value }}",
   "New member: { value }": "New member: {{ value }}",
   "New unity: { unit }": "New unity: {{ unit }}",
   "Next goal: { value } Days": "Next goal: {{ value }} Days",

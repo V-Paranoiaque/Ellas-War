@@ -71,5 +71,8 @@
   <span *ngSwitchCase="13">
    {{'{ value } has left your alliance.' | translate: { value: msg.content.member } }}
   </span>
+  <span *ngSwitchCase="14">
+   {{'{ old } is not leading your alliance anymore, { new } is now the new chief.' | translate: { old: msg.content.chief_old, new: msg.content.chief_new } }}
+  </span>
   <span *ngSwitchDefault>{{msg.content}}</span>
 </span>

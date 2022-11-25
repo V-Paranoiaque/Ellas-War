@@ -43,6 +43,7 @@
   "-5% to the defense": "-5% aux forces défensives",
   "-5% to the defense of  name th€e Poseidon Wall": "-5% à la défense du mur de Poséidon",
   
+  "{ old } is not leading your alliance anymore, { new } is now the new chief.": "{{ old }} ne dirige plus votre alliance, {{ new }} est maintenant le nouveau chef.",
   "{ value } by Vecteezy": "{{ value }} par Vecteezy",
   "{ value } can still receive { qtt } Drachmas": "{{ value }} peut encore recevoir {{ qtt }} Drachmes",
   "{ value } Favor for { name }€": "{{ value }} Faveur pour {{ name }}€",
@@ -840,6 +841,7 @@
   "Name { value } chief of the alliance": "Nommer {{ value }} chef de l'alliance",
   "Name of your alliance": "Nom de votre alliance",
   "Nature's Revenge": "Revanche de la nature",
+  "New chief: { value }": "Nouveau chef : {{ value }}",
   "New email": "Nouvelle addresse mail",
   "New member: { value }": "Nouveau membre : {{ value }}",
   "New message from the staff": "Nouveau message du Staff",

@@ -20,11 +20,13 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.socket.emit('archivePage');
-    this.socket.emit('archiveList', this.archiveCurrent);
+    this.init();
     
     this.socket.on('archiveList', (data:any) => {
       this.archiveList = data;
+    });
+    this.socket.on('archiveListRefresh', () => {
+      this.init();
     });
     this.socket.on('archivePage', (data:number) => {
       this.archivePages = data;
@@ -33,6 +35,12 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.socket.removeListener('archiveList');
+    this.socket.removeListener('archiveListRefresh');
     this.socket.removeListener('archivePage');
+  }
+  
+  init() {
+    this.socket.emit('archivePage');
+    this.socket.emit('archiveList', this.archiveCurrent);
   }
 }
