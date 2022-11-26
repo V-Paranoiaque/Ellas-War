@@ -117,4 +117,23 @@
     {{2500 | number:'': this.translate.currentLang }}
     <app-id-to-ress ress_id="gold"></app-id-to-ress>
   </span>
+  <span *ngSwitchCase="24" class="multiple-divine">
+    4 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+    1 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+    2 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+    {{5000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+  </span>
+  <span *ngSwitchCase="25" class="multiple-divine">
+    8 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+    2 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+    4 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+    {{10000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+  </span>
+  <span *ngSwitchCase="26" class="multiple-divine">
+    12 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+    3 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+    6 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+    {{20000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+    1 <app-ew-icon name="{{ EwIcon.getDivineBonus(8) }}"></app-ew-icon>
+  </span>
 </span>

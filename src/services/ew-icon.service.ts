@@ -37,6 +37,10 @@ export class EwIconSubComponent {
       case 12: return 'menu-agora';
       case 13: return 'smenu-attacks';
       case 14: return 'drachma';
+
+      case 24: return 'basket-iron';
+      case 25: return 'basket-silver';
+      case 26: return 'basket-gold';
     }
     return 'default'
   }
