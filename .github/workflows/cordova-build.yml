@@ -371,7 +371,7 @@ jobs:
           asset_name: app-release.apk
           tag: ${{ github.ref }}
       - name: Upload to the Amazon AppStore
-        uses: ALJAZEERAPLUS/amazon-appstore-action@v1
+        uses: ALJAZEERAPLUS/amazon-appstore-action@v1.1.1
         with:
           client-id: ${{secrets.AMAZON_APPSTORE_CLIENT_ID}}
           client-secret: ${{secrets.AMAZON_APPSTORE_CLIENT_SECRET}}
