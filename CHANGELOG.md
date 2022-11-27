@@ -258,3 +258,13 @@
 # 1.2.9
 * New admin action to clean the DB
 * Oauth2 for all the platforms
+
+# 1.3.0
+* Add a new admin action to clean the DB
+* Alliance archives now record chief modification
+* Fix border color on some buttons
+* Fix Mac build
+* New GitHub action, upload automatically to the Amazon app store
+* Optimize GitHub actions
+* Returing players are getting a divine bonus box (30/60/90d)
+* Save when click on the paypal links
