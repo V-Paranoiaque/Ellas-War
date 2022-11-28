@@ -161,11 +161,6 @@ jobs:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
       
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token }}
-      
       - name: Install dependencies
         run: |
           sudo apt update -qq
