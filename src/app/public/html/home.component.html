@@ -47,6 +47,13 @@
           <img [src]="'assets/i18n/'+translate.currentLang+'/google-play-badge.png'"
                alt="{{'Download on Google Play'|translate}}">
         </a>
+        <a *ngIf="localevars.store.pling" target="_blank"
+           rel="external nofollow noopener"
+           href="{{ localevars.store.pling }}"
+           title="{{'Download on Pling'|translate}}">
+          <img [src]="'assets/img/ban/pling.png'"
+               alt="{{'Download on Pling'|translate}}">
+        </a>
       </div>
     </div>
     
