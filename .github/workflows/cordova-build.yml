@@ -9,6 +9,7 @@ on:
 env:
   node: 18
   electron: 3.1.0
+  android: 11.0.0
 
 jobs:
   prepare:
@@ -336,7 +337,7 @@ jobs:
         run: |
           mkdir -p .idea
           cp ${{ env.KEYSTORE }} .idea/ew.keystore
-          cordova platform add android@10.0.1
+          cordova platform add android@${{ env.node }}
           #Build AAB
           cp ${{ env.AAB_JSON }} build.json
           cordova build android --no-telemetry --release
