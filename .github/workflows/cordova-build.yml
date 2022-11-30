@@ -287,10 +287,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.node }}
-      - name: Set up JDK 1.8
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
  
