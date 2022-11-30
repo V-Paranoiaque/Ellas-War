@@ -73,6 +73,7 @@
     <span *ngIf="msg.title.ask_id == msg.title.destroy">{{'The pact with the alliance { value } has been destroyed' | translate: { value: msg.title.ask_name} }}</span>
   </span>
   <span *ngSwitchCase="27">{{'{ value } has requested a pact to your alliance' | translate: { value: msg.title.ask_name} }}</span>
+  <span *ngSwitchCase="28">{{'Welcome back on Ellas War!' | translate }}</span>
   <span *ngSwitchDefault>
     <span *ngIf="msg.msg_type > 0">{{ 'Unsupported message type: { value }' | translate: { value: msg.msg_type } }}</span>
     <span *ngIf="msg.msg_type == 0">{{ msg.title }}</span>

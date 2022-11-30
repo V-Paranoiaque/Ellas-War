@@ -226,6 +226,36 @@
   <span *ngSwitchCase="26">{{'{ value } has destroyed the pact between { name1 } and { name2 }' | translate: { value: msg.content.username, name1: msg.content.dst_name, name2: msg.content.ask_name } }}.
   </span>
   <span *ngSwitchCase="27">{{'{ value } from the alliance { name } has requested a pact to your alliance.' | translate: { value: msg.content.username, name: msg.content.ask_name } }}</span>
+  <span *ngSwitchCase="28">
+    <p>
+      {{'We are glad to see you back on Ellas War.' | translate }}
+      <br/>
+      {{'In proof of our gratitude, we offer you these gifts:' | translate}}
+    </p>
+    <p [ngSwitch]="msg.content.bonus_id" class="modal-title">
+      <span *ngSwitchCase="24">
+        4 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+        1 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+        2 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+        {{5000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+      </span>
+      <span *ngSwitchCase="25" class="multiple-divine">
+        8 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+        2 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+        4 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+        {{10000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+      </span>
+      <span *ngSwitchCase="26" class="multiple-divine">
+        12 <app-ew-icon name="{{ EwIcon.getDivineBonus(11) }}"></app-ew-icon>
+        3 <app-ew-icon name="{{ EwIcon.getDivineBonus(9) }}"></app-ew-icon>
+        6 <app-ew-icon name="{{ EwIcon.getDivineBonus(13) }}"></app-ew-icon>
+        {{20000000 | number:'': this.translate.currentLang }}<app-ew-icon name="{{ EwIcon.getDivineBonus(14) }}"></app-ew-icon>
+        1 <app-ew-icon name="{{ EwIcon.getDivineBonus(8) }}"></app-ew-icon>
+      </span>
+    </p>
+    <br/>
+    <p translate>The basket to obtain them is available in your city</p>
+  </span>
   <span *ngSwitchDefault>TODO {{ msg.msg_type }}</span>
 </div>
 

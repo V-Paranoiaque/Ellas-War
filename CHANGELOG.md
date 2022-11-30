@@ -268,3 +268,6 @@
 * Optimize GitHub actions
 * Returing players are getting a divine bonus box (30/60/90d)
 * Save when click on the paypal links
+
+# 1.3.1
+* Add a message when getting a return basket
