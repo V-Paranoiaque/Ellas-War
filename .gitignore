@@ -53,6 +53,7 @@ Thumbs.db
 /plugins/
 /platforms/
 /www
+build.json
 
 #Certs
 *.keystore
