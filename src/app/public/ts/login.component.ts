@@ -11,7 +11,8 @@ import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
 
 @Component({
-  templateUrl: '../html/login.component.html'
+  templateUrl: '../html/login.component.html',
+  styleUrls: ['../css/home.component.css']
 })
 
 export class LoginComponent implements OnInit, OnDestroy {

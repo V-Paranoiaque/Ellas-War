@@ -63,8 +63,14 @@ a.btn-link:hover {
   flex: 1;
 }
 
-p a {
+p a,
+form a {
   color: #dc3545;
+}
+
+p a:hover,
+form a:hover {
+  color: black;
 }
 
 h3 {
