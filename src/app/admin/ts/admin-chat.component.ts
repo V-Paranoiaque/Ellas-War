@@ -13,7 +13,14 @@ import volumeOff from '@iconify/icons-fa-solid/volume-off';
 
 export class AdminChatComponent implements OnInit, OnDestroy {
   
-  public adminChatList:any;
+  public adminChatList:{
+    user_id: number,
+    censured: number,
+    username: string,
+    msg: string,
+    time: number,
+    id: number
+  }[];
   
   volumeMute = volumeMute;
   volumeOff = volumeOff;
@@ -28,8 +35,8 @@ export class AdminChatComponent implements OnInit, OnDestroy {
     
     this.socket.emit('adminChatList');
     
-    this.socket.on('adminChatList', (msg:any) => {
-      this.adminChatList = msg;
+    this.socket.on('adminChatList', (msg:object[]) => {
+      this.adminChatList = msg as typeof this.adminChatList;
     });
   }
   

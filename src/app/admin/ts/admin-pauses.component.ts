@@ -9,7 +9,10 @@ import { UserComponent as User } from '../../../services/user.service';
 })
 
 export class AdminPausesComponent implements OnInit, OnDestroy {
-  public adminPause:any[];
+  public adminPause:{
+    membre_id:number, username:string, ip:string,
+    pause_start:number, pause_exit:number
+  }[];
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {
@@ -21,8 +24,8 @@ export class AdminPausesComponent implements OnInit, OnDestroy {
     
     this.socket.emit('adminPause');
     
-    this.socket.on('adminPause', (res:any) => {
-      this.adminPause = res;
+    this.socket.on('adminPause', (res:object[]) => {
+      this.adminPause = res as typeof this.adminPause;
     })
   }
   

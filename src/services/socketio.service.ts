@@ -63,7 +63,7 @@ export class SocketComponent {
     this.emit('ewAuth', {'token': localStorage.getItem('token')});
   }
   
-  on(socketName: string, callback:any) {
+  on(socketName: string, callback:(res:any) => void) {
     this.socket.on(socketName, (data:any) =>{
       callback(data);
     })
@@ -92,7 +92,7 @@ export class SocketComponent {
     else {
       let url;
       if(localStorage.getItem('server')) {
-        let local:any = localStorage.getItem('server');
+        let local:string = localStorage.getItem('server') || '';
         url = this.getServerUrl(local);
         
         if(url != '') {
@@ -151,7 +151,7 @@ export class SocketComponent {
    * Language management
    **/
   detectLanguage() {
-    let language:any = localStorage.getItem('language');
+    let language:string = localStorage.getItem('language') || '';
     
     if(!language || !environment.language.allowed.includes(language)) {
       language = this.detectBrowserLanguage();

@@ -17,7 +17,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   
   public adminNewsList:any;
   public adminNewsMax:number;
-  public adminNewsPage:any;
+  public adminNewsPage:number;
   public newsSelected:any;
   
   Tools = Tools;

@@ -12,7 +12,14 @@ export class AdminEmailsComponent implements OnInit, OnDestroy {
   
   public adminemailsPage:number;
   public adminemailsMax:number;
-  public adminemailsList:any;
+  public adminemailsList:{
+    membre_id:number,
+    username:string,
+    old_mail:string
+    new_mail:string,
+    ip_addr:string,
+    modification_date:number
+  }[];
   
   constructor(private socket: Socket, public user: User,
               public translate: TranslateService) {
@@ -25,10 +32,10 @@ export class AdminEmailsComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
     this.getPage(1);
     
-    this.socket.on('adminEmailModification', (res:any) => {
+    this.socket.on('adminEmailModification', (res:{cPage:number, max:number, list:object[]}) => {
       this.adminemailsPage = res.cPage;
       this.adminemailsMax  = res.max;
-      this.adminemailsList = res.list;
+      this.adminemailsList = res.list as typeof this.adminemailsList;
     });
   }
   

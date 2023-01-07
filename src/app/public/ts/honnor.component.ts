@@ -13,9 +13,9 @@ import { UserComponent as User } from '../../../services/user.service';
 })
 
 export class HonnorComponent implements OnInit, OnDestroy {
-  public id: any;
+  public id: number = 0;
   public list:any;
-  public levels:any
+  public levels:number[];
   
   private subRank:Subscription;
   private subTitle:Subscription;
@@ -32,10 +32,10 @@ export class HonnorComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {  
-    let id = this.route.snapshot.paramMap.get('id');
+    let id = parseInt(this.route.snapshot.paramMap.get('id') || '0');
     
     if(!id) {
-      id = '0';
+      id = 0;
     }
     
     this.load(id);
@@ -51,9 +51,9 @@ export class HonnorComponent implements OnInit, OnDestroy {
     this.subTitle.unsubscribe();
   }
   
-  load(level:any) {
+  load(level:number) {
     if(level > 0 && level <= 10) {
-      this.id = parseInt(level);
+      this.id = level;
     }
     else {
       this.id = 0;

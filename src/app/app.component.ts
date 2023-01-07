@@ -169,7 +169,7 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.cssBase+style + '.css';
   }
   
-  setUrl(style:any) {
+  setUrl(style:string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(style);
   }
   

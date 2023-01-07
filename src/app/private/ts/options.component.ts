@@ -81,11 +81,11 @@ export class OptionsComponent implements OnInit, OnDestroy {
       this.accountRenameCost = result;
     });
     
-    this.socket.on("accountRename", (result:any) => {
+    this.socket.on("accountRename", (result:number) => {
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
-    this.socket.on("pauseAllowed", (result:any) => {
+    this.socket.on("pauseAllowed", (result:number) => {
       this.pauseAllowed = result;
     });
     this.socket.on('accountPassword', (nb:number) => {

@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       password: ''
     });
     
-    this.socket.on('register', (data:any) => {
+    this.socket.on('register', (data:{error:number}) => {
       this.rerror = data.error;
     });
   }

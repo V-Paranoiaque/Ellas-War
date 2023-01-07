@@ -12,15 +12,22 @@ import { Subscription } from 'rxjs';
 
 export class AdminHomeComponent implements OnInit, OnDestroy {
   
-  public adminStats:any;
-  public apiInfo:any;
+  public adminStats = {
+    honnor_last_time: 0,
+    diamond_last_time: 0,
+    daily_last_time: 0,
+    weekly_last_time: 0
+  };
+  public apiInfo = {
+    uptime: 0,
+    timestamp: 0,
+    min: 0
+  };
   
   private sub:Subscription;
   
   constructor(protected http: HttpClient, private socket: Socket,
               public user: User, public translate: TranslateService) {
-    this.adminStats = {};
-    this.apiInfo = {};
     this.sub = new Subscription();
   }
   
@@ -30,12 +37,12 @@ export class AdminHomeComponent implements OnInit, OnDestroy {
     this.socket.emit('adminStats');
     
     let url = this.socket.url+'/api.json';
-    this.sub = this.http.get(url).subscribe((result:any) => {
-      this.apiInfo = result;
+    this.sub = this.http.get(url).subscribe((result) => {
+      this.apiInfo = result as typeof this.apiInfo;
     });
     
-    this.socket.on('adminStats', (msg:any) => {
-      this.adminStats = msg;
+    this.socket.on('adminStats', (msg:object) => {
+      this.adminStats = msg as typeof this.adminStats
     });
   }
   

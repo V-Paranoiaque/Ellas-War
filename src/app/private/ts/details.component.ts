@@ -13,37 +13,35 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 export class DetailsComponent implements OnInit {
   Tools = Tools;
   
-  public nbvariation:any;
-  public variation:any;
+  public nbvariation = {
+    'drachma': 0,
+    'food': 0,
+    'water': 0,
+    'wood': 0,
+    'iron': 0,
+    'stone': 0,
+    'marble': 0,
+    'grapes': 0,
+    'wine': 0,
+    'gold': 0
+  };
+  public variation = {
+    'drachma': 0,
+    'food': 0,
+    'water': 0,
+    'wood': 0,
+    'iron': 0,
+    'stone': 0,
+    'marble': 0,
+    'grapes': 0,
+    'wine': 0,
+    'gold': 0
+  };
   public menuMode:number;
   
   questionCircle = questionCircle;
   
   constructor(public user: User, public translate: TranslateService) {
-    this.variation = {
-      'drachma': 0,
-      'food': 0,
-      'water': 0,
-      'wood': 0,
-      'iron': 0,
-      'stone': 0,
-      'marble': 0,
-      'grapes': 0,
-      'wine': 0,
-      'gold': 0
-    };
-    this.nbvariation = {
-      'drachma': 0,
-      'food': 0,
-      'water': 0,
-      'wood': 0,
-      'iron': 0,
-      'stone': 0,
-      'marble': 0,
-      'grapes': 0,
-      'wine': 0,
-      'gold': 0
-    };
     /**
      * 0: Production
      * 1: Comsumption
@@ -69,8 +67,8 @@ export class DetailsComponent implements OnInit {
       if(this.user.getPropertyNb(buildingList[i].code) > 0) {
         if(buildingList[i].consumption) {
           for(let consum in buildingList[i].consumption) {
-            this.variation[consum] -= (buildingList[i].consumption[consum] * this.user.getPropertyNb(buildingList[i].code));
-            this.nbvariation[consum]++;
+            this.variation[consum as keyof typeof this.variation] -= (buildingList[i].consumption[consum] * this.user.getPropertyNb(buildingList[i].code));
+            this.nbvariation[consum as keyof typeof this.nbvariation]++;
           }
         }
       }
@@ -84,8 +82,8 @@ export class DetailsComponent implements OnInit {
       if(this.user.getPropertyNb(buildingList[i].code) > 0) {
         if(buildingList[i].production) {
           for(let prod in buildingList[i].production) {
-            this.variation[prod] += (buildingList[i].production[prod] * this.user.getPropertyNb(buildingList[i].code));
-            this.nbvariation[prod]++;
+            this.variation[prod as keyof typeof this.variation] += (buildingList[i].production[prod] * this.user.getPropertyNb(buildingList[i].code));
+            this.nbvariation[prod as keyof typeof this.nbvariation]++;
           }
         }
       }
@@ -98,8 +96,8 @@ export class DetailsComponent implements OnInit {
     for (let i in armyList) {
       if(this.user.getPropertyNb(armyList[i].code) > 0 && armyList[i].consumption) {
         for(let consum in armyList[i].consumption) {
-          this.variation[consum] -= (armyList[i].consumption[consum] * this.user.getPropertyNb(armyList[i].code));
-          this.nbvariation[consum]++;
+          this.variation[consum as keyof typeof this.variation] -= (armyList[i].consumption[consum] * this.user.getPropertyNb(armyList[i].code));
+          this.nbvariation[consum as keyof typeof this.nbvariation]++;
         }
       }
     }
@@ -111,22 +109,22 @@ export class DetailsComponent implements OnInit {
       name = 'tax_'+ress;
       
       if(this.user.getPropertyNb(name) > 0) {
-        this.variation[ress] -= this.user.getPropertyNb(name);
-        this.nbvariation[ress]++;
+        this.variation[ress as keyof typeof this.variation] -= this.user.getPropertyNb(name);
+        this.nbvariation[ress as keyof typeof this.nbvariation]++;
       }
     }
   }
   
-  getRess(object:any, ress:any) {
-    if(object && object[ress]) {
-      return object[ress]
+  getRess(object:object, ress:string) {
+    if(object && object[ress as keyof object]) {
+      return object[ress as keyof object]
     }
     else {
       return 0;
     }
   }
-  getVariation(ress:any) {
-    return this.variation[ress];
+  getVariation(ress:string) {
+    return this.variation[ress as keyof typeof this.variation];
   }
   
   setMenuMode(id:number) {

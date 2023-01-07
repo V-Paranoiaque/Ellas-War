@@ -40,13 +40,13 @@
               <table class="table align-middle" aria-labelledby="detailsDesc">
                 <thead class="text-center">
                   <tr>
-                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode != 0}">
+                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode !== 0}">
                       <span translate>Production</span>/<span translate>Day</span>
                     </th>
-                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode != 1}">
+                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode !== 1}">
                       <span translate>Consumption</span>/<span translate>Day</span>
                     </th>
-                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode != 2}">
+                    <th scope="col" [ngClass]="{'d-none d-sm-table-cell': menuMode !== 2}">
                       <span translate>Evolution</span>/<span translate>Day</span>
                     </th>
                   </tr>
@@ -54,7 +54,7 @@
                 <tbody>
                 
                   <tr *ngFor="let ress of nbvariation | keyvalue">
-                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode != 0}">
+                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode !== 0}">
                       <span *ngFor="let building of user.getBuildings()">
                         <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.production, ress.key) > 0">
                           +{{ getRess(building.production, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
@@ -69,7 +69,7 @@
                         </span>
                       </span>
                     </td>
-                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode != 1}">
+                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode !== 1}">
                       <span *ngFor="let building of user.getBuildings()">
                         <span *ngIf="user.getPropertyNb(building.code) > 0 && getRess(building.consumption, ress.key) > 0">
                           -{{ getRess(building.consumption, ress.key) * user.getPropertyNb(building.code) | number:'': this.translate.currentLang }} 
@@ -90,12 +90,12 @@
                         {{'Alliance\'s taxes'|translate}}
                       </span>
                     </td>
-                    <td [ngClass]="{'text-danger': user.getPropertyNb(ress.key) == 0 && getVariation(ress.key) < 0,
+                    <td [ngClass]="{'text-danger': user.getPropertyNb(ress.key) === 0 && getVariation(ress.key) < 0,
                                     'text-warning': getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001),
-                                    'd-none d-sm-table-cell': menuMode != 2}">
+                                    'd-none d-sm-table-cell': menuMode !== 2}">
                       <span *ngIf="user.getVarRess(ress.key) > 0">+</span>{{user.getVarRess(ress.key)*3600*24| number:'': this.translate.currentLang }}
                       <app-id-to-ress [ress_id]="ress.key"></app-id-to-ress>
-                      <span *ngIf="user.getPropertyNb(ress.key) == 0 && getVariation(ress.key) < 0 || getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)"
+                      <span *ngIf="user.getPropertyNb(ress.key) === 0 && getVariation(ress.key) < 0 || getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)"
                             data-bs-toggle="modal" data-bs-target="#detailsHelp"
                             role="button" title="{{'Help'|translate}}" translate>
                         <ic-icon [icIcon]="questionCircle"></ic-icon>
@@ -103,7 +103,7 @@
                     </td>
                   </tr>
                   <tr *ngIf="user.getLevel() >= user.getLevelRess('ambrosia')">
-                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode != 0}">
+                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode !== 0}">
                       <div *ngIf="user.getPropertyNb('apollo')  == 1">
                         + 4 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>&nbsp;<span translate>Temple of Apollo</span>
                       </div>
@@ -141,16 +141,16 @@
                         + 24 <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>&nbsp;<span translate>Tantalus</span>
                       </div>
                     </td>
-                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode != 1}">
+                    <td [ngClass]="{'d-none d-sm-table-cell': menuMode !== 1}">
                     
                     </td>
-                    <td *ngIf="user.getSanctuary(3) == 0" [ngClass]="{'d-none d-sm-table-cell': menuMode != 2}">
+                    <td *ngIf="user.getSanctuary(3) == 0" [ngClass]="{'d-none d-sm-table-cell': menuMode !== 2}">
                       +{{4*(
                       user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
         
                       <app-id-to-ress [ress_id]="'ambrosia'"></app-id-to-ress>
                     </td>
-                    <td *ngIf="user.getSanctuary(3) > 0" [ngClass]="{'d-none d-sm-table-cell': menuMode != 2}">
+                    <td *ngIf="user.getSanctuary(3) > 0" [ngClass]="{'d-none d-sm-table-cell': menuMode !== 2}">
                       +{{4*(6+
                       user.getPropertyNb('hermes')+user.getPropertyNb('apollo')+user.getPropertyNb('demeter')+user.getPropertyNb('ares')+user.getPropertyNb('athena')+user.getPropertyNb('artemis')+user.getPropertyNb('dionysus')+user.getPropertyNb('hephaestus')+user.getPropertyNb('zeus')+user.getPropertyNb('hades')+user.getPropertyNb('poseidon')) }}
         

@@ -22,8 +22,8 @@ export class Admin404Component implements OnInit, OnDestroy {
     
     this.socket.emit('adminList404');
     
-    this.socket.on('adminList404', (list:any) => {
-      this.pageList = list;
+    this.socket.on('adminList404', (list:object[]) => {
+      this.pageList = list as { url:string, nb:number }[];
     });
   }
   

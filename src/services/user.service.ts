@@ -203,7 +203,7 @@ export class UserComponent {
       return 0;
     }
   }
-  getTaxes(ress:any) {
+  getTaxes(ress:string) {
     return this.getPropertyNb('tax_'+ress);
   }
   getVarRess(ress:any) {
