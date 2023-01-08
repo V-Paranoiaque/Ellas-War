@@ -20,6 +20,7 @@ import { AdminStatsUnitsComponent } from './ts/admin-stats-units.component';
 import { AdminStoreroomComponent } from './ts/admin-storeroom.component';
 import { AdminSupportComponent } from './ts/admin-support.component';
 import { AdminSupportMsgComponent } from './ts/admin-support-msg.component';
+import { AdminWarsComponent } from './ts/admin-wars.component';
 import { AdminXpComponent } from './ts/admin-xp.component';
 
 import { AdminQuestsTitleSubComponent } from './ts/admin-quests-title.sub-component';
@@ -48,6 +49,7 @@ export const AdminComponent = [
   AdminStoreroomComponent,
   AdminSupportComponent,
   AdminSupportMsgComponent,
+  AdminWarsComponent,
   AdminXpComponent,
   
   AdminQuestsTitleSubComponent,

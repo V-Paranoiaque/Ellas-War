@@ -26,6 +26,9 @@
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/quests']"
       [ngClass]="{'active': active === 'quests'}"
       role="button" translate>Quests</a>
+  <a class="list-group-item list-group-item-action" [routerLink]="['/admin/wars']"
+      [ngClass]="{'active': active === 'wars'}" *ngIf="user.getPropertyNb('rank') >= 5" 
+      role="button" translate>Wars</a>
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/chat']"
       [ngClass]="{'active': active === 'chat'}"
       role="button" translate>Chat</a>
@@ -42,6 +45,6 @@
       [ngClass]="{'active': active === 'support'}"
       role="button" translate>Support</a>
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/404']"
-      [ngClass]="{'active': active == '404'}"
+      [ngClass]="{'active': active === '404'}"
       role="button" translate>404</a>
 </div>

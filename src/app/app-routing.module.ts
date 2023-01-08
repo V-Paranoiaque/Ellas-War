@@ -77,6 +77,7 @@ import { AdminStatsUnitsComponent } from './admin/ts/admin-stats-units.component
 import { AdminStoreroomComponent } from './admin/ts/admin-storeroom.component';
 import { AdminSupportComponent } from './admin/ts/admin-support.component';
 import { AdminSupportMsgComponent } from './admin/ts/admin-support-msg.component';
+import { AdminWarsComponent } from './admin/ts/admin-wars.component';
 import { AdminXpComponent } from './admin/ts/admin-xp.component';
 
 //General
@@ -172,6 +173,7 @@ routes = [
       { path: 'support', component: AdminSupportComponent },
       { path: 'support/:id', component: AdminSupportComponent },
       { path: 'support/:id/:msg', component: AdminSupportMsgComponent },
+      { path: 'wars', component: AdminWarsComponent },
       { path: 'xp', component: AdminXpComponent },
       
       { path: '**', component: AdminHomeComponent }
