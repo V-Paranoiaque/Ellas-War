@@ -35,8 +35,6 @@ jobs:
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1
-        with:
-          snapcraft_token: ${{ secrets.snapcraft_token_edge }}
       
       - name: Install dependencies
         run: |
@@ -57,5 +55,7 @@ jobs:
           do
             snapcraft upload --release=edge $i
           done
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.snapcraft_token_edge }}'
         if: ${{ github.ref == 'refs/heads/master' }}
   
