@@ -147,3 +147,9 @@ a.no-padding {
   margin-left: 0px;
   margin-right: 0px;
 }
+
+#discord {
+  background-color: white;
+  border-color: #5865F2;
+  fill: pink;
+}

@@ -9,6 +9,7 @@ import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
 import { UserComponent as User } from '../../../services/user.service';
 
+import discordIcon from '@iconify-icons/logos/discord-icon';
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
 
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   environment = environment;
   
+  discordIcon = discordIcon;
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
   

@@ -2,10 +2,12 @@ import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/co
 import { Router } from '@angular/router'
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
+import { environment } from './../../../environments/environment';
 
 import { CommonBottomBarComponent } from './common-bottom-bar.component';
 
 import comments from '@iconify/icons-fa-solid/comments';
+import discordIcon from '@iconify-icons/logos/discord-icon';
 
 @Component({
   selector: 'app-connected-bottom-bar',
@@ -29,8 +31,11 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   
   @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
   @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
+
+  environment = environment;
   
   comments = comments;
+  discordIcon = discordIcon;
   
   constructor(protected socket: Socket, 
               public router: Router, public user: User) {

@@ -98,3 +98,13 @@
 .badge.badge-mini {
   font-size: .65em;
 }
+
+#discord-mobile {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: white;
+}
