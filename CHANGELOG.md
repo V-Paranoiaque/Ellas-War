@@ -271,3 +271,10 @@
 
 # 1.3.1
 * Add a message when getting a return basket
+
+# 1.3.2
+* Add AppImages to the README
+* Add link to Discord
+* Add wars to the admin panel
+* Fix lost password link color
+* Fix some texts
