@@ -38,7 +38,7 @@
     <br/>
   </div>
   
-  <div class="card-body">
+  <div class="modal-body">
     <div *ngFor="let res of ressList">
       <div *ngIf="user.hasLevelRess(res)">
         <ic-icon class="text-success" *ngIf="user.getProperty('var_ress')[res] > 0" [icIcon]="angleUp"></ic-icon>
@@ -67,7 +67,7 @@
     </div>
   </div>
   
-  <div class="card-body">
+  <div class="modal-body">
     <div class="card-button card-button-primary">
       <a class="btn" [routerLink]="['/details']" data-bs-dismiss="modal"
          translate>Details</a>
