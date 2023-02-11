@@ -646,9 +646,9 @@
                   *ngIf="linkSaved == 1"
                   translate>Link saved to clipboard</div>
               <strong translate>Share link:</strong>
-              {{ getCurrentMsg().url }}/message/{{ getCurrentMsg().id }}
+              {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().id }}
               <span class="badge bg-primary" role="button" (click)="copyLink()"
-                    [cbContent]="getCurrentMsg().url+'/message/'+getCurrentMsg().id"
+                    [cbContent]="getCurrentMsg().url+'/permalink/'+getCurrentMsg().id"
                     ngxClipboard>
                 <ic-icon [icon]="clipboardCheck" ></ic-icon>
               </span>
