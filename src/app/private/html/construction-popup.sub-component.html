@@ -221,10 +221,16 @@
       <div translate>
         The mints are very important, they will allow you to beat your currency to pay your troops, erect buildings and trade.
       </div>
+
+      <div translate>
+        Your are getting a Drachma production bonus from the 80th mint.
+      </div>
       <br/>
       <div class="text-center">
-        <a [routerLink]="['/mints']" data-bs-dismiss="modal"
-           class="link" translate>Drachma production</a>
+        <a [routerLink]="['/mints']" data-bs-dismiss="modal" class="link">
+          <ic-icon [icon]="chartLine" title="{{'Production'|translate}}"></ic-icon>&nbsp;
+          <span translate>Drachma production</span>
+        </a>
       </div>
     </div>
     <div *ngIf="info.code === 'sawmill'" translate>

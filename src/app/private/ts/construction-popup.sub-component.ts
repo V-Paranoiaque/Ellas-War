@@ -6,6 +6,7 @@ import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import { environment } from './../../../environments/environment';
 
+import chartLine from '@iconify/icons-fa-solid/chart-line';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 
 @Component({
@@ -20,6 +21,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   Number =  Number;
   Tools = Tools;
   
+  chartLine = chartLine;
   shieldShaded = shieldShaded;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
