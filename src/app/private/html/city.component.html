@@ -150,7 +150,7 @@
                 </div>
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#DailyInfo"
-                    *ngIf="dailCo() > 0 && dailyCoCheck == 1"
+                    *ngIf="dailCo() > 0 && dailyCoCheck === 1"
                     id="DailyCoCheckOpen">
                   <ic-icon [icIcon]="questionCircle"></ic-icon>
                 </div>
@@ -175,7 +175,7 @@
                       <ic-icon [icIcon]="cog"></ic-icon>
                     </a>
                   </div>
-                  <div class="col-12 text-center text-danger fw-bold">
+                  <div class="col-12 text-center text-danger fw-bold" *ngIf="waveDefensePower === 0">
                     <span translate>
                       Without defense, your resource losses will be greater in the event of an attack
                     </span>
