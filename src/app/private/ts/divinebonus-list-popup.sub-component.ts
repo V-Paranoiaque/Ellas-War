@@ -20,7 +20,7 @@ export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.socket.on('divineBonus', (data:any) => {
+    this.socket.on('divineBonus', (data) => {
       if(data.nb > 0) {
         this.divineBonusList   = data.list;
       }

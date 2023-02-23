@@ -225,7 +225,7 @@ describe('User', () => {
     const fixture = TestBed.createComponent(User);
     fixture.detectChanges();
     const app = fixture.componentInstance;
-    expect(app.getSanctuary('random')).toEqual(0);
+    expect(app.getSanctuary(-1)).toEqual(0);
   });
   
   it('test getTaxes', () => {

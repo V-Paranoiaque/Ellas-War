@@ -52,7 +52,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     
     this.getProfile();
     
-    this.socket.on('adminProfile', (data:any) => {
+    this.socket.on('adminProfile', (data) => {
       console.log(data);
     });
     
@@ -86,7 +86,8 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
   
   getProfile() {
     let url = this.socket.url+'/api/playerProfile/'+this.profile.membre_id+'.json';
-    this.subPlayer = this.http.get(url).subscribe((player:any) => {
+    this.subPlayer = this.http.get(url).subscribe((res:object) => {
+      const player = res as {membre_id:number, username:string}
       if(player && player.membre_id) {
         this.profile = player;
         

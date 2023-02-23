@@ -3,7 +3,7 @@
     <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatGeneral>
       <div *ngFor="let msg of chat_user_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
-           [ngClass]="{'text-danger': msg.rank == 5 }"
+           [ngClass]="{'text-danger': msg.rank === 5 }"
            title="{{ msg.time*1000| date:'dd/MM, HH:mm'}}"
            class="fw-bold">{{msg.username}}</a>
         <span translate>:</span>
@@ -14,13 +14,13 @@
       <span *ngFor="let user of chat_user_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
-           [ngClass]="{'text-danger': user.rank == 5,
-                      'text-warning': user.chat_allowed == 0}"
+           [ngClass]="{'text-danger': user.rank === 5,
+                      'text-warning': user.chat_allowed === 0}"
            class="fw-bold">{{user.username}}</a>
       </span>
     </div>
     <div class="col-12">
-      <div class="input-group" *ngIf="user.getPropertyNb('chat_allowed') == 1">
+      <div class="input-group" *ngIf="user.getPropertyNb('chat_allowed') === 1">
         <input type="text" aria-describedby="chat_user_input"
                placeholder="{{'Message'|translate}}" class="form-control"
                id="chatUserMsg" [(ngModel)]="chatUserMsg"
@@ -30,7 +30,7 @@
               role="button" (click)="chatUserSend()" translate>Send</span>
       </div>
     </div>
-    <div *ngIf="user.getPropertyNb('chat_allowed') == 0"
+    <div *ngIf="user.getPropertyNb('chat_allowed') === 0"
          class="text-center text-danger fw-bold">
       <br/>
       <span translate>
@@ -42,7 +42,7 @@
     <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatAlliance>
       <div *ngFor="let msg of chat_alli_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
-           [ngClass]="{'text-danger fw-bold': msg.rank == 5 }"
+           [ngClass]="{'text-danger fw-bold': msg.rank === 5 }"
            title="{{ msg.time*1000| date:'dd/MM, HH:mm'}}"
            class="fw-bold">{{msg.username}}</a>
         <span translate>:</span>
@@ -53,8 +53,8 @@
       <span *ngFor="let user of chat_alli_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
-           [ngClass]="{'text-danger': user.rank == 5,
-                      'text-warning': user.chat_allowed == 0}"
+           [ngClass]="{'text-danger': user.rank === 5,
+                      'text-warning': user.chat_allowed === 0}"
            class="fw-bold">{{user.username}}</a>
       </span>
     </div>
@@ -107,36 +107,36 @@
     <a [routerLink]="['/city']"
        title="{{'Access to your city'|translate}}"
        [ngClass]="{'inactive': router.url !== '/city',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-city"></app-ew-icon>
     </a>
     <a [routerLink]="['/attacks']"
        title="{{'Access to the attacks'|translate}}"
        [ngClass]="{'inactive': router.url !== '/attacks',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-attack"></app-ew-icon>
     </a>
     <a [routerLink]="['/messages']" 
        title="{{'Access to your messages'|translate}}"
        [ngClass]="{'inactive': router.url !== '/messages',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-messages"></app-ew-icon>
     </a>
     <a [routerLink]="['/quests']"
        title="{{'Access to the quests'|translate}}"
        [ngClass]="{'inactive': router.url !== '/quests',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-quests"></app-ew-icon>
     </a>
     <a [routerLink]="['/diplomacy']"
-       *ngIf="user.getPropertyNb('alliance') == 0"
+       *ngIf="user.getPropertyNb('alliance') === 0"
        title="{{'Access to the alliance list'|translate}}"
        [ngClass]="{'inactive': router.url !== '/diplomacy',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-alliance"></app-ew-icon>
     </a>
@@ -144,20 +144,20 @@
        *ngIf="user.getPropertyNb('alliance') > 0"
        title="{{'Access to the alliance list'|translate}}"
        [ngClass]="{'inactive': router.url !== '/alliance',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-alliance"></app-ew-icon>
     </a>
     <a [routerLink]="['/storeroom']"
        title="{{'Access to the agora'|translate}}"
        [ngClass]="{'inactive': router.url !== '/storeroom',
-                   'menu-5': user.getLevel() == 0,
+                   'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-agora"></app-ew-icon>
     </a>
     <a role="button" data-bs-toggle="modal" data-bs-target="#PlayerInfo"
        title="{{'Display your resources'|translate}}"
-       [ngClass]="{'menu-5': user.getLevel() == 0,
+       [ngClass]="{'menu-5': user.getLevel() === 0,
                    'menu-7': user.getLevel() > 0}">
       <app-ew-icon name="menu-resources"></app-ew-icon>
     </a>

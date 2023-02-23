@@ -44,26 +44,26 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
     
-    this.socket.on('storeroomList', (data:any) => {
-      this.storeroomList = data;
+    this.socket.on('storeroomList', (data) => {
+      this.storeroomList = data as typeof this.storeroomList;
     });
     this.socket.on('storeroomListReload', () => {
       this.socket.emit('storeroomList');
       this.storeroomHistory();
     });
-    this.socket.on('storeroomMyList', (data:any) => {
-      this.storeroomMyList = data;
+    this.socket.on('storeroomMyList', (data) => {
+      this.storeroomMyList = data as typeof this.storeroomMyList;
     });
     this.socket.on('storeroomMyListReload', () => {
       this.socket.emit('storeroomMyList');
       this.socket.emit('storeroomMin', 1);
       this.storeroomHistory();
     });
-    this.socket.on('storeroomMin', (data:any) => {
-      this.storeroomMin = data;
+    this.socket.on('storeroomMin', (data) => {
+      this.storeroomMin = data as typeof this.storeroomMin;
     });
-    this.socket.on('storeroomStats', (data:any) => {
-      this.storeroomStats = data;
+    this.socket.on('storeroomStats', (data) => {
+      this.storeroomStats = data as typeof this.storeroomStats;
     });
     
     this.socket.emit('storeroomList');
@@ -116,7 +116,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.socket.emit('storeroomMin', this.storeroomRess);
   }
   
-  storeroomBuy(resource_id:any, quantity:any, rate:any) {
+  storeroomBuy(resource_id: number, quantity: number, rate: number) {
     let msg = {
       'quantity': quantity,
       'rate': rate,

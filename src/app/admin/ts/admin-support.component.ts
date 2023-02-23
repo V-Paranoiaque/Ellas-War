@@ -19,6 +19,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   public adminSupportMax:number;
   public adminSupportPage:number;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   angellistIcon = angellistIcon;
@@ -28,25 +29,28 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute,
               private socket: Socket, public user: User,
               public translate: TranslateService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    let id = this.route.snapshot.paramMap.get('id');
-    
-    if(id) {
-      this.adminSupportPage = parseInt(id);
-    }
-    else {
-      this.adminSupportPage = 1;
-    }
+    this.adminSupportPage = 1;
     this.adminSupportList = [];
     this.adminSupportMax = 1;
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      
+      if(id) {
+        this.adminSupportPage = parseInt(id);
+      }
+      else {
+        this.adminSupportPage = 1;
+      }
     
-    this.socket.emit('adminSupportList', this.adminSupportPage);
+      this.socket.emit('adminSupportList', this.adminSupportPage);
+    });
     
-    this.socket.on('adminSupportList', (msg:any) => {
+    this.socket.on('adminSupportList', (msg) => {
       this.adminSupportList = msg.list;
       this.adminSupportPage = msg.cPage;
       this.adminSupportMax  = msg.max;

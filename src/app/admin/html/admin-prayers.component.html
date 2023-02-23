@@ -273,10 +273,10 @@
                 </td>
                 <td *ngIf="user.getPropertyNb('rank') > 4">
                   <button class="btn btn-success" (click)="prayersValide(p.divinebonus_ask_id, 2)" 
-                          title="{{'Validate'|translate}}" *ngIf="p.ask_status == 1"
+                          title="{{'Validate'|translate}}" *ngIf="p.ask_status === 1"
                           translate>Validate</button>
                   <button class="btn btn-danger" (click)="prayersValide(p.divinebonus_ask_id, 3)"
-                          title="{{'Refuse'|translate}}" *ngIf="p.ask_status == 1"
+                          title="{{'Refuse'|translate}}" *ngIf="p.ask_status === 1"
                           translate>Refuse</button>
                 </td>
               </tr>

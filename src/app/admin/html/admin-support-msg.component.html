@@ -10,7 +10,7 @@
           <h2 class="text-center">
             {{adminSupportInfo.title}}
             <a (click)="adminSupportStatus()" class="btn" 
-               [ngClass]="{'btn-success': adminSupportInfo.status == 1, 'btn-danger': adminSupportInfo.status == 0}">
+               [ngClass]="{'btn-success': adminSupportInfo.status === 1, 'btn-danger': adminSupportInfo.status === 0}">
               <ic-icon [icon]="angellistIcon"></ic-icon>
             </a>
           </h2>

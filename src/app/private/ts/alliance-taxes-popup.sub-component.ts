@@ -26,8 +26,8 @@ export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.socket.emit('myAllianceProfile');
     
-    this.socket.on('myAllianceProfile', (data:any) => {
-      this.myAllianceProfile = data;
+    this.socket.on('myAllianceProfile', (data) => {
+      this.myAllianceProfile = data as typeof this.myAllianceProfile;
       this.level_min = data.fee_min;
     });
   }

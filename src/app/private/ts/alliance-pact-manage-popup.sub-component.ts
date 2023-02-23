@@ -22,11 +22,11 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.socket.emit('myAllianceProfile');
     
-    this.socket.on('myAllianceProfile', (data:any) => {
-      this.myAllianceProfile = data;
+    this.socket.on('myAllianceProfile', (data) => {
+      this.myAllianceProfile = data as typeof this.myAllianceProfile;
     });
-    this.socket.on('alliancePactInfo', (data:any) => {
-      this.alliancePactInfo = data;
+    this.socket.on('alliancePactInfo', (data) => {
+      this.alliancePactInfo = data as typeof this.alliancePactInfo;
     });
   }
   

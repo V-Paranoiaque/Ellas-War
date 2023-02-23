@@ -38,8 +38,8 @@ export class ContactUsComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(res);
     });
     
-    this.socket.on('contact', (data:any) => {
-      this.contactError = data;
+    this.socket.on('contact', (data) => {
+      this.contactError = data as typeof this.contactError;
     });
   }
   

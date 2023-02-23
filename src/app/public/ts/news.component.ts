@@ -11,7 +11,12 @@ import { UserComponent as User } from '../../../services/user.service';
 })
 
 export class NewsComponent implements OnInit, OnDestroy {
-  private newsList:any;
+  private newsList:{
+    title: string,
+    link: string,
+    author: string,
+    news_date: number
+  }[];
   private subNews:Subscription;
   private subTitle:Subscription;
   
@@ -24,8 +29,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     let url = this.socket.url+'/api/news.json';
-    this.subNews = this.http.get(url).subscribe((res:any) => {
-      this.newsList = res;
+    this.subNews = this.http.get(url).subscribe((res) => {
+      this.newsList = res as typeof this.newsList;
     });
     
     this.subTitle = this.translate.get('Ellas War news').subscribe((res: string) => {

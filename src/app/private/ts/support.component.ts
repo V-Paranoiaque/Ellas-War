@@ -21,29 +21,12 @@ export class SupportComponent implements OnInit, OnDestroy {
   public contactNewTitle:string;
   public contactNewMsg:string;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   eye = eye;
   
   constructor(private router: Router, public user: User, private route: ActivatedRoute, private socket: Socket) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    
-    let id = this.route.snapshot.paramMap.get('id');
-    if(id) {
-      this.contactC = id;
-    }
-    else {
-      this.contactC = 1;
-    }
-    
-    let msg = this.route.snapshot.paramMap.get('msg');
-    if(msg) {
-      this.msg = msg;
-    }
-    else {
-      this.msg = 0;
-    }
-    
     this.answerMsg = '';
     this.contactList = [];
     this.contactNb = 0;
@@ -59,10 +42,29 @@ export class SupportComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.user.checkPermissions([1,2,3,4,5]);
-    this.socket.emit('contactList', this.contactC);
-    this.loadSupport();
     
-    this.socket.on('contactList', (data:any) => {
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      if(id) {
+        this.contactC = id;
+      }
+      else {
+        this.contactC = 1;
+      }
+      
+      let msg = params.get('msg');
+      if(msg) {
+        this.msg = msg;
+      }
+      else {
+        this.msg = 0;
+      }
+
+      this.socket.emit('contactList', this.contactC);
+      this.loadSupport();
+    });  
+    
+    this.socket.on('contactList', (data) => {
       this.contactList = data.list;
       this.contactNb   = data.max;
       this.contactC    = data.cPage;
@@ -77,8 +79,8 @@ export class SupportComponent implements OnInit, OnDestroy {
       this.router.navigate(['/support/1/'+data])
     });
     
-    this.socket.on('contactInfo', (data:any) => {
-      this.contactInfo = data;
+    this.socket.on('contactInfo', (data) => {
+      this.contactInfo = data as typeof this.contactInfo;
     });
   }
   

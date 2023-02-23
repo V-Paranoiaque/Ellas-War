@@ -82,7 +82,7 @@ export class CityComponent implements OnInit, OnDestroy {
       }, 500);
     }
     
-    this.socket.on('divineBonus', (data:any) => {
+    this.socket.on('divineBonus', (data) => {
       this.divineBonusNb = data.nb;
       if(this.divineBonusNb > 0) {
         this.divineBonus   = data.list;
@@ -92,8 +92,8 @@ export class CityComponent implements OnInit, OnDestroy {
       }
     });
     
-    this.socket.on('dailyCo', (result:any) => {
-      this.dailyCo = result;
+    this.socket.on('dailyCo', (result) => {
+      this.dailyCo = result as typeof this.dailCo;
       let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
       if(element) {
         element.click();
@@ -106,10 +106,10 @@ export class CityComponent implements OnInit, OnDestroy {
       }
     });
     
-    this.socket.on('waveAttackList', (data:any) => {
+    this.socket.on('waveAttackList', (data) => {
         this.waveAttackPower = data.power;
     });
-    this.socket.on('waveDefenseList', (data:any) => {
+    this.socket.on('waveDefenseList', (data) => {
         this.waveDefensePower = data.power;
     });
     

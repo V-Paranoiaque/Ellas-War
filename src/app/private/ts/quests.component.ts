@@ -31,8 +31,8 @@ export class QuestsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
     
-    this.socket.on('myQuestList', (data:any) => {
-      this.myQuestList = data;
+    this.socket.on('myQuestList', (data) => {
+      this.myQuestList = data as typeof this.myQuestList;
     });
     this.socket.on('myQuestListRefresh', () => {
       this.socket.emit('myQuestList');
@@ -47,17 +47,17 @@ export class QuestsComponent implements OnInit, OnDestroy {
     this.socket.emit('altarConditionHestia');
     this.socket.emit('altarConditionGaia');
     
-    this.socket.on('altarConditionDivineunits', (data:any) => {
-      this.altarConditionDivineunits = data;
+    this.socket.on('altarConditionDivineunits', (data) => {
+      this.altarConditionDivineunits = data as typeof this.altarConditionDivineunits;
     });
-    this.socket.on('altarConditionPrometheus', (data:any) => {
-      this.altarConditionPrometheus = data;
+    this.socket.on('altarConditionPrometheus', (data) => {
+      this.altarConditionPrometheus = data as typeof this.altarConditionPrometheus;
     });
-    this.socket.on('altarConditionHestia', (data:any) => {
-      this.altarConditionHestia = data;
+    this.socket.on('altarConditionHestia', (data) => {
+      this.altarConditionHestia = data as typeof this.altarConditionHestia;
     });
-    this.socket.on('altarConditionGaia', (data:any) => {
-      this.altarConditionGaia = data;
+    this.socket.on('altarConditionGaia', (data) => {
+      this.altarConditionGaia = data as typeof this.altarConditionGaia;
     });
   }
   

@@ -24,6 +24,7 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   private subRank:Subscription;
   private subTitle:Subscription;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   sortUP = sortUP;
@@ -33,8 +34,6 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
               private router: Router, public user: User,
               private socket: Socket, private titleService: Title, 
               public translate: TranslateService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    
     this.rankingList = [];
     this.rankingMax = 1;
     this.rankingOrder = 'level';
@@ -44,14 +43,15 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    let page = this.route.snapshot.paramMap.get('id');
-    
-    if(page) {
-      this.rankingPage = parseInt(page);
-    }
-    
-    this.getPage();
-    
+    this.route.paramMap.subscribe(params => {
+      let page = params.get('id');
+      
+      if(page) {
+        this.rankingPage = parseInt(page);
+      }
+      
+      this.getPage();
+    });
     this.socket.on('rankingAlliancesRefresh', () => {
       this.getPage();
     });
@@ -83,7 +83,7 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
     this.getPage();
   }
   
-  rankingPageChange(page:any) {
+  rankingPageChange(page:number) {
     if(!page || page < 1) {
       page = 1;
     }

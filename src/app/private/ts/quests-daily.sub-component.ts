@@ -34,7 +34,7 @@ export class QuestsDailySubComponent {
   promptQuestAbandon() {
     this.showDelete = (this.showDelete+1)%2;
   }
-  questGiveup(quest:any) {
+  questGiveup(quest:{quest_id:number, quest_current:number, quest_reward:number}) {
     this.socket.emit('myQuestGiveup', {
       'quest_id': quest.quest_id,
       'quest_current': quest.quest_current,

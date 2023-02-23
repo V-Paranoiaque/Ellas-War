@@ -40,14 +40,14 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
     this.resetQuest();
     this.resetReward();
     
-    this.socket.on('adminQuestList', (msg:any) => {
-      this.adminQuestList = msg;
+    this.socket.on('adminQuestList', (msg) => {
+      this.adminQuestList = msg as typeof this.adminQuestList;
     });
     this.socket.on('adminQuestListRefresh', () => {
       this.socket.emit('adminQuestList');
     });
-    this.socket.on('adminQuestReward', (msg:any) => {
-      this.adminQuestReward = msg;
+    this.socket.on('adminQuestReward', (msg) => {
+      this.adminQuestReward = msg as typeof this.adminQuestReward;
     });
     this.socket.on('adminQuestRewardRefresh', () => {
       this.socket.emit('adminQuestReward');

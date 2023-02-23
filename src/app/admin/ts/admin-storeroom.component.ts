@@ -12,8 +12,8 @@ import { UserComponent as User } from '../../../services/user.service';
 export class AdminStoreroomComponent implements OnInit, OnDestroy {
   
   public list:any[];
-  public msgPageNb:any;
-  public currentPage:any;
+  public msgPageNb:number;
+  public currentPage:number;
   
   public begining:string;
   public beginDate:any;
@@ -49,7 +49,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
     this.begining = this.researchDate();
     this.adminStoreroomList(0);
     
-    this.socket.on('adminStoreroomList', (msg:any) => {
+    this.socket.on('adminStoreroomList', (msg) => {
       this.list      = msg.list;
       this.msgPageNb = msg.nbPage;
     });

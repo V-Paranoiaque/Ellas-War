@@ -22,8 +22,8 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.init();
     
-    this.socket.on('archiveList', (data:any) => {
-      this.archiveList = data;
+    this.socket.on('archiveList', (data) => {
+      this.archiveList = data as typeof this.archiveList;
     });
     this.socket.on('archiveListRefresh', () => {
       this.init();

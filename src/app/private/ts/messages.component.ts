@@ -83,7 +83,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     })
     
-    this.socket.on('msgPage', (newMsgList:any) => {
+    this.socket.on('msgPage', (newMsgList) => {
       for(let i in newMsgList.list) {
         newMsgList.list[i].isChecked = true;
       }
@@ -98,8 +98,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     });
     
-    this.socket.on('msgInfo', (msgInfo:any) => {
-      this.currentMsg = msgInfo;
+    this.socket.on('msgInfo', (msgInfo) => {
+      this.currentMsg = msgInfo as typeof this.currentMsg;
     });
     
     this.socket.on('msgRefresh', () => {
@@ -133,7 +133,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/playerProfile/'+username+'.json';
     
-    this.sub = this.http.get(url).subscribe((res:any) => {
+    this.sub = this.http.get(url).subscribe((result) => {
+      const res = result as { membre_id:number, username:string}
       if(res && res.membre_id) {
         this.removeDest(res.membre_id);
         this.destList.push({

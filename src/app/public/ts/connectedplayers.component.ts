@@ -40,8 +40,8 @@ export class ConnectedPlayersComponent implements OnInit, OnDestroy {
   getPage() {
     let url = this.socket.url+'/api/connected.json';
     
-    this.subList = this.http.get(url).subscribe((result:any) => {
-      this.connected = result;
+    this.subList = this.http.get(url).subscribe((result) => {
+      this.connected = result as typeof this.connected;
     });
     this.subTitle = this.translate.get('Connected players on the Ancient Greece').subscribe((res: string) => {
       this.titleService.setTitle(res);

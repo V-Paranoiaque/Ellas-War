@@ -11,6 +11,13 @@ import brushIcon from '@iconify/icons-bi/brush';
 import userCircle from '@iconify/icons-fa-solid/user-circle';
 import userShield from '@iconify/icons-fa-solid/user-shield';
 
+type profile = {
+  membre_id:number, username:'', level: number, xp:number, victory:number,
+  field: number, featsofstrength: number, alliance:number, alliance_name: string,
+  rank_name: string, location: string, inscription:number, description: string,
+  membre_img: string
+};
+
 @Component({
   templateUrl: '../html/profile.component.html'
 })
@@ -19,7 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public onChange: EventEmitter<any> = new EventEmitter<any>();
   
   public id: any;
-  public profile: any;
+  public profile: profile;
   
   private subPlayer:Subscription;
   private subTitle:Subscription;
@@ -32,7 +39,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
               protected socket: Socket, public translate: TranslateService,
               private route: ActivatedRoute, private titleService: Title) {
     this.profile = {
-      'username': ''
+      membre_id: 0, username:'', level:  0, xp: 0, victory: 0,
+      field: 0, featsofstrength: 0, alliance: 0, alliance_name: '',
+      rank_name: '', location: '', inscription: 0, description: '',
+      membre_img: ''
     }
     this.subPlayer = new Subscription();
     this.subTitle = new Subscription();
@@ -61,7 +71,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     let url = this.socket.url+'/api/playerProfile/'+userId+'.json';
     this.socket.emit('accountInfo');
     
-    this.subPlayer = this.http.get(url).subscribe((player:any) => {
+    this.subPlayer = this.http.get(url).subscribe((resPlayer:object) => {
+      const player = resPlayer as profile;
       if(player && player.membre_id) {
         this.profile = player;
         

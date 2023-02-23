@@ -18,10 +18,10 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   public idToUser:string;
   public id:number;
   public preUseList:any;
-  public furyNb:any;
-  public furyCost:any;
-  public lightningCost:any;
-  public lightningNb:any;
+  public furyNb:string;
+  public furyCost:{drachma: number, food:number, wood:number};
+  public lightningCost:{food:number, wine:number, gold:number};
+  public lightningNb:string;
   public temple3Units:number;
   
   private sub:Subscription;
@@ -58,11 +58,11 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     this.socket.on('wallDefense', (def:number) => {
       this.wallDefense = def;
     });
-    this.socket.on('myAttacksList', (result:any) => {
-      this.preUseList = result;
+    this.socket.on('myAttacksList', (result) => {
+      this.preUseList = result as typeof this.preUseList;
     });
     
-    this.socket.on('powersUse', (result:any) => {
+    this.socket.on('powersUse', (result:{error:number}) => {
       this.temple.error = result.error;
       this.socket.emit('myAttacksList');
     });
@@ -78,8 +78,8 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     }
   }
   
-  furyBuy(nb:number) {
-    this.socket.emit('furyBuy', nb);
+  furyBuy(nb:string) {
+    this.socket.emit('furyBuy', parseInt(nb));
     this.furyNb = '';
   }
   
@@ -87,7 +87,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     let list = [];
     
     for(let res in this.furyCost) {
-      if(this.furyCost[res]*this.furyNb > this.user.getPropertyNb(res)) {
+      if(this.furyCost[res as keyof typeof this.furyCost]*parseInt(this.furyNb) > this.user.getPropertyNb(res)) {
         list.push(res);
       }
     }
@@ -95,8 +95,8 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     return list;
   }
   
-  lightningBuy(nb:number) {
-    this.socket.emit('lightningBuy', nb);
+  lightningBuy(nb:string) {
+    this.socket.emit('lightningBuy', parseInt(nb));
     this.lightningNb = '';
   }
   
@@ -104,7 +104,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     let list = [];
     
     for(let res in this.lightningCost) {
-      if(this.lightningCost[res]*this.furyNb > this.user.getPropertyNb(res)) {
+      if(this.lightningCost[res as keyof typeof this.lightningCost]*parseInt(this.furyNb) > this.user.getPropertyNb(res)) {
         list.push(res);
       }
     }
@@ -127,7 +127,8 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     if(this.idToUser.length > 0) {
       let url = this.socket.url+'/api/playerProfile/'+this.idToUser+'.json'
       
-      this.sub = this.http.get(url).subscribe((res:any) => {
+      this.sub = this.http.get(url).subscribe((result) => {
+        const res = result as {membre_id:number}
         if(res && res.membre_id) {
           info = {
             'id': this.temple.power,

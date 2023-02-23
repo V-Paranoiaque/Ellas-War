@@ -48,8 +48,8 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.emit('allianceList', this.order);
     this.socket.emit('allianceWait');
     
-    this.socket.on('allianceList', (data:any) => {
-      this.allianceList = data;
+    this.socket.on('allianceList', (data) => {
+      this.allianceList = data as typeof this.allianceList;
     });
     this.socket.on('allianceListReload', () => {
       this.socket.emit('allianceList', this.order);
@@ -95,9 +95,9 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   getProfile(id:number) {
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.sub = this.http.get(url).subscribe((res:any) => {
+    this.sub = this.http.get(url).subscribe((res) => {
       if(res) {
-        this.allianceProfile = res;
+        this.allianceProfile = res as typeof this.allianceProfile;
       }
     });
   }

@@ -34,7 +34,7 @@ export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
     this.socket.on('myAllianceAskAccept', (data:number) => {
       this.myAllianceAskAcceptError = data;
     });
-    this.socket.on('myAllianceAskList', (data:any) => {
+    this.socket.on('myAllianceAskList', (data) => {
       let res_id = Tools.getResId(this.info.resource);
       this.myAllianceAskList = [];
       for(let row in data) {
@@ -43,8 +43,8 @@ export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
         }
       }
     });
-    this.socket.on('myAllianceAskMy', (data:any) => {
-      this.myAllianceAskMy = data;
+    this.socket.on('myAllianceAskMy', (data) => {
+      this.myAllianceAskMy = data as typeof this.myAllianceAskMy;
     });
     this.socket.on('myAllianceAskRefresh', () => {
       this.socket.emit('myAllianceAskList');

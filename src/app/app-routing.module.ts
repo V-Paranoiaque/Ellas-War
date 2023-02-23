@@ -185,8 +185,10 @@ routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadAllModules
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      onSameUrlNavigation: 'reload'
     })],
   exports: [RouterModule]
 })

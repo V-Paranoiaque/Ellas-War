@@ -186,7 +186,7 @@ export class UserComponent {
     return 0;
   }
   
-  getLevelRess(ress:any) {
+  getLevelRess(ress:string) {
     if(this.info.datas && this.info.datas.ress_lvl && this.info.datas.ress_lvl[ress]) {
       return this.info.datas.ress_lvl[ress];
     }
@@ -195,7 +195,7 @@ export class UserComponent {
     }
   }
   
-  getSanctuary(sanctuary:any) {
+  getSanctuary(sanctuary:number) {
     if(this.info.sanctuary && this.info.sanctuary[sanctuary]) {
       return this.info.sanctuary[sanctuary];
     }
@@ -206,7 +206,7 @@ export class UserComponent {
   getTaxes(ress:string) {
     return this.getPropertyNb('tax_'+ress);
   }
-  getVarRess(ress:any) {
+  getVarRess(ress:string) {
     if(this.info.var_ress && this.info.var_ress[ress]) {
       return this.info.var_ress[ress];
     }
@@ -293,13 +293,13 @@ export class UserComponent {
     else {
       facebookConnectPlugin.login(["public_profile"],
         () => {
-          facebookConnectPlugin.getAccessToken((token:any) => {
+          facebookConnectPlugin.getAccessToken((token:string) => {
             this.socket.emit('mobileFB', {
               'token': token
             });
           });
         },
-        function (error:any) {
+        function (error:Error) {
           alert(error)
         }
       );
@@ -317,10 +317,10 @@ export class UserComponent {
         'scopes': 'profile email', // optional, space-separated list of scopes, If not included or empty, defaults to `profile` and `email`.
         'webClientId': environment.google.client_id
       },
-      (obj:any) => {
+      (obj:{idToken: string}) => {
         this.socket.emit('mobileGoogle', {'token': obj.idToken});
       },
-      (msg:any) => {
+      (msg:Error) => {
         alert('error: ' + msg);
       });
     }
@@ -343,7 +343,6 @@ export class UserComponent {
   reload() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
   }
 }

@@ -80,7 +80,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
       this.socket.emit('waveAttackList');
     }
     
-    this.socket.on('waveAttackList', (data:any) => {
+    this.socket.on('waveAttackList', (data) => {
       if(data.list.length > 0) {
         this.waveAttackProcess(data);
       }
@@ -92,7 +92,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
       }
     });
     
-    this.socket.on('waveDefenseList', (data:any) => {
+    this.socket.on('waveDefenseList', (data) => {
       if(data.list.length > 0) {
         this.waveDefenseProcess(data);
       }

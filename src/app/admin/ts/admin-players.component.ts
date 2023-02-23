@@ -11,7 +11,7 @@ import { UserComponent as User } from '../../../services/user.service';
 
 export class AdminPlayersComponent implements OnInit, OnDestroy {
   
-  public adminPage:any;
+  public adminPage:number;
   public adminPlayersList:any;
   public banish:boolean;
   public blocked:boolean;
@@ -20,6 +20,7 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
   public research:string;
   public searchType:string;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   constructor(private socket: Socket, public user: User,
@@ -40,8 +41,8 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
     
-    this.socket.on('adminPlayersResearch', (list:any) => {
-      this.adminPlayersList = list;
+    this.socket.on('adminPlayersResearch', (list) => {
+      this.adminPlayersList = list as typeof this.adminPlayersList;
     });
   }
   
@@ -57,12 +58,12 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
       'pause':      this.pause,
       'blocked':    this.blocked,
       'banish':     this.banish,
-      'page': this.adminPage
+      'page':       this.adminPage
     };
     this.socket.emit('adminPlayersResearch', msg);
   }
   
-  setPage(page:any) {
+  setPage(page:number) {
     this.adminPage = page;
     this.adminPlayersResearch();
   }

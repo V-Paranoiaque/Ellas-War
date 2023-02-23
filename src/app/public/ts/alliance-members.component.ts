@@ -54,9 +54,9 @@ export class AllianceMembersComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/allianceMembers/'+id+'.json';
     
-    this.subMembers = this.http.get(url).subscribe((res:any) => {
+    this.subMembers = this.http.get(url).subscribe((res) => {
       if(res) {
-        this.allianceMembers = res;
+        this.allianceMembers = res as typeof this.allianceMembers;
       }
     });
   }
@@ -66,12 +66,12 @@ export class AllianceMembersComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/allianceProfile/'+id+'.json';
     
-    this.subProfile = this.http.get(url).subscribe((alli:any) => {
+    this.subProfile = this.http.get(url).subscribe((alli) => {
       if(alli) {
-        this.allianceProfile = alli;
+        this.allianceProfile = alli as typeof this.allianceProfile;
         
         this.subTitle = this.translate.get('Alliance members:').subscribe((res: string) => {
-          this.titleService.setTitle(res+' '+alli.alliance_name);
+          this.titleService.setTitle(res+' '+this.allianceProfile.alliance_name);
         });
       }
     });

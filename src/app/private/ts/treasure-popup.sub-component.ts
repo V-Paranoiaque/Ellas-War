@@ -13,8 +13,8 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   @Input() info: any;
   
-  public deposit:any;
-  public computation:any;
+  public deposit:string = '';
+  public computation:string = '';
   public taxDeduction:number;
   public treasureHistory:any;
   public treasureMax:number;
@@ -29,8 +29,8 @@ export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.socket.on('treasureHistory', (datas:any) => {
-      this.treasureHistory = datas;
+    this.socket.on('treasureHistory', (datas) => {
+      this.treasureHistory = datas as typeof this.treasureHistory;
     });
     
     if(this.user.getLevel() < 5) {

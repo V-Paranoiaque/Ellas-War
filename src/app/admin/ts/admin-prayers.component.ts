@@ -12,18 +12,25 @@ import plusIcon from '@iconify/icons-bi/plus';
 
 export class AdminPrayersComponent implements OnInit, OnDestroy {
   
-  public adminPrayersList:any;
-  public request:any;
+  public adminPrayersList:{
+    ask_date: number,
+    ask_username: string,
+    dest_username: string,
+    divinebonus_id: number,
+    ask_nb: number,
+    ask_status: number,
+    divinebonus_ask_id: number
+  }[];
+  public request =  {
+    'quantity': '',
+    'player': '',
+    'type': 0
+  };
   
   plusIcon = plusIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.adminPrayersList = [];
-    this.request = {
-      'quantity': '',
-      'player': '',
-      'type': 0
-    };
   }
   
   ngOnInit() {
@@ -31,8 +38,8 @@ export class AdminPrayersComponent implements OnInit, OnDestroy {
     
     this.socket.emit('adminPrayersList');
     
-    this.socket.on('adminPrayersList', (data:any) => {
-      this.adminPrayersList = data;
+    this.socket.on('adminPrayersList', (data) => {
+      this.adminPrayersList = data as typeof this.adminPrayersList;
     });
     this.socket.on('adminPrayersRefresh', () => {
       this.socket.emit('adminPrayersList');

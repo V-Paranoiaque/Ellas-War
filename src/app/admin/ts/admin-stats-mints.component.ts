@@ -7,7 +7,7 @@ import { UserComponent as User } from '../../../services/user.service';
 })
 
 export class AdminStatsMintsComponent {
-  public list:any=[];
+  public list:{nb:number, drachma:number}[]=[];
   
   constructor(public user: User, public translate: TranslateService) {
     let production = 4200;

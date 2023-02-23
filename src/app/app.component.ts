@@ -79,6 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
     
     this.socket.on('ewAuth', (data: any) => {
       this.user.setInit();
+      const oldStatus = this.user.getPropertyNb('mstatus');
       
       if(data) {
         this.user.setUser(data)
@@ -90,11 +91,12 @@ export class AppComponent implements OnInit, OnDestroy {
         
         this.translate.use(this.user.getProperty('language'));
         
-        //For component to reload after login
-        let currentUrl = this.router.url;
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([currentUrl]);
+        if(oldStatus != this.user.getPropertyNb('mstatus')) {
+          //For component to reload after login
+          let currentUrl = this.router.url;
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.navigate([currentUrl]);
+        }
       }
     });
     
@@ -105,12 +107,12 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     
-    this.socket.on('config', (data:any) => {
+    this.socket.on('config', (data) => {
       this.user.setConfig(data);
     });
     
     //oauth
-    this.socket.on('connectionToken', (data:any) => {
+    this.socket.on('connectionToken', (data) => {
       localStorage.removeItem('token');
       if(data && data.token) {
         let token = data.token;

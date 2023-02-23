@@ -7,6 +7,11 @@ import { UserComponent as User } from '../../../services/user.service';
 
 import angellistIcon from '@iconify-icons/fa-brands/angellist';
 
+type contactList = {
+  id:number, name:string, email:string, text:string, send_date:number,
+  resolve: number
+}
+
 @Component({
   templateUrl: '../html/admin-contact.component.html',
   styleUrls: ['../css/admin.component.css']
@@ -14,10 +19,11 @@ import angellistIcon from '@iconify-icons/fa-brands/angellist';
 
 export class AdminContactComponent implements OnInit, OnDestroy {
   
-  public adminContactList:any;
+  public adminContactList:contactList[];
   public adminContactMax:number;
   public adminContactPage:number;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   angellistIcon = angellistIcon;
@@ -25,26 +31,29 @@ export class AdminContactComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute,
               public user: User, public translate: TranslateService,
               private socket: Socket) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    let id = this.route.snapshot.paramMap.get('id');
-    
-    if(id) {
-      this.adminContactPage = parseInt(id);
-    }
-    else {
-      this.adminContactPage = 1;
-    }
-    
+    this.adminContactPage = 1;
     this.adminContactList = [];
     this.adminContactMax = 1;
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
-    this.socket.emit('adminContactList', this.adminContactPage);
+
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      
+      if(id) {
+        this.adminContactPage = parseInt(id);
+      }
+      else {
+        this.adminContactPage = 1;
+      }
+      this.socket.emit('adminContactList', this.adminContactPage);
+    });
+
     
-    this.socket.on('adminContactList', (msg:any) => {
-      this.adminContactList = msg.list;
+    this.socket.on('adminContactList', (msg:{list:object[], cPage:number, max:number}) => {
+      this.adminContactList = msg.list as contactList[];
       this.adminContactPage = msg.cPage;
       this.adminContactMax  = msg.max;
     });
@@ -54,7 +63,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
     this.socket.removeListener('adminContactList');
   }
   
-  adminContactChange(page:any) {
+  adminContactChange(page:number) {
     if(!page || page < 1) {
       page = 1;
     }

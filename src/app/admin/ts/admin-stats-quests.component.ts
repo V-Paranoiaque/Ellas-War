@@ -26,7 +26,7 @@ export class AdminStatsQuestsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminQuestList');
     this.socket.emit('adminQuestReward');
     
-    this.socket.on('adminQuestList', (msg:any) => {
+    this.socket.on('adminQuestList', (msg) => {
       this.adminQuestList = [];
       for(let i of msg) {
         if(!this.adminQuestList[i.quest_reward]) {
@@ -38,7 +38,7 @@ export class AdminStatsQuestsComponent implements OnInit, OnDestroy {
     this.socket.on('adminQuestListRefresh', () => {
       this.socket.emit('adminQuestList');
     });
-    this.socket.on('adminQuestReward', (msg:any) => {
+    this.socket.on('adminQuestReward', (msg) => {
       this.adminQuestReward = [];
       for(let i of msg) {
         if(!this.adminQuestReward[i.reward_type]) {

@@ -12,7 +12,15 @@ import angellistIcon from '@iconify-icons/fa-brands/angellist';
 
 export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   
-  public adminSupportInfo:any;
+  public adminSupportInfo: {
+    title: string,
+    status: number,
+    msg: {support_msg:string, support_membre:number, username:string, support_date:number}[]
+  } = {
+    title: '',
+    status: 0,
+    msg: []
+  };
   public answertext:string;
   private msg:number;
   
@@ -20,26 +28,28 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   
   constructor(private router: Router, private route: ActivatedRoute,
               private socket: Socket, public user: User) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    let msg = this.route.snapshot.paramMap.get('msg');
-    
-    if(msg) {
-      this.msg = parseInt(msg);
-    }
-    else {
-      this.msg = 0;
-    }
+    this.msg = 0;
     this.answertext = '';
-    this.adminSupportInfo = {};
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+
+    this.route.paramMap.subscribe(params => {
+      let msg = params.get('msg');
+      
+      if(msg) {
+        this.msg = parseInt(msg);
+      }
+      else {
+        this.msg = 0;
+      }
+      
+      this.socket.emit('adminSupportInfo', this.msg);
+    });
     
-    this.socket.emit('adminSupportInfo', this.msg);
-    
-    this.socket.on('adminSupportInfo', (data:any) => {
-      this.adminSupportInfo = data;
+    this.socket.on('adminSupportInfo', (data) => {
+      this.adminSupportInfo = data as typeof this.adminSupportInfo;
     });
     
     this.socket.on('contactListRefresh', () => {

@@ -47,7 +47,8 @@ export class LostPasswordComponent implements OnInit, OnDestroy {
     
     let url = this.socket.url+'/api/lostpassword/'+encodeURIComponent(this.lostvalue)+'.json';
     
-    this.subLost = this.http.get(url).subscribe((result:any) => {
+    this.subLost = this.http.get(url).subscribe((res) => {
+      const result = res as {error:number};
       if(result) {
         this.lostpasswordError = result.error;
       }

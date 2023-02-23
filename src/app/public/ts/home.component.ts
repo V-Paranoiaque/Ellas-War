@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.subLang = this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe((data:any) =>{
-      this.localevars = data;
+      this.localevars = data as typeof this.localevars;
     });
     
     let url = this.socket.url+'/api/news-4.json';
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(res);
     });
     
-    this.socket.on('register', (data:any) => {
+    this.socket.on('register', (data:{error:number}) => {
       this.rerror = data.error;
     });
   }

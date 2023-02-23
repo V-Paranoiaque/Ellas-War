@@ -28,8 +28,9 @@ export class ConfirmComponent implements OnInit, OnDestroy {
         encodeURIComponent(id)+'/'+
         encodeURIComponent(check)+'.json';
   
-    this.sub = this.http.get(url).subscribe((result:any) => {
-      this.confirmResult = result.error;
+    this.sub = this.http.get(url).subscribe((result:object) => {
+      const res = result as {error:number}
+      this.confirmResult = res.error;
     });
   }
   

@@ -11,8 +11,13 @@ import { environment } from './../../../environments/environment';
 })
 
 export class AdminResourcesComponent implements OnInit, OnDestroy {
-  public ressList:any;
-  public give:any;
+  public ressList:string[];
+  public give = {
+    'player': '',
+    'resource': 0,
+    'quantity': '',
+    'reason': 3
+  };
   public error:number
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
@@ -22,13 +27,7 @@ export class AdminResourcesComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.user.checkPermissions([1]);
-    
-    this.give = {
-      'player': '',
-      'resource': 0,
-      'quantity': '',
-      'reason': 3
-    }
+
     this.socket.on('adminResGive', (error:number) => {
       this.error = error;
     })

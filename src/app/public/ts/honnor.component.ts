@@ -7,6 +7,11 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
+type honnorLine = {
+  membre_id: number, username:string, field:number, xp:number,
+  victory:number, honnor:number
+}
+
 @Component({
   templateUrl: '../html/honnor.component.html',
   styleUrls: ['../css/honnor.component.css']
@@ -14,7 +19,7 @@ import { UserComponent as User } from '../../../services/user.service';
 
 export class HonnorComponent implements OnInit, OnDestroy {
   public id: number = 0;
-  public list:any;
+  public list:honnorLine[];
   public levels:number[];
   
   private subRank:Subscription;
@@ -24,22 +29,22 @@ export class HonnorComponent implements OnInit, OnDestroy {
               private socket: Socket, private http: HttpClient,
               public user: User, public translate: TranslateService,
               private titleService: Title) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.levels = Array(10);
     this.subRank = new Subscription();
     this.subTitle = new Subscription();
     this.list = [];
   }
   
-  ngOnInit() {  
-    let id = parseInt(this.route.snapshot.paramMap.get('id') || '0');
-    
-    if(!id) {
-      id = 0;
-    }
-    
-    this.load(id);
-    
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      let id = parseInt(params.get('id') || '0');
+      
+      if(!id) {
+        id = 0;
+      }
+      
+      this.load(id);
+    });
     this.socket.on('rankingHonnorRefresh', () => {
       this.load(this.id);
     });
@@ -71,8 +76,8 @@ export class HonnorComponent implements OnInit, OnDestroy {
     }
     
     let url = this.socket.url+'/api/rankingHonnor/'+this.id+'.json';
-    this.subRank = this.http.get(url).subscribe((res: any) => {
-      this.list = res;
+    this.subRank = this.http.get(url).subscribe((res) => {
+      this.list = res as typeof this.list;
     });
   }
 }

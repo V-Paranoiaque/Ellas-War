@@ -10,12 +10,17 @@ import { UserComponent as User } from '../../../services/user.service';
 
 import sortUP from '@iconify/icons-fa-solid/sort-up';
 
+type rankingLine = {
+  membre_id:number, ranking:number, level:number, username:string, xp:number,
+  victory:number, field:number, honnor:number
+}
+
 @Component({
   templateUrl: '../html/rankingplayers.component.html'
 })
 
 export class RankingPlayersComponent implements OnInit, OnDestroy {
-  public rankingList:any;
+  public rankingList:rankingLine[];
   public rankingMax:number;
   public rankingOrder:string;
   public rankingPage:number;
@@ -23,6 +28,7 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   private subRank:Subscription;
   private subTitle:Subscription;
   
+  parseInt = parseInt;
   Tools = Tools;
   
   sortUP = sortUP;
@@ -31,8 +37,6 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
               private router: Router, public user: User,
               private socket: Socket,public translate: TranslateService,
               private titleService: Title) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    
     this.rankingList = [];
     this.rankingMax = 1;
     this.rankingOrder = 'level';
@@ -42,14 +46,16 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    let page = this.route.snapshot.paramMap.get('id');
-    
-    if(page) {
-      this.rankingPage = parseInt(page);
-    }
-    
-    this.getPage();
-    
+    this.route.paramMap.subscribe(params => {
+      let page = params.get('id');
+      
+      if(page) {
+        this.rankingPage = parseInt(page);
+      }
+      
+      this.getPage();
+    });
+
     this.subTitle = this.translate.get('Watch your enemies on the player rankings').subscribe((res: string) => {
       this.titleService.setTitle(res);
     });
@@ -63,7 +69,8 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   getPage() {
     let url = this.socket.url+'/api/rankingPlayers/'+this.rankingPage+'/'+this.rankingOrder+'.json';
     
-    this.subRank = this.http.get(url).subscribe((result:any) => {
+    this.subRank = this.http.get(url).subscribe((res) => {
+      const result = res as {cPage:number, max:number, ranking:rankingLine[], order:string}
       this.rankingPage = result.cPage;
       this.rankingMax  = result.max;
       this.rankingList = result.ranking;
@@ -76,7 +83,7 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
     this.getPage();
   }
   
-  rankingPageChange(page:any) {
+  rankingPageChange(page:number) {
     if(!page || page < 1) {
       page = 1;
     }

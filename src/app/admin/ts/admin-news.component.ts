@@ -8,19 +8,21 @@ import { UserComponent as User } from '../../../services/user.service';
 import brushIcon from '@iconify/icons-bi/brush';
 import trash2Icon from '@iconify/icons-bi/trash2';
 
+export type newsType = {news_id: number, title: string, link: string, author: string, news_date: number};
+
 @Component({
   templateUrl: '../html/admin-news.component.html',
   styleUrls: ['../css/admin.component.css']
 })
 
 export class AdminNewsComponent implements OnInit, OnDestroy {
-  
-  public adminNewsList:any;
+  public adminNewsList:newsType[];
   public adminNewsMax:number;
   public adminNewsPage:number;
-  public newsSelected:any;
+  public newsSelected:newsType;
   
   Tools = Tools;
+  parseInt = parseInt;
   
   brushIcon = brushIcon;
   trash2Icon= trash2Icon;
@@ -28,28 +30,29 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private route: ActivatedRoute, 
               private socket: Socket, public user: User,
               public translate: TranslateService) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    let id = this.route.snapshot.paramMap.get('id');
-    
-    if(id) {
-      this.adminNewsPage = parseInt(id);
-    }
-    else {
-      this.adminNewsPage = 1;
-    }
-    
+    this.adminNewsPage = 1;
     this.adminNewsList = [];
-    this.newsSelected = {};
+    this.newsSelected = {news_id: 0, title: '', link: '', author: '', news_date: 0};
     this.adminNewsMax = 1;
   }
   
   ngOnInit() {
     this.user.checkPermissions([1]);
+
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      
+      if(id) {
+        this.adminNewsPage = parseInt(id);
+      }
+      else {
+        this.adminNewsPage = 1;
+      }
+      this.socket.emit('adminNewsList', this.adminNewsPage);
+    });
     
-    this.socket.emit('adminNewsList', this.adminNewsPage);
-    
-    this.socket.on('adminNewsList', (msg:any) => {
-      this.adminNewsList = msg.list;
+    this.socket.on('adminNewsList', (msg:{list:object[], cPage:number, max:number}) => {
+      this.adminNewsList = msg.list as newsType[];
       this.adminNewsPage = msg.cPage;
       this.adminNewsMax = msg.max;
     });
@@ -71,8 +74,8 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     this.socket.removeListener('adminNewsDelete');
   }
   
-  setNews(info:any) {
-    this.newsSelected = Object. assign({}, info);
+  setNews(info:object) {
+    this.newsSelected = Object. assign({}, info as newsType);
   }
   
   newsDelete() {
@@ -80,16 +83,16 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   }
   
   newsModify() {
-    let title = this.newsSelected.title;
-    let link  = this.newsSelected.link;
-    let author= this.newsSelected.author;
+    let title = this.newsSelected.title.trim();
+    let link  = this.newsSelected.link.trim();
+    let author= this.newsSelected.author.trim();
     
-    if(title && link && author && title.trim() != '' && link.trim() != '' && author.trim() != '') {
+    if(title.length > 0 && link.length > 0 && author.length > 0) {
       let msg = {
         'id':     this.newsSelected.news_id,
-        'title':  title.trim(),
-        'link':   link.trim(),
-        'author': author.trim()
+        'title':  title,
+        'link':   link,
+        'author': author
       };
       this.socket.emit('adminNewsModify', msg)
     }
@@ -108,7 +111,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     }
   }
   
-  adminNewsPageChange(page:any) {
+  adminNewsPageChange(page:number) {
     if(!page || page < 1) {
       page = 1;
     }

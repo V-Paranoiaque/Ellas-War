@@ -88,7 +88,7 @@
                   <span class="input-group-text" role="button"
                         (click)="supportPageChange(contactC-1)">&lt;</span>
                   <select class="form-select" [ngModel]="contactC" 
-                          (change)="supportPageChange(mySelect.value)"
+                          (change)="supportPageChange(parseInt(mySelect.value))"
                           title="{{'Change page'|translate}}" #mySelect>
                     <option *ngFor="let id of Tools.range(1, contactNb)"
                             value="{{id}}" translate>Page {{id}}</option>

@@ -23,8 +23,8 @@ export class PermalinkComponent implements OnInit, OnDestroy {
     let id = this.route.snapshot.paramMap.get('id');
     this.socket.emit('msgInfo', id);
     
-    this.socket.on('msgInfo', (msgInfo:any) => {
-      this.currentMsg = msgInfo;
+    this.socket.on('msgInfo', (msgInfo) => {
+      this.currentMsg = msgInfo as typeof this.currentMsg;
     });
   }
   

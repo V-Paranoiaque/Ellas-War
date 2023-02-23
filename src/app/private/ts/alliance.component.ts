@@ -28,7 +28,7 @@ export class AllianceComponent implements OnInit, OnDestroy {
   public myAllianceProfile:any;
   public myAllianceWar:any;
   public myAllianceWaitList:any;
-  public myAllianceWaitNb:any;
+  public myAllianceWaitNb = 0;
   public pactList:any;
   public ressList:any;
   public selectedPlayer:any;
@@ -79,26 +79,26 @@ export class AllianceComponent implements OnInit, OnDestroy {
     this.socket.on('alliancePactAsk', () => {
       this.socket.emit('alliancePactListAll');
     });
-    this.socket.on('alliancePactListAll', (data:any) => {
-      this.pactList = data;
+    this.socket.on('alliancePactListAll', (data) => {
+      this.pactList = data as typeof this.pactList;
     });
-    this.socket.on('myAllianceProfile', (data:any) => {
-      this.myAllianceProfile = data;
+    this.socket.on('myAllianceProfile', (data) => {
+      this.myAllianceProfile = data as typeof this.myAllianceProfile;
     });
     this.socket.on('myAllianceProfileRefresh', () => {
       this.socket.emit('myAllianceProfile');
     });
-    this.socket.on('myAllianceMembers', (data:any) => {
-      this.myAllianceMembers = data;
+    this.socket.on('myAllianceMembers', (data) => {
+      this.myAllianceMembers = data as typeof this.myAllianceMembers;
     });
-    this.socket.on('myAllianceAllowLeave', (data:any) => {
-      this.allowLeave = data;
+    this.socket.on('myAllianceAllowLeave', (data) => {
+      this.allowLeave = data as typeof this.allowLeave;
     });
-    this.socket.on('myAllianceWar', (data:any) => {
-      this.myAllianceWar = data;
+    this.socket.on('myAllianceWar', (data) => {
+      this.myAllianceWar = data as typeof this.myAllianceWar;
     });
-    this.socket.on('myAllianceAllowDissolve', (data:any) => {
-      this.allowDissolve = data;
+    this.socket.on('myAllianceAllowDissolve', (data) => {
+      this.allowDissolve = data as typeof this.allowDissolve;
     });
     this.socket.on('myAllianceMembersRefresh', () => {
       this.socket.emit('myAllianceMembers');
@@ -112,14 +112,14 @@ export class AllianceComponent implements OnInit, OnDestroy {
       this.socket.emit('myAllianceAllowLeave');
       this.socket.emit('myAllianceAllowDissolve');
     });
-    this.socket.on('myAllianceWaitList', (data:any) => {
-      this.myAllianceWaitList = data;
+    this.socket.on('myAllianceWaitList', (data) => {
+      this.myAllianceWaitList = data as typeof this.myAllianceWaitList;
     });
     this.socket.on('myAllianceWaitListRefresh', () => {
       this.socket.emit('myAllianceWaitList');
     });
-    this.socket.on('myAllianceWaitNb', (data:any) => {
-      this.myAllianceWaitNb = data;
+    this.socket.on('myAllianceWaitNb', (data) => {
+      this.myAllianceWaitNb = data as typeof this.myAllianceWaitNb;
     });
     this.socket.on('myAllianceWaitNbRefresh', () => {
       this.socket.emit('myAllianceWaitNb');

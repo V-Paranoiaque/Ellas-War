@@ -59,7 +59,7 @@
               <span class="input-group-text" role="button"
                     (click)="adminSupportPageChange(adminSupportPage-1)">&lt;</span>
               <select class="form-select" [ngModel]="adminSupportPage" 
-                      (change)="adminSupportPageChange(mySelect.value)"
+                      (change)="adminSupportPageChange(parseInt(mySelect.value))"
                       title="{{'Change page'|translate}}" #mySelect>
                 <option *ngFor="let id of Tools.range(1, adminSupportMax)"
                         value="{{id}}" translate>Page {{id}}</option>

@@ -12,7 +12,7 @@ import { UserComponent as User } from '../../../services/user.service';
 export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
   public temple:number;
   public templeChangeError:number;
-  public templeChangeHistory:any;
+  public templeChangeHistory:any[];
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.temple = 0;
@@ -26,7 +26,7 @@ export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
       this.templeChangeError = data;
       this.socket.emit('templeChangeHistory');
     });
-    this.socket.on('templeChangeHistory', (data:any) => {
+    this.socket.on('templeChangeHistory', (data) => {
       this.templeChangeHistory = [];
       for(let i in data) {
         this.templeChangeHistory.push(data[i]);

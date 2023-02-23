@@ -19,13 +19,21 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   
   public chatActive:string;
   
-  public chat_user_players:any;
-  public chat_user_msgs:any;
+  public chat_user_players:{
+    user_id:number, rank:number, chat_allowed:number, username:string
+  }[];
+  public chat_user_msgs:{
+    user_id: number, rank:number, time:number, username:string, msg:string
+  }[];
   public chatUserMsg:string;
   public chat_user_nb:number;
   
-  public chat_alli_players:any;
-  public chat_alli_msgs:any;
+  public chat_alli_players:{
+    user_id:number, rank:number, chat_allowed:number, username:string
+  }[];
+  public chat_alli_msgs:{
+    user_id: number, rank:number, time:number, username:string, msg:string
+  }[];
   public chatAlliMsg:string;
   public chat_alli_nb:number;
   
@@ -61,17 +69,17 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
     this.socket.emit('chatAlliMsgs');
     
     /*** General Chat ***/
-    this.socket.on('chatUserPlayers', (players:any) => {
-      this.chat_user_players = players;
+    this.socket.on('chatUserPlayers', (players) => {
+      this.chat_user_players = players as typeof this.chat_user_players;
     });
     this.socket.on('chatUserPlayersRefresh', () => {
       this.socket.emit('chatUserPlayers');
     });
-    this.socket.on('chatUserMsgs', (msgs:any) => {
-      this.chat_user_msgs = msgs;
+    this.socket.on('chatUserMsgs', (msgs) => {
+      this.chat_user_msgs = msgs as typeof this.chat_user_msgs;
     });
     
-    this.socket.on('chatUserMsg', (msg:string) => {
+    this.socket.on('chatUserMsg', (msg) => {
       this.chat_user_msgs.push(msg[0]);
       if(this.chatActive != 'general') {
         this.chat_user_nb++;
@@ -82,16 +90,16 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
     });
     
     /*** Alliance chat ***/
-    this.socket.on('chatAlliPlayers', (players:any) => {
-      this.chat_alli_players = players;
+    this.socket.on('chatAlliPlayers', (players) => {
+      this.chat_alli_players = players as typeof this.chat_alli_players;
     });
     this.socket.on('chatAlliPlayersRefresh', () => {
       this.socket.emit('chatAlliPlayers');
     });
-    this.socket.on('chatAlliMsgs', (msgs:any) => {
-      this.chat_alli_msgs = msgs;
+    this.socket.on('chatAlliMsgs', (msgs) => {
+      this.chat_alli_msgs = msgs as typeof this.chat_alli_msgs;
     });
-    this.socket.on('chatAlliMsg', (msg:string) => {
+    this.socket.on('chatAlliMsg', (msg) => {
       this.chat_alli_msgs.push(msg[0]);
       if(this.chatActive != 'alliance') {
         this.chat_alli_nb++;

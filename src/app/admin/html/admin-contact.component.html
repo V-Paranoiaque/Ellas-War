@@ -20,7 +20,7 @@
                   {{msg.email}}
                   <br/>
                   <a (click)="adminContactResolve(msg.id)" class="btn" 
-                     [ngClass]="{'btn-success': msg.resolve != 0, 'btn-danger': msg.resolve == 0}">
+                     [ngClass]="{'btn-success': msg.resolve !== 0, 'btn-danger': msg.resolve == 0}">
                     <ic-icon [icon]="angellistIcon"></ic-icon>
                   </a>
                 </th>
@@ -35,7 +35,7 @@
               <span class="input-group-text" role="button"
                     (click)="adminContactChange(adminContactPage-1)">&lt;</span>
               <select class="form-select" [ngModel]="adminContactPage" 
-                      (change)="adminContactChange(mySelect.value)"
+                      (change)="adminContactChange(parseInt(mySelect.value))"
                       title="{{'Change page'|translate}}" #mySelect>
                 <option *ngFor="let id of Tools.range(1, adminContactMax)"
                         value="{{id}}" translate>Page {{id}}</option>

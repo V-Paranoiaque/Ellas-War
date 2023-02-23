@@ -13,7 +13,7 @@ import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
-import { AdminNewsComponent } from './admin-news.component';
+import { AdminNewsComponent, newsType } from './admin-news.component';
 import { environment } from '../../../environments/environment';
 
 describe('AdminNewsComponent', () => {
@@ -62,7 +62,7 @@ describe('AdminNewsComponent', () => {
     app.setNews(object);
     
     fixture.detectChanges();
-    expect(app.newsSelected).toEqual(object);
+    expect(app.newsSelected).toEqual(object as newsType);
   });
   
   it('test newsDelete', () => {

@@ -23,7 +23,7 @@ export class ToolsComponent {
     let list = url.split('&')
     let size:number = list.length;
     for(let i=0;i<size;i++){
-      let tmp:any = list[i].split('=');
+      let tmp:string[] = list[i].split('=');
       if(tmp.length >= 2) {
         resultList[tmp[0]] = tmp[1];
       }

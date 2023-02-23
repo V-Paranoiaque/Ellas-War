@@ -27,10 +27,10 @@ export class OptionsAccountInformationPopupSubComponent implements OnInit, OnDes
   ngOnInit() {
     this.socket.emit('accountInfo');
     
-    this.socket.on('accountImg', (name:any) => {
+    this.socket.on('accountImg', (name:string) => {
       this.imageProfile = name;
     });
-    this.socket.on('accountInfo', (info:any) => {
+    this.socket.on('accountInfo', (info) => {
       this.imageProfile = info.membre_img;
       this.location     = info.location;
       this.description  = info.description;
