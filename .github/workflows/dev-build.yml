@@ -31,7 +31,7 @@ jobs:
   
       - name: Build the project
         run: |
-          npm run build -- --configuration=mobile
+          npm run mbuild
 
       - name: Install Snapcraft
         uses: samuelmeuli/action-snapcraft@v1

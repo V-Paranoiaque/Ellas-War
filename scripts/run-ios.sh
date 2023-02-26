@@ -1,2 +1,2 @@
-./scripts/prepare-cordova.sh
+npm run mbuild
 cordova run ios

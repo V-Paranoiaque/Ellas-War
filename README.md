@@ -18,7 +18,11 @@ To scan the code and export the results to SonarQube, run `npm run sonar`.
 
 ### Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `www/` directory. Use the `--configuration=production` flag for the web version and `--configuration=mobile` for the mobile version.
+| Platform | Command | Artifacts |
+| ------------- | ------------- |
+| All | `npm run build` | web & www |
+| Mobile | `npm run wbuild` | web |
+| Web |`npm run mbuild` | www |
 
 ### Supported platforms
 

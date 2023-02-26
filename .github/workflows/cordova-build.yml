@@ -43,10 +43,10 @@ jobs:
       - name: Build the project
         run: |
           #Build the web version
-          npm run build -- --configuration=production
+          npm run wbuild
           zip -r web.zip web
           #Prepare for the apps
-          npm run build -- --configuration=mobile
+          npm run mbuild
           zip -r mobile.zip www
 
       - name: Upload web zip file to release
@@ -405,7 +405,7 @@ jobs:
   
       - name: Build the project
         run: |
-          npm run build -- --configuration=mobile
+          npm run mbuild
   
       - name: Write pfx cert
         id: write_pfx
@@ -455,7 +455,7 @@ jobs:
   
       - name: Build the project
         run: |
-          npm run build -- --configuration=mobile
+          npm run mbuild
       
       - name: Build packages
         run: |

@@ -19,7 +19,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --disable-host-check true",
-    "build": "ng build",
+    "build": "ng build --configuration=mobile;ng build --configuration=production",
+    "mbuild": "ng build --configuration=mobile",
+    "wbuild": "ng build --configuration=production",
     "test": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "sonar": "sonar-scanner"
