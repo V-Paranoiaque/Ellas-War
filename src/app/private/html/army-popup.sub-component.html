@@ -119,9 +119,19 @@
           </span>
         </div>
         
-        <span *ngIf="!hasHosting()"
-              class="bold red" translate>
-          You don't have enough empty homes
+        <span *ngIf="!hasHosting()" class="bold red">
+          <div *ngIf="info.placen > 0 && user.getPropertyNb('level') >= 4" translate>
+            You don't have enough empty huttes
+          </div>
+          <div *ngIf="info.placen > 0 && user.getPropertyNb('level') < 4" translate>
+            You don't have enough empty habitations
+          </div>
+          <div *ngIf="info.placep > 0" translate>
+            You don't have enough empty palaces
+          </div>
+          <div *ngIf="info.placec > 0" translate>
+            You don't have enough empty cursed caves
+          </div>
         </span>
         
         <span *ngIf="((info.condition) && (
@@ -197,6 +207,27 @@
         <div *ngIf="info.rEngagePossible > 0" role="button" (click)="setEngage(info.rEngagePossible)">
           <strong>{{"Max possible"|translate}}{{":"|translate}}</strong>
           {{ info.rEngagePossible | number:'': this.translate.currentLang }}
+        </div>
+
+        <div *ngIf="info.placen > 0 && user.getPropertyNb('level') >= 4 && user.getPropertyNb('placen') > 0">
+          <strong translate>Habitations</strong>
+          <strong translate>:</strong>
+          {{ user.getPropertyNb('placenactu') | number:'': this.translate.currentLang }}/{{ user.getPropertyNb('placen') | number:'': this.translate.currentLang }}
+        </div>
+        <div *ngIf="info.placen > 0 && user.getPropertyNb('level') < 4 && user.getPropertyNb('placen') > 0">
+          <strong translate>Huttes</strong>
+          <strong translate>:</strong>
+          {{ user.getPropertyNb('placenactu') | number:'': this.translate.currentLang }}/{{ user.getPropertyNb('placen') | number:'': this.translate.currentLang }}
+        </div>
+        <div *ngIf="info.placep > 0 && user.getPropertyNb('placep') > 0">
+          <strong translate>Palaces</strong>
+          <strong translate>:</strong>
+          {{ user.getPropertyNb('placepactu') | number:'': this.translate.currentLang }}/{{ user.getPropertyNb('placep') | number:'': this.translate.currentLang }}
+        </div>
+        <div *ngIf="info.placec > 0 && user.getPropertyNb('placec') > 0">
+          <strong translate>Cursed caves</strong>
+          <strong translate>:</strong>
+          {{ user.getPropertyNb('placecactu') | number:'': this.translate.currentLang }}/{{ user.getPropertyNb('placec') | number:'': this.translate.currentLang }}
         </div>
         
         <div class="d-flex">
