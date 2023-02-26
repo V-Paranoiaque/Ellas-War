@@ -300,8 +300,13 @@
     <div *ngIf="info.code === 'lion'" translate>
       The lion is a formidable opponent with steel skin and sharpened claws. It attacks more often with a yell as he burst eardrums anyone dares to attack. It can also shake the ground by hitting it hard with his leather coat.
     </div>
-    <div *ngIf="info.code === 'gaia'" translate>
-      Gaia the goddess of nature will help you organize your defenses, causing terrible damage to your enemies.
+    <div *ngIf="info.code === 'gaia'">
+      <div translate>
+        Gaia the goddess of nature will help you organize your defenses, causing terrible damage to your enemies.
+      </div>
+      <div translate>
+        The resistance of its defenders will increase with the strength of the attacker.
+      </div>
     </div>
     <div *ngIf="info.code === 'griffin'" translate>
       The griffin has the body of an eagle grafted on the back of a lion and equipped with horse ears. In spite of their imposing body they can fly and thanks to their attacks in piquet to make terrible ravages in your enemies.
