@@ -18,16 +18,16 @@ export class AllianceRequestsPopupSubComponent implements OnInit, OnDestroy {
   @Input() profile:any;
   
   public myAllianceAskAcceptError:number;
-  public myAllianceAskList:any;
-  public myAllianceAskMy:any;
+  public myAllianceAskList:{quantity:number, resource_id:number, alliance_ask_id:number,membre_id:number,username:string}[];
+  public myAllianceAskMy:{quantity:number, resource_id:number, alliance_ask_id:number}[];
   
   check = check;
   times = times;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.myAllianceAskAcceptError = 0;
-    this.myAllianceAskList = {}
-    this.myAllianceAskMy = {};
+    this.myAllianceAskList = [];
+    this.myAllianceAskMy = [];
   }
   
   ngOnInit() {

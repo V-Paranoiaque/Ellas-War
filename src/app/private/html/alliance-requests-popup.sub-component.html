@@ -9,9 +9,10 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <div class="text-center fw-bold">
+    <div class="text-center fw-bold mb-2">
       <span translate>Stocks:</span> 
       {{ profile['stock_'+info.resource] | number:'1.0-0': this.translate.currentLang }}
+      <app-id-to-ress [ress_id]="info.resource"></app-id-to-ress>
     </div>
 
     <div class="input-group">
@@ -27,11 +28,11 @@
          translate>Waiting requests</div>
     
     <div class="alert alert-danger text-center"
-         *ngIf="myAllianceAskAcceptError == 1" translate>
+         *ngIf="myAllianceAskAcceptError === 1" translate>
       You don't have the permissions to accept this request
     </div>
     <div class="alert alert-danger center"
-         *ngIf="myAllianceAskAcceptError == 2" translate>
+         *ngIf="myAllianceAskAcceptError === 2" translate>
       Your alliance doesn't have enough resources
     </div>
     
