@@ -174,7 +174,7 @@ export class CityComponent implements OnInit, OnDestroy {
     
     let quest = this.user.getLevel()+'_'+this.user.getQuest();
     
-    let array_goal:any = {
+    let array_goal = {
       //Level 0
       '0_2': 'mint',
       '0_3': 'ironmine',
@@ -207,7 +207,7 @@ export class CityComponent implements OnInit, OnDestroy {
       //Level 3
       '3_2': 'observationtower',
       '3_3': 'mint',
-      '3_5': 'camp_level',
+      '3_5': 'militarycamp',
       '3_6': 'slinger',
       '3_7': 'observationtower',
       //Level 4
@@ -255,7 +255,7 @@ export class CityComponent implements OnInit, OnDestroy {
       '9_16': 'goldmine'
     }
     
-    if(array_goal[quest] && array_goal[quest] == name) {
+    if(array_goal[quest as keyof typeof array_goal] && array_goal[quest as keyof typeof array_goal] == name) {
       return true;
     }
     
