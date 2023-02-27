@@ -278,3 +278,13 @@
 * Add wars to the admin panel
 * Fix lost password link color
 * Fix some texts
+
+# 1.3.3
+* Fix permalink in the attacks
+* Fix yellow tips in quest 3.5
+* Hide defense warning when not required
+* Improve missing hosting
+* Improve popup to request resources
+* Temple extra production is the base production
+* Updata Gaia description
+* Update Mint description
