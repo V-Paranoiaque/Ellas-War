@@ -129,11 +129,14 @@ export class CityComponent implements OnInit, OnDestroy {
   }
   
   armyDisplay(info:any) {
+    if(this.user.getPropertyNb(info.code) > 0) {
+      return true;
+    }
+    
     //Temple unit
     if(info.temple) {
       for(let temple in info.temple) {
-        if(this.user.getPropertyNb(temple) == 0 &&
-           this.user.getPropertyNb(info.code) == 0) {
+        if(this.user.getPropertyNb(temple) == 0) {
           return false;
         }
       }
