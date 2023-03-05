@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from './socketio.service';
@@ -235,5 +236,10 @@ describe('User', () => {
     expect(app.getTaxes('drachma')).toEqual(0);
   });
   
-  
+  it('test getExtra', () => {
+    const fixture = TestBed.createComponent(User);
+    fixture.detectChanges();
+    const app = fixture.componentInstance;
+    expect(Object.keys(app.getExtra(new DeviceDetectorService(0))).length).toEqual(3);
+  });
 });

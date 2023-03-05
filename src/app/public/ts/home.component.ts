@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
 import { UserComponent as User } from '../../../services/user.service';
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private socket: Socket, private formBuilder: FormBuilder,
               private http: HttpClient, public translate: TranslateService, 
               public user: User, private router: Router,
-              private titleService: Title) {
+              private titleService: Title, private deviceService: DeviceDetectorService) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
@@ -99,7 +100,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   
   onSubmitConnect(data:object) {
     this.router.navigateByUrl('login');
-    this.socket.emit('connection', data);
+    const info = data as {username:string,password:string}
+    this.socket.emit('connection', {
+      username: info.username,
+      password: info.password,
+      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+    });
   }
   
   setMenu(id:number) {

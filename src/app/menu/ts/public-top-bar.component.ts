@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -22,7 +23,7 @@ export class PublicTopBarComponent extends CommonTopBarComponent implements OnIn
   
   constructor(protected http: HttpClient, socket: Socket, private formBuilder: FormBuilder, 
               router: Router, public user: User,
-              protected modalService: BsModalService) {
+              protected modalService: BsModalService, private deviceService: DeviceDetectorService) {
     super(http, socket, router, user, modalService);
     
     this.loginForm = this.formBuilder.group({});
@@ -34,10 +35,16 @@ export class PublicTopBarComponent extends CommonTopBarComponent implements OnIn
       username: '',
       password: ''
     });
+    this.user.getExtra(this.deviceService.getDeviceInfo());
   }
   
   onSubmit(data:object) {
     this.router.navigateByUrl('login');
-    this.socket.emit('connection', data);
+    const info = data as {username:string,password:string}
+    this.socket.emit('connection', {
+      username: info.username,
+      password: info.password,
+      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+    });
   }
 }

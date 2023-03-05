@@ -6,6 +6,7 @@ import { environment } from './../../../environments/environment';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   googleIcon = googleIcon;
   
   constructor(private titleService: Title, public translate: TranslateService,
-              private socket: Socket, public user: User, private formBuilder: FormBuilder) {
+              private socket: Socket, public user: User, private formBuilder: FormBuilder,
+              private deviceService: DeviceDetectorService) {
     this.loginForm = this.formBuilder.group({});
     this.loginError = 0;
     this.sub = new Subscription();
@@ -63,7 +65,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   
   onSubmit(data:object) {
-    this.socket.emit('connection', data);
+    const info = data as {username:string,password:string}
+    this.socket.emit('connection', {
+      username: info.username,
+      password: info.password,
+      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+    });
   }
   
   selectServer() {

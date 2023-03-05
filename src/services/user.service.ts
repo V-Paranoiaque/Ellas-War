@@ -345,4 +345,13 @@ export class UserComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.navigate([currentUrl]);
   }
+  
+  getExtra(pInfo:object) {
+    const info = pInfo as { os:string, deviceType:string }
+    return {
+      os: info.os,
+      deviceType: info.deviceType,
+      mobile: environment.mobile,
+    }
+  }
 }
