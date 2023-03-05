@@ -19,7 +19,7 @@ To scan the code and export the results to SonarQube, run `npm run sonar`.
 ### Build
 
 | Platform | Command | Artifacts |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 | All | `npm run build` | web & www |
 | Mobile | `npm run wbuild` | web |
 | Web |`npm run mbuild` | www |
