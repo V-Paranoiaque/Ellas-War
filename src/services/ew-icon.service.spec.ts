@@ -40,5 +40,9 @@ describe('EwIconSubComponent', () => {
     expect(EwIconSubComponent.getDivineBonus(12)).toEqual('menu-agora');
     expect(EwIconSubComponent.getDivineBonus(13)).toEqual('smenu-attacks');
     expect(EwIconSubComponent.getDivineBonus(14)).toEqual('drachma');
+
+    expect(EwIconSubComponent.getDivineBonus(24)).toEqual('basket-iron');
+    expect(EwIconSubComponent.getDivineBonus(25)).toEqual('basket-silver');
+    expect(EwIconSubComponent.getDivineBonus(26)).toEqual('basket-gold');
   });
 });

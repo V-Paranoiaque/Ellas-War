@@ -94,6 +94,20 @@ export class CityComponent implements OnInit, OnDestroy {
     
     this.socket.on('dailyCo', (result) => {
       this.dailyCo = result as typeof this.dailCo;
+      //Check baskets
+      if(this.dailyCo.basket_large > 0) {
+        this.dailyCo.basket = 26
+      }
+      else if(this.dailyCo.basket_medium > 0) {
+        this.dailyCo.basket = 25
+      }
+      else if(this.dailyCo.basket_small > 0) {
+        this.dailyCo.basket = 24
+      }
+      else {
+        this.dailyCo.basket = 0;
+      }
+
       let element:HTMLElement = document.getElementById('DailyCoCheckOpen') as HTMLElement;
       if(element) {
         element.click();

@@ -16,6 +16,15 @@
     </a>
     <br/><strong translate>Attacks received:</strong> {{ info.attack }}
   </div>
+  <div class="modal-body container-fluid row" *ngIf="info.basket > 0">
+    <div class="col-3">
+      <app-ew-icon name="{{ EwIcon.getDivineBonus(info.basket) }}"></app-ew-icon>
+    </div>
+    <div class="col-9">
+      <div translate>A basket is waiting for you. It contains:</div>
+      <app-id-to-divinebonus [id]="info.basket"></app-id-to-divinebonus>
+    </div>
+  </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary"
             data-bs-dismiss="modal" translate>Close</button>
