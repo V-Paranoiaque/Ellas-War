@@ -256,6 +256,34 @@
     <br/>
     <p translate>The basket to obtain them is available in your city</p>
   </span>
+  <span *ngSwitchCase="29">
+    {{'The war between { name1 } and { name2 } has been canceled, no winner has been announced.' | translate: { name1: msg.content.name1, name2: msg.content.name2 } }}
+    
+    <div *ngIf="msg.content.benefits">
+      <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+      <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+    </div>
+  </span>
+  <span *ngSwitchCase="30">
+    <div translate>The war has been long, but your alliance has won.</div>
+    <strong>{{msg.content.nameWinner}}:</strong> {{msg.content.vicWinner}}
+    <br/>
+    <strong>{{msg.content.nameLooser}}:</strong> {{msg.content.vicLooser}}
+    <br/>
+    <br/>
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+  </span>
+  <span *ngSwitchCase="31" translate>
+    <div translate>The battle was long, unfortunately your alliance lost the war.</div>
+    <strong>{{msg.content.nameWinner}}:</strong> {{msg.content.vicWinner}}
+    <br/>
+    <strong>{{msg.content.nameLooser}}:</strong> {{msg.content.vicLooser}}
+    <br/>
+    <br/>
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+  </span>
   <span *ngSwitchDefault>TODO {{ msg.msg_type }}</span>
 </div>
 

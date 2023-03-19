@@ -12,9 +12,10 @@
             aria-label="Close"></button>
   </div>
   <div class="modal-body container-fluid text-center fw-bold"
-       *ngIf="list.length === 0" translate>
+       *ngIf="warInfo.list.length === 0" translate>
     No attack has been made yet
   </div>
+  
   <div *ngIf="user.getId() > 0"
        class="modal-body container-fluid text-center fw-bold" translate>
     {{'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'| translate:
@@ -23,8 +24,14 @@
     <strong translate>Goal</strong>
     <strong translate>:</strong>
     {{ warVictory() }} <span translate>Victories</span>
+    <br/>
+    <div *ngIf="warInfo.end">
+      <strong translate>End of time</strong>
+      <strong translate>:</strong>
+      {{warInfo.end*1000| date:'dd/MM, HH:mm'}}
+    </div>
   </div>
-  <div class="modal-body container-fluid">
+  <div class="modal-body container-fluid" *ngIf="warInfo.list.length > 0">
     <table class="table table-middle table-striped" aria-labelledby="warDesc">
     <thead>
       <tr>
@@ -34,7 +41,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of list"
+      <tr *ngFor="let p of warInfo.list"
           [ngClass]="{'bg-danger': p.defender == p.result}">
         <td>
           <ic-icon [icon]="swordIcon" *ngIf="p.offender == 1"></ic-icon>

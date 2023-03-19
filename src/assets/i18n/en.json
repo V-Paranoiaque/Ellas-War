@@ -125,6 +125,7 @@
   "The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.":  "The first alliance to reach {{ value }} victories wins the war, be careful, you also need {{ value2 }} victories in order to win.",
   "The following conditions regulate the use of Ellas War and all services related to the website edited by": "The following conditions regulate the use of Ellas War and all services related to the website edited by <a class=\"link-secondary\" href=\"/team\">the Ellas War team</a>.",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
+  "The war between { name1 } and { name2 } has been canceled, no winner has been announced.": "The war between {{ name1 }} and {{ name2 }} has been canceled, no winner has been announced.",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
   
   "Unsupported message type: { value }": "Unsupported message type: {{ value }}",

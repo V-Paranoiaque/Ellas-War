@@ -26,8 +26,10 @@
        *ngIf="info.war == 1">
     <strong *ngIf="info.started == 0">
       {{'You are at the point of declare war to { value } alliance, it will start in 24h.'| translate: { value: info.alliance_name} }}
+      <br/><br/>
       {{'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'| translate:
         { value: user.getDatas().war.victory, value2: user.getDatas().war.diff } }}
+      {{'After 90 days, the current score will be saved as final score and the war ended.'|translate}}
     </strong>
     
     <strong class="text-danger" *ngIf="info.started == 1">

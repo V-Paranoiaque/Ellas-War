@@ -1,17 +1,17 @@
 <span [ngSwitch]="msg.type">
   <span *ngSwitchCase="1">
-    <strong>{{msg.title.attacker}}:</strong> {{msg.content.attacker}}
+    <strong>{{msg.title.attacker}}</strong><strong translate>:</strong> {{msg.content.attacker}}
     <br/>
-    <strong>{{msg.title.defender}}:</strong> {{msg.content.defender}}
+    <strong>{{msg.title.defender}}</strong><strong translate>:</strong> {{msg.content.defender}}
     <br/>
     <br/>
     <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
     <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="2" translate>
-    <strong>{{msg.title.attacker}}:</strong> {{msg.content.attacker}}
+    <strong>{{msg.title.attacker}}</strong><strong translate>:</strong> {{msg.content.attacker}}
     <br/>
-    <strong>{{msg.title.defender}}:</strong> {{msg.content.defender}}
+    <strong>{{msg.title.defender}}</strong><strong translate>:</strong> {{msg.content.defender}}
     <br/>
     <br/>
     <strong translate>Reward:</strong> {{msg.content.benefits/10| number:'': this.translate.currentLang}} 
@@ -74,5 +74,34 @@
   <span *ngSwitchCase="14">
    {{'{ old } is not leading your alliance anymore, { new } is now the new chief.' | translate: { old: msg.content.chief_old, new: msg.content.chief_new } }}
   </span>
+  <span *ngSwitchCase="15">
+    {{'The war between { name1 } and { name2 } has been canceled, no winner has been announced.' | translate: { name1: msg.content.name1, name2: msg.content.name2 } }}
+    
+    <div *ngIf="msg.content.benefits">
+      <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+      <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+    </div>
+  </span>
+  <span *ngSwitchCase="16">
+    <div translate>The war has been long, but your alliance has won.</div>
+    <strong>{{msg.content.nameWinner}}</strong><strong translate>:</strong> {{msg.content.vicWinner}}
+    <br/>
+    <strong>{{msg.content.nameLooser}}</strong><strong translate>:</strong> {{msg.content.vicLooser}}
+    <br/>
+    <br/>
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+  </span>
+  <span *ngSwitchCase="17" translate>
+    <div translate>The battle was long, unfortunately your alliance lost the war.</div>
+    <strong>{{msg.content.nameWinner}}</strong><strong translate>:</strong> {{msg.content.vicWinner}}
+    <br/>
+    <strong>{{msg.content.nameLooser}}</strong><strong translate>:</strong> {{msg.content.vicLooser}}
+    <br/>
+    <br/>
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
+    <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
+  </span>
+  
   <span *ngSwitchDefault>{{msg.content}}</span>
 </span>

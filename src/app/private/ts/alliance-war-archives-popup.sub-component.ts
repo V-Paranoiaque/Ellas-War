@@ -15,19 +15,29 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
   
   @Input() info:any;
   
-  public list:any;
+  public warInfo:{
+    end:number,
+    time: number,
+    list: {
+      result:number, defender:number, offender:number, attacking:number,
+      ausername:string, dusername:string, time:number,
+    }[]
+  };
   
   shieldShaded = shieldShaded;
   swordIcon = swordIcon;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
-    this.list = []
+    this.warInfo = {
+      end: 0,
+      time: 0,
+      list: []
+    };
   }
   
   ngOnInit() {
-
     this.socket.on('myAllianceWarHistory', (data) => {
-      this.list = data as typeof this.list;
+      this.warInfo = data;
     });
   }
   
