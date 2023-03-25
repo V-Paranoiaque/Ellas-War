@@ -89,10 +89,21 @@ describe('CommonTopBarComponent', () => {
     app.localVersion  = 2;
     app.remoteVersion = 1;
     app.checkVersion();
-    
+
     expect(app).toBeTruthy();
   });
   
+  it('checkMaintenance', () => {
+    const fixture = TestBed.createComponent(CommonTopBarComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.checkMaintenance(0);
+    expect(app.displayMaintenanceModal).toEqual(false);
+
+    app.checkMaintenance(1);
+    expect(app.displayMaintenanceModal).toEqual(true);
+  });
 });
 
 // AOT compilation support

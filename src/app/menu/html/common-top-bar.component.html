@@ -55,3 +55,31 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="displayMaintenanceModal" [config]="{ show: true }" (onHidden)="onHidden()"
+     bsModal #serverModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" translate>Game in maintenance</h4>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          The game is currently in maintenance, we will be back soon.
+        </div>
+
+        <br/>
+        
+        <div class="text-danger text-center" translate>
+          This popup will close automatically when the game will be reachable again.
+        </div>
+        
+        <div class="text-center">
+          <br/>
+          <button class="btn btn-primary" (click)="refresh()"
+                  translate>Refresh</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

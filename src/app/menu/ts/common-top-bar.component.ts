@@ -19,6 +19,7 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
   displayServerModal  = false;
   displayVersionModal = false;
+  displayMaintenanceModal = false
   
   @Input()
   active: string;
@@ -83,7 +84,10 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
   getApi() {
     let url = this.socket.url+'/api.json';
     this.sub = this.http.get(url).subscribe({
-      next: (result:any) => {
+      next: (apiResult:object) => {
+        const result = apiResult as {
+          min:number, maintenance:number
+        }
         try {
           if(result && !result.min) {
             this.displayServerModal = true;
@@ -92,6 +96,10 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
             this.displayServerModal = false;
             this.remoteVersion = result.min;
             this.checkVersion();
+
+            if(!this.displayVersionModal) {
+              this.checkMaintenance(result.maintenance);
+            }
           }
         }
         catch (e) {
@@ -138,6 +146,15 @@ export class CommonTopBarComponent implements OnInit, OnDestroy {
     }
     else {
       this.displayVersionModal = false;
+    }
+  }
+
+  checkMaintenance(maintenance:number) {
+    if(maintenance) {
+      this.displayMaintenanceModal = true;
+    }
+    else {
+      this.displayMaintenanceModal = false;
     }
   }
 }
