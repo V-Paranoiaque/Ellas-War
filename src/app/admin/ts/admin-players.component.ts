@@ -42,7 +42,7 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
     
     this.socket.on('adminPlayersResearch', (list) => {
-      this.adminPlayersList = list as typeof this.adminPlayersList;
+      this.adminPlayersList = list;
     });
   }
   

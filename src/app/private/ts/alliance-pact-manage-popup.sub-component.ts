@@ -23,10 +23,10 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAllianceProfile');
     
     this.socket.on('myAllianceProfile', (data) => {
-      this.myAllianceProfile = data as typeof this.myAllianceProfile;
+      this.myAllianceProfile = data;
     });
     this.socket.on('alliancePactInfo', (data) => {
-      this.alliancePactInfo = data as typeof this.alliancePactInfo;
+      this.alliancePactInfo = data;
     });
   }
   

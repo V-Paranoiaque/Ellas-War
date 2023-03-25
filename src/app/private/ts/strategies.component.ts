@@ -1,5 +1,5 @@
 import { Component, Output, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,7 +46,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   swordIcon = swordIcon;
   times         = times;
   
-  constructor(private socket: Socket, private route: ActivatedRoute, private router: Router,
+  constructor(private socket: Socket, private route: ActivatedRoute,
               public user: User, public translate: TranslateService) {
     this.buildingInfo = { code: 'mint' };
     this.armyInfo = { code: 'spartan' };

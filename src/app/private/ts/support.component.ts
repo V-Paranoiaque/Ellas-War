@@ -80,7 +80,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('contactInfo', (data) => {
-      this.contactInfo = data as typeof this.contactInfo;
+      this.contactInfo = data;
     });
   }
   

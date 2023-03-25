@@ -24,7 +24,7 @@ export class PermalinkComponent implements OnInit, OnDestroy {
     this.socket.emit('msgInfo', id);
     
     this.socket.on('msgInfo', (msgInfo) => {
-      this.currentMsg = msgInfo as typeof this.currentMsg;
+      this.currentMsg = msgInfo;
     });
   }
   

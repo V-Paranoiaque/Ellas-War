@@ -45,14 +45,14 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
     
     this.socket.on('storeroomList', (data) => {
-      this.storeroomList = data as typeof this.storeroomList;
+      this.storeroomList = data;
     });
     this.socket.on('storeroomListReload', () => {
       this.socket.emit('storeroomList');
       this.storeroomHistory();
     });
     this.socket.on('storeroomMyList', (data) => {
-      this.storeroomMyList = data as typeof this.storeroomMyList;
+      this.storeroomMyList = data;
     });
     this.socket.on('storeroomMyListReload', () => {
       this.socket.emit('storeroomMyList');
@@ -60,10 +60,10 @@ export class StoreroomComponent implements OnInit, OnDestroy {
       this.storeroomHistory();
     });
     this.socket.on('storeroomMin', (data) => {
-      this.storeroomMin = data as typeof this.storeroomMin;
+      this.storeroomMin = data;
     });
     this.socket.on('storeroomStats', (data) => {
-      this.storeroomStats = data as typeof this.storeroomStats;
+      this.storeroomStats = data;
     });
     
     this.socket.emit('storeroomList');

@@ -59,7 +59,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       this.wallDefense = def;
     });
     this.socket.on('myAttacksList', (result) => {
-      this.preUseList = result as typeof this.preUseList;
+      this.preUseList = result;
     });
     
     this.socket.on('powersUse', (result:{error:number}) => {

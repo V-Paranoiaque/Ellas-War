@@ -30,7 +30,7 @@ export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.socket.on('treasureHistory', (datas) => {
-      this.treasureHistory = datas as typeof this.treasureHistory;
+      this.treasureHistory = datas;
     });
     
     if(this.user.getLevel() < 5) {

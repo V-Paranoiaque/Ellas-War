@@ -80,25 +80,25 @@ export class AllianceComponent implements OnInit, OnDestroy {
       this.socket.emit('alliancePactListAll');
     });
     this.socket.on('alliancePactListAll', (data) => {
-      this.pactList = data as typeof this.pactList;
+      this.pactList = data;
     });
     this.socket.on('myAllianceProfile', (data) => {
-      this.myAllianceProfile = data as typeof this.myAllianceProfile;
+      this.myAllianceProfile = data;
     });
     this.socket.on('myAllianceProfileRefresh', () => {
       this.socket.emit('myAllianceProfile');
     });
     this.socket.on('myAllianceMembers', (data) => {
-      this.myAllianceMembers = data as typeof this.myAllianceMembers;
+      this.myAllianceMembers = data;
     });
     this.socket.on('myAllianceAllowLeave', (data) => {
-      this.allowLeave = data as typeof this.allowLeave;
+      this.allowLeave = data;
     });
     this.socket.on('myAllianceWar', (data) => {
-      this.myAllianceWar = data as typeof this.myAllianceWar;
+      this.myAllianceWar = data;
     });
     this.socket.on('myAllianceAllowDissolve', (data) => {
-      this.allowDissolve = data as typeof this.allowDissolve;
+      this.allowDissolve = data;
     });
     this.socket.on('myAllianceMembersRefresh', () => {
       this.socket.emit('myAllianceMembers');
@@ -113,13 +113,13 @@ export class AllianceComponent implements OnInit, OnDestroy {
       this.socket.emit('myAllianceAllowDissolve');
     });
     this.socket.on('myAllianceWaitList', (data) => {
-      this.myAllianceWaitList = data as typeof this.myAllianceWaitList;
+      this.myAllianceWaitList = data;
     });
     this.socket.on('myAllianceWaitListRefresh', () => {
       this.socket.emit('myAllianceWaitList');
     });
     this.socket.on('myAllianceWaitNb', (data) => {
-      this.myAllianceWaitNb = data as typeof this.myAllianceWaitNb;
+      this.myAllianceWaitNb = data;
     });
     this.socket.on('myAllianceWaitNbRefresh', () => {
       this.socket.emit('myAllianceWaitNb');

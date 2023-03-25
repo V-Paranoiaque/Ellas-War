@@ -18,7 +18,7 @@ export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.socket.on('storeroomHistory', (data) => {
-      this.list = data.reverse() as typeof this.list;
+      this.list = data.reverse();
     });
   }
   

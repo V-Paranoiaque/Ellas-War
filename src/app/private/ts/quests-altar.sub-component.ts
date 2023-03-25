@@ -32,7 +32,7 @@ export class QuestsAltarSubComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
     this.socket.on('altarValidate', (data) => {
-      this.altarValidateInfo = data as typeof this.altarValidateInfo;
+      this.altarValidateInfo = data;
       
       this.socket.emit('altarConditionDivineunits');
       this.socket.emit('altarConditionPrometheus');

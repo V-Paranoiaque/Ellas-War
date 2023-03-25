@@ -32,7 +32,7 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminPermissionsList');
     
     this.socket.on('adminPermissionsList', (msg) => {
-      this.adminPermissionsList = msg as typeof this.adminPermissionsList;
+      this.adminPermissionsList = msg;
     });
     
     this.socket.on('adminPermissionsNew', () => {

@@ -163,7 +163,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     
     this.socket.on('attack', (datas) => {
       this.attackMode = 4;
-      this.attackInfo = datas as typeof this.attackInfo;
+      this.attackInfo = datas;
       
       this.refreshAttacksPage();
       this.refreshAttacksWarsPage();
@@ -191,26 +191,26 @@ export class AttacksComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('diamondInfo', (info) => {
-      this.diamondInfo = info as typeof this.diamondInfo;
+      this.diamondInfo = info;
     });
     this.socket.on('diamondRankingPlayers', (info) => {
-      this.diamondRankingPlayers = info as typeof this.diamondRankingPlayers;
+      this.diamondRankingPlayers = info;
     });
     this.socket.on('diamondRankingAlliance', (info) => {
-      this.diamondRankingAlliance = info as typeof this.diamondRankingAlliance;
+      this.diamondRankingAlliance = info;
     });
     this.socket.on('profile',(data) => {
-      this.targetProfile = data as typeof this.targetProfile;
+      this.targetProfile = data;
     });
     this.socket.on('attackPossible',(data) => {
       this.attackPossible      = data.result;
       this.attackPossibleError = data.error;
     });
     this.socket.on('furyPossible',(data) => {
-      this.furyPossible = data as typeof this.furyPossible;
+      this.furyPossible = data;
     });
     this.socket.on('lightningPossible',(data) => {
-      this.lightningPossible = data as typeof this.lightningPossible;
+      this.lightningPossible = data;
     });
     this.socket.on('eye',(data) => {
       this.setSpy(data);
@@ -219,7 +219,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('fury', (data) => {
       this.attackMode = 6;
       
-      this.furyInfo = data as typeof this.furyInfo;
+      this.furyInfo = data;
     });
     
     this.socket.on('lightning', (data) => {
@@ -253,32 +253,32 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('realWaveAttackCheck', (data) => {
-      this.realWaveAttackCheck = data as typeof this.realWaveAttackCheck;
+      this.realWaveAttackCheck = data;
     });
     
     this.socket.on('sanctuariesList', (data) => {
-      this.sanctuariesList = data as typeof this.sanctuariesList;
+      this.sanctuariesList = data;
     });
     this.socket.on('sanctuariesAttack', (data) => {
       this.attackMode = 11;
-      this.sanctuariesAttackInfo = data as typeof this.sanctuariesAttackInfo;
+      this.sanctuariesAttackInfo = data;
       
       this.socket.emit('sanctuariesList');
     });
     this.socket.on('sanctuariesEye', (data) => {
       this.attackMode = 9;
-      this.sanctuariesSpyInfo = data as typeof this.sanctuariesSpyInfo;
+      this.sanctuariesSpyInfo = data;
     });
     this.socket.on('sanctuariesDefense', (data) => {
-      this.sanctuariesDefense = data as typeof this.sanctuariesDefense;
+      this.sanctuariesDefense = data;
       this.socket.emit('waveAttackSum');
     });
     this.socket.on('sanctuariesSpy', (data) => {
       this.attackMode = 9;
-      this.sanctuariesSpyInfo = data as typeof this.sanctuariesSpyInfo;
+      this.sanctuariesSpyInfo = data;
     });
     this.socket.on('sanctuariesInfo', (data) => {
-      this.sanctuariesInfo = data as typeof this.sanctuariesInfo;
+      this.sanctuariesInfo = data;
       if(data.membre_id == this.user.getId()) {
         this.attackMode = 12;
       }
@@ -291,7 +291,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('myAllianceWar', (data) => {
-      this.myAllianceWar = data as typeof this.myAllianceWar;
+      this.myAllianceWar = data;
     });
     
     this.socket.on('msgPage', (newMsgList) => {
@@ -299,7 +299,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('msgInfo', (msgInfo) => {
-      this.currentMsg = msgInfo as typeof this.currentMsg;
+      this.currentMsg = msgInfo;
     }); 
   }
   

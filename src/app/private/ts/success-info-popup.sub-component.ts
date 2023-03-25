@@ -31,11 +31,11 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
     }, 0);
     
     this.socket.on('statsPlayer', (stats) => {
-      this.statsPlayer = stats as typeof this.statsPlayer;
+      this.statsPlayer = stats;
     });
     
     this.socket.on("hfNext", (list) => {
-      this.hfNext = list as typeof this.hfNext;
+      this.hfNext = list;
       this.socket.emit('hfDisplay');
     });
     

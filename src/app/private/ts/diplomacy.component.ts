@@ -49,7 +49,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.emit('allianceWait');
     
     this.socket.on('allianceList', (data) => {
-      this.allianceList = data as typeof this.allianceList;
+      this.allianceList = data;
     });
     this.socket.on('allianceListReload', () => {
       this.socket.emit('allianceList', this.order);

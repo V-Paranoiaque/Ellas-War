@@ -81,7 +81,11 @@ export class CityComponent implements OnInit, OnDestroy {
         }
       }, 500);
     }
-    
+
+    this.ngOnInitSocket();
+  }
+  
+  ngOnInitSocket() {
     this.socket.on('divineBonus', (data) => {
       this.divineBonusNb = data.nb;
       if(this.divineBonusNb > 0) {

@@ -23,7 +23,7 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
     this.init();
     
     this.socket.on('archiveList', (data) => {
-      this.archiveList = data as typeof this.archiveList;
+      this.archiveList = data;
     });
     this.socket.on('archiveListRefresh', () => {
       this.init();

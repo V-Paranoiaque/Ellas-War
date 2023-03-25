@@ -69,7 +69,7 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
     this.socket.emit('attackStats');
     
     this.socket.on('attackStats', (data) => {
-      this.attackStats = data as typeof this.attackStats;
+      this.attackStats = data;
       let time = Math.round(new Date().getTime() / 1000);
       
       if(data.normal.time > time) {

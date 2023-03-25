@@ -4,17 +4,15 @@ import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
 import { of } from 'rxjs';
 
 import { StrategiesComponent } from './strategies.component';
-import { EwIconSubComponent } from '../../../services/ew-icon.service';
 
 describe('StrategiesComponent Empty', () => {
   let socket: Socket;
@@ -23,7 +21,7 @@ describe('StrategiesComponent Empty', () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [
-        EwIconSubComponent
+        StrategiesComponent
       ],
       imports: [
         RouterTestingModule,
@@ -39,9 +37,8 @@ describe('StrategiesComponent Empty', () => {
         IconModule
       ],
       providers: [
-        Socket, User, OAuthService,
-        BsModalService,
-        { provide: ActivatedRoute, useValue: { snapshot: {paramMap: of(convertToParamMap( { } ))}, paramMap: of(convertToParamMap( { } )) } },
+        Socket, User,
+        { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap( { } )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -50,8 +47,9 @@ describe('StrategiesComponent Empty', () => {
   
   it('should create the service', () => {
     const fixture = TestBed.createComponent(StrategiesComponent);
-    fixture.detectChanges();
     const app = fixture.componentInstance;
+
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
   

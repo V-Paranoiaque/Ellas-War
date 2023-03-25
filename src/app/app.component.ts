@@ -76,7 +76,11 @@ export class AppComponent implements OnInit, OnDestroy {
     if(!localStorage.getItem('token')) {
       this.user.setInit();
     }
-    
+
+    this.ngOnInitSocket();
+  }
+  
+  ngOnInitSocket() {
     this.socket.on('ewAuth', (data: any) => {
       this.user.setInit();
       const oldStatus = this.user.getPropertyNb('mstatus');

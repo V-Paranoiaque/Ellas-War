@@ -99,7 +99,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     });
     
     this.socket.on('msgInfo', (msgInfo) => {
-      this.currentMsg = msgInfo as typeof this.currentMsg;
+      this.currentMsg = msgInfo;
     });
     
     this.socket.on('msgRefresh', () => {
