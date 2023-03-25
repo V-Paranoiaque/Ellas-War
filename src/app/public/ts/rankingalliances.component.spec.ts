@@ -1,4 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router, ActivatedRoute , convertToParamMap} from '@angular/router'
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
@@ -16,12 +17,13 @@ import { of } from 'rxjs';
 import { RankingAlliancesComponent } from './rankingalliances.component';
 import { environment } from '../../../environments/environment';
 
-describe('RankingAlliancesComponent', () => {
+describe('RankingAlliancesComponent Empty', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         RankingAlliancesComponent
       ],
@@ -43,7 +45,7 @@ describe('RankingAlliancesComponent', () => {
         Socket, User, OAuthService, 
         TranslateService,
         BsModalService,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'id': null } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: of(convertToParamMap( {  } )) }, paramMap: of(convertToParamMap( {  } ))} },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -91,11 +93,12 @@ describe('RankingAlliancesComponent', () => {
 });
 
 
-describe('RankingAlliancesComponent', () => {
+describe('RankingAlliancesComponent ID', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         RankingAlliancesComponent
       ],
@@ -117,7 +120,7 @@ describe('RankingAlliancesComponent', () => {
         Socket, User, OAuthService, 
         TranslateService,
         BsModalService,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'id': 1 } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { 'id': 1 } )),  } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);

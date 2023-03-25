@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -10,6 +11,7 @@ import { UserComponent as User } from './user.service';
 describe('User', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         User,
       ],

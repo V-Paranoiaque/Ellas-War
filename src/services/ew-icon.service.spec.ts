@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { EwIconSubComponent } from './ew-icon.service';
 
 describe('EwIconSubComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         EwIconSubComponent,
       ],

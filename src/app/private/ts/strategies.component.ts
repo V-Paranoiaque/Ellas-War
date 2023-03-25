@@ -1,5 +1,5 @@
 import { Component, Output, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,7 +46,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   swordIcon = swordIcon;
   times         = times;
   
-  constructor(private socket: Socket, private route: ActivatedRoute,
+  constructor(private socket: Socket, private route: ActivatedRoute, private router: Router,
               public user: User, public translate: TranslateService) {
     this.buildingInfo = { code: 'mint' };
     this.armyInfo = { code: 'spartan' };
@@ -69,16 +69,18 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
     
-    this.type = this.route.snapshot.paramMap.get('type');
-    
-    if(this.type && this.type == 'defense') {
-      this.socket.emit('waveDefenseList');
-      this.socket.emit('defenseWallStrength');
-      this.socket.emit('wallDefense');
-    }
-    else {
-      this.socket.emit('waveAttackList');
-    }
+    this.route.paramMap.subscribe(params => {
+      this.type = params.get('type');
+      
+      if(this.type && this.type == 'defense') {
+        this.socket.emit('waveDefenseList');
+        this.socket.emit('defenseWallStrength');
+        this.socket.emit('wallDefense');
+      }
+      else {
+        this.socket.emit('waveAttackList');
+      }
+    });
     
     this.socket.on('waveAttackList', (data) => {
       if(data.list.length > 0) {

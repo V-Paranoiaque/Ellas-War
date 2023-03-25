@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
@@ -15,10 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth.component';
 import { environment } from '../../../environments/environment';
 
-describe('AuthComponent', () => {
+describe('AuthComponent Empty', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AuthComponent
       ],
@@ -39,7 +41,8 @@ describe('AuthComponent', () => {
       providers: [
         Socket, User, OAuthService, 
         TranslateService,
-        BsModalService
+        BsModalService,
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( {  } ) }} },
       ],
     }).compileComponents();
   });
@@ -52,11 +55,12 @@ describe('AuthComponent', () => {
   });
 });
 
-describe('AuthComponent', () => {
+describe('AuthComponent Facebook', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AuthComponent
       ],
@@ -76,7 +80,7 @@ describe('AuthComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'facebook' } ), 'fragment': 'test&test' } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'facebook' } ), 'fragment': 'test&test' }} },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -92,11 +96,12 @@ describe('AuthComponent', () => {
   });
 });
 
-describe('AuthComponent', () => {
+describe('AuthComponent Google', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AuthComponent
       ],
@@ -116,7 +121,7 @@ describe('AuthComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'google' } ), 'fragment': 'id_token=test' } } },
+        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'provider': 'google' } ), 'fragment': 'id_token=test' }} },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);

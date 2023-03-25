@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { OAuthModule } from 'angular-oauth2-oidc';
@@ -7,7 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IconModule } from '@visurel/iconify-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { DiscoverTheGameComponent } from './discoverthegame.component';
 
@@ -15,6 +16,7 @@ describe('DiscoverTheGameComponent', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent
       ],
@@ -30,10 +32,10 @@ describe('DiscoverTheGameComponent', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'default' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'default' } ) ) } },
       ],
     }).compileComponents();
   });
@@ -50,6 +52,7 @@ describe('DiscoverTheGameComponent', () => {
 describe('DiscoverTheGameComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent
       ],
@@ -65,10 +68,10 @@ describe('DiscoverTheGameComponent', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': '' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': '' } ) ) } },
       ],
     }).compileComponents();
   });
@@ -85,6 +88,7 @@ describe('DiscoverTheGameComponent', () => {
 describe('DiscoverTheGameComponent constructions', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -100,10 +104,10 @@ describe('DiscoverTheGameComponent constructions', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'constructions' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'constructions' } ) ) } },
       ],
     });
 
@@ -124,6 +128,7 @@ describe('DiscoverTheGameComponent constructions', () => {
 describe('DiscoverTheGameComponent treasure', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -139,10 +144,10 @@ describe('DiscoverTheGameComponent treasure', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'treasure' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'treasure' } ) ) } },
       ],
     });
 
@@ -163,6 +168,7 @@ describe('DiscoverTheGameComponent treasure', () => {
 describe('DiscoverTheGameComponent temples', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -178,10 +184,10 @@ describe('DiscoverTheGameComponent temples', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'temples' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'temples' } ) ) } },
       ],
     });
 
@@ -202,6 +208,7 @@ describe('DiscoverTheGameComponent temples', () => {
 describe('DiscoverTheGameComponent recruitment', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -217,22 +224,18 @@ describe('DiscoverTheGameComponent recruitment', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'recruitment' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'recruitment' } )) } }
       ],
     });
 
     await TestBed.compileComponents();
-
-    fixture = TestBed.createComponent(DiscoverTheGameComponent);
-    fixture.detectChanges();
   });
 
-  let fixture: ComponentFixture<DiscoverTheGameComponent>;
-
   it('check /recruitment', () => {
+    const fixture = TestBed.createComponent(DiscoverTheGameComponent);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();
   });
@@ -241,6 +244,7 @@ describe('DiscoverTheGameComponent recruitment', () => {
 describe('DiscoverTheGameComponent army', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -256,10 +260,10 @@ describe('DiscoverTheGameComponent army', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'army' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'army' } ) ) } },
       ],
     });
 
@@ -280,6 +284,7 @@ describe('DiscoverTheGameComponent army', () => {
 describe('DiscoverTheGameComponent attack', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -295,10 +300,10 @@ describe('DiscoverTheGameComponent attack', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'attack' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'attack' } ) ) } },
       ],
     });
 
@@ -319,6 +324,7 @@ describe('DiscoverTheGameComponent attack', () => {
 describe('DiscoverTheGameComponent defense', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -334,10 +340,10 @@ describe('DiscoverTheGameComponent defense', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'defense' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'defense' } ) ) } },
       ],
     });
 
@@ -358,6 +364,7 @@ describe('DiscoverTheGameComponent defense', () => {
 describe('DiscoverTheGameComponent trade', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -373,10 +380,10 @@ describe('DiscoverTheGameComponent trade', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'trade' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'trade' } ) ) } },
       ],
     });
 
@@ -397,6 +404,7 @@ describe('DiscoverTheGameComponent trade', () => {
 describe('DiscoverTheGameComponent sell', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -412,22 +420,22 @@ describe('DiscoverTheGameComponent sell', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'sell' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'sell' } ) ) } },
       ],
     });
 
     await TestBed.compileComponents();
-
-    fixture = TestBed.createComponent(DiscoverTheGameComponent);
-    fixture.detectChanges();
   });
 
   let fixture: ComponentFixture<DiscoverTheGameComponent>;
 
   it('check /sell', () => {
+    const fixture = TestBed.createComponent(DiscoverTheGameComponent);
+    const app = fixture.componentInstance;
+
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();
   });
@@ -436,6 +444,7 @@ describe('DiscoverTheGameComponent sell', () => {
 describe('DiscoverTheGameComponent games', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -451,10 +460,10 @@ describe('DiscoverTheGameComponent games', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'games' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { 'page': 'games' } )) } },
       ],
     });
 
@@ -475,6 +484,7 @@ describe('DiscoverTheGameComponent games', () => {
 describe('DiscoverTheGameComponent treeofthegods', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         DiscoverTheGameComponent,
       ],
@@ -490,10 +500,10 @@ describe('DiscoverTheGameComponent treeofthegods', () => {
         OAuthModule.forRoot(),
         HttpClientTestingModule,
         IconModule,
-        ReactiveFormsModule, FormsModule
+        
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'page': 'treeofthegods' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'treeofthegods' } ) ) } },
       ],
     });
 

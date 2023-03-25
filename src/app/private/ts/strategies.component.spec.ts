@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
@@ -10,21 +11,18 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
-import { MenuComponent } from '../../menu/menu.component';
-import { PrivateComponent } from '../private.component';
 import { StrategiesComponent } from './strategies.component';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
 
-describe('StrategiesComponent', () => {
+describe('StrategiesComponent Empty', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
-        MenuComponent,
-        PrivateComponent,
         EwIconSubComponent
       ],
       imports: [
@@ -38,12 +36,12 @@ describe('StrategiesComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+        IconModule
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService
+        BsModalService,
+        { provide: ActivatedRoute, useValue: { snapshot: {paramMap: of(convertToParamMap( { } ))}, paramMap: of(convertToParamMap( { } )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -121,11 +119,12 @@ describe('StrategiesComponent', () => {
   
 });
 
-describe('StrategiesComponent', () => {
+describe('StrategiesComponent Attack', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         StrategiesComponent
       ],
@@ -140,12 +139,11 @@ describe('StrategiesComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+        IconModule
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'defense' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {paramMap: of(convertToParamMap( { 'type': 'attack' } ))}, paramMap: of(convertToParamMap( { 'type': 'attack' } )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -161,11 +159,12 @@ describe('StrategiesComponent', () => {
   });
 });
 
-describe('StrategiesComponent', () => {
+describe('StrategiesComponent Defense', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         StrategiesComponent
       ],
@@ -180,12 +179,11 @@ describe('StrategiesComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+        IconModule
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'type': 'test' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {paramMap: of(convertToParamMap( { 'type': 'defense' } ))}, paramMap: of(convertToParamMap( { 'type': 'defense' } )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);

@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { SocketComponent as Socket } from '../services/socketio.service';
@@ -20,6 +21,7 @@ import { EwIconSubComponent } from '../services/ew-icon.service';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [
         AdminComponent,
         MenuComponent,

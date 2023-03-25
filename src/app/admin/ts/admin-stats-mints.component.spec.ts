@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { UserComponent as User } from '../../../services/user.service';
@@ -15,11 +16,12 @@ import { MenuComponent } from '../../menu/menu.component';
 import { AdminStatsMintsComponent } from './admin-stats-mints.component';
 import { environment } from '../../../environments/environment';
 
-describe('AdminStatsBuildingsComponent', () => {
+describe('AdminStatsMintsComponent', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         MenuComponent,
         AdminStatsMintsComponent,

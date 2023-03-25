@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
@@ -11,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { MenuComponent } from '../../menu/menu.component';
 import { AdminNewsComponent, newsType } from './admin-news.component';
@@ -21,6 +23,7 @@ describe('AdminNewsComponent', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         MenuComponent,
         AdminNewsComponent,
@@ -40,7 +43,8 @@ describe('AdminNewsComponent', () => {
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService, FormBuilder
+        BsModalService, FormBuilder,
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { } )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -83,10 +87,10 @@ describe('AdminNewsComponent', () => {
     
     app.newsModify();
     
-    app.setNews({'title': 'test'});
+    app.setNews({'title': 'test', 'link': '', 'author': ''});
     app.newsModify();
     
-    app.setNews({'title': 'test', 'link': 'test'});
+    app.setNews({'title': 'test', 'link': 'test', 'author': ''});
     app.newsModify();
     
     app.setNews({'title': 'test', 'link': 'test', 'author': 'test'});
@@ -119,6 +123,7 @@ describe('AdminNewsComponent with ID', () => {
   
   beforeEach(async () => {
     TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AdminNewsComponent,
       ],
@@ -138,7 +143,7 @@ describe('AdminNewsComponent with ID', () => {
       providers: [
         Socket, User, OAuthService,
         BsModalService, FormBuilder,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'id': '1' } ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { 'id': '1' } )) } },
       ],
     });
     socket = TestBed.inject(Socket);

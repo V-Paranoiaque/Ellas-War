@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
@@ -11,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { MenuComponent } from '../../menu/menu.component';
 import { PrivateComponent } from '../private.component';
@@ -18,11 +20,12 @@ import { SupportComponent } from './support.component';
 import { EwIconSubComponent } from '../../../services/ew-icon.service';
 import { environment } from '../../../environments/environment';
 
-describe('SupportComponent', () => {
+describe('SupportComponent Empty', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         MenuComponent,
         PrivateComponent,
@@ -44,7 +47,8 @@ describe('SupportComponent', () => {
       ],
       providers: [
         Socket, User, OAuthService,
-        BsModalService
+        BsModalService,
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { } )) }, paramMap: of(convertToParamMap( { } )) },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
@@ -100,11 +104,12 @@ describe('SupportComponent', () => {
   });
 });
 
-describe('SupportComponent', () => {
+describe('SupportComponent ID', () => {
   let socket: Socket;
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         SupportComponent
       ],
@@ -124,7 +129,7 @@ describe('SupportComponent', () => {
       ],
       providers: [
         Socket, User,
-        { provide: ActivatedRoute, useValue: { snapshot: { paramMap: convertToParamMap( { 'id': '1' , 'msg': '1'} ) } } },
+        { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { 'id': '1' , 'msg': '1'} )) } },
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);
