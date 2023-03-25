@@ -430,11 +430,8 @@ describe('DiscoverTheGameComponent sell', () => {
     await TestBed.compileComponents();
   });
 
-  let fixture: ComponentFixture<DiscoverTheGameComponent>;
-
   it('check /sell', () => {
     const fixture = TestBed.createComponent(DiscoverTheGameComponent);
-    const app = fixture.componentInstance;
 
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();

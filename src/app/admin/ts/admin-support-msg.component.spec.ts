@@ -107,10 +107,10 @@ describe('AdminSupportMsgComponent Inside', () => {
     
     app.adminMsgAnswer();
     
-    app.answertext = '',
+    app.answertext = '';
     app.adminMsgAnswer();
     
-    app.answertext = 'test',
+    app.answertext = 'test';
     app.adminMsgAnswer();
     
     expect(app).toBeTruthy();
