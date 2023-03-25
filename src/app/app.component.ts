@@ -97,9 +97,7 @@ export class AppComponent implements OnInit, OnDestroy {
         
         if(oldStatus != this.user.getPropertyNb('mstatus')) {
           //For component to reload after login
-          let currentUrl = this.router.url;
-          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-          this.router.navigate([currentUrl]);
+          this.user.reload();
         }
       }
     });

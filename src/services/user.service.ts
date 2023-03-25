@@ -342,8 +342,9 @@ export class UserComponent {
   
   reload() {
     let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.navigate([currentUrl]);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
   }
   
   getExtra(pInfo:object) {
