@@ -17,13 +17,13 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
@@ -72,13 +72,13 @@ jobs:
     needs: prepare
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -86,13 +86,13 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
       
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
+        uses: samuelmeuli/action-snapcraft@v2
       
       - name: Install dependencies
         run: |
@@ -143,13 +143,13 @@ jobs:
     needs: prepare
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -157,7 +157,7 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
@@ -183,13 +183,13 @@ jobs:
     needs: prepare
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -197,13 +197,13 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
       
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
+        uses: samuelmeuli/action-snapcraft@v2
       
       - name: Install dependencies
         run: |
@@ -230,13 +230,13 @@ jobs:
     needs: prepare
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -244,13 +244,13 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
       
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
+        uses: samuelmeuli/action-snapcraft@v2
       
       - name: Install dependencies
         run: |
@@ -283,8 +283,8 @@ jobs:
     needs: prepare
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       - name: Set up JDK
@@ -295,7 +295,7 @@ jobs:
         uses: android-actions/setup-android@v2
  
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -303,7 +303,7 @@ jobs:
             ${{ runner.os }}-build-
       
       - name: Cache www directory
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/work/Ellas-War/Ellas-War/www
           key: www-${{ runner.GITHUB_RUN_ID }}
@@ -380,8 +380,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
   
@@ -391,7 +391,7 @@ jobs:
           echo "::set-output name=dir::$(npm config get cache)"
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -435,13 +435,13 @@ jobs:
     runs-on: macos-11
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node }}
       
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
