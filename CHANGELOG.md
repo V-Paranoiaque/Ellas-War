@@ -288,3 +288,11 @@
 * Temple extra production is the base production
 * Updata Gaia description
 * Update Mint description
+
+# 1.3.4
+* A war can't be longer than 90 days
+* Add maintenance mode
+* Add the return backet to the welcome popup
+* Fix a problem in the display of the units in the city
+* Fix tests
+* Update screenshots
