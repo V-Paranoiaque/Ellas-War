@@ -21,10 +21,12 @@ export class LostMessageSubComponent {
     
     if(this.info && this.info.lost_build) {
       for(let i in this.info.lost_build) {
-        list.push({
-          'code': i,
-          'nb': this.info.lost_build[i]
-        })
+        if(this.info.lost_build[i] > 0) {
+          list.push({
+            'code': i,
+            'nb': this.info.lost_build[i]
+          })
+        }
       }
     }
     return list;
@@ -32,7 +34,13 @@ export class LostMessageSubComponent {
   
   getLostBuildingsNb() {
     if(this.info && this.info.lost_build) {
-      return Object.keys(this.info.lost_build).length;
+      let i =0;
+      for(const [_index, qtt] of Object.entries(this.info.lost_build)) {
+        if(parseFloat(qtt as string) > 0) {
+          i++;
+        }
+      }
+      return i;
     }
     else {
       return 0;
@@ -57,7 +65,13 @@ export class LostMessageSubComponent {
   
   getLostResourcesNb() {
     if(this.info && this.info.lost_ress) {
-      return Object.keys(this.info.lost_ress).length;
+      let i =0;
+      for(const [_index, qtt] of Object.entries(this.info.lost_ress)) {
+        if(parseFloat(qtt as string) > 0) {
+          i++;
+        }
+      }
+      return i;
     }
     else {
       return 0;
