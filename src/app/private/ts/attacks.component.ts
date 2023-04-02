@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ViewportScroller } from "@angular/common";
 import { environment } from '../../../environments/environment';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -90,7 +91,8 @@ export class AttacksComponent implements OnInit, OnDestroy {
   swordIcon  = swordIcon;
   twotoneFence = twotoneFence;
   
-  constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
+  constructor(protected socket: Socket, public user: User, public translate: TranslateService,
+              private scroller: ViewportScroller) {
     this.attackPage = 1;
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
@@ -201,10 +203,22 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
     this.socket.on('profile',(data) => {
       this.targetProfile = data;
+      setTimeout(() => {
+        if(this.attackMode == 5) {
+          this.scroller.scrollToAnchor("furyPrepareBlock");
+        }
+        else if(this.attackMode == 7) {
+          this.scroller.scrollToAnchor("lightningPrepareBlock");
+        }
+      }, 100);
     });
     this.socket.on('attackPossible',(data) => {
       this.attackPossible      = data.result;
       this.attackPossibleError = data.error;
+
+      setTimeout(() => {
+        this.scroller.scrollToAnchor("attackPrepareBlock");
+      }, 100);
     });
     this.socket.on('furyPossible',(data) => {
       this.furyPossible = data;
@@ -268,6 +282,9 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('sanctuariesEye', (data) => {
       this.attackMode = 9;
       this.sanctuariesSpyInfo = data;
+      setTimeout(() => {
+        this.scroller.scrollToAnchor("sanctuaryEyeBlock");
+      }, 100);
     });
     this.socket.on('sanctuariesDefense', (data) => {
       this.sanctuariesDefense = data;
@@ -276,11 +293,17 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('sanctuariesSpy', (data) => {
       this.attackMode = 9;
       this.sanctuariesSpyInfo = data;
+      setTimeout(() => {
+        this.scroller.scrollToAnchor("sanctuaryEyeBlock");
+      }, 100);
     });
     this.socket.on('sanctuariesInfo', (data) => {
       this.sanctuariesInfo = data;
       if(data.membre_id == this.user.getId()) {
         this.attackMode = 12;
+        setTimeout(() => {
+          this.scroller.scrollToAnchor("sanctuaryInfoBlock");
+        }, 100);
       }
     });
     this.socket.on('sanctuariesInfoRefresh', () => {
@@ -656,6 +679,10 @@ export class AttacksComponent implements OnInit, OnDestroy {
   setSpy(data:any) {
     this.attackMode = 1;
     this.spyInfo = data;
+
+    setTimeout(() => {
+      this.scroller.scrollToAnchor("attackEyeBlock");
+    }, 100);
   }
   
   setOrder(newOrder:string) {

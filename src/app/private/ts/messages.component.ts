@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ViewportScroller } from "@angular/common";
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -49,7 +50,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   xIcon        = xIcon;
   
   constructor(protected http: HttpClient, public user: User, protected socket: Socket,
-              public translate: TranslateService) {
+              public translate: TranslateService, private scroller: ViewportScroller) {
     this.addDestError = 0;
     this.answerText = '';
     this.currentPage = 1;
@@ -100,6 +101,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
     this.socket.on('msgInfo', (msgInfo) => {
       this.currentMsg = msgInfo;
+      setTimeout(() => {
+        this.scroller.scrollToAnchor("msgBlock");
+      }, 100);
     });
     
     this.socket.on('msgRefresh', () => {

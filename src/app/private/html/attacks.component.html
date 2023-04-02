@@ -692,7 +692,7 @@
             </div>
             
             <!-- Observe/Spy -->
-            <div class="card-body" *ngIf="attackMode == 1 || attackMode == 2">
+            <div class="card-body" *ngIf="attackMode == 1 || attackMode == 2" id="attackEyeBlock">
               <table aria-describedby="playerDesc">
                 <tr *ngIf="targetProfile.alliance > 0">
                   <th scope="row" translate>Alliance</th>
@@ -973,7 +973,7 @@
             </div>
             
             <!-- Prepare to attack -->
-            <div class="card-body" *ngIf="attackMode == 3">
+            <div class="card-body" *ngIf="attackMode == 3" id="attackPrepareBlock">
               <div class="text-center">
                 <button class="btn btn-primary"
                         *ngIf="attackPossible > 0"
@@ -1004,7 +1004,7 @@
             </div>
             
             <!-- Prepare to send a fury -->
-            <div class="card-body text-center" *ngIf="attackMode == 5">
+            <div class="card-body text-center" *ngIf="attackMode == 5" id="furyPrepareBlock">
               <div translate>
                 The fury can destroy farms and growers and reserves of grapes and food of your opponents.
               </div>
@@ -1027,7 +1027,7 @@
             </div>
             
             <!-- Prepare to send a lightning -->
-            <div class="card-body text-center" *ngIf="attackMode == 7">
+            <div class="card-body text-center" *ngIf="attackMode == 7" id="lightningPrepareBlock">
               <div translate>
                 The lightning can destroy the buildings of your opponents, including mints.
               </div>
@@ -1050,7 +1050,7 @@
             </div>
             
             <!-- Spying a sanctuary -->
-            <div class="card-body text-center" *ngIf="attackMode == 9">
+            <div class="card-body text-center" *ngIf="attackMode == 9" id="sanctuaryEyeBlock">
               <span [ngSwitch]="sanctuariesSpyInfo.error">
                 <div *ngSwitchCase="1" translate>Your espionage team was caught and executed in a public place.</div>
                 <div *ngSwitchCase="2">
@@ -1128,7 +1128,7 @@
             </div>
             
             <!-- Sanctuary info -->
-            <div class="card-body" *ngIf="attackMode == 12">
+            <div class="card-body" *ngIf="attackMode == 12" id="sanctuaryInfoBlock">
               <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
                 Your city is protected against the fury of Demeter
               </div>
