@@ -12,6 +12,8 @@ import footPrint from '@iconify-icons/mdi/foot-print';
 import horseIcon from '@iconify-icons/mdi/horse';
 import manSharp from '@iconify-icons/ion/man-sharp';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+import roundStar from '@iconify/icons-ic/round-star';
+import roundStarBorder from '@iconify/icons-ic/round-star-border';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import {default as sword}  from '@iconify-icons/whh/sword';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -25,6 +27,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 
 export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   @Input() info: any;
+  public unitFavoriteList:object = new Object();
   
   Tools = Tools;
   Number = Number;
@@ -37,6 +40,8 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   manSharp = manSharp;
   questionCircle = questionCircle;
   shieldShaded = shieldShaded;
+  roundStar = roundStar;
+  roundStarBorder = roundStarBorder;
   sword = sword;
   swordIcon= swordIcon;
   
@@ -68,6 +73,9 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
       this.socket.emit('engagePossible', this.info.code);
       this.socket.emit('freeUnits', this.info.code);
     });
+    this.socket.on('unitFavoriteList', (data) => {
+      this.unitFavoriteList = data as object;
+    });
   }
   
   ngOnDestroy() {
@@ -77,6 +85,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     this.socket.removeListener('destruct');
     this.socket.removeListener('engage');
     this.socket.removeListener('liberate');
+    this.socket.removeListener('unitFavoriteList');
   }
   
   armyEngage() {
@@ -174,5 +183,13 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
     this.info.rEngageNb = 0;
     this.info.rLiberateNb = 0;
     this.info.liberatenb = this.user.getPropertyNb(this.info.code);
+  }
+
+  favoriteAdd() {
+    this.socket.emit('unitFavoriteAdd', this.info.code);
+  }
+
+  favoriteDelete() {
+    this.socket.emit('unitFavoriteDelete', this.info.code);
   }
 }

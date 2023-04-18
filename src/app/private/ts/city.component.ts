@@ -10,6 +10,7 @@ import cloud from '@iconify/icons-fa-solid/cloud';
 import cog from '@iconify/icons-fa-solid/cog';
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
+import roundStar from '@iconify/icons-ic/round-star';
 import swordCross from '@iconify/icons-mdi/sword-cross';
 import waterWave from '@iconify/icons-emojione-monotone/water-wave';
 
@@ -29,7 +30,8 @@ export class CityComponent implements OnInit, OnDestroy {
             public success:any;
             public templeSelected:any;
             public treasureInfo:any;
-  
+  public displayFavorite=0;
+  public unitFavoriteList:object = new Object();
   public divineBonus:any;
   public divineBonusNb:number;
   public waveAttackPower:number;
@@ -37,6 +39,7 @@ export class CityComponent implements OnInit, OnDestroy {
 
   environment = environment;
   Tools = Tools;
+  Object = Object;
 
   //Icons
   cloud = cloud;
@@ -44,6 +47,7 @@ export class CityComponent implements OnInit, OnDestroy {
   discordIcon = discordIcon;
   EwIcon = EwIconSubComponent;
   questionCircle = questionCircle;
+  roundStar = roundStar;
   swordCross = swordCross;
   waterWave = waterWave;
   
@@ -123,6 +127,13 @@ export class CityComponent implements OnInit, OnDestroy {
         this.socket.emit('dailyCo');
       }
     });
+
+    this.socket.on('unitFavoriteList', (data) => {
+      this.unitFavoriteList = data;
+    });
+    this.socket.on('unitFavoriteListRefresh', () => {
+      this.socket.emit('unitFavoriteList')
+    });
     
     this.socket.on('waveAttackList', (data) => {
         this.waveAttackPower = data.power;
@@ -133,7 +144,7 @@ export class CityComponent implements OnInit, OnDestroy {
     
     this.socket.emit('divineBonus');
     this.socket.emit('dailyCoCheck');
-    
+    this.socket.emit('unitFavoriteList')
     this.socket.emit('waveAttackList');
     this.socket.emit('waveDefenseList');
   }
@@ -142,6 +153,8 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.removeListener('divineBonus');
     this.socket.removeListener('dailyCo');
     this.socket.removeListener('dailyCoCheck');
+    this.socket.removeListener('unitFavoriteList');
+    this.socket.removeListener('unitFavoriteListRefresh');
     this.socket.removeListener('waveAttackList');
     this.socket.removeListener('waveDefenseList');
   }
@@ -342,5 +355,9 @@ export class CityComponent implements OnInit, OnDestroy {
       'amount': '',
       'treasureMode': 0
     }
+  }
+
+  flipDisplayFavorite() {
+    this.displayFavorite = (this.displayFavorite+1)%2;
   }
 }

@@ -284,19 +284,46 @@
               </div>
             </div>
             <div class="card-body no-padding">
+              <!-- Favorite -->
+              <div *ngFor="let army of Object.keys(unitFavoriteList)">
+                <div class="frame frame-20" role="button"
+                    [ngClass]="{'level-quest': levelQuest(army)}"
+                    data-bs-toggle="modal" data-bs-target="#ArmyInfo"
+                    (click)="selectArmy(army)"
+                    title="{{ Tools.getName(army) | translate }}"
+                    *ngIf="armyDisplay(army)">
+                  <ic-icon [icIcon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army)"
+                           class="text-warning favoriteStar"></ic-icon>
+                  <app-ew-icon name="{{ army }}"></app-ew-icon>
+                  <div class="badge bg-secondary"
+                      [ngClass]="{'badge-mini': user.getPropertyNb(army) > 1000000000}">
+                    {{ user.getPropertyNb(army) | number:'': this.translate.currentLang }}
+                  </div>
+                </div>
+              </div>
+              <!-- Regular -->
               <div *ngFor="let army of user.getArmy()">
                 <div class="frame frame-20" role="button"
-                    [ngClass]="{'level-quest': levelQuest(army.code)}"
+                    [ngClass]="{'level-quest': levelQuest(army.code),
+                                'd-none d-md-block': displayFavorite === 0 && Object.keys(unitFavoriteList).length > 0}"
                     data-bs-toggle="modal" data-bs-target="#ArmyInfo"
                     (click)="selectArmy(army.code)"
                     title="{{ Tools.getName(army.code) | translate }}"
-                    *ngIf="armyDisplay(army)">
+                    *ngIf="armyDisplay(army) && !unitFavoriteList.hasOwnProperty(army.code)">
+                  <ic-icon [icIcon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army.code)"
+                           class="text-warning favoriteStar"></ic-icon>
                   <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                   <div class="badge bg-secondary"
                       [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
                     {{ user.getPropertyNb(army.code) | number:'': this.translate.currentLang }}
                   </div>
                 </div>
+              </div>
+              <!-- Display all, Small screen only -->
+              <div class="frame frame-20 text-center favoritePlus d-block d-md-none" role="button"
+                  *ngIf="Object.keys(unitFavoriteList).length > 0 && Object.keys(unitFavoriteList).length < Object.keys(user.getArmy()).length">
+                <app-ew-icon name="plus" *ngIf="displayFavorite === 0" (click)="flipDisplayFavorite()"></app-ew-icon>
+                <app-ew-icon name="minus" *ngIf="displayFavorite === 1" (click)="flipDisplayFavorite()"></app-ew-icon>
               </div>
             </div>
           </div>

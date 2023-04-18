@@ -32,6 +32,14 @@
         </span>
       </span>
     </h5>
+    <div class="btn-star text-warning">
+      <ic-icon title="{{'Add as favorite'|translate}}"
+               [icIcon]="roundStarBorder" (click)="favoriteAdd()"
+               role="button" *ngIf="!unitFavoriteList.hasOwnProperty(info.code)"></ic-icon>
+      <ic-icon title="{{'Remove from favorites'|translate}}"
+               [icIcon]="roundStar" (click)="favoriteDelete()"
+               role="button" *ngIf="unitFavoriteList.hasOwnProperty(info.code)"></ic-icon>
+    </div>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
   </div>

@@ -99,6 +99,18 @@
   font-size: .65em;
 }
 
+.favoriteStar {
+  position: absolute;
+  right: 0;
+  font-size: 1.5em;
+  top: 0;
+}
+
+.favoritePlus > ic-icon > svg {
+  width: 100%;
+  height: inherit;
+}
+
 #discord-mobile {
   position: absolute;
   right: 0;
