@@ -68,7 +68,7 @@ export class CityComponent implements OnInit, OnDestroy {
       'error': 0
     };
     this.waveAttackPower = 0;
-    this.waveDefensePower = 0;
+    this.waveDefensePower = 1;
   }
   
   ngOnInit() {
