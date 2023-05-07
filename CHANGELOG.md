@@ -296,3 +296,7 @@
 * Fix a problem in the display of the units in the city
 * Fix tests
 * Update screenshots
+
+# 1.3.5
+* Optimize Display
+* Units can be set as favorite
