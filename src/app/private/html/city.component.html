@@ -158,7 +158,11 @@
             </div>
             <div class="card-body d-flex align-items-center">
               <div class="flex-grow-1 text-center">
-                
+                <div class="row" *ngIf="user.getLevel() === 0">
+                  <div class="col-12 text-center text-danger fw-bold mb-2"
+                       [innerHTML]="'To allow your city to grow, you need to follow the quests'|translate">
+                  </div>
+                </div>
                 <div class="row" *ngIf="user.getLevel() >= 1">
                   <div class="col-6">
                     <strong translate>Attack:</strong>
