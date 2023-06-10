@@ -116,6 +116,7 @@
   "Spend { value } Ambrosia": "Spend {{ value }} Ambrosia",
   
   "Take the Diamond { value } times": "Take the Diamond {{ value }} times",
+  "Taken resources": "Ressources remportées",
   "The alliance { value } has accepted a pact with your alliance": "The alliance {{ value }} has accepted a pact with your alliance",
   "The alliance { value } has canceled a pact request with your alliance.": "The alliance {{ value }} has canceled a pact request with your alliance.",
   "The alliance { value } has destroyed the pact with your alliance.": "The alliance {{ value }} has destroyed the pact with your alliance.",
@@ -126,6 +127,7 @@
   "The following conditions regulate the use of Ellas War and all services related to the website edited by": "The following conditions regulate the use of Ellas War and all services related to the website edited by <a class=\"link-secondary\" href=\"/team\">the Ellas War team</a>.",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
   "The war between { name1 } and { name2 } has been canceled, no winner has been announced.": "The war between {{ name1 }} and {{ name2 }} has been canceled, no winner has been announced.",
+  "To allow your city to grow, you need to follow the quests": "To allow your city to grow, you need to follow <a href=\"quests\" ui-sref=\"quests\">the quests</a>",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
   
   "Unsupported message type: { value }": "Unsupported message type: {{ value }}",
@@ -151,6 +153,7 @@
   
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "You are at the point of declare war to {{ value }} alliance, it will start in 24h.",
   "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
+  "You can do more attacks using a Favor.": "You can do more attacks using <a href=\"/favors\" ui-sref=\"favors\">a Favor</a>.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
   "You can't eject { value } from the alliance": "You can't eject {{ value }} from the alliance",
   "You can't have more than { value } { name }": "You can't have more than {{ value }} {{ name }}",
