@@ -13,7 +13,7 @@
                 aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="mb-3">
+        <div class="mb-3" *ngIf="user.getPropertyNb('rank') >= 5">
           <select class="form-select" (change)="styleChange($event)" 
                   [(ngModel)]="currentStyle">
             <option value="default" translate>Default Style</option>
@@ -277,7 +277,7 @@
                 <div class="flex-grow-1">
                   <strong translate>Parameters</strong>
                   <p translate>
-                    Switch the style of the game and enable/disable the notifications.
+                    Switch the language of the game and enable/disable the notifications.
                   </p>
                 </div>
                 <div class="btn btn-primary d-flex align-items-center"
