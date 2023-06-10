@@ -66,7 +66,8 @@
 </div>
 
 <div class="col-table text-center" *ngIf="info.lost_ress && Object.keys(info.lost_ress).length > 0">
-  <strong id="LostResDesc" translate>Lost resources</strong>
+  <strong *ngIf="info.winer === 1 || info.winer === 2" id="LostResDesc" translate>Taken resources</strong>
+  <strong *ngIf="info.winer === 3 || info.winer === 4" id="LostResDesc" translate>Lost resources</strong>
   <table class="table" aria-describedby="LostResDesc">
     <tr *ngFor="let ress of resources">
       <td *ngIf="info.lost_ress[ress] > 0"
@@ -101,7 +102,7 @@
   <table class="table" aria-describedby="LostBuildingDesc">
     <tr *ngFor="let building of getLostBuildings()">
       <td class="col-6 text-end">{{building.nb| number:'': this.translate.currentLang}}</td>
-      <th scope="row" class="col-6 text-start">{{ Tools.getName(building.code, building.nb) | translate }}</th>
+      <th scope="row" class="col-6 text-start fw-normal">{{ Tools.getName(building.code, building.nb) | translate }}</th>
     </tr>
   </table>
 </div>
@@ -114,11 +115,13 @@
 </div>
 
 <div class="col-table text-center" *ngIf="getSaved().length > 0 && user.info.datas.army">
-  <strong translate>Units saved</strong>
-  <div *ngFor="let unit of getSaved()">
-    {{unit.nb| number:'': this.translate.currentLang}} 
-    {{ Tools.getName(unit.code, unit.nb) | translate }}
-  </div>
+  <strong id="SavedUnitsDesc" translate>Units saved</strong>
+  <table class="table" aria-describedby="SavedUnitsDesc">
+    <tr *ngFor="let unit of getSaved()">
+      <td class="col-6 text-end">{{unit.nb| number:'': this.translate.currentLang}}</td>
+      <th scope="row" class="col-6 text-start fw-normal">{{ Tools.getName(unit.code, unit.nb) | translate }}</th>
+    </tr>
+  </table>
   <div class="clearfix"><br/></div>
 </div>
 <div class="col-table text-center"
