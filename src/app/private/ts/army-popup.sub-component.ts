@@ -192,4 +192,17 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   favoriteDelete() {
     this.socket.emit('unitFavoriteDelete', this.info.code);
   }
+
+  realEngageNb() {
+    if(this.info.engageNb >= 1) {
+      return Math.ceil(this.info.engageNb)
+    }
+    return 1;
+  }
+  realLiberateNb() {
+    if(this.info.liberatenb >= 1) {
+      return Math.ceil(this.info.liberatenb)
+    }
+    return 1;
+  }
 }

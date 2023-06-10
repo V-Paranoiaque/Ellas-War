@@ -70,7 +70,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.cost | keyvalue">
-            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            {{ Number(resource.value)*realBuildNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
@@ -80,7 +80,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.destruct | keyvalue">
-            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            {{ Number(resource.value)*realDestructNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
@@ -89,7 +89,7 @@
           <strong translate>Production</strong><strong translate>:</strong>
           <br/>
           <span *ngFor="let i of getProduction()">
-            {{ i.nb | number:'': this.translate.currentLang }}
+            {{ Number(i.nb)*realBuildNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="i.code"></app-id-to-ress>
           </span>
         </div>
@@ -99,7 +99,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let i of getConsumption()">
-            {{ i.nb | number:'': this.translate.currentLang }}
+            {{ Number(i.nb)*realBuildNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="i.code"></app-id-to-ress>
           </span>
         </div>

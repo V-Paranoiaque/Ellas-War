@@ -167,7 +167,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.cost | keyvalue">
-            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            {{ Number(resource.value)*realEngageNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
@@ -177,7 +177,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.resaler | keyvalue">
-            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            {{ Number(resource.value)*realLiberateNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>
@@ -187,7 +187,7 @@
           <strong translate>:</strong>
           <br/>
           <span *ngFor="let resource of info.consumption | keyvalue">
-            {{ Number(resource.value) | number:'': this.translate.currentLang }}
+            {{ Number(resource.value)*realEngageNb() | number:'': this.translate.currentLang }}
             <app-id-to-ress [ress_id]="resource.key"></app-id-to-ress>
           </span>
         </div>

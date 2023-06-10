@@ -154,4 +154,17 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   updateCamp(){
     this.socket.emit('updateCamp');
   }
+
+  realBuildNb() {
+    if(this.info.buildNb >= 1) {
+      return Math.ceil(this.info.buildNb)
+    }
+    return 1;
+  }
+  realDestructNb() {
+    if(this.info.destructNb >= 1) {
+      return Math.ceil(this.info.destructNb)
+    }
+    return 1;
+  }
 }
