@@ -18,22 +18,22 @@
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">
         <li class="nav-item" *ngIf="user.getPropertyNb('rank') > 1">
           <a class="nav-link" [routerLink]="['/admin/']">
-            <ic-icon [icIcon]="greekcolumnIcon"></ic-icon>
+            <app-ic-icon [icon]="greekcolumnIcon"></app-ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/options']">
-            <ic-icon [icIcon]="cog"></ic-icon>
+            <app-ic-icon [icon]="cog"></app-ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/support']">
-            <ic-icon [icIcon]="questionCircle"></ic-icon>
+            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" (click)="disconnect()">
-            <ic-icon [icIcon]="powerOff"></ic-icon>
+            <app-ic-icon [icon]="powerOff"></app-ic-icon>
           </a>
         </li>
         <img src="assets/img/ornaments/column-mini.png" alt="Pillar">

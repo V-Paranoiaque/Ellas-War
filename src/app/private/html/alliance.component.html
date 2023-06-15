@@ -81,20 +81,20 @@
                         *ngIf="user.getPropertyNb('second') > 0"
                         data-bs-toggle="modal" data-bs-target="#AllianceProfile" 
                         title="{{'Modify the alliance\'s profile'|translate}}">
-                  <ic-icon [icon]="brushIcon"></ic-icon>
+                  <app-ic-icon [icon]="brushIcon"></app-ic-icon>
                 </button>
                 
                 <button class="btn btn-warning"
                         data-bs-toggle="modal" data-bs-target="#AllianceArchives" 
                         title="{{'Archives'|translate}}">
-                  <ic-icon [icon]="filePaper2Line"></ic-icon>
+                  <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
                   <span class="visually-hidden" translate>Archives</span>
                 </button>
                 
                 <button class="btn btn-success"  *ngIf="allowLeave == 1"
                         data-bs-toggle="modal" data-bs-target="#AllianceLeave" 
                         title="{{'Leave your alliance'|translate}}">
-                  <ic-icon [icon]="times"></ic-icon>
+                  <app-ic-icon [icon]="times"></app-ic-icon>
                   <span class="visually-hidden" translate>Leave your alliance</span>
                 </button>
                 <button class="btn btn-danger"
@@ -102,13 +102,13 @@
                               user.getPropertyNb('emergency_exit') == 0"
                         data-bs-toggle="modal" data-bs-target="#AllianceEmergency" 
                         title="{{'Enable emergency exit'|translate}}">
-                  <ic-icon [icon]="times"></ic-icon>
+                  <app-ic-icon [icon]="times"></app-ic-icon>
                   <span class="visually-hidden" translate>Enable emergency exit</span>
                 </button>
                 <button class="btn btn-success" *ngIf="allowDissolve == 1"
                         data-bs-toggle="modal" data-bs-target="#AllianceDissolve" 
                         title="{{'Dissolve your alliance'|translate}}">
-                  <ic-icon [icon]="times"></ic-icon>
+                  <app-ic-icon [icon]="times"></app-ic-icon>
                   <span class="visually-hidden" translate>Dissolve your alliance</span>
                 </button>
               </h1>
@@ -160,7 +160,7 @@
                       <button class="btn btn-success" (click)="setPlayer(p, 3)"
                               data-bs-toggle="modal" data-bs-target="#AllianceRank" 
                               title="{{'Modify the rank'|translate}}">
-                        <ic-icon [icon]="sportsMedal"></ic-icon>
+                        <app-ic-icon [icon]="sportsMedal"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Modify the rank'|translate}}
                         </span>
@@ -170,7 +170,7 @@
                               *ngIf="p.gift == 0 && p.membre_id != user.getId()"
                               data-bs-toggle="modal" data-bs-target="#AllianceGift" 
                               title="{{'Give drachmas'|translate}}">
-                        <ic-icon [icon]="coinBagSolid"></ic-icon>
+                        <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Give drachmas'|translate}}
                         </span>
@@ -179,7 +179,7 @@
                               *ngIf="p.gift > 0 && p.remain > 0 && p.membre_id != user.getId()"
                               data-bs-toggle="modal" data-bs-target="#AllianceGift"
                               title="{{'Give drachmas'|translate}}">
-                        <ic-icon [icon]="coinBagSolid"></ic-icon>
+                        <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Give drachmas'|translate}}
                         </span>
@@ -188,7 +188,7 @@
                               *ngIf="p.remain == 0 && p.membre_id != user.getId()"
                               data-bs-toggle="modal" data-bs-target="#AllianceGift"
                               title="{{'Impossible to give drachmas'|translate}}">
-                        <ic-icon [icon]="coinBagSolid"></ic-icon>
+                        <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Impossible to give drachmas'|translate}}
                         </span>
@@ -197,7 +197,7 @@
                               *ngIf="user.getPropertyNb('recruiter') > 0 && p.allow_eject == 1"
                               data-bs-toggle="modal" data-bs-target="#AllianceEvict"
                               title="{{'Evict from the alliance'|translate}}">
-                        <ic-icon [icon]="times"></ic-icon>
+                        <app-ic-icon [icon]="times"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Evict from the alliance'|translate}}
                         </span>
@@ -206,7 +206,7 @@
                               *ngIf="user.getPropertyNb('recruiter') > 0 && p.allow_eject == 0 && p.membre_id != user.getId() && p.membre_id != myAllianceProfile.chief_id"
                               data-bs-toggle="modal" data-bs-target="#AllianceEvict"
                               title="{{'Impossible to evict this member from the alliance'|translate}}">
-                        <ic-icon [icon]="times"></ic-icon>
+                        <app-ic-icon [icon]="times"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Impossible to evict this member from the alliance'|translate}}
                         </span>
@@ -231,7 +231,7 @@
                     data-bs-toggle="modal" data-bs-target="#AllianceTaxes"
                     title="{{'Building details'|translate}}"
                     (click)="taxesInit()">
-                  <ic-icon [icIcon]="cog"></ic-icon>
+                  <app-ic-icon [icon]="cog"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -250,7 +250,7 @@
                       <button class="btn btn-primary" (click)="setRequest(res)"
                               data-bs-toggle="modal" data-bs-target="#AllianceRequests"
                               title="{{'Request resources'|translate}}">
-                        <ic-icon [icon]="handHolding"></ic-icon>
+                        <app-ic-icon [icon]="handHolding"></app-ic-icon>
                       </button>
                     </td>
                   </tr>
@@ -276,7 +276,7 @@
                 <div class="text-end">
                   <button class="btn btn-primary" (click)="setPlayer(user, 0)"
                           data-bs-toggle="modal" data-bs-target="#AllianceCandidate" >
-                    <ic-icon [icon]="eye"></ic-icon>
+                    <app-ic-icon [icon]="eye"></app-ic-icon>
                   </button>
                 </div>
               </div>
@@ -291,7 +291,7 @@
                 <a class="card-header-button" [routerLink]="['/diplomacy']"
                     data-bs-toggle="modal" data-bs-target="#BuildingSummary"
                     title="{{'Building details'|translate}}">
-                  <ic-icon [icon]="flag"></ic-icon>
+                  <app-ic-icon [icon]="flag"></app-ic-icon>
                 </a>
               </div>
             </div>
@@ -315,7 +315,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -325,7 +325,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -337,7 +337,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -357,7 +357,7 @@
                 <a class="card-header-button" [routerLink]="['/diplomacy']"
                   data-bs-toggle="modal" data-bs-target="#BuildingSummary"
                   title="{{'Building details'|translate}}">
-                  <ic-icon [icIcon]="swordIcon"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                 </a>
               </div>
             </div>
@@ -406,7 +406,7 @@
                         <button class="btn btn-primary" title="{{'Archives'|translate}}"
                                 *ngIf="w.begin == 1" (click)="warSelect(w)"
                                 data-bs-toggle="modal" data-bs-target="#AllianceWarArchives" >
-                          <ic-icon [icon]="filePaper2Line"></ic-icon>
+                          <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
                           <span class="visually-hidden" translate>Archives</span>
                         </button>
                       </div>

@@ -135,7 +135,7 @@
       <div class="row">
         <a href="{{ environment.discord }}" target="_blank" id="discord-mobile"
             rel="external nofollow noopener" class="d-md-none" role="btn">
-          <ic-icon [icIcon]="discordIcon" role="button"></ic-icon>
+          <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
         </a>
         <div class="col-xl-6 col-block-half">
           <div class="card">
@@ -146,13 +146,13 @@
                     data-bs-toggle="modal" data-bs-target="#FirstInfo"
                     *ngIf="user.getPropertyNb('level') == 0 && user.getPropertyNb('quest') == 1"
                     id="FirstInfoOpen">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#DailyInfo"
                     *ngIf="dailCo() > 0 && dailyCoCheck === 1"
                     id="DailyCoCheckOpen">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@
                     <strong translate>Attack:</strong>
                     {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
                     <a [routerLink]="['/strategies/attack']">
-                      <ic-icon [icIcon]="cog"></ic-icon>
+                      <app-ic-icon [icon]="cog"></app-ic-icon>
                     </a>
                   </div>
                   <div class="col-6" [ngClass]="{'text-danger': waveDefensePower === 0 }">
@@ -176,16 +176,16 @@
                     <strong translate>:</strong>
                     {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
                     <a [routerLink]="['/strategies/defense']">
-                      <ic-icon [icIcon]="cog"></ic-icon>
+                      <app-ic-icon [icon]="cog"></app-ic-icon>
                     </a>
                   </div>
                   <div class="col-12 text-center text-danger fw-bold" *ngIf="waveDefensePower === 0">
                     <span translate>
                       Without defense, your resource losses will be greater in the event of an attack
                     </span>
-                    <ic-icon [icIcon]="questionCircle" role="button"
+                    <app-ic-icon [icon]="questionCircle" role="button"
                             data-bs-toggle="modal"
-                            data-bs-target="#DefenseEmpty"></ic-icon>
+                            data-bs-target="#DefenseEmpty"></app-ic-icon>
                   </div>
                   <br/>
                 </div>
@@ -196,17 +196,17 @@
                     <strong translate>Quests</strong><strong translate>:</strong> 
                     {{ user.getQuest() }}/{{ user.getQuestMax() }}
                   </a>
-                  <ic-icon [icIcon]="questionCircle" role="button"
+                  <app-ic-icon [icon]="questionCircle" role="button"
                           data-bs-toggle="modal"
-                          data-bs-target="#MissionsInfo"></ic-icon>
+                          data-bs-target="#MissionsInfo"></app-ic-icon>
                 </div>
                 <div *ngIf="user.getLevel() >= 1">
                   <strong id="questProgressLabel" translate>Quest progress</strong>
                   <strong translate>:</strong>
-                  <ic-icon [icIcon]="questionCircle"
+                  <app-ic-icon [icon]="questionCircle"
                           data-bs-toggle="modal" data-bs-target="#QuestsInfo"
                           title="{{'Quest progress'|translate}}"
-                          role="button"></ic-icon>
+                          role="button"></app-ic-icon>
                   <div class="progress" role="button" [routerLink]="['/quests']">
                     <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
                         aria-valuemin="0" aria-valuemax="100"
@@ -231,12 +231,12 @@
                     data-bs-toggle="modal" data-bs-target="#DivineBonusList"
                     *ngIf="divineBonus.length > 0" (click)="divineBonusReset()"
                     title="{{'All your divine bonuses'|translate}}">
-                  <ic-icon [icIcon]="cloud"></ic-icon>
+                  <app-ic-icon [icon]="cloud"></app-ic-icon>
                 </div>
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#DivineBonusHelp"
                     title="{{'About the Divine Bonuses'|translate}}">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
               <span translate>Divine Bonus</span>
@@ -273,17 +273,17 @@
                     *ngIf="user.getLevel() >= 1"
                     [routerLink]="['/strategies/attack']"
                     title="{{'Manage your waves to optimize your losses'|translate}}">
-                  <ic-icon [icIcon]="waterWave"></ic-icon>
+                  <app-ic-icon [icon]="waterWave"></app-ic-icon>
                 </div>
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#ArmySummary"
                     title="{{'Army summary'|translate}}">
-                  <ic-icon [icIcon]="swordCross"></ic-icon>
+                  <app-ic-icon [icon]="swordCross"></app-ic-icon>
                 </div>
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#ArmyHelp"
                     title="{{'Army information'|translate}}">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -296,8 +296,8 @@
                     (click)="selectArmy(army)"
                     title="{{ Tools.getName(army) | translate }}"
                     *ngIf="armyDisplay(army)">
-                  <ic-icon [icIcon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army)"
-                           class="text-warning favoriteStar"></ic-icon>
+                  <app-ic-icon [icon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army)"
+                           class="text-warning favoriteStar"></app-ic-icon>
                   <app-ew-icon name="{{ army }}"></app-ew-icon>
                   <div class="badge bg-secondary"
                       [ngClass]="{'badge-mini': user.getPropertyNb(army) > 1000000000}">
@@ -314,8 +314,8 @@
                     (click)="selectArmy(army.code)"
                     title="{{ Tools.getName(army.code) | translate }}"
                     *ngIf="armyDisplay(army) && !unitFavoriteList.hasOwnProperty(army.code)">
-                  <ic-icon [icIcon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army.code)"
-                           class="text-warning favoriteStar"></ic-icon>
+                  <app-ic-icon [icon]="roundStar" *ngIf="unitFavoriteList.hasOwnProperty(army.code)"
+                           class="text-warning favoriteStar"></app-ic-icon>
                   <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                   <div class="badge bg-secondary"
                       [ngClass]="{'badge-mini': user.getPropertyNb(army.code) > 1000000000}">
@@ -341,7 +341,7 @@
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#BuildingSummary"
                     title="{{'Building details'|translate}}">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -388,7 +388,7 @@
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#TempleHelp"
                     title="{{'Temples information'|translate}}">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -524,7 +524,7 @@
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#SuccessHelp"
                     title="{{'Success information'|translate}}">
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </div>
               </div>
             </div>

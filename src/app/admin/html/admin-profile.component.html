@@ -37,22 +37,22 @@
               {{ profile.username }}
               <a [routerLink]="['/admin/profile/'+profile.membre_id]"
                  class="btn btn-primary">
-                <ic-icon [icon]="eye"></ic-icon>
+                <app-ic-icon [icon]="eye"></app-ic-icon>
               </a>
             </h1>
             
             <div class="text-center">
-              <ic-icon [ngClass]="{'btn-success': profile.membre_status == 1,
+              <app-ic-icon [ngClass]="{'btn-success': profile.membre_status == 1,
                                    'btn-danger': profile.membre_status == 3}"
                        class="btn" [icon]="bomb"
-                       (click)="adminUserBlock()"></ic-icon>
-              <ic-icon [ngClass]="{'btn-success': profile.chat_allowed === 1,
+                       (click)="adminUserBlock()"></app-ic-icon>
+              <app-ic-icon [ngClass]="{'btn-success': profile.chat_allowed === 1,
                                    'btn-danger': profile.chat_allowed === 0}"
                        class="btn" [icon]="comments"
-                       (click)="adminChatBlock()">></ic-icon>
-              <ic-icon class="btn btn-primary" [icon]="users"
+                       (click)="adminChatBlock()">></app-ic-icon>
+              <app-ic-icon class="btn btn-primary" [icon]="users"
                        data-bs-toggle="modal" data-bs-target="#AdminChiefSet"
-                       *ngIf="profile.alliance > 0"></ic-icon>
+                       *ngIf="profile.alliance > 0"></app-ic-icon>
             </div>
           </div>
         </div>

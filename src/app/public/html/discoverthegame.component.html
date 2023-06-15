@@ -34,11 +34,11 @@
         <div class="card-body" *ngSwitchCase="'constructions'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Constructions</span>
             <a [routerLink]="['/discoverthegame/treasure']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -55,11 +55,11 @@
         <div class="card-body" *ngSwitchCase="'treasure'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/constructions']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Treasure</span>
             <a [routerLink]="['/discoverthegame/temples']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -76,11 +76,11 @@
         <div class="card-body" *ngSwitchCase="'temples'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/treasure']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Temples</span>
             <a [routerLink]="['/discoverthegame/recruitment']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -97,11 +97,11 @@
         <div class="card-body" *ngSwitchCase="'recruitment'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/temples']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Recruitment</span>
             <a [routerLink]="['/discoverthegame/army']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -118,11 +118,11 @@
         <div class="card-body" *ngSwitchCase="'army'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/recruitment']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Army</span>
             <a [routerLink]="['/discoverthegame/attack']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -139,11 +139,11 @@
         <div class="card-body" *ngSwitchCase="'attack'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/army']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Offensive strategy</span>
             <a [routerLink]="['/discoverthegame/defense']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -160,11 +160,11 @@
         <div class="card-body" *ngSwitchCase="'defense'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/attack']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Defensive strategy</span>
             <a [routerLink]="['/discoverthegame/trade']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -181,11 +181,11 @@
         <div class="card-body" *ngSwitchCase="'trade'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/defense']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Agora</span>
             <a [routerLink]="['/discoverthegame']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -202,11 +202,11 @@
         <div class="card-body" *ngSwitchCase="'sell'">
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/trade']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>Sell resources</span>
             <a [routerLink]="['/discoverthegame']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           
@@ -223,11 +223,11 @@
         <div class="card-body" *ngSwitchDefault>
           <h1 class="pb-2 text-center d-flex justify-content-center">
             <a [routerLink]="['/discoverthegame/trade']">
-              <ic-icon [icon]="arrowLeft"></ic-icon>
+              <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
             </a>
             <span translate>City</span>
             <a [routerLink]="['/discoverthegame/constructions']">
-              <ic-icon [icon]="arrowRight"></ic-icon>
+              <app-ic-icon [icon]="arrowRight"></app-ic-icon>
             </a>
           </h1>
           

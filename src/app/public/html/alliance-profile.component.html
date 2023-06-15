@@ -21,7 +21,7 @@
                         data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                         title="{{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}"
                         [ngClass]="{'invisible': allianceProfile.recruitement_open == 0}">
-                  <ic-icon [icon]="userPlus"></ic-icon>
+                  <app-ic-icon [icon]="userPlus"></app-ic-icon>
                   <span class="visually-hidden">
                     {{'Join the alliance:'|translate}} {{allianceProfile.alliance_name}}
                   </span>

@@ -9,13 +9,13 @@
       <div class="social">
         <a href="{{ localevars.facebook }}" target="_blank"
            rel="external nofollow noopener">
-          <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+          <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
           {{'Follow us'|translate}}
         </a>
         <br/>
         <a href="{{ environment.discord }}" target="_blank"
            rel="external nofollow noopener">
-          <ic-icon [icon]="discordIcon" class="fs-6"></ic-icon>
+          <app-ic-icon [icon]="discordIcon" class="fs-6"></app-ic-icon>
           {{'Join us'|translate}}
         </a>
       </div>
@@ -199,13 +199,13 @@
           <div class="row">
             <div class="col-6 half-right d-none">
               <button class="btn btn-primary" (click)="user.oauthFB()">
-                <ic-icon [icon]="facebookIcon" class="fs-6"></ic-icon>
+                <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
                 {{'Login with Facebook'|translate}}
               </button>
             </div>
             <div class="col-12 text-center">
               <button class="btn btn-grey" (click)="user.oauthGoogle()">
-                <ic-icon [icon]="googleIcon" class="fs-6"></ic-icon>
+                <app-ic-icon [icon]="googleIcon" class="fs-6"></app-ic-icon>
                 {{'Login with Google'|translate}}
               </button>
             </div>
@@ -308,7 +308,7 @@
             <a class="btn btn-primary btn-lg fs-3 p-2 flex-grow-1"
                href="{{ localevars.facebook }}" target="_blank"
                rel="external nofollow noopener">
-              <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
+              <app-ic-icon [icon]="facebookIcon" class="fs-2"></app-ic-icon>
               {{'Facebook page'|translate}}
             </a>
           </div>

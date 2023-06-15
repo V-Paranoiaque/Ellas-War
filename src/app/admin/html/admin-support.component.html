@@ -16,7 +16,7 @@
             <button class="btn btn-primary"
                     data-bs-toggle="modal" data-bs-target="#SupportNew"
                     title="{{'Write a new message'| translate}}">
-              <ic-icon [icon]="brushIcon"></ic-icon>
+              <app-ic-icon [icon]="brushIcon"></app-ic-icon>
             </button>
           </h1>
           
@@ -41,11 +41,11 @@
                 <td class="text-center">
                   <a [routerLink]="['/admin/support/'+adminSupportPage+'/'+msg.support_id]"
                      class="btn btn-primary">
-                    <ic-icon [icon]="eyeIcon"></ic-icon>
+                    <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                   </a>
                   <a (click)="adminSupportStatus(msg.support_id)" class="btn" 
                      [ngClass]="{'btn-success': msg.support_status == 1, 'btn-danger': msg.support_status == 0}">
-                    <ic-icon [icon]="angellistIcon"></ic-icon>
+                    <app-ic-icon [icon]="angellistIcon"></app-ic-icon>
                   </a>
                 </td>
               </tr>

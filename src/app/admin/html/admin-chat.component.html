@@ -28,8 +28,8 @@
                 <td class="center">
                   <button class="btn" (click)="adminChatCensor(p.id)"
                           [ngClass]="{'btn-danger': p.censured === 1, 'btn-primary': p.censured === 0}">
-                    <ic-icon *ngIf="p.censured === 0" [icon]="volumeOff"></ic-icon>
-                    <ic-icon *ngIf="p.censured === 1" [icon]="volumeMute"></ic-icon>
+                    <app-ic-icon *ngIf="p.censured === 0" [icon]="volumeOff"></app-ic-icon>
+                    <app-ic-icon *ngIf="p.censured === 1" [icon]="volumeMute"></app-ic-icon>
                   </button>
                 </td>
               </tr>

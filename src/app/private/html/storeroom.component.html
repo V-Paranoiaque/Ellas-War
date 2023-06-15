@@ -114,7 +114,7 @@
                         <button class="btn btn-primary" *ngIf="trade.remaining > 0"
                                 title="{{'Select all the resources'|translate}}"
                                 (click)=selectResources(trade)>
-                          <ic-icon [icon]="plusIcon"></ic-icon>
+                          <app-ic-icon [icon]="plusIcon"></app-ic-icon>
                         </button>
                       </td>
                       <td class="text-end">
@@ -137,7 +137,7 @@
                         <button class="btn btn-success"
                                 (click)="storeroomBuy(trade.resource_id, storeroom_ress[trade.resource_id], trade.rate)"
                                 title="{{'Buy'|translate}}" *ngIf="trade.remaining > 0">
-                          <ic-icon [icon]="bagIcon"></ic-icon>
+                          <app-ic-icon [icon]="bagIcon"></app-ic-icon>
                           <span class="visually-hidden" translate>Buy</span>
                         </button>
                       </td>
@@ -160,7 +160,7 @@
                 <div class="card-header-button" role="button"
                     data-bs-toggle="modal" data-bs-target="#StoreroomHistory"
                     (click)="storeroomHistory()">
-                  <ic-icon [icIcon]="clockIcon"></ic-icon>
+                  <app-ic-icon [icon]="clockIcon"></app-ic-icon>
                 </div>
               </div>
             </div>
@@ -221,7 +221,7 @@
                       <button class="btn btn-warning"
                         (click)="storeroomRedeem(trade.storeroom_id, trade.remaining)"
                         title="{{'Recover'|translate}}">
-                        <ic-icon [icon]="jarIcon"></ic-icon>
+                        <app-ic-icon [icon]="jarIcon"></app-ic-icon>
                         <span class="visually-hidden" translate>Recover</span>
                       </button>
                     </td>

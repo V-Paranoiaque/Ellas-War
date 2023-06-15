@@ -44,14 +44,14 @@
       <tr *ngFor="let p of warInfo.list"
           [ngClass]="{'bg-danger': p.defender == p.result}">
         <td>
-          <ic-icon [icon]="swordIcon" *ngIf="p.offender == 1"></ic-icon>
-          <ic-icon [icon]="shieldShaded" *ngIf="p.offender == 0"></ic-icon>&nbsp;
+          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender == 1"></app-ic-icon>
+          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender == 0"></app-ic-icon>&nbsp;
           <a [routerLink]="['/profile/'+p.attacking]"
              data-bs-dismiss="modal">{{p.ausername}}</a>
         </td>
         <td>
-          <ic-icon [icon]="swordIcon" *ngIf="p.offender == 0"></ic-icon>
-          <ic-icon [icon]="shieldShaded" *ngIf="p.offender == 1"></ic-icon>&nbsp;
+          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender == 0"></app-ic-icon>
+          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender == 1"></app-ic-icon>&nbsp;
           <a [routerLink]="['/profile/'+p.defender]"
              data-bs-dismiss="modal">{{p.dusername}}</a>
         </td>

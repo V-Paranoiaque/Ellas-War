@@ -4,41 +4,41 @@
       {{ Tools.getName(info.code) | translate }}
       
       <span *ngIf="info.attack > 0 || info.defense > 0">
-        <ic-icon title="{{'Infantryman'|translate}}"
+        <app-ic-icon title="{{'Infantryman'|translate}}"
                  *ngIf="info.type%2 == 1"
-                 [icon]="footPrint"></ic-icon>
-        <ic-icon title="{{'Cavalry unit'|translate}}"
+                 [icon]="footPrint"></app-ic-icon>
+        <app-ic-icon title="{{'Cavalry unit'|translate}}"
                  *ngIf="info.type%2 == 0"
-                 [icon]="horseIcon"></ic-icon>
+                 [icon]="horseIcon"></app-ic-icon>
         
-        <ic-icon title="{{'Mythological creature'|translate}}"
+        <app-ic-icon title="{{'Mythological creature'|translate}}"
                  *ngIf="info.type >= 5"
-                 [icon]="animalDog20Filled"></ic-icon>
-        <ic-icon title="{{'Human unit'|translate}}"
+                 [icon]="animalDog20Filled"></app-ic-icon>
+        <app-ic-icon title="{{'Human unit'|translate}}"
                  *ngIf="info.type <= 4"
-                 [icon]="manSharp"></ic-icon>
+                 [icon]="manSharp"></app-ic-icon>
         
-        <ic-icon title="{{'Melee unit'|translate}}"
+        <app-ic-icon title="{{'Melee unit'|translate}}"
                  *ngIf="info.type == 1 || info.type == 2 || info.type == 5 || info.type == 6"
-                 [icon]="sword"></ic-icon>
-        <ic-icon title="{{'Remote unit'|translate}}"
+                 [icon]="sword"></app-ic-icon>
+        <app-ic-icon title="{{'Remote unit'|translate}}"
                  *ngIf="info.type == 3 || info.type == 4 || info.type == 7 || info.type == 8"
-                 [icon]="bowAndArrow"></ic-icon>
+                 [icon]="bowAndArrow"></app-ic-icon>
       
         <span data-bs-toggle="modal" data-bs-target="#ArmyHelp"
               data-bs-dismiss="modal" title="{{'Army information'|translate}}"
               role="button" translate>
-          <ic-icon [icIcon]="questionCircle"></ic-icon>
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
         </span>
       </span>
     </h5>
     <div class="btn-star text-warning">
-      <ic-icon title="{{'Add as favorite'|translate}}"
-               [icIcon]="roundStarBorder" (click)="favoriteAdd()"
-               role="button" *ngIf="!unitFavoriteList.hasOwnProperty(info.code)"></ic-icon>
-      <ic-icon title="{{'Remove from favorites'|translate}}"
-               [icIcon]="roundStar" (click)="favoriteDelete()"
-               role="button" *ngIf="unitFavoriteList.hasOwnProperty(info.code)"></ic-icon>
+      <app-ic-icon title="{{'Add as favorite'|translate}}"
+               [icon]="roundStarBorder" (click)="favoriteAdd()"
+               role="button" *ngIf="!unitFavoriteList.hasOwnProperty(info.code)"></app-ic-icon>
+      <app-ic-icon title="{{'Remove from favorites'|translate}}"
+               [icon]="roundStar" (click)="favoriteDelete()"
+               role="button" *ngIf="unitFavoriteList.hasOwnProperty(info.code)"></app-ic-icon>
     </div>
     <button type="button" class="btn-close" data-bs-dismiss="modal" 
             aria-label="Close"></button>
@@ -155,11 +155,11 @@
           <strong translate>:</strong>
           <span>
            {{ info.attack | number:'': this.translate.currentLang }}
-           <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
+           <app-ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></app-ic-icon>
           </span>
           <span>
            {{ info.defense | number:'': this.translate.currentLang }}
-           <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+           <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>
           </span>
         </div>
         <div *ngIf="info.cost">

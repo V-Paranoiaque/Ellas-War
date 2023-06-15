@@ -8,7 +8,7 @@
     <div class="modal-body">
       <span class="badge bg-primary" *ngFor="let user of getDestList()">
         {{ user.username }}
-        <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+        <app-ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></app-ic-icon>
       </span>
       
       <div class="input-group">
@@ -18,7 +18,7 @@
                (keydown.enter)="addDest(msgToUser)" >
         <span class="input-group-text text-center" role="button" 
               (click)="addDest(msgToUser)">
-          <ic-icon [icon]="plusIcon"></ic-icon>
+          <app-ic-icon [icon]="plusIcon"></app-ic-icon>
         </span>
       </div>
       <div *ngIf="addDestError > 0" class="alert alert-danger"

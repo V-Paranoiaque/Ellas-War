@@ -5,9 +5,9 @@
       <span translate>
         Level quests
       </span>
-      <ic-icon [icIcon]="questionCircle" role="button"
+      <app-ic-icon [icon]="questionCircle" role="button"
                class="ms-2" data-bs-toggle="modal"
-               data-bs-target="#MissionsInfo"></ic-icon>
+               data-bs-target="#MissionsInfo"></app-ic-icon>
     </div>
     <div class="progress">
       <div class="progress-bar bg-success" role="progressbar" aria-valuenow="0"
@@ -294,7 +294,7 @@
                attr.aria-label="{{'Follow us on our Facebook Page'|translate}}">
             <a href="{{ localevars.facebook }}" target="_blank"
                rel="external nofollow noopener">
-              <ic-icon [icon]="facebookIcon" class="fs-2"></ic-icon>
+              <app-ic-icon [icon]="facebookIcon" class="fs-2"></app-ic-icon>
             </a>
           </div>
         </div>

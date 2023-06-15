@@ -13,7 +13,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconModule } from '@visurel/iconify-angular';
+import { IconComponent } from '../services/icon.service';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -30,7 +30,8 @@ import { PrivateComponent } from './private/private.component';
     PublicComponent,
     PrivateComponent,
     AppComponent,
-    EwIconSubComponent
+    EwIconSubComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,6 @@ import { PrivateComponent } from './private/private.component';
     HttpClientJsonpModule,
     FormsModule, ReactiveFormsModule,
     ClipboardModule,
-    IconModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

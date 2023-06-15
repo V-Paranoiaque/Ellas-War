@@ -89,7 +89,7 @@
     </button>
     <a href="{{ environment.discord }}" target="_blank" id="discord"
        rel="external nofollow noopener" class="btn" role="tab">
-      <ic-icon [icIcon]="discordIcon" role="button"></ic-icon>
+      <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
     </a>
   </div>
 </div>
@@ -97,9 +97,9 @@
 <div class="chat-button-mobile"
      [ngClass]="{'text-primary': chatActive === 'general',
                  'text-success': chatActive === 'alliance'}">
-  <ic-icon [icIcon]="comments" role="button"
+  <app-ic-icon [icon]="comments" role="button"
            title="{{'Access to the chats'|translate}}"
-           (click)="chatOpenMobile()"></ic-icon>
+           (click)="chatOpenMobile()"></app-ic-icon>
 </div>
 
 <div class="bottom-button">

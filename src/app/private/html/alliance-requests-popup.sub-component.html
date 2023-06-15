@@ -52,7 +52,7 @@
             <button class="btn btn-success"
                     (click)="myAllianceAskAccept(req.alliance_ask_id)"
                     title="{{'Accept the request'|translate}}">
-              <ic-icon [icon]="check"></ic-icon>
+              <app-ic-icon [icon]="check"></app-ic-icon>
               <span class="visually-hidden">
                 {{'Accept the request'|translate}}
               </span>
@@ -61,7 +61,7 @@
             <button class="btn btn-danger"
                     (click)="myAllianceAskRefuse(req.alliance_ask_id)"
                     title="{{'Refuse the request'|translate}}">
-              <ic-icon [icon]="times"></ic-icon>
+              <app-ic-icon [icon]="times"></app-ic-icon>
               <span class="visually-hidden">
                 {{'Refuse the request'|translate}}
               </span>
@@ -88,7 +88,7 @@
             <button class="btn btn-danger"
                     (click)="myAllianceAskCancel(req.alliance_ask_id)"
                     title="{{'Cancel the request'|translate}}">
-              <ic-icon [icon]="times"></ic-icon>
+              <app-ic-icon [icon]="times"></app-ic-icon>
               <span class="visually-hidden">
                 {{'Cancel the request'|translate}}
               </span>

@@ -79,27 +79,27 @@
                       (click)="messageLoad(0)"
                       data-bs-toggle="modal" data-bs-target="#MsgNew"
                       title="{{'Write a new message'| translate}}">
-                <ic-icon [icon]="brushIcon"></ic-icon>
+                <app-ic-icon [icon]="brushIcon"></app-ic-icon>
               </button>
               <button class="btn btn-primary d-none d-lg-block"
                       (click)="messageLoad(0)"
                       title="{{'Write a new message'| translate}}">
-                <ic-icon [icon]="brushIcon"></ic-icon>
+                <app-ic-icon [icon]="brushIcon"></app-ic-icon>
               </button>
               <button class="btn btn-info" data-bs-toggle="modal"
                       title="{{'Set all messages as read'| translate}}"
                       data-bs-target="#MsgSetRead">
-                <ic-icon [icon]="envelopeFill"></ic-icon>
+                <app-ic-icon [icon]="envelopeFill"></app-ic-icon>
               </button>
               <button class="btn btn-warning" (click)="switchDeleteMode()"
                       title="{{'Switch to delete mode'| translate}}">
-                <ic-icon [icon]="trashIcon"></ic-icon>
+                <app-ic-icon [icon]="trashIcon"></app-ic-icon>
               </button>
               <button [ngClass]="{'d-none': getDeleteMode() == 0}"
                       title="{{'Delete all the selected messages'| translate}}"
                       class="btn btn-danger" data-bs-toggle="modal" 
                       data-bs-target="#DeleteMultipleMsg">
-                  <ic-icon [icon]="trash2Icon"></ic-icon>
+                  <app-ic-icon [icon]="trash2Icon"></app-ic-icon>
                 </button>
             </div>
             <div class="card-body"
@@ -148,12 +148,12 @@
                 <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
                 &nbsp;
                 <button class="btn btn-warning" (click)="shareMsg()">
-                  <ic-icon [icon]="share"></ic-icon>
+                  <app-ic-icon [icon]="share"></app-ic-icon>
                 </button>
                 &nbsp;
                 <button class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#DeleteMsg">
-                  <ic-icon [icon]="trashIcon"></ic-icon>
+                  <app-ic-icon [icon]="trashIcon"></app-ic-icon>
                 </button>
               </h2>
             </div>
@@ -166,7 +166,7 @@
               <span class="badge bg-primary" role="button" (click)="copyLink()"
                     [cbContent]="getCurrentMsg().url+'/permalink/'+getCurrentMsg().id"
                     ngxClipboard>
-                <ic-icon [icon]="clipboardCheck" ></ic-icon>
+                <app-ic-icon [icon]="clipboardCheck" ></app-ic-icon>
               </span>
             </div>
             
@@ -196,7 +196,7 @@
 
                 <span class="badge bg-primary" *ngFor="let user of getDestList()">
                   {{ user.username }}
-                  <ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></ic-icon>
+                  <app-ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></app-ic-icon>
                 </span>
               </div>
               
@@ -207,7 +207,7 @@
                       (keydown.enter)="addDest(msgToUser)" >
                 <span class="input-group-text text-center" role="button" 
                       (click)="addDest(msgToUser)">
-                  <ic-icon [icon]="plusIcon"></ic-icon>
+                  <app-ic-icon [icon]="plusIcon"></app-ic-icon>
                 </span>
               </div>
               <div *ngIf="addDestError > 0" class="alert alert-danger"

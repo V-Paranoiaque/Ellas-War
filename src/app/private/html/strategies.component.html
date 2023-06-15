@@ -50,7 +50,7 @@
                 <div class="text-center">
                   <strong translate>Total:</strong>
                   {{ waveAttackPower | number:'1.0-0': this.translate.currentLang}}
-                  <ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon" title="{{'Attack'|translate}}"></app-ic-icon>
                 </div>
                 <div class="row d-flex"
                     cdkDropList
@@ -104,11 +104,11 @@
                                   data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                   (click)="setWaveUnit(army, wave[army.code], i, 1)"
                                   *ngIf="wave[army.code] > 1">
-                                <ic-icon [icon]="splitIcon"></ic-icon>
+                                <app-ic-icon [icon]="splitIcon"></app-ic-icon>
                               </div>
                               <div (click)="waveAttackDelete(army.code, i)"
                                   class="flex-grow-1 btn btn-danger" translate>
-                                <ic-icon [icon]="times"></ic-icon>
+                                <app-ic-icon [icon]="times"></app-ic-icon>
                               </div>
                             </div>
                           </div>
@@ -147,23 +147,23 @@
                 <div class="text-center">
                   <strong translate>Total:</strong>
                   {{ waveDefensePower | number:'1.0-0': this.translate.currentLang}}
-                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+                  <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>
                 </div>
                 
                 <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') == 0">
                   <span translate>The wall of Poseidon protects this city.</span>
                   ({{ wallDefense | number:'': this.translate.currentLang }} 
-                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                  <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>)
                 </div>
                 <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') == 0 && user.getPropertyNb('defense_wall') > 0">
                   <span translate>A wall is protecting this city.</span>
                   ({{ defenseWallStrength | number:'': this.translate.currentLang }} 
-                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                  <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>)
                 </div>
                 <div class="text-center" *ngIf="user.getPropertyNb('poseidon_wall') > 0 && user.getPropertyNb('defense_wall') > 0">
                   <span translate>Many walls are protecting this city.</span>
                   ({{ wallDefense+defenseWallStrength | number:'': this.translate.currentLang }} 
-                  <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>)
+                  <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>)
                 </div>
                 
                 <div class="row d-flex"
@@ -235,11 +235,11 @@
                                   data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                   (click)="setWaveUnit(army, wave[army.code], i, 2)"
                                   *ngIf="wave[army.code] > 1">
-                                <ic-icon [icon]="splitIcon"></ic-icon>
+                                <app-ic-icon [icon]="splitIcon"></app-ic-icon>
                               </div>
                               <div (click)="waveDefenseDelete(army.code, i)"
                                   class="flex-grow-1 btn btn-danger" translate>
-                                <ic-icon [icon]="times"></ic-icon>
+                                <app-ic-icon [icon]="times"></app-ic-icon>
                               </div>
                             </div>
                           </div>
@@ -264,11 +264,11 @@
                                   data-bs-toggle="modal" data-bs-target="#WaveDivide"
                                   (click)="setWaveUnit(building, wave[building.code], i, 2)"
                                   *ngIf="wave[building.code] > 1">
-                                <ic-icon [icon]="splitIcon"></ic-icon>
+                                <app-ic-icon [icon]="splitIcon"></app-ic-icon>
                               </div>
                               <div (click)="waveDefenseDelete(building.code, i)"
                                   class="flex-grow-1 btn btn-danger" translate>
-                                <ic-icon [icon]="times"></ic-icon>
+                                <app-ic-icon [icon]="times"></app-ic-icon>
                               </div>
                             </div>
                           </div>
@@ -295,9 +295,9 @@
                     <span translate>
                       Without defense, your resource losses will be greater in the event of an attack
                     </span>
-                    <ic-icon [icIcon]="questionCircle" role="button"
+                    <app-ic-icon [icon]="questionCircle" role="button"
                             data-bs-toggle="modal"
-                            data-bs-target="#DefenseEmpty"></ic-icon>
+                            data-bs-target="#DefenseEmpty"></app-ic-icon>
                   </div>
                   <h3>{{'Wave { value }'| translate: { value: 1 } }}</h3>
                   <div cdkDropList class="text-center"

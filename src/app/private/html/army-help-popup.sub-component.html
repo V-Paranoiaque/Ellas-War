@@ -24,44 +24,44 @@
       <tbody>
         <tr *ngFor="let i of groupList">
           <th scope="row">
-            <ic-icon title="{{'Infantryman'|translate}}"
+            <app-ic-icon title="{{'Infantryman'|translate}}"
                      [icon]="footPrint" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="i%2 == 1"
-                     class="flex-fill"></ic-icon>
-            <ic-icon title="{{'Cavalry unit'|translate}}"
+                     class="flex-fill"></app-ic-icon>
+            <app-ic-icon title="{{'Cavalry unit'|translate}}"
                      [icon]="horseIcon" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="i%2 == 0"
-                     class="flex-fill"></ic-icon>
+                     class="flex-fill"></app-ic-icon>
             
-            <ic-icon title="{{'Mythological creature'|translate}}"
+            <app-ic-icon title="{{'Mythological creature'|translate}}"
                      [icon]="animalDog20Filled" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="i>=5"
-                     class="flex-fill"></ic-icon>
-            <ic-icon title="{{'Human unit'|translate}}"
+                     class="flex-fill"></app-ic-icon>
+            <app-ic-icon title="{{'Human unit'|translate}}"
                      [icon]="manSharp" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="i<=4"
-                     class="flex-fill"></ic-icon>
+                     class="flex-fill"></app-ic-icon>
             
-            <ic-icon title="{{'Melee unit'|translate}}"
+            <app-ic-icon title="{{'Melee unit'|translate}}"
                      [icon]="sword" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="(i == 1 || i == 2 || i == 5 || i == 6)"
-                     class="flex-fill"></ic-icon>
-            <ic-icon title="{{'Remote unit'|translate}}"
+                     class="flex-fill"></app-ic-icon>
+            <app-ic-icon title="{{'Remote unit'|translate}}"
                      [icon]="bowAndArrow" role="button"
                      (click)="selectGroup(i)"
                      [ngClass]="{'text-danger': selectedGroup == i}"
                      *ngIf="(i == 3 || i == 4 || i == 7 || i == 8)"
-                     class="flex-fill"></ic-icon>
+                     class="flex-fill"></app-ic-icon>
           </th>
           <td>
             <ng-container *ngFor="let army of user.getArmy()">
@@ -70,44 +70,44 @@
           </td>
           <td>
             <span *ngFor="let j of getGroupBonus(i)">
-              <ic-icon title="{{'Infantryman'|translate}}"
+              <app-ic-icon title="{{'Infantryman'|translate}}"
                        [icon]="footPrint" role="button"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        *ngIf="j%2 == 1"
-                       class="flex-fill"></ic-icon>
-              <ic-icon title="{{'Cavalry unit'|translate}}"
+                       class="flex-fill"></app-ic-icon>
+              <app-ic-icon title="{{'Cavalry unit'|translate}}"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        [icon]="horseIcon" role="button"
                        *ngIf="j%2 == 0"
-                       class="flex-fill"></ic-icon>
+                       class="flex-fill"></app-ic-icon>
               
-              <ic-icon title="{{'Mythological creature'|translate}}"
+              <app-ic-icon title="{{'Mythological creature'|translate}}"
                        [icon]="animalDog20Filled" role="button"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        *ngIf="j>=5"
-                       class="flex-fill"></ic-icon>
-              <ic-icon title="{{'Human unit'|translate}}"
+                       class="flex-fill"></app-ic-icon>
+              <app-ic-icon title="{{'Human unit'|translate}}"
                        [icon]="manSharp" role="button"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        *ngIf="j<=4"
-                       class="flex-fill"></ic-icon>
+                       class="flex-fill"></app-ic-icon>
               
-              <ic-icon title="{{'Melee unit'|translate}}"
+              <app-ic-icon title="{{'Melee unit'|translate}}"
                        [icon]="sword" role="button"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        *ngIf="(j == 1 || j == 2 || j == 5 || j == 6)"
-                       class="flex-fill"></ic-icon>
-              <ic-icon title="{{'Remote unit'|translate}}"
+                       class="flex-fill"></app-ic-icon>
+              <app-ic-icon title="{{'Remote unit'|translate}}"
                        [icon]="bowAndArrow" role="button"
                        (click)="selectGroup(j)"
                        [ngClass]="{'text-danger': selectedGroup == j}"
                        *ngIf="(j == 3 || j == 4 || j == 7 || j == 8)"
-                       class="flex-fill"></ic-icon>
+                       class="flex-fill"></app-ic-icon>
               <br/>
             </span>
             <br/>

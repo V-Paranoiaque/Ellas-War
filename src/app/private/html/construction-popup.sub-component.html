@@ -62,7 +62,7 @@
           <strong translate>Defense</strong>
           <strong translate>:</strong>
           {{ info.defense | number:'': this.translate.currentLang }}
-          <ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></ic-icon>
+          <app-ic-icon [icon]="shieldShaded" title="{{'Defense'|translate}}"></app-ic-icon>
         </div>
         
         <div *ngIf="info.cost">
@@ -228,7 +228,7 @@
       <br/>
       <div class="text-center">
         <a [routerLink]="['/mints']" data-bs-dismiss="modal" class="link">
-          <ic-icon [icon]="chartLine" title="{{'Production'|translate}}"></ic-icon>&nbsp;
+          <app-ic-icon [icon]="chartLine" title="{{'Production'|translate}}"></app-ic-icon>&nbsp;
           <span translate>Drachma production</span>
         </a>
       </div>

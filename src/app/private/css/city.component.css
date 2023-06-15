@@ -106,7 +106,7 @@
   top: 0;
 }
 
-.favoritePlus > ic-icon > svg {
+.favoritePlus > app-ic-icon > svg {
   width: 100%;
   height: inherit;
 }

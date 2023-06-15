@@ -63,7 +63,7 @@
                           <a [routerLink]="['/mints']"
                             title="{{'Production of drachmas by number of mints'|translate}}"
                             *ngIf="building.code === 'mint'">
-                            <ic-icon [icIcon]="questionCircle"></ic-icon>
+                            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                           </a>
                           <br/>
                         </span>
@@ -98,7 +98,7 @@
                       <span *ngIf="user.getPropertyNb(ress.key) === 0 && getVariation(ress.key) < 0 || getVariation(ress.key) >= 0 && getVariation(ress.key) > (user.getVarRess(ress.key)*3600*24+0.000001)"
                             data-bs-toggle="modal" data-bs-target="#detailsHelp"
                             role="button" title="{{'Help'|translate}}" translate>
-                        <ic-icon [icIcon]="questionCircle"></ic-icon>
+                        <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                       </span>
                     </td>
                   </tr>

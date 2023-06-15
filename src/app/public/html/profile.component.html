@@ -26,18 +26,18 @@
                     *ngIf="user.getId() === profile.membre_id"
                     data-bs-toggle="modal" data-bs-target="#AccountInformation"
                     title="{{'Change account information'| translate}}">
-              <ic-icon [icon]="userCircle"></ic-icon>
+              <app-ic-icon [icon]="userCircle"></app-ic-icon>
             </button>
             <button class="btn btn-primary"
                     *ngIf="user.getPropertyNb('mstatus') === 1"
                     data-bs-toggle="modal" data-bs-target="#MsgNew"
                     title="{{'Write a new message'| translate}}">
-              <ic-icon [icon]="brushIcon"></ic-icon>
+              <app-ic-icon [icon]="brushIcon"></app-ic-icon>
             </button>
             <a [routerLink]="['/admin/profile/'+profile.membre_id]"
                *ngIf="user.getPropertyNb('rank') > 1"
                class="btn btn-danger">
-              <ic-icon [icon]="userShield"></ic-icon>
+              <app-ic-icon [icon]="userShield"></app-ic-icon>
             </a>
           </h1>
           <br/>

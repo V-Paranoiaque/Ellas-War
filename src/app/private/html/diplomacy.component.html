@@ -75,7 +75,7 @@
                   <tr>
                     <th (click)="allianceListOrder('mbs')" scope="col"
                         class="text-center">
-                      <ic-icon [icon]="users"></ic-icon>
+                      <app-ic-icon [icon]="users"></app-ic-icon>
                     </th>
                     <th (click)="allianceListOrder('name')" scope="col"
                         translate>Name</th>
@@ -103,7 +103,7 @@
                       <span data-bs-toggle="modal" data-bs-target="#InvasionHelp"
                             *ngIf="alli.alliance_type > 0"
                             role="button" title="{{'Help'|translate}}" translate>
-                        <ic-icon [icIcon]="questionCircle"></ic-icon>
+                        <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                       </span>
                       <div class="d-block d-sm-none">
                         <a [routerLink]="['/profile/'+alli.chief_id]">
@@ -122,7 +122,7 @@
                       <a class="btn btn-primary"
                         [routerLink]="['/alliancemembers/'+alli.alliance_id]"
                         title="{{'Alliance members:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="users"></ic-icon>
+                        <app-ic-icon [icon]="users"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Alliance members:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -130,7 +130,7 @@
                       <a class="btn btn-info"
                         [routerLink]="['/allianceprofile/'+alli.alliance_id]"
                         title="{{'Alliance profile'|translate}}{{':'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="fileAlt"></ic-icon>
+                        <app-ic-icon [icon]="fileAlt"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Alliance profile'|translate}}{{':'|translate}} {{alli.alliance_name}}
                         </span>
@@ -141,7 +141,7 @@
                         data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                         (click)="setAlliance(alli)"
                         [ngClass]="{'invisible': alli.recruitement_open == 0 || alli.alliance_type > 0}">
-                        <ic-icon [icon]="userPlus"></ic-icon>
+                        <app-ic-icon [icon]="userPlus"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Join the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -155,7 +155,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
                         (click)="setAlliance(alli)"
                         title="{{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Request a pact to the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -165,7 +165,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Cancel a pact request with the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -175,7 +175,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Accept/Refuse a pact request from the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -187,7 +187,7 @@
                         data-bs-toggle="modal" data-bs-target="#AlliancePactManage"
                         (click)="setAlliance(alli)"
                         title="{{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Break the pact with the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -196,7 +196,7 @@
                         *ngIf="user.getPropertyNb('strategist') > 0 && (user.getPropertyNb('alliance') == alli.alliance_id || alli.alliance_type > 0)"
                         data-bs-toggle="modal" data-bs-target="#AlliancePactAsk"
                         (click)="setAlliance(alli)">
-                        <ic-icon [icon]="flag"></ic-icon>
+                        <app-ic-icon [icon]="flag"></app-ic-icon>
                         <span class="visually-hidden">
                           {{alli.alliance_name}}
                         </span>
@@ -207,7 +207,7 @@
                         data-bs-toggle="modal" data-bs-target="#AllianceWarDeclare"
                         (click)="setAlliance(alli)"
                         title="{{'Impossible to declare a war to the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="swordIcon"></ic-icon>
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Impossible to declare a war to the alliance:'|translate}} {{alli.alliance_name}}
                         </span>
@@ -217,7 +217,7 @@
                         data-bs-toggle="modal" data-bs-target="#AllianceWarDeclare"
                         (click)="setAlliance(alli)"
                         title="{{'Declare war to the alliance:'|translate}} {{alli.alliance_name}}">
-                        <ic-icon [icon]="swordIcon"></ic-icon>
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                         <span class="visually-hidden">
                           {{'Declare war to the alliance:'|translate}} {{alli.alliance_name}}
                         </span>

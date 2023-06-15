@@ -253,7 +253,7 @@
                      role="button"></app-id-to-weather>
       <span data-bs-toggle="modal" data-bs-target="#weatherHelp"
             role="button" title="{{'Help'|translate}}" translate>
-        <ic-icon [icIcon]="questionCircle"></ic-icon>
+        <app-ic-icon [icon]="questionCircle"></app-ic-icon>
       </span>
     </div>
     
@@ -261,7 +261,7 @@
       <div class="row">
         <a class="col-12 d-flex" [routerLink]="['/rankingplayers']">
           <div class="p-2 icon">
-            <ic-icon [icIcon]="swordIcon"></ic-icon>
+            <app-ic-icon [icon]="swordIcon"></app-ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
             {{ user.getPropertyNb('victory') | number:'': this.translate.currentLang}}<br/>
@@ -269,7 +269,7 @@
         </a>
         <a class="col-12 col-lg-6 d-flex" [routerLink]="['/rankingplayers']">
           <div class="p-2 icon">
-            <ic-icon [icIcon]="trophy"></ic-icon>
+            <app-ic-icon [icon]="trophy"></app-ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
             {{ user.getPropertyNb('xp') | number:'': this.translate.currentLang}}
@@ -277,7 +277,7 @@
         </a>
         <a class="col-6 col-lg-6 d-flex" [routerLink]="['/honnor/'+user.getPropertyNb('level')]">
           <div class="p-2 icon">
-            <ic-icon [icIcon]="crown"></ic-icon>
+            <app-ic-icon [icon]="crown"></app-ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
             {{ user.getPropertyNb('honnor') | number:'': this.translate.currentLang}}
@@ -293,10 +293,10 @@
                [ngClass]="{'icon-increase': user.getProperty('var_ress')[res] > 0,
                           'icon-equal': user.getProperty('var_ress')[res] == 0,
                           'icon-decrease': user.getProperty('var_ress')[res] < 0}">
-            <ic-icon *ngIf="user.getProperty('var_ress')[res] > 0"
-                     [icIcon]="angleUp"></ic-icon>
-            <ic-icon *ngIf="user.getProperty('var_ress')[res] == 0" [icIcon]="equals"></ic-icon>
-            <ic-icon *ngIf="user.getProperty('var_ress')[res] < 0" [icIcon]="angleDown"></ic-icon>
+            <app-ic-icon *ngIf="user.getProperty('var_ress')[res] > 0"
+                     [icon]="angleUp"></app-ic-icon>
+            <app-ic-icon *ngIf="user.getProperty('var_ress')[res] == 0" [icon]="equals"></app-ic-icon>
+            <app-ic-icon *ngIf="user.getProperty('var_ress')[res] < 0" [icon]="angleDown"></app-ic-icon>
           </div>
           <div class="p-2 flex-grow-1 text-end">
             {{ user.getPropertyNb(res) | number:'1.0-0': this.translate.currentLang }}
@@ -308,13 +308,13 @@
       </div>
       <div *ngIf="user.hasLevelRess('ambrosia')" class="d-flex">
         <div class="p-2 icon-increase">
-          <ic-icon [icIcon]="angleUp"></ic-icon>
+          <app-ic-icon [icon]="angleUp"></app-ic-icon>
         </div>
         <div class="p-2 bd-highlight">
-          <ic-icon data-bs-toggle="modal" data-bs-target="#ambrosiaHelp"
-                   data-bs-dismiss="modal" [icIcon]="questionCircle" 
+          <app-ic-icon data-bs-toggle="modal" data-bs-target="#ambrosiaHelp"
+                   data-bs-dismiss="modal" [icon]="questionCircle" 
                    title="{{'About Ambrosia'|translate}}"
-                   role="button"></ic-icon>
+                   role="button"></app-ic-icon>
         </div>
         <div class="p-2 flex-grow-1 text-end">
           {{ user.getPropertyNb('ambrosia') | number:'1.0-2': this.translate.currentLang }}
@@ -325,12 +325,12 @@
       </div>
       <div *ngIf="user.hasLevelRess('favor')" class="d-flex">
         <div class="p-2 icon-equal">
-          <ic-icon [icIcon]="equals"></ic-icon>
+          <app-ic-icon [icon]="equals"></app-ic-icon>
         </div>
         <div class="p-2 bd-highlight">
-          <ic-icon [icIcon]="questionCircle" [routerLink]="['/favors']"
+          <app-ic-icon [icon]="questionCircle" [routerLink]="['/favors']"
                    title="{{'Access to the Favors'|translate}}"
-                   role="button"></ic-icon>
+                   role="button"></app-ic-icon>
         </div>
         <div class="p-2 flex-grow-1 text-end">
           {{ user.getPropertyNb('favor') | number:'1.0-2': this.translate.currentLang }}

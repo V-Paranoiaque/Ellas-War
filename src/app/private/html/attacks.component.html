@@ -103,39 +103,39 @@
                               attr.aria-label="{{'Look for a city'|translate}}" aria-describedby="attack-search">
                         <span class="input-group-text" id="attack-search"
                               (click)="attackSearch()" role="button">
-                          <ic-icon [icon]="search"></ic-icon>
+                          <app-ic-icon [icon]="search"></app-ic-icon>
                         </span>
                       </div>
                     </th>
                     <th scope="col" class="d-none d-sm-table-cell"
                         (click)="setOrder('victory')" role="button">
                       <span translate>V</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th *ngIf="user.getDatas() && user.getDatas().attack && 
                               user.getLevel() >= user.getDatas().attack.level_xp_min"
                         scope="col" (click)="setOrder('xp')" role="button">
                       <span translate>XP</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th scope="col" (click)="setOrder('field')" role="button">
                       <span translate>Field</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th scope="col"></th>
                   </tr>
@@ -149,8 +149,8 @@
                         <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
                       </a>
                       
-                      <ic-icon [icon]="gemIcon"
-                              *ngIf="player.diamond_begin > 0"></ic-icon>
+                      <app-ic-icon [icon]="gemIcon"
+                              *ngIf="player.diamond_begin > 0"></app-ic-icon>
                       
                       <a [routerLink]="['/allianceprofile/'+player.alliance]"
                         class="fw-lighter no-padding" *ngIf="player.alliance > 0">
@@ -173,12 +173,12 @@
                       <button class="btn btn-primary"
                               *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0"
                               (click)="spy(player.membre_id)">
-                        <ic-icon [icon]="fistRaised"></ic-icon>
+                        <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                       </button>
                       <button class="btn btn-primary"
                               *ngIf="user.getPropertyNb('apollo') == 1"
                               (click)="observe(player.membre_id)">
-                        <ic-icon [icon]="eyeIcon"></ic-icon>
+                        <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                       </button>
                       
                       <button class="btn"
@@ -186,7 +186,7 @@
                               [ngClass]="{'btn-danger': player.fury_allowed == 0,
                                           'btn-success': player.fury_allowed == 1}"
                               (click)="prepareFury(player.membre_id)">
-                        <ic-icon [icon]="fireIcon"></ic-icon>
+                        <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                       </button>
                       <br *ngIf="user.getPropertyNb('demeter') == 1 &&
                                 user.getPropertyNb('zeus') == 1"/>
@@ -195,14 +195,14 @@
                               [ngClass]="{'btn-danger': player.lightning_allowed == 0,
                                           'btn-success': player.lightning_allowed == 1}"
                               (click)="prepareLightning(player.membre_id)">
-                        <ic-icon [icon]="boltIcon"></ic-icon>
+                        <app-ic-icon [icon]="boltIcon"></app-ic-icon>
                       </button>
                       
                       <button class="btn"
                               [ngClass]="{'btn-danger': player.attack_allowed == 0,
                                           'btn-success': player.attack_allowed == 1}"
                               (click)="prepareAttack(player.membre_id)">
-                        <ic-icon [icon]="swordIcon"></ic-icon>
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                       </button>
                     </td>
                   </tr>
@@ -264,7 +264,7 @@
                   <button class="btn btn-info"
                           (click)="spy(diamondInfo.membre_id)"
                           title="{{'Send a spy to the city:'|translate}} {{diamondInfo.username}}">
-                    <ic-icon [icon]="fistRaised"></ic-icon>
+                    <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Send a spy to the city:'|translate}} {{diamondInfo.username}}
                     </span>
@@ -274,7 +274,7 @@
                           *ngIf="user.getPropertyNb('apollo') == 1" 
                           (click)="observe(diamondInfo.membre_id)"
                           title="{{'Observe the city:'|translate}} {{diamondInfo.username}}">
-                    <ic-icon [icon]="eyeIcon"></ic-icon>
+                    <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Observe the city:'|translate}} {{diamondInfo.username}}
                     </span>
@@ -285,7 +285,7 @@
                         *ngIf="diamondInfo.attack_allowed > 0" 
                         (click)="prepareAttack(diamondInfo.membre_id)" 
                         title="{{'Attack the city:'|translate}} {{diamondInfo.username}}">
-                  <ic-icon [icon]="swordIcon"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                   <span class="visually-hidden">
                     {{'Attack the city:'|translate}} {{diamondInfo.username}}
                   </span>
@@ -293,7 +293,7 @@
                 <button class="btn btn-danger"
                         *ngIf="diamondInfo.attack_allowed == 0"
                         title="{{'Impossible to attack the city:'|translate}} {{diamondInfo.username}}">
-                  <ic-icon [icon]="swordIcon"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                   <span class="visually-hidden">
                     {{'Impossible to attack the city:'|translate}} {{diamondInfo.username}}
                   </span>
@@ -437,7 +437,7 @@
                           </span>
                           <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
                                 role="button" title="{{'Help'|translate}}">
-                            <ic-icon [icIcon]="questionCircle"></ic-icon>
+                            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                           </span>
                           <br/>
                           <strong translate>Power</strong>
@@ -459,19 +459,19 @@
                       <div class="card-body text-center" *ngIf="sanctuary.membre_id == user.getId()">
                         <button class="btn btn-success"
                                 (click)="sanctuaryManage(sanctuary.sanctuaries_id)">
-                          <ic-icon [icon]="twotoneFence"></ic-icon>
+                          <app-ic-icon [icon]="twotoneFence"></app-ic-icon>
                         </button>
                       </div>
                       <div class="card-body text-center" *ngIf="sanctuary.membre_id != user.getId()">
                         <button class="btn btn-primary"
                                 (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
                                 *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0">
-                          <ic-icon [icon]="fistRaised"></ic-icon>
+                          <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                         </button>
                         <button class="btn btn-primary"
                                 (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
                                 *ngIf="user.getPropertyNb('apollo') == 1">
-                          <ic-icon [icon]="eyeIcon"></ic-icon>
+                          <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                         </button>
                       </div>
                     </div>
@@ -503,32 +503,32 @@
                     <th scope="col" class="d-none d-sm-table-cell"
                         (click)="setOrder('victory')" role="button">
                       <span translate>V</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'victory'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'victory'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th *ngIf="user.getDatas() && user.getDatas().attack && 
                               user.getLevel() >= user.getDatas().attack.level_xp_min"
                         scope="col" (click)="setOrder('xp')" role="button">
                       <span translate>XP</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'xp'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'xp'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th scope="col" (click)="setOrder('field')" role="button">
                       <span translate>Field</span>
-                      <ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
+                      <app-ic-icon *ngIf="attackOrderReverse == 0 && attackOrderSort === 'field'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortDown"></ic-icon>
-                      <ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
+                              [icon]="sortDown"></app-ic-icon>
+                      <app-ic-icon *ngIf="attackOrderReverse == 1 && attackOrderSort === 'field'"
                               title="{{'Current order'|translate}}"
-                              [icon]="sortUP"></ic-icon>
+                              [icon]="sortUP"></app-ic-icon>
                     </th>
                     <th scope="col"></th>
                   </tr>
@@ -542,8 +542,8 @@
                         <span *ngIf="user.getLevel() > 0">({{ player.level }})</span>
                       </a>
                       
-                      <ic-icon [icon]="gemIcon"
-                              *ngIf="player.diamond_begin > 0"></ic-icon>
+                      <app-ic-icon [icon]="gemIcon"
+                              *ngIf="player.diamond_begin > 0"></app-ic-icon>
                       
                       <a [routerLink]="['/allianceprofile/'+player.alliance]"
                         class="fw-lighter no-padding"
@@ -567,12 +567,12 @@
                       <button class="btn btn-primary"
                               *ngIf="user.getPropertyNb('apollo') == 0 && user.getPropertyNb('level') > 0"
                               (click)="spy(player.membre_id)">
-                        <ic-icon [icon]="fistRaised"></ic-icon>
+                        <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                       </button>
                       <button class="btn btn-primary"
                               *ngIf="user.getPropertyNb('apollo') == 1"
                               (click)="observe(player.membre_id)">
-                        <ic-icon [icon]="eyeIcon"></ic-icon>
+                        <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                       </button>
                       
                       <button class="btn"
@@ -580,7 +580,7 @@
                               [ngClass]="{'btn-danger': player.fury_allowed == 0,
                                           'btn-success': player.fury_allowed == 1}"
                               (click)="prepareFury(player.membre_id)">
-                        <ic-icon [icon]="fireIcon"></ic-icon>
+                        <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                       </button>
                       <br *ngIf="user.getPropertyNb('demeter') == 1 &&
                                 user.getPropertyNb('zeus') == 1"/>
@@ -589,14 +589,14 @@
                               [ngClass]="{'btn-danger': player.lightning_allowed == 0,
                                           'btn-success': player.lightning_allowed == 1}"
                               (click)="prepareLightning(player.membre_id)">
-                        <ic-icon [icon]="boltIcon"></ic-icon>
+                        <app-ic-icon [icon]="boltIcon"></app-ic-icon>
                       </button>
                       
                       <button class="btn"
                               [ngClass]="{'btn-danger': player.attack_allowed == 0,
                                           'btn-success': player.attack_allowed == 1}"
                               (click)="prepareAttack(player.membre_id)">
-                        <ic-icon [icon]="swordIcon"></ic-icon>
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                       </button>
                     </td>
                   </tr>
@@ -638,7 +638,7 @@
               <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
               &nbsp;
               <button class="btn btn-warning" (click)="shareMsg()">
-                <ic-icon [icon]="share"></ic-icon>
+                <app-ic-icon [icon]="share"></app-ic-icon>
               </button>
             </div>
             <div *ngIf="getCurrentMsg().msg_shared == 1" class="card-body text-center">
@@ -650,7 +650,7 @@
               <span class="badge bg-primary" role="button" (click)="copyLink()"
                     [cbContent]="getCurrentMsg().url+'/permalink/'+getCurrentMsg().id"
                     ngxClipboard>
-                <ic-icon [icon]="clipboardCheck" ></ic-icon>
+                <app-ic-icon [icon]="clipboardCheck" ></app-ic-icon>
               </span>
             </div>
             <div class="card-body">
@@ -669,8 +669,8 @@
                 *ngIf="targetProfile?.username">
               <h2 id="playerDesc">
                 {{ targetProfile?.username }}
-                    <ic-icon [icon]="gemIcon"
-                            *ngIf="targetProfile?.diamond_begin > 0"></ic-icon>
+                    <app-ic-icon [icon]="gemIcon"
+                            *ngIf="targetProfile?.diamond_begin > 0"></app-ic-icon>
               </h2>
             </div>
             <div class="card-header card-header-flexible"
@@ -686,7 +686,7 @@
                 
                 <span class="btn btn-primary" data-bs-toggle="modal"
                       data-bs-target="#sanctuaryStrengthUpdate" role="button">
-                  <ic-icon [icon]="shieldShaded"></ic-icon>
+                  <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
                 </span>
               </h2>
             </div>
@@ -780,83 +780,83 @@
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'food'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.food   == 1,
                                             'low': spyInfo.ress.food    == 2,
                                             'middle': spyInfo.ress.food == 3,
                                             'high': spyInfo.ress.food   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'water'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.water   == 1,
                                             'low': spyInfo.ress.water    == 2,
                                             'middle': spyInfo.ress.water == 3,
                                             'high': spyInfo.ress.water   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'wood'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.wood   == 1,
                                             'low': spyInfo.ress.wood    == 2,
                                             'middle': spyInfo.ress.wood == 3,
                                             'high': spyInfo.ress.wood   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'iron'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.iron   == 1,
                                             'low': spyInfo.ress.iron    == 2,
                                             'middle': spyInfo.ress.iron == 3,
                                             'high': spyInfo.ress.iron   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'stone'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.stone   == 1,
                                             'low': spyInfo.ress.stone    == 2,
                                             'middle': spyInfo.ress.stone == 3,
                                             'high': spyInfo.ress.stone   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'marble'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.marble   == 1,
                                             'low': spyInfo.ress.marble    == 2,
                                             'middle': spyInfo.ress.marble == 3,
                                             'high': spyInfo.ress.marble   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'grapes'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.grapes   == 1,
                                             'low': spyInfo.ress.grapes    == 2,
                                             'middle': spyInfo.ress.grapes == 3,
                                             'high': spyInfo.ress.grapes   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'wine'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.wine   == 1,
                                             'low': spyInfo.ress.wine    == 2,
                                             'middle': spyInfo.ress.wine == 3,
                                             'high': spyInfo.ress.wine   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                       <div class="col-4">
                         <app-id-to-ress [ress_id]="'gold'"></app-id-to-ress>
                         &nbsp;
-                        <ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
+                        <app-ic-icon [ngClass]="{'vlow': spyInfo.ress.gold   == 1,
                                             'low': spyInfo.ress.gold    == 2,
                                             'middle': spyInfo.ress.gold == 3,
                                             'high': spyInfo.ress.gold   == 4}"
-                                [icon]="dotCircle"></ic-icon>
+                                [icon]="dotCircle"></app-ic-icon>
                       </div>
                     </div>
                   </div>
@@ -866,7 +866,7 @@
                   <button class="btn btn-info"
                           (click)="spy(targetProfile.membre_id)"
                           title="{{'Send a spy to the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="fistRaised"></ic-icon>
+                    <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Send a spy to the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -876,7 +876,7 @@
                           *ngIf="user.getPropertyNb('apollo') == 1" 
                           (click)="observe(targetProfile.membre_id)"
                           title="{{'Observe the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="eyeIcon"></ic-icon>
+                    <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Observe the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -886,7 +886,7 @@
                           *ngIf="user.getPropertyNb('demeter') == 1 && furyPossible == 1" 
                           (click)="prepareFury(targetProfile.membre_id)"
                           title="{{'Launch a fury on the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="fireIcon"></ic-icon>
+                    <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Launch a fury on the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -894,7 +894,7 @@
                   <button class="btn btn-danger"
                           *ngIf="user.getPropertyNb('demeter') == 1 && furyPossible == 0"
                           title="{{'Impossible to launch a fury on the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="fireIcon"></ic-icon>
+                    <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       Impossible to launch a fury on the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -904,7 +904,7 @@
                           *ngIf="user.getPropertyNb('zeus') == 1 && lightningPossible == 1" 
                           (click)="prepareLightning(targetProfile.membre_id)" 
                           title="{{'Launch a lightning on the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="boltIcon"></ic-icon>
+                    <app-ic-icon [icon]="boltIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Launch a lightning on the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -912,7 +912,7 @@
                   <button class="btn btn-danger"
                           *ngIf="user.getPropertyNb('zeus') == 1 && lightningPossible == 0" 
                           title="{{'Impossible to launch a lightning on the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="boltIcon"></ic-icon>
+                    <app-ic-icon [icon]="boltIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Impossible to launch a lightning on the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -921,7 +921,7 @@
                           *ngIf="attackPossible > 0" 
                           (click)="prepareAttack(targetProfile.membre_id)" 
                           title="{{'Attack the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="swordIcon"></ic-icon>
+                    <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Attack the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -929,7 +929,7 @@
                   <button class="btn btn-danger"
                           *ngIf="attackPossible == 0"
                           title="{{'Impossible to attack the city:'|translate}} {{targetProfile.username}}">
-                    <ic-icon [icon]="swordIcon"></ic-icon>
+                    <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{'Impossible to attack the city:'|translate}} {{targetProfile.username}}
                     </span>
@@ -978,7 +978,7 @@
                 <button class="btn btn-primary"
                         *ngIf="attackPossible > 0"
                         (click)="launchAttack(targetProfile.membre_id)">
-                  <ic-icon [icon]="swordIcon"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                   &nbsp;<span translate>Attack</span>
                 </button>
                 <div *ngIf="attackPossible == 0"translate>
@@ -1013,7 +1013,7 @@
               <button class="btn btn-primary"
                       *ngIf="user.getPropertyNb('fury') > 0"
                       (click)="launchFury(targetProfile.membre_id)">
-                <ic-icon [icon]="fireIcon"></ic-icon>
+                <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                 &nbsp;<span translate>Send</span>
               </button>
               <div class="fw-bold text-danger" *ngIf="user.getPropertyNb('fury') == 0" translate>
@@ -1036,7 +1036,7 @@
               <button class="btn btn-primary"
                       *ngIf="user.getPropertyNb('lightning') > 0"
                       (click)="launchLightning(targetProfile.membre_id)">
-                <ic-icon [icon]="fireIcon"></ic-icon>
+                <app-ic-icon [icon]="fireIcon"></app-ic-icon>
                 &nbsp;<span translate>Send</span>
               </button>
               <div class="fw-bold text-danger" *ngIf="user.getPropertyNb('lightning') == 0" translate>
@@ -1084,17 +1084,17 @@
                 <br/>
                 <button class="btn btn-primary"
                         (click)="sanctuariesSpy(sanctuariesSpyInfo.id)">
-                  <ic-icon [icon]="fistRaised"></ic-icon>
+                  <app-ic-icon [icon]="fistRaised"></app-ic-icon>
                 </button>
                 <button class="btn btn-primary"
                         (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
                         *ngIf="user.getPropertyNb('apollo') == 1">
-                  <ic-icon [icon]="eyeIcon"></ic-icon>
+                  <app-ic-icon [icon]="eyeIcon"></app-ic-icon>
                 </button>
                 
                 <button class="btn btn-success"
                         (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
-                  <ic-icon [icon]="swordIcon"></ic-icon>
+                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                 </button>
               </div>
             </div>
@@ -1115,7 +1115,7 @@
                 <div class="text-center">
                   <button class="btn btn-success"
                           (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
-                    <ic-icon [icon]="swordIcon"></ic-icon>
+                    <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                     &nbsp;<span translate>Attack</span>
                   </button>
                 </div>
@@ -1149,7 +1149,7 @@
                 </span>
                 <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
                       role="button" title="{{'Help'|translate}}" translate>
-                  <ic-icon [icIcon]="questionCircle"></ic-icon>
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </span>
               </div>
               <div class="fw-bold text-danger text-center"
@@ -1185,7 +1185,7 @@
                                   size="6" placeholder="0">
                             <span class="input-group-text" role="button"
                                   (click)="waveNew(i, sanctuariesWave[i])">
-                              <ic-icon [icon]="plusIcon"></ic-icon>
+                              <app-ic-icon [icon]="plusIcon"></app-ic-icon>
                               <span class="visually-hidden" translate>Add</span>
                             </span>
                           </div>

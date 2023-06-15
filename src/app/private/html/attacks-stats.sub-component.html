@@ -18,9 +18,9 @@
       <td translate>Out war</td>
       <td>
         <div class="text-center">
-          <ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.done)"
+          <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.done)"
                    [icon]="swordCross" class="done"
-                   title="{{'Attack done'|translate}}"></ic-icon>
+                   title="{{'Attack done'|translate}}"></app-ic-icon>
         </div>
         <span class="fw-lighter" *ngIf="attackStats.normal.time > 0">
           <strong translate>Back</strong>
@@ -33,20 +33,20 @@
         </span>
       </td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.available)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.available)"
                  [icon]="swordCross" class="available-normal"
-                 title="{{'Available attack'|translate}}"></ic-icon>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.unavailable)"
+                 title="{{'Available attack'|translate}}"></app-ic-icon>
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.normal.unavailable)"
                  [icon]="swordCross" class="unavailable-normal"
-                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+                 title="{{'Unavailable attack'|translate}}"></app-ic-icon>
       </td>
     </tr>
     <tr>
       <td translate>In war</td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.war.done)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.war.done)"
                  [icon]="swordCross" class="done-war"
-                 title="{{'Attack done'|translate}}"></ic-icon>
+                 title="{{'Attack done'|translate}}"></app-ic-icon>
         <span class="fw-lighter" *ngIf="attackStats.war.time > 0">
           {{attackStats.war.time*1000 | date:'dd/MM, HH:mm'}}
           <br/>
@@ -56,20 +56,20 @@
         </span>
       </td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.war.available)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.war.available)"
                  [icon]="swordCross" class="available-war"
-                 title="{{'Available attack'|translate}}"></ic-icon>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.war.unavailable)"
+                 title="{{'Available attack'|translate}}"></app-ic-icon>
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.war.unavailable)"
                  [icon]="swordCross" class="unavailable-war"
-                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+                 title="{{'Unavailable attack'|translate}}"></app-ic-icon>
       </td>
     </tr>
     <tr>
       <td translate>Bonus</td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.done)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.done)"
                  [icon]="swordCross" class="done-bonus"
-                 title="{{'Attack done'|translate}}"></ic-icon>
+                 title="{{'Attack done'|translate}}"></app-ic-icon>
         <span class="fw-lighter" *ngIf="attackStats.bonus.time > 0">
           {{attackStats.bonus.time*1000 | date:'dd/MM, HH:mm'}}
           <br/>
@@ -79,12 +79,12 @@
         </span>
       </td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.available)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.available)"
                  [icon]="swordCross" class="available-bonus"
-                 title="{{'Available attack'|translate}}"></ic-icon>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.unavailable)"
+                 title="{{'Available attack'|translate}}"></app-ic-icon>
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.bonus.unavailable)"
                  [icon]="swordCross" class="unavailable-bonus"
-                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+                 title="{{'Unavailable attack'|translate}}"></app-ic-icon>
       </td>
     </tr>
   </tbody>
@@ -103,9 +103,9 @@
     <tr>
       <td translate>Out war</td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.done)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.done)"
                  [icon]="shieldShaded" class="receive-normal"
-                 title="{{'Received attack'|translate}}"></ic-icon>
+                 title="{{'Received attack'|translate}}"></app-ic-icon>
         <span class="fw-lighter" *ngIf="attackStats.receive_normal.time > 0">
           {{attackStats.receive_normal.time*1000 | date:'dd/MM, HH:mm'}}
           <br/>
@@ -115,20 +115,20 @@
         </span>
       </td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.available)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.available)"
                  [icon]="shieldShaded" class="available-receive-normal"
-                 title="{{'Available attack'|translate}}"></ic-icon>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.unavailable)"
+                 title="{{'Available attack'|translate}}"></app-ic-icon>
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_normal.unavailable)"
                  [icon]="shieldShaded" class="unavailable-receive-normal"
-                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+                 title="{{'Unavailable attack'|translate}}"></app-ic-icon>
       </td>
     </tr>
     <tr>
       <td translate>In war</td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.done)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.done)"
                  [icon]="shieldShaded" class="receive-war"
-                 title="{{'Received attack'|translate}}"></ic-icon>
+                 title="{{'Received attack'|translate}}"></app-ic-icon>
         <span class="fw-lighter" *ngIf="attackStats.receive_war.time > 0">
           {{attackStats.receive_war.time*1000 | date:'dd/MM, HH:mm'}}
           <br/>
@@ -138,12 +138,12 @@
         </span>
       </td>
       <td>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.available)"
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.available)"
                  [icon]="shieldShaded" class="available-receive-war"
-                 title="{{'Available attack'|translate}}"></ic-icon>
-        <ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.unavailable)"
+                 title="{{'Available attack'|translate}}"></app-ic-icon>
+        <app-ic-icon *ngFor="let i of Tools.range(1,attackStats.receive_war.unavailable)"
                  [icon]="shieldShaded" class="unavailable-receive-war"
-                 title="{{'Unavailable attack'|translate}}"></ic-icon>
+                 title="{{'Unavailable attack'|translate}}"></app-ic-icon>
       </td>
     </tr>
   </tbody>
