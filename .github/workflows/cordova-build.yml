@@ -9,7 +9,7 @@ on:
 env:
   node: 18
   electron: 3.1.0
-  android: 11.0.0
+  android: 12.0.0
 
 jobs:
   prepare:
@@ -103,6 +103,7 @@ jobs:
           sudo flatpak install flathub org.freedesktop.Sdk/x86_64/20.08 -y
           sudo flatpak install flathub org.electronjs.Electron2.BaseApp/x86_64/20.08 -y
           npm install -g cordova
+          npm install
       
       - name: Build packages
         run: |
@@ -214,6 +215,7 @@ jobs:
           sudo flatpak install flathub org.freedesktop.Sdk/aarch64/20.08 -y
           sudo flatpak install flathub org.electronjs.Electron2.BaseApp/aarch64/20.08 -y
           npm install -g cordova
+          npm install
       
       - name: Build packages
         run: |
@@ -257,6 +259,7 @@ jobs:
           sudo apt update -qq
           sudo apt install -y -qq rpm 
           npm install -g cordova
+          npm install
       
       - name: Build packages
         run: |
@@ -312,6 +315,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g cordova
+          npm install
  
       - name: Write build-aab.json
         id: aab_json
@@ -401,8 +405,8 @@ jobs:
       
       - name: Install dependencies
         run: |
-          npm install
           npm install -g cordova
+          npm install
   
       - name: Build the project
         run: |
@@ -451,8 +455,8 @@ jobs:
       
       - name: Install dependencies
         run: |
-          npm install
           npm install -g cordova
+          npm install
   
       - name: Build the project
         run: |
