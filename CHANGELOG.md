@@ -300,3 +300,11 @@
 # 1.3.5
 * Optimize Display
 * Units can be set as favorite
+
+# 1.3.6
+* Improve attack reports
+* Improve the attack stats page
+* Make building price dynamic
+* Make unit price dynamic
+* Remove unused option to switch style
+* Update electron version
