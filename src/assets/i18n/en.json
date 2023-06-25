@@ -161,6 +161,7 @@
   "You currently have { value } available bonus attacks": "You currently have {{ value }} available bonus attacks",
   "You have satisfied Gaia and got these { value } deffensers as a reward.": "You have satisfied Gaia and got these {{ value }} deffensers as a reward. ",
   "You just declared war to { value } alliance, it will start in 24h.": "You just declared war to {{ value }} alliance, it will start in 24h.",
+  "You must have the power of the Divine units level { value } to engage this unit.": "You must have the power of the Divine units level {{ value }} to engage this unit.",
   "You want a partnership with Ellas War and see your banner displayed on the site": "You want a partnership with Ellas War and see your banner displayed on the site, send us a message through <a href=\"/contactus\">the contact page</a>. Tell us about your site and tell us why you want this partnership.",
   "You will be able to get your reward in { value } days": "You will be able to get your reward in {{ value }} days",
   "You win { value } Drachmas": "You win {{ value }} Drachmas",

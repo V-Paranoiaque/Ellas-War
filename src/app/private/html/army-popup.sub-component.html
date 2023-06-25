@@ -92,7 +92,7 @@
         
         <div *ngIf="info.power && info.power === 'divine_units' && user.getPropertyNb('divine_units') < info.power_level"
              translate>
-          You must have the power of the Divine units level {{ info.power_level }} to engage this unit.
+             {{ 'You must have the power of the Divine units level { value } to engage this unit.'| translate: { value: info.power_level } }}
         </div>
         
         <div *ngIf="info.error == 1" translate>
