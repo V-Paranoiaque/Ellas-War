@@ -8,6 +8,10 @@
   <app-sanctuary-strength-update-popup [info]="sanctuariesInfo"></app-sanctuary-strength-update-popup>
 </div>
 
+<div class="modal fade" id="attacksUnitHelp" tabindex="-1" aria-hidden="true">
+  <app-attacks-unit-help-popup></app-attacks-unit-help-popup>
+</div>
+
 <div class="home-bg home-bg-private">
   <div class="col-lg-10 col-md-10 col-sm-12 col-12 main">
     <div class="container">
@@ -989,7 +993,14 @@
                 <br/>
                 <strong translate>Army summary</strong>
                 <div *ngFor="let i of getArmy()">
-                  {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
+                  <span [ngClass]="{'text-danger': i.all == 0}">
+                    {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
+                    <span data-bs-toggle="modal" data-bs-target="#attacksUnitHelp"
+                          role="button" title="{{'Help'|translate}}"
+                          *ngIf="i.all === 0">
+                      <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                    </span>
+                  </span>
                 </div>
                 <br/>
                 <strong translate>Offensive power</strong>
@@ -1105,7 +1116,14 @@
                 <br/>
                 <strong translate>Army summary</strong>
                 <div *ngFor="let i of getArmy()">
-                  {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
+                  <span [ngClass]="{'text-danger': i.all == 0}">
+                    {{ i.nb | number:'': this.translate.currentLang }} {{ Tools.getName(i.unit, i.nb) | translate }}
+		                <span data-bs-toggle="modal" data-bs-target="#attacksUnitHelp"
+		                      role="button" title="{{'Help'|translate}}"
+                          *ngIf="i.all === 0">
+		                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+		                </span>
+                  </span>
                 </div>
                 <br/>
                 <strong translate>Offensive power</strong>
@@ -1148,7 +1166,7 @@
                   {{ sanctuariesInfo.sanctuaries_power }}%
                 </span>
                 <span data-bs-toggle="modal" data-bs-target="#sanctuaryStrengthHelp"
-                      role="button" title="{{'Help'|translate}}" translate>
+                      role="button" title="{{'Help'|translate}}">
                   <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </span>
               </div>

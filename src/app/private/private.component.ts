@@ -39,6 +39,7 @@ import { ArmyPopupSubComponent } from './ts/army-popup.sub-component';
 import { ArmySummaryPopupSubComponent } from './ts/army-summary-popup.sub-component';
 import { AttacksMessageSubComponent } from './ts/attacks-message.sub-component';
 import { AttacksStatsSubComponent } from './ts/attacks-stats.sub-component';
+import { AttacksUnitHelpPopupSubComponent } from './ts/attacks-unit-help-popup.sub-component';
 import { ConstructionPopupSubComponent } from './ts/construction-popup.sub-component';
 import { ConstructionSummaryPopupSubComponent } from './ts/construction-summary-popup.sub-component';
 import { DailyPopupSubComponent } from './ts/daily-popup.sub-component';
@@ -123,6 +124,7 @@ export const PrivateComponent = [
   ArmySummaryPopupSubComponent,
   AttacksMessageSubComponent,
   AttacksStatsSubComponent,
+  AttacksUnitHelpPopupSubComponent,
   ConstructionPopupSubComponent,
   ConstructionSummaryPopupSubComponent,
   DailyPopupSubComponent,

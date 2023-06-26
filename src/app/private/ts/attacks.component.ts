@@ -58,6 +58,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   public attackPossible:any;
   public attackPossibleError:number;
   public waveAttackSum:any;
+  public realWaveAttackSum:any;
   public sanctuariesAttackInfo:any;
   public sanctuariesDefense:any;
   public sanctuariesList:any;
@@ -139,6 +140,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.targetProfile = {};
     
     this.waveAttackSum = {};
+    this.realWaveAttackSum = {};
     
     this.diamondInfo = {};
     this.diamondRankingPlayers = [];
@@ -261,6 +263,17 @@ export class AttacksComponent implements OnInit, OnDestroy {
           j++;
         }
       }
+    });
+    this.socket.on('realWaveAttackSum',(data) => {
+      this.realWaveAttackSum = data;
+      let newTab = [];
+      let j = 0;
+      for(let i in this.realWaveAttackSum) {
+        if(this.realWaveAttackSum[i] > 0) {
+          newTab.push(j)
+          j++;
+        }
+      }
       if(this.sanctuariesWaveTab.length != newTab.length) {
         this.sanctuariesWaveTab = newTab;
       }
@@ -289,6 +302,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('sanctuariesDefense', (data) => {
       this.sanctuariesDefense = data;
       this.socket.emit('waveAttackSum');
+      this.socket.emit('realWaveAttackSum');
     });
     this.socket.on('sanctuariesSpy', (data) => {
       this.attackMode = 9;
@@ -343,6 +357,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.removeListener('lightning');
     this.socket.removeListener('spyInfo');
     this.socket.removeListener('waveAttackSum');
+    this.socket.removeListener('realWaveAttackSum');
     this.socket.removeListener('realWaveAttackCheck');
     this.socket.removeListener('sanctuariesList');
     this.socket.removeListener('sanctuariesAttack');
@@ -420,10 +435,15 @@ export class AttacksComponent implements OnInit, OnDestroy {
     let list:any = [];
     
     for(let i in this.waveAttackSum) {
+      let all = 1;
       if(this.waveAttackSum[i] > 0) {
+        if(this.realWaveAttackSum[i] < this.waveAttackSum[i]) {
+          all = 0;
+        }
         list.push({
           'unit': i,
-          'nb': this.waveAttackSum[i]
+          'nb': (this.realWaveAttackSum[i] ? this.realWaveAttackSum[i] : 0),
+          'all': all
         })
       }
     }
@@ -447,9 +467,9 @@ export class AttacksComponent implements OnInit, OnDestroy {
     let result = 0;
     
     if(this.user.info && this.user.info.datas) {
-      for(let i in this.waveAttackSum) {
-        if(this.waveAttackSum[i] > 0) {
-          result += (this.user.info.datas.army[i].attack*this.waveAttackSum[i]);
+      for(let i in this.realWaveAttackSum) {
+        if(this.realWaveAttackSum[i] > 0) {
+          result += (this.user.info.datas.army[i].attack*this.realWaveAttackSum[i]);
         }
       }
     }
@@ -491,6 +511,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.emit('profile', id);
     this.socket.emit('attackPossible', id);
     this.socket.emit('waveAttackSum');
+    this.socket.emit('realWaveAttackSum');
   }
   prepareFury(id:number) {
     this.attackMode = 5;
@@ -567,6 +588,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.attackMode = 10;
     this.targetProfile = {};
     this.socket.emit('waveAttackSum');
+    this.socket.emit('realWaveAttackSum');
     this.socket.emit('sanctuariesInfo', id);
   }
   sanctuariesSpy(id:number) {
@@ -658,6 +680,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
       case 3:
         this.socket.emit('sanctuariesList');
         this.socket.emit('waveAttackSum');
+        this.socket.emit('realWaveAttackSum');
       break;
       case 4:
         this.attackPage = 1;

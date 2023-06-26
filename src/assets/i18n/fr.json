@@ -89,6 +89,8 @@
   "A new password has just been sent to you by email, this one will only be active after validation.": "Un nouveau mot de passe vient de vous être envoyé par email, celui-ci ne sera actif qu'après validation.",
   "A pact has been broken recently between both alliances": "Un pact a été rompu récement entre les deux alliances",
   "A pact preserves the cities in both alliances from mutual attacks. A war can also be stoped by signing a pact.": "Un pacte protége les membres des deux alliances d'attaques mutuelles. Une guerre peut aussi être stoppée en signant un pacte.",
+  "A part of your army can't fight": "Une partie de votre armée ne peut pas se battre",
+  "A part of your army won't go to the battlefield. When you are preparing your attack, the units in red have one of the following issue:": "Une partie de votre armée ne se rendra pas sur le champ de bataille. Lorsque vous préparez une attaque, les unités apparaissant en rouge ont l'un des problèmes suivants :",
   "A star in the making": "Graine de star",
   "A victory with only one survivor. You must have committed at least 10,000 units in battle.": "Remporter une victoire avec un seul survivant. Vous devez avoir engagé au moins 10.000 unités dans la bataille.",
   "A wall is protecting this city.": "Un mur protège cette cité.",
@@ -739,6 +741,8 @@
   "Keep an eye on your resources to optimize your production and your defense.": "Gardez vos yeux sur vos ressources pour optimiser votre production et votre défense.",
   "Knockout": "Coup de grâce",
   
+  "Lack of consumption resources": "Manque de ressources consommées",
+  "Lack of housing": "Manque de logements",
   "Lampad": "Lampade",
   "Lampads": "Lampades",
   "Language": "Langue",
