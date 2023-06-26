@@ -197,7 +197,7 @@ export class UserComponent {
   
   getSanctuary(sanctuary:number) {
     if(this.info.sanctuary && this.info.sanctuary[sanctuary]) {
-      return this.info.sanctuary[sanctuary];
+      return this.info.sanctuary[sanctuary].sanctuaries_id;
     }
     else {
       return 0;
