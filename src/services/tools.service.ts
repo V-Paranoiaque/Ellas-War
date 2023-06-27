@@ -50,6 +50,48 @@ export class ToolsComponent {
     
     return name;
   }
+  static getResName(id:number|string) {
+    switch(id) {
+      case 0:
+      case '0':
+        return 'drachma';
+      case 1:
+      case '1':
+        return 'food';
+      case 2:
+      case '2':
+        return 'water';
+      case 3:
+      case '3':
+        return 'wood';
+      case 4:
+      case '4':
+        return 'iron';
+      case 5:
+      case '5':
+        return 'stone';
+      case 6:
+      case '6':
+        return 'marble';
+      case 7:
+      case '7':
+        return 'grapes';
+      case 8:
+      case '8':
+        return 'wine';
+      case 9:
+      case '9':
+        return 'gold';
+      case 10:
+      case '10':
+        return 'favor';
+      case 11:
+      case '11':
+        return 'ambrosia';
+    }
+    
+    return id;
+  }
   
   static addToObject(resultArray:any, newArray:any) {
     for(let j in newArray) {

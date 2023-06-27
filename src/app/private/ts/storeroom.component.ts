@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import bagIcon  from '@iconify/icons-bi/bag';
 import jarIcon  from '@iconify-icons/akar-icons/jar';
@@ -23,11 +24,15 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   public storeroomQuantity:string;
   public storeroomRate:string;
   public storeroomRess:number;
+  public minRate:number;
   
   clockIcon = clockIcon;
   bagIcon  = bagIcon;
   jarIcon  = jarIcon;
   plusIcon = plusIcon;
+  
+  parseFloat = parseFloat;
+  Tools = Tools;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.storeroomList = [];
@@ -39,6 +44,8 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.storeroomQuantity = '';
     this.storeroomRate = '';
     this.storeroomRess = 1;
+    
+    this.minRate = this.user.getDatas().storeroom_min;
   }
   
   ngOnInit() {

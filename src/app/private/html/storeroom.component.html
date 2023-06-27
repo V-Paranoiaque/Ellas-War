@@ -15,7 +15,15 @@
             <div class="card-header" translate>
               Drop resources to the Agora
             </div>
-            <div class="card-body text-center">
+            <div class="card-body text-center">{{ minRate }}
+              <div *ngIf="storeroomQuantity > user.getPropertyNb(Tools.getResName(storeroomRess))"
+                   class="alert alert-danger" translate>
+                You don't have enough resources
+              </div>
+              <div *ngIf="storeroomRate && (parseFloat(storeroomRate) < storeroomMin.rate*0.75)"
+                  class="alert alert-danger">
+                {{'The rate is too low, minimum { value } per unit' | translate : { value: parseFloat((storeroomMin.rate*0.75).toFixed(9)) } }}
+              </div>
               <span *ngIf="storeroomMin.rate > 0">
                 <span translate>Current rate</span>
                 <span translate>:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
