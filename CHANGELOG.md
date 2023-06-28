@@ -308,3 +308,14 @@
 * Make unit price dynamic
 * Remove unused option to switch style
 * Update electron version
+
+# 1.3.7
+* Add a warning for non fighting units
+* Add warnings when selling
+* Fix ambrosia in the details page
+* Fix attack on the Diamond
+* Fix image upload
+* Fix protective goddess
+* Limit low prices on the agora
+* Missing translations
+* Units that shouldn't fight were going to the battlefield
