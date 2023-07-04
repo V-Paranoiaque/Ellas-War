@@ -1,4 +1,5 @@
-<div class="list-group" role="navigation" attr.aria-label="{{'Administration menu'|translate}}">
+<div class="list-group" role="navigation" attr.aria-label="{{'Administration menu'|translate}}"
+     *ngIf="user.getPropertyNb('rank') > 1">
   <a class="list-group-item list-group-item-action" [routerLink]="['/admin/players']"
       [ngClass]="{'active': active === 'players'}"
       role="button" translate>Players</a>
