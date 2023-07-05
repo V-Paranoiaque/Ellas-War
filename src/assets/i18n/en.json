@@ -108,6 +108,7 @@
   "Regularly you will have the opportunity to build a temple in your city. There are 11 temples available in all, unfortunately for you, you will only be able to build 4 temples.": "Regularly you will have the opportunity to <a href=\"/discoverthegame/temples\" class=\"link-secondary\">build a temple</a> in your city. There are 11 temples available in all, unfortunately for you, you will only be able to build 4 temples. These temples are decisive for your strategy and they will give you various advantages. You will have the opportunity to change temples via our <a href=\"/free-game\" class=\"link-secondary\">favors system</a>.",
   "Request of pact from the alliance { value }": "Request of pact from the alliance {{ value }}",
   "Request of pact to the alliance { value }": "Request of pact to the alliance {{ value }}",
+  "Reward for the level { value }:": "Reward for the level {{ value }}:",
   
   "Scratch { value } tickets": "Scratch {{ value }} tickets",
   "Scratch { value } winning tickets": "Scratch {{ value }} winning tickets",

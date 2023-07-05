@@ -6,10 +6,14 @@
       <div class="card card-column">
         <div class="card-body">
           <h1 id="honnorDesc" translate>Honnor ranking</h1>
-        
           <p>
-            <span translate>Every week, the player with the most honor earns a reward.</span>
-            <span translate>The honor is reset every Sunday morning at midnight.</span>
+            <span translate>Every week, the player with the most honor earns a reward.</span>&nbsp;<span 
+                  translate>The honor is reset every Sunday morning at midnight.</span>
+            <span *ngIf="id > 0">
+              <br/>
+              <span>{{'Reward for the level { value }:'|translate: { value: id } }}</span>&nbsp;<span 
+                    class="fw-bold">{{user.getDatas().honnor.rewards[id]}}&nbsp;<app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress></span>
+            </span>
           </p>
           
           <nav [attr.aria-label]="['Select a level to display its honnor ranking'|translate]">
