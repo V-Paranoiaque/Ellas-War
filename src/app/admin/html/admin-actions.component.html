@@ -49,6 +49,7 @@
                 <th scope="column"></th>
                 <th scope="column" translate>Quantity</th>
                 <th scope="column" translate>Price</th>
+                <th scope="column" translate>Rate</th>
               </tr>
             </thead>
             <tbody>
@@ -58,6 +59,7 @@
                            [(ngModel)]="adminStoreroom.food.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.food.price" /></td>
+                <td>{{adminStoreroom.food.price/adminStoreroom.food.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Water</th>
@@ -65,6 +67,7 @@
                            [(ngModel)]="adminStoreroom.water.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.water.price" /></td>
+                <td>{{adminStoreroom.water.price/adminStoreroom.water.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Wood</th>
@@ -72,6 +75,7 @@
                            [(ngModel)]="adminStoreroom.wood.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.wood.price" /></td>
+                <td>{{adminStoreroom.wood.price/adminStoreroom.wood.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Iron</th>
@@ -79,6 +83,7 @@
                            [(ngModel)]="adminStoreroom.iron.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.iron.price" /></td>
+                <td>{{adminStoreroom.iron.price/adminStoreroom.iron.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Stone</th>
@@ -86,6 +91,7 @@
                            [(ngModel)]="adminStoreroom.stone.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.stone.price" /></td>
+                <td>{{adminStoreroom.stone.price/adminStoreroom.stone.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Marble</th>
@@ -93,6 +99,7 @@
                            [(ngModel)]="adminStoreroom.marble.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.marble.price" /></td>
+                <td>{{adminStoreroom.marble.price/adminStoreroom.marble.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Grapes</th>
@@ -100,6 +107,7 @@
                            [(ngModel)]="adminStoreroom.grapes.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.grapes.price" /></td>
+                <td>{{adminStoreroom.grapes.price/adminStoreroom.grapes.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Wine</th>
@@ -107,6 +115,7 @@
                            [(ngModel)]="adminStoreroom.wine.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.wine.price" /></td>
+                <td>{{adminStoreroom.wine.price/adminStoreroom.wine.quantity}}</td>
               </tr>
               <tr>
                 <th scope="row" translate>Gold</th>
@@ -114,6 +123,7 @@
                            [(ngModel)]="adminStoreroom.gold.quantity" /></td>
                 <td><input class="form-control" type="number" [attr.min]="0"
                            [(ngModel)]="adminStoreroom.gold.price" /></td>
+                <td>{{adminStoreroom.gold.price/adminStoreroom.gold.quantity}}</td>
               </tr>
             </tbody>
           </table>
