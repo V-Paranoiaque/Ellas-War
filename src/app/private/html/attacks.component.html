@@ -434,6 +434,10 @@
                           <strong translate>:</strong>
                           {{ sanctuary.username }}
                           <br/>
+                          <strong translate>Victories</strong>
+                          <strong translate>:</strong>
+                          {{ sanctuary.sanctuaries_victory }}
+                          <br/>
                           <strong translate>Strength</strong>
                           <strong translate>:</strong>
                           <span [ngClass]="{'text-danger': sanctuary.sanctuaries_power == 0}">
@@ -1160,6 +1164,10 @@
                 Your city is protected against the Zeus lightning
               </div>
               <div class="text-center">
+                <strong translate>Victories</strong>
+                <strong translate>:</strong>
+                {{ sanctuariesInfo.sanctuaries_victory }}
+                <br/>
                 <strong translate>Strength</strong>
                 <strong translate>:</strong>
                 <span [ngClass]="{'text-danger': sanctuariesInfo.sanctuaries_power == 0}">
