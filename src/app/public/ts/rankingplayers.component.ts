@@ -48,9 +48,13 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       let page = params.get('id');
+      let rankingOrder = params.get('order');
       
       if(page) {
         this.rankingPage = parseInt(page);
+      }
+      if(rankingOrder) {
+        this.rankingOrder = rankingOrder;
       }
       
       this.getPage();
