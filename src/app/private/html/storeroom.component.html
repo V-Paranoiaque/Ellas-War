@@ -1,5 +1,10 @@
 <app-common-top-bar active="storeroom"></app-common-top-bar>
 
+<div class="modal fade" id="StoreroomSellHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-storeroom-sell-help-popup></app-storeroom-sell-help-popup>
+  </div>
+</div>
 <div class="modal fade" id="StoreroomHistory" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <app-storeroom-history-popup></app-storeroom-history-popup>
@@ -12,8 +17,16 @@
       <div class="row">
         <div class="col-md-6 col-12 col-block-half d-flex">
           <div class="card col-12">
-            <div class="card-header" translate>
+            <div class="card-header">
+              <span translate>
               Drop resources to the Agora
+              </span>
+              <div class="card-header-group">
+                <div class="card-header-button" role="button"
+                    data-bs-toggle="modal" data-bs-target="#StoreroomSellHelp">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              </div>
             </div>
             <div class="card-body text-center">{{ minRate }}
               <div *ngIf="storeroomQuantity > user.getPropertyNb(Tools.getResName(storeroomRess))"

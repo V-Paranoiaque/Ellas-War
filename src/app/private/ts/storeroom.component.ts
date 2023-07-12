@@ -5,9 +5,10 @@ import { UserComponent as User } from '../../../services/user.service';
 import { ToolsComponent as Tools } from '../../../services/tools.service';
 
 import bagIcon  from '@iconify/icons-bi/bag';
+import clockIcon from '@iconify/icons-fa-regular/clock';
 import jarIcon  from '@iconify-icons/akar-icons/jar';
 import plusIcon from '@iconify/icons-bi/plus';
-import clockIcon from '@iconify/icons-fa-regular/clock';
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 
 @Component({
   templateUrl: '../html/storeroom.component.html',
@@ -26,10 +27,11 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   public storeroomRess:number;
   public minRate:number;
   
-  clockIcon = clockIcon;
   bagIcon  = bagIcon;
+  clockIcon = clockIcon;
   jarIcon  = jarIcon;
   plusIcon = plusIcon;
+  questionCircle = questionCircle;
   
   parseFloat = parseFloat;
   Tools = Tools;
