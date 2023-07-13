@@ -8,6 +8,9 @@
   <app-sanctuary-strength-update-popup [info]="sanctuariesInfo"></app-sanctuary-strength-update-popup>
 </div>
 
+<div class="modal fade" id="attacksHelp" tabindex="-1" aria-hidden="true">
+  <app-attacks-help-popup></app-attacks-help-popup>
+</div>
 <div class="modal fade" id="attacksUnitHelp" tabindex="-1" aria-hidden="true">
   <app-attacks-unit-help-popup></app-attacks-unit-help-popup>
 </div>
@@ -141,7 +144,12 @@
                               title="{{'Current order'|translate}}"
                               [icon]="sortUP"></app-ic-icon>
                     </th>
-                    <th scope="col"></th>
+                    <th scope="col">
+                      <span data-bs-toggle="modal" data-bs-target="#attacksHelp"
+                            role="button" title="{{'Help'|translate}}">
+                        <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                      </span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
