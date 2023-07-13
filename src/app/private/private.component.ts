@@ -64,6 +64,7 @@ import { OptionsAccountInformationPopupSubComponent } from './ts/options-account
 import { QuestsAltarSubComponent } from './ts/quests-altar.sub-component';
 import { QuestsDailySubComponent } from './ts/quests-daily.sub-component';
 import { QuestsInfoPopupSubComponent } from './ts/quests-info-popup.sub-component';
+import { QuestsMissionsPopupSubComponent } from './ts/quests-missions-popup.sub-component';
 import { QuestsMissionsSubComponent } from './ts/quests-missions.sub-component';
 import { SanctuaryMessageSubComponent } from './ts/sanctuary-message.sub-component';
 import { SanctuaryStrengthHelpPopupSubComponent } from './ts/sanctuary-strength-help-popup.sub-component';
@@ -152,6 +153,7 @@ export const PrivateComponent = [
   QuestsAltarSubComponent,
   QuestsDailySubComponent,
   QuestsInfoPopupSubComponent,
+  QuestsMissionsPopupSubComponent,
   QuestsMissionsSubComponent,
   SanctuaryMessageSubComponent,
   SanctuaryStrengthHelpPopupSubComponent,

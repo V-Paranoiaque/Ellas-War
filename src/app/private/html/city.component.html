@@ -128,14 +128,24 @@
     <app-missions-info-popup></app-missions-info-popup>
   </div>
 </div>
+<div class="modal fade" id="QuestsMissions" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-quests-missions-popup></app-quests-missions-popup>
+  </div>
+</div>
 
 <div class="home-bg home-bg-private">
   <div class="col-lg-10 col-md-10 col-sm-12 col-12 main" role="main">
     <div class="container">
       <div class="row">
         <a href="{{ environment.discord }}" target="_blank" id="discord-mobile"
-            rel="external nofollow noopener" class="d-md-none" role="btn">
+            rel="external nofollow noopener" class="d-md-none mobile-bubble" role="btn">
           <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
+        </a>
+        <a id="quests-mobile" *ngIf="user.getLevel() <= 10"
+           class="d-md-none mobile-bubble" role="button"
+           data-bs-toggle="modal" data-bs-target="#QuestsMissions">
+          <app-ew-icon name="menu-quests"></app-ew-icon>
         </a>
         <div class="col-xl-6 col-block-half">
           <div class="card">
