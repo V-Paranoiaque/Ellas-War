@@ -142,7 +142,7 @@
             rel="external nofollow noopener" class="d-md-none mobile-bubble" role="btn">
           <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
         </a>
-        <a id="quests-mobile" *ngIf="user.getLevel() <= 10"
+        <a id="quests-mobile" *ngIf="user.getLevel() < 10"
            class="d-md-none mobile-bubble" role="button"
            data-bs-toggle="modal" data-bs-target="#QuestsMissions">
           <app-ew-icon name="menu-quests"></app-ew-icon>
