@@ -70,6 +70,7 @@ import { SanctuaryStrengthHelpPopupSubComponent } from './ts/sanctuary-strength-
 import { SanctuaryStrengthUpdatePopupSubComponent } from './ts/sanctuary-strength-update-popup.sub-component';
 import { StoreroomHistoryPopupSubComponent } from './ts/storeroom-history-popup.sub-component';
 import { StoreroomSellHelpPopupSubComponent } from './ts/storeroom-sell-help-popup.sub-component';
+import { StrategiesHelpPopupSubComponent } from './ts/strategies-help-popup.sub-component';
 import { SuccessCardSubComponent } from './ts/success-card.sub-component';
 import { SuccessHelpPopupSubComponent } from './ts/success-help-popup.sub-component';
 import { SuccessInfoPopupSubComponent } from './ts/success-info-popup.sub-component';
@@ -157,6 +158,7 @@ export const PrivateComponent = [
   SanctuaryStrengthUpdatePopupSubComponent,
   StoreroomHistoryPopupSubComponent,
   StoreroomSellHelpPopupSubComponent,
+  StrategiesHelpPopupSubComponent,
   SuccessCardSubComponent,
   SuccessHelpPopupSubComponent,
   SuccessInfoPopupSubComponent,

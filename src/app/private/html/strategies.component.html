@@ -25,6 +25,11 @@
     <app-defense-empty-popup></app-defense-empty-popup>
   </div>
 </div>
+<div class="modal fade" id="StrategiesHelpPopup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <app-strategies-help-popup></app-strategies-help-popup>
+  </div>
+</div>
 
 <div class="home-bg home-bg-private">
   <div class="col-lg-10 col-md-10 col-sm-12 col-12 main main-top">
@@ -33,8 +38,13 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <div class="fw-bold text-center" translate>
-                Drag and drop units on a wave to add them
+              <div class="fw-bold text-center">
+                <span translate>
+                  Drag and drop units on a wave to add them
+                </span>
+                <app-ic-icon [icon]="questionCircle" role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
               </div>
               <div class="d-flex">
                 <a [routerLink]="['/strategies/attack']" class="flex-grow-1 btn"
@@ -123,8 +133,13 @@
                       id="wave-attack-{{waveAttackList.length}}"
                       [cdkDropListData]="['']"
                       [cdkDropListConnectedTo]="waveAttackDropList"
-                      (cdkDropListDropped)="onDropAttack($event)" translate>
-                    Drag and drop units on a wave to add them
+                      (cdkDropListDropped)="onDropAttack($event)">
+                    <span translate>
+                      Drag and drop units on a wave to add them
+                    </span>
+                    <app-ic-icon [icon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
                   </div>
                 </div>
                 <div *ngIf="waveAttackPower === 0">
@@ -136,8 +151,13 @@
                       id="wave-attack-1"
                       [cdkDropListData]="['']"
                       [cdkDropListConnectedTo]="waveAttackDropList"
-                      (cdkDropListDropped)="onDropAttack($event)" translate>
-                    Drag and drop units on a wave to add them
+                      (cdkDropListDropped)="onDropAttack($event)">
+                    <span translate>
+                      Drag and drop units on a wave to add them
+                    </span>
+                    <app-ic-icon [icon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
                   </div>
                 </div>
               </ng-container>
@@ -283,8 +303,13 @@
                       id="wave-defense-{{waveDefenseList.length}}"
                       [cdkDropListData]="['']"
                       [cdkDropListConnectedTo]="waveDefenseDropList"
-                      (cdkDropListDropped)="onDropDefense($event)" translate>
-                    Drag and drop units on a wave to add them
+                      (cdkDropListDropped)="onDropDefense($event)">
+                    <span translate>
+                      Drag and drop units on a wave to add them
+                    </span>
+                    <app-ic-icon [icon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
                   </div>
                 </div>
                 <div *ngIf="waveDefensePower === 0">
@@ -304,8 +329,13 @@
                       id="wave-defense-1"
                       [cdkDropListData]="['']"
                       [cdkDropListConnectedTo]="waveDefenseDropList"
-                      (cdkDropListDropped)="onDropDefense($event)" translate>
-                    Drag and drop units on a wave to add them
+                      (cdkDropListDropped)="onDropDefense($event)">
+                    <span translate>
+                      Drag and drop units on a wave to add them
+                    </span>
+                    <app-ic-icon [icon]="questionCircle" role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
                   </div>
                 </div>
               </ng-container>
