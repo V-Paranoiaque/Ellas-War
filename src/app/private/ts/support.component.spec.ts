@@ -10,7 +10,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
@@ -42,8 +41,7 @@ describe('SupportComponent Empty', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, OAuthService,
@@ -124,8 +122,7 @@ describe('SupportComponent ID', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User,

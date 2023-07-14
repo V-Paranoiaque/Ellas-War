@@ -9,7 +9,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { IconModule } from '@visurel/iconify-angular';
 import { FormBuilder } from '@angular/forms';
 
 import { MenuComponent } from '../../menu/menu.component';
@@ -37,8 +36,7 @@ describe('ConnectedRightMenuComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-      ],
+              ],
       providers: [
         Socket, User, OAuthService,
         BsModalService, FormBuilder

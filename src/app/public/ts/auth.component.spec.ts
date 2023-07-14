@@ -10,7 +10,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthComponent } from './auth.component';
@@ -35,8 +34,7 @@ describe('AuthComponent Empty', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, OAuthService, 
@@ -75,8 +73,7 @@ describe('AuthComponent Facebook', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User,
@@ -116,8 +113,7 @@ describe('AuthComponent Google', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User,

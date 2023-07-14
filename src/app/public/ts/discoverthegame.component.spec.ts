@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IconModule } from '@visurel/iconify-angular';
 import { of } from 'rxjs';
 
 import { DiscoverTheGameComponent } from './discoverthegame.component';
@@ -31,8 +30,7 @@ describe('DiscoverTheGameComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'default' } ) ) } },
@@ -67,8 +65,7 @@ describe('DiscoverTheGameComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': '' } ) ) } },
@@ -103,8 +100,7 @@ describe('DiscoverTheGameComponent constructions', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'constructions' } ) ) } },
@@ -143,8 +139,7 @@ describe('DiscoverTheGameComponent treasure', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'treasure' } ) ) } },
@@ -183,8 +178,7 @@ describe('DiscoverTheGameComponent temples', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'temples' } ) ) } },
@@ -223,8 +217,7 @@ describe('DiscoverTheGameComponent recruitment', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'recruitment' } )) } }
@@ -259,8 +252,7 @@ describe('DiscoverTheGameComponent army', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'army' } ) ) } },
@@ -299,8 +291,7 @@ describe('DiscoverTheGameComponent attack', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'attack' } ) ) } },
@@ -339,8 +330,7 @@ describe('DiscoverTheGameComponent defense', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'defense' } ) ) } },
@@ -379,8 +369,7 @@ describe('DiscoverTheGameComponent trade', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'trade' } ) ) } },
@@ -419,8 +408,7 @@ describe('DiscoverTheGameComponent sell', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'sell' } ) ) } },
@@ -456,8 +444,7 @@ describe('DiscoverTheGameComponent games', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of(convertToParamMap( { 'page': 'games' } )) } },
@@ -496,8 +483,7 @@ describe('DiscoverTheGameComponent treeofthegods', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        
+                
       ],
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: {}, paramMap: of( convertToParamMap( { 'page': 'treeofthegods' } ) ) } },

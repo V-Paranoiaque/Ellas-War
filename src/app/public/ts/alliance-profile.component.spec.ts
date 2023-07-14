@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IconModule } from '@visurel/iconify-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
@@ -36,8 +35,7 @@ describe('AllianceProfileComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, 
@@ -79,8 +77,7 @@ describe('AllianceProfileComponent', () => {
         }),
         OAuthModule.forRoot(),
         HttpClientTestingModule,
-        IconModule,
-        ReactiveFormsModule, FormsModule
+                ReactiveFormsModule, FormsModule
       ],
       providers: [
         Socket, User, 

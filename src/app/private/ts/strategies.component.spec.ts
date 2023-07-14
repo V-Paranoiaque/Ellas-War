@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { IconModule } from '@visurel/iconify-angular';
 import { of } from 'rxjs';
 
 import { StrategiesComponent } from './strategies.component';
@@ -33,8 +32,7 @@ describe('StrategiesComponent Empty', () => {
           }
         }),
         OAuthModule.forRoot(),
-        HttpClientTestingModule,
-        IconModule
+        HttpClientTestingModule
       ],
       providers: [
         Socket, User,
@@ -136,8 +134,7 @@ describe('StrategiesComponent Attack', () => {
           }
         }),
         OAuthModule.forRoot(),
-        HttpClientTestingModule,
-        IconModule
+        HttpClientTestingModule
       ],
       providers: [
         Socket, User,
@@ -176,8 +173,7 @@ describe('StrategiesComponent Defense', () => {
           }
         }),
         OAuthModule.forRoot(),
-        HttpClientTestingModule,
-        IconModule
+        HttpClientTestingModule
       ],
       providers: [
         Socket, User,
