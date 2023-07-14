@@ -49,10 +49,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    this.load();
-    
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id') ?? '';
+      this.load(parseInt(id));
+    });
     this.socket.on('accountRefresh', () => {
-      this.load();
+      const userId = this.route.snapshot.paramMap.get('id') ?? '';
+      this.load(parseInt(userId));
     });
   }
   
@@ -66,8 +69,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.socket.removeListener('accountRefresh');
   }
   
-  load() {
-    let userId = this.route.snapshot.paramMap.get('id');
+  load(userId:number) {
     let url = this.socket.url+'/api/playerProfile/'+userId+'.json';
     this.socket.emit('accountInfo');
     
