@@ -295,7 +295,8 @@ export class UserComponent {
         () => {
           facebookConnectPlugin.getAccessToken((token:string) => {
             this.socket.emit('mobileFB', {
-              'token': token
+              'token': token,
+              'extra': this.getExtra()
             });
           });
         },
@@ -318,7 +319,10 @@ export class UserComponent {
         'webClientId': environment.google.client_id
       },
       (obj:{idToken: string}) => {
-        this.socket.emit('mobileGoogle', {'token': obj.idToken});
+        this.socket.emit('mobileGoogle', {
+          'token': obj.idToken,
+          'extra': this.getExtra()
+        });
       },
       (msg:Error) => {
         alert('error: ' + msg);
@@ -332,7 +336,10 @@ export class UserComponent {
   disconnect() {
     let localToken = localStorage.getItem('token');
     localStorage.removeItem('token');
-    this.socket.emit('deconnection', localToken);
+    this.socket.emit('deconnection', {
+      'token': localToken,
+      'extra': this.getExtra()
+    });
     
     this.info.id = 0;
     this.info.mstatus = 0;
@@ -347,11 +354,8 @@ export class UserComponent {
     });
   }
   
-  getExtra(pInfo:object) {
-    const info = pInfo as { os:string, deviceType:string }
+  getExtra() {
     return {
-      os: info.os,
-      deviceType: info.deviceType,
       mobile: environment.mobile,
     }
   }

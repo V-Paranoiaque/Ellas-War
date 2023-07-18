@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private socket: Socket, private formBuilder: FormBuilder,
               private http: HttpClient, public translate: TranslateService, 
               public user: User, private router: Router,
-              private titleService: Title, private deviceService: DeviceDetectorService) {
+              private titleService: Title) {
     this.localevars = {'store': {}};
     this.newsList = [];
     
@@ -104,7 +104,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.socket.emit('connection', {
       username: info.username,
       password: info.password,
-      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+      extra: this.user.getExtra()
     });
   }
   

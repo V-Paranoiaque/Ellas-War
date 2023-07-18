@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { OAuthModule, OAuthLogger, OAuthService, UrlHelperService } from 'angular-oauth2-oidc';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from './socketio.service';
@@ -242,6 +241,6 @@ describe('User', () => {
     const fixture = TestBed.createComponent(User);
     fixture.detectChanges();
     const app = fixture.componentInstance;
-    expect(Object.keys(app.getExtra(new DeviceDetectorService(0))).length).toEqual(3);
+    expect(app.getExtra().mobile).toEqual(0);
   });
 });

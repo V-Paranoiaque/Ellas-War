@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   googleIcon = googleIcon;
   
   constructor(private titleService: Title, public translate: TranslateService,
-              private socket: Socket, public user: User, private formBuilder: FormBuilder,
-              private deviceService: DeviceDetectorService) {
+              private socket: Socket, public user: User, private formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({});
     this.loginError = 0;
     this.sub = new Subscription();
@@ -38,7 +37,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     
     this.socket.on('connection', (data: string) => {
       if(data) {
-        this.socket.emit('ewAuth', {'token': data});
+        this.socket.emit('ewAuth', {
+          'token': data,
+          'extra': this.user.getExtra()
+        });
         localStorage.setItem('token', data);
       }
       else {
@@ -69,7 +71,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.socket.emit('connection', {
       username: info.username,
       password: info.password,
-      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+      extra: this.user.getExtra()
     });
   }
   

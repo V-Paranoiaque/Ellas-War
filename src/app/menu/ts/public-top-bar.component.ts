@@ -23,7 +23,7 @@ export class PublicTopBarComponent extends CommonTopBarComponent implements OnIn
   
   constructor(protected http: HttpClient, socket: Socket, private formBuilder: FormBuilder, 
               router: Router, public user: User,
-              protected modalService: BsModalService, private deviceService: DeviceDetectorService) {
+              protected modalService: BsModalService) {
     super(http, socket, router, user, modalService);
     
     this.loginForm = this.formBuilder.group({});
@@ -35,7 +35,6 @@ export class PublicTopBarComponent extends CommonTopBarComponent implements OnIn
       username: '',
       password: ''
     });
-    this.user.getExtra(this.deviceService.getDeviceInfo());
   }
   
   onSubmit(data:object) {
@@ -44,7 +43,7 @@ export class PublicTopBarComponent extends CommonTopBarComponent implements OnIn
     this.socket.emit('connection', {
       username: info.username,
       password: info.password,
-      extra: this.user.getExtra(this.deviceService.getDeviceInfo())
+      extra: this.user.getExtra()
     });
   }
 }
