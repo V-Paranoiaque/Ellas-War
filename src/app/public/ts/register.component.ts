@@ -1,6 +1,9 @@
+import { ActivatedRoute } from '@angular/router'
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { UserComponent as User } from '../../../services/user.service';
 
@@ -15,22 +18,40 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
   registerForm: FormGroup;
   public rerror: number;
+  private subPlayer:Subscription;
+  public login;
   
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
   
-  constructor(private socket: Socket, public user: User,
+  constructor(protected http: HttpClient, private socket: Socket,
+              public user: User, private route: ActivatedRoute,
               private formBuilder: FormBuilder) {
     this.registerForm = this.formBuilder.group({});
     this.rerror = 0;
+    this.subPlayer = new Subscription();
+    this.login = '';
   }
   
   ngOnInit() {
+    let userId = this.route.snapshot.paramMap.get('id') ?? localStorage.getItem('invite') ?? 0;
+    let url = this.socket.url+'/api/playerProfile/'+userId+'.json';
+
+    this.subPlayer = this.http.get(url).subscribe((resPlayer:object) => {
+      const player = resPlayer as { membre_id:number, username: string };
+      if(player?.membre_id) {
+        this.login = player.username;
+        localStorage.setItem('invite', player.membre_id.toString());
+      }
+    });
+
+
     this.registerForm = this.formBuilder.group({
       server: this.socket.server,
       username: '',
       email: '',
-      password: ''
+      password: '',
+      invite: userId
     });
     
     this.socket.on('register', (data:{error:number}) => {
@@ -39,6 +60,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy() {
+    this.subPlayer.unsubscribe();
     this.socket.removeListener('register');
   }
   
@@ -55,5 +77,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       //Redirect to the selected server
       this.socket.redirect(this.registerForm.controls['server'].value);
     }
+    this.login = '';
   }
 }

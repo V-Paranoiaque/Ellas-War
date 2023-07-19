@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { environment } from './../../../environments/environment';
 import { Router } from '@angular/router'
 import { UserComponent as User } from '../../../services/user.service';
@@ -56,6 +55,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
+    let userId = localStorage.getItem('invite') ?? 0;
+
     this.subLang = this.http.get('./assets/i18n/'+this.translate.currentLang+'/localevars.json').subscribe((data:any) =>{
       this.localevars = data;
     });
@@ -75,7 +76,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       server: this.socket.server,
       username: '',
       email: '',
-      password: ''
+      password: '',
+      mobile: environment.mobile,
+      invite: userId
     });
     
     this.subTitle = this.translate.get('Ellas War, free online strategy game').subscribe((res: string) => {

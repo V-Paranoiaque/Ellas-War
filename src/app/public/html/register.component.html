@@ -38,8 +38,15 @@
               <br/>
             </div>
             
+            <div class="alert alert-success" *ngIf="login">
+              <span [innerHTML]="'Join { value } on Ellas War!' | translate: { value: login }"></span>
+              <br/>
+              <span translate>Ask him help to develop your city and you will both get many bonuses</span>
+            </div>
+
             <form method="POST" action="/register" 
                   [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+              <input type="hidden" name="invite" />
               <label class="fw-bold" for="server" translate>Server</label>
               <select class="form-select" name="server"
                       id="server" formControlName="server"

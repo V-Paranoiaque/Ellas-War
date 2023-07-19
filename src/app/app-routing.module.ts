@@ -110,6 +110,7 @@ routes = [
   { path: 'permalink/:id', component: PermalinkComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register/:id', component: RegisterComponent },
   { path: 'rankingalliances', component: RankingAlliancesComponent },
   { path: 'rankingalliances/:id', component: RankingAlliancesComponent },
   { path: 'rankingplayers', component: RankingPlayersComponent },

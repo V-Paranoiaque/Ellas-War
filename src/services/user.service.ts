@@ -357,6 +357,7 @@ export class UserComponent {
   getExtra() {
     return {
       mobile: environment.mobile,
+      invite: localStorage.getItem('invite') ?? 0
     }
   }
 }

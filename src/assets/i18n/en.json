@@ -78,6 +78,8 @@
   "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
   "In addition to the site, Ellas War also has a Facebook page and a GitHub repository.": "In addition to the site, Ellas War also has a Facebook page and a GitHub repository. On the Facebook page you can exchange with the rest of <a href=\"/community\" class=\"link-secondary\">the community</a> and staff. It is animated and moderated by the team of the game, you will find information and ask questions. Ellas War has a GitHub repository where you can find the source code of the client part of the game. You can submit bug reports or provide improvement requests directly from this repository.",
   
+  "Join { value } on Ellas War!": "Join <strong>{{ value }}</strong> on Ellas War!",
+
   "Level { value }": "Level {{ value }}",
   "Lightning against { value }": "Lightning against {{ value }}",
   "Lightning from { value }": "Lightning from {{ value }}",
