@@ -59,9 +59,13 @@ export class ConnectedTopBarComponent extends CommonTopBarComponent implements O
         this.favicon.href = 'assets/favicon-normal.png';
       }
     });
+    this.socket.on('msgRefresh', () => {
+      this.socket.emit('msgNewNb');
+    });
   }
   
   ngOnDestroy() {
     this.socket.removeListener('msgNewNb');
+    this.socket.removeListener('msgRefresh');
   }
 }
