@@ -141,6 +141,10 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.on('waveDefenseList', (data) => {
         this.waveDefensePower = data.power;
     });
+    this.socket.on('waveRefresh', () => {
+      this.socket.emit('waveAttackList');
+      this.socket.emit('waveDefenseList');
+    }); 
     
     this.socket.emit('divineBonus');
     this.socket.emit('dailyCoCheck');
@@ -157,6 +161,7 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.removeListener('unitFavoriteListRefresh');
     this.socket.removeListener('waveAttackList');
     this.socket.removeListener('waveDefenseList');
+    this.socket.removeListener('waveRefresh');
   }
   
   armyDisplay(info:any) {
