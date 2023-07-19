@@ -54,7 +54,8 @@ export class AuthComponent implements OnInit {
           this.socket.emit('mobileGoogle', {
             'token': token,
             'state': state,
-            'mobile': environment.mobile
+            'mobile': environment.mobile,
+            'extra': this.user.getExtra()
           });
         }
       break;
