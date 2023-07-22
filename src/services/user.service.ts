@@ -329,7 +329,9 @@ export class UserComponent {
       });
     }
     else {
-      this.socket.emit('oauth2Server');
+      this.socket.emit('oauth2Server', {
+        'extra': this.getExtra()
+      });
     }
   }
   
