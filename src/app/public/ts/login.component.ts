@@ -6,7 +6,6 @@ import { environment } from './../../../environments/environment';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
