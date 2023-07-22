@@ -66,14 +66,6 @@
           <li translate>
             6 hours of withdrawal without taxes in your treasure
           </li>
-          <li>
-            <span *ngIf="user.getPropertyNb('hermes') == 0" translate>
-              You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
-            </span>
-            <span *ngIf="user.getPropertyNb('hermes') == 1" translate>
-              You are allowed to sell in the Agora today, even if it's Sunday
-            </span>
-          </li>
           <li translate>
             2 bonus attacks
           </li>
@@ -87,14 +79,6 @@
         <ul *ngSwitchCase="70">
           <li translate>
             6 hours of withdrawal without taxes in your treasure
-          </li>
-          <li>
-            <span *ngIf="user.getPropertyNb('hermes') == 0" translate>
-              You are allowed to sell in the Agora today, even if it's Wednesday/Saturday/Sunday
-            </span>
-            <span *ngIf="user.getPropertyNb('hermes') == 1" translate>
-              You are allowed to sell in the Agora today, even if it's Sunday
-            </span>
           </li>
           <li translate>
             2 bonus attacks
