@@ -1,8 +1,8 @@
-<div class="fw-bold fs-5 justify-content-center align-items-center d-flex">
-  {{ subject }}
-  <button type="button" aria-label="Close" class="btn-close"
+<div class="fw-bold fs-5 position-relative">
+  <button type="button" aria-label="Close" class="btn-close quest-giveup"
           *ngIf="quest.quest_validated == 0"
           (click)="promptQuestAbandon()"></button>
+  <div class="quest-title">{{ subject }}</div>
 </div>
 <div class="flex-grow-1">
   <div *ngIf="showDelete == 1" class="text-center">
