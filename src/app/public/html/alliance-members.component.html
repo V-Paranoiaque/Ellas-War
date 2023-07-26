@@ -26,9 +26,11 @@
                 <tbody>
                   <tr *ngFor="let p of allianceMembers">
                     <td>
-                      <a [ngClass]="{'text-danger': p.membre_status == '3' || p.membre_status == '5',
-                                    'text-warning': p.membre_status == '4'}"
-                        [routerLink]="['/profile/'+p.membre_id]">{{p.username}}</a>
+                      <a [ngClass]="{'text-danger': p.membre_status === 3 || p.membre_status === 5,
+                                    'text-warning': p.membre_status === 4}"
+                        [routerLink]="['/profile/'+p.membre_id]">
+                        {{p.username}}<span *ngIf="p.membre_status !== 1">*</span>
+                      </a>
                     </td>
                     <td class="text-center">{{p.level}}</td>
                     <td>{{p.rank_name}}</td>
@@ -46,6 +48,11 @@
                   translate>Alliance profile</a>
               </div>
               <br/>
+              <div *ngIf="legend.paused === 1 || legend.blocked === 1">
+                <strong translate>Legend</strong><strong translate>:</strong>
+                <div class="text-danger" translate>The member is blocked</div>
+                <div class="text-warning" translate>The member is paused</div>
+              </div>
             </div>
           </div>
         </div>

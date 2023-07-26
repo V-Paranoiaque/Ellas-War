@@ -214,6 +214,12 @@
                     </td>
                   </tr>
                 </tbody>
+                <div *ngIf="legend.paused === 1 || legend.blocked === 1">
+                  <br/>
+                  <strong translate>Legend</strong><strong translate>:</strong>
+                  <div class="text-danger" translate>The member is blocked</div>
+                  <div class="text-warning" translate>The member is paused</div>
+                </div>
               </table>
             </div>
           </div>

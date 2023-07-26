@@ -13,12 +13,19 @@ import { Title } from '@angular/platform-browser';
 
 export class AllianceMembersComponent implements OnInit, OnDestroy {
   
-  public allianceMembers:any;
+  public allianceMembers:{
+    membre_id:number, username:string, membre_status:number, level:number,
+    rank_name:string, xp:number, victory:number, field:number
+  }[];
   public allianceProfile:any;
   
   private subMembers:Subscription;
   private subProfile:Subscription;
   private subTitle:Subscription;
+  public legend = {
+    paused: 0,
+    blocked: 0
+  };
   
   constructor(public http: HttpClient, private route: ActivatedRoute,
               private socket: Socket, public user: User,
@@ -57,6 +64,18 @@ export class AllianceMembersComponent implements OnInit, OnDestroy {
     this.subMembers = this.http.get(url).subscribe((res) => {
       if(res) {
         this.allianceMembers = res as typeof this.allianceMembers;
+        this.legend = {
+          paused: 0,
+          blocked: 0
+        };
+        for(const p of this.allianceMembers) {
+          if(p.membre_status === 3 || p.membre_status === 5) {
+            this.legend.blocked = 1;
+          }
+          else if(p.membre_status === 4) {
+            this.legend.paused = 1;
+          }
+        }
       }
     });
   }

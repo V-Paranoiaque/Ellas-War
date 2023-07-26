@@ -35,6 +35,10 @@ export class AllianceComponent implements OnInit, OnDestroy {
   public selectedRequest:any;
   public selectedWar:any;
   public taxes:any;
+  public legend = {
+    paused: 0,
+    blocked: 0
+  };
   
   brushIcon     = brushIcon;
   cog           = cog;
@@ -90,6 +94,18 @@ export class AllianceComponent implements OnInit, OnDestroy {
     });
     this.socket.on('myAllianceMembers', (data) => {
       this.myAllianceMembers = data;
+      this.legend = {
+        paused: 0,
+        blocked: 0
+      };
+      for(const p of this.myAllianceMembers) {
+        if(p.membre_status === 3 || p.membre_status === 5) {
+          this.legend.blocked = 1;
+        }
+        else if(p.membre_status === 4) {
+          this.legend.paused = 1;
+        }
+      }
     });
     this.socket.on('myAllianceAllowLeave', (data) => {
       this.allowLeave = data;
