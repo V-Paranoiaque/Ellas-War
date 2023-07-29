@@ -80,6 +80,7 @@
   
   "Join { value } on Ellas War!": "Join <strong>{{ value }}</strong> on Ellas War!",
 
+  "Last { value } days": "Last {{ value }} days",
   "Level { value }": "Level {{ value }}",
   "Lightning against { value }": "Lightning against {{ value }}",
   "Lightning from { value }": "Lightning from {{ value }}",

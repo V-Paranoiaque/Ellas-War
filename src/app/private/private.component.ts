@@ -11,6 +11,7 @@ import { MintsComponent } from './ts/mints.component';
 import { OptionsComponent } from './ts/options.component';
 import { PausedComponent } from './ts/paused.component';
 import { QuestsComponent } from './ts/quests.component';
+import { SponsorshipComponent } from './ts/sponsorship.component';
 import { StoreroomComponent } from './ts/storeroom.component';
 import { StrategiesComponent } from './ts/strategies.component';
 import { SupportComponent } from './ts/support.component';
@@ -100,6 +101,7 @@ export const PrivateComponent = [
   OptionsComponent,
   PausedComponent,
   QuestsComponent,
+  SponsorshipComponent,
   StoreroomComponent,
   StrategiesComponent,
   SupportComponent,

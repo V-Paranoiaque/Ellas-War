@@ -44,6 +44,7 @@ import { MessagesComponent } from './private/ts/messages.component';
 import { MintsComponent } from './private/ts/mints.component';
 import { OptionsComponent } from './private/ts/options.component';
 import { QuestsComponent } from './private/ts/quests.component';
+import { SponsorshipComponent } from './private/ts/sponsorship.component';
 import { StrategiesComponent } from './private/ts/strategies.component';
 import { StoreroomComponent } from './private/ts/storeroom.component';
 import { SupportComponent } from './private/ts/support.component';
@@ -137,6 +138,7 @@ routes = [
   { path: 'mints', component: MintsComponent },
   { path: 'options', component: OptionsComponent },
   { path: 'quests', component: QuestsComponent },
+  { path: 'sponsorship', component: SponsorshipComponent },
   { path: 'strategies', component: StrategiesComponent },
   { path: 'strategies/:type', component: StrategiesComponent },
   { path: 'storeroom', component: StoreroomComponent },
