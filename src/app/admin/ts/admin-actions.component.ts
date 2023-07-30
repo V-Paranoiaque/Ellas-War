@@ -32,9 +32,9 @@ export class AdminActionsComponent implements OnInit, OnDestroy {
     
     this.socket.emit('adminStoreroomAutoList');
     
-    this.socket.on('adminStoreroomAutoList', (list) => {
+    this.socket.on('adminStoreroomAutoList', (list:object) => {
       for(let res in list) {
-        this.adminStoreroom[res] = list[res];
+        this.adminStoreroom[res as keyof typeof this.adminStoreroom] = list[res as keyof typeof list];
       }
     });
   }

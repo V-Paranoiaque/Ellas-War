@@ -64,7 +64,7 @@ export class SocketComponent {
   }
   
   on(socketName: string, callback:(res:any) => void) {
-    this.socket.on(socketName, (data:any) =>{
+    this.socket.on(socketName, (data:any) => {
       callback(data);
     })
   }

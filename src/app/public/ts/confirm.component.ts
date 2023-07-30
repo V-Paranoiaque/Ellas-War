@@ -21,8 +21,8 @@ export class ConfirmComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    let id:any   = this.route.snapshot.paramMap.get('id');
-    let check:any = this.route.snapshot.paramMap.get('check');
+    let id    = this.route.snapshot.paramMap.get('id') || '';
+    let check = this.route.snapshot.paramMap.get('check') || '';
     
     let url = this.socket.url+'/api/confirmcheck/'+
         encodeURIComponent(id)+'/'+

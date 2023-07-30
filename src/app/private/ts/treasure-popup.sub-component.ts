@@ -16,7 +16,16 @@ export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   public deposit:string = '';
   public computation:string = '';
   public taxDeduction:number;
-  public treasureHistory:any;
+  public treasureHistory:{
+    deposit: {
+      amount: number,
+      date: number
+    },
+    pull: {
+      amount: number,
+      date: number
+    }
+  }[];
   public treasureMax:number;
   
   //Icons

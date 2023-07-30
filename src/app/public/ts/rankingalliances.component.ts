@@ -16,7 +16,10 @@ import sortUP from '@iconify/icons-fa-solid/sort-up';
 })
 
 export class RankingAlliancesComponent implements OnInit, OnDestroy {
-  public rankingList:any;
+  public rankingList:{
+    ranking: number, alliance_id:number, alliance_name:number, username:string,
+    chief_id:number, nbmembers:number, victories:number, defeats:number
+  }[];
   public rankingMax:number;
   public rankingOrder:string;
   public rankingPage:number;
@@ -74,10 +77,12 @@ export class RankingAlliancesComponent implements OnInit, OnDestroy {
   getPage() {
     let url = this.socket.url+'/api/rankingAlliances/'+this.rankingPage+'/'+this.rankingOrder+'.json';
     
-    this.subRank = this.http.get(url).subscribe((result:any) => {
+    this.subRank = this.http.get(url).subscribe((resResult:object) => {
+      const result = resResult as {cPage:number, max:number, ranking:object[], order:string};
+      
       this.rankingPage = result.cPage;
       this.rankingMax  = result.max;
-      this.rankingList = result.ranking;
+      this.rankingList = result.ranking as typeof this.rankingList;
       this.rankingOrder= result.order
     });
   }

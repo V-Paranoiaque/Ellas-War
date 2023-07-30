@@ -12,7 +12,10 @@ import { UserComponent as User } from '../../../services/user.service';
 
 export class ConnectedPlayersComponent implements OnInit, OnDestroy {
   
-  public connected:any;
+  public connected:{
+    membre_id:number, username:string, level:number, field:number,
+    alliance:number, alliance_name:string
+  }[];
   private subList:Subscription;
   private subTitle:Subscription;
   

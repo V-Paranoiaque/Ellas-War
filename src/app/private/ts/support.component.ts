@@ -14,9 +14,15 @@ import eye from '@iconify/icons-fa-solid/eye';
 export class SupportComponent implements OnInit, OnDestroy {
   public msg: any;
   public answerMsg:string;
-  public contactList:any;
-  public contactC:any;
-  public contactInfo:any;
+  public contactList:{
+    support_id:number, support_topic:string, last_username:string,
+    support_lastdate:number
+  }[];
+  public contactC:number;
+  public contactInfo:{
+    title: string,
+    msg: { support_msg:string, username:string, support_date:number }[]
+  };
   public contactNb:number;
   public contactNewTitle:string;
   public contactNewMsg:string;
@@ -29,8 +35,10 @@ export class SupportComponent implements OnInit, OnDestroy {
   constructor(private router: Router, public user: User, private route: ActivatedRoute, private socket: Socket) {
     this.answerMsg = '';
     this.contactList = [];
+    this.contactC = 0;
     this.contactNb = 0;
     this.contactInfo = {
+      'title': '',
       'msg': []
     }
     
@@ -46,7 +54,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
       if(id) {
-        this.contactC = id;
+        this.contactC = parseInt(id);
       }
       else {
         this.contactC = 1;

@@ -15,8 +15,45 @@ import swordCross from '@iconify/icons-mdi/sword-cross';
 
 export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   
-  public attackStats:any;
-  public countdown:any;
+  public attackStats = {
+    'normal': {
+      'done': 0,
+      'available': 0,
+      'unavailable': 0,
+      'time': 0
+    },
+    'war': {
+      'done': 0,
+      'available': 0,
+      'unavailable': 0,
+      'time': 0
+    },
+    'bonus': {
+      'done': 0,
+      'available': 0,
+      'unavailable': 0,
+      'time': 0
+    },
+    'receive_normal': {
+      'done': 0,
+      'available': 0,
+      'unavailable': 0,
+      'time': 0
+    },
+    'receive_war': {
+      'done': 0,
+      'available': 0,
+      'unavailable': 0,
+      'time': 0
+    }
+  };
+  public countdown = {
+    'normal': { hour: 0, min: 0, sec: 0, tt: 0 },
+    'war': { hour: 0, min: 0, sec: 0, tt: 0 },
+    'bonus': { hour: 0, min: 0, sec: 0, tt: 0 },
+    'receive_normal': { hour: 0, min: 0, sec: 0, tt: 0 },
+    'receive_war': { hour: 0, min: 0, sec: 0, tt: 0 },
+  }
   
   Tools = Tools;
   
@@ -24,45 +61,6 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   swordCross   = swordCross;
   
   constructor(protected socket: Socket, public user: User, public translate: TranslateService) {
-    this.attackStats = {
-      'normal': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'war': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'bonus': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'receive_normal': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      },
-      'receive_war': {
-        'done': 0,
-        'available': 0,
-        'unavailable': 0,
-        'time': 0
-      }
-    };
-    this.countdown = {
-      'normal': {},
-      'war': {},
-      'bonus': {},
-      'receive_normal': {},
-      'receive_war': {}
-    }
   }
   
   ngOnInit() {

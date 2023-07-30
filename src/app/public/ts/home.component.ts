@@ -22,7 +22,9 @@ import googleIcon from '@iconify-icons/logos/google-icon';
 export class HomeComponent implements OnInit, OnDestroy {
   public localevars:any;
   public menu:number;
-  public newsList:any;
+  public newsList:{
+    title:string, news_date:number, link:string
+  }[];
   public rerror: number;
   
   private subLang:Subscription;

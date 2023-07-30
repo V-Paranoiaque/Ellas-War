@@ -3,7 +3,7 @@
 <div id="home-home" class="home-bg container-flexible">
   <div class="row">
     <div id="social-media-frame" role="region" 
-         *ngIf="environment.mobile == 0 && localevars.facebook"
+         *ngIf="environment.mobile === 0 && localevars.facebook"
          attr.aria-label="{{'Follow us on our Facebook Page'|translate}}">
       <div class="column"></div>
       <div class="social">
@@ -21,7 +21,7 @@
       </div>
     </div>
     
-    <div id="app-store-frame" *ngIf="environment.mobile == 0"
+    <div id="app-store-frame" *ngIf="environment.mobile === 0"
          role="region" attr.aria-label="{{'Links to the App stores'|translate}}">
       <div class="column"></div>
       <div class="apps">
@@ -69,17 +69,17 @@
       <div class="card">
         <div class="card-body card-body-zero d-flex">
           <h1 class="btn"
-              [ngClass]="{'btn-success': menu == 0,
-                          'btn-transparent fw-bold': menu == 1}"
+              [ngClass]="{'btn-success': menu === 0,
+                          'btn-transparent fw-bold': menu === 1}"
               (click)="setMenu(1)"
               translate>Connect</h1>
           <h1 class="btn"
-              [ngClass]="{'btn-transparent fw-bold': menu == 0,
-                          'btn-red': menu == 1}"
+              [ngClass]="{'btn-transparent fw-bold': menu === 0,
+                          'btn-red': menu === 1}"
               (click)="setMenu(0)"
               translate>Register</h1>
         </div>
-        <div class="card-body text-center" *ngIf="menu == 0">
+        <div class="card-body text-center" *ngIf="menu === 0">
           <div [ngSwitch]="rerror" class="text-danger text-center fw-bold" *ngIf="rerror > 0">
             <div *ngSwitchCase="1" translate>
               Please, enter your username
@@ -151,7 +151,7 @@
             </div>
           </form>
         </div>
-        <div class="card-body text-center" *ngIf="menu == 1">
+        <div class="card-body text-center" *ngIf="menu === 1">
           <form method="POST" action="/login" 
                 [formGroup]="loginForm" (ngSubmit)="onSubmitConnect(loginForm.value)">
             <fieldset>

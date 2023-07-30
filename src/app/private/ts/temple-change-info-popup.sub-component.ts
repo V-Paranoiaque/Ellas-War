@@ -12,13 +12,14 @@ import { UserComponent as User } from '../../../services/user.service';
 export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
   public temple:number;
   public templeChangeError:number;
-  public templeChangeHistory:any[];
+  public templeChangeHistory:{
+    date:number, temple_old:number, temple_new:number
+  }[];
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.temple = 0;
     this.templeChangeError = 0;
     this.templeChangeHistory = [];
-    
   }
   
   ngOnInit() {
@@ -26,10 +27,12 @@ export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
       this.templeChangeError = data;
       this.socket.emit('templeChangeHistory');
     });
-    this.socket.on('templeChangeHistory', (data) => {
+    this.socket.on('templeChangeHistory', (data:object[]) => {
       this.templeChangeHistory = [];
       for(let i in data) {
-        this.templeChangeHistory.push(data[i]);
+        this.templeChangeHistory.push(data[i] as {
+          date:number, temple_old:number, temple_new:number
+        });
       }
     });
     

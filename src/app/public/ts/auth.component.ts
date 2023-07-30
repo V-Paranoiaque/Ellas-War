@@ -27,13 +27,13 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.user.checkPermissions([0]);
     
-    let provider:any = this.route.snapshot.paramMap.get('provider');
+    let provider = this.route.snapshot.paramMap.get('provider');
     
     switch(provider) {
       case 'facebook':
         this.provider = provider;
         {
-          let fragment:any = this.route.snapshot.fragment;
+          let fragment = this.route.snapshot.fragment || '';
           let token = fragment.replace('=', '&').split("&")[1];
           this.socket.emit('mobileFB', {
             'token': token,
@@ -45,7 +45,7 @@ export class AuthComponent implements OnInit {
       case 'google':
         this.provider = provider;
         {
-          const fragment:any = this.route.snapshot.fragment;
+          const fragment = this.route.snapshot.fragment || '';
           const fragmentTab = Tools.paramToObject(fragment);
           
           const token = fragmentTab.id_token;
