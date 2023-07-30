@@ -1,11 +1,19 @@
 <app-common-top-bar active="rankingplayers"></app-common-top-bar>
 
+<div class="modal fade" id="RankingplayersHelpPopup" tabindex="-1" aria-hidden="true">
+  <app-rankingplayers-help-popup></app-rankingplayers-help-popup>
+</div>
+
 <div class="home-bg container-flexible" role="main">
   <div class="container main-full">
     <div class="row">
       <div class="card card-column">
         <div class="card-body">
-          <h1 class="text-center" id="rankingDesc" translate>Player Ranking</h1>
+          <h1 class="text-center" id="rankingDesc">
+            <span translate>Player Ranking</span>
+            <app-ic-icon  role="button" [icon]="questionCircle" class="fs-3"
+                          data-bs-toggle="modal" data-bs-target="#RankingplayersHelpPopup"></app-ic-icon>
+          </h1>
           <table class="table table-striped table-middle align-middle"
                  aria-labelledby="rankingDesc" role="grid">
             <thead>

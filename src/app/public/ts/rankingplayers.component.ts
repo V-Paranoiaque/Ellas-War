@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../../services/tools.service';
 import { UserComponent as User } from '../../../services/user.service';
 
+import questionCircle from '@iconify/icons-fa-regular/question-circle';
 import sortUP from '@iconify/icons-fa-solid/sort-up';
 
 type rankingLine = {
@@ -31,7 +32,8 @@ export class RankingPlayersComponent implements OnInit, OnDestroy {
   parseInt = parseInt;
   Tools = Tools;
   
-  sortUP = sortUP;
+  questionCircle  = questionCircle;
+  sortUP          = sortUP;
   
   constructor(private http: HttpClient, private route: ActivatedRoute, 
               private router: Router, public user: User,

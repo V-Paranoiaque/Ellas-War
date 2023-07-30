@@ -31,6 +31,8 @@ import { TAndCsComponent } from './ts/tandcs.component';
 import { TeamComponent } from './ts/team.component';
 import { TeamRecruitmentComponent } from './ts/teamrecruitment.component';
 
+import { RankingPlayersHelpPopupSubComponent } from './ts/rankingplayers-help-popup.sub-component';
+
 export const PublicComponent = [
   AuthComponent,
   ConfirmComponent,
@@ -63,5 +65,7 @@ export const PublicComponent = [
   StrategyGameComponent,
   TAndCsComponent,
   TeamComponent,
-  TeamRecruitmentComponent
+  TeamRecruitmentComponent,
+
+  RankingPlayersHelpPopupSubComponent,
 ];
