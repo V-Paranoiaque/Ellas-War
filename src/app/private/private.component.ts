@@ -50,7 +50,7 @@ import { DefenseWallPopupSubComponent } from './ts/defense-wall-popup.sub-compon
 import { DivineBonusHelpPopupSubComponent } from './ts/divinebonus-help-popup.sub-component';
 import { DivineBonusInfoPopupSubComponent } from './ts/divinebonus-info-popup.sub-component';
 import { DivineBonusListPopupSubComponent } from './ts/divinebonus-list-popup.sub-component';
-import { FirstInfoPopupSubComponent } from './ts/first-info-popup.sub-component';
+import { FirstInfoPopupSubComponent } from './ts/first-info-popup.sub-component';
 import { FuryMessageSubComponent } from './ts/fury-message.sub-component';
 import { IdToDivineBonusSubComponent } from './ts/id-to-divinebonus.sub-component';
 import { IdToRessSubComponent } from './ts/id-to-ress.sub-component';
@@ -62,6 +62,7 @@ import { MessagesPopupSubComponent } from './ts/messages-popup.sub-component';
 import { MessagesTitleSubComponent } from './ts/messages-title.sub-component';
 import { MissionsInfoPopupSubComponent } from './ts/missions-info-popup.sub-component';
 import { OptionsAccountInformationPopupSubComponent } from './ts/options-account-information-popup.sub-component';
+import { OptionsSponsoringInformationPopupSubComponent } from './ts/options-sponsoring-information-popup.sub-component';
 import { QuestsAltarSubComponent } from './ts/quests-altar.sub-component';
 import { QuestsDailySubComponent } from './ts/quests-daily.sub-component';
 import { QuestsInfoPopupSubComponent } from './ts/quests-info-popup.sub-component';
@@ -70,7 +71,7 @@ import { QuestsMissionsSubComponent } from './ts/quests-missions.sub-component';
 import { SanctuaryMessageSubComponent } from './ts/sanctuary-message.sub-component';
 import { SanctuaryStrengthHelpPopupSubComponent } from './ts/sanctuary-strength-help-popup.sub-component';
 import { SanctuaryStrengthUpdatePopupSubComponent } from './ts/sanctuary-strength-update-popup.sub-component';
-import { StoreroomHistoryPopupSubComponent } from './ts/storeroom-history-popup.sub-component';
+import { StoreroomHistoryPopupSubComponent } from './ts/storeroom-history-popup.sub-component';
 import { StoreroomSellHelpPopupSubComponent } from './ts/storeroom-sell-help-popup.sub-component';
 import { StrategiesHelpPopupSubComponent } from './ts/strategies-help-popup.sub-component';
 import { SuccessCardSubComponent } from './ts/success-card.sub-component';
@@ -152,6 +153,7 @@ export const PrivateComponent = [
   MessagesTitleSubComponent,
   MissionsInfoPopupSubComponent,
   OptionsAccountInformationPopupSubComponent,
+  OptionsSponsoringInformationPopupSubComponent,
   QuestsAltarSubComponent,
   QuestsDailySubComponent,
   QuestsInfoPopupSubComponent,

@@ -16,3 +16,8 @@
   max-width: 100px;
   width: 20%;
 }
+
+.col-logo app-ic-icon {
+  text-align: center;
+  width: 100%;
+}

@@ -128,11 +128,11 @@ export class UserComponent {
     return this.info.datas;
   }
   
-  getId() {
+  getId():number {
     return this.info.id;
   }
   
-  getLevel() {
+  getLevel():number {
     return this.info.level;
   }
   
@@ -145,7 +145,7 @@ export class UserComponent {
     }
   }
   
-  getPropertyNb(name:any) {
+  getPropertyNb(name:any):number {
     if(this.info[name]) {
       return this.info[name];
     }

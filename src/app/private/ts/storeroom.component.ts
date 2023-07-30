@@ -34,6 +34,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
   
   parseFloat = parseFloat;
+  parseInt = parseInt;
   Tools = Tools;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {

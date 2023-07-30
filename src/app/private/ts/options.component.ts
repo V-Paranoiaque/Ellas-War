@@ -4,6 +4,7 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
 
+import crown from '@iconify/icons-fa-solid/crown';
 import cog from '@iconify/icons-fa-solid/cog';
 import email from '@iconify/icons-mdi/email';
 import history from '@iconify/icons-fa-solid/history';
@@ -37,6 +38,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
   public sound: number;
   
   cog        = cog;
+  crown      = crown;
   email      = email;
   history    = history;
   idBadge    = idBadge;

@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="card-body text-center">{{ minRate }}
-              <div *ngIf="storeroomQuantity > user.getPropertyNb(Tools.getResName(storeroomRess))"
+              <div *ngIf="parseInt(storeroomQuantity) > user.getPropertyNb(Tools.getResName(storeroomRess))"
                    class="alert alert-danger" translate>
                 You don't have enough resources
               </div>

@@ -4,6 +4,10 @@
   <app-options-account-information-popup></app-options-account-information-popup>
 </div>
 
+<div class="modal fade" id="SponsoringInformation" tabindex="-1" aria-hidden="true">
+  <app-options-sponsoring-information-popup></app-options-sponsoring-information-popup>
+</div>
+
 <div class="modal fade" id="GameSettings" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -60,16 +64,16 @@
           When you pause your account, you become unassailable for a fixed term but in return your resources and those of your alliance will not increase during this period.
         </p>
         <ul>
-          <li [ngClass]="{'text-danger': user.getPropertyNb('id') == user.getPropertyNb('chief')}"
+          <li [ngClass]="{'text-danger': user.getPropertyNb('id') === user.getPropertyNb('chief')}"
               translate>The leader of an alliance cannot pause.</li>
           <li translate>You need to wait 11 hours after your last attack to use the pause feature.</li>
         </ul>
       </div>
       <div class="modal-body text-center text-danger"
-           *ngIf="pauseAllowed == 0" translate>
+           *ngIf="pauseAllowed === 0" translate>
         Your are not allowed to put your account in pause.
       </div>
-      <div class="modal-body text-center" *ngIf="pauseAllowed == 1">
+      <div class="modal-body text-center" *ngIf="pauseAllowed === 1">
         <strong translate>Between 4 and 100 days including</strong>
         <input type="number" [attr.min]="4" [attr.max]="100"
                class="form-control" [(ngModel)]="pauseNb" />
@@ -115,7 +119,7 @@
           <strong translate>Cost:</strong> {{ getAccountRenameCost() | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="10"></app-id-to-ress>
         </div>
         
-        <div *ngIf="user.getLevel() == 0"
+        <div *ngIf="user.getLevel() === 0"
              translate>From level 1 starting cost passes to one Favor</div>
         
         <div>
@@ -143,7 +147,7 @@
       </div>
       <div class="modal-body">
         <div class="alert alert-danger center"
-             *ngIf="emailError == 1" translate>
+             *ngIf="emailError === 1" translate>
           Your email is empty or invalid
         </div>
         
@@ -195,7 +199,7 @@
           </div>
         </div>
         
-        <div *ngIf="accountPasswordPossible == 1">
+        <div *ngIf="accountPasswordPossible === 1">
           <strong for="oldpassword" translate>Old password</strong>
           <input type="password" class="form-control" [(ngModel)]="oldPassword"
                  placeholder="{{'Old password'|translate}}" id="oldpassword">
@@ -270,6 +274,31 @@
             
             <div class="card-body d-flex">
               <div class="col-logo d-flex align-items-center">
+                <app-ic-icon [icon]="crown"
+                              width="100%" height="100%"></app-ic-icon>
+              </div>
+              <div class="flex-grow-1 d-flex flex-column">
+                <div class="flex-grow-1">
+                  <strong translate>Sponsorship</strong>
+                  <p *ngIf="user.getPropertyNb('sponsor') === 0 && user.getLevel() < 5" translate>
+                    Until the level 4 you can pick a sponsor, it will both give you a bonus when you reach the level 5. This player is also able to send you Drachmas to help your city.
+                  </p>
+                  <p *ngIf="user.getPropertyNb('sponsor') > 0 || user.getLevel() >= 5" translate>
+                    Share your sponsoring link, when the new player will reach the level 1 or 5 you will get a bonus. Help to the players that you have sponsored and send them Drachmas.
+                  </p>
+                </div>
+                <div class="btn btn-primary d-flex align-items-center"
+                    data-bs-toggle="modal" data-bs-target="#SponsoringInformation"
+                    role="button">
+                  <div class="flex-grow-1" translate>
+                    Sponsorship
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body d-flex">
+              <div class="col-logo d-flex align-items-center">
                 <app-ic-icon [icon]="cog"
                         width="100%" height="100%"></app-ic-icon>
               </div>
@@ -320,11 +349,11 @@
               <div class="flex-grow-1 d-flex flex-column">
                 <div class="flex-grow-1">
                   <strong translate>Username</strong>
-                  <p *ngIf="getAccountRenameCost() == 0" translate>
+                  <p *ngIf="getAccountRenameCost() === 0" translate>
                     Choose a new Username for your account. While you stay level 0, 
                     your first modification is free!
                   </p>
-                  <p *ngIf="getAccountRenameCost() == 1" translate>
+                  <p *ngIf="getAccountRenameCost() === 1" translate>
                   Choose a new Username for your account. It will cost you 1 favor.
                   </p>
                   <p *ngIf="getAccountRenameCost() > 1">
