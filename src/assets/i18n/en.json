@@ -151,7 +151,7 @@
   "Win { value } times in the javelin game": "Win {{ value }} times in the javelin game",
   "Win { value } victories": "Win {{ value }} victories",
   "Win { value } wars": "Win {{ value }} wars",
-  "Win a war with { value } bonus": "Win a war with {{ value }} bonus",
+  "Win a war with { value } Drachmas as reward": "Win a war with {{ value }} Drachmas as reward",
   "Win a war with more than { value } victories": "Win a war with more than {{ value }} victories",
   "Win the Diamond challenge { value } times": "Win the Diamond challenge {{ value }} times",
   "Win the Honnor challenge { value } times": "Win the Honnor challenge {{ value }} times",

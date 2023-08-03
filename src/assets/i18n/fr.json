@@ -1508,7 +1508,7 @@
   "Win { value } victories": "Remportez {{ value }} victoires",
   "Win { value } wars": "Gagnez {{ value }} guerres",
   "Win 1 war": "Gagner une guerre",
-  "Win a war with { value } bonus": "Gagner une guerre avec {{ value }} de bonus",
+  "Win a war with { value } Drachmas as reward": "Gagner une guerre avec {{ value }} drachmes de récompense",
   "Win a war with more than { value } victories": "Gagner une guerre avec plus de {{ value }} victoires",
   "Win the Diamond challenge": "Remportez le concours du Diamant",
   "Win the Diamond challenge { value } times": "Remportez le concours du Diamant  {{ value }} fois",
