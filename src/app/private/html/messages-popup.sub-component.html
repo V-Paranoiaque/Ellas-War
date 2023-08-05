@@ -15,9 +15,9 @@
         <span class="input-group-text" translate>To: </span>
         <input type="text" class="form-control" aria-label="Player" 
                placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
-               (keydown.enter)="addDest(msgToUser)" >
+               (keydown.enter)="addDestGUi(msgToUser)" >
         <span class="input-group-text text-center" role="button" 
-              (click)="addDest(msgToUser)">
+              (click)="addDestGUi(msgToUser)">
           <app-ic-icon [icon]="plusIcon"></app-ic-icon>
         </span>
       </div>

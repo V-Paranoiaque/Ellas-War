@@ -95,7 +95,7 @@
                       title="{{'Switch to delete mode'| translate}}">
                 <app-ic-icon [icon]="trashIcon"></app-ic-icon>
               </button>
-              <button [ngClass]="{'d-none': getDeleteMode() == 0}"
+              <button [ngClass]="{'d-none': getDeleteMode() === 0}"
                       title="{{'Delete all the selected messages'| translate}}"
                       class="btn btn-danger" data-bs-toggle="modal" 
                       data-bs-target="#DeleteMultipleMsg">
@@ -107,10 +107,23 @@
               <div class="text-center mt-2 mb-2" *ngIf="getMsgList().length === 0" translate>
                 Your message box is empty
               </div>
+              <select class="form-select mb-2" *ngIf="categoryList.length > 1"
+                      (change)="setPage(1)" [(ngModel)]="currentCategory">
+                <option value="0" translate>All the messages</option>
+                <option value="2" *ngIf="categoryList.includes(2)" translate>Private messages</option>
+                <option value="3" *ngIf="categoryList.includes(3)" translate>Alliance</option>
+                <option value="4" *ngIf="categoryList.includes(4)" translate>Attacks</option>
+                <option value="1" *ngIf="categoryList.includes(1)" translate>Spying</option>
+                <option value="5" *ngIf="categoryList.includes(5)" translate>Weather incidents</option>
+                <option value="6" *ngIf="categoryList.includes(6)" translate>Agora</option>
+                <option value="7" *ngIf="categoryList.includes(7)" translate>Sanctuaries</option>
+                <option value="8" *ngIf="categoryList.includes(8)" translate>Game messages</option>
+                <option value="9" *ngIf="categoryList.includes(9)" translate>Others</option>
+              </select>
               <div *ngFor="let msg of getMsgList()" class="d-flex bd-highlight"
-                  [ngClass]="{'selected': msg.msg_id == getCurrentMsg().id, 'new': msg.msg_read == 0}"
+                  [ngClass]="{'selected': msg.msg_id === getCurrentMsg().id, 'new': msg.msg_read === 0}"
                   role="button" (click)="messageLoad(msg)">
-                <div class="p-2 bd-highlight border-top d-flex" *ngIf="getDeleteMode() == 1">
+                <div class="p-2 bd-highlight border-top d-flex" *ngIf="getDeleteMode() === 1">
                   <input type="checkbox" [checked]="msg.isChecked" 
                         [(ngModel)]="msg.isChecked" />
                 </div>
@@ -157,9 +170,9 @@
                 </button>
               </h2>
             </div>
-            <div *ngIf="getCurrentMsg().msg_shared == 1" class="card-body text-center">
+            <div *ngIf="getCurrentMsg().msg_shared === 1" class="card-body text-center">
               <div class="wg-bold text-danger"
-                  *ngIf="linkSaved == 1"
+                  *ngIf="linkSaved === 1"
                   translate>Link saved to clipboard</div>
               <strong translate>Share link:</strong>
               {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().id }}
@@ -170,7 +183,7 @@
               </span>
             </div>
             
-            <div class="card-body" *ngIf="getCurrentMsg().msg_type == 0">
+            <div class="card-body" *ngIf="getCurrentMsg().msg_type === 0">
               <div class="input-group">
                 <textarea class="form-control" placeholder="{{'Message'|translate}}"
                           [(ngModel)]="answerText"></textarea>
@@ -185,7 +198,7 @@
         </div>
         
         <div class="col-xl-6 col-block-half text-center d-none d-lg-flex flex-grow-1"
-             *ngIf="getCurrentMsg().id == 0">
+             *ngIf="getCurrentMsg().id === 0">
           <div class="card card-normal d-flex flex-grow-1">
             <div class="card-body d-flex flex-column">
               <div class="alert alert-success" *ngIf="msgSent > 0" translate>
@@ -204,9 +217,9 @@
                 <span class="input-group-text" translate>To: </span>
                 <input type="text" class="form-control" aria-label="Player" 
                       placeholder="{{'Player'|translate}}" [(ngModel)]="msgToUser"
-                      (keydown.enter)="addDest(msgToUser)" >
+                      (keydown.enter)="addDestGUi(msgToUser)" >
                 <span class="input-group-text text-center" role="button" 
-                      (click)="addDest(msgToUser)">
+                      (click)="addDestGUi(msgToUser)">
                   <app-ic-icon [icon]="plusIcon"></app-ic-icon>
                 </span>
               </div>

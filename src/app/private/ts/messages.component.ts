@@ -29,15 +29,31 @@ export class MessagesComponent implements OnInit, OnDestroy {
   public msgToUser: string;
   public msgTitle: string;
   public msgText: string;
+  public categoryList:number[];
   
-  private currentCategory: number;
-  private msgList: any;
+  public currentCategory: number;
+  private msgList: {
+    msg_id: number,
+    msg_read: number,
+    mb_list: {id: number, username: string}[],
+    last_date: number,
+    msg_shared: number,
+    msg_type: number,
+    isChecked: number
+  }[];
   private msgPageNb: number;
-  private currentMsg: any;
+  private currentMsg: {
+    id: number,
+    content: string,
+    msg_type: number,
+    msg_shared: number,
+    url: string,
+    msg: object[]
+  };
   private deleteMode: number;
-  private destList: any;
+  private destList: {id:number, username:string}[];
   private sub:Subscription;
-  private subMsg:any;
+  private subMsg:Subscription;
   
   //Icons
   brushIcon    = brushIcon;
@@ -61,16 +77,21 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.msgText = '';
     
     this.currentCategory = 0;
+    this.categoryList = []
     this.msgList = [];
     this.msgPageNb = 1;
     this.currentMsg = {
       id: 0,
       content: '',
-      msg_type: 0
+      msg_type: 0,
+      msg_shared: 0,
+      url: '',
+      msg: []
     };
     this.deleteMode = 0;
     this.destList = [];
-    this.sub = new Subscription();
+    this.sub    = new Subscription();
+    this.subMsg = new Subscription();
   }
   
   ngOnInit() {
@@ -79,10 +100,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.subMsg = this.socket.onChange.subscribe({
       next: (event: any) => {
         if(event.action == 'addDest') {
-          this.addDest(event.username);
+          this.addDestGUi(event.username);
         }
       }
     })
+
+    this.socket.on('msgCategoryList', (categoryList) => {
+      this.categoryList = categoryList;
+    });
     
     this.socket.on('msgPage', (newMsgList) => {
       for(let i in newMsgList.list) {
@@ -109,12 +134,15 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.socket.on('msgRefresh', () => {
       this.setPage(this.currentPage);
       this.messageLoad({'msg_id': this.currentMsg.id});
+      this.socket.emit('msgCategoryList')
     });
     
     this.setPage(this.currentPage);
+    this.socket.emit('msgCategoryList')
   }
   
   ngOnDestroy() {
+    this.socket.removeListener('msgCategoryList');
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
     this.socket.removeListener('msgRefresh');
@@ -125,13 +153,17 @@ export class MessagesComponent implements OnInit, OnDestroy {
       this.subMsg.unsubscribe();
     }
   }
+
+  addDestGUi(username:string) {
+    this.addDest(username, () => {
+      return;
+    })
+  }
   
-  addDest(username:string, callback:any=null) {
+  addDest(username:string, callback:() => void) {
     this.addDestError = 0;
     if(username.length === 0) {
-      if(callback) {
-        callback();
-      }
+      callback();
       return;
     }
     
@@ -139,7 +171,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     
     this.sub = this.http.get(url).subscribe((result) => {
       const res = result as { membre_id:number, username:string}
-      if(res && res.membre_id) {
+      if(res?.membre_id) {
         this.removeDest(res.membre_id);
         this.destList.push({
           'id': res.membre_id,
@@ -150,9 +182,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.addDestError = 1;
       }
       
-      if(callback) {
-        callback();
-      }
+      callback();
     });
     
     this.msgToUser = '';
@@ -209,7 +239,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
       this.currentMsg = {
         id: 0,
         content: '',
-        msg_type: 0
+        msg_type: 0,
+        msg_shared: 0,
+        url: '',
+        msg: []
       };
       
       //Reinit inputs
@@ -257,7 +290,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   removeDest(id:number) {
     for(let i in this.destList) {
       if(this.destList[i].id == id) {
-        this.destList.splice(i, 1); 
+        this.destList.splice(parseInt(i), 1); 
       }
     }
   }
