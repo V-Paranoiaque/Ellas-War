@@ -21,7 +21,8 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
     list: {
       result:number, defender:number, offender:number, attacking:number,
       ausername:string, dusername:string, time:number,
-    }[]
+    }[],
+    reward: number
   };
   
   shieldShaded = shieldShaded;
@@ -31,7 +32,8 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
     this.warInfo = {
       end: 0,
       time: 0,
-      list: []
+      list: [],
+      reward: 0
     };
   }
   

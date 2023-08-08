@@ -30,6 +30,11 @@
       <strong translate>:</strong>
       {{warInfo.end*1000| date:'dd/MM, HH:mm'}}
     </div>
+    <div *ngIf="warInfo.reward">
+      <strong translate>Reward</strong>
+      <strong translate>:</strong>
+      {{ warInfo.reward | number:'': this.translate.currentLang }} <app-id-to-ress ress_id="drachma"></app-id-to-ress>
+    </div>
   </div>
   <div class="modal-body container-fluid" *ngIf="warInfo.list.length > 0">
     <table class="table table-middle table-striped" aria-labelledby="warDesc">
