@@ -319,3 +319,17 @@
 * Limit low prices on the agora
 * Missing translations
 * Units that shouldn't fight were going to the battlefield
+
+# 1.3.8
+* Fixing on the Agora's history
+* Fixing on the XP
+* Minor fixing on display
+* New help popups
+* New sponsorship system
+* You when loose less building when you have a defense
+
+# 1.3.9
+* Fixes in the messages
+* Dropdown to sort messages
+* Minimum war reward is now 1 000 000 Drachmas
+* War rewwards is shared depending of victories
