@@ -1,3 +1,4 @@
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from "@angular/common";
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +23,8 @@ import xIcon from '@iconify/icons-bi/x';
 
 export class MessagesComponent implements OnInit, OnDestroy {
   public addDestError: number;
+  public noDestError:number;
+  public textError
   public answerText: string;
   public currentPage: number;
   public linkSaved: number;
@@ -66,8 +69,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   xIcon        = xIcon;
   
   constructor(protected http: HttpClient, public user: User, protected socket: Socket,
-              public translate: TranslateService, private scroller: ViewportScroller) {
+              public translate: TranslateService, protected scroller: ViewportScroller) {
     this.addDestError = 0;
+    this.noDestError = 0;
+    this.textError = 0;
     this.answerText = '';
     this.currentPage = 1;
     this.linkSaved = 0;
@@ -154,15 +159,18 @@ export class MessagesComponent implements OnInit, OnDestroy {
     }
   }
 
-  addDestGUi(username:string) {
+  addDestGUi(username:number|string) {
     this.addDest(username, () => {
       return;
     })
   }
   
-  addDest(username:string, callback:() => void) {
+  addDest(username:number|string, callback:() => void) {
     this.addDestError = 0;
-    if(username.length === 0) {
+    this.noDestError = 0;
+    this.textError = 0;
+    if(typeof username === 'string' && username.length === 0 ||
+      typeof username === 'number' && username === 0) {
       callback();
       return;
     }
@@ -170,7 +178,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     let url = this.socket.url+'/api/playerProfile/'+username+'.json';
     
     this.sub = this.http.get(url).subscribe((result) => {
-      const res = result as { membre_id:number, username:string}
+      const res = result as { membre_id:number, username:string};
       if(res?.membre_id) {
         this.removeDest(res.membre_id);
         this.destList.push({
@@ -178,7 +186,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
           'username': res.username
         });
       }
-      else if(!callback) {
+      else {
         this.addDestError = 1;
       }
       
@@ -294,19 +302,30 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  reinitDest() {
+    this.destList = [];
+  }
   
   send() {
+    this.noDestError = 0;
+    this.textError = 0;
     this.addDest(this.msgToUser, () => {
       let list = new Array();
       for(let i in this.destList){
         list.push(this.destList[i].id)
       }
+
+      if(list.length === 0) {
+        this.noDestError = 1;
+        return;
+      }
       
       if(this.msgTitle && this.msgText) {
-        let title  = this.msgTitle.trim();
-        let content= this.msgText.trim();
+        let title   = this.msgTitle.trim();
+        let content = this.msgText.trim();
         
-        if(title.length > 0 && content.length > 0 && list.length > 0) {
+        if(title.length > 0 && content.length > 0) {
           let msg = {
             'list': list,
             'title': title,
@@ -318,6 +337,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
           this.destList = [];
           this.msgSent = 1;
         }
+      }
+      else {
+        this.textError = 1;
       }
     });
   }

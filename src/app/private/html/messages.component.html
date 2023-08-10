@@ -225,6 +225,10 @@
               </div>
               <div *ngIf="addDestError > 0" class="alert alert-danger"
                   translate>This player doesn't exist</div>
+              <div *ngIf="addDestError === 0 && noDestError > 0" class="alert alert-danger"
+                  translate>You must add a recipient</div>
+              <div *ngIf="textError === 1" class="alert alert-danger"
+                  translate>Your message or its title is empty</div>
               <input type="text" class="form-control" 
                     placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
               

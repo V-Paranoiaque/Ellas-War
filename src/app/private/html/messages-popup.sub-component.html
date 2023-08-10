@@ -6,6 +6,9 @@
               aria-label="Close"></button>
     </div>
     <div class="modal-body">
+      <div class="alert alert-success" *ngIf="msgSent > 0" translate>
+        Message sent
+      </div>
       <span class="badge bg-primary" *ngFor="let user of getDestList()">
         {{ user.username }}
         <app-ic-icon [icon]="xIcon" role="button" (click)="removeDest(user.id)"></app-ic-icon>
@@ -23,8 +26,12 @@
       </div>
       <div *ngIf="addDestError > 0" class="alert alert-danger"
            translate>This player doesn't exist</div>
+      <div *ngIf="addDestError === 0 && noDestError > 0" class="alert alert-danger"
+           translate>You must add a recipient</div>
     </div>
     <div class="modal-body">
+      <div *ngIf="textError === 1" class="alert alert-danger"
+           translate>Your message or its title is empty</div>
       <input type="text" class="form-control" 
              placeholder="{{'Title'|translate}}" [(ngModel)]="msgTitle" />
       <br/>
@@ -37,8 +44,7 @@
       <button type="button" class="btn btn-secondary" 
               data-bs-dismiss="modal" translate>Close</button>
       <button type="button" class="btn btn-primary"
-              (click)="send()"
-              data-bs-dismiss="modal" translate>Confirm</button>
+              (click)="send()" translate>Confirm</button>
     </div>
   </div>
 </div>

@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     
     this.subPlayer = this.http.get(url).subscribe((resPlayer:object) => {
       const player = resPlayer as profile;
-      if(player && player.membre_id) {
+      if(player?.membre_id) {
         this.profile = player;
         
         this.subTitle = this.translate.get('Player profile:').subscribe((res: string) => {
