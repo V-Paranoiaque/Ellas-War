@@ -13,7 +13,11 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 
 export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
   
-  @Input() info:any;
+  @Input() info!:{
+    alliance_attacking:number, name_attacking:string, win_attacking:number,
+    alliance_defender:number, name_defender:string, win_defender:number,
+    begin:number, time:number
+  };
   
   public warInfo:{
     end:number,

@@ -1,10 +1,10 @@
 <div class="modal-content">
   <div class="modal-header" id="warDesc">
-    <h5 *ngIf="info.alliance_attacking == user.getPropertyNb('alliance')"
+    <h5 *ngIf="info.alliance_attacking === user.getPropertyNb('alliance')"
         class="modal-title">
       {{'Against { value }' | translate: { value: info.name_defender } }}
     </h5>
-    <h5 *ngIf="info.alliance_attacking != user.getPropertyNb('alliance')"
+    <h5 *ngIf="info.alliance_attacking !== user.getPropertyNb('alliance')"
         class="modal-title">
       {{'Against { value }' | translate: { value: info.name_attacking } }}
     </h5>
@@ -17,13 +17,13 @@
   </div>
   
   <div *ngIf="user.getId() > 0"
-       class="modal-body container-fluid text-center fw-bold" translate>
-    {{'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'| translate:
-      { value: user.getDatas().war.victory, value2: user.getDatas().war.diff } }}
-    <br/>
+       class="modal-body container-fluid text-center">
     <strong translate>Goal</strong>
     <strong translate>:</strong>
     {{ warVictory() }} <span translate>Victories</span>
+    <br/>
+    {{'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'| translate:
+    { value: user.getDatas().war.victory, value2: user.getDatas().war.diff } }}
     <br/>
     <div *ngIf="warInfo.end">
       <strong translate>End of time</strong>
@@ -31,9 +31,13 @@
       {{warInfo.end*1000| date:'dd/MM, HH:mm'}}
     </div>
     <div *ngIf="warInfo.reward">
+      <br/>
       <strong translate>Reward</strong>
       <strong translate>:</strong>
       {{ warInfo.reward | number:'': this.translate.currentLang }} <app-id-to-ress ress_id="drachma"></app-id-to-ress>
+      <div translate>
+        The reward is shared in proportion to everyone's victories.
+      </div>
     </div>
   </div>
   <div class="modal-body container-fluid" *ngIf="warInfo.list.length > 0">
@@ -47,16 +51,16 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of warInfo.list"
-          [ngClass]="{'bg-danger': p.defender == p.result}">
+          [ngClass]="{'bg-danger': p.defender === p.result}">
         <td>
-          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender == 1"></app-ic-icon>
-          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender == 0"></app-ic-icon>&nbsp;
+          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender === 1"></app-ic-icon>
+          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender === 0"></app-ic-icon>&nbsp;
           <a [routerLink]="['/profile/'+p.attacking]"
              data-bs-dismiss="modal">{{p.ausername}}</a>
         </td>
         <td>
-          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender == 0"></app-ic-icon>
-          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender == 1"></app-ic-icon>&nbsp;
+          <app-ic-icon [icon]="swordIcon" *ngIf="p.offender === 0"></app-ic-icon>
+          <app-ic-icon [icon]="shieldShaded" *ngIf="p.offender === 1"></app-ic-icon>&nbsp;
           <a [routerLink]="['/profile/'+p.defender]"
              data-bs-dismiss="modal">{{p.dusername}}</a>
         </td>

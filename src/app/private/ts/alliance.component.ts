@@ -26,14 +26,22 @@ export class AllianceComponent implements OnInit, OnDestroy {
   public allowLeave:any;
   public myAllianceMembers:any;
   public myAllianceProfile:any;
-  public myAllianceWar:any;
+  public myAllianceWar:{
+    alliance_attacking:number, name_attacking:string, win_attacking:number,
+    alliance_defender:number, name_defender:string, win_defender:number,
+    begin:number, time:number
+  }[];
   public myAllianceWaitList:any;
   public myAllianceWaitNb = 0;
   public pactList:any;
   public ressList:any;
   public selectedPlayer:any;
   public selectedRequest:any;
-  public selectedWar:any;
+  public selectedWar = {
+    alliance_attacking: 0, name_attacking: '', win_attacking: 0,
+    alliance_defender: 0, name_defender: '', win_defender: 0,
+    begin: 0, time: 0
+  };
   public taxes:any;
   public legend = {
     paused: 0,
@@ -60,7 +68,6 @@ export class AllianceComponent implements OnInit, OnDestroy {
     this.ressList = environment.resources;
     this.selectedPlayer = {};
     this.selectedRequest = {};
-    this.selectedWar = {};
     this.taxes = {};
   }
   
@@ -195,12 +202,11 @@ export class AllianceComponent implements OnInit, OnDestroy {
     }
   }
   
-  warSelect(war:any) {
-    this.selectedWar = war;
-    
+  warSelect(war:object) {
+    this.selectedWar = war as typeof this.selectedWar;
     this.socket.emit('myAllianceWarHistory', {
-      attacking: war.alliance_attacking,
-      defender: war.alliance_defender
+      attacking: this.selectedWar.alliance_attacking,
+      defender: this.selectedWar.alliance_defender
     });
   }
 }

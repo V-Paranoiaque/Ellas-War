@@ -387,14 +387,14 @@
                               {{ w.name_attacking }}
                             </a>
                           </div>
-                          <div *ngIf="w.begin == 1"
+                          <div *ngIf="w.begin === 1"
                               class="p-2 fw-light">{{w.win_attacking}}</div>
                         </div>
-                        <div *ngIf="w.begin == 1"
+                        <div *ngIf="w.begin === 1"
                             class="p-2 ps-sm-0 pe-sm-0 d-none d-sm-block fw-light">
                           -
                         </div>
-                        <div *ngIf="w.begin == 0"
+                        <div *ngIf="w.begin === 0"
                             class="flex-fill text-center fw-light">
                           {{w.time*1000| date:'dd/MM, HH:mm'}}
                         </div>
@@ -404,13 +404,13 @@
                               {{ w.name_defender }}
                             </a>
                           </div>
-                          <div *ngIf="w.begin == 1"
+                          <div *ngIf="w.begin === 1"
                               class="order-sm-1 p-2 fw-light">{{w.win_defender}}</div>
                         </div>
                       </div>
                       <div class="p-2">
                         <button class="btn btn-primary" title="{{'Archives'|translate}}"
-                                *ngIf="w.begin == 1" (click)="warSelect(w)"
+                                *ngIf="w.begin === 1" (click)="warSelect(w)"
                                 data-bs-toggle="modal" data-bs-target="#AllianceWarArchives" >
                           <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
                           <span class="visually-hidden" translate>Archives</span>
