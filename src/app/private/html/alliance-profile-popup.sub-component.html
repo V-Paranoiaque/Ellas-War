@@ -16,7 +16,7 @@
                [(ngModel)]="image" />
       </div>
       
-      <div *ngIf="errorProfileSave == 1"
+      <div *ngIf="errorProfileSave === 1"
            class="text-center fw-bold text-danger" translate>
         Information saved
       </div>
@@ -25,6 +25,7 @@
       <textarea class="form-control" placeholder="{{'Alliance\'s description'|translate}}"
                 [(ngModel)]="allianceProfile.description" ></textarea>
       <br/>
+      <div class="text-center" [innerHTML]="'You can request a private Discord channel from an Administrator or using the support page.' | translate : { value: environment.discord } "></div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary"

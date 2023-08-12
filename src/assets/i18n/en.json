@@ -160,6 +160,7 @@
   "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
   "You can do more attacks using a Favor.": "You can do more attacks using <a href=\"/favors\" ui-sref=\"favors\">a Favor</a>.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
+  "You can request a private Discord channel from an Administrator or using the support page.": "You can request a <a href=\"{{ value }}\" target=\"_blank\">private Discord channel from an Administrator</a> or using <a href=\"support\" ui-sref=\"support\">the support page</a>.",
   "You can't eject { value } from the alliance": "You can't eject {{ value }} from the alliance",
   "You can't have more than { value } { name }": "You can't have more than {{ value }} {{ name }}",
   "You can't have more than { value } buildings of this type": "You can't have more than {{ value }} buildings of this type",

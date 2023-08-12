@@ -1566,6 +1566,7 @@
   "You can not destroy a home who is used": "Vous ne pouvez pas détruire un logement utilisé",
   "You can now go level 1. Before doing so, a few tips from an old warrior:": "Vous pouvez passer maintenant niveau 1. Avant de le faire, quelques conseils de la part d'un vieux guerrier :",
   "You can now go level { value }.": "Vous pouvez passer maintenant au niveau {{ value }}.",
+  "You can request a private Discord channel from an Administrator or using the support page.": "Vous pouvez demander un <a href=\"{{ value }}\" target=\"_blank\">canal Discord privé à un administrateur</a> ou en utilisant <a href=\"support\" ui-sref=\"support\">la page de contact</a>.",
   "You can spy on your enemies with the oracle of the Apollo's temple.":"Vous pourrez espionner vos ennemis grâce à l'oracle de son temple. ",
   "You can't attack a player that your alliance has a pact with": "Vous ne pouvez pas attaquer un joueur dont l'alliance a un pacte avec la votre",
   "You can't attack a player who is in the same alliance than you": "Vous ne pouvez pas attaquer un joueur qui est dans la même alliance que vous",

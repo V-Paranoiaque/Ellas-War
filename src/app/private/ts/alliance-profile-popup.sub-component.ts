@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../../services/user.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-alliance-profile-popup',
@@ -14,21 +15,26 @@ export class AllianceProfilePopupSubComponent {
   
   public description:string;
   public errorProfileSave:number;
-  public image:any;
-  public imageProfile:any;
+  public image:string;
+  public imageProfile:string;
+
+  environment = environment;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.description = '';
     this.errorProfileSave = 0;
     this.imageProfile = '';
+    this.image = '';
   }
   
-  uploadImage(event:any){
-    if (event.target.files && event.target.files[0]) {
+  uploadImage(event: Event){
+    const files = (event?.target as HTMLInputElement)?.files
+    
+    if(files && files[0]) {
       let reader = new FileReader();
-      let name = event.target.files[0].name;
+      let name = files[0].name;
       
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(files[0]);
       reader.onload = (event2:any) => {
         let playerImage = {
           'name': name,
