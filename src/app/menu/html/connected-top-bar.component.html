@@ -37,10 +37,10 @@
                                          user.getPropertyNb('altar_available') > 0 }"
              translate>Quests</a>
         </li>
-        <li class="nav-item" *ngIf="this.user.getLevel() > 1">
+        <li class="nav-item" *ngIf="this.user.getLevel() >= 1">
           <a class="nav-link" [routerLink]="['/diplomacy']"
              [ngClass]="{'active': active === 'diplomacy'}"
-             *ngIf="user.getPropertyNb('alliance') == 0"
+             *ngIf="user.getPropertyNb('alliance') === 0"
              translate>Alliance</a>
           <a class="nav-link" [routerLink]="['/alliance']"
              [ngClass]="{'active': active === 'alliance'}"
