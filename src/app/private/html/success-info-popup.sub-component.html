@@ -843,6 +843,12 @@
                   text="{{'Connect the day of the 9th anniversary of the game.'}"
                   point="1">
     </app-success-card>
+    <app-success-card *ngIf="listDisplay[136] > 0"
+                  [ngClass]="{'text-secondary': listDisplay[136] == 1}"
+                  title="{{'Perfect wedding'|translate}}"
+                  text="{{'Connect the day of the anniversary of the game.'}"
+                  point="1">
+    </app-success-card>
     
     <app-success-card *ngIf="listDisplay[132] > 0"
                   [ngClass]="{'text-secondary': listDisplay[132] == 1}"
