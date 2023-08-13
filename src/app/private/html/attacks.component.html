@@ -458,17 +458,23 @@
                           <br/>
                           <strong translate>Power</strong>
                           <strong translate>:</strong>
-                          <span *ngIf="sanctuary.sanctuaries_id == 1" translate>
-                            Your city is protected against the fury of Demeter
-                          </span>
-                          <span *ngIf="sanctuary.sanctuaries_id == 2" translate>
-                            The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
-                          </span>
-                          <span *ngIf="sanctuary.sanctuaries_id == 3" translate>
-                            Your city produces 24 additional Ambrosia a day
-                          </span>
-                          <span *ngIf="sanctuary.sanctuaries_id == 4" translate>
-                            Your city is protected against the Zeus lightning
+                          <span [ngSwitch]="sanctuary.sanctuaries_id">
+                            <span *ngSwitchCase="1" translate>
+                              Your city is protected against the fury of Demeter
+                            </span>
+                            <span *ngSwitchCase="2" translate>
+                              The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
+                            </span>
+                            <span *ngSwitchCase="3" translate>
+                              Your city produces 24 additional Ambrosia a day
+                            </span>
+                            <span *ngSwitchCase="4" translate>
+                              Your city is protected against the Zeus lightning
+                            </span>
+                            <span *ngSwitchCase="5" translate>
+                              Typhon will help you to protect your city against the effects of the weather
+                            </span>
+                            <span *ngSwitchDefault>TODO</span>
                           </span>
                         </p>
                       </div>
@@ -1159,17 +1165,23 @@
             
             <!-- Sanctuary info -->
             <div class="card-body" *ngIf="attackMode == 12" id="sanctuaryInfoBlock">
-              <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 1" translate>
-                Your city is protected against the fury of Demeter
-              </div>
-              <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 2" translate>
-                The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
-              </div>
-              <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 3" translate>
-                Your city produces 24 additional Ambrosia a day
-              </div>
-              <div class="text-center" *ngIf="sanctuariesInfo.sanctuaries_id == 4" translate>
-                Your city is protected against the Zeus lightning
+              <div [ngSwitch]="sanctuariesInfo.sanctuaries_id" class="text-center">
+                <span *ngSwitchCase="1" translate>
+                  Your city is protected against the fury of Demeter
+                </span>
+                <span *ngSwitchCase="2" translate>
+                  The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city
+                </span>
+                <span *ngSwitchCase="3" translate>
+                  Your city produces 24 additional Ambrosia a day
+                </span>
+                <span *ngSwitchCase="4" translate>
+                  Your city is protected against the Zeus lightning
+                </span>
+                <span *ngSwitchCase="5" translate>
+                  Typhon will help you to protect your city against the effects of the weather
+                </span>
+                <span *ngSwitchDefault>TODO</span>
               </div>
               <div class="text-center">
                 <strong translate>Victories</strong>
