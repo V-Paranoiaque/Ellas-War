@@ -44,12 +44,22 @@
             <div class="card-body">
               <div class="text-center fw-bold text-danger"
                   *ngIf="user.info.datas && user.info.datas.alliance && 
-                          user.getPropertyNb('alliance') == 0 && 
+                          user.getPropertyNb('alliance') === 0 && 
                           user.getPropertyNb('level') >= user.info.datas.alliance.create">
                 <a data-bs-toggle="modal" data-bs-target="#AllianceCreate" role="button" translate>
                   Create an alliance
                 </a>
                 <br/>
+              </div>
+              <div class="text-center" *ngIf="allianceList.length > 0">
+                <div translate>
+                  Need help to find an alliance?
+                </div>
+                <span translate>Join us on Discord</span>&nbsp;
+                <a href="{{ environment.discord }}" target="_blank" id="discord"
+                  rel="external nofollow noopener" class="btn" role="tab">
+                  <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
+                </a>
               </div>
               
               <div *ngIf="allianceWait && allianceWait.alliance_name" class="text-center text-danger"><br/>
@@ -136,7 +146,7 @@
                         </span>
                       </a>
                       
-                      <a class="btn btn-success" *ngIf="user.getPropertyNb('alliance') == 0"
+                      <a class="btn btn-success" *ngIf="user.getPropertyNb('alliance') === 0"
                         title="{{'Join the alliance:'|translate}} {{alli.alliance_name}}"
                         data-bs-toggle="modal" data-bs-target="#AllianceJoin"
                         (click)="setAlliance(alli)"

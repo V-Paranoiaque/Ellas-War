@@ -5,7 +5,9 @@ import { SocketComponent as Socket } from '../../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../../services/user.service';
+import { environment } from './../../../environments/environment';
 
+import discordIcon from '@iconify-icons/logos/discord-icon';
 import fileAlt from '@iconify/icons-fa-solid/file-alt';
 import flag from '@iconify/icons-fa-solid/flag';
 import questionCircle from '@iconify/icons-fa-regular/question-circle';
@@ -25,12 +27,15 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   public order:string;
   private sub:Subscription;
   
-  fileAlt  = fileAlt;
-  flag     = flag;
+  environment = environment;
+
+  discordIcon = discordIcon;
+  fileAlt     = fileAlt;
+  flag        = flag;
   questionCircle = questionCircle;
-  swordIcon= swordIcon;
-  userPlus = userPlus;
-  users    = users;
+  swordIcon   = swordIcon;
+  userPlus    = userPlus;
+  users       = users;
   
   constructor(private router: Router, private http: HttpClient, private socket: Socket, public user: User, public translate: TranslateService) {
     this.allianceList = '';
