@@ -194,6 +194,12 @@
                                   description="{{ 'Scratch { value } winning tickets' | translate: { value: quest.quest_goal } }}"
                                   [quest]="quest"
                                   link="tickets"></app-quests-daily>
+                    
+                    <app-quests-daily *ngSwitchCase="17" class="flex-grow-1 d-flex flex-column"
+                                  subject="{{'Loyal member'|translate}}"
+                                  description="{{ 'Connect { value } days in a row' | translate: { value: quest.quest_goal } }}"
+                                  [quest]="quest"
+                                  link="city"></app-quests-daily>
                   </div>
                 </div>
               </div>

@@ -310,6 +310,7 @@
   "Complete at least one quest per day. After 7 days, you will be able to obtain the reward contained in the chest.": "Validez au moins une quêtes par jour. Au bout de 7 jours, vous pourrez obtenir la récompense contenue dans le coffre.",
   "Confirm": "Confirmer",
   "Confirmation": "Confirmation",
+  "Connect { value } days in a row": "Se Connecter {{ value }} jours d'affilée",
   "Connect every day for { value } days.": "Se connecter tous les jours pendant {{ value }} jours.",
   "Connected players on the Ancient Greece": "Joueurs connectés à la Grèce Antique",
   "Conquest { value } sanctuaries": "Remportez {{ value }} sanctuaires",
@@ -816,6 +817,7 @@
   "Lots solded": "Lots vendus",
   "Lots still on sale": "Lots toujours en vente",
   "Lover of Aphrodite": "Amant d'Aphrodite",
+  "Loyal member": "Membre fidèle",
   "Luxurious": "Luxueuses",
   
   "m": "m",

@@ -38,6 +38,7 @@
   "By { value }": "By {{ value }}",
   
   "Candidate to join { value }": "Candidate to join {{ value }}",
+  "Connect { value } days in a row": "Connect {{ value }} days in a row",
   "Connect every day for { value } days.": "Connect every day for {{ value }} days.",
   "Conquest { value } sanctuaries": "Conquest {{ value }} sanctuaries",
   "Construct { value } buildings": "Construct {{ value }} buildings",
