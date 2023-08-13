@@ -135,7 +135,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     }
   }
   
-  supportPageChange(page:any) {
+  supportPageChange(page:number) {
     if(!page || page < 1) {
       page = 1;
     }

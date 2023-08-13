@@ -48,8 +48,8 @@ export class AdminEmailsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminEmailModification', id);
   }
   
-  pageLoad(event:any) {
-    this.getPage(event.target.value);
+  pageLoad(event:Event) {
+    const page = (event?.target as HTMLInputElement)?.value
+    this.getPage(parseInt(page));
   }
 }
-  
