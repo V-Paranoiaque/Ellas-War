@@ -15,7 +15,11 @@ export class QuestsDailySubComponent {
   @Input()
   description:string;
   @Input()
-  quest:any;
+  quest!:{
+    quest_id: number, reward_ress:string, reward_quantity:number,
+    quest_validated: number, quest_current:number, quest_goal:number,
+    quest_reward: number
+  };
   @Input()
   link:string;
   
@@ -28,13 +32,20 @@ export class QuestsDailySubComponent {
     this.link = '';
   }
   
-  myQuestValidate(id:number) {
-    this.socket.emit('myQuestValidate', id);
+  myQuestValidate(quest:{quest_id:number, quest_current:number, quest_reward:number}) {
+    this.socket.emit('myQuestValidate', {
+      'quest_id': quest.quest_id,
+      'quest_reward': quest.quest_reward
+    });
   }
   promptQuestAbandon() {
     this.showDelete = (this.showDelete+1)%2;
   }
-  questGiveup(quest:{quest_id:number, quest_current:number, quest_reward:number}) {
+  questGiveup(quest:{
+    quest_id: number, reward_ress:string, reward_quantity:number,
+    quest_validated: number, quest_current:number, quest_goal:number,
+    quest_reward: number
+  }) {
     this.socket.emit('myQuestGiveup', {
       'quest_id': quest.quest_id,
       'quest_current': quest.quest_current,
