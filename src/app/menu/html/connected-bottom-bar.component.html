@@ -1,6 +1,31 @@
 <div class="chat-text" *ngIf="chatActive !== ''">
-  <div class="chat-general row" *ngIf="chatActive === 'general'">
-    <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatGeneral>
+  <div class="row d-md-none">
+    <div class="col-12 chat-shortcut text-end">
+      <app-ic-icon [icon]="comments" role="button"
+              *ngIf="user.getPropertyNb('chat_allowed') === 1"
+              (click)="set('general_text')"
+              class="text-primary ms-3"></app-ic-icon>
+      <app-ic-icon [icon]="users" role="button"
+              *ngIf="user.getPropertyNb('chat_allowed') === 1"
+              (click)="set('general_members')"
+              class="text-primary ms-3"></app-ic-icon>
+      <app-ic-icon [icon]="comments" role="button"
+              *ngIf="user.getPropertyNb('alliance') > 0"
+              (click)="set('alliance_text')"
+              class="text-success ms-3"></app-ic-icon>
+      <app-ic-icon [icon]="users" role="button"
+              *ngIf="user.getPropertyNb('alliance') > 0"
+              (click)="set('alliance_members')"
+              class="text-success ms-3"></app-ic-icon>
+      <app-ic-icon [icon]="times" role="button"
+              (click)="toggle(chatActive)"
+              class="text-danger ms-3 me-1"></app-ic-icon>
+    </div>
+  </div>
+  <div class="chat-general row"
+      [ngClass]="{'d-none': !chatActive.startsWith('general')}">
+    <div class="col-lg-10 col-md-9 col-12 chat-inner"
+        [ngClass]="{'d-none d-md-block': chatActive !== 'general_text'}" #chatGeneral>
       <div *ngFor="let msg of chat_user_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
            [ngClass]="{'text-danger': msg.rank === 5 }"
@@ -10,7 +35,8 @@
         {{msg.msg}}<br/>
       </div>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-4 col-4 chat-players">
+    <div class="col-lg-2 col-md-3 col-12 chat-players"
+        [ngClass]="{'d-none d-md-block': chatActive !== 'general_members'}">
       <span *ngFor="let user of chat_user_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
@@ -19,7 +45,7 @@
            class="fw-bold">{{user.username}}</a>
       </span>
     </div>
-    <div class="col-12">
+    <div class="col-12" [ngClass]="{'d-none d-md-block': chatActive !== 'general_text'}">
       <div class="input-group" *ngIf="user.getPropertyNb('chat_allowed') === 1">
         <input type="text" aria-describedby="chat_user_input"
                placeholder="{{'Message'|translate}}" class="form-control"
@@ -38,8 +64,10 @@
       </span>
     </div>
   </div>
-  <div class="chat-alliance row" *ngIf="user.getPropertyNb('alliance') > 0 && chatActive === 'alliance'">
-    <div class="col-lg-10 col-md-9 col-sm-8 col-8 chat-inner" #chatAlliance>
+  <div class="chat-alliance row d-none" *ngIf="user.getPropertyNb('alliance') > 0"
+      [ngClass]="{'d-none': !chatActive.startsWith('alliance')}">
+    <div class="col-lg-10 col-md-9 col-12 chat-inner"
+    [ngClass]="{'d-none d-md-block': chatActive !== 'alliance_text'}" #chatAlliance>
       <div *ngFor="let msg of chat_alli_msgs">
         <a [routerLink]="['/profile/'+msg.user_id]" 
            [ngClass]="{'text-danger fw-bold': msg.rank === 5 }"
@@ -49,7 +77,8 @@
         {{msg.msg}}<br/>
       </div>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-4 col-4 chat-players">
+    <div class="col-lg-2 col-md-3 col-12 chat-players"
+        [ngClass]="{'d-none d-md-block': chatActive !== 'alliance_members'}">
       <span *ngFor="let user of chat_alli_players"
             class="chat-player">
         <a [routerLink]="['/profile/'+user.user_id]" 
@@ -58,7 +87,7 @@
            class="fw-bold">{{user.username}}</a>
       </span>
     </div>
-    <div class="col-12">
+    <div class="col-12" [ngClass]="{'d-none d-md-block': chatActive !== 'alliance_text'}">
       <div class="input-group">
         <input type="text" aria-describedby="chat_alliance_input"
                placeholder="{{'Message'|translate}}" class="form-control"
@@ -75,13 +104,13 @@
 <div role="complementary" [attr.aria-label]="['Access to the chats'|translate]">
   <div class="chat-button" role="tablist">
     <button *ngIf="user.getPropertyNb('alliance') > 0" role="tab"
-            class="btn btn-success" (click)="toggle('alliance')">
+            class="btn btn-success" (click)="toggle('alliance_text')">
       <span translate>Alliance Chat</span>
       <span *ngIf="chat_alli_nb > 0">
         ({{chat_alli_nb}})
       </span>
     </button>
-    <button class="btn btn-primary" (click)="toggle('general')" role="tab">
+    <button class="btn btn-primary" (click)="toggle('general_text')" role="tab">
       <span translate>General Chat</span>
       <span *ngIf="chat_user_nb > 0">
         ({{chat_user_nb}})
@@ -94,9 +123,7 @@
   </div>
 </div>
 
-<div class="chat-button-mobile"
-     [ngClass]="{'text-primary': chatActive === 'general',
-                 'text-success': chatActive === 'alliance'}">
+<div class="chat-button-mobile" *ngIf="chatActive.length === 0">
   <app-ic-icon [icon]="comments" role="button"
            title="{{'Access to the chats'|translate}}"
            (click)="chatOpenMobile()"></app-ic-icon>

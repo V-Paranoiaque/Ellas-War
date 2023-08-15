@@ -13,11 +13,14 @@
   bottom: 66px;
   right: 0px;
   font-size: 0.9em;
-  display: flex;
   border-width:1px;
   border-style: solid;
   border-right: 0px;
   z-index: 1000;
+}
+
+.chat-shortcut {
+  font-size: 1.5em;
 }
 
 .chat-players {
@@ -29,7 +32,6 @@
     border-top: solid var(--color-menu-dark) 1px;
     padding-top: 0.3em;
     padding-bottom: 0.3em;
-    max-height: 36px;
   }
   .chat-players .chat-player {
     display: inline-block;
@@ -120,6 +122,7 @@
 .chat-text .chat-general .chat-inner > div,
 .chat-text .chat-alliance .chat-inner > div{
   padding:2px;
+  word-break: break-word;
 }
 
 .chat-button {
@@ -131,9 +134,9 @@
 
 .chat-button-mobile {
   color: black;
-  font-size: 2em;
+  font-size: 2.5em;
   position: fixed;
-  bottom: 52px;
+  bottom: 129px;
   right: 0px;
 }
 

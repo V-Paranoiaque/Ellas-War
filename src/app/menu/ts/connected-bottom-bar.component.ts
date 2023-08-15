@@ -8,6 +8,8 @@ import { CommonBottomBarComponent } from './common-bottom-bar.component';
 
 import comments from '@iconify/icons-fa-solid/comments';
 import discordIcon from '@iconify-icons/logos/discord-icon';
+import times from '@iconify/icons-fa-solid/times';
+import users from '@iconify/icons-fa-solid/users';
 
 @Component({
   selector: 'app-connected-bottom-bar',
@@ -44,6 +46,8 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
   
   comments = comments;
   discordIcon = discordIcon;
+  times = times;
+  users = users;
   
   constructor(protected socket: Socket, 
               public router: Router, public user: User) {
@@ -138,18 +142,8 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
     }
   }
   chatOpenMobile() {
-    if(this.chatActive == '') {
-      this.chatActive = 'general';
-      this.scrollGeneral();
-    }
-    else if(this.user.getPropertyNb('alliance') > 0 &&
-            this.chatActive == 'general') {
-      this.chatActive = 'alliance';
-      this.scrollAlliance();
-    }
-    else {
-      this.chatActive = '';
-    }
+    this.chatActive = 'general_text';
+    this.scrollGeneral();
   }
   
   scrollAlliance() {
@@ -172,6 +166,10 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
     }, 0);
   }
   
+  set(chat:string) {
+    this.chatActive = chat;
+  }
+
   toggle(chat:string) {
     if(this.chatActive == chat) {
       this.chatActive = '';
@@ -179,11 +177,11 @@ export class ConnectedBottomBarComponent extends CommonBottomBarComponent implem
     else {
       this.chatActive = chat;
     }
-    if(this.chatActive == 'general') {
+    if(this.chatActive.startsWith('general')) {
       this.chat_user_nb = 0;
       this.scrollGeneral();
     }
-    else if(this.chatActive == 'alliance') {
+    else if(this.chatActive.startsWith('alliance')) {
       this.chat_alli_nb = 0;
       this.scrollAlliance();
     }
