@@ -7,8 +7,8 @@
 </div>
 
 <div class="home-bg home-bg-private">
-  <div class="main main-top" [ngClass]="{'col-lg-10 col-md-10 ': user.getPropertyNb('mstatus') === 1, 'col-12': user.getPropertyNb('mstatus') !== 1}" role="main">
-    <div class="container container-flexible main-full">
+  <div class="main main-top col-12" [ngClass]="{'col-lg-10 col-md-10': user.getPropertyNb('mstatus') === 1}" role="main">
+    <div class="container-sm container-flexible main-full">
       <div class="row">
         <div class="col-12">
           <div class="card card-column">
