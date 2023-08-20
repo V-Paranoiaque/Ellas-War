@@ -276,7 +276,7 @@
                       <th scope="col" translate>Average rate</th>
                       <th scope="col" translate>Deposits</th>
                       <th scope="col" translate>Sales</th>
-                      <th scope="col"></th>
+                      <th scope="col" translate>Total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -286,6 +286,7 @@
                         <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
                         <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
                         <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.quantity*batch.solded | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="0"></app-id-to-ress></td>
                       </ng-container>
                     </tr>
                   </tbody>
