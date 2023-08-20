@@ -18,6 +18,7 @@ import questionCircle from '@iconify/icons-fa-regular/question-circle';
 export class StoreroomComponent implements OnInit, OnDestroy {
   private storeroomList:any;
   private storeroomMyList:any;
+  private storeroomMyStats:any;
   private storeroomStats:any;
   
   public storeroom_ress:any;
@@ -26,6 +27,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   public storeroomRate:string;
   public storeroomRess:number;
   public minRate:number;
+  public displayMode = 0;
   
   bagIcon  = bagIcon;
   clockIcon = clockIcon;
@@ -40,6 +42,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
     this.storeroomList = [];
     this.storeroomMyList = [];
+    this.storeroomMyStats = [];
     this.storeroomStats = [];
     
     this.storeroom_ress = [].constructor(10);
@@ -72,12 +75,16 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.socket.on('storeroomMin', (data) => {
       this.storeroomMin = data;
     });
+    this.socket.on('storeroomMyStats', (data) => {
+      this.storeroomMyStats = data;
+    });
     this.socket.on('storeroomStats', (data) => {
       this.storeroomStats = data;
     });
     
     this.socket.emit('storeroomList');
     this.socket.emit('storeroomMyList');
+    this.socket.emit('storeroomMyStats');
     this.socket.emit('storeroomStats');
     this.socket.emit('storeroomMin', this.storeroomRess);
   }
@@ -102,6 +109,20 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   
   getStoreroomMyList() {
     return this.storeroomMyList;
+  }
+
+  getStoreroomMyStats() {
+    return this.storeroomMyStats;
+  }
+  
+  getStoreroomMyStatsNb() {
+    let nb = 0;
+    for(let i in this.storeroomMyStats) {
+      if(this.storeroomMyStats[i] && this.storeroomMyStats[i].quantity > 0) {
+        nb++;
+      }
+    }
+    return nb;
   }
   
   getStoreroomStats() {
@@ -158,5 +179,9 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   
   storeroomHistory() {
     this.socket.emit('storeroomHistory');
+  }
+
+  setDisplayMode(i:number) {
+    this.displayMode = i;
   }
 }

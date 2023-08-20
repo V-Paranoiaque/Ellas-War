@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-            <div class="card-body text-center">{{ minRate }}
+            <div class="card-body text-center">
               <div *ngIf="parseInt(storeroomQuantity) > user.getPropertyNb(Tools.getResName(storeroomRess))"
                    class="alert alert-danger" translate>
                 You don't have enough resources
@@ -120,16 +120,16 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let trade of getStoreroomList();">
-                    <ng-container *ngIf="(((trade.resource_id == 1 && user.getLevel() >= user.getLevelRess('food')) ||
-                                          (trade.resource_id == 2 && user.getLevel() >= user.getLevelRess('water')) ||
-                                          (trade.resource_id == 3 && user.getLevel() >= user.getLevelRess('wood')) ||
-                                          (trade.resource_id == 4 && user.getLevel() >= user.getLevelRess('iron')) ||
-                                          (trade.resource_id == 5 && user.getLevel() >= user.getLevelRess('stone')) ||
-                                          (trade.resource_id == 6 && user.getLevel() >= user.getLevelRess('marble')) ||
-                                          (trade.resource_id == 7 && user.getLevel() >= user.getLevelRess('grapes')) ||
-                                          (trade.resource_id == 8 && user.getLevel() >= user.getLevelRess('wine')) ||
-                                          (trade.resource_id == 9 && user.getLevel() >= user.getLevelRess('gold')) ||
-                                          (trade.resource_id ==10 && user.getLevel() >= user.getLevelRess('favor'))) &&
+                    <ng-container *ngIf="(((trade.resource_id === 1 && user.getLevel() >= user.getLevelRess('food')) ||
+                                          (trade.resource_id === 2 && user.getLevel() >= user.getLevelRess('water')) ||
+                                          (trade.resource_id === 3 && user.getLevel() >= user.getLevelRess('wood')) ||
+                                          (trade.resource_id === 4 && user.getLevel() >= user.getLevelRess('iron')) ||
+                                          (trade.resource_id === 5 && user.getLevel() >= user.getLevelRess('stone')) ||
+                                          (trade.resource_id === 6 && user.getLevel() >= user.getLevelRess('marble')) ||
+                                          (trade.resource_id === 7 && user.getLevel() >= user.getLevelRess('grapes')) ||
+                                          (trade.resource_id === 8 && user.getLevel() >= user.getLevelRess('wine')) ||
+                                          (trade.resource_id === 9 && user.getLevel() >= user.getLevelRess('gold')) ||
+                                          (trade.resource_id === 10 && user.getLevel() >= user.getLevelRess('favor'))) &&
                                           (trade.remaining > 0 || trade.mremaining > 0))">
                       <td>
                         <button class="btn btn-primary" *ngIf="trade.remaining > 0"
@@ -140,19 +140,19 @@
                       </td>
                       <td class="text-end">
                         <span *ngIf="trade.remaining > 0">{{trade.remaining | number:'': this.translate.currentLang }}</span>
-                        <span *ngIf="trade.remaining == 0">{{trade.mremaining | number:'': this.translate.currentLang }}</span>
+                        <span *ngIf="trade.remaining === 0">{{trade.mremaining | number:'': this.translate.currentLang }}</span>
                         &nbsp;
                         <app-id-to-ress [ress_id]="trade.resource_id"></app-id-to-ress>
                       </td>
                       <td>
                         <span *ngIf="trade.remaining > 0">{{trade.rate | number:'': this.translate.currentLang }}</span>
-                        <span *ngIf="trade.remaining == 0">{{trade.mrate | number:'': this.translate.currentLang }}</span>
+                        <span *ngIf="trade.remaining === 0">{{trade.mrate | number:'': this.translate.currentLang }}</span>
                       </td>
                       <td>
                         <input type="number" class="form-control"
                               [(ngModel)]="storeroom_ress[trade.resource_id]"
                               [attr.min]="0" [attr.max]=trade.remaining step="1" 
-                              placeholder="0" [hidden]="trade.remaining == 0" />
+                              placeholder="0" [hidden]="trade.remaining === 0" />
                       </td>
                       <td class="center">
                         <button class="btn btn-success"
@@ -188,7 +188,7 @@
             <div class="card-body">
               <div class="fw-bold text-center">
                 <span class="bold" translate>Redemption rate:</span>
-                <span *ngIf="user.getPropertyNb('bonus_trade') == 0">
+                <span *ngIf="user.getPropertyNb('bonus_trade') === 0">
                   {{(80+user.getPropertyNb('hermes')*17.5)| number:'': this.translate.currentLang}}%
                 </span>
                 <span *ngIf="user.getPropertyNb('bonus_trade') > 0">
@@ -196,7 +196,7 @@
                 </span>
                 <br/>
                 <span class="bold" translate>Return rate:</span>
-                <span *ngIf="user.getPropertyNb('bonus_trade') == 0">
+                <span *ngIf="user.getPropertyNb('bonus_trade') === 0">
                   {{(75+user.getPropertyNb('hermes')*17.5)| number:'': this.translate.currentLang}}%
                 </span>
                 <span *ngIf="user.getPropertyNb('bonus_trade') > 0">
@@ -226,8 +226,8 @@
                 <tbody>
                   <tr *ngFor="let trade of getStoreroomMyList();let id=index;"
                     [ngClass]="{'bg-red': trade.mrate < trade.rate && trade.mrate > 0,
-                                'grey': trade.mrate == trade.rate && trade.rate > 0,
-                                'bg-green': (trade.mrate > 0 && trade.mrate > trade.rate) || (trade.rate > 0 && trade.mrate == 0)}">
+                                'grey': trade.mrate === trade.rate && trade.rate > 0,
+                                'bg-green': (trade.mrate > 0 && trade.mrate > trade.rate) || (trade.rate > 0 && trade.mrate === 0)}">
                     <td>
                       {{trade.remaining| number:'': this.translate.currentLang}}
                       <app-id-to-ress [ress_id]=trade.resource_id></app-id-to-ress>
@@ -254,36 +254,77 @@
         </div>
         <div class="col-md-6 col-12 col-block-half d-flex">
           <div class="card col-12">
-            <div class="card-header" id="titleLastWeek" translate>
-              Last week
+            <div class="card-header" id="titleLastWeek">
+              <span *ngIf="displayMode === 0" translate>Your sales of last week</span>
+              <span *ngIf="displayMode === 1" translate>Sales of last week</span>
             </div>
-            <div class="card-body">
-              <div *ngIf="getStoreroomStatsNb() == 0"
+            <div class="card-body" *ngIf="displayMode === 0">
+              <div class="text-center" role="button" (click)="setDisplayMode(1)" translate>
+                Display the game statistics
+              </div>
+              <br/>
+              <div *ngIf="getStoreroomMyStatsNb() === 0"
                   class="text-center" translate>
                 No statistics available about last week 
               </div>
-              <table class="table table-middle" aria-describedby="titleLastWeek"
-                    *ngIf="getStoreroomStatsNb() > 0">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col" translate>Average rate</th>
-                    <th scope="col" translate>Deposits</th>
-                    <th scope="col" translate>Sales</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let batch of getStoreroomStats();let id=index;" class="text-end">
-                    <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
-                      <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
-                      <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
-                      <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
-                      <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
-                    </ng-container>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table table-middle" aria-describedby="titleLastWeek"
+                        *ngIf="getStoreroomMyStatsNb() > 0">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col" translate>Average rate</th>
+                      <th scope="col" translate>Deposits</th>
+                      <th scope="col" translate>Sales</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let batch of getStoreroomMyStats();let id=index;" class="text-end">
+                      <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
+                        <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
+                        <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
+                      </ng-container>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-body" *ngIf="displayMode === 1">
+              <div class="text-center" role="button" (click)="setDisplayMode(0)" translate>
+                Display your statistics
+              </div>
+              <br/>
+              <div *ngIf="getStoreroomStatsNb() === 0"
+                  class="text-center" translate>
+                No statistics available about last week 
+              </div>
+              <div class="table-responsive">
+                <table class="table table-middle" aria-describedby="titleLastWeek"
+                      *ngIf="getStoreroomStatsNb() > 0">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col" translate>Average rate</th>
+                      <th scope="col" translate>Deposits</th>
+                      <th scope="col" translate>Sales</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let batch of getStoreroomStats();let id=index;" class="text-end">
+                      <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
+                        <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
+                        <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
+                      </ng-container>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
