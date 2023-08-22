@@ -259,8 +259,10 @@
               <span *ngIf="displayMode === 1" translate>Sales of last week</span>
             </div>
             <div class="card-body" *ngIf="displayMode === 0">
-              <div class="text-center" role="button" (click)="setDisplayMode(1)" translate>
-                Display the game statistics
+              <div class="text-center">
+                <a class="btn btn-primary" role="button" (click)="setDisplayMode(1)" translate>
+                  Display the game statistics
+                </a>
               </div>
               <br/>
               <div *ngIf="getStoreroomMyStatsNb() === 0"
@@ -294,8 +296,10 @@
               </div>
             </div>
             <div class="card-body" *ngIf="displayMode === 1">
-              <div class="text-center" role="button" (click)="setDisplayMode(0)" translate>
-                Display your statistics
+              <div class="text-center">
+                <a class="btn btn-success" role="button" (click)="setDisplayMode(0)" translate>
+                  Display your statistics
+                </a>
               </div>
               <br/>
               <div *ngIf="getStoreroomStatsNb() === 0"
