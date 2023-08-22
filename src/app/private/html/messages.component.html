@@ -135,7 +135,8 @@
                 </div>
                 <div class="p-2 bd-highlight border-top">
                   <div *ngFor="let u of msg.mb_list">
-                    <a [routerLink]="['/profile', u.id]">{{u.username}}</a>
+                    <a [routerLink]="['/profile', u.id]" *ngIf="msg.msg_type === 0">{{u.username}}</a>
+                    <i *ngIf="msg.msg_type > 0">{{u.username}}</i>
                   </div>
                 </div>
               </div>
