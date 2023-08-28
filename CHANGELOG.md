@@ -347,3 +347,6 @@
 * New sanctuary: Typhon
 * Add a success for the games birthday
 * The storeroom page has also the personal stats from last week
+
+# 1.4.1
+* Fix some translations
