@@ -137,4 +137,12 @@ export class ToolsComponent {
     }
     return res.name;
   }
+
+  static nbDigits(nb:number) {
+    const tab = nb.toString().split('.');
+    if(tab.length <= 1) {
+      return 0;
+    }
+    return tab[1].length;
+  }
 }

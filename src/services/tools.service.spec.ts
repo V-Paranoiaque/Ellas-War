@@ -67,4 +67,11 @@ describe('Tools', () => {
     };
     expect(Tools.addToObject(array, newValues)).toEqual(expected);
   });
+  
+  it(`test nbDigits`, () => {
+    expect(Tools.nbDigits(10.1)).toEqual(1);
+    expect(Tools.nbDigits(10.10000)).toEqual(1);
+    expect(Tools.nbDigits(10.00001)).toEqual(5);
+    expect(Tools.nbDigits(10)).toEqual(0);
+  });
 });

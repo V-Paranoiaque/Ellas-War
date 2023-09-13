@@ -39,7 +39,7 @@
               </div>
               <span *ngIf="storeroomMin.rate > 0">
                 <span translate>Current rate</span>
-                <span translate>:</span> {{ storeroomMin.rate| number:'': this.translate.currentLang}}
+                <span translate>:</span> {{ storeroomMin.rate| number:'1.0-'+Math.max(3, Tools.nbDigits(storeroomMin.rate)): this.translate.currentLang}}
                 <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
                 <span *ngIf="storeroomMin.you > 0">-</span>
               </span>
@@ -145,7 +145,7 @@
                         <app-id-to-ress [ress_id]="trade.resource_id"></app-id-to-ress>
                       </td>
                       <td>
-                        <span *ngIf="trade.remaining > 0">{{trade.rate | number:'': this.translate.currentLang }}</span>
+                        <span *ngIf="trade.remaining > 0">{{trade.rate | number:'1.0-'+Math.max(3, Tools.nbDigits(trade.rate)): this.translate.currentLang }}</span>
                         <span *ngIf="trade.remaining === 0">{{trade.mrate | number:'': this.translate.currentLang }}</span>
                       </td>
                       <td>
@@ -232,7 +232,7 @@
                       {{trade.remaining| number:'': this.translate.currentLang}}
                       <app-id-to-ress [ress_id]=trade.resource_id></app-id-to-ress>
                     </td>
-                    <td>{{trade.rate | number:'': this.translate.currentLang }}</td>
+                    <td>{{trade.rate | number:'1.0-'+Math.max(3, Tools.nbDigits(trade.rate)): this.translate.currentLang }}</td>
                     <td>
                       {{trade.rate*trade.remaining | number:'': this.translate.currentLang }}
                       <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
@@ -285,7 +285,7 @@
                     <tr *ngFor="let batch of getStoreroomMyStats();let id=index;" class="text-end">
                       <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
                         <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
-                        <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.rate | number:'1.0-'+Math.max(3, Tools.nbDigits(batch.rate)): this.translate.currentLang }}</td>
                         <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
                         <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
                         <td>{{batch.rate*batch.solded | number:'': this.translate.currentLang }} <app-id-to-ress [ress_id]="0"></app-id-to-ress></td>
@@ -322,7 +322,7 @@
                     <tr *ngFor="let batch of getStoreroomStats();let id=index;" class="text-end">
                       <ng-container *ngIf="id > 0 && (batch.rate > 0 || batch.quantity > 0 || batch.solded > 0)">
                         <td class="text-center"><app-id-to-ress [ress_id]="id"></app-id-to-ress></td>
-                        <td>{{batch.rate | number:'': this.translate.currentLang }}</td>
+                        <td>{{batch.rate | number:'1.0-'+Math.max(3, Tools.nbDigits(batch.rate)): this.translate.currentLang }}</td>
                         <td>{{batch.quantity | number:'': this.translate.currentLang }}</td>
                         <td>{{batch.solded | number:'': this.translate.currentLang }}</td>
                       </ng-container>

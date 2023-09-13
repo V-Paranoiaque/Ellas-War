@@ -37,6 +37,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   
   parseFloat = parseFloat;
   parseInt = parseInt;
+  Math = Math;
   Tools = Tools;
   
   constructor(private socket: Socket, public user: User, public translate: TranslateService) {
