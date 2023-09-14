@@ -23,7 +23,10 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   
   public allianceList:any;
   public allianceProfile:any;
-  public allianceWait:any;
+  public allianceWait = {
+    alliance_id: 0,
+    alliance_name: ''
+  };
   public order:string;
   private sub:Subscription;
   
@@ -42,7 +45,6 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.allianceProfile = {
       'alliance_name': ''
     }
-    this.allianceWait = '';
     this.order = '';
     this.sub = new Subscription();
   }
@@ -70,8 +72,8 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.on('allianceRankingRefresh', () => {
       this.socket.emit('allianceList', this.order);
     });
-    this.socket.on('allianceWait', (data:number) => {
-      this.allianceWait = data;
+    this.socket.on('allianceWait', (data:object) => {
+      this.allianceWait = data as typeof this.allianceWait;
     });
   }
   

@@ -62,7 +62,7 @@
                 </a>
               </div>
               
-              <div *ngIf="allianceWait && allianceWait.alliance_name" class="text-center text-danger"><br/>
+              <div *ngIf="allianceWait.alliance_id > 0" class="text-center text-danger"><br/>
                 {{'Waiting in the alliance { value }'| translate: {value: allianceWait.alliance_name } }}
                 <span (click)="allianceWaitCancel()" role="button">
                   (<span translate>Cancel</span>)
