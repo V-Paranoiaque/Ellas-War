@@ -307,8 +307,11 @@
         </div>
       </div>
       <div *ngIf="user.hasLevelRess('ambrosia')" class="d-flex">
-        <div class="p-2 icon-increase">
-          <app-ic-icon [icon]="angleUp"></app-ic-icon>
+        <div class="p-2"
+            [ngClass]="{'icon-increase': user.getPropertyNb('ambrosia') < 400,
+                      'icon-equal': user.getPropertyNb('ambrosia') >= 400}">
+          <app-ic-icon *ngIf="user.getPropertyNb('ambrosia') < 400" [icon]="angleUp"></app-ic-icon>
+          <app-ic-icon *ngIf="user.getPropertyNb('ambrosia') >= 400" [icon]="equals"></app-ic-icon>
         </div>
         <div class="p-2 bd-highlight">
           <app-ic-icon data-bs-toggle="modal" data-bs-target="#ambrosiaHelp"
