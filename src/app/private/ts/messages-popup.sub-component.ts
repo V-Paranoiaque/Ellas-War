@@ -32,7 +32,9 @@ export class MessagesPopupSubComponent extends MessagesComponent implements OnIn
     this.subLoad = this.route.paramMap.subscribe(params => {
       const id = parseInt(params.get('id') as string) ?? 0;
       this.reinitDest();
-      this.addDestGUi(id);
+      if(id) {
+        this.addDestGUi(id);
+      }
     });
   }
   
