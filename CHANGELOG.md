@@ -349,4 +349,8 @@
 * The storeroom page has also the personal stats from last week
 
 # 1.4.1
+* Delay between two lightnings is now 161 hours (27*7)
 * Fix some translations
+* Improve html code
+* Improve/Fix rate display
+* Increase the power of the lightning in some cases
