@@ -12,7 +12,7 @@
             <span *ngIf="id > 0">
               <br/>
               <span>{{'Reward for the level { value }:'|translate: { value: id } }}</span>&nbsp;<span 
-                    class="fw-bold">{{user.getDatas().honnor.rewards[id]}}&nbsp;<app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress></span>
+                    class="fw-bold">{{user.getDatas().honnor.rewards[id] | number:'': this.translate.currentLang}}&nbsp;<app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress></span>
             </span>
           </p>
           
