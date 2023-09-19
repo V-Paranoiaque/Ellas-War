@@ -222,7 +222,7 @@ export class UserComponent {
   }
   
   getGoalDaysNb() {
-    let nb;
+    let nb:number;
     let cDay = this.getPropertyNb('nbdays') % 100;
     
     if(cDay < 3) {
@@ -243,7 +243,7 @@ export class UserComponent {
     else if(cDay < 70) {
       nb = 70;
     }
-    else{
+    else {
       nb = 99;
     }
     
