@@ -9,6 +9,8 @@ import { UserComponent as User } from '../../../services/user.service';
 
 export class DivineBonusHelpPopupSubComponent implements OnInit {
   @Input() divineBonus: any;
+
+  Object = Object;
   
   constructor(public user: User, public translate: TranslateService) {
   }
