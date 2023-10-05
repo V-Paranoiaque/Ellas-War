@@ -14,7 +14,7 @@
     <strong>{{msg.title.defender}}</strong><strong translate>:</strong> {{msg.content.defender}}
     <br/>
     <br/>
-    <strong translate>Reward:</strong> {{msg.content.benefits/10| number:'': this.translate.currentLang}} 
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}} 
     <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="3">

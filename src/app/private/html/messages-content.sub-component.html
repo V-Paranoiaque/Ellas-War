@@ -179,7 +179,7 @@
     {{msg.content.defender}}
     <br/>
     <br/>
-    <strong translate>Reward:</strong> {{msg.content.benefits/10| number:'': this.translate.currentLang}}
+    <strong translate>Reward:</strong> {{msg.content.benefits| number:'': this.translate.currentLang}}
     <app-id-to-ress [ress_id]="'drachma'"></app-id-to-ress>
   </span>
   <span *ngSwitchCase="19"><app-lost-message [info]="msg.content"></app-lost-message></span>
