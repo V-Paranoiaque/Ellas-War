@@ -13,7 +13,7 @@
                   (user.getId() == user.getPropertyNb('chief') || info.membre_id != user.getPropertyNb('chief'))"
            [(ngModel)]="info.rank_name" />
     <span *ngIf="user.getPropertyNb('second') == 0 || 
-                 (info.membre_id == user.getPropertyNb('chief') && info.membre_id != user.getPropertyNb('chief'))">
+                 (user.getPropertyNb('id') !== user.getPropertyNb('chief') && info.membre_id === user.getPropertyNb('chief'))">
       {{ info.rank_name }}
     </span>
     <br/>
