@@ -354,3 +354,6 @@
 * Improve html code
 * Improve/Fix rate display
 * Increase the power of the lightning in some cases
+
+# 1.4.2
+* Minor display fixes
