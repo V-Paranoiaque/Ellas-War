@@ -1,4 +1,4 @@
-name: Build EW
+name: Build Release
 
 on:
   workflow_call:
