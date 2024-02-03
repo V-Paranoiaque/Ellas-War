@@ -69,7 +69,7 @@ jobs:
 
   #Mac OS
   package-mac:
-    uses: ./.github/workflows/workflow-release-linux-mac.yml
+    uses: ./.github/workflows/workflow-release-mac.yml
     secrets: inherit
     needs: prepare
     with:
