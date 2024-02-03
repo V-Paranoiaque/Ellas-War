@@ -13,7 +13,6 @@ jobs:
   package-android:
     name: "Build android package"
     runs-on: ubuntu-22.04
-    needs: prepare
 
     steps:
       - uses: actions/checkout@v3
