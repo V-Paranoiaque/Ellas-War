@@ -8,7 +8,7 @@ on:
 
 jobs:
   prepare:
-    uses: /.github/workflows/workflow-release-prepare.yml@master
+    uses: ./.github/workflows/workflow-release-prepare.yml
     secrets: inherit
     with:
       node: 20
