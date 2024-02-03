@@ -1,0 +1,283 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1 translate>Agora</h1>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="minRate" translate>Minimum rate</label>
+                  <input
+                    name="minRate"
+                    placeholder="{{ 'Minimum rate' | translate }}"
+                    id="minRate"
+                    class="form-control"
+                    value=""
+                    type="number"
+                    [(ngModel)]="minRate" />
+
+                  <label for="maxRate" translate>Maximum rate</label>
+                  <input
+                    name="maxRate"
+                    placeholder="{{ 'Maximum rate' | translate }}"
+                    id="maxRate"
+                    class="form-control"
+                    value=""
+                    type="number"
+                    [(ngModel)]="maxRate" />
+
+                  <label for="begining" translate>Begining</label>
+                  <input
+                    name="date"
+                    placeholder="{{ 'Begining' | translate }}"
+                    id="begining"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="begining" />
+                  <input
+                    name="still"
+                    id="still"
+                    value="still"
+                    [(ngModel)]="still"
+                    class="form-check-input"
+                    ng-true-value="1"
+                    ng-false-value="0"
+                    type="checkbox" />
+                  <strong class="form-check-label" translate for="still"
+                    >Lots still on sale</strong
+                  >
+                  <br />
+                  <input
+                    name="solded"
+                    id="solded"
+                    value="solded"
+                    [(ngModel)]="solded"
+                    class="form-check-input"
+                    ng-true-value="1"
+                    ng-false-value="0"
+                    type="checkbox" />
+                  <strong class="form-check-label" translate for="solded"
+                    >Lots sold</strong
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="resource" translate>Research</label>
+                  <select
+                    [(ngModel)]="resource"
+                    name="resource"
+                    id="resource"
+                    class="form-select">
+                    <option value="" translate>Toutes les ressources</option>
+                    <option value="food" translate>Food</option>
+                    <option value="water" translate>Water</option>
+                    <option value="wood" translate>Wood</option>
+                    <option value="iron" translate>Iron</option>
+                    <option value="stone" translate>Stone</option>
+                    <option value="marble" translate>Marble</option>
+                    <option value="grapes" translate>Grapes</option>
+                    <option value="wine" translate>Wine</option>
+                    <option value="gold" translate>Gold</option>
+                    <option value="favor" translate>Favor</option>
+                  </select>
+
+                  <label for="players" translate>Players</label>
+                  <input
+                    name="player1"
+                    placeholder="{{ 'Player' | translate }}"
+                    id="player1"
+                    class="form-control"
+                    value=""
+                    type="text"
+                    [(ngModel)]="player1" />
+                  <input
+                    name="player2"
+                    placeholder="{{ 'Player' | translate }}"
+                    id="player2"
+                    class="form-control"
+                    value=""
+                    type="text"
+                    [(ngModel)]="player2" />
+
+                  <label for="sort" translate>Sort by</label>
+                  <select name="sort" id="sort" class="form-select">
+                    <option value="depositDate" translate>Deposit date</option>
+                    <option selected="selected" value="purchaseDate" translate>
+                      Purchase date
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <button
+                  class="btn btn-primary"
+                  translate
+                  type="submit"
+                  (click)="adminTradeList(1)">
+                  Research
+                </button>
+              </div>
+
+              <div class="col-md-12">
+                @if (msgPageNb > 1) {
+                  <div>
+                    <br />
+                    <div class="input-group">
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="adminAgoraChange(1)"
+                        (keyup.enter)="adminAgoraChange(1)"
+                        tabindex="0"
+                        >&lt;&lt;</span
+                      >
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="adminAgoraChange(currentPage - 1)"
+                        (keyup.enter)="adminAgoraChange(currentPage - 1)"
+                        tabindex="0"
+                        >&lt;</span
+                      >
+                      <select
+                        class="form-select"
+                        #mySelect
+                        (change)="adminAgoraChange(mySelect.value)"
+                        [ngModel]="currentPage"
+                        title="{{ 'Change page' | translate }}">
+                        @for (id of Tools.range(1, msgPageNb); track id) {
+                          <option value="{{ id }}" translate>
+                            Page {{ id }}
+                          </option>
+                        }
+                      </select>
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="adminAgoraChange(currentPage + 1)"
+                        (keyup.enter)="adminAgoraChange(currentPage + 1)"
+                        tabindex="0"
+                        >&gt;</span
+                      >
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="adminAgoraChange(msgPageNb)"
+                        (keyup.enter)="adminAgoraChange(msgPageNb)"
+                        tabindex="0"
+                        >&gt;&gt;</span
+                      >
+                    </div>
+                  </div>
+                }
+
+                <table
+                  class="table"
+                  attr.aria-label="{{
+                    'Store room Administration' | translate
+                  }}">
+                  <thead>
+                    <tr>
+                      <th scope="col" translate>Seller</th>
+                      <th scope="col" translate>Buyer</th>
+                      <th scope="col" translate>Seller IP</th>
+                      <th scope="col" translate>Buyer IP</th>
+                      <th scope="col" translate>Deposit date</th>
+                      <th scope="col" translate>Purchase date</th>
+                      <th scope="col" translate>Resource</th>
+                      <th scope="col" translate>Quantity</th>
+                      <th scope="col" translate>Rate</th>
+                      <th scope="col" translate>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (lot of list; track lot) {
+                      <tr>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.seller_id }}"
+                            [routerLink]="['/admin/profile/' + lot.seller_id]"
+                            >{{ lot.m1_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.buyer_id }}"
+                            [routerLink]="['/admin/profile/' + lot.buyer_id]"
+                            >{{ lot.m2_username }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.deposit_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.deposit_ip]"
+                            >{{ lot.deposit_ip }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.purchase_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.purchase_ip]"
+                            >{{ lot.purchase_ip }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            (lot.return_time - 3600 * 24 * 7) * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.purchase_date * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td class="text-center">
+                          <app-ew-icon
+                            name="{{ Tools.getResName(lot.ress_type) }}"
+                            class="small-resource"></app-ew-icon>
+                        </td>
+                        <td>
+                          {{
+                            lot.nbress | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.rate | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.nbress * lot.rate
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

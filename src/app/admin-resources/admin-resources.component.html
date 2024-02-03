@@ -1,0 +1,76 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header" translate>Give resources to a player</div>
+
+          @if (error > 0) {
+            <div class="card-body">
+              @if (error === 1) {
+                <span translate>Error in the reason</span>
+              }
+              @if (error === 2) {
+                <span translate>This player doesn't exist</span>
+              }
+              @if (error === 3) {
+                <span translate>Resources given to the player</span>
+              }
+            </div>
+          }
+
+          <div class="card-body">
+            <div class="mb-3">
+              <div class="input-group">
+                <span class="input-group-text" id="player" translate
+                  >Player</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'Player' | translate }}"
+                  [(ngModel)]="give.player"
+                  aria-describedby="player" />
+              </div>
+              <select class="form-select" [(ngModel)]="give.resource">
+                @for (res of ressList; track res; let index = $index) {
+                  <option value="{{ index }}">
+                    {{ res | titlecase | translate }}
+                  </option>
+                }
+                <option value="10" translate>Favors</option>
+                <option value="11" translate>Ambrosia</option>
+              </select>
+              <div class="input-group">
+                <span class="input-group-text" id="quantity" translate
+                  >Quantity</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'Quantity' | translate }}"
+                  [(ngModel)]="give.quantity"
+                  aria-describedby="quantity" />
+              </div>
+              <select class="form-select" [(ngModel)]="give.reason">
+                <option value="1" translate>Paypal</option>
+                <option value="2" translate>Refund</option>
+                <option value="3" translate>Present</option>
+              </select>
+            </div>
+
+            <div class="text-center">
+              <button (click)="sendRes()" class="btn btn-primary" translate>
+                Validate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

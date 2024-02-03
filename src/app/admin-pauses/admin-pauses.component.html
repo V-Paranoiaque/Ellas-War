@@ -1,0 +1,52 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="historyDescription" translate>
+              Pause history
+            </h1>
+            <table
+              class="table table-middle table-stripped"
+              aria-describedby="historyDescription">
+              <tbody>
+                @for (p of adminPause; track p) {
+                  <tr>
+                    <th scope="row">{{ p.membre_id }}</th>
+                    <td>
+                      {{ p.username }}
+                    </td>
+                    <td>{{ p.ip }}</td>
+                    <td>
+                      {{
+                        p.pause_start * 1000
+                          | date
+                            : 'EEEE dd MMMM, HH:mm'
+                            : ''
+                            : user.getConfig().locale
+                      }}
+                    </td>
+                    <td>
+                      {{
+                        p.pause_exit * 1000
+                          | date
+                            : 'EEEE dd MMMM, HH:mm'
+                            : ''
+                            : user.getConfig().locale
+                      }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

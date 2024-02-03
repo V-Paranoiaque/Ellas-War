@@ -1,123 +1,123 @@
 import { Component, EventEmitter } from '@angular/core';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-socket',
-  template: `
-    <ng-content></ng-content>
-  `
+  template: ` <ng-content></ng-content> `,
 })
 export class SocketComponent {
-  
-  public onChange: EventEmitter<any> = new EventEmitter<any>();
-  
-  socket: any;
+  public onChange: EventEmitter<object> = new EventEmitter<object>();
+
+  socket: Socket | null = null;
   server: string;
   url: string;
   local: boolean;
-  
+
   constructor() {
-    if(window.location.port && window.location.port != '443') {
+    if (window.location.port && window.location.port !== '443') {
       this.local = true;
-    }
-    else {
+    } else {
       this.local = false;
     }
     this.server = '';
     this.url = '';
   }
-  
-  setServer(server:string) {
+
+  setServer(server: string) {
     this.server = server;
     localStorage.setItem('server', server);
-    
+
     //Setup the new connection
     this.setupSocketConnection(this.getServerUrl(server));
-    
+
     //Reload the app
-    this.onChange.emit({action: 'appReload'});
+    this.onChange.emit({ action: 'appReload' });
   }
-  
-  setupSocketConnection(url:string) {
+
+  setupSocketConnection(url: string) {
     //Close previous connection
-    if(this.socket) {
+    if (this.socket) {
       this.socket.close();
     }
-    
-    let ws = url.replace('https', 'wss');
+
+    const ws = url.replace('https', 'wss');
     this.socket = io(ws);
     this.url = url;
-    
-    this.socket.on("connect", () => {
+
+    this.socket.on('connect', () => {
       this.loadUser();
     });
   }
-  
-  emit(socketName: string, data:any=[]) {
-    this.socket.emit(socketName, data);
+
+  emit(socketName: string, data: number | object | string | null = null) {
+    this.socket!.emit(socketName, data);
   }
-  
+
   loadUser() {
     this.emit('loadConfig');
-    this.emit('ewAuth', {'token': localStorage.getItem('token')});
+    this.emit('ewAuth', { token: localStorage.getItem('token') });
   }
-  
-  on(socketName: string, callback:(res:any) => void) {
-    this.socket.on(socketName, (data:any) => {
-      callback(data);
-    })
+  //number[] & string[] & object[] & number & string & object
+  on(
+    socketName: string,
+    callback: (
+      res: number[] & string[] & object[] & number & string & object
+    ) => void
+  ) {
+    this.socket!.on(socketName, data => {
+      callback(
+        data as number[] & string[] & object[] & number & string & object
+      );
+    });
   }
 
   removeListener(socketName: string) {
-    this.socket.removeListener(socketName);
+    this.socket!.removeListener(socketName);
   }
-  
+
   /**
    * Server management
    **/
   detectServer() {
-    if(environment.mobile == 0) {
+    if (environment.mobile === 0) {
       //Local
-      if(this.local) {
+      if (this.local) {
         this.server = 'dev';
         return environment.SERVER_DEV;
-      }
-      else {
-        let url = window.location.hostname;
+      } else {
+        const url = window.location.hostname;
         this.server = this.getUrlServer(url);
-        return 'https://'+url;
+        return 'https://' + url;
       }
-    }
-    else {
+    } else {
       let url;
-      if(localStorage.getItem('server')) {
-        let local:string = localStorage.getItem('server') || '';
+      if (localStorage.getItem('server')) {
+        const local: string = localStorage.getItem('server') ?? '';
         url = this.getServerUrl(local);
-        
-        if(url != '') {
+
+        if (url !== '') {
           this.server = local;
           return url;
         }
         localStorage.removeItem('server');
       }
-      
-      let language = this.detectLanguage();
+
+      const language = this.detectLanguage();
       url = this.getServerUrl(language);
-      
-      if(url != '') {
+
+      if (url !== '') {
         this.server = language;
         return url;
-      }
-      else {
+      } else {
         this.server = 'dev';
         return environment.SERVER_DEV;
       }
     }
   }
-  
+
   getServerUrl(server: string) {
-    switch(server) {
+    switch (server) {
       case 'dev':
       case 'next':
         return 'https://dev.ellaswar.com';
@@ -128,9 +128,9 @@ export class SocketComponent {
     }
     return '';
   }
-  
-  getUrlServer(url:string) {
-    switch(url) {
+
+  getUrlServer(url: string) {
+    switch (url) {
       case 'dev.ellaswar.com':
       case 'next.ellaswar.com':
         return 'dev';
@@ -138,42 +138,43 @@ export class SocketComponent {
         return 'en';
       case 'www.ellaswar.com':
         return 'fr';
-      
-      default: return 'dev';
+
+      default:
+        return 'dev';
     }
   }
-  
+
   redirect(server: string) {
     window.location.href = this.getServerUrl(server);
   }
-  
+
   /**
    * Language management
    **/
   detectLanguage() {
-    let language:string = localStorage.getItem('language') || '';
-    
-    if(!language || !environment.language.allowed.includes(language)) {
+    let language: string = localStorage.getItem('language') ?? '';
+
+    if (!language || !environment.language.allowed.includes(language)) {
       language = this.detectBrowserLanguage();
     }
-    
+
     return language;
   }
-  
+
   detectServerLanguage() {
-    if(this.server == 'fr') {
+    if (this.server === 'fr') {
       return 'fr';
     }
     return 'en';
   }
-  
-  saveLanguage(language:string) {
+
+  saveLanguage(language: string) {
     localStorage.setItem('language', language);
   }
-  
+
   detectBrowserLanguage() {
-    let browserLanguage = navigator.language.split('-')[0];
-    if(!environment.language.allowed.includes(browserLanguage)) {
+    const browserLanguage = navigator.language.split('-')[0];
+    if (!environment.language.allowed.includes(browserLanguage)) {
       return environment.language.default;
     }
     return browserLanguage;

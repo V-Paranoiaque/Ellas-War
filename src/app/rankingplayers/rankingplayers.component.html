@@ -1,0 +1,210 @@
+<app-rankingplayers-help-popup></app-rankingplayers-help-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="card">
+          <div class="d-flex justify-content-center">
+            <a
+              class="btn btn-danger flex-grow-1 design-background"
+              href="/rankingplayers/1"
+              [routerLink]="['/rankingplayers/1']"
+              title="{{ 'Player Ranking' | translate }}"
+              translate>
+              Player Ranking
+            </a>
+            <a
+              class="btn btn-primary flex-grow-1 design-background"
+              href="/honnor"
+              [routerLink]="['/honnor']"
+              title="{{ 'Honnor Ranking' | translate }}"
+              translate>
+              Honnor Ranking
+            </a>
+            <a
+              class="btn btn-primary flex-grow-1 design-background"
+              href="/rankingalliances/1"
+              [routerLink]="['/rankingalliances/1']"
+              title="{{ 'Alliance Ranking' | translate }}"
+              translate>
+              Alliance Ranking
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 d-flex">
+        <div class="card col-12 mb-2">
+          <div class="card-body">
+            <h1 class="text-center" id="rankingDesc">
+              <span translate>Player Ranking</span>
+              <app-ic-icon
+                role="button"
+                [icon]="questionCircle"
+                class="fs-3"
+                data-bs-toggle="modal"
+                data-bs-target="#RankingplayersHelpPopup"></app-ic-icon>
+            </h1>
+            <table
+              class="table table-striped table-middle align-middle"
+              aria-labelledby="rankingDesc"
+              role="grid">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" (click)="rankingChooseOrder('player')">
+                    <span role="button" translate>Player</span>
+                    @if (rankingOrder === 'player') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                  <th
+                    scope="col"
+                    (click)="rankingChooseOrder('level')"
+                    class="d-none d-sm-table-cell">
+                    <span role="button" translate>Level</span>
+                    @if (rankingOrder === 'level') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                  <th scope="col" (click)="rankingChooseOrder('xp')">
+                    <span role="button" translate>XP</span>
+                    @if (rankingOrder === 'xp') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                  <th scope="col" (click)="rankingChooseOrder('victory')">
+                    <span role="button" translate>Victories</span>
+                    @if (rankingOrder === 'victory') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                  <th
+                    scope="col"
+                    (click)="rankingChooseOrder('field')"
+                    class="d-none d-sm-table-cell">
+                    <span role="button" translate>Field</span>
+                    @if (rankingOrder === 'field') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                  <th
+                    scope="col"
+                    (click)="rankingChooseOrder('honnor')"
+                    class="d-none d-sm-table-cell">
+                    <span role="button" translate>Honnor</span>
+                    @if (rankingOrder === 'honnor') {
+                      <app-ic-icon
+                        role="button"
+                        [icon]="sortUP"
+                        title="{{ 'Current order' | translate }}"></app-ic-icon>
+                    }
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of rankingList; track p) {
+                  <tr>
+                    <td>
+                      {{ p.ranking }}
+                    </td>
+                    <td>
+                      <app-user-profile
+                        id="{{ p.membre_id }}"
+                        username="{{ p.username }}"
+                        status="1"></app-user-profile>
+                    </td>
+                    <td class="d-none d-sm-table-cell text-center">
+                      {{ p.level }}
+                    </td>
+                    <td class="text-end">
+                      {{ p.xp | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="text-end">
+                      {{ p.victory | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="d-none d-sm-table-cell text-end">
+                      {{ p.field | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="d-none d-sm-table-cell text-end">
+                      {{ p.honnor | number: '' : this.translate.currentLang }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+
+            @if (rankingMax > 1) {
+              <div>
+                <br />
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="rankingPageChange(1)"
+                    (keyup.enter)="rankingPageChange(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="rankingPageChange(rankingPage - 1)"
+                    (keyup.enter)="rankingPageChange(rankingPage - 1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    #mySelect
+                    (change)="rankingPageChange(parseInt(mySelect.value))"
+                    [ngModel]="rankingPage"
+                    title="{{ 'Change page' | translate }}">
+                    @for (id of Tools.range(1, rankingMax); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="rankingPageChange(rankingPage + 1)"
+                    (keyup.enter)="rankingPageChange(rankingPage + 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="rankingPageChange(rankingMax)"
+                    (keyup.enter)="rankingPageChange(rankingMax)"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

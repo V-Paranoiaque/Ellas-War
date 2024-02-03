@@ -1,0 +1,265 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="text-center">
+                  <h2 translate>Accounts</h2>
+                </div>
+                <table
+                  class="table table-striped table-middle"
+                  aria-describedby="adminPlayersTitle">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                      <th scope="col" translate>Alliance</th>
+                      <th scope="col" translate>Activity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of list.players; track p) {
+                      <tr>
+                        <td>{{ p.membre_id }}</td>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.membre_status === 3 || p.membre_status === 5,
+                              'text-warning': p.membre_status === 4
+                            }"
+                            href="admin/profile/{{ p.membre_id }}"
+                            [routerLink]="['/admin/profile/' + p.membre_id]"
+                            >{{ p.username }}</a
+                          >
+                          ({{ p.level }})
+                          <br />
+                          {{ p.email }}
+                        </td>
+                        <td>{{ p.alliance_name }}</td>
+                        <td>
+                          {{
+                            p.inscription * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                          <br />
+                          {{
+                            p.last_activity * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="text-center">
+                  <h2 translate>Agora</h2>
+                </div>
+                <table
+                  class="table table-striped table-middle"
+                  aria-describedby="adminTradeTitle">
+                  <thead>
+                    <tr>
+                      <th scope="col" translate>Seller</th>
+                      <th scope="col" translate>Buyer</th>
+                      <th scope="col" translate>Date</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of list.trade; track p) {
+                      <tr>
+                        <td [ngClass]="{ 'table-danger': p.seller_ano === 1 }">
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.m1_status === 3 || p.m1_status === 5,
+                              'text-warning': p.m1_status === 4
+                            }"
+                            href="admin/profile/{{ p.seller_id }}"
+                            [routerLink]="['/admin/profile/' + p.seller_id]"
+                            >{{ p.m1_username }}</a
+                          >
+                          @if (p.seller_ano === 1) {
+                            <span>(<span translate>Anonymous</span>)</span>
+                          }
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.deposit_ip }}"
+                            [routerLink]="['/admin/ip/' + p.deposit_ip]"
+                            >{{ p.deposit_ip }}</a
+                          >
+                          <br />
+                          {{ p.deposit_host }}
+                        </td>
+                        <td [ngClass]="{ 'table-danger': p.buyer_ano === 1 }">
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.m2_status === 3 || p.m2_status === 5,
+                              'text-warning': p.m2_status === 4
+                            }"
+                            href="admin/profile/{{ p.buyer_id }}"
+                            [routerLink]="['/admin/profile/' + p.buyer_id]"
+                            >{{ p.m2_username }}</a
+                          >
+                          @if (p.buyer_ano === 1) {
+                            <span>(<span translate>Anonymous</span>)</span>
+                          }
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.purchase_ip }}"
+                            [routerLink]="['/admin/ip/' + p.purchase_ip]"
+                            >{{ p.purchase_ip }}</a
+                          >
+                          <br />
+                          {{ p.purchase_host }}
+                        </td>
+                        <td>
+                          {{
+                            p.purchase_date * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            p.nbress | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="{{ Tools.getResName(p.ress_type) }}"
+                            class="small-resource"></app-ew-icon>
+                          <br />
+                          {{
+                            p.nbress * p.rate
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="drachma"
+                            class="small-resource"></app-ew-icon>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="text-center">
+                  <h2 translate>Storeroom</h2>
+                </div>
+                <table
+                  class="table table-striped table-middle"
+                  aria-describedby="adminTradeTitle">
+                  <thead>
+                    <tr>
+                      <th scope="col" translate>Seller</th>
+                      <th scope="col" translate>Buyer</th>
+                      <th scope="col" translate>Date</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of list.storeroom; track p) {
+                      <tr>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.m1_status === 3 || p.m1_status === 5,
+                              'text-warning': p.m1_status === 4
+                            }"
+                            href="admin/profile/{{ p.seller_id }}"
+                            [routerLink]="['/admin/profile/' + p.seller_id]"
+                            >{{ p.m1_username }}</a
+                          >
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.deposit_ip }}"
+                            [routerLink]="['/admin/ip/' + p.deposit_ip]"
+                            >{{ p.deposit_ip }}</a
+                          >
+                          <br />
+                          @if (p.deposit_host) {
+                            <span>
+                              {{ p.deposit_host }}
+                            </span>
+                          }
+                        </td>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.m2_status === 3 || p.m2_status === 5,
+                              'text-warning': p.m2_status === 4
+                            }"
+                            href="admin/profile/{{ p.buyer_id }}"
+                            [routerLink]="['/admin/profile/' + p.buyer_id]"
+                            >{{ p.m2_username }}</a
+                          >
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.purchase_ip }}"
+                            [routerLink]="['/admin/ip/' + p.purchase_ip]"
+                            >{{ p.purchase_ip }}</a
+                          >
+                          <br />
+                          @if (p.purchase_host) {
+                            <span>
+                              {{ p.purchase_host }}
+                            </span>
+                          }
+                        </td>
+                        <td>
+                          {{
+                            p.purchase_date * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            p.quantity | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="{{ Tools.getResName(p.resource_id) }}"
+                            class="small-resource"></app-ew-icon>
+                          <br />
+                          {{
+                            p.quantity * p.rate
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="drachma"
+                            class="small-resource"></app-ew-icon>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

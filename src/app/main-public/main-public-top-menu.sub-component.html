@@ -1,0 +1,77 @@
+<nav
+  attr.aria-label="{{ 'Main navigation menu' | translate }}"
+  role="navigation"
+  class="navbar navbar-expand-lg navbar-dark navbar-menu">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']" translate>Ellas War</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerMenu"
+      aria-controls="navbarTogglerMenu"
+      aria-expanded="false"
+      attr.aria-label="{{ 'Toggle navigation' | translate }}">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/discoverthegame']"
+            [ngClass]="{ active: active === 'discoverthegame' }"
+            translate
+            >Discover the Game</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/contactus']"
+            [ngClass]="{ active: active === 'contactus' }"
+            translate
+            >Support</a
+          >
+        </li>
+      </ul>
+      <form
+        method="POST"
+        action="/login"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit(loginForm.value)">
+        <fieldset>
+          <legend class="visually-hidden">Login to the game</legend>
+          <div class="d-flex">
+            <label class="visually-hidden" for="username_top" translate
+              >Username</label
+            >
+            <input
+              class="form-control me-2"
+              type="text"
+              id="username_top"
+              placeholder="{{ 'Login' | translate }}"
+              name="username"
+              formControlName="username"
+              required="required" />
+            <label class="visually-hidden" for="password_top" translate
+              >Password</label
+            >
+            <input
+              class="form-control me-2"
+              type="password"
+              id="password_top"
+              placeholder="{{ 'Password' | translate }}"
+              name="password"
+              formControlName="password"
+              required="required" />
+            <button class="btn btn-success" type="submit" translate>
+              Connect
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</nav>
+<div id="topMosaic"></div>

@@ -1,0 +1,44 @@
+@if (getLostBuildingsNb() + getLostUnitsNb() + getLostResourcesNb() === 0) {
+  <div translate>No loss in the city</div>
+}
+
+@if (getLostUnitsNb() > 0) {
+  <div>
+    <strong translate>Lost units</strong><strong translate>:</strong>
+    <ul class="list-unstyled">
+      @for (unit of getLostUnits(); track unit) {
+        <li>
+          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(unit.code, unit.nb) | translate }}
+        </li>
+      }
+    </ul>
+  </div>
+}
+@if (getLostBuildingsNb() > 0) {
+  <div>
+    <strong translate>Lost buildings</strong><strong translate>:</strong>
+    <ul class="list-unstyled">
+      @for (building of getLostBuildings(); track building) {
+        <li>
+          {{ building.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(building.code, building.nb) | translate }}
+        </li>
+      }
+    </ul>
+  </div>
+}
+
+@if (getLostResourcesNb() > 0) {
+  <div>
+    <strong translate>Lost resources</strong><strong translate>:</strong>
+    <ul class="list-unstyled">
+      @for (res of getLostResources(); track res) {
+        <li>
+          {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
+          <app-ew-icon name="res.code" class="small-resource"></app-ew-icon>
+        </li>
+      }
+    </ul>
+  </div>
+}

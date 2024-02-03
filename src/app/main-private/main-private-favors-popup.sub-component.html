@@ -1,0 +1,226 @@
+<div class="modal fade" id="Favors" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-md-down modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>
+          Get Favors and improve your progress on the game!
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      @if (favor.id > 0) {
+        <div class="modal-body">
+          @if (favor.id === 1) {
+            <h5 class="modal-title" translate>Support of Deimos</h5>
+          }
+          @if (favor.id === 2) {
+            <h5 class="modal-title" translate>Support of Leonidas</h5>
+          }
+          @if (favor.id === 4) {
+            <h5 class="modal-title" translate>Support of Hebe</h5>
+          }
+          @if (favor.id === 5) {
+            <h5 class="modal-title" translate>Support of Plutus</h5>
+          }
+          @if (favor.id === 6) {
+            <h5 class="modal-title" translate>Support of Helios</h5>
+          }
+          @if (favor.error > 0) {
+            <div class="text-danger fw-bold text-center" translate>
+              Favor validated
+            </div>
+          }
+          <div class="text-center">
+            <strong translate>Cost:</strong>
+            1 <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+            <br />
+            @if (user.getPropertyNb('favor') > 0) {
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="useFavor()"
+                translate>
+                Validate
+              </button>
+            }
+          </div>
+        </div>
+      }
+      <div class="modal-body">
+        <div class="container">
+          <div class="row no-android no-ios no-electron">
+            <div class="col-12 text-center">
+              <div class="fw-bold">
+                <span translate>Favors</span>
+                <span translate>:</span>
+                {{
+                  user.getPropertyNb('favor')
+                    | number: '' : this.translate.currentLang
+                }}
+                <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+              </div>
+              <div
+                class="card-button card-button-primary mt-2"
+                [routerLink]="['/getfavors']"
+                data-bs-dismiss="modal"
+                role="button"
+                translate>
+                Get Favors
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-12 d-flex mt-2">
+              <div class="card flex-grow-1">
+                <div class="card-header" translate>Support of Deimos</div>
+                <div class="card-body">
+                  <div translate>Won many victories!</div>
+                  <div translate>
+                    Add 15 bonus attack. You can make a maximum of 5 per day.
+                  </div>
+                  <div class="text-center">
+                    <strong translate>Cost:</strong>
+                    1
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </div>
+                </div>
+                <div
+                  class="card-button card-button-primary"
+                  (click)="selectFavor(1)"
+                  role="button"
+                  translate>
+                  Get
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12 d-flex mt-2">
+              <div class="card flex-grow-1">
+                <div class="card-header" translate>Support of Leonidas</div>
+                <div class="card-body">
+                  @if (user.getPropertyNb('level') < 10) {
+                    <span>+160&nbsp;</span>
+                  }
+                  @if (user.getPropertyNb('level') >= 10) {
+                    <span>+240&nbsp;</span>
+                  }
+                  <span translate>Spartans</span> (<span translate
+                    >Divine Bonus</span
+                  >)
+
+                  <div translate>+200 Spies</div>
+                  <div class="text-center">
+                    <strong translate>Cost:</strong>
+                    1
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </div>
+                </div>
+                <div
+                  class="card-button card-button-primary"
+                  (click)="selectFavor(2)"
+                  role="button"
+                  translate>
+                  Get
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12 d-flex mt-2">
+              <div class="card flex-grow-1">
+                <div class="card-header" translate>Support of Hebe</div>
+                <div class="card-body">
+                  <div translate>
+                    You will not pay fee on your withdrawals in your treasure
+                    for 7 days
+                  </div>
+                  <div class="text-center">
+                    <strong translate>Cost:</strong>
+                    1
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </div>
+                </div>
+                <div
+                  class="card-button card-button-primary"
+                  (click)="selectFavor(4)"
+                  role="button"
+                  translate>
+                  Get
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12 d-flex mt-2">
+              <div class="card flex-grow-1">
+                <div class="card-header" translate>Support of Plutus</div>
+                <div class="card-body">
+                  <div translate>Have abundant resources!</div>
+                  <div translate>+2,000,000 Wood, Iron, Food, Water</div>
+                  <div translate>+800,000 Drachmas</div>
+                  <div class="text-center">
+                    <strong translate>Cost:</strong>
+                    1
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </div>
+                </div>
+                <div
+                  class="card-button card-button-primary"
+                  (click)="selectFavor(5)"
+                  role="button"
+                  translate>
+                  Get
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-12 d-flex mt-2">
+              <div class="card flex-grow-1">
+                <div class="card-header" translate>Support of Helios</div>
+                <div class="card-body">
+                  <div translate>
+                    Your losses resources in the attacks will be reduced by 50%
+                    during 7 days
+                  </div>
+                  <div class="text-center">
+                    <strong translate>Cost:</strong>
+                    1
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </div>
+                </div>
+                <div
+                  class="card-button card-button-primary"
+                  (click)="selectFavor(6)"
+                  role="button"
+                  translate>
+                  Get
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

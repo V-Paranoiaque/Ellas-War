@@ -1,0 +1,131 @@
+<app-admin-support-popup></app-admin-support-popup>
+
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 id="supportDesc" class="text-center">
+              <span translate>Support page</span>
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#SupportNew"
+                title="{{ 'Write a new message' | translate }}">
+                <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+              </button>
+            </h1>
+
+            <table class="table align-middle" aria-labelledby="supportDesc">
+              <tbody>
+                @for (msg of adminSupportList; track msg) {
+                  <tr>
+                    <th scope="row">
+                      <a
+                        [routerLink]="[
+                          '/admin/support/' +
+                            adminSupportPage +
+                            '/' +
+                            msg.support_id
+                        ]">
+                        {{ msg.support_topic }}
+                      </a>
+                    </th>
+                    <td>
+                      <a
+                        [routerLink]="['/admin/profile/' + msg.support_membre]">
+                        {{ msg.support_username }}
+                      </a>
+                    </td>
+                    <td>
+                      <a [routerLink]="['/admin/profile/' + msg.support_last]">
+                        {{ msg.last_username }}
+                      </a>
+                    </td>
+                    <td class="text-center">
+                      <a
+                        [routerLink]="[
+                          '/admin/support/' +
+                            adminSupportPage +
+                            '/' +
+                            msg.support_id
+                        ]"
+                        class="btn btn-primary">
+                        <app-ic-icon [icon]="eye"></app-ic-icon>
+                      </a>
+                      <a
+                        (click)="adminSupportStatus(msg.support_id)"
+                        class="btn"
+                        (keyup.enter)="adminSupportStatus(msg.support_id)"
+                        tabindex="0"
+                        [ngClass]="{
+                          'btn-success': msg.support_status === 1,
+                          'btn-danger': msg.support_status === 0
+                        }">
+                        <app-ic-icon [icon]="angellistIcon"></app-ic-icon>
+                      </a>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            @if (adminSupportMax > 1) {
+              <div>
+                <br />
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminSupportPageChange(1)"
+                    (keyup.enter)="adminSupportPageChange(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminSupportPageChange(adminSupportPage - 1)"
+                    (keyup.enter)="adminSupportPageChange(adminSupportPage - 1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    [ngModel]="adminSupportPage"
+                    (change)="adminSupportPageChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}"
+                    #mySelect>
+                    @for (id of Tools.range(1, adminSupportMax); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminSupportPageChange(adminSupportPage + 1)"
+                    (keyup.enter)="adminSupportPageChange(adminSupportPage + 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminSupportPageChange(adminSupportMax)"
+                    (keyup.enter)="adminSupportPageChange(adminSupportMax)"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

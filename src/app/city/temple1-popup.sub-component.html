@@ -1,0 +1,128 @@
+<div class="modal fade" id="Temple1Info" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if (temple === 0) {
+          <h5 translate>Choose your first temple</h5>
+        }
+        @if (temple === 1) {
+          <h5 translate>Hermes</h5>
+        }
+        @if (temple === 2) {
+          <h5 translate>Apollo</h5>
+        }
+        @if (temple === 3) {
+          <h5 translate>Demeter</h5>
+        }
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-header">
+        <app-ew-icon
+          name="hermes"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 1 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(1)"></app-ew-icon>
+        <app-ew-icon
+          name="apollo"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 2 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(2)"></app-ew-icon>
+        <app-ew-icon
+          name="demeter"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 3 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(3)"></app-ew-icon>
+      </div>
+      <div class="modal-body">
+        <strong translate>Price</strong><strong translate>:</strong>
+
+        @for (res of price; track res) {
+          <span>
+            <span
+              [ngClass]="{
+                'text-danger': user.getPropertyNb(res.resource) < res.quantity
+              }">
+              {{ res.quantity | number: '' : this.translate.currentLang }}
+            </span>
+            <app-ew-icon
+              name="{{ res.resource }}"
+              class="small-resource"></app-ew-icon>
+          </span>
+        }
+      </div>
+      <div class="modal-body">
+        @if (user.getPropertyNb('level') < 2) {
+          <div class="alert alert-danger" translate>Available at level 2</div>
+        }
+        <div>
+          @if (user.getPropertyNb('level') >= 2 && temple === 0) {
+            <div class="text-center text-danger" translate>
+              Click on one of the temples to select it
+            </div>
+          }
+          @if (temple === 1) {
+            <ul>
+              <li translate>
+                In the Agora, when you redeem your batches, you get 97.5%
+                instead of 80%
+              </li>
+              <li translate>
+                Until the level 6, you can store 50% more Drachmas in your
+                treasure
+              </li>
+              <li translate>
+                From the level 6, treasure your treasure taxes are reduced by
+                20%
+              </li>
+            </ul>
+          }
+          @if (temple === 2) {
+            <ul>
+              <li translate>Free and safe spying</li>
+              <li translate>
+                Your units are 10% more efficients during sanctuaries attacks
+              </li>
+            </ul>
+          }
+          @if (temple === 3) {
+            <ul>
+              <li translate>+30% base food production</li>
+              <li translate>+30% base grapes production</li>
+              <li translate>
+                The fury can destroy farms and growers and reserves of grapes
+                and food of your opponents.
+              </li>
+            </ul>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (temple > 0 && canBuild()) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="build()"
+            translate>
+            Build
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="modal fade" id="AllianceEmergency" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Emergency exit</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      @if (user.getPropertyNb('emergency_exit') === 0) {
+        <div class="modal-body container-fluid">
+          <div class="text-center fw-bold" translate>
+            Are you sure to want to active the emergency exit?
+          </div>
+          <br />
+          <div translate>
+            In 10 days you will automatically leave your alliance, you will be
+            able to cancel the exit during the next 24 hours.
+          </div>
+        </div>
+      }
+      @if (user.getPropertyNb('emergency_exit') > 0) {
+        <div class="modal-body container-fluid">
+          <div class="text-center text-danger fw-bold" translate>
+            Are you sure to want to cancel the emergency exit?
+          </div>
+        </div>
+      }
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (user.getPropertyNb('emergency_exit') === 0) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="myAllianceEmergencyExit()"
+            data-bs-dismiss="modal"
+            translate>
+            Confirm
+          </button>
+        }
+        @if (user.getPropertyNb('emergency_exit') > 0) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="myAllianceEmergencyExitCancel()"
+            data-bs-dismiss="modal"
+            translate>
+            Confirm
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

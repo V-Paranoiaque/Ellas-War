@@ -1,0 +1,63 @@
+on:
+  workflow_call:
+    inputs:
+      electron:
+        required: true
+        type: string
+      node:
+        required: true
+        type: string
+
+jobs:
+  #armhf Arch
+  package-armv7l:
+    name: "Build armv7l packages"
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build
+      
+      - name: Cache www directory
+        uses: actions/cache@v3
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v2
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y -qq rpm 
+          npm install -g cordova
+          npm install
+      
+      - name: Build packages
+        run: |
+          cordova platform add electron@^${{ inputs.electron }}
+          cp res/electron/build-pipeline-linux-armv7l.json build.json
+          cordova build electron --no-telemetry --release
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'

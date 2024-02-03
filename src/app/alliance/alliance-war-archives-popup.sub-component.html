@@ -1,0 +1,132 @@
+<div
+  class="modal fade"
+  id="AllianceWarArchives"
+  tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" id="warDesc">
+        @if (info.alliance_attacking === user.getPropertyNb('alliance')) {
+          <h5 class="modal-title">
+            {{ 'Against { value }' | translate: { value: info.name_defender } }}
+          </h5>
+        }
+        @if (info.alliance_attacking !== user.getPropertyNb('alliance')) {
+          <h5 class="modal-title">
+            {{
+              'Against { value }' | translate: { value: info.name_attacking }
+            }}
+          </h5>
+        }
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      @if (warInfo.list.length === 0) {
+        <div class="modal-body container-fluid text-center fw-bold" translate>
+          No attack has been made yet
+        </div>
+      }
+
+      @if (user.getPropertyNb('id') > 0) {
+        <div class="modal-body container-fluid text-center">
+          <strong translate>Goal</strong>
+          <strong translate>:</strong>
+          {{ warVictory() }} <span translate>Victories</span>
+          <br />
+          {{
+            'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'
+              | translate
+                : {
+                    value: getWarInfo().war.victory,
+                    value2: getWarInfo().war.diff
+                  }
+          }}
+          <br />
+          @if (warInfo.end) {
+            <div>
+              <strong translate>End of time</strong>
+              <strong translate>:</strong>
+              {{ warInfo.end * 1000 | date: 'dd/MM, HH:mm' }}
+            </div>
+          }
+          @if (warInfo.reward) {
+            <div>
+              <br />
+              <strong translate>Reward</strong>
+              <strong translate>:</strong>
+              {{ warInfo.reward | number: '' : this.translate.currentLang }}
+              <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+              <div translate>
+                The reward is shared in proportion to everyone's victories.
+              </div>
+            </div>
+          }
+        </div>
+      }
+      @if (warInfo.list.length > 0) {
+        <div class="modal-body container-fluid">
+          <table
+            class="table table-middle table-striped"
+            aria-labelledby="warDesc">
+            <thead>
+              <tr>
+                <th scope="col" translate>Attacker</th>
+                <th scope="col" translate>Defender</th>
+                <th scope="col" translate></th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of warInfo.list; track p) {
+                <tr [ngClass]="{ 'bg-danger': p.defender === p.result }">
+                  <td>
+                    @if (p.offender === 1) {
+                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                    }
+                    @if (p.offender === 0) {
+                      <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
+                    }
+                    &nbsp;
+                    <app-user-profile
+                      id="{{ p.attacking }}"
+                      username="{{ p.ausername }}"
+                      status="1"></app-user-profile>
+                    >
+                  </td>
+                  <td>
+                    @if (p.offender === 0) {
+                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                    }
+                    @if (p.offender === 1) {
+                      <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
+                    }
+                    &nbsp;
+                    <app-user-profile
+                      id="{{ p.defender }}"
+                      username="{{ p.dusername }}"
+                      status="1"></app-user-profile>
+                    >
+                  </td>
+                  <td>
+                    {{ p.time * 1000 | date: 'dd/MM, HH:mm' }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

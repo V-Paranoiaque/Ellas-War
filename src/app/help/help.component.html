@@ -1,0 +1,70 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-4 col-md-6 offset-lg-2">
+        <div class="card mb-2">
+          <div class="card-header" translate>Contact us</div>
+          <div class="card-body" translate>
+            Contact directly Ellas War staff. The Ellas War team will try to
+            answer you as quickly as possible. For more difficult cases, it
+            meets every Tuesday.
+          </div>
+          <div class="card-body text-center">
+            @if (user.getPropertyNb('id') > 0) {
+              <a
+                class="btn btn-primary"
+                [routerLink]="['/support']"
+                role="button"
+                translate>
+                Contact us
+              </a>
+            }
+            @if (user.getPropertyNb('id') === 0) {
+              <a
+                class="btn btn-primary"
+                [routerLink]="['/contactus']"
+                role="button"
+                translate>
+                Contact us
+              </a>
+            }
+            <a
+              href="{{ environment.discord }}"
+              target="_blank"
+              id="discord-mobile"
+              rel="external nofollow noopener"
+              class="btn btn-discord"
+              role="btn">
+              <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 col-md-6 offset-lg-0 d-flex">
+        <div class="card d-flex mb-2">
+          <div class="card-header" translate>Facebook page</div>
+          <div class="card-body" translate>
+            The Ellas War community is found on the Facebook Page. You can find
+            help and communicate with other players.
+          </div>
+          <div
+            class="card-body text-center d-flex align-items-end justify-content-center">
+            <a
+              class="btn btn-primary"
+              target="_blank"
+              rel="external nofollow noopener"
+              role="button"
+              href="{{ user.config.fb_page }}"
+              translate>
+              Facebook page
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

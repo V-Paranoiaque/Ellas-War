@@ -1,0 +1,37 @@
+<div class="modal fade" id="spyResourcesHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Resource snooping</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <app-ic-icon class="vlow me-1" [icon]="dotCircle"></app-ic-icon>
+        <span translate>Very few resources</span>
+        <br />
+        <app-ic-icon class="low me-1" [icon]="dotCircle"></app-ic-icon>
+        <span translate>Few resources</span>
+        <br />
+        <app-ic-icon class="middle me-1" [icon]="dotCircle"></app-ic-icon>
+        <span translate>Normal quantity of resources</span>
+        <br />
+        <app-ic-icon class="high me-1" [icon]="dotCircle"></app-ic-icon>
+        <span translate>Lots of resources</span>
+        <br />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

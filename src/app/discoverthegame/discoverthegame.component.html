@@ -1,0 +1,491 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          @switch (page) {
+            <!-- Old pages -->
+            @case ('treeofthegods') {
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p translate>
+                      The tree of the gods has been removed in Ellas War Next
+                      V2.
+                    </p>
+                    <br />
+                    <a
+                      [routerLink]="['/discoverthegame']"
+                      class="btn btn-primary"
+                      translate>
+                      Discover the game
+                    </a>
+                  </div>
+                </div>
+              </div>
+            }
+            @case ('games') {
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <p translate>
+                      The games have been removed in Ellas War Next V2.
+                    </p>
+                    <br />
+                    <a
+                      [routerLink]="['/discoverthegame']"
+                      class="btn btn-primary"
+                      translate>
+                      Discover the game
+                    </a>
+                  </div>
+                </div>
+              </div>
+            }
+            <!-- Description pages -->
+            @case ('constructions') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Constructions</span>
+                  <a [routerLink]="['/discoverthegame/treasure']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="constructions"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  The different buildings that make up the city.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/buildings.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Construct buildings to make up your Greek city'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/buildings.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Construct buildings to make up your Greek city'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('treasure') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/constructions']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Treasure</span>
+                  <a [routerLink]="['/discoverthegame/temples']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="treasure"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  The treasure will allow you to shelter your wealth, however
+                  this service is not without constraints. To level 5 it will be
+                  limited from level 6 you will not limit but you will pay a fee
+                  for you to retrieve your drachmas.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/treasure.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Hide your drachmas in your treasure' | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/treasure.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Hide your drachmas in your treasure' | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('temples') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/treasure']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Temples</span>
+                  <a [routerLink]="['/discoverthegame/recruitment']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="temples"></app-discoverthegame-menu>
+                <div
+                  class="fw-bold text-center"
+                  [innerHTML]="
+                    'Each temple gives a unique advantage. It is up to you to choose them according to'
+                      | translate
+                  "></div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/temples.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Build temples and enjoy the powers of the Gods'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/temples.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Build temples and enjoy the powers of the Gods'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('recruitment') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/temples']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Recruitment</span>
+                  <a [routerLink]="['/discoverthegame/army']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="recruitment"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  The hoplites constitute the heavy infantry of the ancient
+                  Greek cities, made up of citizens who could not support a
+                  horse but who had the means to equip themselves with armor and
+                  provide for their families when They were in campaign.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/recruitment.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Recruit your army to defend your city from invaders'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/recruitment.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Recruit your army to defend your city from invaders'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('army') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/recruitment']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Army</span>
+                  <a [routerLink]="['/discoverthegame/attack']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="army"></app-discoverthegame-menu>
+                <div
+                  class="fw-bold text-center"
+                  [innerHTML]="
+                    'Your army will do its utmost to defend' | translate
+                  "></div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/army.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Build a varied army and make your strategy' | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/army.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Build a varied army and make your strategy' | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('attack') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/army']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate
+                    >Offensive strategy</span
+                  >
+                  <a [routerLink]="['/discoverthegame/defense']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="attack"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  Choose the units that will go to battle and the order in which
+                  they will enter the enemy cities.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/attack.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Choose the units that will go to battle and the order in which they will enter the enemy cities.'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/attack.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Choose the units that will go to battle and the order in which they will enter the enemy cities.'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('defense') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/attack']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate
+                    >Defensive strategy</span
+                  >
+                  <a [routerLink]="['/discoverthegame/trade']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="defense"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  Choose the units that will defend your city and the order in
+                  which they will go to battle.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/defense.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Choose the units that will defend your city and the order in which they will go to battle.'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/defense.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Choose the units that will defend your city and the order in which they will go to battle.'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('trade') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/defense']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Agora</span>
+                  <a [routerLink]="['/discoverthegame']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="agora"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  Buy the resources you need for your city or army.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/agora.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Buy the resources you need for your city or army.'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/agora.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Buy the resources you need for your city or army.'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @case ('sell') {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/trade']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>Sell resources</span>
+                  <a [routerLink]="['/discoverthegame']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="sell"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  Sell the resources looted during your attacks or from your
+                  production.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/agora.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Sell the resources looted during your attacks or from your production.'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/agora.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Sell the resources looted during your attacks or from your production.'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+            @default {
+              <div class="card-body">
+                <h1 class="pb-2 text-center d-flex justify-content-center">
+                  <a [routerLink]="['/discoverthegame/trade']">
+                    <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
+                  </a>
+                  <span class="mx-3 flex-grow-1" translate>City</span>
+                  <a [routerLink]="['/discoverthegame/constructions']">
+                    <app-ic-icon [icon]="arrowRight"></app-ic-icon>
+                  </a>
+                </h1>
+                <app-discoverthegame-menu
+                  name="home"></app-discoverthegame-menu>
+                <div class="fw-bold text-center" translate>
+                  Visualize your city and quickly access the different actions.
+                </div>
+                <div class="text-center">
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/web/city.png'
+                    "
+                    class="img-fluid img-thumbnail d-none d-md-block"
+                    alt="{{
+                      'Discover Ellas War and explore the Ancient Greece'
+                        | translate
+                    }}" />
+                  <img
+                    [src]="
+                      'assets/i18n/' +
+                      translate.currentLang +
+                      '/screenshot/mobile/city.png'
+                    "
+                    class="img-fluid img-thumbnail d-block d-md-none"
+                    alt="{{
+                      'Discover Ellas War and explore the Ancient Greece'
+                        | translate
+                    }}" />
+                </div>
+              </div>
+            }
+          }
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

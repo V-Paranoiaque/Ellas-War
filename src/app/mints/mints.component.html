@@ -1,0 +1,40 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 text-center fw-bold mb-4" translate>
+                Production of drachmas by number of mints
+              </div>
+              @for (prod of list; track prod; let i = $index) {
+                @if (i > 0) {
+                  <div
+                    class="col-lg-3 col-6 d-flex"
+                    [ngClass]="{
+                      'text-danger': i === user.getPropertyNb('mint')
+                    }">
+                    <div>{{ i }}</div>
+                    <div class="flex-grow-1 text-end">
+                      {{
+                        prod | number: '1.0-0' : this.translate.currentLang
+                      }}&nbsp;
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

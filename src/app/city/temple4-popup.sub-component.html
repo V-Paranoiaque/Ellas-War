@@ -1,0 +1,165 @@
+<div class="modal fade" id="Temple4Info" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if (temple === 0) {
+          <h5 translate>Choose your fourth temple</h5>
+        }
+        @if (temple === 9) {
+          <h5 translate>Zeus</h5>
+        }
+        @if (temple === 10) {
+          <h5 translate>Hades</h5>
+        }
+        @if (temple === 11) {
+          <h5 translate>Poseidon</h5>
+        }
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-header">
+        <app-ew-icon
+          name="zeus"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 9 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(9)"></app-ew-icon>
+        <app-ew-icon
+          name="hades"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 10 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(10)"></app-ew-icon>
+        <app-ew-icon
+          name="poseidon"
+          role="button"
+          [ngClass]="{ grey: temple > 0 && temple !== 11 }"
+          title="{{ 'Build a new temple' | translate }}"
+          (click)="setTemple(11)"></app-ew-icon>
+      </div>
+      <div class="modal-body">
+        <strong translate>Price</strong><strong translate>:</strong>
+
+        @for (res of price; track res) {
+          <span>
+            <span
+              [ngClass]="{
+                'text-danger': user.getPropertyNb(res.resource) < res.quantity
+              }">
+              {{ res.quantity | number: '' : this.translate.currentLang }}
+            </span>
+            <app-ew-icon
+              name="{{ res.resource }}"
+              class="small-resource"></app-ew-icon>
+          </span>
+        }
+      </div>
+      <div class="modal-body">
+        @if (user.getPropertyNb('level') < 10) {
+          <div class="alert alert-danger" translate>Available at level 10</div>
+        }
+        @if (user.getPropertyNb('level') >= 10 && temple === 0) {
+          <div class="text-center text-danger" translate>
+            Click on one of the temples to select it
+          </div>
+        }
+        @if (temple > 0) {
+          <div>
+            <strong translate>New powers</strong>
+            @if (temple === 9) {
+              <ul>
+                <li translate>
+                  You will be able to send lightning of Zeus to destroy
+                  buildings of your Enemies.
+                </li>
+                <li>
+                  {{
+                    'New unity: { unit }'
+                      | translate: { unit: 'Myrmidons' | translate }
+                  }}
+                </li>
+                <li translate>You receive 1000 units at random.</li>
+                <li translate>
+                  Heavy black clouds invade the targeted enemy city which can no
+                  longer engage units
+                </li>
+                <li translate>
+                  Infantry units gain 25% attack power for 1 hour.
+                </li>
+              </ul>
+            }
+            @if (temple === 10) {
+              <ul>
+                <li translate>+30% base gold production</li>
+                <li translate>+30% base iron production</li>
+                <li translate>+30% base marble production</li>
+                <li translate>+30% base stone production</li>
+                <li>
+                  {{
+                    'New unity: { unit }'
+                      | translate: { unit: 'Tormented souls' | translate }
+                  }}
+                </li>
+                <li translate>
+                  Hades launches an epidemic on the enemy city causing the
+                  immediate death of 5 to 15% of his army.
+                </li>
+                <li translate>
+                  Hades returns 5 to 10% of your dead human and temple units in
+                  battle as souls.
+                </li>
+                <li translate>
+                  Hades gives you marble and stone to defeat your enemies.
+                </li>
+              </ul>
+            }
+            @if (temple === 11) {
+              <ul>
+                <li translate>+30% base water production</li>
+                <li translate>-50% cavalry cost</li>
+                <li translate>-50% cavalry consumption</li>
+                <li translate>+15% cavalry defensive power</li>
+                <li translate>You will be able to hire Cyclops</li>
+                <li translate>
+                  Possibility of building Poseidon wall to defend your city.
+                </li>
+                <li translate>
+                  Poseidon rebuilt your wall to protect your city.
+                </li>
+                <li translate>
+                  Poseidon shakes the earth and blocks the resources production
+                  of an enemy for 2 hours.
+                </li>
+                <li translate>The wall gains 20% defensive power for 4h</li>
+                <li translate>200 Cyclops join you to resist the invader</li>
+              </ul>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (temple > 0 && canBuild()) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="build()"
+            translate>
+            Build
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

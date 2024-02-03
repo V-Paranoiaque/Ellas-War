@@ -1,0 +1,110 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card container px-0">
+          <div class="card-body">
+            <h1 class="text-center" id="allianceProfileDesc">
+              {{ allianceProfile.alliance_name }}
+
+              @if (
+                user.getPropertyNb('level') > 0 &&
+                user.getPropertyNb('alliance') === 0 &&
+                allianceProfile.alliance_type === 0
+              ) {
+                <button
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceJoin"
+                  title="{{ 'Join the alliance:' | translate }} {{
+                    allianceProfile.alliance_name
+                  }}"
+                  [ngClass]="{
+                    invisible: allianceProfile.recruitement_open === 0
+                  }">
+                  <app-ic-icon [icon]="userPlus"></app-ic-icon>
+                  <span class="visually-hidden">
+                    {{ 'Join the alliance:' | translate }}
+                    {{ allianceProfile.alliance_name }}
+                  </span>
+                </button>
+              }
+            </h1>
+            <br />
+            <div class="row">
+              <div class="col-sm-6 col-12">
+                @if (allianceProfile.alliance_img !== '') {
+                  <img
+                    src="/aprofile/{{ allianceProfile.alliance_img }}"
+                    class="img-fluid center-block"
+                    alt="{{ allianceProfile.alliance_name }}" />
+                }
+              </div>
+              <div class="col-sm-6 col-12">
+                <table class="table" aria-labelledby="allianceProfileDesc">
+                  <tr>
+                    <th class="fw-bold" scope="row" translate>Chief:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td [routerLink]="['/profile/' + allianceProfile.chief_id]">
+                      <span role="button">
+                        {{ allianceProfile.username }}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row" translate>Founder:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td
+                      [routerLink]="['/profile/' + allianceProfile.creator_id]">
+                      <span role="button">
+                        {{ allianceProfile.founder }}
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row" translate>Members:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>
+                      <a
+                        [routerLink]="[
+                          '/alliancemembers/' + allianceProfile.alliance_id
+                        ]"
+                        class="link">
+                        {{ allianceProfile.nbmembers }}
+                        (<span translate>Consult</span>)
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row" translate>Victories:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>
+                      <span>{{ allianceProfile.victories }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="fw-bold" scope="row" translate>Defeats:</th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>
+                      <span>{{ allianceProfile.defeats }}</span>
+                    </td>
+                  </tr>
+                </table>
+                <br /><br />
+                <div class="text-justify text-prewrap">
+                  {{ allianceProfile.description }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

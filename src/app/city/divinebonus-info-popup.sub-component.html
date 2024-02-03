@@ -1,0 +1,47 @@
+<div class="modal fade" id="DivineBonusInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <app-id-to-divinebonus
+            [id]="divineBonus.bonus_id"></app-id-to-divinebonus>
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (divineBonus.error > 0) {
+          <div class="alert alert-success" role="alert" translate>
+            Divine Bonus validated
+          </div>
+        }
+
+        <span translate>Currently</span>
+        <span translate>:</span>
+        {{ divineBonus.nb | number: '' : this.translate.currentLang }}
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (divineBonus.nb > 0) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="divineBonusUse()"
+            translate>
+            Use the Divine Bonus
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

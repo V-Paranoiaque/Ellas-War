@@ -1,0 +1,554 @@
+<app-main-private-favors-popup></app-main-private-favors-popup>
+<app-main-private-xp-help-popup
+  [info]="xpCompare"></app-main-private-xp-help-popup>
+<app-main-private-honnor-help-popup></app-main-private-honnor-help-popup>
+
+<div class="modal fade" id="weatherInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" [ngSwitch]="user.getConfig().weather">
+        <h5>
+          <app-id-to-weather
+            [weather]="user.getConfig().weather"></app-id-to-weather>
+          &nbsp;
+          <span *ngSwitchCase="'sun'" class="modal-title" translate>Sun</span>
+          <span *ngSwitchCase="'rain'" class="modal-title" translate>Rain</span>
+          <span *ngSwitchCase="'storm'" class="modal-title" translate
+            >Storm</span
+          >
+          <span *ngSwitchCase="'snow'" class="modal-title" translate>Snow</span>
+          <span *ngSwitchCase="'heatwave'" class="modal-title" translate
+            >Heatwave</span
+          >
+          <span *ngSwitchCase="'wind'" class="modal-title" translate>Wind</span>
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <strong translate>Cost:</strong>
+        <span
+          *ngFor="let item of getPrice()"
+          [ngClass]="{ 'text-danger': user.getPropertyNb(item.res) < item.nb }">
+          {{ item.nb | number: '' : this.translate.currentLang }}
+          <app-ew-icon
+            name="{{ item.res }}"
+            class="small-resource"></app-ew-icon>
+        </span>
+
+        <br />
+
+        <div *ngIf="user.getPropertyNb('active_weather') > 0">
+          <br />
+          <span translate>End of immunity</span>
+          <span translate>:</span>
+          {{ user.getPropertyNb('active_weather') * 1000 | date: 'd/M, HH:mm' }}
+          (<a class="pointer" translate (click)="weatherDisableCancel()"
+            >Cancel</a
+          >)
+          <br />
+        </div>
+
+        <div *ngIf="canEnable()">
+          <br />
+          <button
+            class="btn btn-success"
+            (click)="weatherDisable()"
+            *ngIf="canEnable()"
+            translate>
+            Turn off the weather
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body text-center" [ngSwitch]="user.getConfig().weather">
+        <strong translate>Effects</strong>
+        <strong translate>:</strong>
+        <div *ngSwitchCase="'sun'">
+          <ul class="d-inline-block text-start">
+            <li translate>Nothing</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'rain'">
+          <ul class="d-inline-block text-start">
+            <li translate>+20% food production</li>
+            <li translate>+20% grapes production</li>
+            <li translate>+20% wood production</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'storm'">
+          <ul class="d-inline-block text-start">
+            <li translate>-5% to the attack</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'snow'">
+          <ul class="d-inline-block text-start">
+            <li translate>-20% food production</li>
+            <li translate>-20% water production</li>
+            <li translate>-20% wood production</li>
+            <li translate>-20% iron production</li>
+            <li translate>-20% stone production</li>
+            <li translate>-20% marble production</li>
+            <li translate>-20% grapes production</li>
+            <li translate>-20% wine production</li>
+            <li translate>-20% gold production</li>
+            <li translate>-5% to the defense of the Poseidon Wall</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'heatwave'">
+          <ul class="d-inline-block text-start">
+            <li translate>+20% wine production</li>
+            <li translate>+20% water consumption</li>
+            <li translate>+20% wine consumption</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'wind'">
+          <ul class="d-inline-block text-start">
+            <li translate>-20% wood production</li>
+            <li translate>-5% to the defense</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <strong translate
+          >The weather is the will of the gods. It will influence your city,
+          your productions and your consumption. Thanks to it you will be able
+          to win victories impossible but take care, everything can turn against
+          you.</strong
+        >
+
+        <br /><br />
+
+        <p translate>
+          If you are afraid that this will have a detrimental effect on your
+          city, you can make an offering to the gods. After this offering your
+          city will no longer suffer the weather for a week.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#weatherHelp"
+          data-bs-dismiss="modal"
+          translate>
+          Weather details
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="weatherHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-row">
+        <app-id-to-weather
+          [weather]="'sun'"
+          (click)="selectWeather('sun')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'sun'
+          }"></app-id-to-weather>
+        <app-id-to-weather
+          [weather]="'rain'"
+          (click)="selectWeather('rain')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'rain'
+          }"></app-id-to-weather>
+        <app-id-to-weather
+          [weather]="'storm'"
+          (click)="selectWeather('storm')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'storm'
+          }"></app-id-to-weather>
+        <app-id-to-weather
+          [weather]="'snow'"
+          (click)="selectWeather('snow')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'snow'
+          }"></app-id-to-weather>
+        <app-id-to-weather
+          [weather]="'heatwave'"
+          (click)="selectWeather('heatwave')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'heatwave'
+          }"></app-id-to-weather>
+        <app-id-to-weather
+          [weather]="'wind'"
+          (click)="selectWeather('wind')"
+          role="button"
+          class="flex-grow-1"
+          [ngClass]="{
+            'text-danger': selectedWeather === 'wind'
+          }"></app-id-to-weather>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <span [ngSwitch]="selectedWeather">
+            <span *ngSwitchCase="'sun'" translate>Sun</span>
+            <span *ngSwitchCase="'rain'" translate>Rain</span>
+            <span *ngSwitchCase="'storm'" translate>Storm</span>
+            <span *ngSwitchCase="'snow'" translate>Snow</span>
+            <span *ngSwitchCase="'heatwave'" translate>Heatwave</span>
+            <span *ngSwitchCase="'wind'" translate>Wind</span>
+          </span>
+          <app-id-to-weather
+            [weather]="selectedWeather"
+            class="ms-1"></app-id-to-weather>
+        </h5>
+      </div>
+
+      <div class="modal-body" [ngSwitch]="selectedWeather">
+        <div *ngSwitchCase="'sun'">
+          <ul class="d-inline-block text-start">
+            <li translate>Nothing</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'rain'">
+          <ul class="d-inline-block text-start">
+            <li translate>+20% food production</li>
+            <li translate>+20% grapes production</li>
+            <li translate>+20% wood production</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'storm'">
+          <ul class="d-inline-block text-start">
+            <li translate>-5% to the attack</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'snow'">
+          <ul class="d-inline-block text-start">
+            <li translate>-20% food production</li>
+            <li translate>-20% water production</li>
+            <li translate>-20% wood production</li>
+            <li translate>-20% iron production</li>
+            <li translate>-20% stone production</li>
+            <li translate>-20% marble production</li>
+            <li translate>-20% grapes production</li>
+            <li translate>-20% wine production</li>
+            <li translate>-20% gold production</li>
+            <li translate>-5% to the defense of the Poseidon Wall</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'heatwave'">
+          <ul class="d-inline-block text-start">
+            <li translate>+20% wine production</li>
+            <li translate>+20% water consumption</li>
+            <li translate>+20% wine consumption</li>
+          </ul>
+        </div>
+        <div *ngSwitchCase="'wind'">
+          <ul class="d-inline-block text-start">
+            <li translate>-20% wood production</li>
+            <li translate>-5% to the defense</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#weatherInfo"
+          data-bs-dismiss="modal"
+          translate>
+          Current weather
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ambrosiaHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 translate>Ambrosia</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p translate>
+          Ambrosia is a special resource. It is not possible to trade it or loot
+          it.
+        </p>
+        <strong translate>To obtain it:</strong>
+        <ul class="d-inline-block text-start">
+          <li translate>Build temples</li>
+          <li translate>Validate 7 quests and open the chest</li>
+          <li translate>Own the Tantalus Sanctuary</li>
+        </ul>
+
+        <p translate>
+          To use it, visit your temples. Each has one or more powers.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav
+  id="playerMenuColumn"
+  class="collapse d-lg-block sidebar sidebar-right collapse">
+  <div class="position-sticky">
+    <div class="player-menu py-2">
+      <strong>
+        {{ user.getProperty('username') }}
+        <a [routerLink]="['/quests']" *ngIf="user.getPropertyNb('level') < 10">
+          ({{ user.getPropertyNb('level') }})
+        </a>
+      </strong>
+      <div *ngIf="user.getPropertyNb('alliance') > 0">
+        {{ user.getProperty('alliance_name') }}
+      </div>
+      <div class="text-center d-flex justify-content-center">
+        <a
+          class="nav-link mx-2"
+          [routerLink]="['/admin/']"
+          *ngIf="user.getPropertyNb('rank') > 1"
+          title="{{ 'Administration panel' | translate }}">
+          <app-ic-icon [icon]="greekcolumnIcon"></app-ic-icon>
+        </a>
+        <a
+          class="nav-link mx-2"
+          [routerLink]="['/options']"
+          title="{{ 'Game options' | translate }}">
+          <app-ic-icon [icon]="cog"></app-ic-icon>
+        </a>
+        <a
+          class="nav-link mx-2"
+          [routerLink]="['/support']"
+          title="{{ 'Send a message to the staff' | translate }}">
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+        </a>
+        <a
+          class="nav-link mx-2"
+          [routerLink]="['']"
+          role="button"
+          (click)="disconnect()"
+          title="{{ 'Disconnect' | translate }}">
+          <app-ic-icon [icon]="powerOff"></app-ic-icon>
+        </a>
+      </div>
+    </div>
+    <div class="player-menu py-2 mt-3 d-flex flex-column">
+      <div class="text-end d-flex flex-row justify-content-center">
+        <div>
+          <a
+            href="/rankingplayers/1/field"
+            [routerLink]="['/rankingplayers/1/field']">
+            {{
+              user.getPropertyNb('field')
+                | number: '' : this.translate.currentLang
+            }}
+            <app-ic-icon [icon]="landFields"></app-ic-icon>
+          </a>
+          <br />
+          <a
+            href="/rankingplayers/1/victory"
+            [routerLink]="['/rankingplayers/1/victory']">
+            {{
+              user.getPropertyNb('victory')
+                | number: '' : this.translate.currentLang
+            }}
+            <app-ic-icon
+              [icon]="swordIcon"
+              title="{{ 'Victories' | translate }}"></app-ic-icon>
+          </a>
+          <br />
+          <a
+            href="/honnor/{{ user.getPropertyNb('level') }}"
+            [routerLink]="['/honnor/' + user.getPropertyNb('level')]">
+            {{
+              user.getPropertyNb('honnor')
+                | number: '' : this.translate.currentLang
+            }}
+            <app-ic-icon
+              [icon]="crown"
+              title="{{ 'Honnor' | translate }}"></app-ic-icon>
+          </a>
+          <span
+            data-bs-toggle="modal"
+            data-bs-target="#honnorHelp"
+            role="button"
+            title="{{ 'Honnor' | translate }}"
+            class="ms-1"
+            tabindex="0">
+            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+          </span>
+          <br />
+          <a href="/rankingplayers" [routerLink]="['/rankingplayers/']">
+            {{
+              user.getPropertyNb('xp') | number: '' : this.translate.currentLang
+            }}
+            <app-ic-icon
+              [icon]="trophy"
+              title="{{ 'XP' | translate }}"></app-ic-icon>
+          </a>
+          <span
+            data-bs-toggle="modal"
+            data-bs-target="#xpHelp"
+            role="button"
+            title="{{ 'Help' | translate }}"
+            (click)="xpHelpInit()"
+            class="ms-1"
+            (keyup.enter)="xpHelpInit()"
+            tabindex="0">
+            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+          </span>
+        </div>
+      </div>
+      <div class="text-center mt-2">
+        <strong translate>Weather</strong>
+        <strong translate>:</strong>
+        <app-id-to-weather
+          [weather]="user.getConfig().weather"
+          data-bs-toggle="modal"
+          data-bs-target="#weatherInfo"
+          title="{{ 'Weather information' | translate }}"
+          class="mx-1"
+          role="button"></app-id-to-weather>
+        <span
+          data-bs-toggle="modal"
+          data-bs-target="#weatherHelp"
+          role="button"
+          title="{{ 'Help' | translate }}">
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+        </span>
+      </div>
+    </div>
+    <div class="player-menu py-2 mt-3">
+      <div *ngFor="let res of ressList">
+        <div *ngIf="user.hasLevelRess(res)" class="d-flex">
+          <div
+            class="p-1 pe-0 bd-highlight"
+            [ngClass]="{
+              'icon-increase': getVariation(res) > 0,
+              'icon-equal': getVariation(res) === 0,
+              'icon-decrease': getVariation(res) < 0
+            }">
+            <app-ic-icon
+              *ngIf="getVariation(res) > 0"
+              [icon]="angleUp"
+              class="text-up"></app-ic-icon>
+            <app-ic-icon
+              *ngIf="getVariation(res) === 0"
+              [icon]="equals"
+              class="text-equals"></app-ic-icon>
+            <app-ic-icon
+              *ngIf="getVariation(res) < 0"
+              [icon]="angleDown"
+              class="text-down"></app-ic-icon>
+          </div>
+          <div class="py-1 flex-grow-1 text-end text-break">
+            {{ getRes(res) | number: '1.0-2' : this.translate.currentLang }}
+          </div>
+          <div class="p-1 icon">
+            <app-ew-icon name="{{ res }}" class="small-resource"></app-ew-icon>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="user.hasLevelRess('ambrosia')" class="d-flex">
+        <div class="p-1 icon-increase">
+          <app-ic-icon [icon]="angleUp" class="text-up"></app-ic-icon>
+        </div>
+        <div class="p-1 bd-highlight">
+          <app-ic-icon
+            data-bs-toggle="modal"
+            data-bs-target="#ambrosiaHelp"
+            data-bs-dismiss="modal"
+            [icon]="questionCircle"
+            title="{{ 'About Ambrosia' | translate }}"
+            role="button"></app-ic-icon>
+        </div>
+        <div class="py-1 flex-grow-1 text-end">
+          {{
+            user.getPropertyNb('ambrosia')
+              | number: '1.0-2' : this.translate.currentLang
+          }}
+        </div>
+        <div class="p-1 icon">
+          <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+        </div>
+      </div>
+      <div *ngIf="user.getPropertyNb('level') > 0" class="d-flex">
+        <div class="p-1 icon-equal">
+          <app-ic-icon [icon]="equals" class="text-equals"></app-ic-icon>
+        </div>
+        <div class="p-1 bd-highlight">
+          <app-ic-icon
+            data-bs-toggle="modal"
+            data-bs-target="#Favors"
+            data-bs-dismiss="modal"
+            [icon]="questionCircle"
+            title="{{ 'Access to the Favors' | translate }}"
+            role="button"></app-ic-icon>
+        </div>
+        <div class="py-1 flex-grow-1 text-end">
+          {{
+            user.getPropertyNb('favor')
+              | number: '1.0-2' : this.translate.currentLang
+          }}
+        </div>
+        <div class="p-1 icon">
+          <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+        </div>
+      </div>
+
+      <div class="mt-2" id="details-menu">
+        <a href="details" [routerLink]="['/details']" translate>Details</a>
+      </div>
+    </div>
+  </div>
+</nav>

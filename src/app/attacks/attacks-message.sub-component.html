@@ -1,0 +1,241 @@
+@if (info.xp_attack > 0 || info.xp_defense > 0) {
+  <div class="row">
+    @if (info.winer === 1 || info.winer === 2) {
+      <div class="col-6 text-center">
+        <strong translate>You</strong><strong translate>:</strong>
+        @if (info.xp_attack > 0) {
+          <span>+</span>
+        }
+        {{ info.xp_attack | number: '1.0-0' : this.translate.currentLang }}
+        <span translate>XP</span>
+      </div>
+    }
+    @if (info.winer === 1 || info.winer === 2) {
+      <div class="col-6 text-center">
+        <strong translate>Your opponent</strong><strong translate>:</strong>
+        @if (info.xp_defense > 0) {
+          <span>+</span>
+        }
+        {{ info.xp_defense | number: '1.0-0' : this.translate.currentLang }}
+        <span translate>XP</span>
+      </div>
+    }
+    @if (info.winer === 3 || info.winer === 4) {
+      <div class="col-6 text-center">
+        <strong translate>You</strong><strong translate>:</strong>
+        @if (info.xp_defense > 0) {
+          <span>+</span>
+        }
+        {{ info.xp_defense | number: '1.0-0' : this.translate.currentLang }}
+        <span translate>XP</span>
+      </div>
+    }
+    @if (info.winer === 3 || info.winer === 4) {
+      <div class="col-6 text-center">
+        <strong translate>Your opponent</strong><strong translate>:</strong>
+        @if (info.xp_attack > 0) {
+          <span>+</span>
+        }
+        {{ info.xp_attack | number: '1.0-0' : this.translate.currentLang }}
+        <span translate>XP</span>
+      </div>
+    }
+    <div class="clearfix"><br /></div>
+  </div>
+}
+
+@if (getSentUnits().length > 0) {
+  <div>
+    <strong translate>Army sent</strong>
+    @for (unit of getSentUnits(); track unit) {
+      <div>
+        {{ unit.nb | number: '' : this.translate.currentLang }}
+        {{ Tools.getName(unit.code, unit.nb) | translate }}
+      </div>
+    }
+    <div class="clearfix"><br /></div>
+  </div>
+}
+
+<div class="row">
+  @if (info.lost_wall >= 1 && !info.lost_wall_poseidon) {
+    <div translate>The wall protecting the city has been destroyed</div>
+  }
+  @if (info.lost_wall === 0 && info.lost_wall_poseidon) {
+    <div translate>
+      The wall of Poseidon protecting the city has been destroyed
+    </div>
+  }
+  @if (info.lost_wall >= 1 && info.lost_wall_poseidon) {
+    <div translate>The walls protecting the city have been destroyed</div>
+  }
+
+  @if (getAttackLost().length > 0) {
+    <div class="col-6">
+      <strong translate>Attacker losses</strong>
+      @for (unit of getAttackLost(); track unit) {
+        <div>
+          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(unit.code, unit.nb, info.attackType) | translate }}
+        </div>
+      }
+      <div class="clearfix"><br /></div>
+    </div>
+  }
+
+  @if (getDefenseLost().length > 0) {
+    <div class="col-6">
+      <strong translate>Defender losses</strong>
+      @for (unit of getDefenseLost(); track unit) {
+        <div>
+          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(unit.code, unit.nb, info.defenseType) | translate }}
+        </div>
+      }
+      <div class="clearfix"><br /></div>
+    </div>
+  }
+</div>
+
+@if (getLostRes().length > 0) {
+  <div class="col-table text-center">
+    @if (info.winer === 1 || info.winer === 2) {
+      <strong id="LostResDesc" translate>Taken resources</strong>
+    }
+    @if (info.winer === 3 || info.winer === 4) {
+      <strong id="LostResDesc" translate>Lost resources</strong>
+    }
+    <table class="table" aria-describedby="LostResDesc">
+      @for (res of getLostRes(); track res) {
+        <tr>
+          <td class="col-6 text-end">
+            {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="col-6 text-start">
+            <app-ew-icon
+              name="{{ res.code }}"
+              class="small-resource"></app-ew-icon>
+          </th>
+        </tr>
+      }
+    </table>
+  </div>
+}
+
+@if (getLostStoreroom().length > 0) {
+  <div class="col-table text-center">
+    <strong id="LostResStoreDesc" translate>Stolen on the agora</strong>
+    <table class="table" aria-describedby="LostResStoreDesc">
+      @for (res of getLostStoreroom(); track res) {
+        <tr>
+          <td class="col-6 text-end">
+            {{ res.quantity | number: '1.0-0' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="col-6 text-start">
+            <app-ew-icon
+              name="{{ res.res_id }}"
+              class="small-resource"></app-ew-icon>
+          </th>
+        </tr>
+      }
+    </table>
+  </div>
+}
+
+@if (getLostBuildings().length > 0) {
+  <div class="col-table text-center">
+    <strong id="LostBuildingDesc" translate>Lost buildings</strong>
+    <table class="table" aria-describedby="LostBuildingDesc">
+      @for (building of getLostBuildings(); track building) {
+        <tr>
+          <td class="col-6 text-end">
+            {{ building.nb | number: '' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="col-6 text-start fw-normal">
+            {{ Tools.getName(building.code, building.nb) | translate }}
+          </th>
+        </tr>
+      }
+    </table>
+  </div>
+}
+
+@if (info.hades_saving > 0) {
+  <div class="text-center">
+    <br />
+    <strong translate>Souls saved</strong>
+    <strong translate>:</strong>
+    {{ info.hades_saving | number: '' : this.translate.currentLang }}
+  </div>
+}
+
+@if (getSaved().length > 0) {
+  <div class="col-table text-center">
+    <strong id="SavedUnitsDesc" translate>Units saved</strong>
+    <table class="table" aria-describedby="SavedUnitsDesc">
+      @for (unit of getSaved(); track unit) {
+        <tr>
+          <td class="col-6 text-end">
+            {{ unit.nb | number: '' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="col-6 text-start fw-normal">
+            {{ Tools.getName(unit.code, unit.nb) | translate }}
+          </th>
+        </tr>
+      }
+    </table>
+    <div class="clearfix"><br /></div>
+  </div>
+}
+@if (getSavedOther() > 0) {
+  <div class="col-table text-center">
+    {{
+      'Your enemies has saved { value } unities of his lost'
+        | translate: { value: getSavedOther() }
+    }}
+  </div>
+}
+
+@if (getSavedRes().length > 0) {
+  <div class="col-table text-center">
+    <strong id="SavedResDesc" translate>Resources saved</strong>
+    <table class="table" aria-describedby="SavedResDesc">
+      @for (res of getSavedRes(); track res) {
+        <tr>
+          <td class="col-6 text-end">
+            {{ res.quantity | number: '1.0-0' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="col-6 text-start">
+            <app-ew-icon
+              name="{{ res.res_id }}"
+              class="small-resource"></app-ew-icon>
+          </th>
+        </tr>
+      }
+    </table>
+  </div>
+}
+
+@if (getCorruptedRes().length > 0) {
+  <div class="col-table text-center">
+    <strong id="CorruptedResDesc" translate>Corrupted resources</strong>
+    <table class="table" aria-describedby="CorruptedResDesc">
+      @for (res of getCorruptedRes(); track res) {
+        <tr>
+          @if (res.nb > 0) {
+            <td>
+              {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
+            </td>
+          }
+          @if (res.nb > 0) {
+            <th scope="row">
+              <app-ew-icon
+                name="{{ res.code }}"
+                class="small-resource"></app-ew-icon>
+            </th>
+          }
+        </tr>
+      }
+    </table>
+  </div>
+}

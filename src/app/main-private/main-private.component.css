@@ -1,0 +1,270 @@
+/* Left/Right menu */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 188px;
+  z-index: 200;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    width: 100%;
+  }
+}
+.sidebar .active {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Left menu */
+.sidebar-left .list-group {
+  padding: 0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  width: 100%;
+}
+
+.sidebar-left .list-group > .list-group-item:last-of-type {
+  border-width: 1px 1px 1px 0px;
+}
+
+.sidebar-left .list-group-item {
+  border-width: 1px 1px 0px 0px;
+}
+
+/* Right menu */
+.sidebar.sidebar-right {
+  right: 0;
+  left: auto;
+  width: 188px;
+  padding-top: 0px;
+}
+
+.sidebar-right .position-sticky {
+  padding-bottom: 27px;
+}
+
+.sidebar-right .player-menu {
+  border-style: solid;
+  text-align: center;
+}
+
+.text-up {
+  color: #198754;
+}
+.text-down {
+  color: #dc3545;
+}
+
+/* Top mobile */
+.mobile-bubble {
+  position: fixed;
+  right: 0;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+/* Bottom mobile */
+#mobile-nav {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  z-index: 400;
+}
+
+#mobile-menu .menu-block img {
+  width: 100%;
+}
+
+#mobile-menu > .modal-dialog {
+  max-width: 100%;
+}
+
+/* Chat */
+.chat-text {
+  max-width: 800px;
+  width: 100%;
+  height: 230px;
+  background-color: white;
+  position: fixed;
+  bottom: 43px;
+  right: 0px;
+  font-size: 0.9em;
+  border-width:1px;
+  border-style: solid;
+  border-right: 0px;
+  z-index: 1000;
+}
+
+.chat-shortcut {
+  font-size: 1.5em;
+}
+
+.chat-players {
+  overflow-y: scroll;
+}
+
+@media (max-width: 575px) {
+  .chat-players {
+    border-top: solid var(--color-menu-dark) 1px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+  }
+  .chat-players .chat-player {
+    display: inline-block;
+    margin: 0px 0.3em;
+    line-height: 1;
+    text-align: center;
+    vertical-align: initial;
+  }
+  .chat-players .chat-player a {
+    padding: 0.35em;
+    font-size: .9em;
+    white-space: nowrap;
+    border-radius: .25rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    display: inline-block;
+  }
+  .chat-players .chat-player a.text-danger {
+    border-color: rgba(var(--bs-danger-rgb));
+  }
+}
+
+@media (min-width: 576px) {
+  .chat-players {
+    height: 191px;
+  }
+  .chat-players .chat-player {
+    width: 100%;
+    float: left;
+  }
+}
+
+@media (min-width:992px) {
+  .bottom-button,
+  .chat-button-mobile {
+    display: none;
+  }
+}
+
+@media (max-width:991px) {
+  .chat-button {
+    display: none;
+  }
+  
+  .chat-text {
+    bottom: 129px;
+  }
+  
+  .bottom-button {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-image: linear-gradient(var(--color-menu-clear), var(--color-menu-dark));
+    padding: 0;
+  }
+  
+  .bottom-button .menu-5 {
+    width: calc(100%/5);
+    padding: 4px;
+  }
+  
+  .bottom-button .menu-7 {
+    width: calc(100%/7);
+    padding: 4px;
+  }
+  
+  .bottom-button a.inactive {
+    opacity: 0.75;
+  }
+}
+
+.chat-text .chat-general,
+.chat-text .chat-alliance {
+  height: inherit;
+  padding-top:2px;
+}
+
+.chat-text .chat-general .chat-inner,
+.chat-text .chat-alliance .chat-inner {
+  overflow-y: auto;
+  height: 191px;
+}
+
+.chat-text .chat-general .chat-inner > div,
+.chat-text .chat-alliance .chat-inner > div{
+  padding:2px;
+  word-break: break-word;
+}
+
+.chat-button {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 1000;
+  background-color: white;
+}
+
+.chat-button-mobile {
+  color: white;
+  font-size: 3em;
+  position: fixed;
+  bottom: 50px;
+  right: 0px;
+}
+
+.chat-button .btn {
+  font-size: 1.2rem;
+}
+
+/* Modals */
+.modal-bottom.fade .modal-dialog {
+  transform: translate3d(100vw, 100vh, 0);
+  transition: all 0.1s ease-out;
+  position: fixed;
+  bottom: 0;
+  left: 0%;
+  right: 0%;
+}
+
+@media screen and (orientation:landscape) {
+  .modal-bottom.fade .modal-dialog {
+    position: relative;
+  }
+}
+
+.modal-bottom.show .modal-dialog {
+  transform: translate3d(0, 0, 0);
+}
+
+.menu-block {
+  aspect-ratio: 1/1;
+}
+
+/** Mobile **/
+.table > :not(caption) > * > .small-resource {
+  padding: 0px;
+}

@@ -1,0 +1,139 @@
+<div class="modal fade" id="AllianceDissolve" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Dissolve this alliance</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid text-center text-danger" translate>
+        {{ currentAlliance.name }}
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="confirmAlliance()"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <h2 id="allianceDesc" class="text-center" translate>
+                  Alliances
+                </h2>
+                <table class="table" aria-labelledby="allianceDesc">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center">
+                        <app-ic-icon [icon]="users"></app-ic-icon>
+                      </th>
+                      <th class="text-center" scope="col" translate>Name</th>
+                      <th class="text-center" scope="col" translate>Chief</th>
+                      <th class="text-center" scope="col" translate>V</th>
+                      <th class="text-center" scope="col" translate>D</th>
+                      <th class="text-center" scope="col" translate>Pacts</th>
+                      <th class="text-center" scope="col" translate>Wars</th>
+                      @if (user.getPropertyNb('rank') >= 5) {
+                        <th scope="col"></th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (a of adminAlliancesList; track a) {
+                      <tr [ngClass]="{ 'bg-warning': a.dissolve === 1 }">
+                        <td class="text-center">
+                          <a
+                            class="link"
+                            [routerLink]="[
+                              '/alliancemembers/' + a.alliance_id
+                            ]">
+                            {{ a.nbmembers }}
+                          </a>
+                        </td>
+                        <th scope="row">
+                          <a
+                            [routerLink]="[
+                              '/allianceprofile/' + a.alliance_id
+                            ]">
+                            {{ a.alliance_name }}
+                          </a>
+                        </th>
+                        <td>
+                          <a [routerLink]="['/admin/profile/' + a.chief_id]">
+                            {{ a.username }}
+                          </a>
+                        </td>
+                        <td class="text-end">
+                          {{ a.victories }}
+                        </td>
+                        <td class="text-end">
+                          {{ a.defeats }}
+                        </td>
+                        <td class="text-end">
+                          {{ a.pact }}
+                        </td>
+                        <td
+                          class="text-end"
+                          [ngClass]="{ 'text-danger': a.notice > 0 }">
+                          {{ a.war }}
+                        </td>
+                        @if (user.getPropertyNb('rank') >= 5) {
+                          <td class="text-center">
+                            @if (a.war === 0 && a.notice === 0) {
+                              <button
+                                class="btn btn-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#AllianceDissolve"
+                                (click)="
+                                  setAlliance(a.alliance_id, a.alliance_name)
+                                "
+                                title="{{
+                                  'Dissolve this alliance' | translate
+                                }}">
+                                <app-ic-icon [icon]="times"></app-ic-icon>
+                                <span class="visually-hidden" translate
+                                  >Dissolve this alliance</span
+                                >
+                              </button>
+                            }
+                          </td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

@@ -1,0 +1,499 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body text-center">
+            <h1 translate>Run an action</h1>
+
+            <select class="form-select" [(ngModel)]="adminActions">
+              <option value="" translate>Select an action</option>
+              <option value="Diamondrun" translate>Run the diamond</option>
+              <option value="HonnorRanking" translate>
+                Run the Honnor Ranking
+              </option>
+              <option value="reinitStatsDaily" translate>
+                Reinitialize daily stats
+              </option>
+              <option value="reinitStatsWeekly" translate>
+                Reinitialize weekly stats
+              </option>
+              <option value="adminAutosell" translate>Run the autosell</option>
+              <option value="questDivideAll" translate>
+                Distribute the quests
+              </option>
+              <option value="seasonRun" translate>
+                Start a new season (XP)
+              </option>
+              <option value="adminLog" translate>Write a log</option>
+              <option value="cleanMysql" translate>Clean the Database</option>
+            </select>
+
+            <div
+              class="btn btn-primary"
+              (click)="run()"
+              (keyup.enter)="run()"
+              tabindex="0"
+              translate>
+              Run
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <h1 class="text-center" id="adminActionsAgoraDesc" translate>
+                  Agora
+                </h1>
+
+                <table class="table" aria-labelledby="adminActionsAgoraDesc">
+                  <thead>
+                    <tr>
+                      <th scope="column"></th>
+                      <th scope="column" translate>Quantity</th>
+                      <th scope="column" translate>Price</th>
+                      <th scope="column" translate>Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" translate>Food</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.food.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.food.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.food.price / adminAgora.food.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Water</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.water.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.water.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.water.price / adminAgora.water.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Wood</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.wood.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.wood.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.wood.price / adminAgora.wood.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Iron</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.iron.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.iron.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.iron.price / adminAgora.iron.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Stone</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.stone.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.stone.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.stone.price / adminAgora.stone.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Marble</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.marble.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.marble.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminAgora.marble.price / adminAgora.marble.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Grapes</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.grapes.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.grapes.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminAgora.grapes.price / adminAgora.grapes.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Wine</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.wine.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.wine.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.wine.price / adminAgora.wine.quantity }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Gold</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.gold.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminAgora.gold.price" />
+                      </td>
+                      <td>
+                        {{ adminAgora.gold.price / adminAgora.gold.quantity }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <button
+                    class="btn btn-success"
+                    (click)="agoraSave()"
+                    translate>
+                    Save
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <h1
+                  class="text-center"
+                  id="adminActionsStoreroomDesc"
+                  translate>
+                  Storeroom
+                </h1>
+
+                <table
+                  class="table"
+                  aria-labelledby="adminActionsStoreroomDesc">
+                  <thead>
+                    <tr>
+                      <th scope="column"></th>
+                      <th scope="column" translate>Quantity</th>
+                      <th scope="column" translate>Price</th>
+                      <th scope="column" translate>Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" translate>Food</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.food.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.food.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.food.price /
+                            adminStoreroom.food.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Water</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.water.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.water.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.water.price /
+                            adminStoreroom.water.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Wood</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.wood.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.wood.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.wood.price /
+                            adminStoreroom.wood.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Iron</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.iron.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.iron.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.iron.price /
+                            adminStoreroom.iron.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Stone</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.stone.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.stone.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.stone.price /
+                            adminStoreroom.stone.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Marble</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.marble.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.marble.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.marble.price /
+                            adminStoreroom.marble.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Grapes</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.grapes.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.grapes.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.grapes.price /
+                            adminStoreroom.grapes.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Wine</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.wine.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.wine.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.wine.price /
+                            adminStoreroom.wine.quantity
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" translate>Gold</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.gold.quantity" />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="number"
+                          [attr.min]="0"
+                          [(ngModel)]="adminStoreroom.gold.price" />
+                      </td>
+                      <td>
+                        {{
+                          adminStoreroom.gold.price /
+                            adminStoreroom.gold.quantity
+                        }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <button
+                    class="btn btn-success"
+                    (click)="storeroomSave()"
+                    translate>
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

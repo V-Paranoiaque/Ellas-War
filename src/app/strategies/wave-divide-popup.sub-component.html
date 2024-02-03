@@ -1,0 +1,51 @@
+<div class="modal fade" id="WaveDivide" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Remove units from the wave</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h2>{{ Tools.getName(info.code, info.nb) | translate }}</h2>
+
+        <strong>
+          {{ info.nbUnit | number: '' : this.translate.currentLang }}/{{
+            info.nb | number: '' : this.translate.currentLang
+          }}
+        </strong>
+
+        @if (info.nb > 1) {
+          <input
+            type="range"
+            class="form-range"
+            min="1"
+            max="{{ info.nb }}"
+            step="1"
+            max="{{ info.nb }}"
+            [(ngModel)]="info.nbUnit" />
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="confirm()"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

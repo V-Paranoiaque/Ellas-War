@@ -1,0 +1,618 @@
+<div>
+  @switch (msg.content_type) {
+    @case (0) {
+      <span>
+        <div class="text-prewrap">{{ msg.content }}</div>
+        <div class="text-end fw-lighter">
+          <strong>{{
+            'By { value }' | translate: { value: msg.username }
+          }}</strong
+          >, {{ full.time | date: 'dd/MM/yyyy, HH:mm' }}
+        </div>
+      </span>
+    }
+    @case (1) {
+      <span
+        ><app-attacks-message [info]="msg.content"></app-attacks-message
+      ></span>
+    }
+    @case (2) {
+      <span>
+        <br /><br />
+        <span translate class="fw-bold">Jackpot:</span>
+        {{ msg.content.drachma | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (3) {
+      <span><app-fury-message [info]="msg.content"></app-fury-message></span>
+    }
+    @case (4) {
+      <span>{{
+        'Attempted espionage from { value }'
+          | translate: { value: full.title.username }
+      }}</span>
+    }
+    @case (5) {
+      <span>{{
+        'Espionage from { value }' | translate: { value: full.title.username }
+      }}</span>
+    }
+    @case (6) {
+      <span>
+        {{
+          '{ value } has triggered the hostilities.'
+            | translate: { value: msg.content.player_name }
+        }}
+        <br />
+        {{
+          'The alliances { value } and { name } will go to war in 24, stand ready!'
+            | translate
+              : {
+                  value: msg.content.attacking_name,
+                  name: msg.content.defender_name
+                }
+        }}
+      </span>
+    }
+    @case (7) {
+      <span>
+        {{
+          '{ value } has triggered the hostilities.'
+            | translate: { value: msg.content.player_name }
+        }}
+        <br />
+        {{
+          'The alliances { value } and { name } will go to war in 24, stand ready!'
+            | translate
+              : {
+                  value: msg.content.attacking_name,
+                  name: msg.content.defender_name
+                }
+        }}
+      </span>
+    }
+    @case (8) {
+      <span><app-lost-message [info]="msg.content"></app-lost-message></span>
+    }
+    @case (9) {
+      <span>
+        <div translate>Hello and welcome on Ellas War</div>
+        <br />
+        <div translate>
+          You have joined the hostile lands of Ellas War. You will find help
+          symboles to guide you on the game. Drachmas are the sinews of war,
+          honnor the Gods and don't forget to protect your city.
+        </div>
+        <div translate>
+          Join the Ellas War's Facebook Page. You'll find advice and answers to
+          your questions.
+        </div>
+        <div translate>
+          In case of problems you can also ask for help on the contact page.
+        </div>
+        <br />
+        <div translate>Have a good game</div>
+        <br />
+        <span translate>The Ellas War's team</span>
+      </span>
+    }
+    @case (10) {
+      <span><app-lost-message [info]="msg.content"></app-lost-message></span>
+    }
+    @case (11) {
+      <span>
+        {{ msg.content.qtt | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="{{ msg.content.ress }}"></app-ew-icon>
+        <span translate>for</span>
+        {{ msg.content.price | number: '' : this.translate.currentLang }}
+        @if (msg.content.buyer_id > 0) {
+          <div>
+            <span translate>Buyer</span>
+            <span translate>:</span>
+            {{ msg.content.buyer }}
+          </div>
+        }
+      </span>
+    }
+    @case (12) {
+      <span>
+        {{
+          '{ value } has accepted your request for:'
+            | translate: { value: msg.content.user }
+        }}
+        {{ msg.content.qtt | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="{{ msg.content.ress }}"></app-ew-icon>
+      </span>
+    }
+    @case (13) {
+      <span>
+        <div translate>You win the Honnor challenge!</div>
+        <br />
+        <span translate>Reward:</span>
+        {{ msg.content.reward | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (14) {
+      <span>
+        <h2 id="Message14Desc">{{ msg.content.username }}</h2>
+        <div class="col-table">
+          <table class="table" aria-describedby="Message14Desc">
+            @if (msg.content.alliance > 0) {
+              <tr>
+                <th scope="row" translate>Alliance</th>
+                <td class="text-end">{{ msg.content.alliance_name }}&nbsp;</td>
+              </tr>
+            }
+            @if (msg.content.alliance > 0) {
+              <tr>
+                <th scope="row" translate>Rank</th>
+                <td class="text-end">{{ msg.content.rank_name }}&nbsp;</td>
+              </tr>
+            }
+            <tr>
+              <th scope="row" translate>Level</th>
+              <td class="text-end">{{ msg.content.level }}&nbsp;</td>
+            </tr>
+            <tr>
+              <th scope="row" translate>Field</th>
+              <td class="text-end">
+                {{
+                  msg.content.field | number: '' : this.translate.currentLang
+                }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" translate>Victories</th>
+              <td class="text-end">
+                {{
+                  msg.content.victory | number: '' : this.translate.currentLang
+                }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" translate>Defeats</th>
+              <td class="text-end">
+                {{
+                  msg.content.defeat | number: '' : this.translate.currentLang
+                }}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" translate>XP</th>
+              <td class="text-end">
+                {{ msg.content.xp | number: '' : this.translate.currentLang }}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br />
+        @if (
+          msg.content.poseidon_wall &&
+          msg.content.poseidon_wall === 1 &&
+          (!msg.content.defense_wall || msg.content.defense_wall === 0)
+        ) {
+          <div translate>The wall of Poseidon protects this city.</div>
+        }
+        @if (
+          msg.content.defense_wall &&
+          msg.content.defense_wall >= 1 &&
+          (!msg.content.poseidon_wall || msg.content.poseidon_wall === 0)
+        ) {
+          <div translate>A wall is protecting this city.</div>
+        }
+        @if (
+          msg.content.defense_wall &&
+          msg.content.defense_wall >= 1 &&
+          msg.content.poseidon_wall &&
+          msg.content.poseidon_wall === 1
+        ) {
+          <div translate>Many walls are protecting this city.</div>
+        }
+        <span>
+          @switch (msg.content.error) {
+            @case (1) {
+              <span translate
+                >Your espionage team was caught and executed in a public
+                place.</span
+              >
+            }
+            @case (2) {
+              <span>
+                <span translate
+                  >Information reached your city but unfortunately your spy team
+                  was caught, tortured until they denounce you and executed in a
+                  public place.</span
+                >
+                <br /><br />
+                <strong translate>Unities</strong><strong translate>:</strong>
+                {{
+                  msg.content.unitiesNb
+                    | number: '' : this.translate.currentLang
+                }}
+                <br />
+                <strong translate>Towers</strong><strong translate>:</strong>
+                {{
+                  msg.content.defenseNb
+                    | number: '' : this.translate.currentLang
+                }}
+              </span>
+            }
+            @case (3) {
+              <span>
+                <strong translate>Unities</strong><strong translate>:</strong>
+                {{
+                  msg.content.unitiesNb
+                    | number: '' : this.translate.currentLang
+                }}
+                <br />
+                <strong translate>Towers</strong><strong translate>:</strong>
+                {{
+                  msg.content.defenseNb
+                    | number: '' : this.translate.currentLang
+                }}
+              </span>
+            }
+            @case (4) {
+              <span translate>You do not have spies.</span>
+            }
+          }
+        </span>
+        <br />
+        @if (msg.content.buildings && msg.content.buildings.length > 0) {
+          <div>
+            <strong translate>Buildings</strong><strong translate>:</strong>
+            @for (build of msg.content.buildings; track build) {
+              <div>
+                {{ Tools.getName(build) | translate }}
+              </div>
+            }
+          </div>
+        }
+        @if (msg.content.unities && msg.content.unities.length > 0) {
+          <div>
+            <strong translate>Unities</strong><strong translate>:</strong>
+            @for (unit of msg.content.unities; track unit) {
+              <div>
+                {{
+                  Tools.getName(unit, 1, msg.content.defenseType) | translate
+                }}
+              </div>
+            }
+            <br />
+          </div>
+        }
+      </span>
+    }
+    @case (15) {
+      <span>
+        <span translate>Hello</span>,<br /><br />
+        <span translate
+          >We inform you that a member of the staff has sent you a message via
+          the contact page.</span
+        >
+        <br /><br />
+        <a [routerLink]="['/support/' + msg.content.id]" translate>
+          Read the message
+        </a>
+      </span>
+    }
+    @case (16) {
+      <span
+        ><app-sanctuary-message [info]="msg.content"></app-sanctuary-message
+      ></span>
+    }
+    @case (17) {
+      <span>
+        <h3 translate>Result</h3>
+        <strong>{{ full.title.attacker }}</strong
+        ><strong translate>:</strong>
+        {{ msg.content.attacker }}
+        <br />
+        <strong>{{ full.title.defender }}</strong
+        ><strong translate>:</strong>
+        {{ msg.content.defender }}
+        <br />
+        <br />
+        @if (msg.content.benefits) {
+          <div>
+            <strong translate>Reward:</strong>
+            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+          </div>
+        }
+      </span>
+    }
+    @case (18) {
+      <span>
+        <h3 translate>Result</h3>
+        <strong>{{ full.title.attacker }}</strong
+        ><strong translate>:</strong>
+        {{ msg.content.attacker }}
+        <br />
+        <strong>{{ full.title.defender }}</strong
+        ><strong translate>:</strong>
+        {{ msg.content.defender }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (19) {
+      <span><app-lost-message [info]="msg.content"></app-lost-message></span>
+    }
+    @case (20) {
+      <span>{{
+        'Attempted espionage of your sanctuary from { value }'
+          | translate: { value: full.title.username }
+      }}</span>
+    }
+    @case (21) {
+      <span>{{
+        'Espionage of your sanctuary from { value }'
+          | translate: { value: full.title.username }
+      }}</span>
+    }
+    @case (22) {
+      <span>
+        <h2>{{ msg.content.sanctuaries_name | translate }}</h2>
+        <span>
+          @switch (msg.content.error) {
+            @case (1) {
+              <span translate
+                >Your espionage team was caught and executed in a public
+                place.</span
+              >
+            }
+            @case (2) {
+              <span>
+                <span translate
+                  >Information reached your city but unfortunately your spy team
+                  was caught, tortured until they denounce you and executed in a
+                  public place.</span
+                >
+                <br /><br />
+                <strong translate>Unities</strong><strong translate>:</strong>
+                {{
+                  msg.content.unitiesNb
+                    | number: '' : this.translate.currentLang
+                }}
+                @if (msg.content.unities && msg.content.unities.length > 0) {
+                  <div>
+                    <br />
+                    @for (unit of msg.content.unities; track unit) {
+                      <div>
+                        {{ Tools.getName(unit) | translate }}
+                      </div>
+                    }
+                    <br />
+                  </div>
+                }
+              </span>
+            }
+            @case (3) {
+              <span>
+                <strong translate>Unities</strong><strong translate>:</strong>
+                {{
+                  msg.content.unitiesNb
+                    | number: '' : this.translate.currentLang
+                }}
+                @if (msg.content.unities && msg.content.unities.length > 0) {
+                  <div>
+                    <br />
+                    @for (unit of msg.content.unities; track unit) {
+                      <div>
+                        {{ Tools.getName(unit) | translate }}
+                      </div>
+                    }
+                    <br />
+                  </div>
+                }
+              </span>
+            }
+            @case (4) {
+              <span translate>You do not have spies.</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (23) {
+      <span>
+        {{
+          'You win { value } Drachmas'
+            | translate
+              : {
+                  value:
+                    msg.content.reward | number: '' : this.translate.currentLang
+                }
+        }}
+      </span>
+    }
+    @case (24) {
+      <span>
+        {{
+          'Your alliance win { value } Drachmas'
+            | translate
+              : {
+                  value:
+                    msg.content.reward | number: '' : this.translate.currentLang
+                }
+        }}
+      </span>
+    }
+    @case (25) {
+      <span
+        >{{
+          '{ value } has destroyed the pact between { name1 } and { name2 }'
+            | translate
+              : {
+                  value: msg.content.username,
+                  name1: msg.content.dst_name,
+                  name2: msg.content.ask_name
+                }
+        }}.
+      </span>
+    }
+    @case (26) {
+      <span
+        >{{
+          '{ value } has destroyed the pact between { name1 } and { name2 }'
+            | translate
+              : {
+                  value: msg.content.username,
+                  name1: msg.content.dst_name,
+                  name2: msg.content.ask_name
+                }
+        }}.
+      </span>
+    }
+    @case (27) {
+      <span>{{
+        '{ value } from the alliance { name } has requested a pact to your alliance.'
+          | translate
+            : { value: msg.content.username, name: msg.content.ask_name }
+      }}</span>
+    }
+    @case (28) {
+      <span>
+        <p>
+          {{ 'We are glad to see you back on Ellas War.' | translate }}
+          <br />
+          {{
+            'In proof of our gratitude, we offer you these gifts:' | translate
+          }}
+        </p>
+        <p class="modal-title">
+          @switch (msg.content.bonus_id) {
+            @case (24) {
+              <span>
+                4
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(11) }}"
+                  class="small-resource"></app-ew-icon>
+                1
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(9) }}"
+                  class="small-resource"></app-ew-icon>
+                2
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(13) }}"
+                  class="small-resource"></app-ew-icon>
+                {{ 5000000 | number: '' : this.translate.currentLang
+                }}<app-ew-icon
+                  name="{{ Tools.getDivineBonus(14) }}"
+                  class="small-resource"></app-ew-icon>
+              </span>
+            }
+            @case (25) {
+              <span class="multiple-divine">
+                8
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(11) }}"
+                  class="small-resource"></app-ew-icon>
+                2
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(9) }}"
+                  class="small-resource"></app-ew-icon>
+                4
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(13) }}"
+                  class="small-resource"></app-ew-icon>
+                {{ 10000000 | number: '' : this.translate.currentLang
+                }}<app-ew-icon
+                  name="{{ Tools.getDivineBonus(14) }}"
+                  class="small-resource"></app-ew-icon>
+              </span>
+            }
+            @case (26) {
+              <span class="multiple-divine">
+                12
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(11) }}"
+                  class="small-resource"></app-ew-icon>
+                3
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(9) }}"
+                  class="small-resource"></app-ew-icon>
+                6
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(13) }}"
+                  class="small-resource"></app-ew-icon>
+                {{ 20000000 | number: '' : this.translate.currentLang
+                }}<app-ew-icon
+                  name="{{ Tools.getDivineBonus(14) }}"
+                  class="small-resource"></app-ew-icon>
+                1
+                <app-ew-icon
+                  name="{{ Tools.getDivineBonus(8) }}"
+                  class="small-resource"></app-ew-icon>
+              </span>
+            }
+          }
+        </p>
+        <br />
+        <p translate>The basket to obtain them is available in your city</p>
+      </span>
+    }
+    @case (29) {
+      <span>
+        {{
+          'The war between { name1 } and { name2 } has been canceled, no winner has been announced.'
+            | translate: { name1: msg.content.name1, name2: msg.content.name2 }
+        }}
+        @if (msg.content.benefits) {
+          <div>
+            <strong translate>Reward:</strong>
+            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+          </div>
+        }
+      </span>
+    }
+    @case (30) {
+      <span>
+        <div translate>The war has been long, but your alliance has won.</div>
+        <strong>{{ msg.content.nameWinner }}:</strong>
+        {{ msg.content.vicWinner }}
+        <br />
+        <strong>{{ msg.content.nameLooser }}:</strong>
+        {{ msg.content.vicLooser }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (31) {
+      <span translate>
+        <div translate>
+          The battle was long, unfortunately your alliance lost the war.
+        </div>
+        <strong>{{ msg.content.nameWinner }}:</strong>
+        {{ msg.content.vicWinner }}
+        <br />
+        <strong>{{ msg.content.nameLooser }}:</strong>
+        {{ msg.content.vicLooser }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @default {
+      <span>TODO {{ full.msg_type }}</span>
+    }
+  }
+</div>
+
+@if (msg.content_type > 0) {
+  <div class="text-end fw-lighter">
+    {{ full.time | date: 'dd/MM/yyyy, HH:mm' }}
+  </div>
+}

@@ -1,0 +1,40 @@
+<div class="modal fade" id="AllianceArchives" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Archives</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        @for (msg of archiveList; track msg) {
+          <div>
+            <app-alliance-archives-title
+              class="fw-bold"
+              [type]="msg.type"
+              [title]="msg.title"></app-alliance-archives-title>
+            <div class="text-end fw-lighter">
+              {{ msg.alliance_history_date * 1000 | date: 'dd/MM/yyyy, HH:mm' }}
+            </div>
+            <app-alliance-archives-text
+              [msg]="msg"></app-alliance-archives-text>
+            <br />
+            <br />
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

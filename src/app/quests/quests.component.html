@@ -1,0 +1,364 @@
+<app-quests-info-popup></app-quests-info-popup>
+<app-quests-missions-info-popup></app-quests-missions-info-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row" id="quest-component">
+      <div class="col-12 mb-2">
+        @if (user.getPropertyNb('level') >= 10) {
+          <div class="card">
+            <div class="d-flex dail-quest-menu">
+              <a
+                href="/quests"
+                [routerLink]="['/quests']"
+                class="btn btn-danger flex-grow-1 design-background"
+                [ngClass]="{
+                  'text-warning': user.getPropertyNb('dquest_validated') > 0
+                }"
+                data-bs-toggle="modal"
+                data-bs-target="#MsgNew"
+                title="{{ 'Quests' | translate }}"
+                translate>
+                Quests
+              </a>
+              <a
+                href="/altars"
+                [routerLink]="['/altars']"
+                class="btn btn-primary flex-grow-1 design-background"
+                [ngClass]="{
+                  'text-warning': user.getPropertyNb('altar_available') > 0
+                }"
+                data-bs-toggle="modal"
+                data-bs-target="#MsgNew"
+                title="{{ 'Altars of the Gods' | translate }}"
+                translate>
+                Altars of the Gods
+              </a>
+            </div>
+          </div>
+        }
+        @if (user.getPropertyNb('level') < 10) {
+          <app-quests-missions></app-quests-missions>
+        }
+      </div>
+
+      @if (user.getPropertyNb('level') > 0) {
+        <div class="col-12 mb-2">
+          <div class="card">
+            <div class="card-body">
+              <div
+                class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
+                <span translate> Quest progress </span>
+                &nbsp;
+                <app-ic-icon
+                  [icon]="questionCircle"
+                  data-bs-toggle="modal"
+                  role="button"
+                  data-bs-target="#QuestsInfo"></app-ic-icon>
+              </div>
+              <div class="progression-quest-container">
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 1,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 0 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>1</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 2,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 1 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>2</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 3,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 2 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>3</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 4,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 3 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>4</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 5,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 4 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>5</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 6,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 5 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }">
+                  <p>6</p>
+                </div>
+                <div
+                  [ngClass]="{
+                    quest_validated: user.getPropertyNb('quest_step') >= 7,
+                    quest_available:
+                      user.getPropertyNb('quest_step') === 6 &&
+                      user.getPropertyNb('quest_today') === 0
+                  }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#QuestsInfo"
+                  role="button">
+                  <p class="quest_final">
+                    <app-ic-icon
+                      class="fs-2"
+                      [icon]="treasureChest"></app-ic-icon>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      @if (user.getPropertyNb('level') > 0) {
+        <div class="col-12">
+          <div class="row">
+            @for (quest of getMyQuestList(); track quest) {
+              <div class="col-md-6 col-12 mb-2 d-flex dailyquestblock">
+                <div class="d-flex flex-grow-1">
+                  @switch (quest.quest_type) {
+                    @case (1) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Strenuous attacker' | translate }}"
+                        description="{{
+                          'Win { value } victories'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="attacks"></app-quests-daily>
+                    }
+                    @case (2) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Worshiper of the Gods' | translate }}"
+                        description="{{
+                          'Use { value } Divine powers'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="divine"></app-quests-daily>
+                    }
+                    @case (3) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Precision launcher' | translate }}"
+                        description="{{
+                          'Win { value } times in the javelin game'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                    @case (4) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Faithful of the Gods' | translate }}"
+                        description="{{
+                          'Use { value } Divine bonus'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                    @case (5) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Builder' | translate }}"
+                        description="{{
+                          'Construct { value } buildings'
+                            | translate
+                              : {
+                                  value:
+                                    quest.quest_goal
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                    @case (6) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Recruiter' | translate }}"
+                        description="{{
+                          'Engage { value } Units'
+                            | translate
+                              : {
+                                  value:
+                                    quest.quest_goal
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                    @case (7) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Monster Hunter' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Attack 1 sanctuary' | translate)
+                            : ('Attack { value } sanctuaries'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="sanctuaries"></app-quests-daily>
+                    }
+                    @case (8) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Monster killer' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Conquest 1 sanctuary' | translate)
+                            : ('Conquest { value } sanctuaries'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="sanctuaries"></app-quests-daily>
+                    }
+                    @case (9) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Monster killer' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Win 1 war' | translate)
+                            : ('Win { value } wars'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="attacks"></app-quests-daily>
+                    }
+                    @case (10) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Honorary Warrior' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Win the Honnor challenge' | translate)
+                            : ('Win the Honnor challenge { value } times'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="attacks"></app-quests-daily>
+                    }
+                    @case (11) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Diamond thief' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Take the Diamond' | translate)
+                            : ('Take the Diamond { value } times'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="attacks"></app-quests-daily>
+                    }
+                    @case (12) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Diamond Keeper' | translate }}"
+                        description="{{
+                          quest.quest_goal === 1
+                            ? ('Win the Diamond challenge' | translate)
+                            : ('Win the Diamond challenge { value } times'
+                              | translate: { value: quest.quest_goal })
+                        }}"
+                        [quest]="quest"
+                        link="attacks"></app-quests-daily>
+                    }
+                    @case (13) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Future millionaire' | translate }}"
+                        description="{{
+                          'Buy { value } lotto tickets'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="lotto"></app-quests-daily>
+                    }
+                    @case (14) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Food of the Gods' | translate }}"
+                        description="{{
+                          'Spend { value } Ambrosia'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                    @case (15) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Tickler' | translate }}"
+                        description="{{
+                          'Scratch { value } tickets'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="tickets"></app-quests-daily>
+                    }
+                    @case (16) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Scraper winner' | translate }}"
+                        description="{{
+                          'Scratch { value } winning tickets'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="tickets"></app-quests-daily>
+                    }
+                    @case (17) {
+                      <app-quests-daily
+                        class="flex-grow-1 d-flex flex-column"
+                        subject="{{ 'Loyal member' | translate }}"
+                        description="{{
+                          'Connect { value } days in a row'
+                            | translate: { value: quest.quest_goal }
+                        }}"
+                        [quest]="quest"
+                        link="city"></app-quests-daily>
+                    }
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

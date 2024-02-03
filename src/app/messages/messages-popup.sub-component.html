@@ -1,0 +1,92 @@
+<div class="modal fade" id="MsgNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Write a new message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (msgSent > 0) {
+          <div class="alert alert-success" translate>Message sent</div>
+        }
+        <div class="mb-3">
+          @for (user of getDestList(); track user) {
+            <span class="badge bg-primary">
+              {{ user.username }}
+              <app-ic-icon
+                [icon]="xIcon"
+                role="button"
+                (click)="removeDest(user.id)"></app-ic-icon>
+            </span>
+          }
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-text" translate>To: </span>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Player"
+            placeholder="{{ 'Player' | translate }}"
+            [(ngModel)]="msgToUser"
+            (keydown.enter)="addDestGUi(msgToUser)" />
+          <span
+            class="input-group-text text-center"
+            role="button"
+            (click)="addDestGUi(msgToUser)">
+            <app-ic-icon [icon]="plusIcon"></app-ic-icon>
+          </span>
+        </div>
+        @if (addDestError > 0) {
+          <div class="alert alert-danger" translate>
+            This player doesn't exist
+          </div>
+        }
+        @if (addDestError === 0 && noDestError > 0) {
+          <div class="alert alert-danger" translate>
+            You must add a recipient
+          </div>
+        }
+      </div>
+      <div class="modal-body">
+        @if (textError === 1) {
+          <div class="alert alert-danger" translate>
+            Your message or its title is empty
+          </div>
+        }
+        <input
+          type="text"
+          class="form-control"
+          placeholder="{{ 'Title' | translate }}"
+          [(ngModel)]="msgTitle" />
+        <br />
+        <div class="input-group">
+          <textarea
+            class="form-control mobile-textarea"
+            placeholder="{{ 'Message' | translate }}"
+            [(ngModel)]="msgText"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="send()"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

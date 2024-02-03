@@ -1,4 +1,0 @@
-.col-lg-10 .card, .col-md-10 .card, .col-sm-9 .card, .col-12 .card {
-  margin-top: calc(var(--bs-gutter-x)/ 2);
-  margin-bottom: calc(var(--bs-gutter-x)/ 2);
-}

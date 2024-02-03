@@ -1,0 +1,119 @@
+<div class="card flex-grow-1">
+  <div class="card-header">
+    <div class="position-relative">
+      <div class="quest-giveup text-danger">
+        @if (quest.quest_validated === 0) {
+          <button
+            type="button"
+            aria-label="Close"
+            class="btn-close btn-close-white"
+            (click)="promptQuestAbandon()"></button>
+        }
+      </div>
+      <div class="text-center">{{ subject }}</div>
+    </div>
+  </div>
+  <div class="card-body flex-grow-1">
+    @if (showDelete === 1) {
+      <div class="text-center">
+        <div class="fw-bold text-danger" translate>
+          Do you really want to give up this quest?
+        </div>
+        <button class="btn btn-danger" (click)="questGiveup(quest)" translate>
+          Confirm
+        </button>
+      </div>
+    }
+    <div>
+      {{ description }}
+    </div>
+    @if (quest.quest_validated === 0) {
+      <div class="position-relative">
+        <div class="progress text-center">
+          <div
+            class="progress-bar bg-success"
+            role="progressbar"
+            aria-valuenow="0"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{
+              'width.%': (100 * quest.quest_current) / quest.quest_goal
+            }"></div>
+          <div class="progress-text">
+            <span translate>Progress:</span>
+            {{
+              quest.quest_current | number: '' : this.translate.currentLang
+            }}/{{ quest.quest_goal | number: '' : this.translate.currentLang }}
+          </div>
+        </div>
+      </div>
+    }
+    <div class="text-center mt-1 mb-1">
+      <strong translate>Reward:</strong>
+      {{ quest.reward_quantity | number: '' : this.translate.currentLang }}
+      <app-ew-icon
+        name="{{ quest.reward_ress }}"
+        class="small-resource"></app-ew-icon>
+    </div>
+  </div>
+  <div
+    class="card-body text-center d-flex align-items-end justify-content-center">
+    @if (quest.quest_validated === 0) {
+      <div class="d-flex flex-grow-1">
+        @if (link === 'attacks') {
+          <a
+            class="btn btn-primary flex-grow-1"
+            [routerLink]="['/' + link]"
+            translate
+            >Access to the attacks &gt;&gt;</a
+          >
+        }
+        @if (link === 'divine') {
+          <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" translate
+            >Access to the Divine powers &gt;&gt;</a
+          >
+        }
+        @if (link === 'city') {
+          <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" translate
+            >Access to the city &gt;&gt;</a
+          >
+        }
+        @if (link === 'lotto') {
+          <a
+            class="btn btn-primary flex-grow-1"
+            [routerLink]="['/' + link]"
+            translate
+            >Access to the lotto &gt;&gt;</a
+          >
+        }
+        @if (link === 'sanctuaries') {
+          <a
+            class="btn btn-primary flex-grow-1"
+            [routerLink]="['/attacks']"
+            translate
+            >Access to the sanctuaries &gt;&gt;</a
+          >
+        }
+        @if (link === 'tickets') {
+          <a
+            class="btn btn-primary flex-grow-1"
+            [routerLink]="['/' + link]"
+            translate
+            >Access to the tickets &gt;&gt;</a
+          >
+        }
+      </div>
+    }
+    @if (quest.quest_validated === 1) {
+      <div
+        class="btn btn-success flex-grow-1"
+        role="button"
+        (click)="myQuestValidate(quest)"
+        (keyup.enter)="myQuestValidate(quest)"
+        tabindex="0"
+        translate>
+        Validate
+      </div>
+    }
+  </div>
+</div>

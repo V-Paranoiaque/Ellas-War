@@ -1,0 +1,47 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" translate>Set up your strategy</h1>
+
+            <p translate>
+              Ellas War is an online strategy game. We will now quickly see the
+              main strategic points of the game.
+            </p>
+
+            <h2 class="text-center" translate>Worship the gods</h2>
+            <p
+              [innerHTML]="
+                'Regularly you will have the opportunity to build a temple in your city. There are 11 temples available in all, unfortunately for you, you will only be able to build 4 temples.'
+                  | translate
+              "></p>
+
+            <h2 class="text-center" translate>Vary your field</h2>
+            <p
+              [innerHTML]="
+                'Except in exceptional cases, your chances of attack or being attacked are determined by your field.'
+                  | translate
+              "></p>
+
+            <h2 class="text-center" translate>Choose your army</h2>
+
+            <p
+              [innerHTML]="
+                'Each unit has unique characteristics. They allow you to carry out your conquests or defend your city.'
+                  | translate
+              "></p>
+            <br />
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

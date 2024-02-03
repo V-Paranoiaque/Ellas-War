@@ -1,0 +1,77 @@
+name: Cordova
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  prepare:
+    uses: ./jobs/release-prepare.yml
+    secrets: inherit
+    with:
+      node: 20
+  
+  #X64 Arch
+  package-x64:
+    uses: ./jobs/release-linux.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20
+  
+  #X86 Arch
+  package-x86:
+    uses: ./jobs/release-linux-x86.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20
+  
+  #arm64 Arch
+  package-arm64:
+    uses: ./jobs/release-linux-arm64.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20
+
+  #armhf Arch
+  package-armv7l:
+    uses: ./jobs/release-linux-armhf.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20
+  
+  #Android
+  package-android:
+    uses: ./jobs/release-android.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      android: 12.0.1
+      node: 20
+  
+  #Windows
+  package-windows:
+    uses: ./jobs/release-windows.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20
+
+  #Mac OS
+  package-mac:
+    uses: ./jobs/release-linux-mac.yml
+    secrets: inherit
+    needs: prepare
+    with:
+      electron: 3.1.0
+      node: 20

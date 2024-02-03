@@ -1,0 +1,49 @@
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="card">
+          <div class="card-body">
+            <div>
+              @switch (unsubscribeResult.error) {
+                @case (1) {
+                  <div translate>This account does not exist</div>
+                }
+                @case (2) {
+                  <div translate>
+                    This account has already been unsubscribed from the game
+                  </div>
+                }
+                @case (3) {
+                  <div translate>The validation code is invalid</div>
+                }
+                @case (4) {
+                  <div>
+                    <div translate>
+                      If you confirm your unsubscription, your account will be
+                      blocked soon.
+                    </div>
+                    <br />
+                    <button
+                      class="btn btn-success"
+                      (click)="unsubscribeConfirm()"
+                      translate>
+                      Confirm
+                    </button>
+                    <br /><br />
+                  </div>
+                }
+                @case (5) {
+                  <div translate>
+                    Your request to unsubscribe has been taken into account,
+                    your account will soon be deactivated.
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

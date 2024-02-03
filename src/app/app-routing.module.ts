@@ -1,198 +1,212 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-//Public
-import { AuthComponent } from './public/ts/auth.component';
-import { AllianceMembersComponent } from './public/ts/alliance-members.component';
-import { AllianceProfileComponent } from './public/ts/alliance-profile.component';
-import { CommunityComponent } from './public/ts/community.component';
-import { ConfidentialityComponent } from './public/ts/confidentiality.component';
-import { ConfirmComponent } from './public/ts/confirm.component';
-import { ConnectedPlayersComponent } from './public/ts/connectedplayers.component';
-import { ContactUsComponent } from './public/ts/contactus.component';
-import { CreditsComponent } from './public/ts/credits.component';
-import { DiscoverTheGameComponent } from './public/ts/discoverthegame.component';
-import { FewWordsComponent } from './public/ts/fewwords.component';
-import { FreeGameComponent } from './public/ts/free-game.component';
-import { HelpComponent } from './public/ts/help.component';
-import { HomeComponent } from './public/ts/home.component';
-import { HonnorComponent } from './public/ts/honnor.component';
-import { LoginComponent } from './public/ts/login.component';
-import { LostPasswordComponent } from './public/ts/lostpassword.component';
-import { NewsComponent } from './public/ts/news.component';
-import { PartnersComponent } from './public/ts/partners.component';
-import { PermalinkComponent } from './public/ts/permalink.component';
-import { ProfileComponent } from './public/ts/profile.component';
-import { RankingAlliancesComponent } from './public/ts/rankingalliances.component';
-import { RankingPlayersComponent } from './public/ts/rankingplayers.component';
-import { RegisterComponent } from './public/ts/register.component';
-import { StrategyGameComponent } from './public/ts/strategy-game.component';
-import { TAndCsComponent } from './public/ts/tandcs.component';
-import { TeamComponent } from './public/ts/team.component';
-import { TeamRecruitmentComponent } from './public/ts/teamrecruitment.component';
-import { UnsubscribeComponent } from './public/ts/unsubscribe.component';
+import { AuthComponent } from './auth/auth.component';
+import { CommunityComponent } from './community/community.component';
+import { ConfidentialityComponent } from './confidentiality/confidentiality.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { ConnectedplayersComponent } from './connectedplayers/connectedplayers.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { CreditsComponent } from './credits/credits.component';
+import { DiscoverthegameComponent } from './discoverthegame/discoverthegame.component';
+import { FewwordsComponent } from './fewwords/fewwords.component';
+import { FreeGameComponent } from './free-game/free-game.component';
+import { HelpComponent } from './help/help.component';
+import { LoginComponent } from './login/login.component';
+import { LostpasswordComponent } from './lostpassword/lostpassword.component';
+import { NewsComponent } from './news/news.component';
+import { PartnersComponent } from './partners/partners.component';
+import { PermalinkComponent } from './permalink/permalink.component';
+import { RegisterComponent } from './register/register.component';
+import { StrategyGameComponent } from './strategy-game/strategy-game.component';
+import { TandcsComponent } from './tandcs/tandcs.component';
+import { TeamComponent } from './team/team.component';
+import { TeamrecruitmentComponent } from './teamrecruitment/teamrecruitment.component';
+import { UnsubscribeComponent } from './unsubscribe/unsubscribe.component';
 
-//Connected
-import { AllianceComponent } from './private/ts/alliance.component';
-import { AttacksComponent } from './private/ts/attacks.component';
-import { CityComponent } from './private/ts/city.component';
-import { DetailsComponent } from './private/ts/details.component';
-import { DiplomacyComponent } from './private/ts/diplomacy.component';
-import { FavorsComponent } from './private/ts/favors.component';
-import { GetFavorsComponent } from './private/ts/getfavors.component';
-import { MessagesComponent } from './private/ts/messages.component';
-import { MintsComponent } from './private/ts/mints.component';
-import { OptionsComponent } from './private/ts/options.component';
-import { QuestsComponent } from './private/ts/quests.component';
-import { SponsorshipComponent } from './private/ts/sponsorship.component';
-import { StrategiesComponent } from './private/ts/strategies.component';
-import { StoreroomComponent } from './private/ts/storeroom.component';
-import { SupportComponent } from './private/ts/support.component';
+import { GetfavorsComponent } from './getfavors/getfavors.component';
 
-//Blocked
-import { BlockedComponent } from './private/ts/blocked.component';
+import { AgoraComponent } from './agora/agora.component';
+import { AllianceComponent } from './alliance/alliance.component';
+import { AltarsComponent } from './altars/altars.component';
+import { AttacksComponent } from './attacks/attacks.component';
+import { CityComponent } from './city/city.component';
+import { DetailsComponent } from './details/details.component';
+import { DiplomacyComponent } from './diplomacy/diplomacy.component';
+import { MessagesComponent } from './messages/messages.component';
+import { MintsComponent } from './mints/mints.component';
+import { OptionsComponent } from './options/options.component';
+import { QuestsComponent } from './quests/quests.component';
+import { SponsorshipComponent } from './sponsorship/sponsorship.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { StrategiesComponent } from './strategies/strategies.component';
+import { StoreroomComponent } from './storeroom/storeroom.component';
+import { SupportComponent } from './support/support.component';
 
-//Paused
-import { PausedComponent } from './private/ts/paused.component';
+import { AdminComponent } from './admin/admin.component';
 
-//Admin
-import { Admin404Component } from './admin/ts/admin-404.component';
-import { AdminActionsComponent } from './admin/ts/admin-actions.component';
-import { AdminChatComponent } from './admin/ts/admin-chat.component';
-import { AdminContactComponent } from './admin/ts/admin-contact.component';
-import { AdminEmailsComponent } from './admin/ts/admin-emails.component';
-import { AdminMessagesComponent } from './admin/ts/admin-messages.component';
-import { AdminNewsComponent } from './admin/ts/admin-news.component';
-import { AdminHomeComponent } from './admin/ts/admin-home.component';
-import { AdminPausesComponent } from './admin/ts/admin-pauses.component';
-import { AdminPermissionsComponent } from './admin/ts/admin-permissions.component';
-import { AdminPlayersComponent } from './admin/ts/admin-players.component';
-import { AdminPrayersComponent } from './admin/ts/admin-prayers.component';
-import { AdminProfileComponent } from './admin/ts/admin-profile.component';
-import { AdminQuestsComponent } from './admin/ts/admin-quests.component';
-import { AdminResourcesComponent } from './admin/ts/admin-resources.component';
-import { AdminStatsBuildingsComponent } from './admin/ts/admin-stats-buildings.component';
-import { AdminStatsMintsComponent } from './admin/ts/admin-stats-mints.component';
-import { AdminStatsQuestsComponent } from './admin/ts/admin-stats-quests.component';
-import { AdminStatsUnitsComponent } from './admin/ts/admin-stats-units.component';
-import { AdminStoreroomComponent } from './admin/ts/admin-storeroom.component';
-import { AdminSupportComponent } from './admin/ts/admin-support.component';
-import { AdminSupportMsgComponent } from './admin/ts/admin-support-msg.component';
-import { AdminWarsComponent } from './admin/ts/admin-wars.component';
-import { AdminXpComponent } from './admin/ts/admin-xp.component';
+import { AlliancemembersComponent } from './alliancemembers/alliancemembers.component';
+import { AllianceprofileComponent } from './allianceprofile/allianceprofile.component';
+import { HonnorComponent } from './honnor/honnor.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RankingalliancesComponent } from './rankingalliances/rankingalliances.component';
+import { RankingplayersComponent } from './rankingplayers/rankingplayers.component';
 
-//General
-import { SiteMapComponent } from './public/ts/sitemap.component';
-import { PageNotFoundComponent } from './public/ts/pagenotfound.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
+import { MainComponent } from './main/main.component';
+import { Page404Component } from './page404/page404.component';
+import { AdminPage404Component } from './admin-page404/admin-page404.component';
+import { AdminChatComponent } from './admin-chat/admin-chat.component';
+import { AdminSupportComponent } from './admin-support/admin-support.component';
+import { AdminPermissionsComponent } from './admin-permissions/admin-permissions.component';
+import { AdminContactComponent } from './admin-contact/admin-contact.component';
+import { AdminActionsComponent } from './admin-actions/admin-actions.component';
+import { AdminWarsComponent } from './admin-wars/admin-wars.component';
+import { AdminSupportMsgComponent } from './admin-support/admin-support-msg.component';
+import { AdminQuestsComponent } from './admin-quests/admin-quests.component';
+import { AdminPausesComponent } from './admin-pauses/admin-pauses.component';
+import { AdminEmailsComponent } from './admin-emails/admin-emails.component';
+import { AdminNewsComponent } from './admin-news/admin-news.component';
+import { AdminResourcesComponent } from './admin-resources/admin-resources.component';
+import { AdminPrayersComponent } from './admin-prayers/admin-prayers.component';
+import { AdminMessagesComponent } from './admin-messages/admin-messages.component';
+import { AdminPlayersComponent } from './admin-players/admin-players.component';
+import { AdminStoreroomComponent } from './admin-storeroom/admin-storeroom.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminAgoraComponent } from './admin-agora/admin-agora.component';
+import { AdminAimageComponent } from './admin-aimage/admin-aimage.component';
+import { AdminPimageComponent } from './admin-pimage/admin-pimage.component';
+import { AdminHistoryComponent } from './admin-history/admin-history.component';
+import { AdminDuplicateemailComponent } from './admin-duplicateemail/admin-duplicateemail.component';
+import { AdminDuplicateipComponent } from './admin-duplicateip/admin-duplicateip.component';
+import { AdminSuspiciousipComponent } from './admin-suspiciousip/admin-suspiciousip.component';
+import { AdminIpComponent } from './admin-ip/admin-ip.component';
+import { AdminPasswordtryComponent } from './admin-passwordtry/admin-passwordtry.component';
+import { AdminSeoComponent } from './admin-seo/admin-seo.component';
+import { AdminAlliancesComponent } from './admin-alliances/admin-alliances.component';
 
-let routes: Routes = [];
-
-routes = [
+export const routes: Routes = [
+  // Public
   { path: 'auth', component: AuthComponent },
   { path: 'auth/:provider', component: AuthComponent },
+  { path: 'confirm/:id/:check', component: ConfirmComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'lostpassword', component: LostpasswordComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/:id', component: RegisterComponent },
+  { path: 'unsubscribe/:id', component: UnsubscribeComponent },
+  { path: 'unsubscribe/:id/:check', component: UnsubscribeComponent },
+
+  // All
+  { path: 'alliancemembers/:id', component: AlliancemembersComponent },
+  { path: 'allianceprofile/:id', component: AllianceprofileComponent },
   { path: 'community', component: CommunityComponent },
   { path: 'confidentiality', component: ConfidentialityComponent },
-  { path: 'confirm/:id/:check', component: ConfirmComponent },
-  { path: 'connectedplayers', component: ConnectedPlayersComponent },
-  { path: 'contactus', component: ContactUsComponent },
+  { path: 'connectedplayers', component: ConnectedplayersComponent },
+  { path: 'contactus', component: ContactusComponent },
   { path: 'credits', component: CreditsComponent },
-  { path: 'discoverthegame', component: DiscoverTheGameComponent },
-  { path: 'discoverthegame/:page', component: DiscoverTheGameComponent },
-  { path: 'fewwords', component: FewWordsComponent },
+  { path: 'discoverthegame', component: DiscoverthegameComponent },
+  { path: 'discoverthegame/:page', component: DiscoverthegameComponent },
+  { path: 'fewwords', component: FewwordsComponent },
   { path: 'free-game', component: FreeGameComponent },
   { path: 'help', component: HelpComponent },
   { path: 'honnor', component: HonnorComponent },
   { path: 'honnor/:id', component: HonnorComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'lostpassword', component: LostPasswordComponent },
   { path: 'news', component: NewsComponent },
   { path: 'partners', component: PartnersComponent },
   { path: 'permalink', component: PermalinkComponent },
   { path: 'permalink/:id', component: PermalinkComponent },
   { path: 'profile/:id', component: ProfileComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'register/:id', component: RegisterComponent },
-  { path: 'rankingalliances', component: RankingAlliancesComponent },
-  { path: 'rankingalliances/:id', component: RankingAlliancesComponent },
-  { path: 'rankingplayers', component: RankingPlayersComponent },
-  { path: 'rankingplayers/:id', component: RankingPlayersComponent },
-  { path: 'rankingplayers/:id/:order', component: RankingPlayersComponent },
+  { path: 'rankingalliances', component: RankingalliancesComponent },
+  { path: 'rankingalliances/:id', component: RankingalliancesComponent },
+  { path: 'rankingplayers', component: RankingplayersComponent },
+  { path: 'rankingplayers/:id', component: RankingplayersComponent },
+  { path: 'rankingplayers/:id/:order', component: RankingplayersComponent },
+  { path: 'sitemap', component: SitemapComponent },
   { path: 'strategy-game', component: StrategyGameComponent },
-  { path: 'tandcs', component: TAndCsComponent },
+  { path: 'tandcs', component: TandcsComponent },
   { path: 'team', component: TeamComponent },
-  { path: 'teamrecruitment', component: TeamRecruitmentComponent },
-  { path: 'unsubscribe/:id/:check', component: UnsubscribeComponent },
-  
-  { path: 'sitemap', component: SiteMapComponent },
-  
+  { path: 'teamrecruitment', component: TeamrecruitmentComponent },
+  { path: 'unsubscribe', component: UnsubscribeComponent },
+
+  // Connected all
+  { path: 'getfavors', component: GetfavorsComponent },
+
+  // Connected
+  { path: 'agora', component: AgoraComponent },
   { path: 'alliance', component: AllianceComponent },
-  { path: 'alliancemembers/:id', component: AllianceMembersComponent },
-  { path: 'allianceprofile/:id', component: AllianceProfileComponent },
+  { path: 'altars', component: AltarsComponent },
   { path: 'attacks', component: AttacksComponent },
   { path: 'city', component: CityComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'diplomacy', component: DiplomacyComponent },
-  { path: 'favors', component: FavorsComponent },
-  { path: 'getfavors', component: GetFavorsComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'mints', component: MintsComponent },
   { path: 'options', component: OptionsComponent },
   { path: 'quests', component: QuestsComponent },
   { path: 'sponsorship', component: SponsorshipComponent },
+  { path: 'statistics', component: StatisticsComponent },
   { path: 'strategies', component: StrategiesComponent },
   { path: 'strategies/:type', component: StrategiesComponent },
   { path: 'storeroom', component: StoreroomComponent },
   { path: 'support', component: SupportComponent },
   { path: 'support/:id', component: SupportComponent },
   { path: 'support/:id/:msg', component: SupportComponent },
-  
-  { path: 'blocked', component: BlockedComponent },
-  
-  { path: 'paused', component: PausedComponent },
-  
-  { path: 'admin',
+
+  // Admin
+  {
+    path: 'admin',
     children: [
-      { path: '404', component: Admin404Component },
       { path: 'actions', component: AdminActionsComponent },
+      { path: 'agora', component: AdminAgoraComponent },
+      { path: 'aimage', component: AdminAimageComponent },
+      { path: 'alliances', component: AdminAlliancesComponent },
       { path: 'chat', component: AdminChatComponent },
       { path: 'contact', component: AdminContactComponent },
       { path: 'contact/:id', component: AdminContactComponent },
       { path: 'emails', component: AdminEmailsComponent },
+      { path: 'duplicateemail', component: AdminDuplicateemailComponent },
+      { path: 'duplicateip', component: AdminDuplicateipComponent },
+      { path: 'history', component: AdminHistoryComponent },
+      { path: 'ip', component: AdminIpComponent },
+      { path: 'ip/:ip', component: AdminIpComponent },
       { path: 'messages', component: AdminMessagesComponent },
       { path: 'news', component: AdminNewsComponent },
       { path: 'news/:id', component: AdminNewsComponent },
+      { path: 'page404', component: AdminPage404Component },
+      { path: 'passwordtry', component: AdminPasswordtryComponent },
       { path: 'pauses', component: AdminPausesComponent },
       { path: 'permissions', component: AdminPermissionsComponent },
+      { path: 'pimage', component: AdminPimageComponent },
       { path: 'players', component: AdminPlayersComponent },
       { path: 'prayers', component: AdminPrayersComponent },
       { path: 'profile/:id', component: AdminProfileComponent },
       { path: 'quests', component: AdminQuestsComponent },
       { path: 'resources', component: AdminResourcesComponent },
-      { path: 'stats/buildings', component: AdminStatsBuildingsComponent },
-      { path: 'stats/mints', component: AdminStatsMintsComponent },
-      { path: 'stats/quests', component: AdminStatsQuestsComponent },
-      { path: 'stats/units', component: AdminStatsUnitsComponent },
+      { path: 'seo', component: AdminSeoComponent },
       { path: 'storeroom', component: AdminStoreroomComponent },
       { path: 'support', component: AdminSupportComponent },
       { path: 'support/:id', component: AdminSupportComponent },
       { path: 'support/:id/:msg', component: AdminSupportMsgComponent },
+      { path: 'suspiciousip', component: AdminSuspiciousipComponent },
       { path: 'wars', component: AdminWarsComponent },
-      { path: 'xp', component: AdminXpComponent },
-      
-      { path: '**', component: AdminHomeComponent }
-    ]
+
+      { path: '**', component: AdminComponent },
+    ],
   },
-  
-  { path: '', component: HomeComponent },
-  { path: '**', component: PageNotFoundComponent },
+
+  // Others
+  { path: '', component: MainComponent },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
-      onSameUrlNavigation: 'reload'
-    })],
-  exports: [RouterModule]
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

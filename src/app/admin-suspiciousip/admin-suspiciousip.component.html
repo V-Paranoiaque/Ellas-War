@@ -1,0 +1,140 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <h2 id="descConnection">Connections</h2>
+                <table class="table" aria-describedby="descConnection">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th translate>IP</th>
+                      <th translate>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of ipConnection; track p) {
+                      <tr>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.player1_status === 3 ||
+                                p.player1_status === 5,
+                              'text-warning': p.player1_status === 4
+                            }"
+                            href="admin/profile/{{ p.player1 }}"
+                            [routerLink]="['/admin/profile/' + p.player1]"
+                            >{{ p.player1_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.player2_status === 3 ||
+                                p.player2_status === 5,
+                              'text-warning': p.player2_status === 4
+                            }"
+                            href="admin/profile/{{ p.player2 }}"
+                            [routerLink]="['/admin/profile/' + p.player2]"
+                            >{{ p.player2_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/ip/{{ p.ip }}"
+                            [routerLink]="['/admin/ip/' + p.ip]"
+                            >{{ p.ip }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            p.date * 1000
+                              | date
+                                : 'EEEE dd MMMM YYYY, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-12 col-md-6">
+                <h2 id="descDetected">Detected</h2>
+                <table class="table" aria-describedby="descDetected">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th translate>IP</th>
+                      <th translate>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of ipDetected; track p) {
+                      <tr>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.player1_status === 3 ||
+                                p.player1_status === 5,
+                              'text-warning': p.player1_status === 4
+                            }"
+                            href="admin/profile/{{ p.player1 }}"
+                            [routerLink]="['/admin/profile/' + p.player1]"
+                            >{{ p.player1_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            [ngClass]="{
+                              'text-danger':
+                                p.player2_status === 3 ||
+                                p.player2_status === 5,
+                              'text-warning': p.player2_status === 4
+                            }"
+                            href="admin/profile/{{ p.player2 }}"
+                            [routerLink]="['/admin/profile/' + p.player2]"
+                            >{{ p.player2_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/ip/{{ p.ip }}"
+                            [routerLink]="['/admin/ip/' + p.ip]"
+                            >{{ p.ip }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            p.date * 1000
+                              | date
+                                : 'EEEE dd MMMM YYYY, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

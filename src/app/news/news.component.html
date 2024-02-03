@@ -1,0 +1,61 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="newsTitle" translate>News</h1>
+
+            @if (getNews().length === 0) {
+              <div class="text-center fw-bold" translate>
+                <br />
+                There is no news published for the moment
+              </div>
+            }
+
+            @if (getNews().length > 0) {
+              <table
+                class="table table-responsive"
+                aria-describedby="newsTitle">
+                <thead>
+                  <tr>
+                    <th scope="col" translate>Title</th>
+                    <th scope="col" class="d-none d-sm-table-cell" translate>
+                      Author
+                    </th>
+                    <th scope="col" translate>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (n of getNews(); track n) {
+                    <tr>
+                      <td>
+                        <a
+                          href="{{ n.link }}"
+                          target="_blank"
+                          rel="external nofollow noopener"
+                          >{{ n.title }}</a
+                        >
+                        <span class="fw-normal fst-italic d-block d-sm-none">
+                          {{ 'By { value }' | translate: { value: n.author } }}
+                        </span>
+                      </td>
+                      <td class="d-none d-sm-table-cell">{{ n.author }}</td>
+                      <td>{{ n.news_date * 1000 | date: 'dd/MM/yyyy' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

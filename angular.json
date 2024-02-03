@@ -3,13 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ew": {
+    "ewv2": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,25 +13,36 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "www",
+            "outputPath": "web",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
-            "aot": true,
-            "allowedCommonJsDependencies": [
-              "ngx-bootstrap-icons",
-              "socket.io-client"
+            "polyfills": [
+              "zone.js"
             ],
+            "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "@iconify/icons-bi",
+              "@iconify/icons-carbon",
+              "@iconify/icons-emojione-monotone",
+              "@iconify/icons-game-icons",
+              "@iconify/icons-ic",
+              "@iconify/icons-mdi",
+              "@iconify/icons-fa6-regular",
+              "@iconify/icons-fa6-solid",
+              "@iconify/icons-vaadin",
+              "@iconify/icons-whh"
             ]
           },
           "configurations": {
@@ -47,13 +54,6 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -65,9 +65,11 @@
                   "maximumWarning": "5kb",
                   "maximumError": "8kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
             },
             "mobile": {
+              "outputPath": "www",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -78,13 +80,6 @@
                 "input": "merges/index.html",
                 "output": "index.html"
               },
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -96,43 +91,55 @@
                   "maximumWarning": "5kb",
                   "maximumError": "8kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ew:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "ew:build:production"
+              "buildTarget": "ewv2:build:production"
+            },
+            "development": {
+              "buildTarget": "ewv2:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ew:build"
+            "buildTarget": "ewv2:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
             "assets": [
+              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         },
         "lint": {
@@ -148,6 +155,9 @@
     }
   },
   "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
     "analytics": false
   }
 }

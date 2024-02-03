@@ -1,0 +1,51 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h2 id="historyDesc" class="text-center" translate>History</h2>
+            <table class="table table-sm" aria-labelledby="historyDesc">
+              <tbody>
+                <tr *ngFor="let p of adminUserHistoryList">
+                  <td [ngSwitch]="p.type">
+                    <ng-container *ngSwitchCase="1"
+                      >Has blocked {{ p.data.player_username }}</ng-container
+                    >
+                    <ng-container *ngSwitchCase="2"
+                      >Has unblocked {{ p.data.player_username }}</ng-container
+                    >
+                    <ng-container *ngSwitchCase="3"></ng-container>
+                    <ng-container *ngSwitchCase="4"></ng-container>
+                    <ng-container *ngSwitchCase="5"></ng-container>
+                    <ng-container *ngSwitchCase="6">
+                      Looked for user {{ p.data.research }}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="7">
+                      Looked for storeroom
+                    </ng-container>
+                    <ng-container *ngSwitchCase="8">
+                      Looked for agora
+                    </ng-container>
+                    <ng-container *ngSwitchDefault
+                      >{{ p.type }}-{{ p.data | json }}</ng-container
+                    >
+                  </td>
+                  <th scope="row">
+                    <a [routerLink]="['/admin/profile/' + p.admin]">
+                      {{ p.username }}
+                    </a>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

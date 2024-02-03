@@ -1,0 +1,47 @@
+<div class="modal fade" id="DefenseWallInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" translate>Defense wall</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div translate>
+            The defense wall is a basic protection for your city. It won't stop
+            your enemies but will delay their armies.
+          </div>
+          <br />
+          <div class="text-center">
+            <strong translate>Defense</strong>
+            <strong translate>:</strong>
+            {{ defenseWallStrength | number: '' : this.translate.currentLang }}
+            <app-ic-icon
+              [icon]="shieldShaded"
+              title="{{ 'Defense' | translate }}"></app-ic-icon>
+            <br />
+            <strong translate>Level</strong>
+            <strong translate>:</strong>
+            {{
+              user.getPropertyNb('defense_wall')
+                | number: '' : this.translate.currentLang
+            }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            translate>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

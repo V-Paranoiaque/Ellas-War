@@ -1,0 +1,9 @@
+@if (user.getPropertyNb('mstatus') === 1) {
+  <app-main-private-right-menu></app-main-private-right-menu>
+}
+@if (user.getPropertyNb('mstatus') === 1) {
+  <app-main-private-bottom-menu></app-main-private-bottom-menu>
+}
+@if (user.getPropertyNb('mstatus') === 0) {
+  <app-main-public-bottom-menu></app-main-public-bottom-menu>
+}

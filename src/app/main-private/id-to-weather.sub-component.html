@@ -1,0 +1,22 @@
+<span>
+  @switch (weather) {
+    @case ('heatwave') {
+      <span><app-ic-icon [icon]="sun"></app-ic-icon></span>
+    }
+    @case ('rain') {
+      <span><app-ic-icon [icon]="cloudRain"></app-ic-icon></span>
+    }
+    @case ('sun') {
+      <span><app-ic-icon [icon]="cloudSun"></app-ic-icon></span>
+    }
+    @case ('storm') {
+      <span><app-ic-icon [icon]="cloudShowersHeavy"></app-ic-icon></span>
+    }
+    @case ('wind') {
+      <span><app-ic-icon [icon]="wind"></app-ic-icon></span>
+    }
+    @case ('snow') {
+      <span><app-ic-icon [icon]="snowflake"></app-ic-icon></span>
+    }
+  }
+</span>

@@ -34,15 +34,7 @@ module.exports = function (config) {
       ]
     },
     reporters: ['coverage', 'progress', 'kjhtml'],
-    port: 9876,
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
     browsers: ['Firefox'],
-    singleRun: true,
-    restartOnFileChange: true,
-    browserConsoleLogOptions: {
-      level: 'log'
-    },
+    restartOnFileChange: true
   });
 };

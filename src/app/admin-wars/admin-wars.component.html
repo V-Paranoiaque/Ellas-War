@@ -1,0 +1,54 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="warsDescription" translate>Wars</h1>
+            <table class="table" aria-describedby="warsDescription">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Alliances</th>
+                  <th scope="col" translate>Start</th>
+                  <th scope="col" translate>Gain</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (war of list; track war) {
+                  <tr>
+                    <th scope="row">
+                      <span
+                        [ngClass]="{
+                          'text-danger': war.win_attacking > war.win_defender
+                        }">
+                        {{ war.attacking }} {{ war.win_attacking }}
+                      </span>
+                      -
+                      <span
+                        [ngClass]="{
+                          'text-danger': war.win_defender > war.win_attacking
+                        }">
+                        {{ war.win_defender }} {{ war.defender }}
+                      </span>
+                    </th>
+                    <td>{{ war.time * 1000 | date: 'dd/MM/yyyy, HH:mm' }}</td>
+                    <td class="text-end">
+                      {{ war.gain | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

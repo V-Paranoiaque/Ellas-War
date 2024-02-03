@@ -1,0 +1,43 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center" translate>
+              Connection using an external provider
+            </h2>
+            <br />
+
+            <div class="fw-bold text-center">
+              @switch (provider) {
+                @case ('facebook') {
+                  <div translate>Connection using Facebook in progress</div>
+                }
+                @case ('google') {
+                  <div translate>Connection using Google in progress</div>
+                }
+                @default {
+                  <div>
+                    <button class="btn btn-grey" (click)="user.oauthGoogle()">
+                      <app-ic-icon
+                        [icon]="googleIcon"
+                        class="fs-6"></app-ic-icon>
+                      {{ 'Login with Google' | translate }}
+                    </button>
+                    <br />
+                    <br />
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

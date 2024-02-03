@@ -1,0 +1,124 @@
+<div>
+  @switch (user.getPropertyNb('mstatus')) {
+    @case (0) {
+      <app-main-public></app-main-public>
+    }
+    @case (1) {
+      <app-city></app-city>
+    }
+    @case (3) {
+      <app-blocked></app-blocked>
+    }
+    @case (4) {
+      <app-paused></app-paused>
+    }
+    @case (5) {
+      <app-blocked></app-blocked>
+    }
+  }
+</div>
+
+@if (displayServerModal) {
+  <div
+    [config]="{ show: true }"
+    (onHidden)="onHidden()"
+    bsModal
+    #serverModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" translate>Impossible to join the server</h4>
+        </div>
+        <div class="modal-body">
+          <div translate>
+            The server is currently not reachable, possible causes are:
+          </div>
+          <ul>
+            <li translate>The game is down</li>
+            <li translate>
+              Your application or web browser needs to be restarted
+            </li>
+            <li translate>Your internet connection is down</li>
+          </ul>
+          <div class="text-danger text-center" translate>
+            This popup will close automatically when the game will be reachable
+            again.
+          </div>
+          <div class="text-center">
+            <br />
+            <button class="btn btn-primary" (click)="refresh()" translate>
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if (displayVersionModal) {
+  <div
+    [config]="{ show: true }"
+    (onHidden)="onHidden()"
+    bsModal
+    #versionModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" translate>Your game version id too old</h4>
+        </div>
+        <div class="modal-body" translate>
+          The version of the client that you use to access to the game is too
+          old. If you use an application, try to update it, else restart your
+          web browser.
+        </div>
+        <div class="modal-body text-center">
+          <strong translate>Minimum version:</strong> {{ remoteVersion }}
+          <br />
+          <strong translate>Your version:</strong> {{ localVersion }}
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if (displayMaintenanceModal) {
+  <div
+    [config]="{ show: true }"
+    (onHidden)="onHidden()"
+    bsModal
+    #serverModal="bs-modal"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" translate>Game in maintenance</h4>
+        </div>
+        <div class="modal-body">
+          <div translate>
+            The game is currently in maintenance, we will be back soon.
+          </div>
+          <br />
+          <div class="text-danger text-center" translate>
+            This popup will close automatically when the game will be reachable
+            again.
+          </div>
+          <div class="text-center">
+            <br />
+            <button class="btn btn-primary" (click)="refresh()" translate>
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

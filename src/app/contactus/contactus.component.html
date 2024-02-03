@@ -1,0 +1,105 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" translate>Contact us</h1>
+
+            <div
+              class="col-sm-6 offset-sm-3 col-12 text-center"
+              role="alert"
+              translate
+              ng-show="contactError > 0">
+              <br />
+              <div>
+                @switch (contactError) {
+                  @case (1) {
+                    <div class="alert alert-danger" translate>
+                      Please, enter your name
+                    </div>
+                  }
+                  @case (2) {
+                    <div class="alert alert-danger" translate>
+                      Please, enter your email
+                    </div>
+                  }
+                  @case (3) {
+                    <div class="alert alert-danger" translate>
+                      Please, enter your message
+                    </div>
+                  }
+                  @case (5) {
+                    <div class="alert alert-success" translate>
+                      Your message has been sent, we will try to answer you in
+                      the shortest possible time.
+                    </div>
+                  }
+                }
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="text-center" translate>
+                Our staff are volunteers however we will try to answer you as
+                soon as possible.
+              </div>
+              <div class="col-lg-5 offset-lg-1 col-md-6 col-12">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    title="{{ 'Enter your name' | translate }}"
+                    required
+                    id="contact-name"
+                    placeholder="{{ 'Your name' | translate }}"
+                    class="form-control"
+                    [(ngModel)]="contactname" />
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-6 col-12">
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    title="{{ 'Enter your email' | translate }}"
+                    required
+                    id="contact-mail"
+                    placeholder="{{ 'Your email' | translate }}"
+                    class="form-control"
+                    [(ngModel)]="contactemail" />
+                </div>
+              </div>
+              <div class="col-lg-10 offset-lg-1 col-12">
+                <div class="mb-3">
+                  <textarea
+                    title="{{ 'Enter your message' | translate }}"
+                    required
+                    id="contact-message"
+                    placeholder="{{ 'Your message' | translate }}"
+                    class="form-control"
+                    rows="5"
+                    [(ngModel)]="contacttext"></textarea>
+                </div>
+              </div>
+              <div class="col-lg-12 text-center">
+                <br />
+                <button
+                  (click)="contactsend()"
+                  class="btn btn-primary btn-lg"
+                  type="submit"
+                  translate>
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

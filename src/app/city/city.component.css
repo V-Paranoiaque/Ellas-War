@@ -1,0 +1,30 @@
+/* Icon for the blocks */
+.badge {
+  font-weight: 500;
+  border: 1px white solid;
+  border-radius: 50%;
+  position: absolute;
+  text-align: right;
+  top: 1px;
+  right: 1px;
+}
+
+#discord-mobile {
+  margin-top: 5px;
+}
+.mobile-bubble {
+  position: absolute;
+  left: 0;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.favoriteStar {
+  position: absolute;
+  left: 0;
+  font-size: 1.5em;
+  top: 0;
+}

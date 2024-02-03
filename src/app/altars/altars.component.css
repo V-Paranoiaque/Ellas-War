@@ -1,0 +1,10 @@
+table .small-resource {
+  width: 22px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.card .card-body {
+  background-color: transparent;
+}

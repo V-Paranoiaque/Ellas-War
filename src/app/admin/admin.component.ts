@@ -1,57 +1,63 @@
-import { Admin404Component } from './ts/admin-404.component';
-import { AdminActionsComponent } from './ts/admin-actions.component';
-import { AdminChatComponent } from './ts/admin-chat.component';
-import { AdminContactComponent } from './ts/admin-contact.component';
-import { AdminEmailsComponent } from './ts/admin-emails.component';
-import { AdminMessagesComponent } from './ts/admin-messages.component';
-import { AdminNewsComponent } from './ts/admin-news.component';
-import { AdminHomeComponent } from './ts/admin-home.component';
-import { AdminPausesComponent } from './ts/admin-pauses.component';
-import { AdminPermissionsComponent } from './ts/admin-permissions.component';
-import { AdminPlayersComponent } from './ts/admin-players.component';
-import { AdminPrayersComponent } from './ts/admin-prayers.component';
-import { AdminProfileComponent } from './ts/admin-profile.component';
-import { AdminQuestsComponent } from './ts/admin-quests.component';
-import { AdminResourcesComponent } from './ts/admin-resources.component';
-import { AdminStatsBuildingsComponent } from './ts/admin-stats-buildings.component';
-import { AdminStatsMintsComponent } from './ts/admin-stats-mints.component';
-import { AdminStatsQuestsComponent } from './ts/admin-stats-quests.component';
-import { AdminStatsUnitsComponent } from './ts/admin-stats-units.component';
-import { AdminStoreroomComponent } from './ts/admin-storeroom.component';
-import { AdminSupportComponent } from './ts/admin-support.component';
-import { AdminSupportMsgComponent } from './ts/admin-support-msg.component';
-import { AdminWarsComponent } from './ts/admin-wars.component';
-import { AdminXpComponent } from './ts/admin-xp.component';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SocketComponent as Socket } from '../../services/socketio.service';
+import { TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { Subscription } from 'rxjs';
 
-import { AdminQuestsTitleSubComponent } from './ts/admin-quests-title.sub-component';
-import { AdminSupportPopupSubComponent } from './ts/admin-support-popup.sub-component';
+import eye from '@iconify/icons-fa6-solid/eye';
 
-export const AdminComponent = [
-  Admin404Component,
-  AdminActionsComponent,
-  AdminChatComponent,
-  AdminContactComponent,
-  AdminEmailsComponent,
-  AdminMessagesComponent,
-  AdminNewsComponent,
-  AdminHomeComponent,
-  AdminPausesComponent,
-  AdminPermissionsComponent,
-  AdminPlayersComponent,
-  AdminPrayersComponent,
-  AdminProfileComponent,
-  AdminQuestsComponent,
-  AdminResourcesComponent,
-  AdminStatsBuildingsComponent,
-  AdminStatsMintsComponent,
-  AdminStatsQuestsComponent,
-  AdminStatsUnitsComponent,
-  AdminStoreroomComponent,
-  AdminSupportComponent,
-  AdminSupportMsgComponent,
-  AdminWarsComponent,
-  AdminXpComponent,
-  
-  AdminQuestsTitleSubComponent,
-  AdminSupportPopupSubComponent
-];
+@Component({
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css'],
+})
+export class AdminComponent implements OnInit, OnDestroy {
+  public adminStats = {
+    honnor_last_time: 0,
+    diamond_last_time: 0,
+    daily_last_time: 0,
+    weekly_last_time: 0,
+  };
+  public apiInfo = {
+    uptime: 0,
+    timestamp: 0,
+    min: 0,
+  };
+
+  private sub: Subscription;
+
+  eye = eye;
+
+  constructor(
+    protected http: HttpClient,
+    private socket: Socket,
+    public user: User,
+    public translate: TranslateService
+  ) {
+    this.sub = new Subscription();
+  }
+
+  ngOnInit() {
+    this.user.checkPermissions([1]);
+
+    this.socket.emit('adminStats');
+
+    const url = this.socket.url + '/api.json';
+    this.sub = this.http.get(url).subscribe(result => {
+      this.apiInfo = result as typeof this.apiInfo;
+    });
+
+    this.socket.on('adminStats', (msg: object) => {
+      this.adminStats = msg as typeof this.adminStats;
+    });
+  }
+
+  ngOnDestroy() {
+    this.socket.removeListener('adminStats');
+
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
+}

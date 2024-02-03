@@ -1,0 +1,94 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 id="contactDesc" class="text-center" translate>Contact page</h1>
+            <table class="table" aria-labelledby="contactDesc">
+              <tbody>
+                @for (msg of adminContactList; track msg) {
+                  <tr>
+                    <td class="text-prewrap">{{ msg.text }}</td>
+                    <th scope="row">
+                      {{ msg.send_date * 1000 | date: 'dd/MM/yyyy, HH:mm' }}
+                      <br />
+                      <strong>{{ msg.name }}</strong>
+                      <br />
+                      {{ msg.email }}
+                      <br />
+                      <a
+                        (click)="adminContactResolve(msg.id)"
+                        class="btn"
+                        (keyup.enter)="adminContactResolve(msg.id)"
+                        tabindex="0"
+                        [ngClass]="{
+                          'btn-success': msg.resolve !== 0,
+                          'btn-danger': msg.resolve === 0
+                        }">
+                        <app-ic-icon [icon]="angellistIcon"></app-ic-icon>
+                      </a>
+                    </th>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            @if (adminContactMax > 1) {
+              <div>
+                <br />
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminContactChange(1)"
+                    (keyup.enter)="adminContactChange(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminContactChange(adminContactPage - 1)"
+                    (keyup.enter)="adminContactChange(adminContactPage - 1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    [ngModel]="adminContactPage"
+                    (change)="adminContactChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}"
+                    #mySelect>
+                    @for (id of Tools.range(1, adminContactMax); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminContactChange(adminContactPage + 1)"
+                    (keyup.enter)="adminContactChange(adminContactPage + 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminContactChange(adminContactMax)"
+                    (keyup.enter)="adminContactChange(adminContactMax)"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

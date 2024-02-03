@@ -1,0 +1,48 @@
+<div class="modal fade" id="HonnorHelpPopup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyDesc" translate>History</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <table class="table" aria-describedby="historyDesc">
+          <thead>
+            <tr>
+              <th translate>Level</th>
+              <th translate>Player</th>
+              <th translate>Honnor</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (p of list; track p) {
+              <tr>
+                <td>{{ p.id }}</td>
+                <td>
+                  <app-user-profile
+                    id="{{ p.player_id }}"
+                    username="{{ p.username }}"
+                    status="1"></app-user-profile>
+                </td>
+                <td>{{ p.honnor }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

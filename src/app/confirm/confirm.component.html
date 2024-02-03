@@ -1,0 +1,41 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              @switch (confirmResult) {
+                @case (1) {
+                  <div>
+                    <div class="text-danger" translate>
+                      This link is invalid, if have forgotten your password, ask
+                      a new again.
+                    </div>
+                    <br /><br />
+                    <a [routerLink]="['/lostpassword']" translate>
+                      Forgot your password?
+                    </a>
+                  </div>
+                }
+                @case (2) {
+                  <div>
+                    <div class="text-danger" translate>
+                      Password changed successfully
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

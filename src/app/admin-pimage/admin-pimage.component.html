@@ -1,0 +1,32 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="emailLabel" translate>Player images</h1>
+            <div class="row">
+              @for (p of adminImagePlayers; track p) {
+                <div class="col-12 col-lg-3 text-center">
+                  {{ p.username }}<br />
+                  @if (p.membre_img) {
+                    <img
+                      src="{{ user.getConfig().url }}/pprofile/{{
+                        p.membre_img
+                      }}"
+                      class="img-fluid center-block"
+                      alt="{{ p.username }}" />
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

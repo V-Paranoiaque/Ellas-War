@@ -1,0 +1,261 @@
+<span>
+  @switch (msg.type) {
+    @case (1) {
+      <span>
+        <strong>{{ msg.title.attacker }}</strong
+        ><strong translate>:</strong> {{ msg.content.attacker }}
+        <br />
+        <strong>{{ msg.title.defender }}</strong
+        ><strong translate>:</strong> {{ msg.content.defender }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (2) {
+      <span translate>
+        <strong>{{ msg.title.attacker }}</strong
+        ><strong translate>:</strong> {{ msg.content.attacker }}
+        <br />
+        <strong>{{ msg.title.defender }}</strong
+        ><strong translate>:</strong> {{ msg.content.defender }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (3) {
+      <span>
+        {{
+          '{ value } has requested a pact to the alliance { name }.'
+            | translate
+              : { value: msg.content.username, name: msg.content.dst_name }
+        }}
+      </span>
+    }
+    @case (4) {
+      <span>
+        {{
+          '{ value } of { name } has requested a pact to your alliance.'
+            | translate
+              : { value: msg.content.username, name: msg.content.ask_name }
+        }}
+      </span>
+    }
+    @case (5) {
+      <span>
+        {{
+          '{ value } has declared war to the alliance { name }.'
+            | translate
+              : {
+                  value: msg.content.player_name,
+                  name: msg.content.defender_name
+                }
+        }}
+      </span>
+    }
+    @case (6) {
+      <span>
+        {{
+          '{ value } of the alliance { name } has declared war to your alliance.'
+            | translate
+              : {
+                  value: msg.content.player_name,
+                  name: msg.content.attacking_name
+                }
+        }}
+      </span>
+    }
+    @case (7) {
+      <span>
+        @if (
+          user.getPropertyNb('alliance') === msg.title.refuse &&
+          msg.title.ask_id !== msg.title.refuse
+        ) {
+          <span>
+            {{
+              '{ value } of your alliance has refused a pact with the alliance { name }.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.ask_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') === msg.title.refuse &&
+          msg.title.ask_id === msg.title.refuse
+        ) {
+          <span>
+            {{
+              '{ value } of your alliance canceled a pact request with the alliance { name }.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.ask_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') !== msg.title.refuse &&
+          msg.title.ask_id === msg.title.refuse
+        ) {
+          <span>
+            {{
+              '{ value } of the alliance { name } has refused a pact with your alliance.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.dst_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') !== msg.title.refuse &&
+          msg.title.ask_id !== msg.title.refuse
+        ) {
+          <span>
+            {{
+              '{ value } of the alliance { name } has canceled a pact request with your alliance.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.dst_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (8) {
+      <span>
+        @if (user.getPropertyNb('alliance') === msg.title.refuse) {
+          <span>
+            {{
+              '{ value } of your alliance accepted a pact with the alliance { name }.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.ask_name }
+            }}
+          </span>
+        }
+        @if (user.getPropertyNb('alliance') !== msg.title.refuse) {
+          <span>
+            {{
+              '{ value } of the alliance { name } has accepted a pact with your alliance.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.dst_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (9) {
+      <span>
+        @if (user.getPropertyNb('alliance') === msg.title.destroy) {
+          <span>
+            {{
+              '{ value } of your alliance destroyed a pact with the alliance { name }.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.ask_name }
+            }}
+          </span>
+        }
+        @if (user.getPropertyNb('alliance') !== msg.title.destroy) {
+          <span>
+            {{
+              '{ value } of the alliance { name } has destroyed a pact with your alliance.'
+                | translate
+                  : { value: msg.content.username, name: msg.title.dst_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (10) {
+      <span>
+        {{
+          '{ value } has accepted { name } in your alliance.'
+            | translate: { value: msg.content.member, name: msg.content.player }
+        }}
+      </span>
+    }
+    @case (11) {
+      <span>
+        {{
+          '{ value } has refused { name } in your alliance.'
+            | translate: { value: msg.content.member, name: msg.content.player }
+        }}
+      </span>
+    }
+    @case (12) {
+      <span>
+        {{
+          '{ value } has ejected { name } from your alliance.'
+            | translate: { value: msg.content.member, name: msg.content.player }
+        }}
+      </span>
+    }
+    @case (13) {
+      <span>
+        {{
+          '{ value } has left your alliance.'
+            | translate: { value: msg.content.member }
+        }}
+      </span>
+    }
+    @case (14) {
+      <span>
+        {{
+          '{ old } is not leading your alliance anymore, { new } is now the new chief.'
+            | translate
+              : { old: msg.content.chief_old, new: msg.content.chief_new }
+        }}
+      </span>
+    }
+    @case (15) {
+      <span>
+        {{
+          'The war between { name1 } and { name2 } has been canceled, no winner has been announced.'
+            | translate: { name1: msg.content.name1, name2: msg.content.name2 }
+        }}
+        @if (msg.content.benefits) {
+          <div>
+            <strong translate>Reward:</strong>
+            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+          </div>
+        }
+      </span>
+    }
+    @case (16) {
+      <span>
+        <div translate>The war has been long, but your alliance has won.</div>
+        <strong>{{ msg.content.nameWinner }}</strong
+        ><strong translate>:</strong> {{ msg.content.vicWinner }}
+        <br />
+        <strong>{{ msg.content.nameLooser }}</strong
+        ><strong translate>:</strong> {{ msg.content.vicLooser }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (17) {
+      <span translate>
+        <div translate>
+          The battle was long, unfortunately your alliance lost the war.
+        </div>
+        <strong>{{ msg.content.nameWinner }}</strong
+        ><strong translate>:</strong> {{ msg.content.vicWinner }}
+        <br />
+        <strong>{{ msg.content.nameLooser }}</strong
+        ><strong translate>:</strong> {{ msg.content.vicLooser }}
+        <br />
+        <br />
+        <strong translate>Reward:</strong>
+        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @default {
+      <span>{{ msg.content }}</span>
+    }
+  }
+</span>

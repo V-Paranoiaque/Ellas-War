@@ -1,0 +1,284 @@
+/** Colors **/
+:root {
+  --dark-blue: #1A1E37;
+}
+
+/** HTML elements **/
+body {
+  background-image: url("./ewnextv3/background.webp"), url('./ewnextv3/mosaic.webp');
+  background-position: top 24px right, bottom center;
+  background-repeat: no-repeat, repeat-x;
+  background-size: cover, auto;
+}
+
+#topMosaic {
+  background-color: white;
+  background-image: url('./ewnextv3/mosaic.webp');
+  background-position: top center;
+  background-repeat: repeat-x;
+  background-size: auto;
+  width: 100%;
+  height: 24px;
+  z-index: 1000;
+  position: relative;
+}
+
+@media (max-width: 479.98px) {
+  main {
+    padding-bottom: 100px;
+  }
+}
+@media (min-width: 480px) and (max-width: 575.98px) {
+  main {
+    padding-bottom: 120px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  main {
+    padding-bottom: 160px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  main {
+    padding-bottom: 200px;
+  }
+}
+
+.design-background {
+  background-image: url('./ewnextv3/marble-background.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/** Left menu **/
+#sidebarMenu .position-sticky {
+  background-image: url('./ewnextv3/column-bottom.webp'), url('./ewnextv3/column-body.webp');
+  background-position: bottom right, top right;
+  background-repeat: no-repeat, repeat-y;
+  padding-top: 32px;
+  padding-bottom: 20px;
+}
+#sidebarMenu .position-sticky .list-group {
+  width: calc(100% - 30px);
+}
+.sidebar .position-sticky {
+  background-image: url('./ewnextv3/marble-white.webp');
+}
+.sidebar-left .list-group {
+  border-radius: 0%;
+  padding: 0px;
+  background-image: url('./ewnextv3/marble-background.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.sidebar-left .list-group-item {
+  padding: 0px;
+  line-height: 40px;
+  border-radius: 0%;
+  border-right: 0px;
+  color: white;
+  border-color: white;
+  background-color: transparent;
+  background-image: none;
+  white-space: nowrap;
+}
+.sidebar-left .list-group-item app-ew-icon {
+  width: 43px;
+  margin-right: 2px;
+  display: inline-block;
+}
+
+/* Right menu */
+#playerMenuColumn .position-sticky {
+  background-image: url('./ewnextv3/column-bottom.webp'), url('./ewnextv3/column-body.webp');
+  background-position: bottom left, top left;
+  background-repeat: no-repeat, repeat-y;
+  padding: 32px 0px 20px 30px;
+  margin-bottom: 40px;
+}
+
+#playerMenuColumn .small-resource,
+#PlayerInfo .small-resource {
+  width: 28px;
+}
+
+.sidebar.sidebar-right {
+  z-index: 200;
+  width: 160px;
+}
+
+.sidebar.sidebar-right app-ic-icon {
+  z-index: 600;
+}
+
+.sidebar-right .player-menu {
+  background-image: url('./ewnextv3/marble-background.webp');
+  color: white;
+  border-color: white;
+  border-width: 1px 0px 1px 0px;
+}
+.sidebar-right .player-menu:nth-of-type(2n) {
+  background-position: bottom;
+}
+.sidebar-right .player-menu a {
+  color: white;
+}
+
+/* Bottom */
+#frame-bottom nav {
+  background-color: #1D1F36;
+}
+
+#frame-bottom nav a.badge {
+  border-radius: 0%;
+}
+
+#mobile-nav {
+  background-image: url('./ewnextv3/mosaic.webp'), url("./ewnextv3/marble-background.webp");
+  background-position: top center, top 24px right;
+  background-repeat: repeat-x, no-repeat;
+  background-size: auto, cover;
+  background-color: white;
+  padding-top: 24px;
+}
+
+/** Cards **/
+.card {
+  border-radius: 0px;
+  background-color: transparent;
+}
+.card-body, .card.card-normal, .chat-text {
+  border-color: var(--dark-blue);
+}
+.card-header, .card-header:first-child {
+  background-image: url('./ewnextv3/marble-background.webp');
+  border-radius: 0px;
+}
+.card-header-button {
+  cursor: pointer;
+  background-image: linear-gradient(var(--dark-blue), var(--dark-blue));
+}
+.card-header-button:hover {
+  background-image: linear-gradient(#2E629B, #4678A1);
+}
+.card-body {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0px;
+}
+
+/** Modals **/
+.modal-content,
+.modal-body {
+  border-radius: 0px;
+}
+
+/** btn **/
+.btn-primary, 
+.card-button-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    text-shadow: none;
+}
+
+.btn-primary:hover,
+.card-button-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.card-button-primary a {
+  color: white;
+}
+
+.btn.btn-success {
+  background-image: linear-gradient(#398439,#449d44);
+}
+
+.btn-outline-primary {
+  border-color: var(--dark-blue);
+  color: var(--dark-blue);
+}
+.btn-outline-primary:hover {
+  background-color: var(--dark-blue);
+  border-color: var(--dark-blue);
+}
+
+/** badge **/
+.badge.bg-secondary {
+  background-color: var(--dark-blue) !important;
+}
+
+/** Pages **/
+.page-link {
+  color: var(--dark-blue) !important;
+}
+
+.active > .page-link, .input-group-text {
+  color: white !important;
+  background-color: var(--dark-blue) !important;
+  border-color: var(--dark-blue);
+}
+
+/** Alerts **/
+.alert {
+  border-radius: 0px;
+}
+
+/** table **/
+.table > :not(caption) > * > *:not(.table-danger),
+.card-body .card .card-body {
+  background-color: transparent;
+}
+.table > :not(caption) > .table-danger {
+  background-color: var(--bs-table-bg);
+}
+
+/** Home **/
+.column-block {
+  margin-bottom: 80px;
+}
+.column-block .card {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  border-width: 0px;
+}
+.column {
+  background-image: url('./ewnextv3/column-top.webp'), url('./ewnextv3/column-bottom.webp'), url('./ewnextv3/column-body.webp');
+  background-repeat: no-repeat, no-repeat, repeat-y;
+  z-index: 350;
+  background-position: top left, bottom left, top left;
+  margin-right: -9px;
+  min-width: 50px;
+}
+
+#social-media-frame .column {
+  margin-bottom: 10px;
+}
+#social-media-frame .social {
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.column.left-column {
+  transform: scaleX(-1);
+}
+.column.right-column {
+  margin-right: 0px;
+  margin-left: -9px;
+}
+
+/** City **/
+.frame {
+  float: left;
+  position: relative;
+}
+.frame-name {
+  background-image: url('./ewnextv3/marble-background.webp');
+  color: white;
+  text-align: center;
+  border: 1px white solid;
+  font-size: 12px;
+}

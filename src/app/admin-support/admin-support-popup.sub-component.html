@@ -1,0 +1,49 @@
+<div class="modal fade" id="SupportNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Write a new message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="{{ 'Player' | translate }}"
+          [(ngModel)]="msgPlayer" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="{{ 'Title' | translate }}"
+          [(ngModel)]="msgTitle" />
+        <div class="input-group">
+          <textarea
+            class="form-control mobile-textarea"
+            placeholder="{{ 'Message' | translate }}"
+            [(ngModel)]="msgText"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="send()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

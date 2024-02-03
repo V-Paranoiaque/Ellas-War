@@ -1,0 +1,46 @@
+<div id="topMosaic"></div>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div clas="card-body">
+            <div class="row mt-2 mb-2">
+              <div class="col-12">
+                <h2 class="text-center" translate>
+                  Your account is currently blocked
+                </h2>
+                @if (user.getProperty('blocked_reason')) {
+                  <div class="m-4 my-6">
+                    <div class="fw-bold" translate>Message from the staff:</div>
+                    {{ user.getProperty('blocked_reason') }}
+                  </div>
+                }
+              </div>
+              <div class="col-6 text-center">
+                <a
+                  class="btn btn-primary"
+                  [routerLink]="['/support']"
+                  role="button"
+                  translate>
+                  Contact support
+                </a>
+              </div>
+              <div class="col-6 text-center">
+                <div
+                  class="btn btn-danger"
+                  data-bs-toggle="modal"
+                  role="button"
+                  data-bs-target="#ResetAccount"
+                  translate>
+                  Reinitialize your account
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,173 @@
+:root {
+  --color-menu-dark: rgb(182, 47, 33);
+  --color-menu-clear: rgb(251, 96, 80);
+  --color-menu-text: white;
+  --color-menu-text-active: white;
+  --color-menu-text-hover: grey;
+}
+
+/** HTML elements **/
+body {
+  background-color: #FFF;
+  background-image: url('./ewnextv2/mosaic.webp'), url("./ewnextv2/poseidon.svg"), url('./ewnextv2/mosaic.webp');
+  background-position: top center, top 24px right, bottom center;
+  background-repeat: repeat-x, no-repeat, repeat-x;
+  background-size: auto, cover, auto;
+}
+
+a {
+  color: black;
+}
+
+/* No border radius */
+.card, .card-header, .card-header:first-child,
+.modal-content, .btn, .progress,
+.page-link, .page-item:first-child .page-link, .page-item:last-child .page-link,
+input.form-control, textarea, .input-group-sm > .form-control, .input-group-sm > .input-group-text {
+  border-radius: 0%;
+}
+
+/** Left menu **/
+.sidebar-left .list-group {
+  padding: 8px 0px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.sidebar-left .list-group-item {
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: white;
+  padding-left: 0.5rem;
+}
+
+/* Right menu */
+.sidebar-right .player-menu {
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+  color: white;
+  border-color: white;
+}
+.sidebar-right .player-menu .text-up {
+  color: #418459;
+}
+.sidebar-right .player-menu .text-equals {
+  color: #54726F;
+}
+.sidebar-right .player-menu .text-down {
+  color: #FDFF53;
+}
+
+.sidebar-right .player-menu a {
+  color: white;
+}
+
+#details-menu a {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-warning-rgb),var(--bs-text-opacity)) !important;
+}
+
+/** Badges **/
+.badge.bg-secondary {
+  border: 1px white solid;
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+}
+
+/** Cards **/
+.card-header .card-header-group card-header-group-right .card-header-button {
+  color: white;
+}
+
+/** Cards, buttons & inputs **/
+.card-header,
+.input-group-text {
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+  color: white;
+  text-shadow: none;
+  box-shadow: none;
+}
+.input-group-text.btn-primary {
+  border-color: var(--color-menu-clear);
+}
+.input-group-text.btn-primary:hover {
+  border-color: var(--color-menu-dark);
+}
+
+.card-footer:first-letter {
+  color: var(--color-menu-text);
+}
+
+.card-body,
+.card.card-normal,
+.chat-text {
+  border-color: var(--color-menu-dark);
+}
+
+.card-body .progress, .btn,
+input.form-control, textarea.form-control,
+.input-group-text, .form-select,
+.card .card-header,
+.card.card-normal {
+  border-radius: 0px;
+}
+
+.btn,
+.card-button,
+.card-body .new,
+.progress-text,
+.page-item,
+.table-dark,
+.quest_validated {
+  text-shadow: none;
+}
+
+.btn-primary, 
+.card-button-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    text-shadow: none;
+}
+
+.btn-primary:hover,
+.card-button-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.card-button-primary a,
+.card-button-primary a:hover {
+  color: white;
+}
+
+.card-body.selected {
+  background-color: #337ab7;
+  color: white;
+  text-shadow: none;
+}
+
+.card-body.selected a {
+  color: white;
+}
+
+.card-body .new {
+  background-color: rgb(251, 96, 80, 0.8);
+}
+
+.card a.link-secondary {
+  color: #dc3545;
+}
+
+.btn.btn-success {
+  background-image: linear-gradient(#398439,#449d44);
+}
+
+/** Pages **/
+.pagination .page-link {
+  color: var(--color-menu-clear);
+}
+.pagination .page-item.active > .page-link {
+  color: white;
+  background-image: linear-gradient(var(--color-menu-clear),var(--color-menu-dark));
+  border-color: var(--color-menu-dark);
+  background-color: var(--color-menu-dark);
+}

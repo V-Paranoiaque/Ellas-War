@@ -1,0 +1,177 @@
+<div class="modal fade" id="ArmyHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="armyDesc" class="modal-title" translate>Army</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <p class="fw-bold" id="tablesUnits-label" translate>
+          Select a type of unit to see better its strengths and weaknesses.
+        </p>
+
+        <div class="text-center mb-2">
+          <strong translate>Bonus</strong>
+          <strong translate>:</strong>
+          50%
+        </div>
+
+        <table class="table table-striped" aria-labelledby="tablesUnits-label">
+          <thead>
+            <tr>
+              <th scope="col" translate>Attacker</th>
+              <th scope="col" translate>Units</th>
+              <th scope="col" translate>Efficient against</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (i of groupList; track i) {
+              <tr>
+                <th scope="row">
+                  @if (i % 2 === 1) {
+                    <app-ic-icon
+                      title="{{ 'Infantryman' | translate }}"
+                      [icon]="footPrint"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                  @if (i % 2 === 0) {
+                    <app-ic-icon
+                      title="{{ 'Cavalry unit' | translate }}"
+                      [icon]="horseIcon"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                  @if (i >= 5) {
+                    <app-ic-icon
+                      title="{{ 'Mythological creature' | translate }}"
+                      [icon]="minotaurIcon"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                  @if (i <= 4) {
+                    <app-ic-icon
+                      title="{{ 'Human unit' | translate }}"
+                      [icon]="manSharp"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                  @if (i === 1 || i === 2 || i === 5 || i === 6) {
+                    <app-ic-icon
+                      title="{{ 'Melee unit' | translate }}"
+                      [icon]="sword"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                  @if (i === 3 || i === 4 || i === 7 || i === 8) {
+                    <app-ic-icon
+                      title="{{ 'Remote unit' | translate }}"
+                      [icon]="bowAndArrow"
+                      role="button"
+                      (click)="selectGroup(i)"
+                      [ngClass]="{ 'text-danger': selectedGroup === i }"
+                      class="flex-fill"></app-ic-icon>
+                  }
+                </th>
+                <td>
+                  @for (army of user.getArmy(); track army) {
+                    @if (i === army.type) {
+                      <span
+                        >{{ Tools.getName(army.code) | translate }}<br
+                      /></span>
+                    }
+                  }
+                </td>
+                <td>
+                  @for (j of getGroupBonus(i); track j) {
+                    <span>
+                      @if (j % 2 === 1) {
+                        <app-ic-icon
+                          title="{{ 'Infantryman' | translate }}"
+                          [icon]="footPrint"
+                          role="button"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      @if (j % 2 === 0) {
+                        <app-ic-icon
+                          title="{{ 'Cavalry unit' | translate }}"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          [icon]="horseIcon"
+                          role="button"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      @if (j >= 5) {
+                        <app-ic-icon
+                          title="{{ 'Mythological creature' | translate }}"
+                          [icon]="minotaurIcon"
+                          role="button"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      @if (j <= 4) {
+                        <app-ic-icon
+                          title="{{ 'Human unit' | translate }}"
+                          [icon]="manSharp"
+                          role="button"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      @if (j === 1 || j === 2 || j === 5 || j === 6) {
+                        <app-ic-icon
+                          title="{{ 'Melee unit' | translate }}"
+                          [icon]="sword"
+                          role="button"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      @if (j === 3 || j === 4 || j === 7 || j === 8) {
+                        <app-ic-icon
+                          title="{{ 'Remote unit' | translate }}"
+                          [icon]="bowAndArrow"
+                          role="button"
+                          (click)="selectGroup(j)"
+                          [ngClass]="{ 'text-danger': selectedGroup === j }"
+                          class="flex-fill"></app-ic-icon>
+                      }
+                      <br />
+                    </span>
+                  }
+                  <br />
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="text-end">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            translate>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

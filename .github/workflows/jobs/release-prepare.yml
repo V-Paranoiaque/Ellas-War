@@ -1,0 +1,63 @@
+on:
+  workflow_call:
+    inputs:
+      node:
+        required: true
+        type: string
+
+jobs:
+  prepare:
+    name: "Build the EW project"
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build
+      
+      - name: Cache www directory
+        uses: actions/cache@v3
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install dependencies
+        run: |
+          sudo apt update -qq
+          sudo apt install -y -qq webp
+          npm install
+
+      - name: Build the project
+        run: |
+          make images
+          #Build the web version
+          npm run wbuild
+          zip -r web.zip web
+          #Prepare for the apps
+          npm run mbuild
+          zip -r mobile.zip www
+
+      - name: Upload web zip file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/web.zip
+          asset_name: web.zip
+          tag: ${{ github.ref }}
+
+      - name: Upload mobile zip file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/mobile.zip
+          asset_name: mobile.zip
+          tag: ${{ github.ref }}

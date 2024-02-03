@@ -1,0 +1,121 @@
+on:
+  workflow_call:
+    inputs:
+      electron:
+        required: true
+        type: string
+      node:
+        required: true
+        type: string
+
+jobs:
+  package-windows-appx:
+    name: "Build windows store packages"
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+  
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: |
+          npm install -g cordova
+          npm install
+  
+      - name: Download the project
+        uses: robinraju/release-downloader@v1.8
+        with:
+          latest: true
+          fileName: "mobile.zip"
+      - name: Extract the project
+        run: unzip mobile.zip
+  
+      - name: Write pfx cert
+        id: write_pfx
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'sign_TemporaryKey.pfx'
+          encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
+   
+      - name: Build packages
+        run: |
+          cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
+          cp res/electron/build-pipeline-windows-appx.json build.json
+          cordova platform add electron@^${{ inputs.electron }}
+          cp -r res/electron/appx platforms/electron/build-res/
+          cordova build electron --no-telemetry --release
+          rm sign_TemporaryKey.pfx
+        env:
+          CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+          KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}
+  package-windows-msi:
+    name: "Build windows msi packages"
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+  
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: |
+          npm install -g cordova
+          npm install
+
+      - name: Download the project
+        uses: robinraju/release-downloader@v1.8
+        with:
+          latest: true
+          fileName: "mobile.zip"
+      - name: Extract the project
+        run: unzip mobile.zip
+  
+      - name: Write pfx cert
+        id: write_pfx
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'sign_TemporaryKey.pfx'
+          encodedString: ${{ secrets.WINDOWS_BUILD_KEY }}
+   
+      - name: Build packages
+        run: |
+          cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
+          cordova platform add electron@^${{ inputs.electron }}
+          cp -r res/electron/appx platforms/electron/build-res/
+          cp res/electron/build-pipeline-windows-msi.json build.json
+          cordova build electron --no-telemetry --release
+          rm sign_TemporaryKey.pfx
+        env:
+          CSC_KEY_PASSWORD: '${{ secrets.CSC_KEY_PASSWORD }}'
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+          KEY_PATH: ${{ steps.write_pfx.outputs.filePath }}

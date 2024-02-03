@@ -1,0 +1,10 @@
+<div>
+  @switch (user.getPropertyNb('mstatus')) {
+    @case (0) {
+      <app-main-public-top-menu></app-main-public-top-menu>
+    }
+    @case (1) {
+      <app-main-private-left-menu></app-main-private-left-menu>
+    }
+  }
+</div>

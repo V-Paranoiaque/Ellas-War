@@ -1,0 +1,66 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" translate>A few words about Ellas War</h1>
+            <br />
+            <h2 class="text-center" translate>Ellas War Presentation</h2>
+            <p
+              [innerHTML]="
+                'Ellar War is a free strategy game online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece.'
+                  | translate
+              "></p>
+
+            <h2 class="text-center" translate>Additional services</h2>
+            <p
+              [innerHTML]="
+                'In addition to the site, Ellas War also has a Facebook page and a GitHub repository.'
+                  | translate
+              "></p>
+
+            <p class="text-center">
+              <a
+                href="{{ user.config.fb_page }}"
+                title="{{ 'Follow us on our Facebook Page' | translate }}"
+                target="_blank"
+                rel="external nofollow noopener">
+                <app-ic-icon [icon]="facebookIcon" class="fs-1"></app-ic-icon>
+              </a>
+              &nbsp;
+              <a
+                href="https://github.com/V-Paranoiaque/Ellas-War/"
+                title="{{ 'Access to our GitHub repository' | translate }}"
+                target="_blank"
+                rel="external nofollow noopener">
+                <app-ic-icon [icon]="githubOctocat" class="fs-1"></app-ic-icon>
+              </a>
+              &nbsp;
+              <a
+                href="{{ environment.discord }}"
+                target="_blank"
+                rel="external nofollow noopener">
+                <app-ic-icon [icon]="discordIcon" class="fs-1"></app-ic-icon>
+              </a>
+            </p>
+
+            <h2 class="text-center" translate>The team of the game</h2>
+            <p
+              [innerHTML]="
+                'The Ellas War team is constituted by the administrators from members of the game.'
+                  | translate
+              "></p>
+            <br />
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

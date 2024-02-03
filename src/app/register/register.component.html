@@ -1,0 +1,143 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container container-sm-lock">
+    <div class="row">
+      <div class="d-flex column-block">
+        <div class="column left-column flex-grow-1"></div>
+
+        <div
+          class="card card-column"
+          role="main"
+          attr.aria-label="{{ 'Main content of the page' | translate }}">
+          <div class="card-body">
+            <h1 class="text-center" translate>Join Ellas War</h1>
+            <br />
+
+            <div
+              [ngSwitch]="rerror"
+              class="text-danger text-center fw-bold"
+              *ngIf="rerror > 0">
+              <div *ngSwitchCase="1" translate>Please, enter your username</div>
+              <div *ngSwitchCase="2" translate>Please, enter your password</div>
+              <div *ngSwitchCase="3" translate>Enter your email</div>
+              <div *ngSwitchCase="4" translate>
+                Your username must be at least 6 characters.
+              </div>
+              <div *ngSwitchCase="5" translate>
+                Your password must be at least 8 characters.
+              </div>
+              <div *ngSwitchCase="6" translate>Enter your email</div>
+              <div *ngSwitchCase="7" translate>
+                This username is already used
+              </div>
+              <div *ngSwitchCase="8" translate>This email is already used</div>
+              <br />
+            </div>
+
+            <div class="alert alert-success" *ngIf="login">
+              <span
+                [innerHTML]="
+                  'Join { value } on Ellas War!' | translate: { value: login }
+                "></span>
+              <br />
+              <span translate
+                >Ask him help to develop your city and you will both get many
+                bonuses</span
+              >
+            </div>
+
+            <form
+              method="POST"
+              action="/register"
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmit(registerForm.value)">
+              <input type="hidden" name="invite" />
+              <label class="fw-bold" for="server" translate>Server</label>
+              <select
+                class="form-select"
+                name="server"
+                id="server"
+                formControlName="server"
+                attr.aria-label="{{
+                  'Select the server you want to play on' | translate
+                }}"
+                (change)="selectServer()">
+                <option value="fr" translate>French</option>
+                <option value="en" translate>English</option>
+                <option value="dev" translate>
+                  Development (International)
+                </option>
+              </select>
+
+              <label
+                id="username-label"
+                class="fw-bold"
+                for="username"
+                translate
+                >Username</label
+              >
+              <input
+                type="text"
+                name="username"
+                placeholder="{{ 'Username' | translate }}"
+                class="form-control"
+                formControlName="username"
+                aria-labelledby="username-label"
+                id="username"
+                required />
+
+              <label id="email-label" class="fw-bold" for="email" translate
+                >Email</label
+              >
+              <input
+                type="email"
+                name="email"
+                placeholder="{{ 'Email' | translate }}"
+                class="form-control"
+                formControlName="email"
+                aria-labelledby="email-label"
+                id="email"
+                required />
+
+              <label
+                id="password-label"
+                class="fw-bold"
+                for="password"
+                translate
+                >Password</label
+              >
+              <input
+                type="password"
+                name="password"
+                placeholder="{{ 'Password' | translate }}"
+                class="form-control"
+                formControlName="password"
+                aria-labelledby="password-label"
+                id="password"
+                required />
+              <br />
+              <div class="text-center">
+                <button class="btn btn-success" type="submit" translate>
+                  Register
+                </button>
+              </div>
+            </form>
+            <br />
+            <div class="d-flex">
+              <button
+                class="btn btn-grey flex-grow-1"
+                (click)="user.oauthGoogle()">
+                <app-ic-icon [icon]="googleIcon" class="fs-6"></app-ic-icon>
+                {{ 'Login with Google' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="column right-column flex-grow-1"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

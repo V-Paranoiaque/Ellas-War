@@ -1,0 +1,79 @@
+<div class="modal fade" id="AllianceGift" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ info.username }} ({{ info.level }})</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="text-center">
+          {{
+            '{ value } can still receive { qtt } Drachmas'
+              | translate
+                : {
+                    value: info.username,
+                    qtt: giftRemain | number: '' : this.translate.currentLang
+                  }
+          }}
+        </div>
+
+        <br />
+        @if (giftsError > 0) {
+          <div class="text-center">
+            @if (giftsError === 1) {
+              <div class="alert alert-danger" translate>
+                You can't give Drachmas to this member.
+              </div>
+            }
+            @if (giftsError === 2) {
+              <div class="alert alert-danger" translate>
+                You don't have enough Drachmas.
+              </div>
+            }
+            @if (giftsError === 3) {
+              <div class="alert alert-danger" translate>
+                You can't give as much drachmas to this member.
+              </div>
+            }
+            @if (giftsError === 4) {
+              <div class="alert alert-success" translate>
+                Don completed successfully.
+              </div>
+            }
+            <br />
+          </div>
+        }
+
+        <input
+          type="number"
+          class="form-control"
+          placeholder="0"
+          [attr.min]="0"
+          [attr.max]="giftRemain"
+          [(ngModel)]="qttGiftsRess" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (qttGiftsRess && giftRemain > 0) {
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="memberGifts()"
+            translate>
+            Confirm
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

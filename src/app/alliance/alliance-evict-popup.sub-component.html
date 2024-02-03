@@ -1,0 +1,68 @@
+<div class="modal fade" id="AllianceEvict" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ info.username }} ({{ info.level }})</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        @if (possible()) {
+          <div class="fw-bold text-center">
+            {{
+              'Eject { value } from the alliance'
+                | translate: { value: info.username }
+            }}
+          </div>
+        }
+        @if (!possible()) {
+          <div>
+            <div class="text-center fw-bold text-danger">
+              {{
+                "You can't eject { value } from the alliance"
+                  | translate: { value: info.username }
+              }}
+            </div>
+            <br /><br />
+            <strong translate>Possible reasons:</strong>
+            <ul>
+              <li translate>This member has a too high rank</li>
+              <li translate>
+                A war will start soon and you are only two in the alliance
+              </li>
+              <li translate>
+                Your alliance is involved in a war with another alliance
+              </li>
+            </ul>
+            <div translate>
+              If the member is inactive during more than 30 days, the rules
+              linked to the wars don't apply anymore
+            </div>
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (possible()) {
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="memberEject()"
+            data-bs-dismiss="modal"
+            translate>
+            Confirm
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

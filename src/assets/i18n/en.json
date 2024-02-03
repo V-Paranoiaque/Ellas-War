@@ -49,9 +49,9 @@
   "Defeat against { value }": "Defeat against {{ value }}",
   "Defeat of { value } against { player }": "Defeat of {{ value }} against {{ player }}",
   "Dionysus will help you to protect your city and give you { value } Centaurs.": "Dionysus will help you to protect your city and give you {{ value }} Centaurs.",
-  "Do stocks through your purse or spend any to improve": "Do stockss through your purse or spend any to improve <a href=\"/discoverthegame/army\">your army</a>. Remember that every choice can have consequences. But does he not have to take risks to become the most powerful Greek cities?",
+  "Do stocks through your purse or spend any to improve": "Stack your coins in your purse, or spend them to improve <a href=\"/discoverthegame/army\" class=\"link-secondary\">your army</a>. Every choice will have consequences. But how could one make the most powerful Greek city without taking the strongest risks?",
   
-  "Each temple gives a unique advantage. It is up to you to choose them according to": "Each temple gives a unique advantage. It is up to you to choose them according to <a href=\"/strategy-game\">your strategy</a>.",
+  "Each temple gives a unique advantage. It is up to you to choose them according to": "Each temple gives a unique advantage. It is up to you to choose them according to <a href=\"/strategy-game\" class=\"link-secondary\">your strategy</a>.",
   "Each unit has unique characteristics. They allow you to carry out your conquests or defend your city.": "<a href=\"/discoverthegame/recruitment\" class=\"link-secondary\">Each unit</a> has unique characteristics. They allow you to carry out your conquests or defend your city. These can be human or mythological, on foot or horseback, melee or remotely. These features enable you to build your own strategies or improve those of your opponents.",
   "Eject { value } from the alliance": "Eject {{ value }} from the alliance",
   "Ejected member: { value }": "Ejected member: {{ value }}",
@@ -62,7 +62,7 @@
   "Espionage from { value }": "Espionage from {{ value }}",
   "Espionage of your sanctuary from { value }": "Espionage of your sanctuary from {{ value }}",
   "Except in exceptional cases, your chances of attack or being attacked are determined by your field.": "Except in exceptional cases, your chances of attack or being attacked are determined by your field. By varying this one while strengthening <a href=\"/discoverthegame/defense\" class=\"link-secondary\">your defense</a> you will be able to adapt to your enemies.",
-  "Explore Ancient Greece on Ellas-War. Start the development of": "Explore Ancient Greece on Ellas-War. Start the development of <a href=\"/discoverthegame\">your city</a> by collecting various resources that will help you to <a href=\"/discoverthegame/constructions\">construct your buildings</a>.",
+  "Explore Ancient Greece on Ellas-War. Start the development of": "Explore Ancient Greece on Ellas-War. Start the development of <a href=\"/discoverthegame\" class=\"link-secondary\">your city</a> by collecting various resources that will help you to <a href=\"/discoverthegame/constructions\" class=\"link-secondary\">construct your buildings</a>.",
   
   "French": "Français",
   "Fury against { value }": "Fury against {{ value }}",
@@ -74,9 +74,17 @@
   "Get { value } defensive victories": "Get {{ value }} defensive victories",
   
   "Have { value } XP with the old system": "Have {{ value }} XP with the old system",
+  "Have a defense of at least { value }": "Have a defense of at least {{ value }}",
+  "Have at least { value } of production field": "Have at least {{ value }} of production field",
+  "Have at least { value } of XP": "Have at least {{ value }} of XP",
+  "Have at least { value } spots to host units": "Have at least {{ value }} spots to host units",
+  "Have at least { value } success": "Have at least {{ value }} success",
+  "Have at least { value } units hosted in caves": "Have at least {{ value }} units hosted in caves ",
+  "Have at least { value } units hosted in normal spots": "Have at least {{ value }} units hosted in normal spots",
+  "Have at least { value } units hosted in palaces": "Have at least {{ value }} units hosted in palaces ",
   "Hephaestus will help you to protect your city and give you { value } Automatons.": "Hephaestus will help you to protect your city and give you {{ value }} Automatons.",
   
-  "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
+  "If you think you have the qualities required to": "If you think you have the qualities required to <a href=\"/teamrecruitment\" class=\"link-secondary\">join the team</a> please feel free to contact us. You can do this either by using our facebook or through the contact page. The list of skills we are looking for is not exhaustive and we individually respond to all requests.",
   "In addition to the site, Ellas War also has a Facebook page and a GitHub repository.": "In addition to the site, Ellas War also has a Facebook page and a GitHub repository. On the Facebook page you can exchange with the rest of <a href=\"/community\" class=\"link-secondary\">the community</a> and staff. It is animated and moderated by the team of the game, you will find information and ask questions. Ellas War has a GitHub repository where you can find the source code of the client part of the game. You can submit bug reports or provide improvement requests directly from this repository.",
   
   "Join { value } on Ellas War!": "Join <strong>{{ value }}</strong> on Ellas War!",
@@ -89,6 +97,7 @@
   "Losses again { value }": "Losses again {{ value }}",
   
   "Make { value } victories": "Make {{ value }} victories",
+  "Members of the { value } alliance, their statistics and their rank.": "Members of the {{ value }} alliance, their statistics and their rank.",
   
   "Name { value } chief of the alliance":"Name {{ value }} chief of the alliance",
   "New chief: { value }": "New chief: {{ value }}",
@@ -104,6 +113,7 @@
   
   "Peste against { value }": "Peste against {{ value }}",
   "Peste from { value }": "Peste from {{ value }}",
+  "Privacy policy home": "Privacy policy",
   "Put a total of { value } Drachmas into your treasure.": "Put a total of {{ value }} Drachmas into your treasure.",
   
   "Reach { value } field": "Reach {{ value }} field",
@@ -131,17 +141,17 @@
   "The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.":  "The first alliance to reach {{ value }} victories wins the war, be careful, you also need {{ value2 }} victories in order to win.",
   "The following conditions regulate the use of Ellas War and all services related to the website edited by": "The following conditions regulate the use of Ellas War and all services related to the website edited by <a class=\"link-secondary\" href=\"/team\">the Ellas War team</a>.",
   "The pact with the alliance { value } has been destroyed": "The pact with the alliance {{ value }} has been destroyed",
-  "The rate is too low, minimum { value } per unit": "The rate is too low, minimum {{ value }} per unit",
+  "The rate is too low, minimum { value } per unit": "The rate is too low, minimum {{ value }} per unit",
   "The war between { name1 } and { name2 } has been canceled, no winner has been announced.": "The war between {{ name1 }} and {{ name2 }} has been canceled, no winner has been announced.",
-  "To allow your city to grow, you need to follow the quests": "To allow your city to grow, you need to follow <a href=\"quests\" ui-sref=\"quests\">the quests</a>",
+  "To allow your city to grow, you need to follow the quests": "To allow your city to grow, you need to follow <span role=\"button\" class=\"text-body\">the quests</span>",
   "To start wars, your alliance must have at least { value } members.": "To start wars, your alliance must have at least {{ value }} members.",
+  "To the extent that it was not expressly provided otherwise, the use of Ellas War and other service is free.": "To the extent that it was not expressly provided otherwise, the use of Ellas War and other service <a class=\"link-secondary\" href=\"free-game\">is free</a>.",
   
   "Unsupported message type: { value }": "Unsupported message type: {{ value }}",
   "Use { value } Divine bonus": "Use {{ value }} Divine bonus",
   "Use { value } Divine powers": "Use {{ value }} Divine powers",
-  "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address": "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address, <a href=\"/confidentiality\">is prohibited</a>.",
+  "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address": "Using Ellas War and any related services, through services ensuring anonymity in order to eliminate real user IP address, <a href=\"/confidentiality\" class=\"link-secondary\">is prohibited</a>.",
   
-  "Venerate the gods by": "Venerate the gods by <a href=\"/discoverthegame/temples\">building temples in their honor</a>, in gratitude they will help you in your conquest!",
   "Victory against { value }": "Victory against {{ value }}",
   "Victory of { value } against { player }": "Victory of {{ value }} against {{ player }}",
   
@@ -159,9 +169,9 @@
   
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "You are at the point of declare war to {{ value }} alliance, it will start in 24h.",
   "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
-  "You can do more attacks using a Favor.": "You can do more attacks using <a href=\"/favors\" ui-sref=\"favors\">a Favor</a>.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
   "You can request a private Discord channel from an Administrator or using the support page.": "You can request a <a href=\"{{ value }}\" target=\"_blank\">private Discord channel from an Administrator</a> or using <a href=\"support\" ui-sref=\"support\">the support page</a>.",
+  "You can sell a maximum of { value } batches": "You can sell a maximum of {{ value }} batches",
   "You can't eject { value } from the alliance": "You can't eject {{ value }} from the alliance",
   "You can't have more than { value } { name }": "You can't have more than {{ value }} {{ name }}",
   "You can't have more than { value } buildings of this type": "You can't have more than {{ value }} buildings of this type",
@@ -169,7 +179,8 @@
   "You have satisfied Gaia and got these { value } deffensers as a reward.": "You have satisfied Gaia and got these {{ value }} deffensers as a reward. ",
   "You just declared war to { value } alliance, it will start in 24h.": "You just declared war to {{ value }} alliance, it will start in 24h.",
   "You must have the power of the Divine units level { value } to engage this unit.": "You must have the power of the Divine units level {{ value }} to engage this unit.",
-  "You want a partnership with Ellas War and see your banner displayed on the site": "You want a partnership with Ellas War and see your banner displayed on the site, send us a message through <a href=\"/contactus\">the contact page</a>. Tell us about your site and tell us why you want this partnership.",
+  "You need to be level { value } to create an alliance": "You need to be level {{ value }} to create an alliance",
+  "You want a partnership with Ellas War and see your banner displayed on the site": "You want a partnership with Ellas War and see your banner displayed on the site, send us a message through <a href=\"/contactus\" class=\"link-secondary\">the contact page</a>. Tell us about your site and tell us why you want this partnership.",
   "You will be able to get your reward in { value } days": "You will be able to get your reward in {{ value }} days",
   "You win { value } Drachmas": "You win {{ value }} Drachmas",
   "Your alliance accepted a pact request from the alliance { value }": "Your alliance accepted a pact request from the alliance {{ value }}",
@@ -178,7 +189,7 @@
   "Your alliance destroyed a pact with the alliance { value }": "Your alliance destroyed a pact with the alliance {{ value }}",
   "Your alliance has refused a pact with the alliance { value }.": "Your alliance has refused a pact with the alliance {{ value }}.",
   "Your alliance win { value } Drachmas": "Your alliance win {{ value }} Drachmas",
-  "Your army will do its utmost to defend": "Your army will do its utmost to defend <a href=\"/discoverthegame\">your city</a> or invade the enemy cities.",
+  "Your army will do its utmost to defend": "Your army will do its utmost to defend <a href=\"/discoverthegame\" class=\"link-secondary\">your city</a> or invade the enemy cities.",
   "Your city has resisted against { value }": "Your city has resisted against {{ value }}",
   "Your city was sacked by { value }": "Your city was sacked by {{ value }}",
   "Your enemies has saved { value } unities of his lost": "Your enemies has saved {{ value }} unities of his lost",

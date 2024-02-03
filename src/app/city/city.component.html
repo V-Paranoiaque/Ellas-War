@@ -1,0 +1,931 @@
+<app-daily-popup [info]="dailyCo"></app-daily-popup>
+<app-defense-empty-popup></app-defense-empty-popup>
+<app-army-popup [info]="armyInfo"></app-army-popup>
+<app-army-summary-popup></app-army-summary-popup>
+<app-army-help-popup></app-army-help-popup>
+<app-construction-popup [info]="buildingInfo"></app-construction-popup>
+<app-construction-summary-popup></app-construction-summary-popup>
+<app-first-info-popup></app-first-info-popup>
+<app-treasure-popup [info]="treasureInfo"></app-treasure-popup>
+<app-defense-wall-popup></app-defense-wall-popup>
+<app-divinebonus-info-popup
+  [divineBonus]="divinBonusSelected"></app-divinebonus-info-popup>
+<app-divinebonus-list-popup
+  [divineBonus]="divinBonusListSelected"></app-divinebonus-list-popup>
+<app-divinebonus-help-popup></app-divinebonus-help-popup>
+<app-success-info-popup [successType]="success"></app-success-info-popup>
+<app-success-help-popup></app-success-help-popup>
+<app-temple1-popup></app-temple1-popup>
+<app-temple2-popup></app-temple2-popup>
+<app-temple3-popup></app-temple3-popup>
+<app-temple4-popup></app-temple4-popup>
+<app-temple-info-popup [temple]="templeSelected"></app-temple-info-popup>
+<app-temple-help-popup></app-temple-help-popup>
+<app-temple-change-info-popup></app-temple-change-info-popup>
+<app-quests-info-popup></app-quests-info-popup>
+<app-quests-missions-info-popup></app-quests-missions-info-popup>
+<app-quests-missions-popup></app-quests-missions-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <a
+        href="{{ environment.discord }}"
+        target="_blank"
+        id="discord-mobile"
+        rel="external nofollow noopener"
+        class="d-md-none mobile-bubble text-center pt-1"
+        role="btn">
+        <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
+      </a>
+      <div class="col-xl-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <span translate>General</span>
+            <div class="card-header-group card-header-group-right">
+              @if (
+                user.getPropertyNb('level') === 0 &&
+                user.getPropertyNb('quest') === 1
+              ) {
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#FirstInfo"
+                  id="FirstInfoOpen">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              }
+              @if (
+                (user.getPropertyNb('level') !== 0 ||
+                  user.getPropertyNb('quest') !== 1) &&
+                dailCo() > 0 &&
+                dailyCoCheck === 1
+              ) {
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#DailyInfo"
+                  id="DailyCoCheckOpen">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="card-body d-flex align-items-center">
+            <div class="flex-grow-1 text-center">
+              @if (user.getPropertyNb('level') === 0) {
+                <div class="row">
+                  <div
+                    class="col-12 text-center text-danger fw-bold mb-2"
+                    [routerLink]="['/quests']"
+                    [innerHTML]="
+                      'To allow your city to grow, you need to follow the quests'
+                        | translate
+                    "></div>
+                </div>
+              }
+              @if (user.getPropertyNb('level') >= 1) {
+                <div class="row">
+                  <div class="col-6">
+                    <strong translate>Attack:</strong>
+                    {{
+                      waveAttackPower
+                        | number: '1.0-0' : this.translate.currentLang
+                    }}
+                    <a [routerLink]="['/strategies/attack']">
+                      <app-ic-icon [icon]="cog"></app-ic-icon>
+                    </a>
+                  </div>
+                  <div
+                    class="col-6"
+                    [ngClass]="{ 'text-danger': waveDefensePower === 0 }">
+                    <strong translate>Defense</strong>
+                    <strong translate>:</strong>
+                    {{
+                      waveDefensePower
+                        | number: '1.0-0' : this.translate.currentLang
+                    }}
+                    <a [routerLink]="['/strategies/defense']">
+                      <app-ic-icon [icon]="cog"></app-ic-icon>
+                    </a>
+                  </div>
+                  @if (waveDefensePower === 0) {
+                    <div class="col-12 text-center text-danger fw-bold">
+                      <span translate>
+                        Without defense, your resource losses will be greater in
+                        the event of an attack
+                      </span>
+                      <app-ic-icon
+                        [icon]="questionCircle"
+                        role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#DefenseEmpty"></app-ic-icon>
+                    </div>
+                  }
+                  <br />
+                </div>
+              }
+
+              @if (user.getPropertyNb('level') < 10) {
+                <div>
+                  <a
+                    [routerLink]="['/quests']"
+                    title="{{ 'Access to the quests' | translate }}">
+                    <strong translate>Quests</strong
+                    ><strong translate>:</strong>
+                    {{ user.getPropertyNb('quest') }}/{{ user.getQuestMax() }}
+                  </a>
+                  <app-ic-icon
+                    [icon]="questionCircle"
+                    role="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#MissionsInfo"></app-ic-icon>
+                </div>
+              }
+              @if (user.getPropertyNb('level') >= 1) {
+                <div>
+                  <strong id="questProgressLabel" translate
+                    >Quest progress</strong
+                  >
+                  <strong translate>:</strong>
+                  <app-ic-icon
+                    [icon]="questionCircle"
+                    data-bs-toggle="modal"
+                    data-bs-target="#QuestsInfo"
+                    title="{{ 'Quest progress' | translate }}"
+                    role="button"></app-ic-icon>
+                  <div
+                    class="progress"
+                    role="button"
+                    [routerLink]="['/quests']">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      aria-valuenow="0"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      aria-labelledby="questProgressLabel"
+                      [ngStyle]="{
+                        'width.%': (100 * user.getPropertyNb('quest_step')) / 7
+                      }"></div>
+                    <div class="progress-text">
+                      {{ user.getPropertyNb('quest_step') }}/{{ 7 }}
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @if (
+        user.getPropertyNb('level') >= 1 || user.getPropertyNb('quest') >= 7
+      ) {
+        <div class="col-xl-6 mb-2">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-group card-header-group-right">
+                @if (divineBonus.length > 0) {
+                  <div
+                    class="card-header-button text-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#DivineBonusList"
+                    (click)="divineBonusReset()"
+                    role="presentation"
+                    title="{{ 'All your divine bonuses' | translate }}">
+                    <app-ic-icon [icon]="cloud"></app-ic-icon>
+                  </div>
+                }
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#DivineBonusHelp"
+                  title="{{ 'About the Divine Bonuses' | translate }}">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              </div>
+              <span translate>Divine Bonus</span>
+            </div>
+            @if (divineBonus.length === 0) {
+              <div class="card-body p-0 text-center">
+                <br />
+                <strong translate>Ongoing streak:</strong>
+                {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+                <div>
+                  {{
+                    'Next goal: { value } Days'
+                      | translate
+                        : {
+                            value:
+                              user.getGoalDays()
+                              | number: '' : this.translate.currentLang
+                          }
+                  }}
+                </div>
+              </div>
+            }
+            @if (divineBonus.length > 0) {
+              <div class="card-body p-0 row-cols-6 d-flex flex-wrap">
+                @for (bonus of divineBonus; track bonus) {
+                  <div
+                    role="button"
+                    class="frame d-flex flex-column"
+                    tabindex="0"
+                    data-bs-toggle="modal"
+                    data-bs-target="#DivineBonusInfo"
+                    (click)="selectDivinBonus(bonus)"
+                    (keyup.enter)="selectDivinBonus(bonus)">
+                    <app-ew-icon
+                      name="{{
+                        Tools.getDivineBonus(bonus.bonus_id)
+                      }}"></app-ew-icon>
+                    <div class="badge bg-secondary">{{ bonus.nb }}</div>
+                    <div
+                      class="frame-name flex-grow-1 justify-content-center d-flex">
+                      <div class="align-self-center">
+                        {{
+                          Tools.getDivineBonusName(bonus.bonus_id) | translate
+                        }}
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (
+        user.getPropertyNb('level') >= 1 || user.getPropertyNb('spartan') > 0
+      ) {
+        <div class="col-xl-6 mb-2">
+          <div class="card">
+            <div class="card-header">
+              <span translate> Army </span>
+              <div class="card-header-group card-header-group-right">
+                @if (user.getPropertyNb('level') >= 1) {
+                  <div
+                    class="card-header-button"
+                    role="button"
+                    [routerLink]="['/strategies/attack']"
+                    title="{{
+                      'Manage your waves to optimize your losses' | translate
+                    }}">
+                    <app-ic-icon [icon]="waterWave"></app-ic-icon>
+                  </div>
+                }
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ArmySummary"
+                  title="{{ 'Army summary' | translate }}">
+                  <app-ic-icon [icon]="swordCross"></app-ic-icon>
+                </div>
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ArmyHelp"
+                  title="{{ 'Army information' | translate }}">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-0 row-cols-4 d-flex flex-wrap">
+              <!-- Favorite -->
+              @for (army of Object.keys(unitFavoriteList); track army) {
+                <div
+                  class="frame d-flex flex-column"
+                  role="button"
+                  tabindex="0"
+                  [ngClass]="{ 'level-quest': levelQuest(army) }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#ArmyInfo"
+                  (click)="selectArmy(army)"
+                  (keyup.enter)="selectArmy(army)"
+                  title="{{ Tools.getName(army) | translate }}">
+                  @if (Object.hasOwn(unitFavoriteList, army)) {
+                    <app-ic-icon
+                      [icon]="roundStar"
+                      class="text-warning favoriteStar"></app-ic-icon>
+                  }
+                  <app-ew-icon name="{{ army }}"></app-ew-icon>
+                  <div
+                    class="badge bg-secondary"
+                    [ngClass]="{
+                      'badge-mini': user.getPropertyNb(army) > 1000000000
+                    }">
+                    {{
+                      user.getPropertyNb(army)
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </div>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center">
+                      {{ Tools.getName(army) | translate }}
+                    </div>
+                  </div>
+                </div>
+              }
+              <!-- Regular -->
+              @for (army of user.getArmy(); track army) {
+                @if (
+                  armyDisplay(army) &&
+                  !Object.hasOwn(unitFavoriteList, army.code)
+                ) {
+                  <div
+                    class="frame d-flex flex-column"
+                    role="button"
+                    tabindex="0"
+                    [ngClass]="{
+                      'level-quest': levelQuest(army.code),
+                      'd-none d-md-block':
+                        displayFavorite === 0 &&
+                        Object.keys(unitFavoriteList).length > 0
+                    }"
+                    data-bs-toggle="modal"
+                    data-bs-target="#ArmyInfo"
+                    (click)="selectArmy(army.code)"
+                    (keyup.enter)="selectArmy(army.code)"
+                    title="{{ Tools.getName(army.code) | translate }}">
+                    @if (Object.hasOwn(unitFavoriteList, army.code)) {
+                      <app-ic-icon
+                        [icon]="roundStar"
+                        class="text-warning favoriteStar"></app-ic-icon>
+                    }
+                    <app-ew-icon name="{{ army.code }}"></app-ew-icon>
+                    <div
+                      class="badge bg-secondary"
+                      [ngClass]="{
+                        'badge-mini': user.getPropertyNb(army.code) > 1000000000
+                      }">
+                      {{
+                        user.getPropertyNb(army.code)
+                          | number: '' : this.translate.currentLang
+                      }}
+                    </div>
+                    <div
+                      class="frame-name flex-grow-1 justify-content-center d-flex">
+                      <div class="align-self-center">
+                        {{ Tools.getName(army.code) | translate }}
+                      </div>
+                    </div>
+                  </div>
+                }
+              }
+              <!-- Display all, Small screen only -->
+              @if (
+                Object.keys(unitFavoriteList).length > 0 &&
+                Object.keys(unitFavoriteList).length <
+                  Object.keys(user.getArmy()).length
+              ) {
+                <div
+                  class="frame text-center favoritePlus d-block d-md-none"
+                  role="button">
+                  @if (displayFavorite === 0) {
+                    <app-ew-icon
+                      name="plus"
+                      (click)="flipDisplayFavorite()"></app-ew-icon>
+                  }
+                  @if (displayFavorite === 0) {
+                    <div
+                      class="frame-name flex-grow-1 justify-content-center d-flex">
+                      <div class="align-self-center" translate>Open</div>
+                    </div>
+                  }
+                  @if (displayFavorite === 1) {
+                    <app-ew-icon
+                      name="minus"
+                      (click)="flipDisplayFavorite()"></app-ew-icon>
+                  }
+                  @if (displayFavorite === 1) {
+                    <div
+                      class="frame-name flex-grow-1 justify-content-center d-flex">
+                      <div class="align-self-center" translate>Close</div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="col-xl-6 mb-2">
+        <div class="card">
+          <div class="card-header">
+            <span translate>Buildings</span>
+            <div class="card-header-group card-header-group-right">
+              <div
+                class="card-header-button"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#BuildingSummary"
+                title="{{ 'Building details' | translate }}">
+                <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0 row-cols-4 d-flex flex-wrap">
+            @if (
+              user.getPropertyNb('level') >= 1 ||
+              user.getPropertyNb('quest') >= 11
+            ) {
+              <div
+                class="frame d-flex flex-column"
+                (click)="selectTreasure()"
+                (keyup.enter)="selectTreasure()"
+                tabindex="0"
+                data-bs-toggle="modal"
+                data-bs-target="#TreasureInfo"
+                [ngClass]="{ 'level-quest': levelQuest('treasure') }"
+                title="{{ 'Treasure' | translate }}"
+                role="button">
+                <app-ew-icon name="treasure"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Treasure</div>
+                </div>
+              </div>
+            }
+
+            @for (building of user.getBuildings(); track building) {
+              <div
+                class="frame d-flex flex-column"
+                role="button"
+                tabindex="0"
+                [ngClass]="{ 'level-quest': levelQuest(building.code) }"
+                data-bs-toggle="modal"
+                data-bs-target="#BuildingInfo"
+                (click)="selectBuilding(building.code)"
+                (keyup.enter)="selectBuilding(building.code)"
+                title="{{ Tools.getName(building.code) | translate }}">
+                <app-ew-icon name="{{ building.code }}"></app-ew-icon>
+                <div class="badge bg-secondary">
+                  {{
+                    user.getPropertyNb(building.code)
+                      | number: '' : this.translate.currentLang
+                  }}
+                </div>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center">
+                    {{ Tools.getName(building.code) | translate }}
+                  </div>
+                </div>
+              </div>
+            }
+
+            @if (user.getPropertyNb('defense_wall') >= 1) {
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#DefenseWallInfo"
+                title="{{ 'Defense wall' | translate }}"
+                role="button">
+                <app-ew-icon name="defense_wall"></app-ew-icon>
+                <div class="badge bg-secondary">
+                  {{
+                    user.getPropertyNb('defense_wall')
+                      | number: '' : this.translate.currentLang
+                  }}
+                </div>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Defense wall</div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      @if (
+        user.getPropertyNb('level') >= 3 ||
+        (user.getPropertyNb('level') === 2 && user.getPropertyNb('quest') >= 11)
+      ) {
+        <div class="col-xl-6 mb-2">
+          <div class="card">
+            <div class="card-header">
+              <span translate>Temples</span>
+              <div class="card-header-group card-header-group-right">
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleHelp"
+                  title="{{ 'Temples information' | translate }}">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              </div>
+            </div>
+            <div
+              class="card-body p-0 d-flex flex-wrap"
+              id="templesBlock"
+              [ngClass]="{
+                'row-cols-4': nbTemples() % 4 === 0,
+                'row-cols-6': nbTemples() % 4 !== 0
+              }">
+              <!-- Temple informations -->
+              @if (user.getPropertyNb('hermes') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(1)"
+                  role="button"
+                  (keyup.enter)="selectTemples(1)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Hermes' | translate }}">
+                  <app-ew-icon name="hermes"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Hermes</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('apollo') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(2)"
+                  role="button"
+                  (keyup.enter)="selectTemples(2)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Apollo' | translate }}">
+                  <app-ew-icon name="apollo"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Apollo</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('demeter') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(3)"
+                  role="button"
+                  (keyup.enter)="selectTemples(3)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Demeter' | translate }}">
+                  <app-ew-icon name="demeter"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Demeter</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('ares') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(4)"
+                  role="button"
+                  (keyup.enter)="selectTemples(4)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Ares' | translate }}">
+                  <app-ew-icon name="ares"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Ares</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('athena') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(5)"
+                  role="button"
+                  (keyup.enter)="selectTemples(5)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Athena' | translate }}">
+                  <app-ew-icon name="athena"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Athena</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('artemis') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(6)"
+                  role="button"
+                  (keyup.enter)="selectTemples(6)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Artemis' | translate }}">
+                  <app-ew-icon name="artemis"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Artemis</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('dionysus') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(8)"
+                  role="button"
+                  (keyup.enter)="selectTemples(8)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Dionysus' | translate }}">
+                  <app-ew-icon name="dionysus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Dionysus</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('hephaestus') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(7)"
+                  role="button"
+                  (keyup.enter)="selectTemples(7)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Hephaestus' | translate }}">
+                  <app-ew-icon name="hephaestus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Hephaestus</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('zeus') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(9)"
+                  role="button"
+                  (keyup.enter)="selectTemples(9)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Zeus' | translate }}">
+                  <app-ew-icon name="zeus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Zeus</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('hades') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(10)"
+                  role="button"
+                  (keyup.enter)="selectTemples(10)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Hades' | translate }}">
+                  <app-ew-icon name="hades"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Hades</div>
+                  </div>
+                </div>
+              }
+              @if (user.getPropertyNb('poseidon') === 1) {
+                <div
+                  class="frame"
+                  tabindex="0"
+                  (click)="selectTemples(11)"
+                  role="button"
+                  (keyup.enter)="selectTemples(11)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleInfo"
+                  title="{{ 'Poseidon' | translate }}">
+                  <app-ew-icon name="poseidon"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Poseidon</div>
+                  </div>
+                </div>
+              }
+              <!-- Frames to build temples -->
+              @if (user.buildTemple1Allowed() === 0) {
+                <div
+                  class="frame"
+                  role="button"
+                  [ngClass]="{ 'level-quest': levelQuest('temple1') }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#Temple1Info"
+                  title="{{ 'Build a new temple' | translate }}">
+                  <app-ew-icon name="olympus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Erect</div>
+                  </div>
+                </div>
+              }
+              @if (user.buildTemple2Allowed() === 0) {
+                <div
+                  class="frame"
+                  role="button"
+                  [ngClass]="{ 'level-quest': levelQuest('temple2') }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#Temple2Info"
+                  title="{{ 'Build a new temple' | translate }}">
+                  <app-ew-icon name="olympus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Erect</div>
+                  </div>
+                </div>
+              }
+              @if (user.buildTemple3Allowed() === 0) {
+                <div
+                  class="frame"
+                  role="button"
+                  [ngClass]="{ 'level-quest': levelQuest('temple3') }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#Temple3Info"
+                  title="{{ 'Build a new temple' | translate }}">
+                  <app-ew-icon name="olympus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Erect</div>
+                  </div>
+                </div>
+              }
+              @if (user.buildTemple4Allowed() === 0) {
+                <div
+                  class="frame"
+                  role="button"
+                  [ngClass]="{ 'level-quest': levelQuest('temple4') }"
+                  data-bs-toggle="modal"
+                  data-bs-target="#Temple4Info"
+                  title="{{ 'Build a new temple' | translate }}">
+                  <app-ew-icon name="olympus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Erect</div>
+                  </div>
+                </div>
+              }
+              @if (user.hasTemples() > 0) {
+                <div
+                  class="frame"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TempleChangeInfo"
+                  title="{{ 'Change a temple' | translate }}">
+                  <app-ew-icon name="olympus"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>Temples</div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (user.getPropertyNb('level') >= 1) {
+        <div class="col-xl-6 mb-2">
+          <div class="card">
+            <div class="card-header">
+              <span translate> Success </span>
+              <div class="card-header-group card-header-group-right">
+                <div
+                  class="card-header-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#SuccessHelp"
+                  title="{{ 'Success information' | translate }}">
+                  <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                </div>
+              </div>
+            </div>
+            <div
+              class="card-body p-0 d-flex flex-wrap"
+              id="successBlock"
+              [ngClass]="{
+                'row-cols-6': featsOfStrengthNb > 0,
+                'row-cols-5': featsOfStrengthNb === 0
+              }">
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#SuccessInfo"
+                (click)="selectSuccess(1)"
+                (keyup.enter)="selectSuccess(1)"
+                title="{{ 'General' | translate }}"
+                role="button"
+                tabindex="0">
+                <app-ew-icon name="{{ getDivinBonusIcon(1) }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>General</div>
+                </div>
+              </div>
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#SuccessInfo"
+                (click)="selectSuccess(2)"
+                (keyup.enter)="selectSuccess(2)"
+                title="{{ 'Constructions' | translate }}"
+                role="button"
+                tabindex="0">
+                <app-ew-icon name="{{ getDivinBonusIcon(2) }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Constructions</div>
+                </div>
+              </div>
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#SuccessInfo"
+                (click)="selectSuccess(3)"
+                (keyup.enter)="selectSuccess(3)"
+                title="{{ 'Alliance' | translate }}"
+                role="button"
+                tabindex="0">
+                <app-ew-icon name="{{ getDivinBonusIcon(3) }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Alliance</div>
+                </div>
+              </div>
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#SuccessInfo"
+                (click)="selectSuccess(5)"
+                (keyup.enter)="selectSuccess(5)"
+                title="{{ 'Attacks' | translate }}"
+                role="button"
+                tabindex="0">
+                <app-ew-icon name="{{ getDivinBonusIcon(5) }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Attacks</div>
+                </div>
+              </div>
+              <div
+                class="frame d-flex flex-column"
+                data-bs-toggle="modal"
+                data-bs-target="#SuccessInfo"
+                (click)="selectSuccess(6)"
+                (keyup.enter)="selectSuccess(6)"
+                title="{{ 'Mythology' | translate }}"
+                role="button"
+                tabindex="0">
+                <app-ew-icon name="{{ getDivinBonusIcon(6) }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Mythology</div>
+                </div>
+              </div>
+              @if (featsOfStrengthNb > 0) {
+                <div
+                  class="frame d-flex flex-column"
+                  data-bs-toggle="modal"
+                  data-bs-target="#SuccessInfo"
+                  (click)="selectSuccess(7)"
+                  (keyup.enter)="selectSuccess(7)"
+                  title="{{ 'Feats of Strength' | translate }}"
+                  role="button"
+                  tabindex="0">
+                  <app-ew-icon name="{{ getDivinBonusIcon(7) }}"></app-ew-icon>
+                  <div
+                    class="frame-name flex-grow-1 justify-content-center d-flex">
+                    <div class="align-self-center" translate>
+                      Feats of Strength
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

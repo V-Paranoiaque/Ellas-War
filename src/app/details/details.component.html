@@ -1,0 +1,424 @@
+<div class="modal fade" id="detailsHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 translate>Legend</h5>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          You don't have enough resources to maintain your production.
+        </div>
+        <div translate>
+          The productions in yellow are degraded and those in red stopped.
+        </div>
+        <div translate>
+          Check your resources to restore your production, it is probably
+          currently at zero.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-block d-sm-none d-flex">
+          <button
+            class="btn btn-primary p-2 flex-fill design-background"
+            (click)="setMenuMode(0)"
+            [ngClass]="{
+              'btn-danger': menuMode === 0,
+              'btn-primary': menuMode !== 0
+            }"
+            translate>
+            Production
+          </button>
+          <button
+            class="btn btn-primary p-2 flex-fill design-background"
+            (click)="setMenuMode(1)"
+            [ngClass]="{
+              'btn-danger': menuMode === 1,
+              'btn-primary': menuMode !== 1
+            }"
+            translate>
+            Consumption
+          </button>
+          <button
+            class="btn btn-primary p-2 flex-fill design-background"
+            (click)="setMenuMode(2)"
+            [ngClass]="{
+              'btn-danger': menuMode === 2,
+              'btn-primary': menuMode !== 2
+            }"
+            translate>
+            Evolution
+          </button>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="visually-hidden" id="detailsDesc" translate>
+              Details of the comsumptions and productions
+            </div>
+            <table class="table align-middle" aria-labelledby="detailsDesc">
+              <thead class="text-center">
+                <tr>
+                  <th
+                    scope="col"
+                    [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 0 }">
+                    <span translate>Production</span>/<span translate>Day</span>
+                  </th>
+                  <th
+                    scope="col"
+                    [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 1 }">
+                    <span translate>Consumption</span>/<span translate
+                      >Day</span
+                    >
+                  </th>
+                  <th
+                    scope="col"
+                    [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 2 }">
+                    <span translate>Evolution</span>/<span translate>Day</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (ress of nbvariation | keyvalue; track ress) {
+                  <tr>
+                    <td
+                      [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 0 }">
+                      @for (building of user.getBuildings(); track building) {
+                        <span>
+                          @if (
+                            user.getPropertyNb(building.code) > 0 &&
+                            getRess(building.production, ress.key) > 0
+                          ) {
+                            <span>
+                              +{{
+                                getRess(building.production, ress.key) *
+                                  user.getPropertyNb(building.code)
+                                  | number: '' : this.translate.currentLang
+                              }}
+                              <app-ew-icon
+                                name="{{ ress.key }}"
+                                class="small-resource"></app-ew-icon>
+                              {{
+                                Tools.getName(
+                                  building.code,
+                                  user.getPropertyNb(building.code)
+                                ) | translate
+                              }}
+                              @if (building.code === 'mint') {
+                                <a
+                                  [routerLink]="['/mints']"
+                                  title="{{
+                                    'Production of drachmas by number of mints'
+                                      | translate
+                                  }}">
+                                  <app-ic-icon
+                                    [icon]="questionCircle"></app-ic-icon>
+                                </a>
+                              }
+                              <br />
+                            </span>
+                          }
+                        </span>
+                      }
+                    </td>
+                    <td
+                      [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 1 }">
+                      @for (building of user.getBuildings(); track building) {
+                        <span>
+                          @if (
+                            user.getPropertyNb(building.code) > 0 &&
+                            getRess(building.consumption, ress.key) > 0
+                          ) {
+                            <span>
+                              -{{
+                                getRess(building.consumption, ress.key) *
+                                  user.getPropertyNb(building.code)
+                                  | number: '' : this.translate.currentLang
+                              }}
+                              <app-ew-icon
+                                name="{{ ress.key }}"
+                                class="small-resource"></app-ew-icon>
+                              {{
+                                Tools.getName(
+                                  building.code,
+                                  user.getPropertyNb(building.code)
+                                ) | translate
+                              }}<br />
+                            </span>
+                          }
+                        </span>
+                      }
+                      @for (unit of user.getArmy(); track unit) {
+                        <span>
+                          @if (
+                            user.getPropertyNb(unit.code) > 0 &&
+                            getRess(unit.consumption, ress.key) > 0
+                          ) {
+                            <span>
+                              -{{
+                                getRess(unit.consumption, ress.key) *
+                                  user.getPropertyNb(unit.code)
+                                  | number: '' : this.translate.currentLang
+                              }}
+                              <app-ew-icon
+                                name="{{ ress.key }}"
+                                class="small-resource"></app-ew-icon>
+                              {{
+                                Tools.getName(
+                                  unit.code,
+                                  user.getPropertyNb(unit.code)
+                                ) | translate
+                              }}<br />
+                            </span>
+                          }
+                        </span>
+                      }
+                      @if (user.getTaxes(ress.key) > 0) {
+                        <span>
+                          -{{
+                            user.getTaxes(ress.key)
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="{{ ress.key }}"
+                            class="small-resource"></app-ew-icon>
+                          {{ "Alliance's taxes" | translate }}
+                        </span>
+                      }
+                    </td>
+                    <td
+                      [ngClass]="{
+                        'text-danger':
+                          user.getPropertyNb(ress.key) === 0 &&
+                          getVariation(ress.key) < 0,
+                        'text-warning':
+                          getVariation(ress.key) >= 0 &&
+                          getVariation(ress.key) >
+                            user.getVarRess(ress.key) * 3600 * 24 + 0.000001,
+                        'd-none d-sm-table-cell': menuMode !== 2
+                      }">
+                      @if (user.getVarRess(ress.key) > 0) {
+                        <span>+</span>
+                      }
+                      {{
+                        user.getVarRess(ress.key) * 3600 * 24
+                          | number: '' : this.translate.currentLang
+                      }}
+                      <app-ew-icon
+                        name="{{ ress.key }}"
+                        class="small-resource"></app-ew-icon>
+                      @if (
+                        (user.getPropertyNb(ress.key) === 0 &&
+                          getVariation(ress.key) < 0) ||
+                        (getVariation(ress.key) >= 0 &&
+                          getVariation(ress.key) >
+                            user.getVarRess(ress.key) * 3600 * 24 + 0.000001)
+                      ) {
+                        <span
+                          data-bs-toggle="modal"
+                          data-bs-target="#detailsHelp"
+                          role="button"
+                          title="{{ 'Help' | translate }}">
+                          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                        </span>
+                      }
+                    </td>
+                  </tr>
+                }
+                @if (
+                  user.getPropertyNb('level') >= user.getLevelRess('ambrosia')
+                ) {
+                  <tr>
+                    <td
+                      [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 0 }">
+                      @if (user.getPropertyNb('apollo') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Apollo</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('demeter') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Demeter</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('hermes') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Hermes</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('ares') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Ares</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('athena') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Athena</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('artemis') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Artemis</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('dionysus') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Dionysus</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('hephaestus') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Hephaestus</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('hades') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Hades</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('poseidon') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Poseidon</span>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('zeus') === 1) {
+                        <div>
+                          + 4
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Temple of Zeus</span>
+                        </div>
+                      }
+                      @if (user.getSanctuary(3) > 0) {
+                        <div>
+                          + 24
+                          <app-ew-icon
+                            name="ambrosia"
+                            class="small-resource"></app-ew-icon
+                          >&nbsp;<span translate>Tantalus</span>
+                        </div>
+                      }
+                    </td>
+                    <td
+                      [ngClass]="{
+                        'd-none d-sm-table-cell': menuMode !== 1
+                      }"></td>
+                    @if (user.getSanctuary(3) === 0) {
+                      <td
+                        [ngClass]="{
+                          'd-none d-sm-table-cell': menuMode !== 2
+                        }">
+                        +{{
+                          4 *
+                            (user.getPropertyNb('hermes') +
+                              user.getPropertyNb('apollo') +
+                              user.getPropertyNb('demeter') +
+                              user.getPropertyNb('ares') +
+                              user.getPropertyNb('athena') +
+                              user.getPropertyNb('artemis') +
+                              user.getPropertyNb('dionysus') +
+                              user.getPropertyNb('hephaestus') +
+                              user.getPropertyNb('zeus') +
+                              user.getPropertyNb('hades') +
+                              user.getPropertyNb('poseidon'))
+                        }}
+                        <app-ew-icon
+                          name="ambrosia"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                    }
+                    @if (user.getSanctuary(3) > 0) {
+                      <td
+                        [ngClass]="{
+                          'd-none d-sm-table-cell': menuMode !== 2
+                        }">
+                        +{{
+                          4 *
+                            (6 +
+                              user.getPropertyNb('hermes') +
+                              user.getPropertyNb('apollo') +
+                              user.getPropertyNb('demeter') +
+                              user.getPropertyNb('ares') +
+                              user.getPropertyNb('athena') +
+                              user.getPropertyNb('artemis') +
+                              user.getPropertyNb('dionysus') +
+                              user.getPropertyNb('hephaestus') +
+                              user.getPropertyNb('zeus') +
+                              user.getPropertyNb('hades') +
+                              user.getPropertyNb('poseidon'))
+                        }}
+                        <app-ew-icon
+                          name="ambrosia"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

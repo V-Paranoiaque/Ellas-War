@@ -1,0 +1,35 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="emailLabel" translate>
+              Alliance images
+            </h1>
+
+            <div class="row">
+              @for (p of adminImageAlliance; track p) {
+                <div class="col-12 col-lg-3 text-center">
+                  {{ p.alliance_name }}<br />
+                  @if (p.alliance_img) {
+                    <img
+                      src="{{ user.getConfig().url }}/pprofile/{{
+                        p.alliance_img
+                      }}"
+                      class="img-fluid center-block"
+                      alt="{{ p.alliance_name }}" />
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

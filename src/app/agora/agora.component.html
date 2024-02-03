@@ -1,0 +1,570 @@
+<app-agora-buy-popup [info]="selectedBatch"></app-agora-buy-popup>
+<app-agora-recover-popup [info]="selectedBatch"></app-agora-recover-popup>
+<app-agora-sell-help-popup></app-agora-sell-help-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="card">
+          <div class="d-flex justify-content-center">
+            <a
+              class="btn btn-danger flex-grow-1 design-background"
+              href="/agora"
+              [routerLink]="['/agora']"
+              title="{{ 'Player Ranking' | translate }}"
+              translate>
+              Agora
+            </a>
+            <a
+              class="btn btn-primary flex-grow-1 design-background"
+              href="/storeroom"
+              [routerLink]="['/storeroom']"
+              title="{{ 'Honnor Ranking' | translate }}"
+              translate>
+              Storeroom
+            </a>
+            <a
+              class="btn btn-primary flex-grow-1 design-background"
+              href="/statistics"
+              [routerLink]="['/statistics']"
+              title="{{ 'Alliance Ranking' | translate }}"
+              translate>
+              Statistics
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 d-flex">
+        <div class="card col-12 mb-2">
+          <div class="card-header">
+            <span translate>Sell resources </span>
+            <div class="card-header-group card-header-group-right">
+              <div
+                class="card-header-button"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#AgoraSellHelp">
+                <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              @switch (error) {
+                @case (1) {
+                  <div class="alert alert-danger text-center" translate>
+                    You can't sell this resource
+                  </div>
+                }
+                @case (2) {
+                  <div class="alert alert-danger text-center" translate>
+                    You can't sell this resource
+                  </div>
+                }
+                @case (3) {
+                  <div class="alert alert-danger text-center" translate>
+                    You don't have a license
+                  </div>
+                }
+                @case (4) {
+                  <div class="alert alert-danger text-center" translate>
+                    You can't sell as much of this resource
+                  </div>
+                }
+                @case (5) {
+                  <div class="alert alert-danger text-center" translate>
+                    Please respect the minimum price
+                  </div>
+                }
+                @case (6) {
+                  <div class="alert alert-danger text-center" translate>
+                    Please respect the maximum price
+                  </div>
+                }
+                @case (7) {
+                  <div class="alert alert-danger text-center" translate>
+                    Please respect the minimum price
+                  </div>
+                }
+                @case (8) {
+                  <div class="alert alert-danger text-center" translate>
+                    Please respect the maximum price
+                  </div>
+                }
+                @case (9) {
+                  <div class="alert alert-danger text-center" translate>
+                    You can't sell as much of this resource
+                  </div>
+                }
+                @case (10) {
+                  <div class="alert alert-danger text-center" translate>
+                    You can't sell as many lots
+                  </div>
+                }
+                @case (11) {
+                  <div class="alert alert-danger text-center" translate>
+                    Error
+                  </div>
+                }
+                @case (12) {
+                  <div class="alert alert-danger text-center" translate>
+                    You don't have enough resources
+                  </div>
+                }
+                @case (13) {
+                  <div class="alert alert-danger text-center" translate>
+                    You don't have enough Drachmas.
+                  </div>
+                }
+                @case (14) {
+                  <div class="alert alert-success text-center" translate>
+                    Lot sold at the agora
+                  </div>
+                }
+              }
+            </div>
+            @if (parseFloat(rate) > 0 && parseFloat(quantity) > 0) {
+              <div class="fw-bold text-center">
+                <span translate>Price</span>
+                <span translate>:</span>
+                {{
+                  parseFloat(rate) * parseFloat(quantity)
+                    | number
+                      : '1.0-' +
+                          Math.max(
+                            3,
+                            Tools.nbDigits(
+                              parseFloat(rate) * parseFloat(quantity)
+                            )
+                          )
+                      : this.translate.currentLang
+                }}
+                <app-ew-icon
+                  name="drachma"
+                  class="small-resource"></app-ew-icon>
+              </div>
+            }
+            @if (
+              isAnonymous && parseFloat(rate) > 0 && parseFloat(quantity) > 0
+            ) {
+              <div class="text-center">
+                <span translate>Fee</span>
+                <span translate>:</span>
+                {{
+                  parseFloat(rate) * parseFloat(quantity) * 0.05
+                    | number
+                      : '1.0-' +
+                          Math.max(
+                            3,
+                            Tools.nbDigits(
+                              parseFloat(rate) * parseFloat(quantity) * 0.05
+                            )
+                          )
+                      : this.translate.currentLang
+                }}
+                <app-ew-icon
+                  name="drachma"
+                  class="small-resource"></app-ew-icon>
+              </div>
+            }
+            <div class="input-group d-flex flex-row">
+              <div class="d-flex flex-column">
+                <span class="input-group-text mt-2" id="aria-quantity" translate
+                  >Quantity</span
+                >
+
+                <span class="input-group-text mt-2" id="aria-rate" translate
+                  >Rate</span
+                >
+              </div>
+              <div class="d-flex flex-column flex-grow-1">
+                <input
+                  type="number"
+                  placeholder="0"
+                  step="1"
+                  [attr.min]="0"
+                  class="form-control mt-2"
+                  aria-describedby="aria-quantity"
+                  attr.aria-label="{{ 'Quantity' | translate }}"
+                  size="10"
+                  [(ngModel)]="quantity" />
+                <input
+                  type="number"
+                  placeholder="0"
+                  step="0.001"
+                  [attr.min]="0"
+                  class="form-control mt-2"
+                  aria-describedby="aria-rate"
+                  attr.aria-label="{{ 'Rate' | translate }}"
+                  size="10"
+                  [(ngModel)]="rate" />
+              </div>
+            </div>
+            <select
+              class="form-select text-center mt-2"
+              [(ngModel)]="agoraRes"
+              attr.aria-label="{{ 'Select the resource' | translate }}">
+              <option value="1" translate>Food</option>
+              <option value="2" translate>Water</option>
+              <option value="3" translate>Wood</option>
+              <option value="4" translate>Iron</option>
+              @if (user.getPropertyNb('level') >= user.getLevelRess('stone')) {
+                <option value="5" translate>Stone</option>
+              }
+              @if (user.getPropertyNb('level') >= user.getLevelRess('marble')) {
+                <option value="6" translate>Marble</option>
+              }
+              @if (user.getPropertyNb('level') >= user.getLevelRess('grapes')) {
+                <option value="7" translate>Grapes</option>
+              }
+              @if (user.getPropertyNb('level') >= user.getLevelRess('wine')) {
+                <option value="8" translate>Wine</option>
+              }
+              @if (user.getPropertyNb('level') >= user.getLevelRess('gold')) {
+                <option value="9" translate>Gold</option>
+              }
+              <option value="10" translate>Favor</option>
+            </select>
+            <div class="text-center">
+              <input
+                type="checkbox"
+                id="anonymous"
+                class="form-check-inpu me-1"
+                [(ngModel)]="isAnonymous" />
+              <label for="anonymous" translate>Anonymous</label>
+              <br />
+              <button class="btn btn-success mt-2" (click)="sell()" translate>
+                Depose
+              </button>
+            </div>
+            <div class="text-center mt-2" translate>
+              The lots remain on the Agora during 7 days
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 d-flex">
+        <div class="card col-12 mb-2 d-flex flex-column">
+          <div class="card-header d-flex flex-row">
+            @for (res of ressList; track res; let index = $index) {
+              @if (index > 0) {
+                <span class="flex-grow-1 text-center">
+                  <app-ew-icon
+                    name="{{ res }}"
+                    class="small-resource"
+                    role="button"
+                    (click)="selectRes(index)"></app-ew-icon>
+                </span>
+              }
+            }
+          </div>
+          <div class="card-body flex-grow-1 table-responsive">
+            <div class="text-center fs-4" id="resTitleDesc">
+              @switch (currentRes) {
+                @case (1) {
+                  <strong translate>Food</strong>
+                }
+                @case (2) {
+                  <strong translate>Water</strong>
+                }
+                @case (3) {
+                  <strong translate>Wood</strong>
+                }
+                @case (4) {
+                  <strong translate>Iron</strong>
+                }
+                @case (5) {
+                  <strong translate>Stone</strong>
+                }
+                @case (6) {
+                  <strong translate>Marble</strong>
+                }
+                @case (7) {
+                  <strong translate>Grapes</strong>
+                }
+                @case (8) {
+                  <strong translate>Wine</strong>
+                }
+                @case (9) {
+                  <strong translate>Gold</strong>
+                }
+                @case (10) {
+                  <strong translate>Favor</strong>
+                }
+              }
+            </div>
+            @if (tradeList.length === 0) {
+              <div class="text-center" translate>No batch available</div>
+            }
+            @if (tradeList.length > 0) {
+              <table
+                class="table table-striped"
+                aria-describedby="resTitleDesc">
+                <thead>
+                  <tr>
+                    <th translate>Quantity</th>
+                    <th translate>Rate</th>
+                    <th translate>Price</th>
+                    <th translate>Seller</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="align-middle">
+                  @for (trade of tradeList; track trade) {
+                    <tr>
+                      <td class="text-end">
+                        {{
+                          trade.nbress | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="{{ Tools.getResName(trade.ress_type) }}"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                      <td class="text-center">
+                        {{
+                          parseFloat(trade.rate)
+                            | number
+                              : '1.0-' +
+                                  Math.max(
+                                    3,
+                                    Tools.nbDigits(parseFloat(trade.rate))
+                                  )
+                              : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-end">
+                        {{
+                          trade.nbress * parseFloat(trade.rate)
+                            | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="drachma"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                      @if (trade.anonymous === 0) {
+                        <td>
+                          <app-user-profile
+                            id="{{ trade.seller_id }}"
+                            username="{{ trade.username }}"
+                            status="1"></app-user-profile>
+                        </td>
+                      }
+                      @if (trade.anonymous === 1) {
+                        <td translate>Anonymous</td>
+                      }
+                      <td>
+                        @if (trade.seller_id !== user.getPropertyNb('id')) {
+                          <button
+                            class="btn btn-success"
+                            title="{{ 'Buy' | translate }}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#AgoraBuy"
+                            (click)="selectBatch(trade)">
+                            <app-ic-icon [icon]="bagIcon"></app-ic-icon>
+                            <span class="visually-hidden" translate>Buy</span>
+                          </button>
+                        }
+                        @if (trade.seller_id === user.getPropertyNb('id')) {
+                          <button
+                            class="btn btn-warning"
+                            title="{{ 'Recover' | translate }}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#AgoraRecover"
+                            (click)="selectBatch(trade)">
+                            <app-ic-icon [icon]="jarIcon"></app-ic-icon>
+                            <span class="visually-hidden" translate
+                              >Recover</span
+                            >
+                          </button>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 d-flex">
+        <div class="card col-12 mb-2">
+          <div class="card-header" id="ratesDesc" translate>Rates</div>
+          <div class="card-body table-responsive">
+            <table class="table" aria-describedby="ratesDesc">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Resource</th>
+                  <th scope="col" translate>Minimum rate</th>
+                  <th scope="col" translate>Maximum rate</th>
+                  <th scope="col" translate>Limit</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (
+                  res of environment.resources;
+                  track res;
+                  let index = $index
+                ) {
+                  @if (index > 0 && user.hasLevelRess(res)) {
+                    <tr
+                      [ngClass]="{
+                        'table-danger': index.toString() === agoraRes.toString()
+                      }"
+                      (click)="selectAgoraRes(index)"
+                      role="button">
+                      <th scope="row">
+                        <app-ew-icon
+                          name="{{ Tools.getResName(getLimit(res).type) }}"
+                          class="small-resource"></app-ew-icon>
+                      </th>
+                      <td>
+                        {{
+                          getLimit(res).minrate
+                            | number
+                              : '1.0-' +
+                                  Math.max(
+                                    3,
+                                    Tools.nbDigits(getLimit(res).minrate)
+                                  )
+                              : this.translate.currentLang
+                        }}
+                      </td>
+                      <td>
+                        {{
+                          getLimit(res).maxrate
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-end">
+                        {{
+                          getLimit(res).limit
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                    </tr>
+                  }
+                }
+                <tr
+                  [ngClass]="{ 'table-danger': agoraRes.toString() === '10' }"
+                  (click)="selectAgoraRes(10)"
+                  role="button">
+                  <th scope="row">
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </th>
+                  <td>
+                    {{
+                      getLimit('favor').minrate
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      getLimit('favor').maxrate
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                  <td class="text-end">
+                    {{
+                      getLimit('favor').limit
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 d-flex">
+        <div class="card col-12 mb-2">
+          <div class="card-header" id="MySalesDesc">
+            <span translate> Currently for sale</span>
+          </div>
+          <div class="card-body table-responsive">
+            @if (getAgoraMyList().length === 0) {
+              <div class="text-center fw-bold">
+                <br />
+                <span translate>
+                  You currently don't have any batch on sales
+                </span>
+              </div>
+            }
+            @if (getAgoraMyList().length > 0) {
+              <table class="table table-middle" aria-describedby="MySalesDesc">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center" translate>Resources</th>
+                    <th scope="col" class="text-center" translate>Rate</th>
+                    <th scope="col" class="text-center" translate>Price</th>
+                    <th scope="col" class="text-center" translate>Return</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                    trade of getAgoraMyList();
+                    track trade;
+                    let id = $index
+                  ) {
+                    <tr>
+                      <td class="text-end">
+                        {{
+                          trade.nbress | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="{{ Tools.getResName(trade.ress_type) }}"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                      <td class="text-center">
+                        {{
+                          parseFloat(trade.rate)
+                            | number
+                              : '1.0-' +
+                                  Math.max(
+                                    3,
+                                    Tools.nbDigits(parseFloat(trade.rate))
+                                  )
+                              : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-end">
+                        {{
+                          trade.nbress * parseFloat(trade.rate)
+                            | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="drachma"
+                          class="small-resource"></app-ew-icon>
+                      </td>
+                      <td class="text-center">
+                        {{ trade.return_time * 1000 | date: 'dd/MM, HH:mm' }}
+                      </td>
+                      <td class="text-center">
+                        <button
+                          class="btn btn-warning"
+                          title="{{ 'Recover' | translate }}"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AgoraRecover"
+                          (click)="selectBatch(trade)">
+                          <app-ic-icon [icon]="jarIcon"></app-ic-icon>
+                          <span class="visually-hidden" translate>Recover</span>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

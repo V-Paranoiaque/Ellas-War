@@ -1,50 +1,64 @@
 import { TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SocketComponent as Socket } from './socketio.service';
+import { UserComponent as User } from './user.service';
+import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { FormBuilder } from '@angular/forms';
 
 import { EwIconSubComponent } from './ew-icon.service';
+import { environment } from '../environments/environment';
 
 describe('EwIconSubComponent', () => {
+  let socket: Socket;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [
-        EwIconSubComponent,
-      ],
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [EwIconSubComponent],
       imports: [
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient],
+          },
+        }),
+        OAuthModule.forRoot(),
+        HttpClientTestingModule,
       ],
-      providers: [
-      ],
+      providers: [Socket, User, OAuthService, BsModalService, FormBuilder],
     }).compileComponents();
+    socket = TestBed.inject(Socket);
+    socket.setupSocketConnection(environment.SERVER_DEV);
   });
-  
+
   it('should create the service', () => {
     const fixture = TestBed.createComponent(EwIconSubComponent);
-    fixture.detectChanges();
     const app = fixture.componentInstance;
+    app.name = 'ambrosia';
+
+    fixture.detectChanges();
     expect(app).toBeTruthy();
   });
-  
-  it(`test default getDivineBonus value`, () => {
-    expect(EwIconSubComponent.getDivineBonus(0)).toEqual('default');
-  });
-  it(`test getDivineBonus values`, () => {
-    expect(EwIconSubComponent.getDivineBonus(1)).toEqual('iron');
-    expect(EwIconSubComponent.getDivineBonus(2)).toEqual('wood');
-    expect(EwIconSubComponent.getDivineBonus(3)).toEqual('grapes');
-    expect(EwIconSubComponent.getDivineBonus(4)).toEqual('stone');
-    expect(EwIconSubComponent.getDivineBonus(5)).toEqual('marble');
-    expect(EwIconSubComponent.getDivineBonus(6)).toEqual('wine');
-    expect(EwIconSubComponent.getDivineBonus(7)).toEqual('gold');
-    expect(EwIconSubComponent.getDivineBonus(8)).toEqual('favor');
-    expect(EwIconSubComponent.getDivineBonus(9)).toEqual('spartan');
-    expect(EwIconSubComponent.getDivineBonus(10)).toEqual('menu-temple');
-    expect(EwIconSubComponent.getDivineBonus(11)).toEqual('treasure');
-    expect(EwIconSubComponent.getDivineBonus(12)).toEqual('menu-agora');
-    expect(EwIconSubComponent.getDivineBonus(13)).toEqual('smenu-attacks');
-    expect(EwIconSubComponent.getDivineBonus(14)).toEqual('drachma');
 
-    expect(EwIconSubComponent.getDivineBonus(24)).toEqual('basket-iron');
-    expect(EwIconSubComponent.getDivineBonus(25)).toEqual('basket-silver');
-    expect(EwIconSubComponent.getDivineBonus(26)).toEqual('basket-gold');
+  it('should create the service, no match', () => {
+    const fixture = TestBed.createComponent(EwIconSubComponent);
+    const app = fixture.componentInstance;
+    app.name = 'dummy';
+
+    fixture.detectChanges();
+    expect(app).toBeTruthy();
   });
 });
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/');
+}

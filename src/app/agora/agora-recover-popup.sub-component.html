@@ -1,0 +1,63 @@
+<div class="modal fade" id="AgoraRecover" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Retrieve the batch</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid text-center">
+        <strong translate>Batch</strong>
+        <strong translate>:</strong>
+        {{ info.nbress | number: '' : this.translate.currentLang }}
+        <app-ew-icon
+          name="{{ Tools.getResName(info.ress_type) }}"
+          class="small-resource"></app-ew-icon>
+
+        <br />
+
+        <strong translate>Losses</strong>
+        <strong translate>:</strong>
+        @if (info.ress_type !== 10) {
+          <span>
+            {{
+              info.nbress * (1 - (0.8 + user.getPropertyNb('hermes') * 0.175))
+                | number: '' : this.translate.currentLang
+            }}
+            <app-ew-icon
+              name="{{ Tools.getResName(info.ress_type) }}"
+              class="small-resource"></app-ew-icon>
+          </span>
+        }
+        @if (info.ress_type === 10) {
+          <span>
+            {{ 20000 | number: '' : this.translate.currentLang }}
+            <app-ew-icon
+              name="{{ Tools.getResName(info.ress_type) }}"
+              class="small-resource"></app-ew-icon>
+          </span>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="buy()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

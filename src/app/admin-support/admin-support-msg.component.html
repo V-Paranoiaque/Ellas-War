@@ -1,0 +1,66 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center">
+              {{ adminSupportInfo.title }}
+              <a
+                (click)="adminSupportStatus()"
+                class="btn"
+                (keyup.enter)="adminSupportStatus()"
+                tabindex="0"
+                [ngClass]="{
+                  'btn-success': adminSupportInfo.status === 1,
+                  'btn-danger': adminSupportInfo.status === 0
+                }">
+                <app-ic-icon [icon]="angellistIcon"></app-ic-icon>
+              </a>
+            </h2>
+
+            @for (msg of adminSupportInfo.msg; track msg) {
+              <div>
+                <div class="text-prewrap">{{ msg.support_msg }}</div>
+                <br />
+                <div class="text-end fw-bold">
+                  <a [routerLink]="['/admin/profile/' + msg.support_membre]">
+                    {{
+                      'By { value }' | translate: { value: msg.username }
+                    }} </a
+                  >,
+                  {{ msg.support_date * 1000 | date: 'dd/MM/yyyy, HH:mm' }}
+                </div>
+                <br />
+              </div>
+            }
+
+            <div>
+              <br />
+              <div class="input-group">
+                <textarea
+                  class="form-control"
+                  rows="6"
+                  [(ngModel)]="answertext"
+                  placeholder="{{ 'Message' | translate }}"></textarea>
+                <span
+                  class="input-group-addon btn btn-primary"
+                  (keyup.enter)="adminMsgAnswer()"
+                  tabindex="0"
+                  (click)="adminMsgAnswer()"
+                  translate
+                  >Send</span
+                >
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

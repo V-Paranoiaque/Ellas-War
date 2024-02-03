@@ -1,0 +1,3486 @@
+<div class="card">
+  <div
+    class="card-body"
+    [ngClass]="{ 'no-bottom': user.getPropertyNb('quest_validate') === 1 }">
+    <div
+      class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
+      <span translate> Level quests </span>
+      <app-ic-icon
+        [icon]="questionCircle"
+        role="button"
+        class="ms-2"
+        data-bs-toggle="modal"
+        data-bs-target="#MissionsInfo"></app-ic-icon>
+    </div>
+    <div class="progress">
+      <div
+        class="progress-bar bg-success"
+        role="progressbar"
+        aria-valuenow="0"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{
+          'width.%': (100 * user.getPropertyNb('quest')) / user.getQuestMax()
+        }"></div>
+      <div class="progress-text">
+        <span translate>Progress:</span>
+        {{ user.getPropertyNb('quest') }}/{{ user.getQuestMax() }}
+      </div>
+    </div>
+
+    <div>
+      @switch (user.getPropertyNb('level')) {
+        <!-- Level 0 -->
+        @case (0) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <p
+                    [innerHTML]="
+                      'If you wish to change your username, you can go into the <strong>Option</strong> menu at the top, then <strong>Change your username</strong>. The first change is free as long as you level 0.'
+                        | translate
+                    "></p>
+                  <div class="text-center">
+                    <a class="btn btn-primary" [routerLink]="['/options']">
+                      <span translate>Change your username</span> &gt;&gt;
+                    </a>
+                  </div>
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Mints produce Drachmas. Through them you can construct
+                        buildings and raise armies.
+                      </p>
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    4 | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 5000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 5000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="water"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="ironmine"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Iron mines produce Iron. It's will help you to produce
+                        Drachmas and arm your city.
+                      </p>
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    4 | number: '' : this.translate.currentLang,
+                                  building: 'iron mines' | translate
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 4000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 2000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <a
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </a>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="well"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Water is used by your buildings and your army.
+                      </p>
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    10
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'wells' | translate
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 5000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="sawmill"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To build your buildings you'll need wood. Build a total
+                        of 6 mills to cover your future wood needs.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 8000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 5000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="ironmine"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>You will need more Iron for your city.</p>
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    8 | number: '' : this.translate.currentLang,
+                                  building: 'iron mines' | translate
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="spartan"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        The Divine Bonus bring you temporary benefits. You can
+                        win them by being active on the game or participating in
+                        the activities offered on the facebook page.
+                      </p>
+                      <p translate>
+                        Go to City and validate a Divine Bonus to get spartans.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the divins bonus &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        I offered to you my terrible Spartans, go to the attack
+                        page and engage the fight against our common enemy, the
+                        Persian city of Hagmatana.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 4000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="spartan"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Go to City, and liberate the Spartans. You can again
+                        engage them if you build the temple of Ares, level 6.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the army &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="watchtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To protect your city, you can also build towers. These
+                        have the advantage on the units to not have consumption.
+                        But they can not attack. Go to your City and build a
+                        total of 5 towers.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="iron"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (11) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="treasure"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        The treasure will allow you to protect your Drachmas,
+                        however this service is not without constraints. To
+                        level 5 it will be limited from level 6 you will not
+                        limit but you will pay a fee for you to retrieve your
+                        Drachmas. Go to City and put 20,000 Drachmas into your
+                        treasure.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the treasure &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (12) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Your city will need more drachmas to expand, build a
+                        total of 10 mints.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (13) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="watchtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Build a total of 10 towers, this will be your first
+                        defense.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (14) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="farm"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <span translate
+                        >You can now go level 1. Before doing so, a few tips
+                        from an old warrior:</span
+                      >
+                      <br />- <span translate>Build a maximum of mints.</span>
+                      <br />-
+                      <span translate
+                        >Keep an eye on your resources to optimize your
+                        production and your defense.</span
+                      >
+                      <br />-
+                      <span translate
+                        >Join the Ellas War's Facebook Page. You'll find advice
+                        and answers to your questions.</span
+                      >
+                      <br />
+                      <strong translate>Reward:</strong>
+                      {{ 50000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 50000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="iron"
+                        class="small-resource"></app-ew-icon>
+                      @if (localevars.facebook) {
+                        <div
+                          class="text-center"
+                          attr.aria-label="{{
+                            'Follow us on our Facebook Page' | translate
+                          }}">
+                          <a
+                            href="{{ localevars.facebook }}"
+                            target="_blank"
+                            rel="external nofollow noopener">
+                            <app-ic-icon
+                              [icon]="facebookIcon"
+                              class="fs-2"></app-ic-icon>
+                          </a>
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 1 -->
+        @case (1) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="silver_man"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To have a strong city, you will need brave men. Engage
+                        at least 50 men in your ranks and return to me. Remember
+                        that you must build huts to house them.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="spy"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        I like to know as much as possible about my enemies
+                        before fighting them. Hire 10 spies to gain information
+                        on other cities.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>You are still there?</p>
+                      <p translate>
+                        You are stronger than I thought. Show me your skills in
+                        combat. Now that you have recruited an army, continue to
+                        attack. I advise you to use spies to find the faibles.
+                        Win 5 victories and return to me.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        You will have to drachmas to build your city. Build a
+                        total of 15 mints. If you lack resources, have a look on
+                        the Agora.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="treasure"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Put a total of { value } Drachmas into your treasure.'
+                            | translate
+                              : {
+                                  value:
+                                    100000
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the treasure &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hut"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Build a total of 10 huts to house your army.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 40000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    10 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="farm"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        You will need food for your people, build a total of 10
+                        farms.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    20
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    15 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (11) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="treasure"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Put a total of { value } Drachmas into your treasure.'
+                            | translate
+                              : {
+                                  value:
+                                    200000
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the treasure &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (12) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>Engage a stronger defense than 6,000.</p>
+                      <strong translate>Current defense:</strong>
+                      {{ getDefenseCurrent() }}
+                      <br />
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (13) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    20 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 30000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (14) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 2 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 2 -->
+        @case (2) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    30 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="quarry"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        You will need stone and marble to build your temples.
+                        Build a total of 5 quarries.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    25
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="treasure"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Put a total of { value } Drachmas into your treasure.'
+                            | translate
+                              : {
+                                  value:
+                                    300000
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the treasure &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    40 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="quarry"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        You will need more stone and marble to build your
+                        temples. Build a total of 10 quarries.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    50 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="treasure"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Put a total of { value } Drachmas into your treasure.'
+                            | translate
+                              : {
+                                  value:
+                                    400000
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the treasure &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="militarycamp"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To engage new units, you will need to train them. Build
+                        a barracks.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="peltast"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>Engage 500 Peltasts</p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (11) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        This is the last step. Go to City, Temple and build your
+                        first temple.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (12) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="observationtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 3 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 3 -->
+        @case (3) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    60 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="observationtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    10
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Observation towers' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    30
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    80 | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="militarycamp"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To recruit archers you will need to train them. Update
+                        your barracks.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="slinger"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Engage 1000 Slingers to protect your city.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="observationtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    20
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Observation towers' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    100
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="growers"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 4 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 4 -->
+        @case (4) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    120
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="growers"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        You will need grapes, build a total of 10 Growers.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="shortbow"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>Engage 2.000 Short bow archeries.</p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    35
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    140
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="observationtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    40
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Observation towers' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="growers"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    25
+                                    | number: '' : this.translate.currentLang,
+                                  building: "Grower's lodges" | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    160
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="observationtower"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    50
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Observation towers' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="longbow"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 5 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 5 -->
+        @case (5) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="habitation"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    100
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Habitations' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    200
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    40
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="habitation"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    250
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Habitations' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="longbow"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    5000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Long bow archeries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    250
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 6 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 6 -->
+        @case (6) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="militarycamp"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To get cavalry archers you will need to train them.
+                        Update your barracks.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hippeis"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    2000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Hippeus' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    300
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    45
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        The temples allow you to specialize your city. Choose
+                        your second temple and build the temple of Athena or
+                        Ares.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hippeis"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    6000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Hippeus' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    350
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedarchery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 7 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 7 -->
+        @case (7) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    400
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedarchery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    3000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Mounted archeries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    450
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    50
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedarchery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    6000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Mounted archeries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    500
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 8 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 8 -->
+        @case (8) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    550
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hoplite"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    2500
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Hoplites' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    55
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    600
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hoplite"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    5000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Hoplites' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    650
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    60
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Build your third temple. Choose between Artemis,
+                        Dionysus and Hephaestus.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    750
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <div>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="winery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 9 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </span>
+        }
+        <!-- Level 9 -->
+        @case (9) {
+          <span>
+            @switch (user.getPropertyNb('quest')) {
+              @case (1) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="militarycamp"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To engage the elite of your army, you will have to train
+                        it, update your barrack.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="palace"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        To host your new unities, you will have to build
+                        palaces. Build 160 palaces.
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (3) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedhoplite"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    2500
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Mounted hoplites' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (4) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    65
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (5) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="winery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    10
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Wineries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="goldmine"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    5 | number: '' : this.translate.currentLang,
+                                  building: 'Gold mines' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (7) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    800
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (8) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedhoplite"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    5000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Mounted hoplites' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the city &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (9) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    70
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (10) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="winery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    25
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Wineries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (11) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="goldmine"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    10
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Gold mines' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (12) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    900
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (13) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mountedhoplite"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Engage a total of { value } { unit }.'
+                            | translate
+                              : {
+                                  value:
+                                    10000
+                                    | number: '' : this.translate.currentLang,
+                                  unit: 'Mounted hoplites' | translate
+                                }
+                        }}
+                      </p>
+                      @if (user.getPropertyNb('quest_validate') === 0) {
+                        <div
+                          class="card-button card-button-primary d-block py-2 mt-2"
+                          [routerLink]="['/']"
+                          data-bs-dismiss="modal"
+                          role="button"
+                          translate>
+                          Access to the city &gt;&gt;
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </span>
+              }
+              @case (14) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="mint"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    80
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'mints' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (15) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="winery"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    50
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Wineries' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (16) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="goldmine"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Build a total of { value } { building }.'
+                            | translate
+                              : {
+                                  value:
+                                    20
+                                    | number: '' : this.translate.currentLang,
+                                  building: 'Gold mines' | translate
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (17) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-attacks"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'Win { value } victories'
+                            | translate
+                              : {
+                                  value:
+                                    1000
+                                    | number: '' : this.translate.currentLang
+                                }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (18) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="olympus"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p>
+                        {{
+                          'You can now go level { value }.'
+                            | translate: { value: 10 }
+                        }}
+                      </p>
+                    </div>
+                  </div>
+                </span>
+              }
+            }
+          </span>
+        }
+      }
+    </div>
+  </div>
+  @if (user.getPropertyNb('quest_validate') === 1) {
+    <div
+      class="card-button card-button-success py-2"
+      role="button"
+      (click)="questValidate()"
+      (keyup.enter)="questValidate()"
+      tabindex="0"
+      translate>
+      Validate
+    </div>
+  }
+</div>

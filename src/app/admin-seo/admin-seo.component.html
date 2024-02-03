@@ -1,0 +1,242 @@
+<div class="modal fade" id="SeoNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Add a Website</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Title</strong>
+        <input class="form-control" [(ngModel)]="currentSite.seo_name" />
+
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="currentSite.seo_url" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="seoNew()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="SeoModify" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Modify a Website</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Name</strong>
+        <input class="form-control" [(ngModel)]="currentSite.seo_name" />
+
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="currentSite.seo_url" />
+
+        <div class="form-check">
+          <input
+            type="checkbox"
+            name="active"
+            [(ngModel)]="currentSite.seo_active"
+            checked="checked"
+            id="active"
+            class="form-check-input" />
+          <label for="active" class="form-check-label" translate>Active</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            name="store"
+            [(ngModel)]="currentSite.seo_store"
+            checked="checked"
+            id="store"
+            class="form-check-input" />
+          <label for="store" class="form-check-label" translate>Store</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="seoModify()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="SeoDelete" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Delete a Website</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ currentSite.seo_name }}
+        <br />
+        <u>{{ currentSite.seo_url }}</u>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="seoDelete()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h2 id="seoDesc" class="text-center">
+              <span class="me-1" translate>SEO</span>
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                (click)="
+                  setSite({
+                    seo_id: 0,
+                    seo_name: '',
+                    seo_url: '',
+                    seo_store: 0,
+                    seo_active: 0
+                  })
+                "
+                data-bs-target="#SeoNew"
+                role="button">
+                <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+              </button>
+            </h2>
+            <table class="table table-sm" aria-labelledby="seoDesc">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Name</th>
+                  <th scope="col" translate>URL</th>
+                  <th scope="col" class="text-center" translate>Active</th>
+                  <th scope="col" class="text-center" translate>Store</th>
+                  <th scope="col" translate>Last visit</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (s of list; track s) {
+                  <tr>
+                    <th scope="row">
+                      {{ s.seo_name }}
+                    </th>
+                    <td>
+                      <a href="{{ s.seo_url }}" target="_blank" rel="noopener">
+                        {{ s.seo_url }}
+                      </a>
+                    </td>
+                    <td class="text-center">
+                      @if (s.seo_active === 1) {
+                        <app-ic-icon
+                          [icon]="checkIcon"
+                          class="text-success"></app-ic-icon>
+                      } @else {
+                        <app-ic-icon
+                          [icon]="times"
+                          class="text-danger"></app-ic-icon>
+                      }
+                    </td>
+                    <td class="text-center">
+                      @if (s.seo_store === 1) {
+                        <app-ic-icon
+                          [icon]="checkIcon"
+                          class="text-success"></app-ic-icon>
+                      } @else {
+                        <app-ic-icon
+                          [icon]="times"
+                          class="text-danger"></app-ic-icon>
+                      }
+                    </td>
+                    <td>
+                      {{ s.seo_last_visited * 1000 | date: 'dd/MM/yyyy' }}
+                    </td>
+                    <td class="text-center">
+                      <button class="btn btn-warning" (click)="seoRefresh(s)">
+                        <app-ic-icon [icon]="arrowsRotate"></app-ic-icon>
+                      </button>
+                      <button
+                        class="btn btn-primary"
+                        (click)="setSite(s)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#SeoModify">
+                        <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+                      </button>
+                      <button
+                        class="btn btn-danger"
+                        (click)="setSite(s)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#SeoDelete"
+                        title="{{ 'Delete a news' | translate }}">
+                        <app-ic-icon [icon]="trash2Icon"></app-ic-icon>
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

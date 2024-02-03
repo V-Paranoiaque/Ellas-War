@@ -1,0 +1,38 @@
+<div class="modal fade" id="AllianceHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Alliances</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul>
+          <li translate>You can join an alliance from the level 1</li>
+          <li>
+            {{
+              'You need to be level { value } to create an alliance'
+                | translate: { value: user.getDatasAlliance().alliance.create }
+            }}
+          </li>
+          <li translate>
+            An alliance containing only inactive members (180 days without
+            login) will automatically initiate the dissolution process
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

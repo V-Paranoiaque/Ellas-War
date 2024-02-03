@@ -1,0 +1,65 @@
+@if (
+  info.lost_ress.food === 0 &&
+  info.lost_ress.grapes === 0 &&
+  info.lost_build.farm === 0 &&
+  info.lost_build.growers === 0
+) {
+  <div class="text-center" translate>No loss in the city</div>
+}
+@if (
+  info.lost_ress.food > 0 ||
+  info.lost_ress.grapes > 0 ||
+  info.lost_build.farm > 0 ||
+  info.lost_build.growers > 0
+) {
+  <div class="text-center">
+    <strong id="FuryLossesDesc" translate>Losses</strong>
+    <table class="table" aria-describedby="FuryLossesDesc">
+      <tr></tr>
+      @if (info.lost_ress.food > 0) {
+        <tr>
+          <td class="text-end">
+            {{ info.lost_ress.food | number: '' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="text-start">
+            <app-ew-icon name="food" class="small-resource"></app-ew-icon>
+          </th>
+        </tr>
+      }
+      @if (info.lost_ress.grapes > 0) {
+        <tr>
+          <td class="text-end">
+            {{
+              info.lost_ress.grapes | number: '' : this.translate.currentLang
+            }}
+          </td>
+          <th scope="row" class="text-start">
+            <app-ew-icon name="grapes" class="small-resource"></app-ew-icon>
+          </th>
+        </tr>
+      }
+      @if (info.lost_build.farm > 0) {
+        <tr>
+          <td class="text-end">
+            {{ info.lost_build.farm | number: '' : this.translate.currentLang }}
+          </td>
+          <th scope="row" class="text-start">
+            {{ Tools.getName('farm', info.lost_build.farm) | translate }}
+          </th>
+        </tr>
+      }
+      @if (info.lost_build.growers > 0) {
+        <tr>
+          <td class="text-end">
+            {{
+              info.lost_build.growers | number: '' : this.translate.currentLang
+            }}
+          </td>
+          <th scope="row" class="text-start">
+            {{ Tools.getName('growers', info.lost_build.growers) | translate }}
+          </th>
+        </tr>
+      }
+    </table>
+  </div>
+}

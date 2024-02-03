@@ -1,0 +1,53 @@
+<strong translate>Army sent</strong>
+@for (unit of getSentUnits(); track unit) {
+  <div>
+    {{ unit.nb | number: '' : this.translate.currentLang }}
+    {{ Tools.getName(unit.code, unit.nb) | translate }}
+  </div>
+}
+
+<div class="clearfix"><br /></div>
+
+<div class="row">
+  @if (getAttackLost().length > 0) {
+    <div class="col-6">
+      <strong translate>Attacker losses</strong>
+      @for (unit of getAttackLost(); track unit) {
+        <div>
+          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(unit.code, unit.nb) | translate }}
+        </div>
+      }
+      <div class="clearfix"><br /></div>
+    </div>
+  }
+
+  @if (getDefenseLost().length > 0) {
+    <div class="col-6">
+      <strong translate>Defender losses</strong>
+      @for (unit of getDefenseLost(); track unit) {
+        <div>
+          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ Tools.getName(unit.code, unit.nb) | translate }}
+        </div>
+      }
+      <div class="clearfix"><br /></div>
+    </div>
+  }
+</div>
+
+@if (getSanctuaryLost().length > 0) {
+  <div class="col-12">
+    <strong>{{
+      'Losses again { value }'
+        | translate: { value: info.sanctuaries_name | translate }
+    }}</strong>
+    @for (unit of getSanctuaryLost(); track unit) {
+      <div>
+        {{ unit.nb | number: '' : this.translate.currentLang }}
+        {{ Tools.getName(unit.code, unit.nb) | translate }}
+      </div>
+    }
+    <div class="clearfix"><br /></div>
+  </div>
+}

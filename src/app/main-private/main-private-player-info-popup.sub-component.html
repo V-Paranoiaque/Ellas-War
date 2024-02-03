@@ -1,0 +1,196 @@
+<div class="modal fade" id="PlayerInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ user.getProperty('username') }} ({{ user.getPropertyNb('level') }})
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Field</strong>
+        <strong translate>:</strong>
+        {{
+          user.getPropertyNb('field') | number: '' : this.translate.currentLang
+        }}
+        <br />
+        <strong translate>Victories</strong>
+        <strong translate>:</strong>
+        {{
+          user.getPropertyNb('victory')
+            | number: '' : this.translate.currentLang
+        }}
+        <br />
+
+        <a
+          [routerLink]="['/honnor/' + user.getPropertyNb('level')]"
+          data-bs-dismiss="modal">
+          <strong translate>Honnor</strong>
+          <strong translate>:</strong>
+          {{
+            user.getPropertyNb('honnor')
+              | number: '' : this.translate.currentLang
+          }}
+        </a>
+        <span
+          data-bs-toggle="modal"
+          data-bs-target="#honnorHelp"
+          role="button"
+          title="{{ 'Honnor' | translate }}"
+          class="ms-1"
+          tabindex="0">
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+        </span>
+        <br />
+
+        <a [routerLink]="['/rankingplayers']" data-bs-dismiss="modal">
+          <strong translate>XP</strong>
+          <strong translate>:</strong>
+          {{
+            user.getPropertyNb('xp') | number: '' : this.translate.currentLang
+          }}
+        </a>
+        <span
+          data-bs-toggle="modal"
+          data-bs-target="#xpHelp"
+          role="button"
+          title="{{ 'Help' | translate }}"
+          (click)="xpHelpInit()">
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+        </span>
+        <br />
+        <strong translate>Weather</strong>
+        <strong translate>:</strong>
+        <app-id-to-weather
+          [weather]="user.getConfig().weather"
+          data-bs-toggle="modal"
+          data-bs-target="#weatherInfo"
+          role="button"></app-id-to-weather>
+        <span
+          data-bs-toggle="modal"
+          data-bs-target="#weatherHelp"
+          role="button"
+          title="{{ 'Help' | translate }}"
+          translate>
+          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+        </span>
+      </div>
+
+      <div class="modal-body">
+        <strong id="descResPopup" translate>Resources</strong>
+        <strong translate>:</strong>
+        <table
+          class="table table-sm table-borderless"
+          aria-describedby="descResPopup">
+          @for (res of ressList; track res) {
+            @if (user.hasLevelRess(res)) {
+              <tr>
+                <td>
+                  @if (getVariation(res) > 0) {
+                    <app-ic-icon [icon]="angleUp" class="text-up"></app-ic-icon>
+                  }
+                  @if (getVariation(res) === 0) {
+                    <app-ic-icon
+                      [icon]="equals"
+                      class="text-equals"></app-ic-icon>
+                  }
+                  @if (getVariation(res) < 0) {
+                    <app-ic-icon
+                      [icon]="angleDown"
+                      class="text-down"></app-ic-icon>
+                  }
+                </td>
+                <td class="text-end">
+                  {{
+                    user.getPropertyNb(res)
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+                <th scope="row">
+                  <app-ew-icon
+                    name="{{ res }}"
+                    class="small-resource"></app-ew-icon>
+                </th>
+              </tr>
+            }
+          }
+          @if (user.hasLevelRess('ambrosia')) {
+            <tr>
+              <td>
+                <app-ic-icon
+                  class="text-success"
+                  [icon]="angleUp"></app-ic-icon>
+              </td>
+              <td class="text-end">
+                {{
+                  user.getPropertyNb('ambrosia')
+                    | number: '1.0-2' : this.translate.currentLang
+                }}
+              </td>
+              <th scope="row">
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+                <app-ic-icon
+                  data-bs-toggle="modal"
+                  data-bs-target="#ambrosiaHelp"
+                  data-bs-dismiss="modal"
+                  [icon]="questionCircle"
+                  title="{{ 'About Ambrosia' | translate }}"
+                  role="button"></app-ic-icon>
+              </th>
+            </tr>
+          }
+          @if (user.hasLevelRess('favor')) {
+            <tr>
+              <td>
+                <app-ic-icon [icon]="equals" class="text-equals"></app-ic-icon>
+              </td>
+              <td class="text-end">
+                {{
+                  user.getPropertyNb('favor')
+                    | number: '1.0-2' : this.translate.currentLang
+                }}
+              </td>
+              <th scope="row">
+                <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+                <app-ic-icon
+                  data-bs-toggle="modal"
+                  data-bs-target="#Favors"
+                  data-bs-dismiss="modal"
+                  [icon]="questionCircle"
+                  title="{{ 'Access to the Favors' | translate }}"
+                  role="button"></app-ic-icon>
+              </th>
+            </tr>
+          }
+        </table>
+      </div>
+
+      <div class="modal-body">
+        <div class="card-button card-button-primary">
+          <a
+            class="btn"
+            [routerLink]="['/details']"
+            data-bs-dismiss="modal"
+            translate
+            >Details</a
+          >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

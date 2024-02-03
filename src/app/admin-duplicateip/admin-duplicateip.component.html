@@ -1,0 +1,80 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <table
+              class="table table-middle"
+              aria-describedby="adminPlayersTitle">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col" translate>IP</th>
+                  <th scope="col" translate>Alliance</th>
+                  <th scope="col" translate>Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of ips.list; track p) {
+                  <tr
+                    [ngClass]="{
+                      'table-danger': p.indice === 0,
+                      'table-success': p.indice === 1
+                    }">
+                    <td>{{ p.membre_id }}</td>
+                    <td>
+                      <a
+                        [ngClass]="{
+                          'text-danger':
+                            p.membre_status === 3 || p.membre_status === 5,
+                          'text-warning': p.membre_status === 4
+                        }"
+                        href="admin/profile/{{ p.membre_id }}"
+                        [routerLink]="['/admin/profile/' + p.membre_id]"
+                        >{{ p.username }}</a
+                      >
+                      ({{ p.level }})
+                      <br />
+                      {{ p.email }}
+                    </td>
+                    <td>
+                      <a
+                        href="admin/ip/{{ p.last_ip }}"
+                        [routerLink]="['/admin/ip/' + p.last_ip]"
+                        >{{ p.last_ip }}</a
+                      >
+                    </td>
+                    <td>{{ p.alliance_name }}</td>
+                    <td>
+                      {{
+                        p.inscription * 1000
+                          | date
+                            : 'EEEE dd MMMM YYYY, HH:mm'
+                            : ''
+                            : user.getConfig().locale
+                      }}
+                      <br />
+                      {{
+                        p.last_activity * 1000
+                          | date
+                            : 'EEEE dd MMMM YYYY, HH:mm'
+                            : ''
+                            : user.getConfig().locale
+                      }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

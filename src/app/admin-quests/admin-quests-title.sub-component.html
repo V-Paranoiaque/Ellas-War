@@ -1,0 +1,143 @@
+<span>
+  @switch (quest.quest_type) {
+    @case (1) {
+      <span>
+        {{ 'Win { value } victories' | translate: { value: quest.quest_goal } }}
+      </span>
+    }
+    @case (2) {
+      <span>
+        {{
+          'Use { value } Divine powers' | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (3) {
+      <span>
+        {{
+          'Win { value } times in the javelin game'
+            | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (4) {
+      <span>
+        {{
+          'Use { value } Divine bonus' | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (5) {
+      <span>
+        {{
+          'Construct { value } buildings'
+            | translate
+              : {
+                  value:
+                    quest.quest_goal | number: '' : this.translate.currentLang
+                }
+        }}
+      </span>
+    }
+    @case (6) {
+      <span>
+        {{
+          'Engage { value } Units'
+            | translate
+              : {
+                  value:
+                    quest.quest_goal | number: '' : this.translate.currentLang
+                }
+        }}
+      </span>
+    }
+    @case (7) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Attack 1 sanctuary' | translate)
+            : ('Attack { value } sanctuaries'
+              | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (8) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Conquest 1 sanctuary' | translate)
+            : ('Conquest { value } sanctuaries'
+              | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (9) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Win 1 war' | translate)
+            : ('Win { value } wars' | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (10) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Win the Honnor challenge' | translate)
+            : ('Win the Honnor challenge { value } times'
+              | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (11) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Take the Diamond' | translate)
+            : ('Take the Diamond { value } times'
+              | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (12) {
+      <span>
+        {{
+          quest.quest_goal === 1
+            ? ('Win the Diamond challenge' | translate)
+            : ('Win the Diamond challenge { value } times'
+              | translate: { value: quest.quest_goal })
+        }}
+      </span>
+    }
+    @case (13) {
+      <span>
+        {{
+          'Buy { value } lotto tickets' | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (14) {
+      <span>
+        {{
+          'Spend { value } Ambrosia' | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (15) {
+      <span>
+        {{
+          'Scratch { value } tickets' | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+    @case (16) {
+      <span>
+        {{
+          'Scratch { value } winning tickets'
+            | translate: { value: quest.quest_goal }
+        }}
+      </span>
+    }
+  }
+</span>

@@ -1,0 +1,247 @@
+<div class="modal fade" id="TreasureInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      @if (info.treasureMode === 0) {
+        <div class="modal-header">
+          <h5 class="modal-title" id="treasureDesc" translate>Treasure</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+          <br />
+        </div>
+      }
+      @if (info.treasureMode === 1) {
+        <div class="modal-header">
+          <h5 class="modal-title" id="treasureHistoryDesc" translate>
+            Treasure history
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+          <br />
+        </div>
+      }
+
+      @if (info.treasureMode === 0) {
+        <div class="modal-body container-fluid">
+          <div class="text-center">
+            <strong translate>Current funds:</strong>
+            @if (user.getPropertyNb('level') > 5) {
+              <span class="mx-1">{{
+                user.getPropertyNb('treasure')
+                  | number: '1.0-0' : this.translate.currentLang
+              }}</span>
+            }
+            @if (user.getPropertyNb('level') <= 5) {
+              <span
+                class="mx-1"
+                (click)="
+                  setTreasure(treasureMax - user.getPropertyNb('treasure'))
+                "
+                role="button"
+                >{{
+                  user.getPropertyNb('treasure')
+                    | number: '1.0-0' : this.translate.currentLang
+                }}/{{
+                  treasureMax | number: '' : this.translate.currentLang
+                }}</span
+              >
+            }
+            <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+          </div>
+          <table class="table" aria-describedby="treasureDesc">
+            <tbody>
+              <tr>
+                <th scope="row" translate>Amount</th>
+                <td colspan="2">
+                  <input
+                    type="number"
+                    required="required"
+                    [attr.min]="0"
+                    class="form-control"
+                    placeholder="0"
+                    name="amount"
+                    [(ngModel)]="info.amount"
+                    (keydown.enter)="treasureAction()" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" translate>Action</th>
+                <td>
+                  <input
+                    type="radio"
+                    [checked]="true"
+                    value="deposit"
+                    name="mod"
+                    [(ngModel)]="deposit"
+                    class="form-check-input me-1" />
+                  <span translate>Depose</span>
+                </td>
+                <td>
+                  <input
+                    type="radio"
+                    value="pull"
+                    name="mod"
+                    [(ngModel)]="deposit"
+                    class="form-check-input me-1" />
+                  <span translate>Pull</span>
+                </td>
+              </tr>
+              @if (user.getPropertyNb('level') > 5 && deposit === 'pull') {
+                <tr>
+                  <th scope="row" translate>Computation</th>
+                  <td>
+                    <input
+                      type="radio"
+                      id="computation"
+                      [checked]="true"
+                      value="2"
+                      [(ngModel)]="computation"
+                      name="computation"
+                      class="form-check-input me-1" />
+                    <span translate>Relative</span>
+                  </td>
+                  <td>
+                    <input
+                      type="radio"
+                      value="3"
+                      [(ngModel)]="computation"
+                      name="computation"
+                      class="form-check-input me-1" />
+                    <span translate>Absolute</span>
+                  </td>
+                </tr>
+              }
+              @if (user.getPropertyNb('level') > 5 && deposit === 'pull') {
+                <tr>
+                  <th scope="row" translate>Taxes:</th>
+                  <td colspan="2">
+                    @if (user.getPropertyNb('bonus_treasure') === 0) {
+                      <span>
+                        {{
+                          (15 - 0.5 * user.getPropertyNb('level')) *
+                            taxDeduction
+                            | number: '' : this.translate.currentLang
+                        }}% (<span
+                          role="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#Favors"
+                          data-bs-dismiss="modal">
+                          0% taxes? </span
+                        >)
+                      </span>
+                    }
+                    @if (user.getPropertyNb('bonus_treasure') > 0) {
+                      <span> 0% </span>
+                    }
+                  </td>
+                </tr>
+              }
+              <tr>
+                <td colspan="3" class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="treasureAction()"
+                    translate>
+                    Validate
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center fw-bold">
+            <span role="button" (click)="setTreasureMode(1)">
+              <app-ic-icon [icon]="treasureChest"></app-ic-icon>&nbsp;<span
+                translate
+                >Last mouvements</span
+              >
+            </span>
+          </div>
+        </div>
+      }
+
+      @if (info.treasureMode === 1) {
+        <div class="modal-body container-fluid">
+          <table class="table" aria-describedby="treasureHistoryDesc">
+            <thead>
+              <tr>
+                <th scope="col" translate>Deposits</th>
+                <th scope="col" translate>Withdrawals</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (key of treasureHistory; track key) {
+                <tr>
+                  <td>
+                    @if (key.deposit.amount > 0) {
+                      <span>
+                        {{
+                          key.deposit.amount
+                            | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="drachma"
+                          class="small-resource"></app-ew-icon>
+                        {{ key.deposit.date * 1000 | date: 'd/M, HH:mm' }}
+                      </span>
+                    }
+                  </td>
+                  <td>
+                    @if (key.pull.amount > 0) {
+                      <span>
+                        {{
+                          key.pull.amount
+                            | number: '' : this.translate.currentLang
+                        }}
+                        <app-ew-icon
+                          name="drachma"
+                          class="small-resource"></app-ew-icon>
+                        {{ key.pull.date * 1000 | date: 'd/M, HH:mm' }}
+                      </span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <div class="text-center fw-bold">
+            <span role="button" (click)="setTreasureMode(0)">
+              <app-ic-icon [icon]="treasureChest"></app-ic-icon>&nbsp;<span
+                translate
+                >Return to the treasure</span
+              >
+            </span>
+          </div>
+        </div>
+      }
+
+      <div class="modal-footer">
+        <div translate>
+          The treasure will allow you to shelter your wealth, however this
+          service is not without constraints. To level 5 it will be limited from
+          level 6 you will not limit but you will pay a fee for you to retrieve
+          your drachmas.
+        </div>
+        <div translate>
+          The absolute calculation allows you to get exactly the amount you want
+          to remove. During a relative withdrawal you have to deduct taxes from
+          the amount you withdraw.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1429 @@
+<app-quests-info-popup></app-quests-info-popup>
+<app-quests-missions-info-popup></app-quests-missions-info-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row" id="quest-component">
+      <div class="col-12 mb-2">
+        @if (user.getPropertyNb('level') >= 10) {
+          <div class="card">
+            <div class="d-flex dail-quest-menu">
+              <a
+                href="/quests"
+                [routerLink]="['/quests']"
+                class="btn btn-primary flex-grow-1 design-background"
+                [ngClass]="{
+                  'text-warning': user.getPropertyNb('dquest_validated') > 0
+                }"
+                data-bs-toggle="modal"
+                data-bs-target="#MsgNew"
+                title="{{ 'Quests' | translate }}"
+                translate>
+                Quests
+              </a>
+              <a
+                href="/altars"
+                [routerLink]="['/altars']"
+                class="btn btn-danger flex-grow-1 design-background"
+                [ngClass]="{
+                  'text-warning': user.getPropertyNb('altar_available') > 0
+                }"
+                data-bs-toggle="modal"
+                data-bs-target="#MsgNew"
+                title="{{ 'Altars of the Gods' | translate }}"
+                translate>
+                Altars of the Gods
+              </a>
+            </div>
+          </div>
+        }
+        @if (user.getPropertyNb('level') < 10) {
+          <app-quests-missions></app-quests-missions>
+        }
+      </div>
+      @if (user.getPropertyNb('level') > 0) {
+        <div class="col-12">
+          <div class="card">
+            @if (user.getPropertyNb('level') === 10) {
+              <div>
+                <div class="card-body">
+                  <h2 class="text-center fw-bold fs-3 mb-4" translate>
+                    Altars of the Gods
+                  </h2>
+                  <p translate>
+                    The Altars of the Gods will grant you the ultimate powers of
+                    Ellas War. To obtain them you will have to realize a series
+                    of quests and pay a large amount of resources.
+                  </p>
+                </div>
+              </div>
+            }
+          </div>
+          <div class="row">
+            <!-- Gaia's defense -->
+            <div class="col-md-6 col-12 mt-2 d-flex">
+              <div class="card">
+                <div class="row g-0">
+                  <div class="col-md-4 col-12">
+                    <app-ew-icon name="gaia"></app-ew-icon>
+                  </div>
+                  <div class="col-md-8 col-12">
+                    <div class="card-header">
+                      <span translate>Gaia's defense</span>
+                      @if (user.getPropertyNb('gaia_defender') > 0) {
+                        <span>({{ user.getPropertyNb('gaia_defender') }})</span>
+                      }
+                    </div>
+                    <div class="card-body">
+                      <p translate>
+                        Find how to honor Gaia and the forces of nature will
+                        defend your city.
+                      </p>
+                      @if (user.getPropertyNb('gaia_defender') < 5) {
+                        <div>
+                          <strong translate>Reward:</strong><br />
+                          <div translate>30 Additional Gaia Defenders</div>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('gaia_defender') >= 5) {
+                        <div class="text-danger text-center">
+                          {{
+                            'You have satisfied Gaia and got these { value } deffensers as a reward.'
+                              | translate
+                                : { value: user.getDatas().army.gaia.nbmax }
+                          }}
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                @if (user.getPropertyNb('gaia_defender') < 5) {
+                  <div class="card-body">
+                    <div
+                      class="text-center fw-bold fs-5"
+                      id="altarGaiaDesc"
+                      translate>
+                      Conditions
+                    </div>
+                    <table class="table" aria-labelledby="altarGaiaDesc">
+                      <tbody>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionGaia.iron.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="iron"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionGaia.iron.validated &&
+                              !user.hasRes(
+                                'iron',
+                                altarQuestConditionGaia.iron.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionGaia.iron.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionGaia.iron.validated &&
+                              user.hasRes(
+                                'iron',
+                                altarQuestConditionGaia.iron.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('gaia_defender', 'iron')"
+                                (keyup.enter)="
+                                  validateRes('gaia_defender', 'iron')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionGaia.grapes.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="grapes"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionGaia.grapes.validated &&
+                              !user.hasRes(
+                                'grapes',
+                                altarQuestConditionGaia.grapes.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionGaia.grapes.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionGaia.grapes.validated &&
+                              user.hasRes(
+                                'grapes',
+                                altarQuestConditionGaia.grapes.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('gaia_defender', 'grapes')"
+                                (keyup.enter)="
+                                  validateRes('gaia_defender', 'grapes')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionGaia.gold.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="gold"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionGaia.gold.validated &&
+                              !user.hasRes(
+                                'gold',
+                                altarQuestConditionGaia.gold.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionGaia.gold.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionGaia.gold.validated &&
+                              user.hasRes(
+                                'gold',
+                                altarQuestConditionGaia.gold.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('gaia_defender', 'gold')"
+                                (keyup.enter)="
+                                  validateRes('gaia_defender', 'gold')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } of XP'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionGaia.xp.quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (!altarQuestConditionGaia.xp.validated) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionGaia.xp.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have a defense of at least { value }'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionGaia.defense
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (!altarQuestConditionGaia.defense.validated) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionGaia.defense.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    @if (altarCondition('gaia_defender')) {
+                      <div class="text-center">
+                        <div
+                          class="btn btn-success"
+                          (click)="validate('gaia_defender')"
+                          (keyup.enter)="validate('gaia_defender')"
+                          tabindex="0"
+                          translate>
+                          Validate
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+            <!-- Hospitality of Hestia -->
+            <div class="col-md-6 col-12 mt-2 d-flex">
+              <div class="card">
+                <div class="row g-0">
+                  <div class="col-md-4 col-12">
+                    <app-ew-icon name="hestia"></app-ew-icon>
+                  </div>
+                  <div class="col-md-8 col-12">
+                    <div class="card-header">
+                      <span translate>Hospitality of Hestia</span>
+                      @if (user.getPropertyNb('hestia') > 0) {
+                        <span>({{ user.getPropertyNb('hestia') }})</span>
+                      }
+                    </div>
+                    <div class="card-body">
+                      <p translate>
+                        Satisfy hestia and more units can join your homes.
+                      </p>
+                      @if (user.getPropertyNb('hestia') < 5) {
+                        <div>
+                          <strong translate>Reward:</strong><br />
+                          <div translate>+20% more space in your homes</div>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('hestia') >= 5) {
+                        <div class="text-danger text-center">
+                          You have satisfied Hestia and got +100% space in your
+                          homes
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                @if (user.getPropertyNb('hestia') < 5) {
+                  <div class="card-body">
+                    <div
+                      class="text-center fw-bold fs-5"
+                      id="altarHestiaDesc"
+                      translate>
+                      Conditions
+                    </div>
+                    <table class="table" aria-labelledby="altarHestiaDesc">
+                      <tbody>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionHestia.water.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="water"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.water.validated &&
+                              !user.hasRes(
+                                'water',
+                                altarQuestConditionHestia.water.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionHestia.water.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionHestia.water.validated &&
+                              user.hasRes(
+                                'water',
+                                altarQuestConditionHestia.water.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('hestia', 'water')"
+                                (keyup.enter)="validateRes('hestia', 'water')"
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionHestia.food.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="food"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.food.validated &&
+                              !user.hasRes(
+                                'food',
+                                altarQuestConditionHestia.food.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionHestia.food.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionHestia.food.validated &&
+                              user.hasRes(
+                                'food',
+                                altarQuestConditionHestia.food.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('hestia', 'food')"
+                                (keyup.enter)="validateRes('hestia', 'food')"
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionHestia.grapes.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="grapes"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.grapes.validated &&
+                              !user.hasRes(
+                                'grapes',
+                                altarQuestConditionHestia.grapes.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionHestia.grapes.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionHestia.grapes.validated &&
+                              user.hasRes(
+                                'grapes',
+                                altarQuestConditionHestia.grapes.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('hestia', 'grapes')"
+                                (keyup.enter)="validateRes('hestia', 'grapes')"
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionHestia.wine.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="wine"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.wine.validated &&
+                              !user.hasRes(
+                                'wine',
+                                altarQuestConditionHestia.wine.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionHestia.wine.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionHestia.wine.validated &&
+                              user.hasRes(
+                                'wine',
+                                altarQuestConditionHestia.wine.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('hestia', 'wine')"
+                                (keyup.enter)="validateRes('hestia', 'wine')"
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } units hosted in normal spots'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionHestia.placenactu
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.placenactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionHestia.placenactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } units hosted in palaces'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionHestia.placenactu
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.placepactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionHestia.placepactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } units hosted in caves'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionHestia.placecactu
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.placecactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionHestia.placecactu.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } spots to host units'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionHestia.totalplace
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionHestia.totalplace.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionHestia.totalplace.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    @if (altarCondition('hestia')) {
+                      <div class="text-center">
+                        <div
+                          class="btn btn-success"
+                          (click)="validate('hestia')"
+                          (keyup.enter)="validate('hestia')"
+                          tabindex="0"
+                          translate>
+                          Validate
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+            <!-- Dream of Prometheus -->
+            <div class="col-md-6 col-12 mt-2 d-flex">
+              <div class="card">
+                <div class="row g-0">
+                  <div class="col-md-4 col-12">
+                    <app-ew-icon name="prometheus"></app-ew-icon>
+                  </div>
+                  <div class="col-md-8 col-12">
+                    <div class="card-header">
+                      <span translate>Dream of Prometheus</span>
+                      @if (user.getPropertyNb('prometheus') > 0) {
+                        <span>({{ user.getPropertyNb('prometheus') }})</span>
+                      }
+                    </div>
+                    <div class="card-body">
+                      <p translate>
+                        Exhume the dark fate of Prometheus and you can engage
+                        more mythological units.
+                      </p>
+                      @if (user.getPropertyNb('prometheus') < 5) {
+                        <div>
+                          <strong translate>Reward:</strong><br />
+                          <div translate>+20% more Mythological units</div>
+                        </div>
+                      }
+                      @if (user.getPropertyNb('prometheus') >= 5) {
+                        <div class="text-danger text-center">
+                          You have satisfied Prometheus and got +100% of
+                          Mythological units
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                @if (user.getPropertyNb('prometheus') < 5) {
+                  <div class="card-body">
+                    <div
+                      class="text-center fw-bold fs-5"
+                      id="altarPrometheusDesc"
+                      translate>
+                      Conditions
+                    </div>
+                    <table class="table" aria-labelledby="altarPrometheusDesc">
+                      <tbody>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionPrometheus.water.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="water"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionPrometheus.water.validated &&
+                              !user.hasRes(
+                                'water',
+                                altarQuestConditionPrometheus.water.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionPrometheus.water.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionPrometheus.water.validated &&
+                              user.hasRes(
+                                'water',
+                                altarQuestConditionPrometheus.water.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('prometheus', 'water')"
+                                (keyup.enter)="
+                                  validateRes('prometheus', 'water')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionPrometheus.wine.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="wine"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionPrometheus.wine.validated &&
+                              !user.hasRes(
+                                'wine',
+                                altarQuestConditionPrometheus.wine.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionPrometheus.wine.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionPrometheus.wine.validated &&
+                              user.hasRes(
+                                'wine',
+                                altarQuestConditionPrometheus.wine.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('prometheus', 'wine')"
+                                (keyup.enter)="
+                                  validateRes('prometheus', 'wine')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionPrometheus.gold.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="gold"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionPrometheus.gold.validated &&
+                              !user.hasRes(
+                                'gold',
+                                altarQuestConditionPrometheus.gold.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionPrometheus.gold.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionPrometheus.gold.validated &&
+                              user.hasRes(
+                                'gold',
+                                altarQuestConditionPrometheus.gold.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('prometheus', 'gold')"
+                                (keyup.enter)="
+                                  validateRes('prometheus', 'gold')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{ 'Have an alliance' | translate }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionPrometheus.alliance.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionPrometheus.alliance.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Make { value } victories'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionPrometheus.victory
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionPrometheus.victory.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionPrometheus.victory.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        @if (altarQuestConditionPrometheus.hf.quantity > 0) {
+                          <tr>
+                            <th class="fw-normal" scope="row">
+                              {{
+                                'Have at least { value } success'
+                                  | translate
+                                    : {
+                                        value:
+                                          (altarQuestConditionPrometheus.hf
+                                            .quantity
+                                          | number
+                                            : ''
+                                            : this.translate.currentLang)
+                                      }
+                              }}
+                            </th>
+                            <td class="text-center">
+                              @if (
+                                !altarQuestConditionPrometheus.hf.validated
+                              ) {
+                                <app-ic-icon
+                                  class="text-danger"
+                                  [icon]="times"></app-ic-icon>
+                              }
+                              @if (altarQuestConditionPrometheus.hf.validated) {
+                                <app-ic-icon
+                                  class="text-success"
+                                  [icon]="checkIcon"></app-ic-icon>
+                              }
+                            </td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                    @if (altarCondition('prometheus')) {
+                      <div class="text-center">
+                        <div
+                          class="btn btn-success"
+                          (click)="validate('prometheus')"
+                          (keyup.enter)="validate('prometheus')"
+                          tabindex="0"
+                          translate>
+                          Validate
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+            <!-- Divine units -->
+            <div class="col-md-6 col-12 mt-2 d-flex">
+              <div class="card">
+                <div class="row g-0">
+                  <div class="col-md-4 col-12">
+                    <app-ew-icon name="divine_units"></app-ew-icon>
+                  </div>
+                  <div class="col-md-8 col-12">
+                    <div class="card-header">
+                      <span translate>Divine units</span>
+                      @if (user.getPropertyNb('divine_units') > 0) {
+                        <span>({{ user.getPropertyNb('divine_units') }})</span>
+                      }
+                    </div>
+                    <div class="card-body">
+                      <p translate>
+                        Discover the secrets of divine units and they will serve
+                        you.
+                      </p>
+                      @if (user.getPropertyNb('divine_units') < 5) {
+                        <div>
+                          <strong translate>Reward:</strong><br />
+                          <span
+                            [ngClass]="{
+                              'text-danger':
+                                user.getPropertyNb('divine_units') <= 0,
+                              'fw-bold':
+                                user.getPropertyNb('divine_units') === 0
+                            }"
+                            translate
+                            >Harpies</span
+                          >
+                          <br />
+                          <span
+                            [ngClass]="{
+                              'text-danger':
+                                user.getPropertyNb('divine_units') <= 1,
+                              'fw-bold':
+                                user.getPropertyNb('divine_units') === 1
+                            }"
+                            translate
+                            >Griffins</span
+                          >
+                          <br />
+                          <span
+                            [ngClass]="{
+                              'text-danger':
+                                user.getPropertyNb('divine_units') <= 2,
+                              'fw-bold':
+                                user.getPropertyNb('divine_units') === 2
+                            }"
+                            translate
+                            >Hecatoncheires</span
+                          >
+                          <br />
+                          <span
+                            [ngClass]="{
+                              'text-danger':
+                                user.getPropertyNb('divine_units') <= 3,
+                              'fw-bold':
+                                user.getPropertyNb('divine_units') === 3
+                            }"
+                            translate
+                            >Manticores</span
+                          >
+                          <br />
+                          <span
+                            [ngClass]="{
+                              'text-danger':
+                                user.getPropertyNb('divine_units') <= 4,
+                              'fw-bold':
+                                user.getPropertyNb('divine_units') === 4
+                            }"
+                            translate
+                            >Lampads</span
+                          >
+                        </div>
+                      }
+                      @if (user.getPropertyNb('divine_units') >= 5) {
+                        <div class="text-danger text-center">
+                          You have satisfied the Divine units and got 5 new
+                          units to serve you
+                        </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+                @if (user.getPropertyNb('divine_units') < 5) {
+                  <div class="card-body">
+                    <div
+                      class="text-center fw-bold fs-5"
+                      id="altarDivineunitsDesc"
+                      translate>
+                      Conditions
+                    </div>
+                    <table class="table" aria-labelledby="altarDivineunitsDesc">
+                      <tbody>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionDivineunits.food.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="food"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.food.validated &&
+                              !user.hasRes(
+                                'food',
+                                altarQuestConditionDivineunits.food.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.food.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionDivineunits.food.validated &&
+                              user.hasRes(
+                                'food',
+                                altarQuestConditionDivineunits.food.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('divine_units', 'food')"
+                                (keyup.enter)="
+                                  validateRes('divine_units', 'food')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionDivineunits.grapes.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="grapes"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.grapes
+                                .validated &&
+                              !user.hasRes(
+                                'grapes',
+                                altarQuestConditionDivineunits.grapes.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.grapes.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionDivineunits.grapes
+                                .validated &&
+                              user.hasRes(
+                                'grapes',
+                                altarQuestConditionDivineunits.grapes.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('divine_units', 'grapes')"
+                                (keyup.enter)="
+                                  validateRes('divine_units', 'grapes')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionDivineunits.marble.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="marble"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.marble
+                                .validated &&
+                              !user.hasRes(
+                                'marble',
+                                altarQuestConditionDivineunits.marble.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.marble.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionDivineunits.marble
+                                .validated &&
+                              user.hasRes(
+                                'marble',
+                                altarQuestConditionDivineunits.marble.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('divine_units', 'marble')"
+                                (keyup.enter)="
+                                  validateRes('divine_units', 'marble')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            <span translate>Sacrify</span>
+                            {{
+                              altarQuestConditionDivineunits.gold.quantity
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <app-ew-icon
+                              name="gold"
+                              class="small-resource"></app-ew-icon>
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.gold.validated &&
+                              !user.hasRes(
+                                'gold',
+                                altarQuestConditionDivineunits.gold.quantity
+                              )
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.gold.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                            @if (
+                              !altarQuestConditionDivineunits.gold.validated &&
+                              user.hasRes(
+                                'gold',
+                                altarQuestConditionDivineunits.gold.quantity
+                              )
+                            ) {
+                              <span
+                                class="btn btn-success"
+                                role="button"
+                                (click)="validateRes('divine_units', 'gold')"
+                                (keyup.enter)="
+                                  validateRes('divine_units', 'gold')
+                                "
+                                tabindex="0"
+                                translate
+                                >Validate</span
+                              >
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Own { value } mints'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionDivineunits.mint
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.mint.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.mint.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Have at least { value } of production field'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionDivineunits.prod
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.prod.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (
+                              altarQuestConditionDivineunits.prod.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="fw-normal" scope="row">
+                            {{
+                              'Be in an alliance without any ongoing war or with only one war scheduled'
+                                | translate
+                                  : {
+                                      value:
+                                        (altarQuestConditionDivineunits.war
+                                          .quantity
+                                        | number
+                                          : ''
+                                          : this.translate.currentLang)
+                                    }
+                            }}
+                          </th>
+                          <td class="text-center">
+                            @if (
+                              !altarQuestConditionDivineunits.war.validated
+                            ) {
+                              <app-ic-icon
+                                class="text-danger"
+                                [icon]="times"></app-ic-icon>
+                            }
+                            @if (altarQuestConditionDivineunits.war.validated) {
+                              <app-ic-icon
+                                class="text-success"
+                                [icon]="checkIcon"></app-ic-icon>
+                            }
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    @if (altarCondition('divine_units')) {
+                      <div class="text-center">
+                        <div
+                          class="btn btn-success"
+                          (click)="validate('divine_units')"
+                          (keyup.enter)="validate('divine_units')"
+                          tabindex="0"
+                          translate>
+                          Validate
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

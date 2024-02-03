@@ -1,0 +1,43 @@
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="pages404Desc" translate>404 pages</h1>
+
+            @if (pageList.length > 0) {
+              <table class="table" aria-labelledby="pages404Desc">
+                <thead>
+                  <tr>
+                    <th scope="column" translate>Page</th>
+                    <th scope="column" translate>Occurences</th>
+                  </tr>
+                </thead>
+                @for (page of pageList; track page) {
+                  <tr>
+                    <td class="text-break">{{ page.url }}</td>
+                    <td class="text-end">
+                      {{ page.nb | number: '' : this.translate.currentLang }}
+                    </td>
+                  </tr>
+                }
+              </table>
+            }
+
+            @if (pageList.length === 0) {
+              <div class="text-center fw-bold">
+                <br />
+                <div translate>No 404 page saved</div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

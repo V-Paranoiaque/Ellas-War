@@ -1,0 +1,26 @@
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-2">
+        <div class="card col-12">
+          <div class="card-body">
+            <h2 class="text-center">
+              <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
+            </h2>
+            @for (msg of getCurrentMsg().msg; track msg) {
+              <div class="text-center">
+                <app-messages-content
+                  [msg]="msg"
+                  [full]="getCurrentMsg()"></app-messages-content>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

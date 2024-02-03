@@ -1,0 +1,233 @@
+<div class="modal fade" id="SupportNewTopic" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Send a message to the staff</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          id="SupportNewTopicClose"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          Our staff are volunteers however we will try to answer you as soon as
+          possible.
+        </div>
+        <br />
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="contactNewTitle"
+          placeholder="{{ 'Title' | translate }}" />
+        <textarea
+          class="form-control"
+          placeholder="{{ 'Message' | translate }}"
+          [(ngModel)]="contactNewMsg"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button class="btn btn-success" (click)="contactNewSend()" translate>
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-main-left></app-main-left>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          @if (msg === 0) {
+            <div class="card-body text-center">
+              @if (contactNb === 0) {
+                <div>
+                  <div translate>
+                    You do not have message on the support page
+                  </div>
+                  <br />
+                </div>
+              }
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                id="contactDesc"
+                data-bs-target="#SupportNewTopic"
+                role="button"
+                translate>
+                Send a message to the staff
+              </button>
+              <a
+                href="{{ environment.discord }}"
+                target="_blank"
+                class="ms-2"
+                rel="external nofollow noopener">
+                <app-ic-icon [icon]="discordIcon" class="fs-1"></app-ic-icon>
+              </a>
+              <br />
+              <br />
+              @if (contactNb > 0) {
+                <table
+                  class="table table-middle table-striped align-middle"
+                  aria-labelledby="contactDesc">
+                  <thead>
+                    <tr>
+                      <th scope="column" translate>Subject</th>
+                      <th scope="column" translate>Last message</th>
+                      <th scope="column"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (info of contactList; track info) {
+                      <tr>
+                        <th scope="row" class="text-start">
+                          <a
+                            [routerLink]="[
+                              '/support/' + contactC + '/' + info.support_id
+                            ]">
+                            {{ info.support_topic }}
+                          </a>
+                        </th>
+                        <td>
+                          {{ info.last_username }},
+                          {{
+                            info.support_lastdate * 1000 | date: 'dd/MM, HH:mm'
+                          }}
+                        </td>
+                        <td>
+                          <a
+                            class="btn btn-primary"
+                            [routerLink]="[
+                              '/support/' + contactC + '/' + info.support_id
+                            ]">
+                            <app-ic-icon [icon]="eye"></app-ic-icon>
+                            <span class="visually-hidden" translate
+                              >Read and reply to the message:</span
+                            >
+                            <span class="visually-hidden">{{
+                              info.support_id
+                            }}</span>
+                          </a>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              }
+              @if (contactNb > 1) {
+                <div>
+                  <br />
+                  <div class="input-group">
+                    <span
+                      class="input-group-text"
+                      role="button"
+                      tabindex="0"
+                      (click)="supportPageChange(1)"
+                      (keyup.enter)="supportPageChange(1)"
+                      >&lt;&lt;</span
+                    >
+                    <span
+                      class="input-group-text"
+                      role="button"
+                      tabindex="0"
+                      (click)="supportPageChange(contactC - 1)"
+                      (keyup.enter)="supportPageChange(contactC - 1)"
+                      >&lt;</span
+                    >
+                    <select
+                      class="form-select"
+                      [ngModel]="contactC"
+                      (change)="supportPageChange(parseInt(mySelect.value))"
+                      title="{{ 'Change page' | translate }}"
+                      #mySelect>
+                      @for (id of Tools.range(1, contactNb); track id) {
+                        <option value="{{ id }}" translate>
+                          Page {{ id }}
+                        </option>
+                      }
+                    </select>
+                    <span
+                      class="input-group-text"
+                      role="button"
+                      tabindex="0"
+                      (click)="supportPageChange(contactC + 1)"
+                      (keyup.enter)="supportPageChange(contactC + 1)"
+                      >&gt;</span
+                    >
+                    <span
+                      class="input-group-text"
+                      role="button"
+                      tabindex="0"
+                      (click)="supportPageChange(contactNb)"
+                      (keyup.enter)="supportPageChange(contactNb)"
+                      >&gt;&gt;</span
+                    >
+                  </div>
+                </div>
+              }
+            </div>
+          }
+          @if (msg > 0) {
+            <div class="card-body">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a [routerLink]="['/support/' + contactC]">Support</a>
+                  </li>
+                  <li class="breadcrumb-item active">
+                    {{ contactInfo.title }}
+                  </li>
+                </ol>
+              </nav>
+              <h2 class="text-center">{{ contactInfo.title }}</h2>
+              <div class="input-group">
+                <textarea
+                  class="form-control custom-control"
+                  rows="5"
+                  style="resize: none"
+                  [(ngModel)]="answerMsg"
+                  placeholder="{{
+                    'Enter your message' | translate
+                  }}"></textarea>
+                <span
+                  class="input-group-addon btn btn-primary"
+                  tabindex="0"
+                  (click)="contactAnswer()"
+                  (keyup.enter)="contactAnswer()"
+                  translate
+                  >Send</span
+                >
+              </div>
+              @for (msg of contactInfo.msg; track msg) {
+                <div>
+                  {{ msg.support_msg }}
+                  <br />
+                  <div class="text-end fw-bold">
+                    <span>{{
+                      'By { value }' | translate: { value: msg.username }
+                    }}</span
+                    >,
+                    {{ msg.support_date * 1000 | date: 'd/M, HH:mm' }}
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

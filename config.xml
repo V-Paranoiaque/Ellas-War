@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="com.ellaswar.ewnextmobile" id="ellaswar" version="1.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-packageName="com.ellaswar.ewnextmobile" id="ellaswar" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>EllasWar</name>
     <description>
         Desktop/Mobile application for the online game ellaswar.com.
@@ -60,7 +60,10 @@
         <preference name="AllowNewWindows" value="true" />
         <preference name="AllowsAirPlayForMediaPlayback" value="true" />
         <preference name="AutoHideSplashScreen" value="true" />
-        <preference name="deployment-target" value="12.0" />
+        <preference name="deployment-target" value="13.0" />
+        <preference name="StatusBarBackgroundColor" value="#000000" />
+        <preference name="StatusBarStyle" value="blackopaque" />
+        <preference name="StatusBarOverlaysWebView" value="false" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <preference name="AndroidWindowSplashScreenAnimatedIcon" src="res/ios/Default@2x~universal~anyany.png" />
@@ -88,9 +91,6 @@
         <icon height="100" src="res/ios/icon-50@2x.png" width="100" />
         <icon height="167" src="res/ios/icon-83.5@2x.png" width="167" />
     </platform>
-    <plugin name="cordova-plugin-facebook-connect" spec="~2.3.0">
-        <variable name="FACEBOOK_IOS_SDK_VERSION" value="9.3.0" />
-    </plugin>
     <variable name="APP_ID" value="173897253017254" />
     <variable name="APP_NAME" value="EllasWar" />
     <preference name="AndroidInsecureFileModeEnabled" value="false" />

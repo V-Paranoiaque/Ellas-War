@@ -1,0 +1,304 @@
+<span>
+  @switch (msg.msg_type) {
+    @case (1) {
+      <span>
+        <span>
+          @switch (msg.title.winer) {
+            @case (1) {
+              <span>{{
+                'Victory against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (2) {
+              <span>{{
+                'Defeat against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (3) {
+              <span>{{
+                'Your city was sacked by { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (4) {
+              <span>{{
+                'Your city has resisted against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @default {
+              <span>{{ msg.title.winer }}</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (2) {
+      <span translate>You win the lotto!</span>
+    }
+    @case (3) {
+      <span>
+        <span>
+          @switch (msg.title.winer) {
+            @case (1) {
+              <span>{{
+                'Fury against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (2) {
+              <span>{{
+                'Fury from { value }' | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (4) {
+      <span>{{
+        'Attempted espionage from { value }'
+          | translate: { value: msg.title.username }
+      }}</span>
+    }
+    @case (5) {
+      <span>{{
+        'Espionage from { value }' | translate: { value: msg.title.username }
+      }}</span>
+    }
+    @case (6) {
+      <span>{{
+        'Declaration of war to the alliance { value }'
+          | translate: { value: msg.title.defender_name }
+      }}</span>
+    }
+    @case (7) {
+      <span>{{
+        'Declaration of war from the alliance { value }'
+          | translate: { value: msg.title.attacking_name }
+      }}</span>
+    }
+    @case (8) {
+      <span>
+        <span>
+          @switch (msg.title.winer) {
+            @case (1) {
+              <span>{{
+                'Lightning against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (2) {
+              <span>{{
+                'Lightning from { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (9) {
+      <span translate>Welcome on Ellas War</span>
+    }
+    @case (10) {
+      <span>
+        <span>
+          @switch (msg.title.winer) {
+            @case (1) {
+              <span>{{
+                'Peste against { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+            @case (2) {
+              <span>{{
+                'Peste from { value }'
+                  | translate: { value: msg.title.opponent }
+              }}</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (11) {
+      <span translate>Lot sold at the agora</span>
+    }
+    @case (12) {
+      <span translate>Resources request accepted</span>
+    }
+    @case (13) {
+      <span translate>You have won the Honnor challenge!</span>
+    }
+    @case (14) {
+      <span translate>Spy Archives</span>
+    }
+    @case (15) {
+      <span translate>New message from the staff</span>
+    }
+    @case (16) {
+      <span>
+        <span>
+          @switch (msg.title.winer) {
+            @case (1) {
+              <span>{{
+                'Victory against { value }'
+                  | translate: { value: msg.title.sanctuaries_name | translate }
+              }}</span>
+            }
+            @case (2) {
+              <span>{{
+                'Defeat against { value }'
+                  | translate: { value: msg.title.sanctuaries_name | translate }
+              }}</span>
+            }
+            @case (3) {
+              <span>{{
+                'Defeat of { value } against { player }'
+                  | translate
+                    : {
+                        value: msg.title.sanctuaries_name | translate,
+                        player: msg.title.opponent
+                      }
+              }}</span>
+            }
+            @case (4) {
+              <span>{{
+                'Victory of { value } against { player }'
+                  | translate
+                    : {
+                        value: msg.title.sanctuaries_name | translate,
+                        player: msg.title.opponent
+                      }
+              }}</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (17) {
+      <span translate>Victory of your alliance</span>
+    }
+    @case (18) {
+      <span translate>Defeat of your alliance</span>
+    }
+    @case (19) {
+      <span>
+        <span>
+          @switch (msg.title.type) {
+            @case (1) {
+              <span translate>Drought on your city</span>
+            }
+            @case (2) {
+              <span translate>Flood on your city</span>
+            }
+            @case (3) {
+              <span translate>Volcanic eruption near your city</span>
+            }
+            @case (4) {
+              <span translate>Earthquake near your city</span>
+            }
+            @case (5) {
+              <span translate>Storm near your city</span>
+            }
+            @case (6) {
+              <span translate>Lightning falls on your city</span>
+            }
+            @case (7) {
+              <span translate>Invasion of insects on your city</span>
+            }
+            @case (8) {
+              <span translate>Hail on your city</span>
+            }
+            @case (9) {
+              <span translate>Snow storm on your city</span>
+            }
+          }
+        </span>
+      </span>
+    }
+    @case (20) {
+      <span>{{
+        'Attempted espionage of your sanctuary from { value }'
+          | translate: { value: msg.title.username }
+      }}</span>
+    }
+    @case (21) {
+      <span>{{
+        'Espionage of your sanctuary from { value }'
+          | translate: { value: msg.title.username }
+      }}</span>
+    }
+    @case (22) {
+      <span translate>Sanctuary Spy Archives</span>
+    }
+    @case (23) {
+      <span translate>You have won the diamond challenge</span>
+    }
+    @case (25) {
+      <span>
+        @if (msg.title.ask_id === msg.title.destroy) {
+          <span>{{
+            'Your alliance destroyed a pact with the alliance { value }'
+              | translate: { value: msg.title.dst_name }
+          }}</span>
+        }
+        @if (msg.title.dst_id === msg.title.destroy) {
+          <span>{{
+            'Your alliance destroyed a pact with the alliance { value }'
+              | translate: { value: msg.title.ask_name }
+          }}</span>
+        }
+      </span>
+    }
+    @case (26) {
+      <span>
+        @if (msg.title.dst_id === msg.title.destroy) {
+          <span>{{
+            'The pact with the alliance { value } has been destroyed'
+              | translate: { value: msg.title.dst_name }
+          }}</span>
+        }
+        @if (msg.title.ask_id === msg.title.destroy) {
+          <span>{{
+            'The pact with the alliance { value } has been destroyed'
+              | translate: { value: msg.title.ask_name }
+          }}</span>
+        }
+      </span>
+    }
+    @case (27) {
+      <span>{{
+        '{ value } has requested a pact to your alliance'
+          | translate: { value: msg.title.ask_name }
+      }}</span>
+    }
+    @case (28) {
+      <span>{{ 'Welcome back on Ellas War!' | translate }}</span>
+    }
+    @case (29) {
+      <span translate>A war got canceled</span>
+    }
+    @case (30) {
+      <span translate>Victory of your alliance</span>
+    }
+    @case (31) {
+      <span translate>Defeat of your alliance</span>
+    }
+    @default {
+      <span>
+        @if (msg.msg_type > 0) {
+          <span>{{
+            'Unsupported message type: { value }'
+              | translate: { value: msg.msg_type }
+          }}</span>
+        }
+        @if (msg.msg_type === 0) {
+          <span>{{ msg.title }}</span>
+        }
+      </span>
+    }
+  }
+</span>

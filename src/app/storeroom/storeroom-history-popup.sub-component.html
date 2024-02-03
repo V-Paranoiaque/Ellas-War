@@ -1,0 +1,62 @@
+<div class="modal fade" id="StoreroomHistory" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="storeroomHistoryDesc" translate>
+          Storeroom history
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="text-center" translate>Your history is empty</div>
+        @if (list.length > 0) {
+          <table
+            class="table align-middle table-middle"
+            aria-labelledby="storeroomHistoryDesc">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center" translate>Date</th>
+                <th scope="col" class="text-center" translate>Resources</th>
+                <th scope="col" class="text-center" translate>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (l of list; track l) {
+                <tr>
+                  <th scope="row">
+                    {{ l.day * 1000 | date: 'dd/MM/yyyy' }}
+                  </th>
+                  <td class="text-end">
+                    {{ l.quantity | number: '' : this.translate.currentLang }}
+                    <app-ew-icon
+                      name="{{ l.resource }}"
+                      class="small-resource"></app-ew-icon>
+                  </td>
+                  <td class="text-end">
+                    {{ l.price | number: '' : this.translate.currentLang }}
+                    <app-ew-icon
+                      name="drachma"
+                      class="small-resource"></app-ew-icon>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

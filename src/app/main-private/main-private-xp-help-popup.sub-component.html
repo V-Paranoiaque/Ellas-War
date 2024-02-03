@@ -1,0 +1,83 @@
+<div class="modal fade" id="xpHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>XP</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          Your XP will increase when you win an attack and decrease when you
+          loose. Both, done and received attacks count.
+        </div>
+      </div>
+      <div class="modal-body">
+        <h3 class="text-center" id="historyDescription" translate>
+          XP calculation
+        </h3>
+        <div class="row">
+          <div class="col-6">
+            <strong translate>Attacker</strong>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="info.player1" />
+          </div>
+          <div class="col-6">
+            <strong translate>Defender</strong>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="info.player2" />
+          </div>
+          @if (info.player1 >= 0 && info.player2 >= 0) {
+            <div class="col-12 mt-2">
+              <table class="table" aria-describedby="xpDescription">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" translate>Attacker</th>
+                    <th scope="col" translate>Defender</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" translate>Victory</th>
+                    <td class="text-center">
+                      +{{ eloDiff(info.player1, info.player2, 1) }}
+                    </td>
+                    <td class="text-center">
+                      {{ eloDiff(info.player1, info.player2, 0) }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" translate>Defeat</th>
+                    <td class="text-center">
+                      {{ eloDiff(info.player2, info.player1, 0) }}
+                    </td>
+                    <td class="text-center">
+                      +{{ eloDiff(info.player2, info.player1, 1) }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

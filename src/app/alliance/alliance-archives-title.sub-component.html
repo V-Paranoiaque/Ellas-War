@@ -1,0 +1,159 @@
+<span>
+  @switch (type) {
+    @case (1) {
+      <span translate>Victory of your alliance</span>
+    }
+    @case (2) {
+      <span translate>Defeat of your alliance</span>
+    }
+    @case (3) {
+      <span>{{
+        'Request of pact to the alliance { value }'
+          | translate: { value: title.dst_name }
+      }}</span>
+    }
+    @case (4) {
+      <span>{{
+        'Request of pact from the alliance { value }'
+          | translate: { value: title.ask_name }
+      }}</span>
+    }
+    @case (5) {
+      <span>{{
+        'Declaration of war to the alliance { value }'
+          | translate: { value: title.defender_name }
+      }}</span>
+    }
+    @case (6) {
+      <span>{{
+        'Declaration of war from the alliance { value }'
+          | translate: { value: title.attacking_name }
+      }}</span>
+    }
+    @case (7) {
+      <span>
+        @if (
+          user.getPropertyNb('alliance') === title.refuse &&
+          title.ask_id !== title.refuse
+        ) {
+          <span>
+            {{
+              'Your alliance has refused a pact with the alliance { value }'
+                | translate: { value: title.ask_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') === title.refuse &&
+          title.ask_id === title.refuse
+        ) {
+          <span>
+            {{
+              'Your alliance canceled a pact request with the alliance { value }'
+                | translate: { value: title.ask_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') !== title.refuse &&
+          title.ask_id === title.refuse
+        ) {
+          <span>
+            {{
+              'The alliance { value } has refused a pact with your alliance'
+                | translate: { value: title.dst_name }
+            }}
+          </span>
+        }
+        @if (
+          user.getPropertyNb('alliance') !== title.refuse &&
+          title.ask_id !== title.refuse
+        ) {
+          <span>
+            {{
+              'The alliance { value } has canceled a pact with your alliance'
+                | translate: { value: title.dst_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (8) {
+      <span>
+        @if (user.getPropertyNb('alliance') === title.refuse) {
+          <span>
+            {{
+              'Your alliance accepted a pact request from the alliance { value }'
+                | translate: { value: title.ask_name }
+            }}
+          </span>
+        }
+        @if (user.getPropertyNb('alliance') !== title.refuse) {
+          <span>
+            {{
+              'The alliance { value } has accepted a pact with your alliance'
+                | translate: { value: title.dst_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (9) {
+      <span>
+        @if (user.getPropertyNb('alliance') === title.destroy) {
+          <span>
+            {{
+              'Your alliance destroyed a pact with the alliance { value }'
+                | translate: { value: title.ask_name }
+            }}
+          </span>
+        }
+        @if (user.getPropertyNb('alliance') !== title.destroy) {
+          <span>
+            {{
+              'The alliance { value } has destroyed the pact with your alliance.'
+                | translate: { value: title.ask_name }
+            }}
+          </span>
+        }
+      </span>
+    }
+    @case (10) {
+      <span>{{
+        'New member:  { value }' | translate: { value: title.member }
+      }}</span>
+    }
+    @case (11) {
+      <span>{{
+        'Refused member:  { value }' | translate: { value: title.member }
+      }}</span>
+    }
+    @case (12) {
+      <span>{{
+        'Ejected member:  { value }' | translate: { value: title.member }
+      }}</span>
+    }
+    @case (13) {
+      <span>{{
+        '{ value } has left' | translate: { value: title.member }
+      }}</span>
+    }
+    @case (14) {
+      <span>{{
+        'New chief: { value }' | translate: { value: title.chief_new }
+      }}</span>
+    }
+    @case (15) {
+      <span translate>A war got canceled</span>
+    }
+    @case (16) {
+      <span translate>Victory of your alliance</span>
+    }
+    @case (17) {
+      <span translate>Defeat of your alliance</span>
+    }
+    @default {
+      <span>{{ title }}</span>
+    }
+  }
+</span>

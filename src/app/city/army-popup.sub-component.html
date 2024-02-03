@@ -1,0 +1,773 @@
+<div class="modal fade" id="ArmyInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ Tools.getName(info.code) | translate }}
+
+          @if (info.attack > 0 || info.defense > 0) {
+            <span>
+              @if (info.type % 2 === 1) {
+                <app-ic-icon
+                  title="{{ 'Infantryman' | translate }}"
+                  [icon]="footPrint"></app-ic-icon>
+              }
+              @if (info.type % 2 === 0) {
+                <app-ic-icon
+                  title="{{ 'Cavalry unit' | translate }}"
+                  [icon]="horseIcon"></app-ic-icon>
+              }
+              @if (info.type >= 5) {
+                <app-ic-icon
+                  title="{{ 'Mythological creature' | translate }}"
+                  [icon]="minotaurIcon"></app-ic-icon>
+              }
+              @if (info.type <= 4) {
+                <app-ic-icon
+                  title="{{ 'Human unit' | translate }}"
+                  [icon]="manSharp"></app-ic-icon>
+              }
+              @if (
+                info.type === 1 ||
+                info.type === 2 ||
+                info.type === 5 ||
+                info.type === 6
+              ) {
+                <app-ic-icon
+                  title="{{ 'Melee unit' | translate }}"
+                  [icon]="sword"></app-ic-icon>
+              }
+              @if (
+                info.type === 3 ||
+                info.type === 4 ||
+                info.type === 7 ||
+                info.type === 8
+              ) {
+                <app-ic-icon
+                  title="{{ 'Remote unit' | translate }}"
+                  [icon]="bowAndArrow"></app-ic-icon>
+              }
+              <span
+                data-bs-toggle="modal"
+                data-bs-target="#ArmyHelp"
+                data-bs-dismiss="modal"
+                title="{{ 'Army information' | translate }}"
+                role="button"
+                translate>
+                <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+              </span>
+            </span>
+          }
+        </h5>
+        <div class="btn-star text-warning">
+          @if (!Object.hasOwn(unitFavoriteList, info.code)) {
+            <app-ic-icon
+              title="{{ 'Add as favorite' | translate }}"
+              [icon]="roundStarBorder"
+              (click)="favoriteAdd()"
+              role="button"></app-ic-icon>
+          }
+          @if (Object.hasOwn(unitFavoriteList, info.code)) {
+            <app-ic-icon
+              title="{{ 'Remove from favorites' | translate }}"
+              [icon]="roundStar"
+              (click)="favoriteDelete()"
+              role="button"></app-ic-icon>
+          }
+        </div>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div class="row">
+          <div class="col-6 offset-3 mb-3">
+            <app-ew-icon
+              name="{{ info.code }}"
+              title="{{ Tools.getName(info.code) | translate }}"></app-ew-icon>
+          </div>
+
+          <div class="col-12 text-center fw-bold text-danger">
+            @if (info.rEngageNb === 1) {
+              <div translate>Unit engaged</div>
+            }
+            @if (info.rEngageNb > 1) {
+              <div translate>Units engaged</div>
+            }
+            @if (info.rLiberateNb === 1) {
+              <div translate>Unit liberated</div>
+            }
+            @if (info.rLiberateNb > 1) {
+              <div translate>Units liberated</div>
+            }
+            @if (parseInt(info.engageNb) > info.rEngagePossible) {
+              <div translate>You can't engage as much of this unit</div>
+            }
+            @if (
+              info.temple &&
+              info.temple.artemis &&
+              user.getPropertyNb('artemis') === 0
+            ) {
+              <div translate>
+                You must have the temple of Artemis to engage this unit.
+              </div>
+            }
+            @if (
+              info.temple &&
+              info.temple.hephaestus &&
+              user.getPropertyNb('hephaestus') === 0
+            ) {
+              <div translate>
+                You must have the temple of Hephaestus to engage this unit.
+              </div>
+            }
+            @if (
+              info.temple &&
+              info.temple.dionysus &&
+              user.getPropertyNb('dionysus') === 0
+            ) {
+              <div translate>
+                You must have the temple of Dionysus to engage this unit.
+              </div>
+            }
+
+            @if (
+              info.temple &&
+              info.temple.ares &&
+              user.getPropertyNb('ares') === 0 &&
+              user.getPropertyNb('level') > 0
+            ) {
+              <div translate>
+                You must have the temple of Ares to engage this unit.
+              </div>
+            }
+
+            @if (
+              info.temple &&
+              info.temple.zeus &&
+              user.getPropertyNb('zeus') === 0
+            ) {
+              <div translate>
+                You must have the temple of Zeus to engage this unit.
+              </div>
+            }
+
+            @if (
+              info.temple &&
+              info.temple.hades &&
+              user.getPropertyNb('hades') === 0
+            ) {
+              <div translate>
+                You must have the temple of Hades to engage this unit.
+              </div>
+            }
+
+            @if (
+              info.power &&
+              info.power === 'gaia_defender' &&
+              user.getPropertyNb('gaia_defender') === 0
+            ) {
+              <div translate>
+                You must have the power of Gaia's defense to engage this unit.
+              </div>
+            }
+
+            @if (
+              info.power &&
+              info.power === 'divine_units' &&
+              user.getPropertyNb('divine_units') < info.power_level
+            ) {
+              <div translate>
+                {{
+                  'You must have the power of the Divine units level { value } to engage this unit.'
+                    | translate: { value: info.power_level }
+                }}
+              </div>
+            }
+
+            @if (info.error === 1) {
+              <div translate>
+                You need to enter the number of units you would like to engage
+                or liberate
+              </div>
+            }
+            @if (
+              info.camp_level &&
+              info.camp_level > user.getPropertyNb('camp_level')
+            ) {
+              <div translate>
+                You need to update your barracks to engage this unity
+              </div>
+            }
+            @if (
+              info.building &&
+              info.building.militarycamp &&
+              info.building.militarycamp > user.getPropertyNb('militarycamp')
+            ) {
+              <div translate>
+                You need to have a barrack to engage this unity
+              </div>
+            }
+
+            @if (user.getPropertyNb('lord_lightning') > 0) {
+              <div class="text-danger text-center">
+                <span translate>
+                  Heavy black clouds invaded your city, you can no longer engage
+                  units
+                </span>
+                <br />
+                <span translate>End:</span>
+                {{
+                  user.getPropertyNb('lord_lightning') * 1000
+                    | date: 'dd/MM, HH:mm'
+                }}
+              </div>
+            }
+
+            @if (missingResource().length > 0) {
+              <div>
+                <span translate>Missing resources:</span>&nbsp;
+                @for (res of missingResource(); track res) {
+                  <span>
+                    <app-ew-icon
+                      name="{{ res }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+            @if (missingConsumption().length > 0) {
+              <div>
+                <span translate>Missing resources for consumption:</span>&nbsp;
+                @for (res of missingConsumption(); track res) {
+                  <span>
+                    <app-ew-icon
+                      name="{{ res }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+
+            @if (!hasHosting()) {
+              <span class="bold red">
+                @if (info.placen > 0 && user.getPropertyNb('level') >= 4) {
+                  <div translate>You don't have enough empty huttes</div>
+                }
+                @if (info.placen > 0 && user.getPropertyNb('level') < 4) {
+                  <div translate>You don't have enough empty habitations</div>
+                }
+                @if (info.placep > 0) {
+                  <div translate>You don't have enough empty palaces</div>
+                }
+                @if (info.placec > 0) {
+                  <div translate>You don't have enough empty cursed caves</div>
+                }
+              </span>
+            }
+
+            @if (
+              info.condition &&
+              info.condition.ranking &&
+              user.getPropertyNb('ranking') > info.condition.ranking
+            ) {
+              <span translate>
+                Only the first XP ranking can engage this unit
+              </span>
+            }
+          </div>
+
+          <div class="col-6">
+            @if (info.attack > 0 || info.defense > 0) {
+              <div>
+                <strong translate>Strength</strong>
+                <strong translate>:</strong>
+                <span>
+                  {{ info.attack | number: '' : this.translate.currentLang }}
+                  <app-ic-icon
+                    [icon]="swordIcon"
+                    title="{{ 'Attack' | translate }}"></app-ic-icon>
+                </span>
+                <span>
+                  {{ info.defense | number: '' : this.translate.currentLang }}
+                  <app-ic-icon
+                    [icon]="shieldShaded"
+                    title="{{ 'Defense' | translate }}"></app-ic-icon>
+                </span>
+              </div>
+            }
+            @if (info.cost) {
+              <div>
+                <strong translate>Commitment</strong>
+                <strong translate>:</strong>
+                <br />
+                @for (resource of info.cost | keyvalue; track resource) {
+                  <span>
+                    {{
+                      Number(resource.value) * realEngageNb()
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <app-ew-icon
+                      name="{{ resource.key }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+
+            @if (info.cost) {
+              <div>
+                <strong translate>Liberation</strong>
+                <strong translate>:</strong>
+                <br />
+                @for (resource of info.resaler | keyvalue; track resource) {
+                  <span>
+                    {{
+                      Number(resource.value) * realLiberateNb()
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <app-ew-icon
+                      name="{{ resource.key }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+
+            @if (info.consumption && hasConsumption()) {
+              <div>
+                <strong translate>Consumption</strong>
+                <strong translate>:</strong>
+                <br />
+                @for (resource of info.consumption | keyvalue; track resource) {
+                  <span>
+                    {{
+                      Number(resource.value) * realEngageNb()
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <app-ew-icon
+                      name="{{ resource.key }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+          </div>
+
+          <div class="col-6">
+            <div>
+              <strong translate>Currently</strong>
+              <strong translate>:</strong>
+              <span role="button" (click)="setLiberate()">
+                {{
+                  user.getPropertyNb(info.code)
+                    | number: '' : this.translate.currentLang
+                }}
+              </span>
+              @if (info.nbmax) {
+                <span role="button" (click)="setEngage(info.nbmax)">
+                  / {{ info.nbmax | number: '' : this.translate.currentLang }}
+                </span>
+              }
+            </div>
+
+            @if (info.free > 0) {
+              <div>
+                <strong translate>Free units</strong>
+                <strong translate>:</strong>
+                {{ info.free | number: '' : this.translate.currentLang }}
+              </div>
+            }
+
+            @if (info.rEngagePossible > 0) {
+              <div role="button" (click)="setEngage(info.rEngagePossible)">
+                <strong
+                  >{{ 'Max possible' | translate }}{{ ':' | translate }}</strong
+                >
+                {{
+                  info.rEngagePossible | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+
+            @if (
+              info.placen > 0 &&
+              user.getPropertyNb('level') >= 4 &&
+              user.getPropertyNb('placen') > 0
+            ) {
+              <div>
+                <strong translate>Habitations</strong>
+                <strong translate>:</strong>
+                {{
+                  user.getPropertyNb('placenactu')
+                    | number: '' : this.translate.currentLang
+                }}/{{
+                  user.getPropertyNb('placen')
+                    | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+            @if (
+              info.placen > 0 &&
+              user.getPropertyNb('level') < 4 &&
+              user.getPropertyNb('placen') > 0
+            ) {
+              <div>
+                <strong translate>Huttes</strong>
+                <strong translate>:</strong>
+                {{
+                  user.getPropertyNb('placenactu')
+                    | number: '' : this.translate.currentLang
+                }}/{{
+                  user.getPropertyNb('placen')
+                    | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+            @if (info.placep > 0 && user.getPropertyNb('placep') > 0) {
+              <div>
+                <strong translate>Palaces</strong>
+                <strong translate>:</strong>
+                {{
+                  user.getPropertyNb('placepactu')
+                    | number: '' : this.translate.currentLang
+                }}/{{
+                  user.getPropertyNb('placep')
+                    | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+            @if (info.placec > 0 && user.getPropertyNb('placec') > 0) {
+              <div>
+                <strong translate>Cursed caves</strong>
+                <strong translate>:</strong>
+                {{
+                  user.getPropertyNb('placecactu')
+                    | number: '' : this.translate.currentLang
+                }}/{{
+                  user.getPropertyNb('placec')
+                    | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+
+            <div class="d-flex">
+              <div class="d-flex flex-column">
+                @if (
+                  user.getPropertyNb('level') >= info.lvlmini &&
+                  user.getPropertyNb('lord_lightning') === 0
+                ) {
+                  <input
+                    type="number"
+                    placeholder="0"
+                    [attr.min]="0"
+                    step="1"
+                    [(ngModel)]="info.engageNb"
+                    class="form-control mt-2"
+                    (keydown.enter)="armyEngage()" />
+                }
+                @if (
+                  user.getPropertyNb('level') >= info.lvlmini ||
+                  user.getPropertyNb('quest') === 9 ||
+                  (user.getPropertyNb('level') > 0 &&
+                    user.getPropertyNb(info.code) > 0)
+                ) {
+                  <input
+                    type="number"
+                    placeholder="0"
+                    [attr.min]="0"
+                    step="1"
+                    [(ngModel)]="info.liberatenb"
+                    class="form-control mt-2"
+                    (keydown.enter)="armyLiberate()" />
+                }
+              </div>
+              <div class="d-flex flex-column">
+                @if (
+                  user.getPropertyNb('level') >= info.lvlmini &&
+                  user.getPropertyNb('lord_lightning') === 0
+                ) {
+                  <button
+                    class="btn btn-primary mt-2"
+                    (click)="armyEngage()"
+                    translate>
+                    Engage
+                  </button>
+                }
+                @if (
+                  user.getPropertyNb('level') >= info.lvlmini ||
+                  user.getPropertyNb('quest') === 9 ||
+                  (user.getPropertyNb('level') > 0 &&
+                    user.getPropertyNb(info.code) > 0)
+                ) {
+                  <button
+                    class="btn btn-danger mt-2"
+                    (click)="armyLiberate()"
+                    translate>
+                    Liberate
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+          @if (info.free > 0) {
+            <div class="col-12 text-danger fw-bold text-center" translate>
+              When you liberate free units, you don't get any resources back
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        @if (info.code === 'spartan') {
+          <div translate>
+            The Spartans are warriors without fear or pity. It is a race of
+            fierce and ascetic warriors, capable of sacrificing themselves by
+            patriotism to save your city. Their strength will increase
+            proportionally to your level.
+          </div>
+        }
+        @if (info.code === 'volunteer') {
+          <div translate>
+            The volunteer is a free citizen or a metic. Since he is not a
+            soldier, he hardly touches his momentary commitment in your army.
+            Nevertheless, it has a low pay and its strength is just as much.
+          </div>
+        }
+        @if (info.code === 'silver_man') {
+          <div translate>
+            The Silvermen are one of the five races created by the Gods,
+            personification of the disorder, they do not appreciate war, but
+            remain nevertheless fighters. Punished by Zeus because they did not
+            honor the divine pantheon, they were condemned to join mortals.
+          </div>
+        }
+        @if (info.code === 'peltast') {
+          <div translate>
+            This light infantry, as opposed to the heavy infantry composed of
+            hoplites, consists of soldiers carrying a light wicker shields and
+            armed with javelins and a sword. The peltaste is sometimes covered
+            with goatskin or sheep skin, sometimes even polished bronze.
+          </div>
+        }
+        @if (info.code === 'slinger') {
+          <div translate>
+            The sling is a weapon used to forcefully throw a stone or a heavy
+            object onto a target. It generally consists of two ropes fixed to a
+            piece of leather to which one places the projectile. The whole is
+            rotated over the head and when the speed is sufficient, a lanyard is
+            released; Under the effect of the centrifugal force, the projectile
+            leaves towards the target.
+          </div>
+        }
+        @if (info.code === 'shortbow') {
+          <div translate>
+            The short bow archer marks your entry into the world of jet weapons.
+            However, the size of its bow makes it a poor offensive unit.
+          </div>
+        }
+        @if (info.code === 'longbow') {
+          <div translate>
+            The long bow archer is the basis of your remote infantry. Quick,
+            versatile, it can act on all terrains to defend your city or conquer
+            that of a rival.
+          </div>
+        }
+        @if (info.code === 'hippeis') {
+          <div translate>
+            The Hippeis is a knight with heavy armor, former glory of the Greek
+            army, they lost their prestige with the rise of the hoplites but do
+            everything to regain it.
+          </div>
+        }
+        @if (info.code === 'mountedarchery') {
+          <div translate>
+            The archer on horseback keeps the advantage of the infantry at a
+            distance while having those of your cavalry.
+          </div>
+        }
+        @if (info.code === 'hoplite') {
+          <div translate>
+            The hoplites constitute the heavy infantry of the ancient Greek
+            cities, made up of citizens who could not support a horse but who
+            had the means to equip themselves with armor and provide for their
+            families when They were in campaign.
+          </div>
+        }
+        @if (info.code === 'mountedhoplite') {
+          <div translate>
+            Having shown its superiority in the infantry, the hoplite returns to
+            the mounted units, this versatile unit will make the happiness of
+            your cavalry.
+          </div>
+        }
+        @if (info.code === 'elitehoplite') {
+          <div translate>
+            It is the elite of your Hoplites but their pay is just as much. They
+            will be very useful to you during the long battles but as it is an
+            elite, it has the right to luxurious accommodation.
+          </div>
+        }
+        @if (info.code === 'amazon') {
+          <div translate>
+            The Amazons were a race of warrior women who were descended from
+            Ares, god of war and Harmony nymph. Living without a man, they had
+            some relations with neighboring countries, but only kept the female
+            children, boys were returned to their father or killed. They
+            manipulated the arc, as we burned their right breast to facilitate
+            this, hence their name of an Amazon in Greek meaning "without
+            breast". This manipulation of the arc also returns to the worship of
+            the Goddess of the hunt, Artemis.
+          </div>
+        }
+        @if (info.code === 'automaton') {
+          <div translate>
+            The automata are humanoids made of bronze. They were forged and
+            assembled by the great Hephaestus himself to ensure the defense of
+            your city.
+          </div>
+        }
+        @if (info.code === 'centaur') {
+          <div translate>
+            Centaurs are creatures half-man half-horse, they would be born from
+            the union of Ixion and Hera. They are usually represented as human
+            beings from the head to the waist, while the lower part of the body
+            is that of a horse. The Centaurs are characterized by their savagery
+            and violence; they are said addicted to drunkenness and lust, and
+            often represents the procession of worshipers of Dionysus, the god
+            of wine.
+          </div>
+        }
+        @if (info.code === 'myrmidon') {
+          <div translate>
+            During the reign of Aeacus, grandfather of Achilles, Hera, wife of
+            Zeus (Zeus loved Aegina, the young virgin who had given his name to
+            the island) pushed by jealousy spread an epidemic that destroyed the
+            people of The island. Desperate, Eaque implored Zeus, who
+            transformed a colony of ants into human beings to repopulate the
+            city. That is why the inhabitants were called Myrmidons, from the
+            Greek word myrmêkes "ant." They participated in the Trojan War under
+            the command of the hero Achilles.
+          </div>
+        }
+        @if (info.code === 'soul') {
+          <div>
+            <div translate>
+              They are the spirits of the heroes who have fought under your
+              orders or against you. Hades brought them out of the underworld
+              and sent them to serve you.
+            </div>
+            <div translate>Souls can not loot a small amount of resources.</div>
+          </div>
+        }
+        @if (info.code === 'satyr') {
+          <div translate>
+            Earthly divinity, companion of Dionysus, represented with a human
+            body, horns and lower limbs of goat, famous for its libidinous
+            behavior.
+          </div>
+        }
+        @if (info.code === 'cyclops') {
+          <div translate>
+            Cyclops are giants with only one eye in the middle of the forehead,
+            they are forces of nature that nothing scares. Armed with only a
+            simple stick they rip his opponents and demoralize the enemy.
+          </div>
+        }
+        @if (info.code === 'creature') {
+          <div translate>
+            Tartarus is a prison located in the Underworld, protected by a
+            triple rampart of brass around which flows the Phlegethon, and
+            closed by an iron gate manufactured by Poseidon. Those who have
+            sinned during their lifetime (especially towards the gods) are
+            condemned to suffer eternal punishment. However, these creatures
+            escaped and put themselves at your service to satisfy your ambitions
+            whatever they are in the name of your superiority over other
+            mortals.
+          </div>
+        }
+        @if (info.code === 'lion') {
+          <div translate>
+            The lion is a formidable opponent with steel skin and sharpened
+            claws. It attacks more often with a yell as he burst eardrums anyone
+            dares to attack. It can also shake the ground by hitting it hard
+            with his leather coat.
+          </div>
+        }
+        @if (info.code === 'gaia') {
+          <div>
+            <div translate>
+              Gaia the goddess of nature will help you organize your defenses,
+              causing terrible damage to your enemies.
+            </div>
+            <div translate>
+              The resistance of its defenders will increase with the strength of
+              the attacker.
+            </div>
+            <div class="mt-2 text-center">
+              <strong translate>Formula</strong>
+              <br />
+              <span translate>Defense</span> = (<span translate
+                >Base defense</span
+              >)*(<span translate>Ennemis attack</span>)/1000
+            </div>
+          </div>
+        }
+        @if (info.code === 'griffin') {
+          <div translate>
+            The griffin has the body of an eagle grafted on the back of a lion
+            and equipped with horse ears. In spite of their imposing body they
+            can fly and thanks to their attacks in piquet to make terrible
+            ravages in your enemies.
+          </div>
+        }
+        @if (info.code === 'manticore') {
+          <div translate>
+            The manticore is a terrible man eater who devours his prey in full
+            to leave nothing. It has the features of a lion with a human face,
+            with three rows of teeth and a scorpion tail.
+          </div>
+        }
+        @if (info.code === 'lampad') {
+          <div translate>
+            The lampades are the chtonian nymphs of the underworld. They
+            accompany the goddess Hecate. They have light torches designed to
+            guide men or to deceive them ...
+          </div>
+        }
+        @if (info.code === 'harpy') {
+          <div translate>
+            Those are the divinities of devastation and divine vengeance. Faster
+            than the wind, invulnerable, cackling, they devour everything in
+            their path, leaving only their excrement. They have a winged bird's
+            body and a woman's head.
+          </div>
+        }
+        @if (info.code === 'hecatoncheir') {
+          <div translate>
+            Son of Uranus and Gaia, they each have a 100 arms and 50 heads that
+            spit fire. those are the brothers of the Titans and Cyclops. They
+            are recognized by all for their unequaled strength.
+          </div>
+        }
+        @if (info.code === 'spy') {
+          <div translate>
+            Collect information about your enemies before sending your troops to
+            battle. But beware, your spies can get caught and even denounce you.
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

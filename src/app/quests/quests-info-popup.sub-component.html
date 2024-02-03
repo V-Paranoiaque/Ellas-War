@@ -1,0 +1,105 @@
+<div class="modal fade" id="QuestsInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Quest progress</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (
+          user.getPropertyNb('quest_today') === 1 &&
+          user.getPropertyNb('quest_step') < 7
+        ) {
+          <p>
+            {{
+              'You will be able to get your reward in { value } days'
+                | translate: { value: 7 - user.getPropertyNb('quest_step') }
+            }}
+          </p>
+        }
+        @if (
+          user.getPropertyNb('quest_today') === 0 &&
+          user.getPropertyNb('quest_step') < 7
+        ) {
+          <p translate>Don't forget to validate your daily quest</p>
+        }
+        @if (user.getPropertyNb('quest_step') >= 7) {
+          <p translate>Open the chest and get your reward</p>
+        }
+        <div class="text-center">
+          <app-ic-icon
+            class="fs-1"
+            [icon]="treasureChest"
+            data-bs-toggle="modal"
+            data-bs-target="#QuestsInfo"
+            role="button"></app-ic-icon>
+        </div>
+        <div class="fw-bold" translate>The chest contains:</div>
+
+        <ul>
+          @if (
+            user.getPropertyNb('artemis') > 0 ||
+            user.getPropertyNb('dionysus') > 0 ||
+            user.getPropertyNb('hephaestus') > 0
+          ) {
+            <li translate>200 units of your third temple</li>
+          }
+          <li translate>
+            6 hours of withdrawal without taxes in your treasure
+          </li>
+          <li translate>10 bonus attacks</li>
+          @if (
+            user.getPropertyNb('level') >= user.getDatas().ress_lvl.ambrosia
+          ) {
+            <li translate>
+              40
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+              (<span translate>you can't have more than 400 of Ambrosia</span>)
+            </li>
+          }
+          @if (
+            user.getPropertyNb('level') < user.getDatas().ress_lvl.ambrosia
+          ) {
+            <li>
+              {{ 200000 | number: '' : this.translate.currentLang }}
+              <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          Complete at least one quest per day. After 7 days, you will be able to
+          obtain the reward contained in the chest.
+        </div>
+        <div translate>
+          You get a new quest every hour and you can store a maximum of 10
+          quests.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (user.getPropertyNb('quest_step') >= 7) {
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="myQuestReward()"
+            data-bs-dismiss="modal"
+            translate>
+            Validate
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

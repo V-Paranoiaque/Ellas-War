@@ -1,0 +1,140 @@
+<div
+  class="modal fade"
+  id="SponsoringInformation"
+  tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Sponsorship</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      @if (user.getPropertyNb('level') < 5) {
+        <div class="modal-body">
+          @if (user.getPropertyNb('sponsor') === 0) {
+            <div translate>
+              Choose a sponsor, this player will be able to send you drachmas
+              and you will both get rewards when you will level up.
+            </div>
+          }
+          <div class="text-center">
+            @switch (sponsorError) {
+              @case (1) {
+                <div class="alert alert-danger" translate>
+                  You can't choose a sponsor anymore
+                </div>
+              }
+              @case (2) {
+                <div class="alert alert-danger" translate>
+                  This player doesn't exist
+                </div>
+              }
+              @case (3) {
+                <div class="alert alert-danger" translate>
+                  Your sponsor must be level 5 minimum
+                </div>
+              }
+              @case (4) {
+                <div class="alert alert-success" translate>Sponsor choosed</div>
+              }
+            }
+          </div>
+          <br />
+          @if (user.getPropertyNb('sponsor') === 0) {
+            <div class="mb-3">
+              <strong translate>Choose a sponsor</strong
+              ><strong translate>:</strong>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Player"
+                  [(ngModel)]="sponsorNew"
+                  placeholder="{{ 'Player' | translate }}" />
+                <span
+                  class="input-group-text btn btn-success"
+                  (click)="sponsorChoose()"
+                  translate>
+                  Choose
+                </span>
+              </div>
+            </div>
+          }
+          @if (user.getPropertyNb('sponsor') > 0) {
+            <div class="mb-3">
+              <strong translate>Your sponsor:</strong>
+              <app-user-profile
+                id="{{ user.getPropertyNb('sponsor') }}"
+                username="{{ sponsorUsername }}"
+                status="1"></app-user-profile>
+            </div>
+          }
+        </div>
+      }
+      <div class="modal-body">
+        <div translate>
+          Share your sponsoring link, when the new player will reach the level 1
+          or 5 you will get a bonus. Help to the players that you have sponsored
+          and send them Drachmas.
+        </div>
+        <br />
+        <div class="mb-3">
+          @if (linkSaved === 1) {
+            <div class="wg-bold text-danger" translate>
+              Link saved to clipboard
+            </div>
+          }
+          <strong translate>Sponsorship link:</strong>
+          <br />
+          {{ user.config.url }}/register/{{ user.getPropertyNb('id') }}
+          <span
+            class="badge bg-primary"
+            role="button"
+            (click)="copyLink()"
+            [cbContent]="
+              user.config.url +
+              '/permalink/' +
+              user.getPropertyNb('id').toString()
+            "
+            ngxClipboard>
+            <app-ic-icon [icon]="clipboardCheck"></app-ic-icon>
+          </span>
+        </div>
+
+        @if (sponsorList.length > 0) {
+          <div class="text-center">
+            <br />
+            <a [routerLink]="['/sponsorship']" data-bs-dismiss="modal" translate
+              >Players that you have sponsored</a
+            >
+          </div>
+        }
+      </div>
+      <div class="modal-body">
+        <strong translate>Rewards</strong><strong translate>:</strong>
+        <br />
+        {{ 'Level { value }' | translate: { value: 1 } }}
+        <span translate>:</span>
+        {{ 250000 | number: '' : this.translate.currentLang }}
+        <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+        <br />
+        {{ 'Level { value }' | translate: { value: 5 } }}
+        <span translate>:</span>1
+        <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

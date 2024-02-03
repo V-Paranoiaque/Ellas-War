@@ -1,0 +1,112 @@
+on:
+  workflow_call:
+    inputs:
+      android:
+        required: true
+        type: string
+      node:
+        required: true
+        type: string
+
+jobs:
+  #Android
+  package-android:
+    name: "Build android package"
+    runs-on: ubuntu-22.04
+    needs: prepare
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+ 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build
+      
+      - name: Cache www directory
+        uses: actions/cache@v3
+        with:
+          path: ~/work/Ellas-War/Ellas-War/www
+          key: www-${{ runner.GITHUB_RUN_ID }}
+      
+      - name: Install dependencies
+        run: |
+          npm install -g cordova
+          npm install
+ 
+      - name: Write build-aab.json
+        id: aab_json
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'build-aab.json'
+          encodedString: ${{ secrets.ANDROID_AAB_JSON }}
+   
+      - name: Write build-apk.json
+        id: apk_json
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'build-apk.json'
+          encodedString: ${{ secrets.ANDROID_APK_JSON }}
+   
+      - name: Write keystore
+        id: keystore
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'ew.keystore'
+          encodedString: ${{ secrets.ANDROID_BUILD_KEY }}
+   
+      - name: Build packages
+        run: |
+          mkdir -p .idea
+          cp ${{ env.KEYSTORE }} .idea/ew.keystore
+          cordova platform add android@${{ env.android }}
+          #Build AAB
+          cp ${{ env.AAB_JSON }} build.json
+          cordova build android --no-telemetry --release
+          #Build APK
+          cp ${{ env.APK_JSON }} build.json
+          cordova build android --no-telemetry --release
+          rm -rf .idea
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+          AAB_JSON: ${{ steps.aab_json.outputs.filePath }}
+          APK_JSON: ${{ steps.apk_json.outputs.filePath }}
+          KEYSTORE: ${{ steps.keystore.outputs.filePath }}
+  
+      - name: Upload aab file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          tag: ${{ github.ref }}
+  
+      - name: Upload apk file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          tag: ${{ github.ref }}
+      - name: Upload to the Amazon AppStore
+        continue-on-error: true
+        uses: ALJAZEERAPLUS/amazon-appstore-action@v1.1.1
+        with:
+          client-id: ${{secrets.AMAZON_APPSTORE_CLIENT_ID}}
+          client-secret: ${{secrets.AMAZON_APPSTORE_CLIENT_SECRET}}
+          app-id: ${{ secrets.AMAZON_APPSTORE_APP_ID }}
+          apk-file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
+  

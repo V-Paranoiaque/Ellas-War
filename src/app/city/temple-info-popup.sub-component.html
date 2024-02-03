@@ -1,0 +1,1463 @@
+<div class="modal fade" id="TempleInfo" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        @if (temple.id === 1) {
+          <h5 translate>Hermes</h5>
+        }
+        @if (temple.id === 2) {
+          <h5 translate>Apollo</h5>
+        }
+        @if (temple.id === 3) {
+          <h5 translate>Demeter</h5>
+        }
+        @if (temple.id === 4) {
+          <h5 translate>Ares</h5>
+        }
+        @if (temple.id === 5) {
+          <h5 translate>Athena</h5>
+        }
+        @if (temple.id === 6) {
+          <h5 translate>Artemis</h5>
+        }
+        @if (temple.id === 7) {
+          <h5 translate>Hephaestus</h5>
+        }
+        @if (temple.id === 8) {
+          <h5 translate>Dionysus</h5>
+        }
+        @if (temple.id === 9) {
+          <h5 translate>Zeus</h5>
+        }
+        @if (temple.id === 10) {
+          <h5 translate>Hades</h5>
+        }
+        @if (temple.id === 11) {
+          <h5 translate>Poseidon</h5>
+        }
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+
+      @if (temple.id === 1) {
+        <div class="modal-body">
+          <div class="row justify-content-md-center pb-3">
+            <div class="col-6">
+              <app-ew-icon name="hermes"></app-ew-icon>
+            </div>
+          </div>
+          <ul>
+            <li translate>
+              In the Agora, when you redeem your batches, you get 97.5% instead
+              of 80%
+            </li>
+            <li translate>
+              Until the level 6, you can store 50% more Drachmas in your
+              treasure
+            </li>
+            <li translate>
+              From the level 6, treasure your treasure taxes are reduced by 20%
+            </li>
+          </ul>
+        </div>
+      }
+      @if (temple.id === 2) {
+        <div class="modal-body">
+          <div class="row justify-content-md-center pb-3">
+            <div class="col-6">
+              <app-ew-icon name="apollo"></app-ew-icon>
+            </div>
+          </div>
+          <p>
+            <span translate>
+              You can spy on your enemies with the oracle of the Apollo's
+              temple.
+            </span>
+            <span translate>
+              Your units are 10% more efficients during sanctuaries attacks
+            </span>
+          </p>
+        </div>
+      }
+      @if (temple.id === 3) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="demeter"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Demeter increase the production of your wine farms and farms. You
+              can thanks to the furies, destroying farms, wine farms and
+              reserves grape and food of your opponents.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <div class="col-12 text-end">
+              <strong translate>Fury</strong>
+            </div>
+            <div>
+              @if (user.getPropertyNb('fury') <= 1) {
+                <span translate class="fw-bold">Fury owned</span>
+              }
+              @if (user.getPropertyNb('fury') > 1) {
+                <span translate class="fw-bold">Furies owned</span>
+              }
+              <span translate class="fw-bold">:</span>
+              {{
+                user.getPropertyNb('fury')
+                  | number: '' : this.translate.currentLang
+              }}
+            </div>
+            <div class="clearfix"></div>
+            @if (furyCostMissing().length > 0) {
+              <div class="fw-bold text-danger">
+                <span translate>Missing resources:</span>
+                @for (res of furyCostMissing(); track res) {
+                  <span>
+                    <app-ew-icon
+                      name="{{ res }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+            <div class="clearfix"></div>
+            <div>
+              <strong translate>Cost:</strong>
+              @for (resource of furyCost | keyvalue; track resource) {
+                <span>
+                  {{
+                    Number(resource.value)
+                      | number: '' : this.translate.currentLang
+                  }}
+                  <app-ew-icon
+                    name="{{ resource.key }}"
+                    class="small-resource"></app-ew-icon>
+                </span>
+              }
+            </div>
+            <div class="input-group">
+              <input
+                type="number"
+                [(ngModel)]="furyNb"
+                class="form-control"
+                placeholder="0"
+                step="1"
+                [attr.min]="0" />
+              <span
+                (click)="furyBuy(furyNb)"
+                class="input-group-text btn btn-success"
+                role="button"
+                translate
+                >Buy</span
+              >
+            </div>
+          </div>
+        </div>
+      }
+      <!-- Ares -->
+      @if (temple.id === 4) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="ares"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              When you attack, Ares watch over your men strengthening their
+              ardor of 15%. It will also allow you to hire his terrible
+              spartans.
+            </p>
+          </div>
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Revenge of Ares</strong>
+              <div translate>
+                You are allowed to attack an enemy a second time. Works even in
+                war but the second attack does not come into play in the score.
+              </div>
+              @if (temple.error === 1) {
+                <div class="text-danger fw-bold" translate>Power validated</div>
+              }
+              @if (temple.error === 2) {
+                <div class="text-danger fw-bold" translate>
+                  Error in the target
+                </div>
+              }
+              @if (temple.error === 3) {
+                <div class="text-danger fw-bold" translate>
+                  This city has suffered a lot, it needs time to recover
+                </div>
+              }
+              @if (temple.error === 4) {
+                <div class="text-danger fw-bold" translate>
+                  This city has received too many attacks
+                </div>
+              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 360
+                }">
+                <strong translate>Cost:</strong>
+                360
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              @if (
+                preUseList.length > 0 &&
+                user.getPropertyNb('ambrosia') >= 360 &&
+                attackStats.normal.available + attackStats.bonus.available === 0
+              ) {
+                <div class="text-danger fw-bold" translate>
+                  No attack available
+                </div>
+              }
+              @if (
+                preUseList.length > 0 &&
+                user.getPropertyNb('ambrosia') >= 360 &&
+                attackStats.normal.available + attackStats.bonus.available > 0
+              ) {
+                <div>
+                  <select class="form-select" [(ngModel)]="id">
+                    <option value="0" translate>Choose an enemy city</option>
+                    @for (info of preUseList; track info) {
+                      <option value="{{ info.membre_id }}">
+                        {{ info.username }}
+                      </option>
+                    }
+                  </select>
+                  <button
+                    class="btn btn-success"
+                    translate
+                    (click)="powerUse(1, id)">
+                    Validate
+                  </button>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+      <!-- Athena -->
+      @if (temple.id === 5) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="athena"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Athena increases by 15% the defensive strength of your troops and
+              your defensive buildings and reduce by 20% the cost of enrollment
+              and the consumption of your infantry.
+            </p>
+          </div>
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong id="ProtectiveGoddessDesc" translate
+                >Protective goddess</strong
+              >
+              <div translate>
+                Athena temporarily increases the defense of units in your city
+                by 25%.
+              </div>
+              @if (temple.error === 1) {
+                <div class="text-danger fw-bold" translate>Power validated</div>
+              }
+              @if (user.getPropertyNb('protective_goddess') > 0) {
+                <div>
+                  <strong translate>End:</strong>
+                  {{
+                    user.getPropertyNb('protective_goddess') * 1000
+                      | date: 'dd/MM, HH:mm'
+                  }}
+                </div>
+              }
+              <table class="table" aria-describedby="ProtectiveGoddessDesc">
+                <tbody>
+                  <tr>
+                    <th
+                      scope="row"
+                      [ngClass]="{
+                        'text-danger': user.getPropertyNb('ambrosia') < 12
+                      }">
+                      12
+                      <app-ew-icon
+                        name="ambrosia"
+                        class="small-resource me-1"></app-ew-icon>
+                      <span translate>For 60 minutes</span>
+                    </th>
+                    <td class="text-end">
+                      @if (user.getPropertyNb('ambrosia') >= 12) {
+                        <button
+                          class="btn btn-primary"
+                          (click)="powerUse(2, 1)"
+                          translate>
+                          Enable
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                  <tr>
+                    <th
+                      scope="row"
+                      class="border-bottom-0"
+                      [ngClass]="{
+                        'text-danger': user.getPropertyNb('ambrosia') < 20
+                      }">
+                      20
+                      <app-ew-icon
+                        name="ambrosia"
+                        class="small-resource me-1"></app-ew-icon>
+                      <span translate>For 120 minutes</span>
+                    </th>
+                    <td class="text-end border-bottom-0">
+                      @if (user.getPropertyNb('ambrosia') >= 20) {
+                        <button
+                          class="btn btn-primary"
+                          (click)="powerUse(2, 2)"
+                          translate>
+                          Enable
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          }
+        </div>
+      }
+      <!-- Artemis -->
+      @if (temple.id === 6) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="artemis"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Artemis surveys the wood and helps the loggers in their task. It
+              also will lend you his ferocious Amazons go to the battle.
+            </p>
+          </div>
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Hunt of Artemis</strong>
+              @if (temple.error === 1 && temple.power === 3) {
+                <div class="alert alert-success center" translate>
+                  Artemis heard your call
+                </div>
+              }
+              @if (user.getPropertyNb('hunt_artemis') > 0) {
+                <div>
+                  <span translate>End:</span>
+                  {{
+                    user.getPropertyNb('hunt_artemis') * 1000
+                      | date: 'dd/MM, HH:mm'
+                  }}
+                </div>
+              }
+              <br />
+              <div translate>Looting is increased by 5 to 15% for 2 hours.</div>
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 4
+                }">
+                <strong translate>Cost:</strong>
+                4
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              <br />
+              @if (user.getPropertyNb('ambrosia') >= 4) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUse(3, 0)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Forest Help</strong>
+              @if (temple.error === 1 && temple.power === 4) {
+                <div class="alert alert-success center" translate>
+                  Artemis heard your call
+                </div>
+              }
+              @if (user.getPropertyNb('forest_help') > 0) {
+                <div>
+                  <span translate>End:</span>
+                  {{
+                    user.getPropertyNb('forest_help') * 1000
+                      | date: 'dd/MM, HH:mm'
+                  }}
+                </div>
+              }
+              <br />
+              <div translate>
+                Your city can not be attacked for 30 min thanks to the immense
+                forest that covers the city.
+              </div>
+              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 100 }) {
+                <div>
+                  <strong translate>Cost:</strong>
+                  100
+                  <app-ew-icon
+                    name="ambrosia"
+                    class="small-resource"></app-ew-icon>
+                </div>
+              }
+              @if (user.getPropertyNb('ambrosia') >= 100) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUse(4, 0)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Amazons</strong>
+              @if (user.getPropertyNb('amazon') > 0) {
+                <strong>({{ user.getPropertyNb('amazon') }})</strong>
+              }
+              @if (temple.error === 1 && temple.power === 18) {
+                <div class="alert alert-success center" translate>
+                  Artemis heard your call
+                </div>
+              }
+              <br />
+              <div>
+                {{
+                  'Artemis will help you to protect your city and give you { value } Amazons.'
+                    | translate: { value: 200 }
+                }}
+              </div>
+              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
+                <div>
+                  <strong translate>Cost:</strong>
+                  1
+                  <app-ew-icon
+                    name="ambrosia"
+                    class="small-resource"></app-ew-icon>
+                </div>
+              }
+              @if (
+                user.getPropertyNb('amazon') + 200 >
+                user.getDatas().army.amazon.nbmax
+              ) {
+                <div class="text-danger text-end">
+                  {{
+                    "You can't have more than { value } { name }"
+                      | translate
+                        : {
+                            value: user.getDatas().army.amazon.nbmax,
+                            name: Tools.getName('amazon', 2) | translate
+                          }
+                  }}
+                </div>
+              }
+              @if (
+                user.getPropertyNb('ambrosia') >= 2 &&
+                user.getPropertyNb('amazon') + 200 <=
+                  user.getDatas().army.amazon.nbmax
+              ) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUse(18, 0)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Hephaestus -->
+      @if (temple.id === 7) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="hephaestus"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Hephaestus increases the return on your money hype workshops and
+              automata defend the gates of your city.
+            </p>
+          </div>
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Black-smith</strong>
+              <div translate>
+                Hephaestus improves the defensive power of the automatons by
+                200% for 2 hours.
+              </div>
+              @if (temple.error === 1 && temple.power === 7) {
+                <div class="alert alert-success center" translate>
+                  Hephaestus heard your call
+                </div>
+              }
+              @if (user.getPropertyNb('black_smith') > 0) {
+                <div>
+                  <span translate>End:</span>
+                  {{
+                    user.getPropertyNb('black_smith') * 1000
+                      | date: 'dd/MM, HH:mm'
+                  }}
+                </div>
+              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 1
+                }">
+                <strong translate>Cost:</strong>
+                1
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              @if (user.getPropertyNb('ambrosia') >= 1) {
+                <button
+                  class="btn btn-success"
+                  translate
+                  (click)="powerUse(7, 0)">
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Volcano</strong>
+              <div translate>
+                The lava falls on the enemies preventing them from building
+                buildings for 30 min.
+              </div>
+              @if (temple.error === 1 && temple.power === 8) {
+                <div class="alert alert-success center" translate>
+                  Hephaestus heard your call
+                </div>
+              }
+              @if (temple.error === 2 && temple.power === 8) {
+                <div class="alert alert-danger center" translate>
+                  This player doesn't exist
+                </div>
+              }
+              @if (temple.error === 3 && temple.power === 8) {
+                <div class="alert alert-danger center" translate>
+                  You can't use this power on this player
+                </div>
+              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 90
+                }">
+                <strong translate>Cost:</strong>
+                180
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              @if (user.getPropertyNb('ambrosia') >= 90) {
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Player"
+                  placeholder="{{ 'Player' | translate }}"
+                  [(ngModel)]="idToUser" />
+              }
+              @if (user.getPropertyNb('ambrosia') >= 90) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUseTarget(8)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Automatons</strong>
+              @if (user.getPropertyNb('automaton') > 0) {
+                <strong>({{ user.getPropertyNb('automaton') }})</strong>
+              }
+              @if (temple.error === 1 && temple.power === 19) {
+                <div class="alert alert-success center" translate>
+                  Hephaestus heard your call
+                </div>
+              }
+              <br />
+              <div>
+                {{
+                  'Hephaestus will help you to protect your city and give you { value } Automatons.'
+                    | translate: { value: 250 }
+                }}
+              </div>
+              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
+                <div>
+                  <strong translate>Cost:</strong>
+                  1
+                  <app-ew-icon
+                    name="ambrosia"
+                    class="small-resource"></app-ew-icon>
+                </div>
+              }
+              @if (
+                user.getPropertyNb('automaton') + 250 >
+                user.getDatas().army.automaton.nbmax
+              ) {
+                <div class="text-danger text-end">
+                  {{
+                    "You can't have more than { value } { name }"
+                      | translate
+                        : {
+                            value: user.getDatas().army.automaton.nbmax,
+                            name: Tools.getName('automaton', 2) | translate
+                          }
+                  }}
+                </div>
+              }
+              @if (
+                user.getPropertyNb('ambrosia') >= 2 &&
+                user.getPropertyNb('automaton') + 250 <=
+                  user.getDatas().army.automaton.nbmax
+              ) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUse(19, 0)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Dionysus -->
+      @if (temple.id === 8) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="dionysus"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Dionysus increases the efficiency of your pressing workshops, they
+              will produce more wine to drink your troops. Centaurs seeing that
+              you support, will join you.
+            </p>
+          </div>
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Wine festival</strong>
+              @if (user.getPropertyNb('wine_festival') > 0) {
+                <div>
+                  <span translate>End:</span>
+                  {{
+                    user.getPropertyNb('wine_festival') * 1000
+                      | date: 'dd/MM, HH:mm'
+                  }}
+                </div>
+              }
+              @if (temple.error === 1 && temple.power === 5) {
+                <div class="alert alert-success" translate>
+                  Dionysus heard your call
+                </div>
+              }
+              <br />
+              <div translate>
+                Dionysus increases grape production by 60% for 6 hours.
+              </div>
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 40
+                }">
+                <strong translate>Cost:</strong>
+                40
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              @if (user.getPropertyNb('ambrosia') >= 40) {
+                <button
+                  class="btn btn-success"
+                  translate
+                  (click)="powerUse(5, 0)">
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Wine appeal</strong>
+              <br />
+              <div translate>
+                Dionysus offers 500 satyrs to help you destroy your enemies.
+              </div>
+              @if (temple.error === 1 && temple.power === 6) {
+                <div class="alert alert-success center" translate>
+                  Dionysus heard your call
+                </div>
+              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 120
+                }">
+                <strong translate>Cost:</strong>
+                120
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+              <br /><br />
+              @if (user.getPropertyNb('ambrosia') >= 120) {
+                <button
+                  class="btn btn-success"
+                  translate
+                  (click)="powerUse(6, 0)">
+                  Enable
+                </button>
+              }
+            </div>
+          }
+          @if (user.hasTemples()) {
+            <div class="modal-footer">
+              <strong translate>Centaurs</strong>
+              @if (user.getPropertyNb('centaur') > 0) {
+                <strong>({{ user.getPropertyNb('centaur') }})</strong>
+              }
+              @if (temple.error === 1 && temple.power === 20) {
+                <div class="alert alert-success center" translate>
+                  Dionysus heard your call
+                </div>
+              }
+              <br />
+              <div>
+                {{
+                  'Dionysus will help you to protect your city and give you { value } Centaurs.'
+                    | translate: { value: 125 }
+                }}
+              </div>
+              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
+                <div>
+                  <strong translate>Cost:</strong>
+                  1
+                  <app-ew-icon
+                    name="ambrosia"
+                    class="small-resource"></app-ew-icon>
+                </div>
+              }
+              @if (
+                user.getPropertyNb('centaur') + 125 >
+                user.getDatas().army.centaur.nbmax
+              ) {
+                <div class="text-danger text-end">
+                  {{
+                    "You can't have more than { value } { name }"
+                      | translate
+                        : {
+                            value: user.getDatas().army.centaur.nbmax,
+                            name: Tools.getName('centaur', 2) | translate
+                          }
+                  }}
+                </div>
+              }
+              @if (
+                user.getPropertyNb('ambrosia') >= 2 &&
+                user.getPropertyNb('centaur') + 125 <=
+                  user.getDatas().army.centaur.nbmax
+              ) {
+                <button
+                  class="btn btn-success"
+                  (click)="powerUse(20, 0)"
+                  translate>
+                  Enable
+                </button>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Zeus -->
+      @if (temple.id === 9) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="zeus"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Zeus does lightning strike your enemies with your wishes, burning
+              down buildings. It will also allow you to hire his terrible
+              myrmidons.
+            </p>
+          </div>
+          <div class="modal-footer container">
+            <div class="col-12 text-end">
+              <strong translate>Lightning</strong>
+            </div>
+            <div>
+              @if (user.getPropertyNb('lightning') <= 1) {
+                <span translate class="fw-bold">Lightning owned</span>
+              }
+              @if (user.getPropertyNb('lightning') > 1) {
+                <span translate class="fw-bold">Lightnings owned</span>
+              }
+              <span translate class="fw-bold">:</span>
+              {{
+                user.getPropertyNb('lightning')
+                  | number: '' : this.translate.currentLang
+              }}
+            </div>
+            @if (lightningCostMissing().length > 0) {
+              <div class="fw-bold text-danger">
+                <span translate>Missing resources:</span>
+                @for (res of lightningCostMissing(); track res) {
+                  <span>
+                    <app-ew-icon
+                      name="{{ res }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+            <div>
+              <strong translate>Cost:</strong>
+              @for (resource of lightningCost | keyvalue; track resource) {
+                <span>
+                  <span
+                    [ngClass]="{
+                      'text-danger':
+                        resource.value < user.getPropertyNb(resource.key)
+                    }">
+                    {{
+                      Number(resource.value)
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <app-ew-icon
+                      name="{{ resource.key }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                </span>
+              }
+            </div>
+            <div class="input-group">
+              <input
+                type="number"
+                [(ngModel)]="lightningNb"
+                class="form-control"
+                placeholder="0"
+                step="1"
+                [attr.min]="0" />
+              <span
+                (click)="lightningBuy(lightningNb)"
+                class="input-group-text btn btn-success"
+                role="button"
+                translate
+                >Buy</span
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="col-12 text-end">
+              <strong translate>Son of Zeus</strong>
+            </div>
+            <div class="col-12 text-end" translate>
+              You receive 1000 units at random.
+            </div>
+            <div class="text-danger" translate>
+              These units must be housed in adapted housing.
+            </div>
+            @if (temple.error === 1 && temple.power === 9) {
+              <div class="alert alert-success center" translate>
+                Zeus heard your call
+              </div>
+            }
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 100
+              }">
+              <strong translate>Cost:</strong>
+              100
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+            </div>
+            @if (user.getPropertyNb('ambrosia') >= 100) {
+              <button
+                class="btn btn-success"
+                translate
+                (click)="powerUse(9, 0)">
+                Enable
+              </button>
+            }
+          </div>
+          <div class="modal-footer">
+            <strong translate>Lord of Lightning</strong>
+            @if (temple.error === 1 && temple.power === 10) {
+              <div class="alert alert-success center" translate>
+                Zeus heard your call
+              </div>
+            }
+            @if (temple.error === 2 && temple.power === 10) {
+              <div class="alert alert-danger center" translate>
+                This player doesn't exist
+              </div>
+            }
+            @if (temple.error === 3 && temple.power === 10) {
+              <div class="alert alert-danger center" translate>
+                You can't use this power on this player
+              </div>
+            }
+            <br />
+            <div translate>
+              Heavy black clouds invade the targeted enemy city which can no
+              longer engage units
+            </div>
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 90
+              }">
+              <strong translate>Cost:</strong>
+              90
+              <app-ew-icon
+                name="ambrosia"
+                class="small-resource me-1"></app-ew-icon>
+              <span translate>For 30 minutes</span>
+            </div>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Player"
+                placeholder="{{ 'Player' | translate }}"
+                [(ngModel)]="idToUser" />
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            @if (user.getPropertyNb('ambrosia') >= 90) {
+              <button
+                class="btn btn-success"
+                translate
+                (click)="powerUse(10, 0)">
+                Enable
+              </button>
+            }
+          </div>
+          <div class="modal-footer">
+            <strong translate>Strength</strong>
+            @if (temple.error === 1 && temple.power === 11) {
+              <div class="alert alert-success center" translate>
+                Zeus heard your call
+              </div>
+            }
+            @if (user.getPropertyNb('strength') > 0) {
+              <div>
+                <span translate>End:</span>
+                {{
+                  user.getPropertyNb('strength') * 1000 | date: 'dd/MM, HH:mm'
+                }}
+              </div>
+            }
+            <br />
+            <div translate>
+              Infantry units gain 25% attack power for 1 hour.
+            </div>
+            <table class="table" aria-describedby="ProtectiveGoddessDesc">
+              <tbody>
+                <tr>
+                  <th
+                    scope="row"
+                    [ngClass]="{
+                      'text-danger': user.getPropertyNb('ambrosia') < 12
+                    }">
+                    12
+                    <app-ew-icon
+                      name="ambrosia"
+                      class="small-resource me-1"></app-ew-icon>
+                    <span translate>For 30 minutes</span>
+                  </th>
+                  <td class="text-end">
+                    @if (user.getPropertyNb('ambrosia') >= 12) {
+                      <button
+                        class="btn btn-primary"
+                        (click)="powerUse(11, 1)"
+                        translate>
+                        Enable
+                      </button>
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="border-bottom-0"
+                    [ngClass]="{
+                      'text-danger': user.getPropertyNb('ambrosia') < 20
+                    }">
+                    20
+                    <app-ew-icon
+                      name="ambrosia"
+                      class="small-resource me-1"></app-ew-icon>
+                    <span translate>For 60 minutes</span>
+                  </th>
+                  <td class="text-end border-bottom-0">
+                    @if (user.getPropertyNb('ambrosia') >= 20) {
+                      <button
+                        class="btn btn-primary"
+                        (click)="powerUse(11, 2)"
+                        translate>
+                        Enable
+                      </button>
+                    }
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+
+      <!-- Hades -->
+      @if (temple.id === 10) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="hades"></app-ew-icon>
+              </div>
+            </div>
+            <p translate>
+              Hades will increase the production of your mines and quarries. It
+              could also lend its invisibility helmet for you to visit the
+              cities of your enemies. During your terrible battles, the souls of
+              your men come back to fight for you.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <strong translate>Peste</strong>
+            @if (temple.error === 1 && temple.power === 12) {
+              <div class="alert alert-success center" translate>
+                Hades heard your call
+              </div>
+            }
+            @if (temple.error === 2 && temple.power === 12) {
+              <div class="alert alert-danger center" translate>
+                This player doesn't exist
+              </div>
+            }
+            @if (temple.error === 3 && temple.power === 12) {
+              <div class="alert alert-danger center" translate>
+                You can't use this power on this player
+              </div>
+            }
+            <br />
+            <div translate>
+              Hades launches an epidemic on the enemy city causing the immediate
+              death of 5 to 15% of his army.
+            </div>
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 400
+              }">
+              <strong translate>Cost:</strong>
+              400
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+            </div>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Player"
+                placeholder="{{ 'Player' | translate }}"
+                [(ngModel)]="idToUser" />
+            </div>
+            <div class="clearfix"></div>
+            <br />
+            @if (user.getPropertyNb('ambrosia') >= 400 && idToUser !== '') {
+              <button
+                class="btn btn-success"
+                translate
+                (click)="powerUseTarget(12)">
+                Enable
+              </button>
+            }
+          </div>
+          <div class="modal-footer">
+            <strong translate>Ereb's Favor</strong>
+            @if (temple.error === 1 && temple.power === 13) {
+              <div class="alert alert-success center" translate>
+                Hades heard your call
+              </div>
+            }
+            @if (user.getPropertyNb('ereb_favor') > 0) {
+              <div>
+                <span translate>End:</span>
+                {{
+                  user.getPropertyNb('ereb_favor') * 1000 | date: 'dd/MM, HH:mm'
+                }}
+              </div>
+            }
+            <br />
+            <div translate>
+              Hades returns 5 to 10% of your dead human and temple units in
+              battle as souls.
+            </div>
+            <table class="table" aria-describedby="ProtectiveGoddessDesc">
+              <tbody>
+                <tr>
+                  <th
+                    scope="row"
+                    [ngClass]="{
+                      'text-danger': user.getPropertyNb('ambrosia') < 24
+                    }">
+                    24
+                    <app-ew-icon
+                      name="ambrosia"
+                      class="small-resource me-1"></app-ew-icon>
+                    <span translate>For 30 minutes</span>
+                  </th>
+                  <td class="text-end">
+                    @if (user.getPropertyNb('ambrosia') >= 24) {
+                      <button
+                        class="btn btn-primary"
+                        (click)="powerUse(13, 1)"
+                        translate>
+                        Enable
+                      </button>
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <th
+                    scope="row"
+                    class="border-bottom-0"
+                    [ngClass]="{
+                      'text-danger': user.getPropertyNb('ambrosia') < 40
+                    }">
+                    40
+                    <app-ew-icon
+                      name="ambrosia"
+                      class="small-resource me-1"></app-ew-icon>
+                    <span translate>For 60 minutes</span>
+                  </th>
+                  <td class="text-end border-bottom-0">
+                    @if (user.getPropertyNb('ambrosia') >= 40) {
+                      <button
+                        class="btn btn-primary"
+                        (click)="powerUse(13, 2)"
+                        translate>
+                        Enable
+                      </button>
+                    }
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <strong translate>Treasure from beyond grave</strong>
+            @if (temple.error === 1 && temple.power === 14) {
+              <div class="alert alert-success center" translate>
+                Hades heard your call
+              </div>
+            }
+            <br />
+            <div translate>
+              Hades gives you marble and stone to defeat your enemies.
+            </div>
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 20
+              }">
+              <strong translate>Cost:</strong>
+              20
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+            </div>
+            @if (user.getPropertyNb('ambrosia') >= 20) {
+              <button class="btn btn-primary" (click)="powerUse(14, 1)">
+                <span translate>Get</span>
+                {{ '40000' | number: '' : this.translate.currentLang }}
+                <app-ew-icon name="stone" class="small-resource"></app-ew-icon>
+              </button>
+            }
+            @if (user.getPropertyNb('ambrosia') >= 20) {
+              <button class="btn btn-success" (click)="powerUse(14, 2)">
+                <span translate>Get</span>
+                400
+                <app-ew-icon name="marble" class="small-resource"></app-ew-icon>
+              </button>
+            }
+          </div>
+        </div>
+      }
+      <!-- Poseidon -->
+      @if (temple.id === 11) {
+        <div>
+          <div class="modal-body">
+            <div class="row justify-content-md-center pb-3">
+              <div class="col-6">
+                <app-ew-icon name="poseidon"></app-ew-icon>
+              </div>
+            </div>
+            <p class="text-justify" translate>
+              With Poseidon, your cavalry units cost 50% less and consume 50%
+              fewer resources. It will also build a wall around your city to
+              repel enemies. The defense of your wall increases with your field.
+              As the god of the oceans will increase the production of your
+              wells.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <div class="text-center">
+              <strong id="WallDesc" translate>Poseidon's wall's defense</strong>
+              <strong translate>:</strong>
+              {{ wallDefense | number: '' : this.translate.currentLang }}
+              <br />
+              @if (user.getPropertyNb('poseidon_wall') === 1) {
+                <div class="fw-bold text-danger" translate>
+                  The Poseidon wall protects your city.
+                </div>
+              }
+              @if (user.getPropertyNb('poseidon_wall') === 0) {
+                <table class="table" aria-describedby="WallDesc">
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <span
+                          [ngClass]="{
+                            'text-danger':
+                              user.getPropertyNb('water') <
+                              user.getDatas().poseidon_wall.water
+                          }">
+                          {{
+                            user.getDatas().poseidon_wall.water
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="water"
+                            class="small-resource"></app-ew-icon>
+                        </span>
+                        <span
+                          [ngClass]="{
+                            'text-danger':
+                              user.getPropertyNb('marble') <
+                              user.getDatas().poseidon_wall.marble
+                          }">
+                          {{
+                            user.getDatas().poseidon_wall.marble
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="marble"
+                            class="small-resource"></app-ew-icon>
+                        </span>
+                        <span
+                          [ngClass]="{
+                            'text-danger':
+                              user.getPropertyNb('gold') <
+                              user.getDatas().poseidon_wall.gold
+                          }">
+                          {{
+                            user.getDatas().poseidon_wall.gold
+                              | number: '' : this.translate.currentLang
+                          }}
+                          <app-ew-icon
+                            name="gold"
+                            class="small-resource"></app-ew-icon>
+                        </span>
+                      </th>
+                      <td>
+                        <button
+                          class="btn btn-primary"
+                          (click)="wallErect()"
+                          translate>
+                          Build the wall
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td translate>Or</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th
+                        scope="row"
+                        [ngClass]="{
+                          'text-danger': user.getPropertyNb('ambrosia') < 160
+                        }">
+                        160
+                        <app-ew-icon
+                          name="ambrosia"
+                          class="small-resource"></app-ew-icon>
+                      </th>
+                      <td>
+                        <button
+                          class="btn btn-primary"
+                          (click)="powerUse(15, 0)"
+                          translate>
+                          Build the wall
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              }
+            </div>
+          </div>
+          <div class="modal-footer">
+            <strong translate>Offspring of the Oceans</strong>
+            <div translate>The wall gains 20% defensive power for 4h</div>
+            @if (user.getPropertyNb('offspring_oceans') > 0) {
+              <div>
+                <span translate>End:</span>
+                {{
+                  user.getPropertyNb('offspring_oceans') * 1000
+                    | date: 'dd/MM, HH:mm'
+                }}
+              </div>
+            }
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 40
+              }">
+              <strong translate>Cost:</strong>
+              40
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+              @if (user.getPropertyNb('poseidon_wall') === 0) {
+                <div>
+                  @if (user.getPropertyNb('ambrosia') >= 40) {
+                    <button
+                      class="btn btn-success mt-1"
+                      translate
+                      (click)="powerUse(17, 0)">
+                      Enable
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <strong translate>Father of the Cyclops</strong>
+            </div>
+            <div translate>200 Cyclops join you to resist the invader</div>
+            @if (user.getPropertyNb('offspring_oceans') > 0) {
+              <div>
+                <span translate>End:</span>
+                {{
+                  user.getPropertyNb('offspring_oceans') * 1000
+                    | date: 'dd/MM, HH:mm'
+                }}
+              </div>
+            }
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 120
+              }">
+              <strong translate>Cost:</strong>
+              120
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+              @if (user.getPropertyNb('poseidon_wall') === 0) {
+                <div>
+                  @if (user.getPropertyNb('ambrosia') >= 120) {
+                    <button
+                      class="btn btn-success mt-1"
+                      translate
+                      (click)="powerUse(21, 0)">
+                      Enable
+                    </button>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+          <div class="modal-footer">
+            <strong translate>Wrath of Poseidon</strong>
+            @if (temple.error === 1 && temple.power === 16) {
+              <div class="alert alert-success center" translate>
+                Poseidon heard your call
+              </div>
+            }
+            @if (temple.error === 2 && temple.power === 16) {
+              <div class="alert alert-danger center" translate>
+                This player doesn't exist
+              </div>
+            }
+            @if (temple.error === 3 && temple.power === 16) {
+              <div class="alert alert-danger center" translate>
+                You can't use this power on this player
+              </div>
+            }
+            @if (temple.error === 4 && temple.power === 16) {
+              <div class="alert alert-danger center" translate>
+                The Wrath of Poseidon is already on this city
+              </div>
+            }
+            <div translate>
+              Poseidon shakes the earth and blocks the resources production of
+              an enemy for 2 hours.
+            </div>
+            <div
+              [ngClass]="{
+                'text-danger': user.getPropertyNb('ambrosia') < 40
+              }">
+              <strong translate>Cost:</strong>
+              40
+              <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
+            </div>
+            @if (user.getPropertyNb('ambrosia') >= 40) {
+              <input
+                type="text"
+                class="form-control"
+                aria-label="Player"
+                placeholder="{{ 'Player' | translate }}"
+                [(ngModel)]="idToUser" />
+            }
+            @if (user.getPropertyNb('ambrosia') >= 40) {
+              <button
+                class="btn btn-success"
+                translate
+                (click)="powerUseTarget(16)">
+                Send
+              </button>
+            }
+          </div>
+        </div>
+      }
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

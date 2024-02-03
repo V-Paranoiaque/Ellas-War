@@ -1,0 +1,595 @@
+<app-alliance-archives-popup></app-alliance-archives-popup>
+<app-alliance-candidate-popup
+  [candidate]="selectedPlayer"></app-alliance-candidate-popup>
+<app-alliance-dissolve-popup></app-alliance-dissolve-popup>
+<app-alliance-emergency-popup></app-alliance-emergency-popup>
+<app-alliance-evict-popup [info]="selectedPlayer"></app-alliance-evict-popup>
+<app-alliance-gift-popup [info]="selectedPlayer"></app-alliance-gift-popup>
+<app-alliance-leave-popup></app-alliance-leave-popup>
+<app-alliance-pact-manage-popup
+  [info]="allianceProfile"></app-alliance-pact-manage-popup>
+<app-alliance-profile-popup
+  [allianceProfile]="myAllianceProfile"></app-alliance-profile-popup>
+<app-alliance-rank-popup [info]="selectedPlayer"></app-alliance-rank-popup>
+<app-alliance-requests-popup
+  [profile]="myAllianceProfile"
+  [info]="selectedRequest"></app-alliance-requests-popup>
+<app-alliance-taxes-popup [taxes]="taxes"></app-alliance-taxes-popup>
+<app-alliance-war-archives-popup
+  [info]="selectedWar"></app-alliance-war-archives-popup>
+
+<app-main-left></app-main-left>
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-2">
+          <div class="card-body">
+            <h1 class="text-center">
+              {{ myAllianceProfile.alliance_name }}
+
+              @if (user.getPropertyNb('second') > 0) {
+                <button
+                  class="btn btn-primary"
+                  (click)="getProfile()"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceProfile"
+                  title="{{ 'Modify the alliance\'s profile' | translate }}">
+                  <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+                </button>
+              }
+
+              <button
+                class="btn btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#AllianceArchives"
+                title="{{ 'Archives' | translate }}">
+                <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
+                <span class="visually-hidden" translate>Archives</span>
+              </button>
+
+              @if (allowLeave === 1) {
+                <button
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceLeave"
+                  title="{{ 'Leave your alliance' | translate }}">
+                  <app-ic-icon [icon]="times"></app-ic-icon>
+                  <span class="visually-hidden" translate
+                    >Leave your alliance</span
+                  >
+                </button>
+              }
+              @if (
+                allowLeave === 0 &&
+                user.getPropertyNb('id') !== myAllianceProfile.chief_id &&
+                user.getPropertyNb('emergency_exit') === 0
+              ) {
+                <button
+                  class="btn btn-danger"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceEmergency"
+                  title="{{ 'Enable emergency exit' | translate }}">
+                  <app-ic-icon [icon]="times"></app-ic-icon>
+                  <span class="visually-hidden" translate
+                    >Enable emergency exit</span
+                  >
+                </button>
+              }
+              @if (allowDissolve === 1) {
+                <button
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceDissolve"
+                  title="{{ 'Dissolve your alliance' | translate }}">
+                  <app-ic-icon [icon]="times"></app-ic-icon>
+                  <span class="visually-hidden" translate
+                    >Dissolve your alliance</span
+                  >
+                </button>
+              }
+            </h1>
+
+            @if (user.getPropertyNb('emergency_exit') > 0) {
+              <div class="text-center fw-bold text-danger">
+                <span translate>
+                  Emergency exit activated, departure planned:
+                </span>
+                {{
+                  user.getPropertyNb('emergency_exit') * 1000
+                    | date: 'dd/MM, HH:mm'
+                }}
+                <span
+                  data-bs-toggle="modal"
+                  data-bs-target="#AllianceEmergency"
+                  role="button"
+                  >(<span translate>Cancel</span>)</span
+                >
+              </div>
+            }
+
+            <div class="visually-hidden" id="myAllianceMembersDesc" translate>
+              Alliance members
+            </div>
+            <table
+              class="table table-striped align-middle"
+              aria-labelledby="myAllianceMembersDesc">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Rank
+                  </th>
+                  <th scope="col" translate>XP</th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Victories
+                  </th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Field
+                  </th>
+                  <th scope="col" translate>Activity</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of myAllianceMembers; track p) {
+                  <tr>
+                    <td>
+                      <app-user-profile
+                        id="{{ p.membre_id }}"
+                        username="{{ p.username }}"
+                        status="{{ p.membre_status }}"></app-user-profile>
+                      <a
+                        [ngClass]="{
+                          'text-danger':
+                            p.membre_status === 3 || p.membre_status === 5,
+                          'text-warning': p.membre_status === 4
+                        }"
+                        [routerLink]="['/profile/' + p.membre_id]">
+                        ({{ p.level }})
+                      </a>
+                      @if (p.rank_name !== '') {
+                        <div class="d-block d-sm-none">
+                          {{ p.rank_name }}
+                        </div>
+                      }
+                    </td>
+                    <td class="d-none d-sm-table-cell">{{ p.rank_name }}</td>
+                    <td class="text-end">
+                      {{ p.xp | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="d-none d-sm-table-cell">
+                      {{ p.victory | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="d-none d-sm-table-cell text-end">
+                      {{ p.field | number: '' : this.translate.currentLang }}
+                    </td>
+                    <td class="text-center">
+                      {{ p.last_activity * 1000 | date: 'dd/MM yyyy, HH:mm' }}
+                    </td>
+                    <td class="text-center">
+                      <button
+                        class="btn btn-success"
+                        (click)="setPlayer(p, 3)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#AllianceRank"
+                        title="{{ 'Modify the rank' | translate }}">
+                        <app-ic-icon [icon]="sportsMedal"></app-ic-icon>
+                        <span class="visually-hidden">
+                          {{ 'Modify the rank' | translate }}
+                        </span>
+                      </button>
+                      @if (
+                        p.gift === 0 && p.membre_id !== user.getPropertyNb('id')
+                      ) {
+                        <button
+                          class="btn btn-success"
+                          (click)="setPlayer(p, 1)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceGift"
+                          title="{{ 'Give drachmas' | translate }}">
+                          <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Give drachmas' | translate }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        p.gift > 0 &&
+                        p.remain > 0 &&
+                        p.membre_id !== user.getPropertyNb('id')
+                      ) {
+                        <button
+                          class="btn btn-warning"
+                          (click)="setPlayer(p, 1)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceGift"
+                          title="{{ 'Give drachmas' | translate }}">
+                          <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Give drachmas' | translate }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        p.remain === 0 &&
+                        p.membre_id !== user.getPropertyNb('id')
+                      ) {
+                        <button
+                          class="btn btn-danger"
+                          (click)="setPlayer(p, 1)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceGift"
+                          title="{{
+                            'Impossible to give drachmas' | translate
+                          }}">
+                          <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Impossible to give drachmas' | translate }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('recruiter') > 0 &&
+                        p.allow_eject === 1
+                      ) {
+                        <button
+                          class="btn btn-danger"
+                          (click)="setPlayer(p, 2)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceEvict"
+                          title="{{ 'Evict from the alliance' | translate }}">
+                          <app-ic-icon [icon]="times"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Evict from the alliance' | translate }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('recruiter') > 0 &&
+                        p.allow_eject === 0 &&
+                        p.membre_id !== user.getPropertyNb('id') &&
+                        p.membre_id !== myAllianceProfile.chief_id
+                      ) {
+                        <button
+                          class="btn btn-primary"
+                          (click)="setPlayer(p, 2)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceEvict"
+                          title="{{
+                            'Impossible to evict this member from the alliance'
+                              | translate
+                          }}">
+                          <app-ic-icon [icon]="times"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{
+                              'Impossible to evict this member from the alliance'
+                                | translate
+                            }}
+                          </span>
+                        </button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+              @if (legend.paused === 1 || legend.blocked === 1) {
+                <div>
+                  <br />
+                  <strong translate>Legend</strong><strong translate>:</strong>
+                  <div class="text-danger" translate>The member is blocked</div>
+                  <div class="text-warning" translate>The member is paused</div>
+                </div>
+              }
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-12">
+        <div class="card mb-2">
+          <div class="card-header">
+            <span id="resourcesDesc" translate> Resources </span>
+            <div class="card-header-group card-header-group-right">
+              <div
+                class="card-header-button"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#AllianceTaxes"
+                title="{{ 'Taxes management' | translate }}"
+                (click)="taxesInit()"
+                (keyup.enter)="taxesInit()"
+                tabindex="0">
+                <app-ic-icon [icon]="cog"></app-ic-icon>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table
+              class="table table-striped table-middle align-middle"
+              aria-labelledby="resourcesDesc">
+              <tbody>
+                @for (res of ressList; track res) {
+                  <tr>
+                    <th scope="row" class="text-center">
+                      <app-ew-icon
+                        name="{{ res }}"
+                        class="small-resource"></app-ew-icon>
+                    </th>
+                    <td class="text-end">
+                      {{
+                        getStock(res)
+                          | number: '1.0-0' : this.translate.currentLang
+                      }}
+                    </td>
+                    <td class="text-center">
+                      <button
+                        class="btn btn-primary"
+                        (click)="setRequest(res)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#AllianceRequests"
+                        title="{{ 'Request resources' | translate }}">
+                        <app-ic-icon [icon]="handHolding"></app-ic-icon>
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="card mb-2">
+          <div class="card-header" translate>Recruitment</div>
+          @if (myAllianceWaitList.length === 0) {
+            <div class="card-body text-center fw-bold" translate>
+              There is no member waiting to enter in your alliance
+            </div>
+          }
+          @if (myAllianceWaitList.length > 0) {
+            <div class="card-body">
+              @for (user of myAllianceWaitList; track user) {
+                <div class="d-flex flex-row">
+                  <div class="flex-grow-1">
+                    {{ user.username }} ({{ user.level }})
+                  </div>
+                  <div class="text-end">
+                    <button
+                      class="btn btn-primary"
+                      (click)="setPlayer(user, 0)"
+                      data-bs-toggle="modal"
+                      data-bs-target="#AllianceCandidate">
+                      <app-ic-icon [icon]="eye"></app-ic-icon>
+                    </button>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+        <div class="card mb-2">
+          <div class="card-header">
+            <span id="pactsDesc" translate> Pacts </span>
+            <div class="card-header-group card-header-group-right">
+              <a
+                class="card-header-button"
+                [routerLink]="['/diplomacy']"
+                title="{{ 'Pacts' | translate }}">
+                <app-ic-icon [icon]="flag"></app-ic-icon>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            @if (pactList.length === 0) {
+              <div class="text-center fw-bold" translate>
+                You don't have any pact
+              </div>
+            }
+            @if (pactList.length > 0) {
+              <table
+                class="table table-striped table-middle align-middle"
+                aria-labelledby="pactsDesc">
+                <tbody>
+                  @for (alli of pactList; track alli) {
+                    <tr>
+                      <th scope="row">
+                        <a
+                          [routerLink]="[
+                            '/allianceprofile/' + alli.alliance_id
+                          ]">
+                          {{ alli.alliance_name }}
+                        </a>
+                      </th>
+                      <td class="text-center">
+                        @if (
+                          user.getPropertyNb('strategist') > 0 &&
+                          user.getPropertyNb('alliance') > 0 &&
+                          alli.pact === 1
+                        ) {
+                          <a
+                            class="btn btn-info"
+                            tabindex="0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#AlliancePactManage"
+                            (click)="setAlliance(alli)"
+                            (keyup.enter)="setAlliance(alli)"
+                            title="{{
+                              'Cancel a pact request with the alliance:'
+                                | translate
+                            }} {{ alli.alliance_name }}">
+                            <app-ic-icon [icon]="flag"></app-ic-icon>
+                            <span class="visually-hidden">
+                              {{
+                                'Cancel a pact request with the alliance:'
+                                  | translate
+                              }}
+                              {{ alli.alliance_name }}
+                            </span>
+                          </a>
+                        }
+                        @if (
+                          user.getPropertyNb('strategist') > 0 &&
+                          user.getPropertyNb('alliance') > 0 &&
+                          alli.pact === 2
+                        ) {
+                          <a
+                            class="btn btn-warning"
+                            tabindex="0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#AlliancePactManage"
+                            (click)="setAlliance(alli)"
+                            (keyup.enter)="setAlliance(alli)"
+                            title="{{
+                              'Accept/Refuse a pact request from the alliance:'
+                                | translate
+                            }} {{ alli.alliance_name }}">
+                            <app-ic-icon [icon]="flag"></app-ic-icon>
+                            <span class="visually-hidden">
+                              {{
+                                'Accept/Refuse a pact request from the alliance:'
+                                  | translate
+                              }}
+                              {{ alli.alliance_name }}
+                            </span>
+                          </a>
+                        }
+                        @if (
+                          user.getPropertyNb('strategist') > 0 &&
+                          user.getPropertyNb('alliance') > 0 &&
+                          alli.pact === 3 &&
+                          user.getPropertyNb('alliance') !== alli.alliance_id
+                        ) {
+                          <a
+                            class="btn btn-primary"
+                            tabindex="0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#AlliancePactManage"
+                            (click)="setAlliance(alli)"
+                            (keyup.enter)="setAlliance(alli)"
+                            title="{{
+                              'Break the pact with the alliance:' | translate
+                            }} {{ alli.alliance_name }}">
+                            <app-ic-icon [icon]="flag"></app-ic-icon>
+                            <span class="visually-hidden">
+                              {{
+                                'Break the pact with the alliance:' | translate
+                              }}
+                              {{ alli.alliance_name }}
+                            </span>
+                          </a>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+        <div class="card mb-2">
+          <div class="card-header">
+            <span id="warsDesc" translate> Wars </span>
+            <div class="card-header-group card-header-group-right">
+              <a
+                class="card-header-button"
+                [routerLink]="['/diplomacy']"
+                title="{{ 'Wars' | translate }}">
+                <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            @if (myAllianceWar.length === 0) {
+              <div class="text-center fw-bold" translate>
+                You don't have any war
+              </div>
+            }
+
+            @if (myAllianceWar.length > 0) {
+              <table
+                class="table table-striped table-middle align-middle"
+                aria-labelledby="warsDesc">
+                <tbody>
+                  @for (w of myAllianceWar; track w) {
+                    <tr>
+                      <th scope="row" class="p-0">
+                        <div class="d-flex align-items-center">
+                          <div
+                            class="d-flex flex-grow-1 flex-column flex-sm-row">
+                            <div class="d-flex flex-fill">
+                              <div class="flex-grow-1 p-2">
+                                <a
+                                  class="fw-bold"
+                                  [routerLink]="[
+                                    '/allianceprofile/' + w.alliance_attacking
+                                  ]">
+                                  {{ w.name_attacking }}
+                                </a>
+                              </div>
+                              @if (w.begin === 1) {
+                                <div class="p-2 fw-light">
+                                  {{ w.win_attacking }}
+                                </div>
+                              }
+                            </div>
+                            @if (w.begin === 1) {
+                              <div
+                                class="p-2 ps-sm-0 pe-sm-0 d-none d-sm-block fw-light">
+                                -
+                              </div>
+                            }
+                            @if (w.begin === 0) {
+                              <div class="flex-fill text-center fw-light">
+                                {{ w.time * 1000 | date: 'dd/MM, HH:mm' }}
+                              </div>
+                            }
+                            <div class="d-flex flex-fill">
+                              <div
+                                class="flex-grow-1 text-sm-end order-sm-2 p-2">
+                                <a
+                                  [routerLink]="[
+                                    '/allianceprofile/' + w.alliance_defender
+                                  ]">
+                                  {{ w.name_defender }}
+                                </a>
+                              </div>
+                              @if (w.begin === 1) {
+                                <div class="order-sm-1 p-2 fw-light">
+                                  {{ w.win_defender }}
+                                </div>
+                              }
+                            </div>
+                          </div>
+                          <div class="p-2">
+                            @if (w.begin === 1) {
+                              <button
+                                class="btn btn-primary"
+                                title="{{ 'Archives' | translate }}"
+                                (click)="warSelect(w)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#AllianceWarArchives">
+                                <app-ic-icon
+                                  [icon]="filePaper2Line"></app-ic-icon>
+                                <span class="visually-hidden" translate
+                                  >Archives</span
+                                >
+                              </button>
+                            }
+                          </div>
+                        </div>
+                      </th>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

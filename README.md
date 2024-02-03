@@ -2,6 +2,11 @@
 
 Ellas War is an online Video Game started in 2007. The action takes place approximately to -500 during the Golden Age of ancient Greece. When we have migrated the frontend from AngularJS to Angular, we have decided to release it under a free license. Officially supported languages are English and French, but we are open to contributions.
 
+## Dependencies
+You will need to install
+* cwebp
+* NodeJS >= 18
+
 ## Development
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Because of CSR problems you might be able to connect only to the development server.

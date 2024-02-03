@@ -1,0 +1,371 @@
+<div class="modal fade" id="AllianceTaxes" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="taxesDesc" class="modal-title" translate>Taxes management</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <strong translate>Minimum level</strong>
+        @if (user.getPropertyNb('treasurer') === 0) {
+          <strong translate>:</strong>
+        }
+        @if (user.getPropertyNb('treasurer') === 0) {
+          <span>{{ myAllianceProfile.fee_min }}</span>
+        }
+        <br />
+        @if (user.getPropertyNb('treasurer') > 0) {
+          <input
+            class="form-control"
+            type="number"
+            placeholder="0"
+            [attr.min]="1"
+            [attr.max]="10"
+            [(ngModel)]="this.myAllianceProfile.fee_min" />
+        }
+        <br />
+
+        <table
+          class="table table-striped table-middle"
+          aria-describedby="taxesDesc">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" translate>Quantity</th>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <th scope="col" translate>Max</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon
+                  name="drachma"
+                  class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.drachma" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.drachma | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('drachma')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="food" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.food" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.food | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('food')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="water" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.water" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.water | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('water')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="wood" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.wood" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.wood | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('wood')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="stone" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.stone" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.stone | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('stone')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="iron" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.iron" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.iron | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('iron')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="marble" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.marble" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.marble | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('marble')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="grapes" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.grapes" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.grapes | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('grapes')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="wine" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.wine" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.wine | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('wine')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+            <tr class="align-middle">
+              <td class="text-center">
+                <app-ew-icon name="gold" class="small-resource"></app-ew-icon>
+              </td>
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td>
+                  <input
+                    class="form-control"
+                    type="number"
+                    step="1"
+                    [attr.min]="0"
+                    [(ngModel)]="taxes.gold" />
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') === 0) {
+                <td class="text-end">
+                  {{
+                    taxes.gold | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+              @if (user.getPropertyNb('treasurer') > 0) {
+                <td class="text-end">
+                  {{
+                    getMax('gold')
+                      | number: '1.0-2' : this.translate.currentLang
+                  }}
+                </td>
+              }
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        @if (user.getPropertyNb('treasurer') > 0) {
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="saveTaxes()"
+            data-bs-dismiss="modal"
+            translate>
+            Save
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+</div>

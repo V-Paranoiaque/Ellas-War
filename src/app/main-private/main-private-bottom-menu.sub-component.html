@@ -1,0 +1,476 @@
+<app-main-private-player-info-popup></app-main-private-player-info-popup>
+
+<div
+  class="modal modal-bottom fade"
+  id="mobile-menu"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true">
+  <div class="modal-dialog m-0" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-1">
+        <div class="container">
+          <div class="row row-cols-4">
+            <!-- Pages -->
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="city"
+                title="{{ 'City' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>City</div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/attacks']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="attacks"
+                title="{{ 'Attacks' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Attacks</div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/messages']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="messages"
+                title="{{ 'Messages' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div
+                  class="align-self-center my-1"
+                  [ngClass]="{ 'text-warning': user.getNewMsg() > 0 }"
+                  translate>
+                  Messages
+                </div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/quests']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="quests"
+                title="{{ 'Quests' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div
+                  class="align-self-center my-1"
+                  [ngClass]="{
+                    'text-warning':
+                      user.getPropertyNb('quest_validate') > 0 ||
+                      (user.getPropertyNb('level') > 0 &&
+                        user.getPropertyNb('dquest_validated') > 0) ||
+                      user.getPropertyNb('altar_available') > 0
+                  }"
+                  translate>
+                  Quests
+                </div>
+              </div>
+            </a>
+            @if (user.getPropertyNb('alliance') > 0) {
+              <a
+                class="col menu-block p-1 text-center d-flex flex-column"
+                [routerLink]="['/alliance']"
+                data-bs-dismiss="modal">
+                <app-ew-icon
+                  name="alliance"
+                  title="{{ 'Alliance' | translate }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                  <div class="align-self-center my-1" translate>Alliance</div>
+                </div>
+              </a>
+            }
+            @if (user.getPropertyNb('alliance') === 0) {
+              <a
+                class="col menu-block p-1 text-center d-flex flex-column"
+                [routerLink]="['/diplomacy']"
+                data-bs-dismiss="modal">
+                <app-ew-icon
+                  name="alliance"
+                  title="{{ 'Alliance' | translate }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                  <div class="align-self-center my-1" translate>Alliance</div>
+                </div>
+              </a>
+            }
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/agora']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="agora"
+                title="{{ 'Agora' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Agora</div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/honnor/' + user.getPropertyNb('level')]"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="rankings"
+                title="{{ 'Rankings' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Rankings</div>
+              </div>
+            </a>
+          </div>
+          <!-- Extra -->
+          <hr class="my-1" />
+          <div class="row row-cols-4">
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              role="button"
+              data-bs-dismiss="modal"
+              (click)="disconnect()">
+              <app-ew-icon
+                name="menu-disconnect"
+                title="{{ 'Disconnect' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Disconnect</div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/support']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="menu-support"
+                title="{{
+                  'Send a message to the staff' | translate
+                }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Support</div>
+              </div>
+            </a>
+            <a
+              class="col menu-block p-1 text-center d-flex flex-column"
+              [routerLink]="['/options']"
+              data-bs-dismiss="modal">
+              <app-ew-icon
+                name="menu-options"
+                title="{{ 'Game options' | translate }}"></app-ew-icon>
+              <div
+                class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                <div class="align-self-center my-1" translate>Options</div>
+              </div>
+            </a>
+            @if (user.getPropertyNb('rank') > 1) {
+              <a
+                class="col menu-block p-1 text-center d-flex flex-column"
+                [routerLink]="['/admin/']"
+                data-bs-dismiss="modal">
+                <app-ew-icon
+                  name="menu-admin"
+                  title="{{
+                    'Administration panel' | translate
+                  }}"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex border-0">
+                  <div class="align-self-center my-1" translate>Admin</div>
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (chatActive !== '') {
+  <div class="chat-text">
+    <div class="row d-lg-none">
+      <div class="col-12 chat-shortcut d-flex">
+        <div class="p-1 fs-6 fw-bold">
+          @switch (chatActive) {
+            @case ('general_text') {
+              <span translate>General Chat</span>
+            }
+            @case ('general_members') {
+              <span translate>Connected members</span>
+            }
+            @case ('alliance_text') {
+              <span translate>Alliance Chat</span>
+            }
+            @case ('alliance_members') {
+              <span translate>Alliance members connected</span>
+            }
+          }
+        </div>
+        <div class="flex-grow-1 text-end">
+          @if (user.getPropertyNb('chat_allowed') === 1) {
+            <app-ic-icon
+              [icon]="comments"
+              role="button"
+              (click)="set('general_text')"
+              class="text-primary ms-3"></app-ic-icon>
+          }
+          @if (user.getPropertyNb('chat_allowed') === 1) {
+            <app-ic-icon
+              [icon]="users"
+              role="button"
+              (click)="set('general_members')"
+              class="text-primary ms-3"></app-ic-icon>
+          }
+          @if (user.getPropertyNb('alliance') > 0) {
+            <app-ic-icon
+              [icon]="comments"
+              role="button"
+              (click)="set('alliance_text')"
+              class="text-success ms-3"></app-ic-icon>
+          }
+          @if (user.getPropertyNb('alliance') > 0) {
+            <app-ic-icon
+              [icon]="users"
+              role="button"
+              (click)="set('alliance_members')"
+              class="text-success ms-3"></app-ic-icon>
+          }
+          <app-ic-icon
+            [icon]="times"
+            role="button"
+            (click)="toggle(chatActive)"
+            class="text-danger ms-3 me-1"></app-ic-icon>
+        </div>
+      </div>
+    </div>
+    <div
+      class="chat-general row"
+      [ngClass]="{ 'd-none': !chatActive.startsWith('general') }">
+      <div
+        class="col-lg-10 col-md-9 col-12 chat-inner"
+        [ngClass]="{ 'd-none d-md-block': chatActive !== 'general_text' }"
+        #chatGeneral>
+        @for (msg of chat_user_msgs; track msg) {
+          <div>
+            <a
+              [routerLink]="['/profile/' + msg.user_id]"
+              [ngClass]="{ 'text-danger': msg.rank === 5 }"
+              title="{{ msg.time * 1000 | date: 'dd/MM, HH:mm' }}"
+              class="fw-bold"
+              >{{ msg.username }}</a
+            >
+            <span translate>:</span>
+            {{ msg.msg }}<br />
+          </div>
+        }
+      </div>
+      <div
+        class="col-lg-2 col-md-3 col-12 chat-players"
+        [ngClass]="{ 'd-none d-md-block': chatActive !== 'general_members' }">
+        @for (user of chat_user_players; track user) {
+          <span class="chat-player">
+            <a
+              [routerLink]="['/profile/' + user.user_id]"
+              [ngClass]="{
+                'text-danger': user.rank === 5,
+                'text-warning': user.chat_allowed === 0
+              }"
+              class="fw-bold"
+              >{{ user.username }}</a
+            >
+          </span>
+        }
+      </div>
+      <div
+        class="col-12"
+        [ngClass]="{ 'd-none d-md-block': chatActive !== 'general_text' }">
+        @if (user.getPropertyNb('chat_allowed') === 1) {
+          <div class="input-group">
+            <input
+              type="text"
+              aria-describedby="chat_user_input"
+              placeholder="{{ 'Message' | translate }}"
+              class="form-control"
+              id="chatUserMsg"
+              [(ngModel)]="chatUserMsg"
+              autcomplete="nope"
+              data-lpignore="true"
+              (keydown.enter)="chatUserSend()" />
+            <span
+              id="chat_user_input"
+              class="input-group-addon btn btn-primary"
+              role="button"
+              (click)="chatUserSend()"
+              (keyup.enter)="chatUserSend()"
+              tabindex="0"
+              translate
+              >Send</span
+            >
+          </div>
+        }
+      </div>
+      @if (user.getPropertyNb('chat_allowed') === 0) {
+        <div class="text-center text-danger fw-bold">
+          <br />
+          <span translate> You are not allowed to write on the chat </span>
+        </div>
+      }
+    </div>
+    @if (user.getPropertyNb('alliance') > 0) {
+      <div
+        class="chat-alliance row d-none"
+        [ngClass]="{ 'd-none': !chatActive.startsWith('alliance') }">
+        <div
+          class="col-lg-10 col-md-9 col-12 chat-inner"
+          [ngClass]="{ 'd-none d-md-block': chatActive !== 'alliance_text' }"
+          #chatAlliance>
+          @for (msg of chat_alli_msgs; track msg) {
+            <div>
+              <a
+                [routerLink]="['/profile/' + msg.user_id]"
+                [ngClass]="{ 'text-danger fw-bold': msg.rank === 5 }"
+                title="{{ msg.time * 1000 | date: 'dd/MM, HH:mm' }}"
+                class="fw-bold"
+                >{{ msg.username }}</a
+              >
+              <span translate>:</span>
+              {{ msg.msg }}<br />
+            </div>
+          }
+        </div>
+        <div
+          class="col-lg-2 col-md-3 col-12 chat-players"
+          [ngClass]="{
+            'd-none d-md-block': chatActive !== 'alliance_members'
+          }">
+          @for (user of chat_alli_players; track user) {
+            <span class="chat-player">
+              <a
+                [routerLink]="['/profile/' + user.user_id]"
+                [ngClass]="{
+                  'text-danger': user.rank === 5,
+                  'text-warning': user.chat_allowed === 0
+                }"
+                class="fw-bold"
+                >{{ user.username }}</a
+              >
+            </span>
+          }
+        </div>
+        <div
+          class="col-12"
+          [ngClass]="{ 'd-none d-md-block': chatActive !== 'alliance_text' }">
+          <div class="input-group">
+            <input
+              type="text"
+              aria-describedby="chat_alliance_input"
+              placeholder="{{ 'Message' | translate }}"
+              class="form-control"
+              id="chatAlliMsg"
+              [(ngModel)]="chatAlliMsg"
+              autcomplete="nope"
+              data-lpignore="true"
+              (keydown.enter)="chatAlliSend()" />
+            <span
+              id="chat_alliance_input"
+              class="input-group-addon btn btn-success"
+              role="button"
+              (click)="chatAlliSend()"
+              (keyup.enter)="chatAlliSend()"
+              tabindex="0"
+              translate
+              >Send</span
+            >
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<div
+  role="complementary"
+  attr.aria-label="{{ 'Access to the chats' | translate }}">
+  <div class="chat-button" role="tablist">
+    @if (user.getPropertyNb('alliance') > 0) {
+      <button
+        role="tab"
+        class="btn btn-success"
+        (click)="toggle('alliance_text')">
+        <span translate>Alliance Chat</span>
+        @if (chat_alli_nb > 0) {
+          <span> ({{ chat_alli_nb }}) </span>
+        }
+      </button>
+    }
+    <button class="btn btn-primary" (click)="toggle('general_text')" role="tab">
+      <span translate>General Chat</span>
+      @if (chat_user_nb > 0) {
+        <span> ({{ chat_user_nb }}) </span>
+      }
+    </button>
+    <a
+      href="{{ environment.discord }}"
+      target="_blank"
+      id="discord"
+      rel="external nofollow noopener"
+      class="btn"
+      role="tab">
+      <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
+    </a>
+  </div>
+</div>
+
+<nav id="mobile-nav" class="row d-block d-lg-none">
+  <div class="col-10 offset-1 d-flex">
+    <app-ew-icon
+      name="chat"
+      role="button"
+      data-bs-dismiss="modal"
+      (click)="toggle('general_text')"
+      title="{{ 'Access to the chats' | translate }}"></app-ew-icon>
+    <app-ew-icon
+      name="quests"
+      role="button"
+      data-bs-dismiss="modal"
+      [routerLink]="['/quests']"
+      title="{{ 'Quests' | translate }}"></app-ew-icon>
+    <app-ew-icon
+      name="city"
+      role="button"
+      data-bs-dismiss="modal"
+      [routerLink]="['/']"
+      title="{{ 'City' | translate }}"></app-ew-icon>
+    <app-ew-icon
+      name="player"
+      role="button"
+      data-bs-dismiss="modal"
+      data-bs-toggle="modal"
+      data-bs-target="#PlayerInfo"
+      title="{{ 'Player info' | translate }}"></app-ew-icon>
+    <app-ew-icon
+      name="menu"
+      role="button"
+      data-bs-dismiss="modal"
+      data-bs-toggle="modal"
+      data-bs-target="#mobile-menu"
+      title="{{ 'Open the menu' | translate }}"></app-ew-icon>
+  </div>
+</nav>

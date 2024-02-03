@@ -1,0 +1,123 @@
+<div id="topMosaic"></div>
+<header>
+  <nav
+    id="sidebarMenu"
+    class="collapse d-lg-block sidebar sidebar-left collapse">
+    <div class="position-sticky">
+      <div class="list-group list-goup-flush">
+        <a
+          href="/"
+          [routerLink]="['/']"
+          class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <app-ew-icon name="city"></app-ew-icon>
+          <span class="p-2" translate>City</span>
+        </a>
+        @if (
+          user.getPropertyNb('level') > 0 || user.getPropertyNb('quest') >= 8
+        ) {
+          <a
+            href="attacks"
+            [routerLink]="['/attacks']"
+            class="list-group-item list-group-item-action ripple"
+            aria-current="true">
+            <app-ew-icon name="attacks"></app-ew-icon>
+            <span class="p-2" translate>Attacks</span>
+          </a>
+        }
+        @if (
+          user.getPropertyNb('level') >= 1 || user.getPropertyNb('quest') >= 2
+        ) {
+          <a
+            href="messages"
+            [routerLink]="['/messages']"
+            class="list-group-item list-group-item-action ripple"
+            aria-current="true"
+            [ngClass]="{ 'text-warning': user.getNewMsg() > 0 }">
+            <app-ew-icon name="messages"></app-ew-icon>
+            <span class="p-2">
+              <span translate>Messages</span>
+              @if (user.getNewMsg() > 0) {
+                <span>({{ user.getNewMsg() }})</span>
+              }
+            </span>
+          </a>
+        }
+        <a
+          href="quests"
+          [routerLink]="['/quests']"
+          class="list-group-item list-group-item-action ripple"
+          aria-current="true"
+          [ngClass]="{
+            'text-warning':
+              user.getPropertyNb('quest_validate') > 0 ||
+              (user.getPropertyNb('level') > 0 &&
+                user.getPropertyNb('dquest_validated') > 0) ||
+              user.getPropertyNb('altar_available') > 0
+          }">
+          <app-ew-icon name="quests"></app-ew-icon>
+          <span class="p-2">
+            <span translate>Quests</span>
+            @if (
+              user.getPropertyNb('level') > 0 &&
+              (user.getPropertyNb('quest_validate') > 0 ||
+                user.getPropertyNb('dquest_validated') > 0 ||
+                user.getPropertyNb('altar_available') > 0)
+            ) {
+              <span>
+                ({{
+                  user.getPropertyNb('quest_validate') +
+                    user.getPropertyNb('dquest_validated') +
+                    user.getPropertyNb('altar_available')
+                }})
+              </span>
+            }
+          </span>
+        </a>
+        @if (
+          user.getPropertyNb('level') >= 1 && user.getPropertyNb('alliance') > 0
+        ) {
+          <a
+            href="alliance"
+            [routerLink]="['/alliance']"
+            class="list-group-item list-group-item-action ripple"
+            aria-current="true">
+            <app-ew-icon name="alliance"></app-ew-icon>
+            <span class="p-2" translate>Alliance</span>
+          </a>
+        }
+        @if (
+          user.getPropertyNb('level') >= 1 &&
+          user.getPropertyNb('alliance') === 0
+        ) {
+          <a
+            href="diplomacy"
+            [routerLink]="['/diplomacy']"
+            class="list-group-item list-group-item-action ripple"
+            aria-current="true">
+            <app-ew-icon name="alliance"></app-ew-icon>
+            <span class="p-2" translate>Alliance</span>
+          </a>
+        }
+        @if (user.getPropertyNb('level') > 0) {
+          <a
+            href="agora"
+            [routerLink]="['/agora']"
+            class="list-group-item list-group-item-action ripple"
+            aria-current="true">
+            <app-ew-icon name="agora"></app-ew-icon>
+            <span class="p-2" translate>Agora</span>
+          </a>
+        }
+        <a
+          href="/honnor/{{ user.getPropertyNb('level') }}"
+          [routerLink]="['/honnor/' + user.getPropertyNb('level')]"
+          class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <app-ew-icon name="rankings"></app-ew-icon>
+          <span class="p-2" translate>Rankings</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

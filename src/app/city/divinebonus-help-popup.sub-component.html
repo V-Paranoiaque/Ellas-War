@@ -1,0 +1,202 @@
+<div class="modal fade" id="DivineBonusHelp" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Divine Bonus</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div translate>
+          The Divine Bonus are awarded when you sign in on the game and reward
+          your loyalty. You can also earn through the activities offered on the
+          facebook page. A bonus with similar effects to see its effect favors
+          accumulate than the favor.
+        </div>
+        <br />
+        <div class="text-center">
+          <div>
+            <strong translate>Ongoing streak:</strong>
+            {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+          </div>
+          <div>
+            {{
+              'Next goal: { value } Days, possible bonus:'
+                | translate
+                  : {
+                      value:
+                        user.getGoalDays()
+                        | number: '' : this.translate.currentLang
+                    }
+            }}
+          </div>
+
+          <div class="container">
+            @switch (user.getGoalDaysNb()) {
+              @case (3) {
+                <ul class="d-inline-block text-start">
+                  <li>
+                    {{ 10000 | number: '' : this.translate.currentLang }}
+                    <app-ew-icon
+                      name="iron"
+                      class="small-resource"></app-ew-icon>
+                  </li>
+                  <li>
+                    {{ 10000 | number: '' : this.translate.currentLang }}
+                    <app-ew-icon
+                      name="wood"
+                      class="small-resource"></app-ew-icon>
+                  </li>
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') >=
+                      user.getDatas().ress_lvl.grapes
+                  ) {
+                    <li>
+                      {{ 2000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="grapes"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                </ul>
+              }
+              @case (7) {
+                <ul class="d-inline-block text-start">
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') < user.getDatas().ress_lvl.stone
+                  ) {
+                    <li>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="iron"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') < user.getDatas().ress_lvl.stone
+                  ) {
+                    <li>
+                      {{ 10000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') < user.getDatas().ress_lvl.stone
+                  ) {
+                    <li>
+                      {{ 2000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="grapes"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') >=
+                      user.getDatas().ress_lvl.stone
+                  ) {
+                    <li>
+                      {{ 2000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="stone"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                  @if (
+                    Object.keys(user.getDatas()).length > 0 &&
+                    user.getPropertyNb('level') >=
+                      user.getDatas().ress_lvl.marble
+                  ) {
+                    <li>
+                      {{ 250 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="marble"
+                        class="small-resource"></app-ew-icon>
+                    </li>
+                  }
+                </ul>
+              }
+              @case (14) {
+                <ul class="d-inline-block text-start">
+                  @if (user.getPropertyNb('level') < 9) {
+                    <li>
+                      {{ 80 }}
+                      <span translate>Spartans</span>
+                    </li>
+                  }
+                  @if (user.getPropertyNb('level') >= 9) {
+                    <li translate>200 units of your third temple</li>
+                  }
+                </ul>
+              }
+              @case (30) {
+                <ul class="d-inline-block text-start">
+                  <li translate>
+                    6 hours of withdrawal without taxes in your treasure
+                  </li>
+                  <li translate>2 bonus attacks</li>
+                </ul>
+              }
+              @case (50) {
+                <ul class="d-inline-block text-start">
+                  <li>
+                    {{ 1 }}
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </li>
+                </ul>
+              }
+              @case (70) {
+                <ul class="d-inline-block text-start">
+                  <li translate>
+                    6 hours of withdrawal without taxes in your treasure
+                  </li>
+                  <li translate>2 bonus attacks</li>
+                </ul>
+              }
+              @case (99) {
+                <ul class="d-inline-block text-start">
+                  <li>
+                    {{ 1 }}
+                    <app-ew-icon
+                      name="favor"
+                      class="small-resource"></app-ew-icon>
+                  </li>
+                </ul>
+              }
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#DivineBonusList"
+          data-bs-dismiss="modal"
+          translate>
+          Divine Bonus list
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

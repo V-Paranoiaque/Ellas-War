@@ -1,0 +1,124 @@
+<div
+  class="modal fade"
+  id="AlliancePactManage"
+  tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ info.alliance_name }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      @if (info.pact === 1) {
+        <div>
+          <div class="modal-body container-fluid" translate>
+            If you cancel the request, your alliance will be refunded of 500'000
+            Drachmas.
+          </div>
+          <div class="modal-body" translate>
+            A pact preserves the cities in both alliances from mutual attacks. A
+            war can also be stoped by signing a pact.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              translate>
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="pactRefuse()"
+              data-bs-dismiss="modal"
+              translate>
+              Cancel the request
+            </button>
+          </div>
+        </div>
+      }
+      @if (info.pact === 2) {
+        <div>
+          <div class="modal-body container-fluid" translate>
+            To accept the pact request, your alliance will have to pay 250'000
+            Drachmas.
+          </div>
+          @if (myAllianceProfile['stock_drachma'] < 250000) {
+            <div class="modal-body text-center fw-bold text-danger" translate>
+              Your alliance doesn't have enought drachmas to accept a pact"
+            </div>
+          }
+          <div class="modal-body" translate>
+            A pact preserves the cities in both alliances from mutual attacks. A
+            war can also be stoped by signing a pact.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              translate>
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="pactRefuse()"
+              data-bs-dismiss="modal"
+              translate>
+              Refuse the request
+            </button>
+            @if (pactPossible()) {
+              <button
+                type="button"
+                class="btn btn-success"
+                (click)="pactAccept()"
+                data-bs-dismiss="modal"
+                translate>
+                Accept the request
+              </button>
+            }
+          </div>
+        </div>
+      }
+      @if (info.pact === 3) {
+        <div>
+          @if (alliancePactInfo.pact_date) {
+            <div class="modal-body text-center">
+              <strong translate>Signature date:</strong>
+              {{ alliancePactInfo.pact_date * 1000 | date: 'dd/MM/yyyy' }}
+            </div>
+          }
+          <div class="modal-body" translate>
+            A pact preserves the cities in both alliances from mutual attacks. A
+            war can also be stoped by signing a pact.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              translate>
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="pactBreak()"
+              data-bs-dismiss="modal"
+              translate>
+              Break the pact
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

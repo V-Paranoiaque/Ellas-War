@@ -1,0 +1,248 @@
+<div class="modal fade" id="NewsNew" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Write a new news</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Title</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.title" />
+
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.link" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="newsNew()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="NewsModify" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Modify a news</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong translate>Title</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.title" />
+
+        <strong translate>Link</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.link" />
+
+        <strong translate>Author</strong>
+        <input class="form-control" [(ngModel)]="newsSelected.author" />
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="newsModify()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="NewsDelete" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Delete a news</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ newsSelected.title }} ({{ newsSelected.author }})
+        <br />
+        <u>{{ newsSelected.link }}</u>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="newsDelete()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center" id="newsTitle" translate>News</h1>
+
+            <div class="text-center">
+              <button
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                (click)="setNews({ title: '', link: '' })"
+                data-bs-target="#NewsNew"
+                role="button"
+                translate>
+                Write a new news
+              </button>
+            </div>
+            <table class="table" aria-describedby="newsTitle">
+              <tbody>
+                @for (msg of adminNewsList; track msg) {
+                  <tr>
+                    <th scope="row">
+                      {{ msg.title }}
+                    </th>
+                    <td>
+                      <a href="{{ msg.link }}" target="_blank" rel="noopener">{{
+                        msg.link
+                      }}</a>
+                    </td>
+                    <td>
+                      {{ msg.author }}
+                    </td>
+                    <td>
+                      {{
+                        msg.news_date * 1000
+                          | date
+                            : 'EEEE dd MMMM, HH:mm'
+                            : ''
+                            : user.getConfig().locale
+                      }}
+                    </td>
+                    <td>
+                      <button
+                        class="btn btn-primary glyphicon glyphicon-pencil"
+                        (click)="setNews(msg)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#NewsModify"
+                        title="{{ 'Modify a news' | translate }}">
+                        <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+                        <span class="visually-hidden" translate
+                          >Modify a news</span
+                        >
+                      </button>
+                      <button
+                        class="btn btn-danger glyphicon glyphicon-remove"
+                        (click)="setNews(msg)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#NewsDelete"
+                        title="{{ 'Delete a news' | translate }}">
+                        <app-ic-icon [icon]="trash2Icon"></app-ic-icon>
+                        <span class="visually-hidden" translate
+                          >Delete a news</span
+                        >
+                      </button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            @if (adminNewsMax > 1) {
+              <div>
+                <br />
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminNewsPageChange(1)"
+                    (keyup.enter)="adminNewsPageChange(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminNewsPageChange(adminNewsPage - 1)"
+                    (keyup.enter)="adminNewsPageChange(adminNewsPage - 1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    [ngModel]="adminNewsPage"
+                    (change)="adminNewsPageChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}"
+                    #mySelect>
+                    @for (id of Tools.range(1, adminNewsMax); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminNewsPageChange(adminNewsPage + 1)"
+                    (keyup.enter)="adminNewsPageChange(adminNewsPage + 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="adminNewsPageChange(adminNewsMax)"
+                    (keyup.enter)="adminNewsPageChange(adminNewsMax)"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

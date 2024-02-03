@@ -1,0 +1,716 @@
+<div class="modal fade" id="AdminChiefSet" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Appoint a new chief</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body" translate>
+        This player will become the new chief of his alliance.
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="adminAllianceChief()"
+          data-bs-dismiss="modal"
+          translate>
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-admin-left-menu></app-admin-left-menu>
+
+<main class="mt-1 mb-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">
+              {{ profile.username }}
+              <a
+                [routerLink]="['/admin/profile/' + profile.membre_id]"
+                class="btn btn-primary">
+                <app-ic-icon [icon]="eye"></app-ic-icon>
+              </a>
+            </h1>
+
+            <div class="text-center">
+              <app-ic-icon
+                [ngClass]="{
+                  'btn-success': profile.membre_status === 1,
+                  'btn-danger': profile.membre_status === 3
+                }"
+                class="btn"
+                [icon]="bomb"
+                (click)="adminUserBlock()"></app-ic-icon>
+              <app-ic-icon
+                [ngClass]="{
+                  'btn-success': profile.chat_allowed === 1,
+                  'btn-danger': profile.chat_allowed === 0
+                }"
+                class="btn"
+                [icon]="comments"
+                (click)="adminChatBlock()"
+                >></app-ic-icon
+              >
+              @if (profile.alliance > 0) {
+                <app-ic-icon
+                  class="btn btn-primary"
+                  [icon]="users"
+                  data-bs-toggle="modal"
+                  data-bs-target="#AdminChiefSet"></app-ic-icon>
+              }
+            </div>
+            <div class="d-flex mt-2">
+              <div
+                class="btn flex-grow-1 frame-name"
+                role="button"
+                [ngClass]="{
+                  'btn-danger': menu === 1,
+                  'frame-name btn-primary': menu !== 1
+                }"
+                (click)="setMenu(1)"
+                (keyup.enter)="setMenu(1)"
+                tabindex="0"
+                id="descConnection"
+                translate>
+                Connection
+              </div>
+              <div
+                class="btn btn-secondary flex-grow-1 frame-name"
+                [ngClass]="{
+                  'btn-danger': menu === 2,
+                  'frame-name btn-primary': menu !== 2
+                }"
+                (click)="setMenu(2)"
+                (keyup.enter)="setMenu(2)"
+                tabindex="0"
+                translate>
+                IP
+              </div>
+              <div
+                class="btn flex-grow-1 frame-name"
+                role="button"
+                [ngClass]="{
+                  'btn-danger': menu === 3,
+                  'frame-name btn-primary': menu !== 3
+                }"
+                (click)="setMenu(3)"
+                (keyup.enter)="setMenu(3)"
+                tabindex="0"
+                id="descTrade"
+                translate>
+                Agora
+              </div>
+              <div
+                class="btn flex-grow-1 frame-name"
+                role="button"
+                [ngClass]="{
+                  'btn-danger': menu === 4,
+                  'frame-name btn-primary': menu !== 4
+                }"
+                (click)="setMenu(4)"
+                (keyup.enter)="setMenu(4)"
+                tabindex="0"
+                translate>
+                Storeroom
+              </div>
+              <div
+                class="btn flex-grow-1 frame-name"
+                role="button"
+                [ngClass]="{
+                  'btn-danger': menu === 5,
+                  'frame-name btn-primary': menu !== 5
+                }"
+                (click)="setMenu(5)"
+                (keyup.enter)="setMenu(5)"
+                tabindex="0"
+                id="descAttacks"
+                translate>
+                Attacks
+              </div>
+              <div
+                class="btn flex-grow-1 frame-name"
+                role="button"
+                [ngClass]="{
+                  'btn-danger': menu === 6,
+                  'frame-name btn-primary': menu !== 6
+                }"
+                (click)="setMenu(6)"
+                (keyup.enter)="setMenu(6)"
+                tabindex="0"
+                translate>
+                Notes
+              </div>
+            </div>
+
+            @if (menu === 1) {
+              <div>
+                @if (profileConnections.nb > 1) {
+                  <select
+                    class="form-select"
+                    #mySelect
+                    (change)="
+                      profileConnectionsChange(parseInt(mySelect.value))
+                    "
+                    title="{{ 'Change page' | translate }}">
+                    @for (
+                      id of Tools.range(1, profileConnections.nb);
+                      track id
+                    ) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                }
+                <table
+                  class="table table-striped"
+                  aria-describedby="descConnection">
+                  <thead>
+                    <tr>
+                      <th translate>Action</th>
+                      <th translate>Date</th>
+                      <th translate>IP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of profileConnections.list; track p) {
+                      <tr>
+                        @switch (p.action) {
+                          @case (1) {
+                            <td translate>Connection</td>
+                          }
+                          @case (2) {
+                            <td translate>Load</td>
+                          }
+                          @case (3) {
+                            <td translate>Disconnect</td>
+                          }
+                        }
+                        <td>
+                          {{
+                            p.time * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          <a
+                            href="admin/ip/{{ p.ip }}"
+                            [routerLink]="['/admin/profile/' + p.ip]"
+                            >{{ p.ip }}</a
+                          >
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+            @if (menu === 2) {
+              <div class="row">
+                @if (profileIP.attack_history.length > 0) {
+                  <div class="col">
+                    <strong translate>Attacks</strong>
+                    @for (ip of profileIP.attack_history; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.connection.length > 0) {
+                  <div class="col">
+                    <strong translate>Connection</strong>
+                    @for (ip of profileIP.connection; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.email_modification.length > 0) {
+                  <div class="col">
+                    <strong translate>Email modification</strong>
+                    @for (ip of profileIP.email_modification; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.lostpassword.length > 0) {
+                  <div class="col">
+                    <strong translate>Lost password</strong>
+                    @for (ip of profileIP.lostpassword; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.password_modification.length > 0) {
+                  <div class="col">
+                    <strong translate>Password modification</strong>
+                    @for (ip of profileIP.password_modification; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.storeroom.length > 0) {
+                  <div class="col">
+                    <strong translate>Storeroom</strong>
+                    @for (ip of profileIP.storeroom; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.storeroom_historic.length > 0) {
+                  <div class="col">
+                    <strong translate>Storeroom history</strong>
+                    @for (ip of profileIP.storeroom_historic; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.support_msg.length > 0) {
+                  <div class="col">
+                    <strong translate>Support</strong>
+                    @for (ip of profileIP.support_msg; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.trade_historic_sell.length > 0) {
+                  <div class="col">
+                    <strong translate>Trade selling</strong>
+                    @for (ip of profileIP.trade_historic_sell; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.trade_historic_buy.length > 0) {
+                  <div class="col">
+                    <strong translate>Trade buying</strong>
+                    @for (ip of profileIP.trade_historic_buy; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.treasure_history.length > 0) {
+                  <div class="col">
+                    <strong translate>Treasure</strong>
+                    @for (ip of profileIP.treasure_history; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+                @if (profileIP.userrename.length > 0) {
+                  <div class="col">
+                    <strong translate>Account rename</strong>
+                    @for (ip of profileIP.userrename; track ip) {
+                      <div>
+                        <a
+                          href="admin/ip/{{ ip }}"
+                          [routerLink]="['/admin/profile/' + ip]">
+                          {{ ip }}
+                        </a>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
+
+            @if (menu === 3) {
+              <div>
+                @if (profileTrade.nb > 1) {
+                  <select
+                    class="form-select"
+                    #mySelect
+                    (change)="profileTradeChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}">
+                    @for (id of Tools.range(1, profileTrade.nb); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                }
+                <table class="table" aria-describedby="descTrade">
+                  <thead>
+                    <tr>
+                      <th scope="col" translate>Seller</th>
+                      <th scope="col" translate>Buyer</th>
+                      <th scope="col" translate>Seller IP</th>
+                      <th scope="col" translate>Buyer IP</th>
+                      <th scope="col" translate>Deposit date</th>
+                      <th scope="col" translate>Purchase date</th>
+                      <th scope="col" translate>Resource</th>
+                      <th scope="col" translate>Quantity</th>
+                      <th scope="col" translate>Rate</th>
+                      <th scope="col" translate>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (lot of profileTrade.list; track lot) {
+                      <tr>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.seller_id }}"
+                            [routerLink]="['/admin/profile/' + lot.seller_id]"
+                            >{{ lot.m1_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.buyer_id }}"
+                            [routerLink]="['/admin/profile/' + lot.buyer_id]"
+                            >{{ lot.m2_username }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.deposit_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.deposit_ip]"
+                            >{{ lot.deposit_ip }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.purchase_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.purchase_ip]"
+                            >{{ lot.purchase_ip }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            (lot.return_time - 3600 * 24 * 7) * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.purchase_date * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td class="text-center">
+                          <app-ew-icon
+                            name="{{ Tools.getResName(lot.ress_type) }}"
+                            class="small-resource"></app-ew-icon>
+                        </td>
+                        <td>
+                          {{
+                            lot.nbress | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.rate | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.nbress * lot.rate
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+            @if (menu === 4) {
+              <div>
+                @if (profileStoreroom.nb > 1) {
+                  <select
+                    class="form-select"
+                    #mySelect
+                    (change)="profileStoreroomChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}">
+                    @for (id of Tools.range(1, profileStoreroom.nb); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                }
+                <table
+                  class="table"
+                  attr.aria-label="{{
+                    'Store room Administration' | translate
+                  }}">
+                  <thead>
+                    <tr>
+                      <th scope="col" translate>Seller</th>
+                      <th scope="col" translate>Buyer</th>
+                      <th scope="col" translate>Seller IP</th>
+                      <th scope="col" translate>Buyer IP</th>
+                      <th scope="col" translate>Deposit date</th>
+                      <th scope="col" translate>Purchase date</th>
+                      <th scope="col" translate>Resource</th>
+                      <th scope="col" translate>Quantity</th>
+                      <th scope="col" translate>Rate</th>
+                      <th scope="col" translate>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (lot of profileStoreroom.list; track lot) {
+                      <tr>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.seller_id }}"
+                            [routerLink]="['/admin/profile/' + lot.seller_id]"
+                            >{{ lot.m1_username }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/profile/{{ lot.buyer_id }}"
+                            [routerLink]="['/admin/profile/' + lot.buyer_id]"
+                            >{{ lot.m2_username }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.deposit_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.deposit_ip]"
+                            >{{ lot.deposit_ip }}</a
+                          >
+                        </td>
+                        <td class="text-break">
+                          <a
+                            href="admin/ip/{{ lot.purchase_ip }}"
+                            [routerLink]="['/admin/ip/' + lot.purchase_ip]"
+                            >{{ lot.purchase_ip }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            (lot.return_time - 3600 * 24 * 7) * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.purchase_date * 1000
+                              | date
+                                : 'dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td class="text-center">
+                          <app-ew-icon
+                            name="{{ Tools.getResName(lot.resource_id) }}"
+                            class="small-resource"></app-ew-icon>
+                        </td>
+                        <td>
+                          {{
+                            lot.quantity
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.rate | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                        <td>
+                          {{
+                            lot.quantity * lot.rate
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+            @if (menu === 5) {
+              <div>
+                @if (profileAttacks.nb > 1) {
+                  <select
+                    class="form-select"
+                    #mySelect
+                    (change)="profileAttacksChange(parseInt(mySelect.value))"
+                    title="{{ 'Change page' | translate }}">
+                    @for (id of Tools.range(1, profileAttacks.nb); track id) {
+                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                    }
+                  </select>
+                }
+                <table
+                  class="table table-striped"
+                  aria-describedby="descAttacks">
+                  <thead>
+                    <tr>
+                      <th translate>Attacker</th>
+                      <th translate>Defender</th>
+                      <th translate>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of profileAttacks.list; track p) {
+                      <tr>
+                        <td>
+                          <a
+                            href="admin/profile/{{ p.attacking }}"
+                            [routerLink]="['/admin/profile/' + p.attacking]"
+                            >{{ p.attacking_name }}</a
+                          >
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.ip_attacking }}"
+                            [routerLink]="['/admin/profile/' + p.ip_attacking]"
+                            >{{ p.ip_attacking }}</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="admin/profile/{{ p.defender }}"
+                            [routerLink]="['/admin/profile/' + p.defender]"
+                            >{{ p.defender_name }}</a
+                          >
+                          <br />
+                          <a
+                            href="admin/ip/{{ p.ip_defender }}"
+                            [routerLink]="['/admin/profile/' + p.ip_defender]"
+                            >{{ p.ip_defender }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            p.time * 1000
+                              | date
+                                : 'EEEE dd MMMM, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+            @if (menu === 6) {
+              <div class="row">
+                <div class="col-12 col-md-6 text-center">
+                  <strong>Admin notes</strong>
+                  <textarea [(ngModel)]="profileNotes" class="form-control">{{
+                    profileNotes
+                  }}</textarea>
+                  <button class="btn btn-primary" (click)="profileNotesSave()">
+                    Save
+                  </button>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                  <strong translate>Displayed message when blocked</strong>
+                  <textarea
+                    [(ngModel)]="adminProfile.blocked_reason"
+                    class="form-control"
+                    >{{ adminProfile.blocked_reason }}</textarea
+                  >
+                  <button class="btn btn-primary" (click)="reasonSave()">
+                    Save
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<app-main-private-bottom-menu></app-main-private-bottom-menu>

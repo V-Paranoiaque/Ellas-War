@@ -1,0 +1,84 @@
+<div id="topMosaic"></div>
+
+<main class="mt-1 mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div clas="card-body">
+            <div class="row mt-2 mb-2">
+              <div class="col-12">
+                <h2 class="text-center" translate>
+                  Your account is currently paused
+                </h2>
+                <br />
+                <br />
+                <p>
+                  {{
+                    'You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.'
+                      | translate: { value: user.getPropertyNb('exit_hours') }
+                  }}
+                </p>
+
+                <div class="text-center my-2">
+                  <span translate>End the</span>
+                  {{
+                    user.getPropertyNb('times') * 1000
+                      | date: 'dd/MM/YYYY, HH:mm'
+                  }}
+                </div>
+              </div>
+              <div
+                class="col-6 text-center"
+                [ngClass]="{
+                  'offset-3':
+                    user.getPropertyNb('freereturn') > 0 ||
+                    user.getPropertyNb('favor') > 0
+                }">
+                @if (user.getPropertyNb('freereturn') === 1) {
+                  <div
+                    class="card-button card-button-primary"
+                    (click)="pauseReturn()"
+                    role="button"
+                    (keyup.enter)="pauseReturn()"
+                    tabindex="0"
+                    translate>
+                    Return to the game
+                  </div>
+                }
+                @if (
+                  user.getPropertyNb('freereturn') === 0 &&
+                  user.getPropertyNb('favor') > 0
+                ) {
+                  <div
+                    class="card-button card-button-primary"
+                    (click)="pauseReturn()"
+                    role="button"
+                    (keyup.enter)="pauseReturn()"
+                    tabindex="0"
+                    translate>
+                    Return to the game
+                  </div>
+                }
+              </div>
+              @if (
+                user.getPropertyNb('freereturn') === 0 &&
+                user.getPropertyNb('favor') === 0
+              ) {
+                <div class="col-6 text-center">
+                  <div
+                    class="card-button card-button-primary no-android no-ios no-electron"
+                    [routerLink]="['/getfavors']"
+                    role="button"
+                    translate>
+                    Get a favor and return to the game
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,131 @@
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { SocketComponent as Socket } from '../../services/socketio.service';
+import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { ToolsComponent as Tools } from '../../services/tools.service';
+
+import brushIcon from '@iconify/icons-bi/brush';
+import userCircle from '@iconify/icons-fa6-solid/circle-user';
+import userShield from '@iconify/icons-fa6-solid/user-shield';
+
+type profile = {
+  membre_id: number;
+  username: '';
+  level: number;
+  xp: number;
+  victory: number;
+  field: number;
+  featsofstrength: number;
+  alliance: number;
+  alliance_name: string;
+  rank_name: string;
+  location: string;
+  inscription: number;
+  description: string;
+  membre_img: string;
+};
+@Component({
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+})
+export class ProfileComponent implements OnInit, OnDestroy {
+  public onChange: EventEmitter<object> = new EventEmitter<object>();
+
+  public id = 0;
+  public profile: profile;
+
+  private subPlayer: Subscription;
+  private subTitle: Subscription;
+  private subDesc: Subscription;
+
+  brushIcon = brushIcon;
+  userCircle = userCircle;
+  userShield = userShield;
+
+  constructor(
+    protected http: HttpClient,
+    public user: User,
+    protected socket: Socket,
+    public translate: TranslateService,
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private metaService: Meta
+  ) {
+    this.profile = {
+      membre_id: 0,
+      username: '',
+      level: 0,
+      xp: 0,
+      victory: 0,
+      field: 0,
+      featsofstrength: 0,
+      alliance: 0,
+      alliance_name: '',
+      rank_name: '',
+      location: '',
+      inscription: 0,
+      description: '',
+      membre_img:
+        '../assets/styles/' +
+        Tools.getStyle(this.user.getProperty('style') as string) +
+        '/default-profile.png',
+    };
+    this.subPlayer = new Subscription();
+    this.subTitle = new Subscription();
+    this.subDesc = new Subscription();
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const id = parseInt(params.get('id') ?? '0');
+      this.load(id);
+    });
+    this.socket.on('accountRefresh', () => {
+      const userId = this.route.snapshot.paramMap.get('id') ?? '';
+      this.load(parseInt(userId));
+    });
+  }
+
+  ngOnDestroy() {
+    this.subPlayer.unsubscribe();
+    this.subTitle.unsubscribe();
+    this.subDesc.unsubscribe();
+
+    this.socket.removeListener('accountRefresh');
+  }
+
+  load(userId: number) {
+    const url = this.socket.url + '/api/playerProfile/' + userId + '.json';
+    this.socket.emit('accountInfo');
+
+    this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
+      const player = resPlayer as profile;
+      if (player?.membre_id) {
+        this.profile = player;
+
+        this.subTitle = this.translate
+          .get('Player profile:')
+          .subscribe((res: string) => {
+            this.titleService.setTitle(res + ' ' + player.username);
+          });
+        this.subDesc = this.translate
+          .get('Visualize the statistics of')
+          .subscribe((res: string) => {
+            this.metaService.removeTag('name=description');
+            this.metaService.addTag({
+              name: 'description',
+              content: res + ' ' + player.username,
+            });
+          });
+        this.socket.onChange.emit({
+          action: 'addDest',
+          username: player.username,
+        });
+      }
+    });
+  }
+}
