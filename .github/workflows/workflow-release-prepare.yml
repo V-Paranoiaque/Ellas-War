@@ -1,3 +1,5 @@
+name: Build EW
+
 on:
   workflow_call:
     inputs:

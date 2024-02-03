@@ -1,3 +1,5 @@
+name: Linux x86
+
 on:
   workflow_call:
     inputs:
