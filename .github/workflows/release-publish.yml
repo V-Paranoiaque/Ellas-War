@@ -15,7 +15,7 @@ jobs:
   
   #X64 Arch
   package-x64:
-    uses: ./.github/workflows/workflow-release-linux.yml@master
+    uses: ./.github/workflows/workflow-release-linux.yml
     secrets: inherit
     needs: prepare
     with:
@@ -24,7 +24,7 @@ jobs:
   
   #X86 Arch
   package-x86:
-    uses: ./.github/workflows/workflow-release-linux-x86.yml@master
+    uses: ./.github/workflows/workflow-release-linux-x86.yml
     secrets: inherit
     needs: prepare
     with:
@@ -33,7 +33,7 @@ jobs:
   
   #arm64 Arch
   package-arm64:
-    uses: ./.github/workflows/workflow-release-linux-arm64.yml@master
+    uses: ./.github/workflows/workflow-release-linux-arm64.yml
     secrets: inherit
     needs: prepare
     with:
@@ -42,7 +42,7 @@ jobs:
 
   #armhf Arch
   package-armv7l:
-    uses: ./.github/workflows/workflow-release-linux-armhf.yml@master
+    uses: ./.github/workflows/workflow-release-linux-armhf.yml
     secrets: inherit
     needs: prepare
     with:
@@ -51,7 +51,7 @@ jobs:
   
   #Android
   package-android:
-    uses: ./.github/workflows/workflow-release-android.yml@master
+    uses: ./.github/workflows/workflow-release-android.yml
     secrets: inherit
     needs: prepare
     with:
@@ -60,7 +60,7 @@ jobs:
   
   #Windows
   package-windows:
-    uses: ./.github/workflows/workflow-release-windows.yml@master
+    uses: ./.github/workflows/workflow-release-windows.yml
     secrets: inherit
     needs: prepare
     with:
@@ -69,7 +69,7 @@ jobs:
 
   #Mac OS
   package-mac:
-    uses: ./.github/workflows/workflow-release-linux-mac.yml@master
+    uses: ./.github/workflows/workflow-release-linux-mac.yml
     secrets: inherit
     needs: prepare
     with:
