@@ -39,8 +39,6 @@ jobs:
         run: |
           sudo apt update -qq
           sudo apt install -y -qq rpm
-          # Error on x86, even if not used
-          jq 'del(.build.snap)' package.json > package.json
           npm install -g cordova
       
       - name: Build packages
