@@ -131,8 +131,7 @@
   "build": {
     "linux": {
       "appId": "com.ellaswar.ewnext",
-      "category": "Game",
-      "publish": ["github"]
+      "category": "Game"
     },
     "appx": {
       "applicationId": "PearlDev.EllasWar",
@@ -149,9 +148,6 @@
       "baseVersion": "23.08",
       "runtimeVersion": "23.08"
     },
-    "mac": {
-      "publish": ["github"]
-    },
     "publish": [
       {
         "provider": "github",
@@ -159,15 +155,13 @@
       },
       {
         "provider": "snapStore",
-        "channels": ["stable"]
+        "channels": [
+          "stable"
+        ]
       }
     ],
     "snap": {
-      "base": "core22",
-      "publish": ["snapStore"]
-    },
-    "win": {
-      "publish": ["github"]
+      "base": "core22"
     }
   }
 }
