@@ -131,7 +131,8 @@
   "build": {
     "linux": {
       "appId": "com.ellaswar.ewnext",
-      "category": "Game"
+      "category": "Game",
+      "publish": ["github"]
     },
     "appx": {
       "applicationId": "PearlDev.EllasWar",
@@ -161,6 +162,10 @@
         "channels": ["stable"]
       }
     ],
+    "snap": {
+      "base": "core22",
+      "publish": ["snapStore"]
+    },
     "win": {
       "publish": ["github"]
     }
