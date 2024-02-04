@@ -148,6 +148,9 @@
       "baseVersion": "23.08",
       "runtimeVersion": "23.08"
     },
+    "mac": {
+      "publish": ["github"]
+    },
     "publish": [
       {
         "provider": "github",
@@ -157,6 +160,9 @@
         "provider": "snapStore",
         "channels": ["stable"]
       }
-    ]
+    ],
+    "win": {
+      "publish": ["github"]
+    }
   }
 }
