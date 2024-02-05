@@ -1813,6 +1813,9 @@
                 </button>
               </div>
             </div>
+            <div *ngIf="getArmy().length === 0" class="text-center" translate>
+              Your army is empty
+            </div>
           </div>
 
           <!-- Attacking a sanctuary -->

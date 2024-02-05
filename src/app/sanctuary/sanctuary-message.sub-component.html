@@ -1,9 +1,11 @@
-<strong translate>Army sent</strong>
-@for (unit of getSentUnits(); track unit) {
-  <div>
-    {{ unit.nb | number: '' : this.translate.currentLang }}
-    {{ Tools.getName(unit.code, unit.nb) | translate }}
-  </div>
+@if (getSentUnits().length > 0) {
+  <strong translate>Army sent</strong>
+  @for (unit of getSentUnits(); track unit) {
+    <div>
+      {{ unit.nb | number: '' : this.translate.currentLang }}
+      {{ Tools.getName(unit.code, unit.nb) | translate }}
+    </div>
+  }
 }
 
 <div class="clearfix"><br /></div>

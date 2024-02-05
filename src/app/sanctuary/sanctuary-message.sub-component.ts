@@ -110,11 +110,11 @@ export class SanctuaryMessageSubComponent {
         listUnits.set(j, listUnits.get(j)! + this.info.sanctuary_lost[i][j]);
       }
     }
-    for (const i in listUnits) {
-      if (listUnits.get(i)! > 0) {
+    for (const [i, nb] of listUnits) {
+      if (nb > 0) {
         list.push({
           code: i,
-          nb: listUnits.get(i),
+          nb: nb,
         });
       }
     }
