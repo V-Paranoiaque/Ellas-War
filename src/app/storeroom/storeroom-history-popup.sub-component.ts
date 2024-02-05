@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { ToolsComponent as Tools } from '../../services/tools.service';
 
 @Component({
   selector: 'app-storeroom-history-popup',
@@ -14,6 +15,8 @@ export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {
     price: number;
     resource: number;
   }[] = [];
+
+  Tools = Tools;
 
   constructor(
     private socket: Socket,

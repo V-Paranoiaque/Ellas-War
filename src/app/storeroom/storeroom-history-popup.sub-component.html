@@ -33,8 +33,8 @@
                   <td class="text-end">
                     {{ l.quantity | number: '' : this.translate.currentLang }}
                     <app-ew-icon
-                      name="{{ l.resource }}"
-                      class="small-resource"></app-ew-icon>
+                      name="{{ Tools.getResName(l.resource) }}"
+                      class="small-resource ms-1"></app-ew-icon>
                   </td>
                   <td class="text-end">
                     {{ l.price | number: '' : this.translate.currentLang }}
