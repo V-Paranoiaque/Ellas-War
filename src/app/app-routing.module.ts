@@ -119,6 +119,7 @@ export const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'rankingalliances', component: RankingalliancesComponent },
   { path: 'rankingalliances/:id', component: RankingalliancesComponent },
+  { path: 'rankingalliances/:id/:order', component: RankingalliancesComponent },
   { path: 'rankingplayers', component: RankingplayersComponent },
   { path: 'rankingplayers/:id', component: RankingplayersComponent },
   { path: 'rankingplayers/:id/:order', component: RankingplayersComponent },
