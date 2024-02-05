@@ -48,6 +48,7 @@ export class MessageTitle {
 export class MessageContent {
   content_type = 0;
   username = '';
+  time = 0;
   content = {
     id: 0,
     time: 0,

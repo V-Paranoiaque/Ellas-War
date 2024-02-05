@@ -7,7 +7,8 @@
           <strong>{{
             'By { value }' | translate: { value: msg.username }
           }}</strong
-          >, {{ full.time | date: 'dd/MM/yyyy, HH:mm' }}
+          >,
+          {{ msg.time | date: 'dd/MM/yyyy, HH:mm' : user.getConfig().locale }}
         </div>
       </span>
     }
