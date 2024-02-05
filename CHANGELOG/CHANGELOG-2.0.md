@@ -27,3 +27,7 @@
 * The defense of the sanctuary is decreasing faster
 * Update of the costs and the duration of some divine powers
 * When the attack list is empty, display the field of the closest players
+
+# 2.0.1
+* Minor display fixes
+* Update screenshots
