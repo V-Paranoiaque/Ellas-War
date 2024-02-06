@@ -1633,6 +1633,9 @@
                 getOffensivePower() | number: '' : this.translate.currentLang
               }}
             </div>
+            <div *ngIf="getArmy().length === 0" class="text-center" translate>
+              Your army is empty
+            </div>
           </div>
 
           <!-- Result from an attack -->
