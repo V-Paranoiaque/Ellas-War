@@ -17,18 +17,20 @@
             aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-          <strong translate>Energy</strong>
-          <strong translate>:</strong>
-          <span [ngClass]="{ 'text-danger': info.sanctuaries_power === 0 }">
-            {{ info.sanctuaries_power }}
-          </span>
-          <br />
-          <strong translate>Strength</strong>
-          <strong translate>:</strong>
-          <span [ngClass]="{ 'text-danger': info.sanctuaries_power === 0 }">
-            {{ Math.min(100, info.sanctuaries_power) }}%
-          </span>
-          <br />
+          @if (info.sanctuaries_power >= 0) {
+            <strong translate>Energy</strong>
+            <strong translate>:</strong>
+            <span [ngClass]="{ 'text-danger': info.sanctuaries_power === 0 }">
+              {{ info.sanctuaries_power }}
+            </span>
+            <br />
+            <strong translate>Strength</strong>
+            <strong translate>:</strong>
+            <span [ngClass]="{ 'text-danger': info.sanctuaries_power === 0 }">
+              {{ Math.min(100, info.sanctuaries_power) }}%
+            </span>
+            <br />
+          }
           <span translate>
             Each day the sanctuaries lose 5 points of energy. When it's energy
             is going under 100, the defense of the unities keeping it will

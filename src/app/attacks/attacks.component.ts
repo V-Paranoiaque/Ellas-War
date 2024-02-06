@@ -158,7 +158,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   public waveAttackSum: object;
   public realWaveAttackSum: object;
   public sanctuariesAttackInfo: MessageContent;
-  public sanctuariesDefense: Map<string, number>[];
+  public sanctuariesDefense: object[];
   public sanctuariesList: {
     sanctuaries_id: number;
     sanctuaries_name: string;
@@ -477,7 +477,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
       }, 100);
     });
     this.socket.on('sanctuariesDefense', data => {
-      this.sanctuariesDefense = data;
+      this.sanctuariesDefense = data as typeof this.sanctuariesDefense;
       this.socket.emit('waveAttackSum');
       this.socket.emit('realWaveAttackSum');
     });
@@ -686,11 +686,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
 
     for (const i in this.sanctuariesDefense) {
       if (this.sanctuariesDefense[i]) {
-        for (const unit in this.sanctuariesDefense[i]) {
-          if (this.sanctuariesDefense[i].get(unit)! > 0) {
+        for (const [unit, nb] of Object.entries(this.sanctuariesDefense[i])) {
+          if (nb > 0) {
             list.push({
               unit: unit,
-              nb: this.sanctuariesDefense[i].get(unit)!,
+              nb: nb,
             });
           }
         }
