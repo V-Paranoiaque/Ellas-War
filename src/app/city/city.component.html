@@ -532,8 +532,9 @@
               class="card-body p-0 d-flex flex-wrap"
               id="templesBlock"
               [ngClass]="{
-                'row-cols-4': nbTemples() % 4 === 0,
-                'row-cols-6': nbTemples() % 4 !== 0
+                'row-cols-4': nbTemples() < 5,
+                'row-cols-5': nbTemples() % 5 === 0,
+                'row-cols-6': nbTemples() % 5 !== 0 && nbTemples() > 5
               }">
               <!-- Temple informations -->
               @if (user.getPropertyNb('hermes') === 1) {
