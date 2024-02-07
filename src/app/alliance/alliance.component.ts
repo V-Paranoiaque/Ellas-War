@@ -250,6 +250,10 @@ export class AllianceComponent implements OnInit, OnDestroy {
     const index = 'stock_' + res;
     return this.myAllianceProfile[index as keyof typeof this.myAllianceProfile];
   }
+  getTax(res: string) {
+    const index = 'tax_' + res;
+    return this.myAllianceProfile[index as keyof typeof this.myAllianceProfile];
+  }
 
   setAlliance(info: object) {
     this.allianceProfile = info as typeof this.allianceProfile;
@@ -280,7 +284,7 @@ export class AllianceComponent implements OnInit, OnDestroy {
   taxesInit() {
     for (const i in environment.resources) {
       Object.defineProperty(this.taxes, environment.resources[i], {
-        value: parseInt(this.getStock(environment.resources[i]) as string),
+        value: parseInt(this.getTax(environment.resources[i]) as string),
         writable: true,
         enumerable: true,
         configurable: true,
