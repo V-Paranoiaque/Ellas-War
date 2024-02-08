@@ -68,9 +68,7 @@
       }
       @if (warInfo.list.length > 0) {
         <div class="modal-body container-fluid">
-          <table
-            class="table table-middle table-striped"
-            aria-labelledby="warDesc">
+          <table class="table table-middle" aria-labelledby="warDesc">
             <thead>
               <tr>
                 <th scope="col" translate>Attacker</th>
@@ -80,33 +78,32 @@
             </thead>
             <tbody>
               @for (p of warInfo.list; track p) {
-                <tr [ngClass]="{ 'bg-danger': p.defender === p.result }">
+                <tr
+                  [ngClass]="{
+                    'bg-light':
+                      p.alliance_attacking === user.getPropertyNb('alliance')
+                  }">
                   <td>
-                    @if (p.offender === 1) {
-                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                    }
-                    @if (p.offender === 0) {
-                      <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
-                    }
-                    &nbsp;
                     <app-user-profile
                       id="{{ p.attacking }}"
                       username="{{ p.ausername }}"
                       status="1"></app-user-profile>
+                    @if (p.attacking === p.result) {
+                      <app-ic-icon
+                        [icon]="swordIcon"
+                        title="{{ 'Vainqueur' | translate }}"></app-ic-icon>
+                    }
                   </td>
                   <td>
-                    @if (p.offender === 0) {
-                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                    }
-                    @if (p.offender === 1) {
-                      <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
-                    }
-                    &nbsp;
                     <app-user-profile
                       id="{{ p.defender }}"
                       username="{{ p.dusername }}"
                       status="1"></app-user-profile>
-                    >
+                    @if (p.defender === p.result) {
+                      <app-ic-icon
+                        [icon]="swordIcon"
+                        title="{{ 'Vainqueur' | translate }}"></app-ic-icon>
+                    }
                   </td>
                   <td>
                     {{ p.time * 1000 | date: 'dd/MM, HH:mm' }}

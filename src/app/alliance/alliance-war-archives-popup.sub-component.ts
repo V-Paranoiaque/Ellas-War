@@ -3,7 +3,6 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
-import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
@@ -27,9 +26,10 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
     time: number;
     list: {
       result: number;
-      defender: number;
-      offender: number;
+      alliance_defender: number;
+      alliance_attacking: number;
       attacking: number;
+      defender: number;
       ausername: string;
       dusername: string;
       time: number;
@@ -37,7 +37,6 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
     reward: number;
   };
 
-  shieldShaded = shieldShaded;
   swordIcon = swordIcon;
 
   constructor(
