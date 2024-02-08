@@ -1209,28 +1209,24 @@
               </div>
 
               <div class="text-center" *ngIf="Object.keys(spyInfo).length > 0">
-                <div *ngIf="!spyInfo.error || spyInfo.error >= 3">
-                  <div *ngIf="!isProtected()" translate>
-                    This city is not protected by any units or defense towers
-                  </div>
-                  <div *ngIf="spyInfo.unitiesNb > 0">
-                    <strong translate>Unities</strong
-                    ><strong translate>:</strong>
-                    {{
-                      spyInfo.unitiesNb
-                        | number: '' : this.translate.currentLang
-                    }}
-                    <br />
-                  </div>
-                  <div *ngIf="spyInfo.defenseNb > 0">
-                    <strong translate>Towers</strong
-                    ><strong translate>:</strong>
-                    {{
-                      spyInfo.defenseNb
-                        | number: '' : this.translate.currentLang
-                    }}
-                    <br />
-                  </div>
+                <div
+                  *ngIf="!isProtected() && [0, 2, 3].includes(spyInfo.error)"
+                  translate>
+                  This city is not protected by any units or defense towers
+                </div>
+                <div *ngIf="spyInfo.unitiesNb > 0">
+                  <strong translate>Unities</strong><strong translate>:</strong>
+                  {{
+                    spyInfo.unitiesNb | number: '' : this.translate.currentLang
+                  }}
+                  <br />
+                </div>
+                <div *ngIf="spyInfo.defenseNb > 0">
+                  <strong translate>Towers</strong><strong translate>:</strong>
+                  {{
+                    spyInfo.defenseNb | number: '' : this.translate.currentLang
+                  }}
+                  <br />
                 </div>
                 <br />
 
