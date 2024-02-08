@@ -13,38 +13,38 @@ import times from '@iconify/icons-fa6-solid/xmark';
 })
 export class AltarsComponent implements OnInit, OnDestroy {
   public altarQuestConditionDivineunits = {
-    food: { quantity: 0, validated: 0 },
-    grapes: { quantity: 0, validated: 0 },
-    marble: { quantity: 0, validated: 0 },
-    gold: { quantity: 0, validated: 0 },
-    mint: { quantity: 0, validated: 0 },
-    prod: { quantity: 0, validated: 0 },
-    war: { quantity: 0, validated: 0 },
+    food: { quantity: 0, validated: 0, currently: 0 },
+    grapes: { quantity: 0, validated: 0, currently: 0 },
+    marble: { quantity: 0, validated: 0, currently: 0 },
+    gold: { quantity: 0, validated: 0, currently: 0 },
+    mint: { quantity: 0, validated: 0, currently: 0 },
+    prod: { quantity: 0, validated: 0, currently: 0 },
+    war: { quantity: 0, validated: 0, currently: 0 },
   };
   public altarQuestConditionGaia = {
-    iron: { quantity: 0, validated: 0 },
-    grapes: { quantity: 0, validated: 0 },
-    gold: { quantity: 0, validated: 0 },
-    xp: { quantity: 0, validated: 0 },
-    defense: { quantity: 0, validated: 0 },
+    iron: { quantity: 0, validated: 0, currently: 0 },
+    grapes: { quantity: 0, validated: 0, currently: 0 },
+    gold: { quantity: 0, validated: 0, currently: 0 },
+    xp: { quantity: 0, validated: 0, currently: 0 },
+    defense: { quantity: 0, validated: 0, currently: 0 },
   };
   public altarQuestConditionHestia = {
-    water: { quantity: 0, validated: 0 },
-    food: { quantity: 0, validated: 0 },
-    grapes: { quantity: 0, validated: 0 },
-    wine: { quantity: 0, validated: 0 },
-    placenactu: { quantity: 0, validated: 0 },
-    placepactu: { quantity: 0, validated: 0 },
-    placecactu: { quantity: 0, validated: 0 },
-    totalplace: { quantity: 0, validated: 0 },
+    water: { quantity: 0, validated: 0, currently: 0 },
+    food: { quantity: 0, validated: 0, currently: 0 },
+    grapes: { quantity: 0, validated: 0, currently: 0 },
+    wine: { quantity: 0, validated: 0, currently: 0 },
+    placenactu: { quantity: 0, validated: 0, currently: 0 },
+    placepactu: { quantity: 0, validated: 0, currently: 0 },
+    placecactu: { quantity: 0, validated: 0, currently: 0 },
+    totalplace: { quantity: 0, validated: 0, currently: 0 },
   };
   public altarQuestConditionPrometheus = {
-    water: { quantity: 0, validated: 0 },
-    wine: { quantity: 0, validated: 0 },
-    gold: { quantity: 0, validated: 0 },
-    alliance: { quantity: 0, validated: 0 },
-    victory: { quantity: 0, validated: 0 },
-    hf: { quantity: 0, validated: 0 },
+    water: { quantity: 0, validated: 0, currently: 0 },
+    wine: { quantity: 0, validated: 0, currently: 0 },
+    gold: { quantity: 0, validated: 0, currently: 0 },
+    alliance: { quantity: 0, validated: 0, currently: 0 },
+    victory: { quantity: 0, validated: 0, currently: 0 },
+    hf: { quantity: 0, validated: 0, currently: 0 },
   };
 
   checkIcon = checkIcon;

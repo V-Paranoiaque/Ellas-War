@@ -269,6 +269,16 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (!altarQuestConditionGaia.xp.validated) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionGaia.xp.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (!altarQuestConditionGaia.xp.validated) {
@@ -297,6 +307,16 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (!altarQuestConditionGaia.defense.validated) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionGaia.defense.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (!altarQuestConditionGaia.defense.validated) {
@@ -574,6 +594,18 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionHestia.placenactu.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionHestia.placenactu.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -599,13 +631,25 @@
                                 | translate
                                   : {
                                       value:
-                                        (altarQuestConditionHestia.placenactu
+                                        (altarQuestConditionHestia.placepactu
                                           .quantity
                                         | number
                                           : ''
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionHestia.placepactu.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionHestia.placepactu.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -638,6 +682,18 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionHestia.placecactu.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionHestia.placecactu.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -670,6 +726,18 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionHestia.totalplace.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionHestia.totalplace.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -934,6 +1002,19 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionPrometheus.victory.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionPrometheus.victory
+                                    .currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -967,6 +1048,18 @@
                                             : this.translate.currentLang)
                                       }
                               }}
+                              @if (
+                                !altarQuestConditionPrometheus.hf.validated
+                              ) {
+                                <div class="fw-light fst-italic">
+                                  <span translate>Currently</span>
+                                  <span translate>:</span>
+                                  {{
+                                    altarQuestConditionPrometheus.hf.currently
+                                      | number: '' : this.translate.currentLang
+                                  }}
+                                </div>
+                              }
                             </th>
                             <td class="text-center">
                               @if (
@@ -1321,6 +1414,18 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionDivineunits.mint.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionDivineunits.mint.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
@@ -1353,6 +1458,18 @@
                                           : this.translate.currentLang)
                                     }
                             }}
+                            @if (
+                              !altarQuestConditionDivineunits.prod.validated
+                            ) {
+                              <div class="fw-light fst-italic">
+                                <span translate>Currently</span>
+                                <span translate>:</span>
+                                {{
+                                  altarQuestConditionDivineunits.prod.currently
+                                    | number: '' : this.translate.currentLang
+                                }}
+                              </div>
+                            }
                           </th>
                           <td class="text-center">
                             @if (
