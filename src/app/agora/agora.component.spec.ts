@@ -46,6 +46,23 @@ describe('AgoraComponent', () => {
     fixture.detectChanges();
     expect(app).toBeTruthy();
   });
+
+  it('run functions', () => {
+    const fixture = TestBed.createComponent(AgoraComponent);
+    const app = fixture.componentInstance;
+
+    app.isAnonymous = true;
+    app.sell();
+    app.isAnonymous = false;
+    app.sell();
+
+    app.selectBatch(app.selectedBatch);
+
+    app.selectAgoraRes(1);
+
+    fixture.detectChanges();
+    expect(app).toBeTruthy();
+  });
 });
 
 // AOT compilation support

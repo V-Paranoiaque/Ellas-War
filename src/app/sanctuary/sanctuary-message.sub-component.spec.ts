@@ -11,16 +11,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
 
-import { AllianceComponent } from './alliance.component';
+import { SanctuaryMessageSubComponent } from './sanctuary-message.sub-component';
+import { MessageContent } from '../../services/message.class';
+
 import { environment } from '../../environments/environment';
 
-describe('AllianceComponent', () => {
+describe('SanctuaryMessageSubComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [AllianceComponent],
+      declarations: [SanctuaryMessageSubComponent],
       imports: [
         RouterTestingModule,
         TranslateModule.forRoot({
@@ -40,25 +42,10 @@ describe('AllianceComponent', () => {
   });
 
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AllianceComponent);
+    const msg = new MessageContent();
+    const fixture = TestBed.createComponent(SanctuaryMessageSubComponent);
     const app = fixture.componentInstance;
-
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-
-  it('run functions', () => {
-    const fixture = TestBed.createComponent(AllianceComponent);
-    const app = fixture.componentInstance;
-
-    app.getProfile();
-    app.setPlayer({ membre_id: 1 }, 1);
-    app.setPlayer({ membre_id: 1 }, 2);
-    app.setAlliance(app.allianceProfile);
-
-    app.taxesInit();
-
-    app.warSelect({ alliance_attacking: 0, alliance_defender: 0 });
+    app.info = msg.content;
 
     fixture.detectChanges();
     expect(app).toBeTruthy();

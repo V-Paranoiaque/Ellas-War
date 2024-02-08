@@ -11,16 +11,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
 
-import { AllianceComponent } from './alliance.component';
+import { MainPrivateRightMenuSubComponent } from './main-private-right-menu.sub-component';
 import { environment } from '../../environments/environment';
 
-describe('AllianceComponent', () => {
+describe('MainPrivateRightMenuSubComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [AllianceComponent],
+      declarations: [MainPrivateRightMenuSubComponent],
       imports: [
         RouterTestingModule,
         TranslateModule.forRoot({
@@ -40,25 +40,8 @@ describe('AllianceComponent', () => {
   });
 
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(AllianceComponent);
+    const fixture = TestBed.createComponent(MainPrivateRightMenuSubComponent);
     const app = fixture.componentInstance;
-
-    fixture.detectChanges();
-    expect(app).toBeTruthy();
-  });
-
-  it('run functions', () => {
-    const fixture = TestBed.createComponent(AllianceComponent);
-    const app = fixture.componentInstance;
-
-    app.getProfile();
-    app.setPlayer({ membre_id: 1 }, 1);
-    app.setPlayer({ membre_id: 1 }, 2);
-    app.setAlliance(app.allianceProfile);
-
-    app.taxesInit();
-
-    app.warSelect({ alliance_attacking: 0, alliance_defender: 0 });
 
     fixture.detectChanges();
     expect(app).toBeTruthy();

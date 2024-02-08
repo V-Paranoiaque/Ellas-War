@@ -50,6 +50,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const app = fixture.componentInstance;
+    app.setTitle('Ellas War');
     expect(app.title).toEqual('Ellas War');
   });
 
@@ -58,6 +59,12 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.innerHTML).toContain('router-outlet');
+  });
+  it('run functions', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(app.detectBrowserLanguage()).toEqual('en');
   });
 });
 
