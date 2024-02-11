@@ -533,8 +533,8 @@
               id="templesBlock"
               [ngClass]="{
                 'row-cols-4': nbTemples() < 5,
-                'row-cols-5': nbTemples() % 5 === 0,
-                'row-cols-6': nbTemples() % 5 !== 0 && nbTemples() > 5
+                'row-cols-5': nbTemples() >= 5 && nbTemples() <= 10,
+                'row-cols-6': nbTemples() >= 11
               }">
               <!-- Temple informations -->
               @if (user.getPropertyNb('hermes') === 1) {
