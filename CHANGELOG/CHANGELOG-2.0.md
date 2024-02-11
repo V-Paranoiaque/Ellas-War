@@ -31,3 +31,9 @@
 # 2.0.1
 * Minor display fixes
 * Update screenshots
+
+# 2.0.2
+* Display more information in the altars
+* Fix display in the sanctuaries
+* Fix the popup to manage the taxes
+* New popup to display the wars
