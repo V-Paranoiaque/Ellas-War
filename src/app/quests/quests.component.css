@@ -99,7 +99,11 @@
 }
 
 .quest-giveup > .btn-close {
-  margin-top: -25px;
-  padding-top: 14px;
   opacity: 1;
+}
+@-moz-document url-prefix() {
+  .quest-giveup > .btn-close {
+    margin-top: -25px;
+    padding-top: 14px;
+  }
 }
