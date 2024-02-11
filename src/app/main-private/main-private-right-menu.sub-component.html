@@ -500,9 +500,15 @@
         </div>
       </div>
       <div *ngIf="user.hasLevelRess('ambrosia')" class="d-flex">
-        <div class="p-1 icon-increase">
-          <app-ic-icon [icon]="angleUp" class="text-up"></app-ic-icon>
-        </div>
+        @if (user.getPropertyNb('ambrosia') < 400) {
+          <div class="p-1 icon-increase">
+            <app-ic-icon [icon]="angleUp" class="text-up"></app-ic-icon>
+          </div>
+        } @else {
+          <div class="p-1 icon-equal">
+            <app-ic-icon [icon]="equals" class="text-equals"></app-ic-icon>
+          </div>
+        }
         <div class="p-1 bd-highlight">
           <app-ic-icon
             data-bs-toggle="modal"

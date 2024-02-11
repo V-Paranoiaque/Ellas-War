@@ -121,9 +121,15 @@
           @if (user.hasLevelRess('ambrosia')) {
             <tr>
               <td>
-                <app-ic-icon
-                  class="text-success"
-                  [icon]="angleUp"></app-ic-icon>
+                @if (user.getPropertyNb('ambrosia') < 400) {
+                  <app-ic-icon
+                    class="text-success"
+                    [icon]="angleUp"></app-ic-icon>
+                } @else {
+                  <app-ic-icon
+                    [icon]="equals"
+                    class="text-equals"></app-ic-icon>
+                }
               </td>
               <td class="text-end">
                 {{
