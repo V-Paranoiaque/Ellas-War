@@ -13,6 +13,7 @@ export class AdminHistoryComponent implements OnInit, OnDestroy {
     admin: number;
     username: string;
     type: number;
+    time: number,
     data: {
       player_id: number;
       player_username: string;
@@ -43,6 +44,7 @@ export class AdminHistoryComponent implements OnInit, OnDestroy {
           username: string;
           admin_history_type: number;
           admin_history_data: string;
+          admin_history_time: number;
         }[]
       ) => {
         this.adminUserHistoryList = [];
@@ -51,6 +53,7 @@ export class AdminHistoryComponent implements OnInit, OnDestroy {
             admin: h.admin_history_player,
             username: h.username,
             type: h.admin_history_type,
+            time: h.admin_history_time,
             data: JSON.parse(h.admin_history_data),
           });
         }

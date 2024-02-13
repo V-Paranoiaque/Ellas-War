@@ -38,6 +38,15 @@
                       {{ p.username }}
                     </a>
                   </th>
+                  <td>
+                    {{
+                      p.time * 1000
+                        | date
+                          : 'EEEE dd MMMM, HH:mm'
+                          : ''
+                          : user.getConfig().locale
+                    }}
+                  </td>
                 </tr>
               </tbody>
             </table>
