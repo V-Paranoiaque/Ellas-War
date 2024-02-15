@@ -61,7 +61,7 @@ export class MainPrivateRightMenuSubComponent {
   }
 
   canEnable() {
-    const weather_cost = this.user.getDatas();
+    const weather_cost = this.user.getDatas().weather_cost;
     for (const i in weather_cost) {
       if (
         this.user.getPropertyNb(i) <
