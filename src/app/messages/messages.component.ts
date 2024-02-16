@@ -259,8 +259,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
         list.set('id_' + this.msgList[i].msg_id, 1);
       }
     }
-
-    this.socket.emit('msgDeleteMultiple', list);
+    this.socket.emit('msgDeleteMultiple', Object.fromEntries(list));
     this.messageLoad(this.dummyMsg);
   }
 

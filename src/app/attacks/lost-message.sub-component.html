@@ -36,7 +36,9 @@
       @for (res of getLostResources(); track res) {
         <li>
           {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
-          <app-ew-icon name="res.code" class="small-resource"></app-ew-icon>
+          <app-ew-icon
+            name="{{ res.code }}"
+            class="small-resource"></app-ew-icon>
         </li>
       }
     </ul>
