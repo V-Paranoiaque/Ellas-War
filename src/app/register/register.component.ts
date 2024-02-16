@@ -2,8 +2,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
+import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
 
@@ -19,6 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   public rerror: number;
   private subPlayer: Subscription;
+  private subTitle: Subscription;
   public login;
 
   facebookIcon = facebookIcon;
@@ -29,11 +32,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private socket: Socket,
     public user: User,
     private route: ActivatedRoute,
+    public translate: TranslateService,
+    private titleService: Title,
     private formBuilder: FormBuilder
   ) {
     this.registerForm = this.formBuilder.group({});
     this.rerror = 0;
     this.subPlayer = new Subscription();
+    this.subTitle = new Subscription();
     this.login = '';
   }
 
@@ -52,6 +58,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }
     });
 
+    this.subTitle = this.translate
+      .get(
+        'Register on Ellas War, an ancient Greece free online multiplayer wargame'
+      )
+      .subscribe((res: string) => {
+        this.titleService.setTitle(res);
+      });
+
     this.registerForm = this.formBuilder.group({
       server: this.socket.server,
       username: '',
@@ -68,6 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subPlayer.unsubscribe();
     this.socket.removeListener('register');
+    this.subTitle.unsubscribe();
   }
 
   onSubmit(data: object) {
