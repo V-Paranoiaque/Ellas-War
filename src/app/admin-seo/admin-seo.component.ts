@@ -22,6 +22,7 @@ export class AdminSeoComponent implements OnInit, OnDestroy {
     seo_store: number;
     seo_last_visited: number;
     seo_active: number;
+    old_update: number;
   }[];
   public currentSite = {
     seo_id: 0,

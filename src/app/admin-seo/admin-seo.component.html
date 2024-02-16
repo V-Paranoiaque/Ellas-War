@@ -205,7 +205,7 @@
                           class="text-danger"></app-ic-icon>
                       }
                     </td>
-                    <td>
+                    <td [ngClass]="{ 'bg-danger': s.old_update === 1 }">
                       {{ s.seo_last_visited * 1000 | date: 'dd/MM/yyyy' }}
                     </td>
                     <td class="text-center">
