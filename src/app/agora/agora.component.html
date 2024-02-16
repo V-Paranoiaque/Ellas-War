@@ -250,7 +250,11 @@
         <div class="card col-12 mb-2 d-flex flex-column">
           <div class="card-header d-flex flex-row">
             @for (res of ressList; track res; let index = $index) {
-              @if (index > 0) {
+              @if (
+                index > 0 &&
+                user.getPropertyNb('level') >=
+                  user.getLevelRess(Tools.getResName(index))
+              ) {
                 <span class="flex-grow-1 text-center">
                   <app-ew-icon
                     name="{{ res }}"
@@ -260,6 +264,13 @@
                 </span>
               }
             }
+            <span class="flex-grow-1 text-center">
+              <app-ew-icon
+                name="favor"
+                class="small-resource"
+                role="button"
+                (click)="selectRes(10)"></app-ew-icon>
+            </span>
           </div>
           <div class="card-body flex-grow-1 table-responsive">
             <div class="text-center fs-4" id="resTitleDesc">
