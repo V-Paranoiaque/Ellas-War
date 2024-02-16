@@ -13,7 +13,7 @@ export class AdminHistoryComponent implements OnInit, OnDestroy {
     admin: number;
     username: string;
     type: number;
-    time: number,
+    time: number;
     data: {
       player_id: number;
       player_username: string;

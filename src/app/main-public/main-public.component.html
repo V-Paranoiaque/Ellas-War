@@ -1,99 +1,110 @@
 <app-main-left></app-main-left>
 
-<div
-  id="social-media-frame"
-  role="region"
-  class="d-none d-md-flex"
-  *ngIf="environment.mobile === 0 && localevars.facebook"
-  attr.aria-label="{{ 'Follow us on our Facebook Page' | translate }}">
-  <div class="column"></div>
-  <div class="social">
-    <a
-      href="{{ localevars.facebook }}"
-      target="_blank"
-      rel="external nofollow noopener">
-      <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
-      {{ 'Follow us' | translate }}
-    </a>
-    <br />
-    <a
-      href="{{ environment.discord }}"
-      target="_blank"
-      rel="external nofollow noopener">
-      <app-ic-icon [icon]="discordIcon" class="fs-6"></app-ic-icon>
-      {{ 'Join us' | translate }}
-    </a>
+@if (environment.mobile === 0 && localevars.facebook) {
+  <div
+    id="social-media-frame"
+    role="region"
+    class="d-none d-md-flex"
+    attr.aria-label="{{ 'Follow us on our Facebook Page' | translate }}">
+    <div class="column"></div>
+    <div class="social">
+      <a
+        href="{{ localevars.facebook }}"
+        target="_blank"
+        rel="external nofollow noopener">
+        <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
+        {{ 'Follow us' | translate }}
+      </a>
+      <br />
+      <a
+        href="{{ environment.discord }}"
+        target="_blank"
+        rel="external nofollow noopener">
+        <app-ic-icon [icon]="discordIcon" class="fs-6"></app-ic-icon>
+        {{ 'Join us' | translate }}
+      </a>
+    </div>
   </div>
-</div>
+}
 
-<div
-  id="app-store-frame"
-  *ngIf="environment.mobile === 0"
-  class="d-none d-md-block"
-  role="region"
-  attr.aria-label="{{ 'Links to the App stores' | translate }}">
-  <div class="column"></div>
-  <div class="apps">
-    <a
-      *ngIf="localevars.store.amazon"
-      target="_blank"
-      rel="external nofollow noopener"
-      href="{{ localevars.store.amazon }}"
-      title="{{ 'Download on Amazon Appstore' | translate }}">
-      <img
-        [src]="
-          'assets/i18n/' + translate.currentLang + '/amazon-appstore-badge.png'
-        "
-        alt="{{ 'Download on Amazon Appstore' | translate }}" />
-    </a>
-    <a
-      *ngIf="localevars.store.microsoft"
-      target="_blank"
-      rel="external nofollow noopener"
-      href="{{ localevars.store.microsoft }}"
-      title="{{ 'Download on the Microsoft Store' | translate }}">
-      <img
-        [src]="
-          'assets/i18n/' +
-          translate.currentLang +
-          '/microsoft-appstore-badge.png'
-        "
-        alt="{{ 'Download on the Microsoft Store' | translate }}" />
-    </a>
-    <a
-      *ngIf="localevars.store.google"
-      target="_blank"
-      rel="external nofollow noopener"
-      href="{{ localevars.store.google }}"
-      title="{{ 'Download on Google Play' | translate }}">
-      <img
-        [src]="
-          'assets/i18n/' + translate.currentLang + '/google-play-badge.png'
-        "
-        alt="{{ 'Download on Google Play' | translate }}" />
-    </a>
-    <a
-      *ngIf="localevars.store.snap"
-      target="_blank"
-      rel="external nofollow noopener"
-      href="{{ localevars.store.snap }}"
-      title="{{ 'Get it from the Snap Store' | translate }}">
-      <img
-        [src]="'assets/i18n/' + translate.currentLang + '/snap-store-black.svg'"
-        alt="{{ 'Get it from the Snap Store' | translate }}" />
-    </a>
-    <a
-      *ngIf="localevars.store.pling"
-      target="_blank"
-      rel="external nofollow noopener"
-      href="{{ localevars.store.pling }}"
-      title="{{ 'Download on Pling' | translate }}">
-      <img
-        [src]="'assets/ban/pling.png'"
-        alt="{{ 'Download on Pling' | translate }}" />
-    </a>
+@if (environment.mobile === 0) {
+  <div
+    id="app-store-frame"
+    class="d-none d-md-block"
+    role="region"
+    attr.aria-label="{{ 'Links to the App stores' | translate }}">
+    <div class="column"></div>
+    <div class="apps">
+      @if (localevars.store.amazon) {
+        <a
+          target="_blank"
+          rel="external nofollow noopener"
+          href="{{ localevars.store.amazon }}"
+          title="{{ 'Download on Amazon Appstore' | translate }}">
+          <img
+            [src]="
+              'assets/i18n/' +
+              translate.currentLang +
+              '/amazon-appstore-badge.png'
+            "
+            alt="{{ 'Download on Amazon Appstore' | translate }}" />
+        </a>
+      }
+      @if (localevars.store.microsoft) {
+        <a
+          target="_blank"
+          rel="external nofollow noopener"
+          href="{{ localevars.store.microsoft }}"
+          title="{{ 'Download on the Microsoft Store' | translate }}">
+          <img
+            [src]="
+              'assets/i18n/' +
+              translate.currentLang +
+              '/microsoft-appstore-badge.png'
+            "
+            alt="{{ 'Download on the Microsoft Store' | translate }}" />
+        </a>
+      }
+      @if (localevars.store.google) {
+        <a
+          target="_blank"
+          rel="external nofollow noopener"
+          href="{{ localevars.store.google }}"
+          title="{{ 'Download on Google Play' | translate }}">
+          <img
+            [src]="
+              'assets/i18n/' + translate.currentLang + '/google-play-badge.png'
+            "
+            alt="{{ 'Download on Google Play' | translate }}" />
+        </a>
+      }
+      @if (localevars.store.snap) {
+        <a
+          target="_blank"
+          rel="external nofollow noopener"
+          href="{{ localevars.store.snap }}"
+          title="{{ 'Get it from the Snap Store' | translate }}">
+          <img
+            [src]="
+              'assets/i18n/' + translate.currentLang + '/snap-store-black.svg'
+            "
+            alt="{{ 'Get it from the Snap Store' | translate }}" />
+        </a>
+      }
+      @if (localevars.store.pling) {
+        <a
+          target="_blank"
+          rel="external nofollow noopener"
+          href="{{ localevars.store.pling }}"
+          title="{{ 'Download on Pling' | translate }}">
+          <img
+            [src]="'assets/ban/pling.png'"
+            alt="{{ 'Download on Pling' | translate }}" />
+        </a>
+      }
+    </div>
   </div>
-</div>
+}
 
 <main>
   <div id="home-home" class="pb-5">
@@ -140,194 +151,213 @@
               </div>
             </div>
           </div>
-          <div class="card-body text-center p-4" *ngIf="menu === 0">
-            <div
-              [ngSwitch]="rerror"
-              class="text-danger text-center fw-bold"
-              *ngIf="rerror > 0">
-              <div *ngSwitchCase="1" translate>Please, enter your username</div>
-              <div *ngSwitchCase="2" translate>Please, enter your password</div>
-              <div *ngSwitchCase="3" translate>Enter your email</div>
-              <div *ngSwitchCase="4" translate>
-                Your username must be at least 6 characters.
-              </div>
-              <div *ngSwitchCase="5" translate>
-                Your password must be at least 8 characters.
-              </div>
-              <div *ngSwitchCase="6" translate>Enter your email</div>
-              <div *ngSwitchCase="7" translate>
-                This username is already used
-              </div>
-              <div *ngSwitchCase="8" translate>This email is already used</div>
-              <br />
-            </div>
-            <form
-              method="POST"
-              action="/register"
-              [formGroup]="registerForm"
-              (ngSubmit)="onSubmit(registerForm.value)">
-              <fieldset>
-                <legend class="visually-hidden" translate>
-                  Register on the game
-                </legend>
-
-                <label class="fw-bold" for="server-re" translate>Server</label>
-                <select
-                  class="mb-2 form-select"
-                  name="server"
-                  id="server-re"
-                  formControlName="server"
-                  attr.aria-label="{{
-                    'Select the server you want to play on' | translate
-                  }}"
-                  (change)="selectServerRegister()">
-                  <option value="fr" translate>French</option>
-                  <option value="en" translate>English</option>
-                  <option value="dev" translate>
-                    Development (International)
-                  </option>
-                </select>
-
-                <label
-                  id="username-re-label"
-                  class="fw-bold"
-                  for="username-re"
-                  translate
-                  >Username</label
-                >
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="{{ 'Username' | translate }}"
-                  class="mb-2 form-control"
-                  formControlName="username"
-                  aria-labelledby="username-re-label"
-                  id="username-re"
-                  required />
-
-                <label
-                  id="email-re-label"
-                  class="fw-bold"
-                  for="email-re"
-                  translate
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="{{ 'Email address' | translate }}"
-                  class="mb-2 form-control"
-                  formControlName="email"
-                  aria-labelledby="email-re-label"
-                  id="email-re"
-                  required />
-
-                <label
-                  id="password-re-label"
-                  class="fw-bold"
-                  for="password-re"
-                  translate
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="{{ 'Password' | translate }}"
-                  class="mb-4 form-control"
-                  formControlName="password"
-                  aria-labelledby="password-re-label"
-                  id="password-re"
-                  required />
-
-                <button class="btn btn-success mb-2" type="submit" translate>
-                  Register
-                </button>
-              </fieldset>
-            </form>
-          </div>
-          <div class="card-body text-center p-4" *ngIf="menu === 1">
-            <form
-              method="POST"
-              action="/login"
-              [formGroup]="loginForm"
-              (ngSubmit)="onSubmitConnect(loginForm.value)">
-              <fieldset>
-                <legend class="visually-hidden" translate>
-                  Login to the game
-                </legend>
-
-                <label class="fw-bold" for="server-re" translate>Server</label>
-                <select
-                  class="mb-2 form-select"
-                  name="server"
-                  id="server-re"
-                  formControlName="server"
-                  attr.aria-label="{{
-                    'Select the server you want to play on' | translate
-                  }}"
-                  (change)="selectServerLogin()">
-                  <option value="fr" translate>French</option>
-                  <option value="en" translate>English</option>
-                  <option value="dev" translate>
-                    Development (International)
-                  </option>
-                </select>
-
-                <label
-                  id="username-label"
-                  class="fw-bold"
-                  for="username"
-                  translate
-                  >Username</label
-                >
-                <input
-                  class="form-control mb-2"
-                  type="text"
-                  id="username"
-                  placeholder="{{ 'Login' | translate }}"
-                  name="username"
-                  formControlName="username"
-                  aria-labelledby="username-label"
-                  required="required" />
-
-                <label
-                  id="password-label"
-                  class="fw-bold"
-                  for="password"
-                  translate
-                  >Password</label
-                >
-                <input
-                  class="form-control mb-4"
-                  type="password"
-                  id="password"
-                  placeholder="{{ 'Password' | translate }}"
-                  name="password"
-                  formControlName="password"
-                  aria-labelledby="password-label"
-                  required="required" />
-
-                <div class="text-center mb-2">
-                  <input type="hidden" formControlName="mobile" name="mobile" />
-                  <button
-                    class="btn btn-success btn-primary mb-2"
-                    type="submit"
-                    translate>
-                    Connect
-                  </button>
+          @if (menu === 0) {
+            <div class="card-body text-center p-4">
+              @if (rerror > 0) {
+                <div>
+                  <div class="text-danger text-center fw-bold">
+                    @switch (rerror) {
+                      @case (1) {
+                        <div translate>Please, enter your username</div>
+                      }
+                      @case (2) {
+                        <div translate>Please, enter your password</div>
+                      }
+                      @case (3) {
+                        <div translate>Enter your email</div>
+                      }
+                      @case (4) {
+                        <div translate>
+                          Your username must be at least 6 characters.
+                        </div>
+                      }
+                      @case (5) {
+                        <div translate>
+                          Your password must be at least 8 characters.
+                        </div>
+                      }
+                      @case (6) {
+                        <div translate>Enter your email</div>
+                      }
+                      @case (7) {
+                        <div translate>This username is already used</div>
+                      }
+                      @case (8) {
+                        <div translate>This email is already used</div>
+                      }
+                    }
+                  </div>
+                  <br />
                 </div>
-              </fieldset>
-              <div class="text-center">
-                <a
-                  [routerLink]="['/lostpassword']"
-                  title="{{ 'Request a new password' | translate }}"
-                  attr.aria-label="{{ 'Forgot your password?' | translate }}"
-                  translate
-                  >Forgot your password?</a
-                >
-              </div>
-            </form>
-          </div>
+              }
+              <form
+                method="POST"
+                action="/register"
+                [formGroup]="registerForm"
+                (ngSubmit)="onSubmit(registerForm.value)">
+                <fieldset>
+                  <legend class="visually-hidden" translate>
+                    Register on the game
+                  </legend>
+                  <label class="fw-bold" for="server-re" translate
+                    >Server</label
+                  >
+                  <select
+                    class="mb-2 form-select"
+                    name="server"
+                    id="server-re"
+                    formControlName="server"
+                    attr.aria-label="{{
+                      'Select the server you want to play on' | translate
+                    }}"
+                    (change)="selectServerRegister()">
+                    <option value="fr" translate>French</option>
+                    <option value="en" translate>English</option>
+                    <option value="dev" translate>
+                      Development (International)
+                    </option>
+                  </select>
+                  <label
+                    id="username-re-label"
+                    class="fw-bold"
+                    for="username-re"
+                    translate
+                    >Username</label
+                  >
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="{{ 'Username' | translate }}"
+                    class="mb-2 form-control"
+                    formControlName="username"
+                    aria-labelledby="username-re-label"
+                    id="username-re"
+                    required />
+                  <label
+                    id="email-re-label"
+                    class="fw-bold"
+                    for="email-re"
+                    translate
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="{{ 'Email address' | translate }}"
+                    class="mb-2 form-control"
+                    formControlName="email"
+                    aria-labelledby="email-re-label"
+                    id="email-re"
+                    required />
+                  <label
+                    id="password-re-label"
+                    class="fw-bold"
+                    for="password-re"
+                    translate
+                    >Password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="{{ 'Password' | translate }}"
+                    class="mb-4 form-control"
+                    formControlName="password"
+                    aria-labelledby="password-re-label"
+                    id="password-re"
+                    required />
+                  <button class="btn btn-success mb-2" type="submit" translate>
+                    Register
+                  </button>
+                </fieldset>
+              </form>
+            </div>
+          }
+          @if (menu === 1) {
+            <div class="card-body text-center p-4">
+              <form
+                method="POST"
+                action="/login"
+                [formGroup]="loginForm"
+                (ngSubmit)="onSubmitConnect(loginForm.value)">
+                <fieldset>
+                  <legend class="visually-hidden" translate>
+                    Login to the game
+                  </legend>
+                  <label class="fw-bold" for="server-re" translate
+                    >Server</label
+                  >
+                  <select
+                    class="mb-2 form-select"
+                    name="server"
+                    id="server-re"
+                    formControlName="server"
+                    attr.aria-label="{{
+                      'Select the server you want to play on' | translate
+                    }}"
+                    (change)="selectServerLogin()">
+                    <option value="fr" translate>French</option>
+                    <option value="en" translate>English</option>
+                    <option value="dev" translate>
+                      Development (International)
+                    </option>
+                  </select>
+                  <label
+                    id="username-label"
+                    class="fw-bold"
+                    for="username"
+                    translate
+                    >Username</label
+                  >
+                  <input
+                    class="form-control mb-2"
+                    type="text"
+                    id="username"
+                    placeholder="{{ 'Login' | translate }}"
+                    name="username"
+                    formControlName="username"
+                    aria-labelledby="username-label"
+                    required="required" />
+                  <label
+                    id="password-label"
+                    class="fw-bold"
+                    for="password"
+                    translate
+                    >Password</label
+                  >
+                  <input
+                    class="form-control mb-4"
+                    type="password"
+                    id="password"
+                    placeholder="{{ 'Password' | translate }}"
+                    name="password"
+                    formControlName="password"
+                    aria-labelledby="password-label"
+                    required="required" />
+                  <div class="text-center mb-2">
+                    <input
+                      type="hidden"
+                      formControlName="mobile"
+                      name="mobile" />
+                    <button
+                      class="btn btn-success btn-primary mb-2"
+                      type="submit"
+                      translate>
+                      Connect
+                    </button>
+                  </div>
+                </fieldset>
+                <div class="text-center">
+                  <a
+                    [routerLink]="['/lostpassword']"
+                    title="{{ 'Request a new password' | translate }}"
+                    attr.aria-label="{{ 'Forgot your password?' | translate }}"
+                    translate
+                    >Forgot your password?</a
+                  >
+                </div>
+              </form>
+            </div>
+          }
           <div
             class="row"
             role="navigation"

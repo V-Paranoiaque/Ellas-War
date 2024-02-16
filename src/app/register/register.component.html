@@ -14,38 +14,55 @@
             <h1 class="text-center" translate>Join Ellas War</h1>
             <br />
 
-            <div
-              [ngSwitch]="rerror"
-              class="text-danger text-center fw-bold"
-              *ngIf="rerror > 0">
-              <div *ngSwitchCase="1" translate>Please, enter your username</div>
-              <div *ngSwitchCase="2" translate>Please, enter your password</div>
-              <div *ngSwitchCase="3" translate>Enter your email</div>
-              <div *ngSwitchCase="4" translate>
-                Your username must be at least 6 characters.
+            @if (rerror > 0) {
+              <div class="text-danger text-center fw-bold">
+                @switch (rerror) {
+                  @case (1) {
+                    <div translate>Please, enter your username</div>
+                  }
+                  @case (2) {
+                    <div translate>Please, enter your password</div>
+                  }
+                  @case (3) {
+                    <div translate>Enter your email</div>
+                  }
+                  @case (4) {
+                    <div translate>
+                      Your username must be at least 6 characters.
+                    </div>
+                  }
+                  @case (5) {
+                    <div translate>
+                      Your password must be at least 8 characters.
+                    </div>
+                  }
+                  @case (6) {
+                    <div translate>Enter your email</div>
+                  }
+                  @case (7) {
+                    <div translate>This username is already used</div>
+                  }
+                  @case (8) {
+                    <div translate>This email is already used</div>
+                  }
+                }
               </div>
-              <div *ngSwitchCase="5" translate>
-                Your password must be at least 8 characters.
-              </div>
-              <div *ngSwitchCase="6" translate>Enter your email</div>
-              <div *ngSwitchCase="7" translate>
-                This username is already used
-              </div>
-              <div *ngSwitchCase="8" translate>This email is already used</div>
               <br />
-            </div>
+            }
 
-            <div class="alert alert-success" *ngIf="login">
-              <span
-                [innerHTML]="
-                  'Join { value } on Ellas War!' | translate: { value: login }
-                "></span>
-              <br />
-              <span translate
-                >Ask him help to develop your city and you will both get many
-                bonuses</span
-              >
-            </div>
+            @if (login) {
+              <div class="alert alert-success">
+                <span
+                  [innerHTML]="
+                    'Join { value } on Ellas War!' | translate: { value: login }
+                  "></span>
+                <br />
+                <span translate
+                  >Ask him help to develop your city and you will both get many
+                  bonuses</span
+                >
+              </div>
+            }
 
             <form
               method="POST"

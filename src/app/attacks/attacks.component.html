@@ -9,40 +9,46 @@
 
 <main class="mb-4">
   <div class="container">
-    <div
-      class="row"
-      *ngIf="
-        Object.keys(realWaveAttackCheck.ress).length > 0 ||
-        realWaveAttackCheckHabitation() > 0
-      ">
-      <div class="col-12 mt-1">
-        <div class="text-center alert alert-danger">
-          <div *ngIf="Object.keys(realWaveAttackCheck.ress).length > 0">
-            <span translate>
-              You do not have enough resources, the units of your waves can not
-              fight.
-            </span>
-            <br />
-            <span *ngFor="let res of realWaveAttackCheck.ress | keyvalue">
-              <app-ew-icon
-                name="{{ res.key }}"
-                class="small-resource"></app-ew-icon>
-            </span>
-          </div>
-          <div *ngIf="Object.keys(realWaveAttackCheck.habitation).length > 0">
-            <div *ngIf="realWaveAttackCheck.habitation.normal" translate>
-              You do not have enough huts and houses.
-            </div>
-            <div *ngIf="realWaveAttackCheck.habitation.palace" translate>
-              You do not have enough palaces.
-            </div>
-            <div *ngIf="realWaveAttackCheck.habitation.cavern" translate>
-              You do not have enough caverns.
-            </div>
+    @if (
+      Object.keys(realWaveAttackCheck.ress).length > 0 ||
+      realWaveAttackCheckHabitation() > 0
+    ) {
+      <div class="row">
+        <div class="col-12 mt-1">
+          <div class="text-center alert alert-danger">
+            @if (Object.keys(realWaveAttackCheck.ress).length > 0) {
+              <div>
+                <span translate>
+                  You do not have enough resources, the units of your waves can
+                  not fight.
+                </span>
+                <br />
+                @for (res of realWaveAttackCheck.ress | keyvalue; track res) {
+                  <span>
+                    <app-ew-icon
+                      name="{{ res.key }}"
+                      class="small-resource"></app-ew-icon>
+                  </span>
+                }
+              </div>
+            }
+            @if (Object.keys(realWaveAttackCheck.habitation).length > 0) {
+              <div>
+                @if (realWaveAttackCheck.habitation.normal) {
+                  <div translate>You do not have enough huts and houses.</div>
+                }
+                @if (realWaveAttackCheck.habitation.palace) {
+                  <div translate>You do not have enough palaces.</div>
+                }
+                @if (realWaveAttackCheck.habitation.cavern) {
+                  <div translate>You do not have enough caverns.</div>
+                }
+              </div>
+            }
           </div>
         </div>
       </div>
-    </div>
+    }
 
     <div class="row">
       <div class="col-xl-6 mt-1">
@@ -53,18 +59,20 @@
               'col-8 offset-2': user.getPropertyNb('level') < 10,
               'col-12': user.getPropertyNb('level') >= 10
             }">
-            <div
-              class="frame d-flex flex-column flex-grow-1"
-              (click)="setMenuMode(4)"
-              (keyup.enter)="setMenuMode(4)"
-              tabindex="0"
-              *ngIf="myAllianceWar.length > 0"
-              role="button">
-              <app-ew-icon name="smenu-war"></app-ew-icon>
-              <div class="frame-name flex-grow-1 justify-content-center d-flex">
-                <div class="align-self-center" translate>Wars</div>
+            @if (myAllianceWar.length > 0) {
+              <div
+                class="frame d-flex flex-column flex-grow-1"
+                (click)="setMenuMode(4)"
+                (keyup.enter)="setMenuMode(4)"
+                tabindex="0"
+                role="button">
+                <app-ew-icon name="smenu-war"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Wars</div>
+                </div>
               </div>
-            </div>
+            }
             <div
               class="frame d-flex flex-column flex-grow-1"
               (click)="setMenuMode(0)"
@@ -87,1874 +95,2176 @@
                 <div class="align-self-center" translate>Stats</div>
               </div>
             </div>
-            <div
-              class="frame d-flex flex-column flex-grow-1"
-              (click)="setMenuMode(2)"
-              (keyup.enter)="setMenuMode(2)"
-              tabindex="0"
-              role="button"
-              *ngIf="user.getPropertyNb('level') >= 10">
-              <app-ew-icon name="smenu-diamond"></app-ew-icon>
-              <div class="frame-name flex-grow-1 justify-content-center d-flex">
-                <div class="align-self-center" translate>Diamond</div>
+            @if (user.getPropertyNb('level') >= 10) {
+              <div
+                class="frame d-flex flex-column flex-grow-1"
+                (click)="setMenuMode(2)"
+                (keyup.enter)="setMenuMode(2)"
+                tabindex="0"
+                role="button">
+                <app-ew-icon name="smenu-diamond"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Diamond</div>
+                </div>
               </div>
-            </div>
-            <div
-              class="frame d-flex flex-column flex-grow-1"
-              (click)="setMenuMode(3)"
-              (keyup.enter)="setMenuMode(3)"
-              tabindex="0"
-              role="button"
-              *ngIf="user.getPropertyNb('level') >= 10">
-              <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
-              <div class="frame-name flex-grow-1 justify-content-center d-flex">
-                <div class="align-self-center" translate>Sanctuaries</div>
+            }
+            @if (user.getPropertyNb('level') >= 10) {
+              <div
+                class="frame d-flex flex-column flex-grow-1"
+                (click)="setMenuMode(3)"
+                (keyup.enter)="setMenuMode(3)"
+                tabindex="0"
+                role="button">
+                <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
+                <div
+                  class="frame-name flex-grow-1 justify-content-center d-flex">
+                  <div class="align-self-center" translate>Sanctuaries</div>
+                </div>
               </div>
-            </div>
+            }
           </div>
-          <div
-            class="card-body text-center"
-            *ngIf="menuMode === 0 && getAttackList().length === 0">
-            <p translate>
-              Your attack list is empty. You can only see cities who have
-              between 50% and 200% of your field.
-            </p>
-            <div
-              class="text-center fw-bold mb-2"
-              *ngIf="user.getPropertyNb('level') >= 1">
-              <a [routerLink]="['/strategies/attack']" translate
-                >Manage your waves to optimize your losses</a
-              >
+          @if (menuMode === 0 && getAttackList().length === 0) {
+            <div class="card-body text-center">
+              <p translate>
+                Your attack list is empty. You can only see cities who have
+                between 50% and 200% of your field.
+              </p>
+              @if (user.getPropertyNb('level') >= 1) {
+                <div class="text-center fw-bold mb-2">
+                  <a [routerLink]="['/strategies/attack']" translate
+                    >Manage your waves to optimize your losses</a
+                  >
+                </div>
+              }
+              @if (attackSearchError === 1) {
+                <div class="text-center fw-bold text-danger">
+                  <div translate>No result for your search</div>
+                  <a [routerLink]="['/attacks']" translate>Back</a>
+                </div>
+              }
+              @if (attackSearchError === 0) {
+                <div>
+                  <br />
+                  <strong id="closestCitiesDesc" translate
+                    >Closest cities</strong
+                  >
+                  <table class="table" aria-labelledby="closestCitiesDesc">
+                    <thead>
+                      <tr>
+                        <th translate>Name</th>
+                        <th translate>Field</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a
+                            [routerLink]="[
+                              '/profile/' + attackClosestMin.membre_id
+                            ]"
+                            class="no-padding"
+                            >{{ attackClosestMin.username }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            attackClosestMin.field
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a
+                            [routerLink]="[
+                              '/profile/' + attackClosestMax.membre_id
+                            ]"
+                            class="no-padding"
+                            >{{ attackClosestMax.username }}</a
+                          >
+                        </td>
+                        <td>
+                          {{
+                            attackClosestMax.field
+                              | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              }
             </div>
-            <div
-              class="text-center fw-bold text-danger"
-              *ngIf="attackSearchError === 1">
-              <div translate>No result for your search</div>
-              <a [routerLink]="['/attacks']" translate>Back</a>
-            </div>
-            <div *ngIf="attackSearchError === 0">
-              <br />
-              <strong id="closestCitiesDesc" translate>Closest cities</strong>
-              <table class="table" aria-labelledby="closestCitiesDesc">
+          }
+          @if (menuMode === 0 && getAttackList().length > 0) {
+            <div class="card-body">
+              @if (user.getPropertyNb('level') >= 1) {
+                <div class="text-center fw-bold mb-2">
+                  <a [routerLink]="['/strategies/attack']" translate
+                    >Manage your waves to optimize your losses</a
+                  >
+                </div>
+              }
+              <div class="visually-hidden" id="getAttackListDesc" translate>
+                Attackable cities
+              </div>
+              <table
+                class="table align-middle"
+                aria-labelledby="getAttackListDesc">
                 <thead>
-                  <tr>
-                    <th translate>Name</th>
-                    <th translate>Field</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a
-                        [routerLink]="[
-                          '/profile/' + attackClosestMin.membre_id
-                        ]"
-                        class="no-padding"
-                        >{{ attackClosestMin.username }}</a
-                      >
-                    </td>
-                    <td>
-                      {{
-                        attackClosestMin.field
-                          | number: '' : this.translate.currentLang
-                      }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a
-                        [routerLink]="[
-                          '/profile/' + attackClosestMax.membre_id
-                        ]"
-                        class="no-padding"
-                        >{{ attackClosestMax.username }}</a
-                      >
-                    </td>
-                    <td>
-                      {{
-                        attackClosestMax.field
-                          | number: '' : this.translate.currentLang
-                      }}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div
-            class="card-body"
-            *ngIf="menuMode === 0 && getAttackList().length > 0">
-            <div
-              class="text-center fw-bold mb-2"
-              *ngIf="user.getPropertyNb('level') >= 1">
-              <a [routerLink]="['/strategies/attack']" translate
-                >Manage your waves to optimize your losses</a
-              >
-            </div>
-            <div class="visually-hidden" id="getAttackListDesc" translate>
-              Attackable cities
-            </div>
-            <table
-              class="table align-middle"
-              aria-labelledby="getAttackListDesc">
-              <thead>
-                <tr class="text-center">
-                  <th scope="col">
-                    <div
-                      class="input-group input-group-sm"
-                      *ngIf="user.getPropertyNb('level') >= 1">
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="{{ 'Look for a city' | translate }}"
-                        [(ngModel)]="attackSearchText"
-                        attr.aria-label="{{ 'Look for a city' | translate }}"
-                        aria-describedby="attack-search" />
-                      <span
-                        class="input-group-text"
-                        id="attack-search"
-                        (click)="attackSearch()"
-                        role="button"
-                        (keyup.enter)="attackSearch()"
-                        tabindex="0">
-                        <app-ic-icon [icon]="search"></app-ic-icon>
-                      </span>
-                    </div>
-                  </th>
-                  <th
-                    scope="col"
-                    class="d-none d-sm-table-cell"
-                    (click)="setOrder('victory')"
-                    role="button">
-                    <span translate>V</span>
-                    <app-ic-icon
-                      *ngIf="
+                  <tr class="text-center">
+                    <th scope="col">
+                      @if (user.getPropertyNb('level') >= 1) {
+                        <div class="input-group input-group-sm">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="{{ 'Look for a city' | translate }}"
+                            [(ngModel)]="attackSearchText"
+                            attr.aria-label="{{
+                              'Look for a city' | translate
+                            }}"
+                            aria-describedby="attack-search" />
+                          <span
+                            class="input-group-text"
+                            id="attack-search"
+                            (click)="attackSearch()"
+                            role="button"
+                            (keyup.enter)="attackSearch()"
+                            tabindex="0">
+                            <app-ic-icon [icon]="search"></app-ic-icon>
+                          </span>
+                        </div>
+                      }
+                    </th>
+                    <th
+                      scope="col"
+                      class="d-none d-sm-table-cell"
+                      (click)="setOrder('victory')"
+                      role="button">
+                      <span translate>V</span>
+                      @if (
                         attackOrderReverse === 0 &&
                         attackOrderSort === 'victory'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortDown"></app-ic-icon>
+                      }
+                      @if (
                         attackOrderReverse === 1 &&
                         attackOrderSort === 'victory'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th
-                    *ngIf="
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortUP"></app-ic-icon>
+                      }
+                    </th>
+                    @if (
                       user.getDatas() &&
                       user.getDatas().attack &&
                       user.getPropertyNb('level') >=
                         user.getDatas().attack.level_xp_min
-                    "
-                    scope="col"
-                    (click)="setOrder('xp')"
-                    role="button">
-                    <span translate>XP</span>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 0 && attackOrderSort === 'xp'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 1 && attackOrderSort === 'xp'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th scope="col" (click)="setOrder('field')" role="button">
-                    <span translate>Field</span>
-                    <app-ic-icon
-                      *ngIf="
+                    ) {
+                      <th scope="col" (click)="setOrder('xp')" role="button">
+                        <span translate>XP</span>
+                        @if (
+                          attackOrderReverse === 0 && attackOrderSort === 'xp'
+                        ) {
+                          <app-ic-icon
+                            title="{{ 'Current order' | translate }}"
+                            [icon]="sortDown"></app-ic-icon>
+                        }
+                        @if (
+                          attackOrderReverse === 1 && attackOrderSort === 'xp'
+                        ) {
+                          <app-ic-icon
+                            title="{{ 'Current order' | translate }}"
+                            [icon]="sortUP"></app-ic-icon>
+                        }
+                      </th>
+                    }
+                    <th scope="col" (click)="setOrder('field')" role="button">
+                      <span translate>Field</span>
+                      @if (
                         attackOrderReverse === 0 && attackOrderSort === 'field'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortDown"></app-ic-icon>
+                      }
+                      @if (
                         attackOrderReverse === 1 && attackOrderSort === 'field'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th scope="col">
-                    <span
-                      data-bs-toggle="modal"
-                      data-bs-target="#attacksHelp"
-                      *ngIf="user.getPropertyNb('level') >= 1"
-                      role="button"
-                      title="{{ 'Help' | translate }}">
-                      <app-ic-icon [icon]="questionCircle"></app-ic-icon>
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let player of getAttackList()">
-                  <td>
-                    <a
-                      [routerLink]="['/profile/' + player.membre_id]"
-                      class="no-padding">
-                      {{ player.username }}
-                      <span *ngIf="user.getPropertyNb('level') > 0"
-                        >({{ player.level }})</span
-                      >
-                    </a>
-
-                    <app-ic-icon
-                      [icon]="gemIcon"
-                      *ngIf="player.diamond_begin > 0"></app-ic-icon>
-
-                    <a
-                      [routerLink]="['/allianceprofile/' + player.alliance]"
-                      class="fw-lighter no-padding"
-                      *ngIf="player.alliance > 0">
-                      <br />
-                      {{ player.alliance_name }}
-                    </a>
-                  </td>
-                  <td class="d-none d-sm-table-cell text-end">
-                    {{
-                      player.victory | number: '' : this.translate.currentLang
-                    }}
-                  </td>
-                  <td
-                    *ngIf="
-                      user.getDatas() &&
-                      user.getDatas().attack &&
-                      user.getPropertyNb('level') >=
-                        user.getDatas().attack.level_xp_min
-                    "
-                    class="text-end">
-                    {{ player.xp | number: '' : this.translate.currentLang }}
-                  </td>
-                  <td class="text-end">
-                    {{ player.field | number: '' : this.translate.currentLang }}
-                  </td>
-                  <td class="text-center">
-                    <button
-                      class="btn btn-info"
-                      *ngIf="
-                        user.getPropertyNb('apollo') === 0 &&
-                        user.getPropertyNb('level') > 0
-                      "
-                      (click)="spy(player.membre_id)">
-                      <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-                    </button>
-                    <button
-                      class="btn btn-primary"
-                      *ngIf="user.getPropertyNb('apollo') === 1"
-                      (click)="observe(player.membre_id)">
-                      <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
-                    </button>
-
-                    <button
-                      class="btn"
-                      *ngIf="user.getPropertyNb('demeter') === 1"
-                      [ngClass]="{
-                        'btn-danger': player.fury_allowed === 0,
-                        'btn-success': player.fury_allowed === 1
-                      }"
-                      (click)="prepareFury(player.membre_id)">
-                      <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-                    </button>
-                    <br
-                      *ngIf="
-                        user.getPropertyNb('demeter') === 1 &&
-                        user.getPropertyNb('zeus') === 1
-                      " />
-                    <button
-                      class="btn"
-                      *ngIf="user.getPropertyNb('zeus') === 1"
-                      [ngClass]="{
-                        'btn-danger': player.lightning_allowed === 0,
-                        'btn-success': player.lightning_allowed === 1
-                      }"
-                      (click)="prepareLightning(player.membre_id)">
-                      <app-ic-icon [icon]="boltIcon"></app-ic-icon>
-                    </button>
-
-                    <button
-                      class="btn"
-                      [ngClass]="{
-                        'btn-danger': player.attack_allowed === 0,
-                        'btn-success': player.attack_allowed === 1
-                      }"
-                      (click)="prepareAttack(player.membre_id)">
-                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="input-group" *ngIf="getAttacksPageNb() > 1">
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksPage(1)"
-                (keyup.enter)="setAttacksPage(1)"
-                tabindex="0"
-                >&lt;&lt;</span
-              >
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksPage(attackPage, -1)"
-                (keyup.enter)="setAttacksPage(attackPage, -1)"
-                tabindex="0"
-                >&lt;</span
-              >
-              <select
-                class="form-select"
-                (change)="pageAttacksLoad($event)"
-                [(ngModel)]="attackPage">
-                <option
-                  *ngFor="
-                    let item of [].constructor(getAttacksPageNb());
-                    let i = index
-                  "
-                  value="{{ i + 1 }}"
-                  translate>
-                  Page {{ i + 1 }}
-                </option>
-              </select>
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksPage(attackPage, 1)"
-                (keyup.enter)="setAttacksPage(attackPage, 1)"
-                tabindex="0"
-                >&gt;</span
-              >
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksPage(getAttacksPageNb())"
-                (keyup.enter)="setAttacksPage(getAttacksPageNb())"
-                tabindex="0"
-                >&gt;&gt;</span
-              >
-            </div>
-          </div>
-          <div class="card-body" *ngIf="menuMode === 1">
-            <app-attacks-stats></app-attacks-stats>
-          </div>
-          <div class="card-body" *ngIf="menuMode === 2">
-            <div class="text-center">
-              <strong translate>Owner</strong>
-              <strong translate>:</strong>
-              <a [routerLink]="['/profile/' + diamondInfo.membre_id]">
-                {{ diamondInfo.username }}
-              </a>
-              <br />
-
-              <div *ngIf="diamondInfo.alliance > 0">
-                <strong translate>Alliance</strong>
-                <strong translate>:</strong>
-                {{ diamondInfo.alliance_name }}
-              </div>
-
-              <strong translate>Field</strong>
-              <strong translate>:</strong>
-              {{ diamondInfo.field | number: '' : this.translate.currentLang }}
-              <br />
-
-              <strong translate>Victories</strong>
-              <strong translate>:</strong>
-              {{
-                diamondInfo.victory | number: '' : this.translate.currentLang
-              }}
-              <br />
-
-              <strong translate>Last week</strong>
-              <strong translate>:</strong>
-              <a [routerLink]="['/profile/' + diamondInfo.last_id]">
-                {{ diamondInfo.last_username }}
-              </a>
-              <br />
-            </div>
-
-            <div
-              *ngIf="
-                diamondInfo.membre_id !== user.getPropertyNb('id') &&
-                user.getPropertyNb('level') >= 10 &&
-                user.getPropertyNb('id') !== diamondInfo.last_id
-              "
-              class="text-center">
-              <span *ngIf="diamondInfo.possible_field === 1">
-                <button
-                  class="btn btn-info fs-5"
-                  (click)="spy(diamondInfo.membre_id)"
-                  title="{{ 'Send a spy to the city:' | translate }} {{
-                    diamondInfo.username
-                  }}">
-                  <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Send a spy to the city:' | translate }}
-                    {{ diamondInfo.username }}
-                  </span>
-                </button>
-
-                <button
-                  class="btn btn-primary fs-5"
-                  *ngIf="user.getPropertyNb('apollo') === 1"
-                  (click)="observe(diamondInfo.membre_id)"
-                  title="{{ 'Observe the city:' | translate }} {{
-                    diamondInfo.username
-                  }}">
-                  <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Observe the city:' | translate }}
-                    {{ diamondInfo.username }}
-                  </span>
-                </button>
-              </span>
-
-              <button
-                class="btn btn-success fs-5"
-                *ngIf="diamondInfo.attack_allowed > 0"
-                (click)="prepareAttack(diamondInfo.membre_id)"
-                title="{{ 'Attack the city:' | translate }} {{
-                  diamondInfo.username
-                }}">
-                <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                <span class="visually-hidden">
-                  {{ 'Attack the city:' | translate }}
-                  {{ diamondInfo.username }}
-                </span>
-              </button>
-              <button
-                class="btn btn-danger fs-5"
-                *ngIf="diamondInfo.attack_allowed === 0"
-                title="{{ 'Impossible to attack the city:' | translate }} {{
-                  diamondInfo.username
-                }}">
-                <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                <span class="visually-hidden">
-                  {{ 'Impossible to attack the city:' | translate }}
-                  {{ diamondInfo.username }}
-                </span>
-              </button>
-            </div>
-
-            <div
-              *ngIf="user.getPropertyNb('id') === diamondInfo.last_id"
-              class="text-center text-danger fw-bold"
-              translate>
-              You won the diamond last week, you can't participate until need
-              week
-            </div>
-
-            <div class="row">
-              <div class="col-sm-6 col-12">
-                <table
-                  class="table table-striped table-middle"
-                  aria-describedby="PlayerDesc">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">
-                        <span id="PlayerDesc" translate>Player</span>
-                      </th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let p of diamondRankingPlayers">
-                      <td class="text-center">
-                        {{ p.ranking }}
-                      </td>
-                      <td>
-                        <a [routerLink]="['/profile/' + p.membre_id]">
-                          {{ p.username }}
-                        </a>
-                      </td>
-                      <td>
-                        <span *ngIf="p.days > 0">
-                          {{ p.days }}
-                          <span translate>d</span>,
-                        </span>
-                        <span *ngIf="p.hours > 0">
-                          {{ p.hours }}
-                          <span translate>h</span>,
-                        </span>
-                        <span *ngIf="p.minutes > 0">
-                          {{ p.minutes }}
-                          <span translate>m</span>
-                          <span *ngIf="p.seconds > 0">&nbsp;</span>
-                          <span translate *ngIf="p.seconds > 0">and</span>
-                        </span>
-                        <span *ngIf="p.seconds > 0">
-                          {{ p.days }}
-                          <span translate>s</span>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="col-sm-6 col-12">
-                <table
-                  class="table table-striped table-middle"
-                  aria-describedby="AllianceDesc">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">
-                        <span id="AllianceDesc" translate>Alliance</span>
-                      </th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let p of diamondRankingAlliance">
-                      <td class="text-center">
-                        {{ p.ranking }}
-                      </td>
-                      <td>
-                        <a [routerLink]="['/allianceprofile/' + p.alliance]">
-                          {{ p.alliance_name }}
-                        </a>
-                        <span *ngIf="p.alliance === 0" translate>None</span>
-                      </td>
-                      <td>
-                        <span *ngIf="p.days > 0">
-                          {{ p.days }}
-                          <span translate>d</span>,
-                        </span>
-                        <span *ngIf="p.hours > 0">
-                          {{ p.hours }}
-                          <span translate>h</span>,
-                        </span>
-                        <span *ngIf="p.minutes > 0">
-                          {{ p.minutes }}
-                          <span translate>m</span>
-                          <span *ngIf="p.seconds > 0">&nbsp;</span>
-                          <span translate *ngIf="p.seconds > 0">and</span>
-                        </span>
-                        <span *ngIf="p.seconds > 0">
-                          {{ p.days }}
-                          <span translate>s</span>
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="text-center bold">
-              <div translate>
-                Each week, the player and the alliance has kept the longer
-                diamond win 2'500'000 Drachmas. If 4 to 7 players got it, the
-                reward goes to 5'000'000, and to 10'000'000 if 8 or more got it.
-              </div>
-              <div translate>
-                The player with the diamond can receive an unlimited number of
-                attacks as long as they keep it.
-              </div>
-            </div>
-          </div>
-          <div class="card-body" *ngIf="menuMode === 3">
-            <div *ngFor="let sanctuary of sanctuariesList; let i = index">
-              <div class="card mb-3" *ngIf="i > 0">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <app-ew-icon
-                      title="{{ sanctuary.sanctuaries_name | translate }}"
-                      name="sanctuary_{{ sanctuary.sanctuaries_id }}"
-                      class="revert"></app-ew-icon>
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        {{ sanctuary.sanctuaries_name | translate }}
-                      </h5>
-                      <p class="card-text">
-                        <strong translate>Controlled by</strong>
-                        <strong translate>:</strong>
-                        {{ sanctuary.username }}
-                        <br />
-                        <strong translate>Victories</strong>
-                        <strong translate>:</strong>
-                        {{ sanctuary.sanctuaries_victory }}
-                        <br />
-                        <strong translate>Strength</strong>
-                        <strong translate>:</strong>
-                        <span
-                          [ngClass]="{
-                            'text-danger': sanctuary.sanctuaries_power === 0
-                          }">
-                          {{ Math.min(100, sanctuary.sanctuaries_power) }}%
-                        </span>
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortUP"></app-ic-icon>
+                      }
+                    </th>
+                    <th scope="col">
+                      @if (user.getPropertyNb('level') >= 1) {
                         <span
                           data-bs-toggle="modal"
-                          data-bs-target="#sanctuaryStrengthHelp"
+                          data-bs-target="#attacksHelp"
                           role="button"
                           title="{{ 'Help' | translate }}">
                           <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                         </span>
-                        <br />
-                        <strong translate>Power</strong>
-                        <strong translate>:</strong>
-                        <span [ngSwitch]="sanctuary.sanctuaries_id">
-                          <span *ngSwitchCase="1" translate>
-                            Your city is protected against the fury of Demeter
-                          </span>
-                          <span *ngSwitchCase="2" translate>
-                            The Lernaean Hydra will corrupt your enemies water,
-                            grape and food stocks when they will plunder your
-                            city
-                          </span>
-                          <span *ngSwitchCase="3" translate>
-                            Your city produces 24 additional Ambrosia a day
-                          </span>
-                          <span *ngSwitchCase="4" translate>
-                            Your city is protected against the Zeus lightning
-                          </span>
-                          <span *ngSwitchCase="5" translate>
-                            Typhon will help you to protect your city against
-                            the negative effects of the weather
-                          </span>
-                          <span *ngSwitchDefault>TODO</span>
-                        </span>
-                      </p>
-                    </div>
-                    <div
-                      class="card-body text-center"
-                      *ngIf="sanctuary.membre_id === user.getPropertyNb('id')">
-                      <button
-                        class="btn btn-success fs-5"
-                        (click)="sanctuaryManage(sanctuary.sanctuaries_id)">
-                        <app-ic-icon [icon]="twotoneFence"></app-ic-icon>
-                      </button>
-                    </div>
-                    <div
-                      class="card-body text-center"
-                      *ngIf="sanctuary.membre_id !== user.getPropertyNb('id')">
-                      <button
-                        class="btn btn-info fs-5"
-                        (click)="sanctuariesSpy(sanctuary.sanctuaries_id)"
-                        *ngIf="
+                      }
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (player of getAttackList(); track player) {
+                    <tr>
+                      <td>
+                        <a
+                          [routerLink]="['/profile/' + player.membre_id]"
+                          class="no-padding">
+                          {{ player.username }}
+                          @if (user.getPropertyNb('level') > 0) {
+                            <span>({{ player.level }})</span>
+                          }
+                        </a>
+                        @if (player.diamond_begin > 0) {
+                          <app-ic-icon [icon]="gemIcon"></app-ic-icon>
+                        }
+                        @if (player.alliance > 0) {
+                          <a
+                            [routerLink]="[
+                              '/allianceprofile/' + player.alliance
+                            ]"
+                            class="fw-lighter no-padding">
+                            <br />
+                            {{ player.alliance_name }}
+                          </a>
+                        }
+                      </td>
+                      <td class="d-none d-sm-table-cell text-end">
+                        {{
+                          player.victory
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      @if (
+                        user.getDatas() &&
+                        user.getDatas().attack &&
+                        user.getPropertyNb('level') >=
+                          user.getDatas().attack.level_xp_min
+                      ) {
+                        <td class="text-end">
+                          {{
+                            player.xp | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      }
+                      <td class="text-end">
+                        {{
+                          player.field | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-center">
+                        @if (
                           user.getPropertyNb('apollo') === 0 &&
                           user.getPropertyNb('level') > 0
-                        ">
-                        <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-                      </button>
+                        ) {
+                          <button
+                            class="btn btn-info"
+                            (click)="spy(player.membre_id)">
+                            <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                          </button>
+                        }
+                        @if (user.getPropertyNb('apollo') === 1) {
+                          <button
+                            class="btn btn-primary"
+                            (click)="observe(player.membre_id)">
+                            <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                          </button>
+                        }
+                        @if (user.getPropertyNb('demeter') === 1) {
+                          <button
+                            class="btn"
+                            [ngClass]="{
+                              'btn-danger': player.fury_allowed === 0,
+                              'btn-success': player.fury_allowed === 1
+                            }"
+                            (click)="prepareFury(player.membre_id)">
+                            <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                          </button>
+                        }
+                        @if (
+                          user.getPropertyNb('demeter') === 1 &&
+                          user.getPropertyNb('zeus') === 1
+                        ) {
+                          <br />
+                        }
+                        @if (user.getPropertyNb('zeus') === 1) {
+                          <button
+                            class="btn"
+                            [ngClass]="{
+                              'btn-danger': player.lightning_allowed === 0,
+                              'btn-success': player.lightning_allowed === 1
+                            }"
+                            (click)="prepareLightning(player.membre_id)">
+                            <app-ic-icon [icon]="boltIcon"></app-ic-icon>
+                          </button>
+                        }
+                        <button
+                          class="btn"
+                          [ngClass]="{
+                            'btn-danger': player.attack_allowed === 0,
+                            'btn-success': player.attack_allowed === 1
+                          }"
+                          (click)="prepareAttack(player.membre_id)">
+                          <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+              @if (getAttacksPageNb() > 1) {
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksPage(1)"
+                    (keyup.enter)="setAttacksPage(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksPage(attackPage, -1)"
+                    (keyup.enter)="setAttacksPage(attackPage, -1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    (change)="pageAttacksLoad($event)"
+                    [(ngModel)]="attackPage">
+                    @for (
+                      item of [].constructor(getAttacksPageNb());
+                      track item;
+                      let i = $index
+                    ) {
+                      <option value="{{ i + 1 }}" translate>
+                        Page {{ i + 1 }}
+                      </option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksPage(attackPage, 1)"
+                    (keyup.enter)="setAttacksPage(attackPage, 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksPage(getAttacksPageNb())"
+                    (keyup.enter)="setAttacksPage(getAttacksPageNb())"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              }
+            </div>
+          }
+          @if (menuMode === 1) {
+            <div class="card-body">
+              <app-attacks-stats></app-attacks-stats>
+            </div>
+          }
+          @if (menuMode === 2) {
+            <div class="card-body">
+              <div class="text-center">
+                <strong translate>Owner</strong>
+                <strong translate>:</strong>
+                <a [routerLink]="['/profile/' + diamondInfo.membre_id]">
+                  {{ diamondInfo.username }}
+                </a>
+                <br />
+                @if (diamondInfo.alliance > 0) {
+                  <div>
+                    <strong translate>Alliance</strong>
+                    <strong translate>:</strong>
+                    {{ diamondInfo.alliance_name }}
+                  </div>
+                }
+                <strong translate>Field</strong>
+                <strong translate>:</strong>
+                {{
+                  diamondInfo.field | number: '' : this.translate.currentLang
+                }}
+                <br />
+                <strong translate>Victories</strong>
+                <strong translate>:</strong>
+                {{
+                  diamondInfo.victory | number: '' : this.translate.currentLang
+                }}
+                <br />
+                <strong translate>Last week</strong>
+                <strong translate>:</strong>
+                <a [routerLink]="['/profile/' + diamondInfo.last_id]">
+                  {{ diamondInfo.last_username }}
+                </a>
+                <br />
+              </div>
+              @if (
+                diamondInfo.membre_id !== user.getPropertyNb('id') &&
+                user.getPropertyNb('level') >= 10 &&
+                user.getPropertyNb('id') !== diamondInfo.last_id
+              ) {
+                <div class="text-center">
+                  @if (diamondInfo.possible_field === 1) {
+                    <span>
                       <button
-                        class="btn btn-primary fs-5"
-                        (click)="sanctuariesEye(sanctuary.sanctuaries_id)"
-                        *ngIf="user.getPropertyNb('apollo') === 1">
-                        <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                        class="btn btn-info fs-5"
+                        (click)="spy(diamondInfo.membre_id)"
+                        title="{{ 'Send a spy to the city:' | translate }} {{
+                          diamondInfo.username
+                        }}">
+                        <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                        <span class="visually-hidden">
+                          {{ 'Send a spy to the city:' | translate }}
+                          {{ diamondInfo.username }}
+                        </span>
+                      </button>
+                      @if (user.getPropertyNb('apollo') === 1) {
+                        <button
+                          class="btn btn-primary fs-5"
+                          (click)="observe(diamondInfo.membre_id)"
+                          title="{{ 'Observe the city:' | translate }} {{
+                            diamondInfo.username
+                          }}">
+                          <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Observe the city:' | translate }}
+                            {{ diamondInfo.username }}
+                          </span>
+                        </button>
+                      }
+                    </span>
+                  }
+                  @if (diamondInfo.attack_allowed > 0) {
+                    <button
+                      class="btn btn-success fs-5"
+                      (click)="prepareAttack(diamondInfo.membre_id)"
+                      title="{{ 'Attack the city:' | translate }} {{
+                        diamondInfo.username
+                      }}">
+                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                      <span class="visually-hidden">
+                        {{ 'Attack the city:' | translate }}
+                        {{ diamondInfo.username }}
+                      </span>
+                    </button>
+                  }
+                  @if (diamondInfo.attack_allowed === 0) {
+                    <button
+                      class="btn btn-danger fs-5"
+                      title="{{
+                        'Impossible to attack the city:' | translate
+                      }} {{ diamondInfo.username }}">
+                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                      <span class="visually-hidden">
+                        {{ 'Impossible to attack the city:' | translate }}
+                        {{ diamondInfo.username }}
+                      </span>
+                    </button>
+                  }
+                </div>
+              }
+              @if (user.getPropertyNb('id') === diamondInfo.last_id) {
+                <div class="text-center text-danger fw-bold" translate>
+                  You won the diamond last week, you can't participate until
+                  need week
+                </div>
+              }
+              <div class="row">
+                <div class="col-sm-6 col-12">
+                  <table
+                    class="table table-striped table-middle"
+                    aria-describedby="PlayerDesc">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">
+                          <span id="PlayerDesc" translate>Player</span>
+                        </th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (p of diamondRankingPlayers; track p) {
+                        <tr>
+                          <td class="text-center">
+                            {{ p.ranking }}
+                          </td>
+                          <td>
+                            <a [routerLink]="['/profile/' + p.membre_id]">
+                              {{ p.username }}
+                            </a>
+                          </td>
+                          <td>
+                            @if (p.days > 0) {
+                              <span>
+                                {{ p.days }}
+                                <span translate>d</span>,
+                              </span>
+                            }
+                            @if (p.hours > 0) {
+                              <span>
+                                {{ p.hours }}
+                                <span translate>h</span>,
+                              </span>
+                            }
+                            @if (p.minutes > 0) {
+                              <span>
+                                {{ p.minutes }}
+                                <span translate>m</span>
+                                @if (p.seconds > 0) {
+                                  <span>&nbsp;</span>
+                                }
+                                @if (p.seconds > 0) {
+                                  <span translate>and</span>
+                                }
+                              </span>
+                            }
+                            @if (p.seconds > 0) {
+                              <span>
+                                {{ p.days }}
+                                <span translate>s</span>
+                              </span>
+                            }
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-sm-6 col-12">
+                  <table
+                    class="table table-striped table-middle"
+                    aria-describedby="AllianceDesc">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">
+                          <span id="AllianceDesc" translate>Alliance</span>
+                        </th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (p of diamondRankingAlliance; track p) {
+                        <tr>
+                          <td class="text-center">
+                            {{ p.ranking }}
+                          </td>
+                          <td>
+                            <a
+                              [routerLink]="['/allianceprofile/' + p.alliance]">
+                              {{ p.alliance_name }}
+                            </a>
+                            @if (p.alliance === 0) {
+                              <span translate>None</span>
+                            }
+                          </td>
+                          <td>
+                            @if (p.days > 0) {
+                              <span>
+                                {{ p.days }}
+                                <span translate>d</span>,
+                              </span>
+                            }
+                            @if (p.hours > 0) {
+                              <span>
+                                {{ p.hours }}
+                                <span translate>h</span>,
+                              </span>
+                            }
+                            @if (p.minutes > 0) {
+                              <span>
+                                {{ p.minutes }}
+                                <span translate>m</span>
+                                @if (p.seconds > 0) {
+                                  <span>&nbsp;</span>
+                                }
+                                @if (p.seconds > 0) {
+                                  <span translate>and</span>
+                                }
+                              </span>
+                            }
+                            @if (p.seconds > 0) {
+                              <span>
+                                {{ p.days }}
+                                <span translate>s</span>
+                              </span>
+                            }
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="text-center bold">
+                <div translate>
+                  Each week, the player and the alliance has kept the longer
+                  diamond win 2'500'000 Drachmas. If 4 to 7 players got it, the
+                  reward goes to 5'000'000, and to 10'000'000 if 8 or more got
+                  it.
+                </div>
+                <div translate>
+                  The player with the diamond can receive an unlimited number of
+                  attacks as long as they keep it.
+                </div>
+              </div>
+            </div>
+          }
+          @if (menuMode === 3) {
+            <div class="card-body">
+              @for (
+                sanctuary of sanctuariesList;
+                track sanctuary;
+                let i = $index
+              ) {
+                <div>
+                  @if (i > 0) {
+                    <div class="card mb-3">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <app-ew-icon
+                            title="{{ sanctuary.sanctuaries_name | translate }}"
+                            name="sanctuary_{{ sanctuary.sanctuaries_id }}"
+                            class="revert"></app-ew-icon>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              {{ sanctuary.sanctuaries_name | translate }}
+                            </h5>
+                            <p class="card-text">
+                              <strong translate>Controlled by</strong>
+                              <strong translate>:</strong>
+                              {{ sanctuary.username }}
+                              <br />
+                              <strong translate>Victories</strong>
+                              <strong translate>:</strong>
+                              {{ sanctuary.sanctuaries_victory }}
+                              <br />
+                              <strong translate>Strength</strong>
+                              <strong translate>:</strong>
+                              <span
+                                [ngClass]="{
+                                  'text-danger':
+                                    sanctuary.sanctuaries_power === 0
+                                }">
+                                {{
+                                  Math.min(100, sanctuary.sanctuaries_power)
+                                }}%
+                              </span>
+                              <span
+                                data-bs-toggle="modal"
+                                data-bs-target="#sanctuaryStrengthHelp"
+                                role="button"
+                                title="{{ 'Help' | translate }}">
+                                <app-ic-icon
+                                  [icon]="questionCircle"></app-ic-icon>
+                              </span>
+                              <br />
+                              <strong translate>Power</strong>
+                              <strong translate>:</strong>
+                              <span>
+                                @switch (sanctuary.sanctuaries_id) {
+                                  @case (1) {
+                                    <span translate>
+                                      Your city is protected against the fury of
+                                      Demeter
+                                    </span>
+                                  }
+                                  @case (2) {
+                                    <span translate>
+                                      The Lernaean Hydra will corrupt your
+                                      enemies water, grape and food stocks when
+                                      they will plunder your city
+                                    </span>
+                                  }
+                                  @case (3) {
+                                    <span translate>
+                                      Your city produces 24 additional Ambrosia
+                                      a day
+                                    </span>
+                                  }
+                                  @case (4) {
+                                    <span translate>
+                                      Your city is protected against the Zeus
+                                      lightning
+                                    </span>
+                                  }
+                                  @case (5) {
+                                    <span translate>
+                                      Typhon will help you to protect your city
+                                      against the negative effects of the
+                                      weather
+                                    </span>
+                                  }
+                                  @default {
+                                    <span>TODO</span>
+                                  }
+                                }
+                              </span>
+                            </p>
+                          </div>
+                          @if (
+                            sanctuary.membre_id === user.getPropertyNb('id')
+                          ) {
+                            <div class="card-body text-center">
+                              <button
+                                class="btn btn-success fs-5"
+                                (click)="
+                                  sanctuaryManage(sanctuary.sanctuaries_id)
+                                ">
+                                <app-ic-icon
+                                  [icon]="twotoneFence"></app-ic-icon>
+                              </button>
+                            </div>
+                          }
+                          @if (
+                            sanctuary.membre_id !== user.getPropertyNb('id')
+                          ) {
+                            <div class="card-body text-center">
+                              @if (
+                                user.getPropertyNb('apollo') === 0 &&
+                                user.getPropertyNb('level') > 0
+                              ) {
+                                <button
+                                  class="btn btn-info fs-5"
+                                  (click)="
+                                    sanctuariesSpy(sanctuary.sanctuaries_id)
+                                  ">
+                                  <app-ic-icon
+                                    [icon]="bleedingEyes"></app-ic-icon>
+                                </button>
+                              }
+                              @if (user.getPropertyNb('apollo') === 1) {
+                                <button
+                                  class="btn btn-primary fs-5"
+                                  (click)="
+                                    sanctuariesEye(sanctuary.sanctuaries_id)
+                                  ">
+                                  <app-ic-icon
+                                    [icon]="gooeyEyedSun"></app-ic-icon>
+                                </button>
+                              }
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          }
+
+          @if (menuMode === 4 && getAttackWarsList().length === 0) {
+            <div class="card-body text-center">
+              <p translate>
+                Your attack list is empty. You can only see cities who have
+                between 50% and 200% of your field.
+              </p>
+              <p translate>
+                During a war, if your field is under or equal 8'000, you can
+                also see all the cities of the enemis alliances who are also
+                under 8'000.
+              </p>
+            </div>
+          }
+          @if (menuMode === 4 && getAttackWarsList().length > 0) {
+            <div class="card-body">
+              <div class="visually-hidden" id="getAttackWarsListDesc" translate>
+                Attackable cities at war
+              </div>
+              @if (user.getPropertyNb('level') >= 1) {
+                <div class="text-center fw-bold mb-2">
+                  <a [routerLink]="['/strategies/attack']" translate
+                    >Manage your waves to optimize your losses</a
+                  >
+                </div>
+              }
+              <table
+                class="table align-middle"
+                aria-labelledby="getAttackWarsListDesc">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col"></th>
+                    <th
+                      scope="col"
+                      class="d-none d-sm-table-cell"
+                      (click)="setOrder('victory')"
+                      role="button">
+                      <span translate>V</span>
+                      @if (
+                        attackOrderReverse === 0 &&
+                        attackOrderSort === 'victory'
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortDown"></app-ic-icon>
+                      }
+                      @if (
+                        attackOrderReverse === 1 &&
+                        attackOrderSort === 'victory'
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortUP"></app-ic-icon>
+                      }
+                    </th>
+                    @if (
+                      user.getDatas() &&
+                      user.getDatas().attack &&
+                      user.getPropertyNb('level') >=
+                        user.getDatas().attack.level_xp_min
+                    ) {
+                      <th scope="col" (click)="setOrder('xp')" role="button">
+                        <span translate>XP</span>
+                        @if (
+                          attackOrderReverse === 0 && attackOrderSort === 'xp'
+                        ) {
+                          <app-ic-icon
+                            title="{{ 'Current order' | translate }}"
+                            [icon]="sortDown"></app-ic-icon>
+                        }
+                        @if (
+                          attackOrderReverse === 1 && attackOrderSort === 'xp'
+                        ) {
+                          <app-ic-icon
+                            title="{{ 'Current order' | translate }}"
+                            [icon]="sortUP"></app-ic-icon>
+                        }
+                      </th>
+                    }
+                    <th scope="col" (click)="setOrder('field')" role="button">
+                      <span translate>Field</span>
+                      @if (
+                        attackOrderReverse === 0 && attackOrderSort === 'field'
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortDown"></app-ic-icon>
+                      }
+                      @if (
+                        attackOrderReverse === 1 && attackOrderSort === 'field'
+                      ) {
+                        <app-ic-icon
+                          title="{{ 'Current order' | translate }}"
+                          [icon]="sortUP"></app-ic-icon>
+                      }
+                    </th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (player of getAttackWarsList(); track player) {
+                    <tr>
+                      <td>
+                        <a
+                          [routerLink]="['/profile/' + player.membre_id]"
+                          class="no-padding">
+                          {{ player.username }}
+                          @if (user.getPropertyNb('level') > 0) {
+                            <span>({{ player.level }})</span>
+                          }
+                        </a>
+                        @if (player.diamond_begin > 0) {
+                          <app-ic-icon [icon]="gemIcon"></app-ic-icon>
+                        }
+                        @if (player.alliance > 0) {
+                          <a
+                            [routerLink]="[
+                              '/allianceprofile/' + player.alliance
+                            ]"
+                            class="fw-lighter no-padding">
+                            <br />
+                            {{ player.alliance_name }}
+                          </a>
+                        }
+                      </td>
+                      <td class="text-end">
+                        {{
+                          player.victory
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      @if (
+                        user.getDatas() &&
+                        user.getDatas().attack &&
+                        user.getPropertyNb('level') >=
+                          user.getDatas().attack.level_xp_min
+                      ) {
+                        <td class="text-end">
+                          {{
+                            player.xp | number: '' : this.translate.currentLang
+                          }}
+                        </td>
+                      }
+                      <td class="text-end">
+                        {{
+                          player.field | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-center">
+                        @if (
+                          user.getPropertyNb('apollo') === 0 &&
+                          user.getPropertyNb('level') > 0
+                        ) {
+                          <button
+                            class="btn btn-primary"
+                            (click)="spy(player.membre_id)">
+                            <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                          </button>
+                        }
+                        @if (user.getPropertyNb('apollo') === 1) {
+                          <button
+                            class="btn btn-primary"
+                            (click)="observe(player.membre_id)">
+                            <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                          </button>
+                        }
+                        @if (user.getPropertyNb('demeter') === 1) {
+                          <button
+                            class="btn"
+                            [ngClass]="{
+                              'btn-danger': player.fury_allowed === 0,
+                              'btn-success': player.fury_allowed === 1
+                            }"
+                            (click)="prepareFury(player.membre_id)">
+                            <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                          </button>
+                        }
+                        @if (
+                          user.getPropertyNb('demeter') === 1 &&
+                          user.getPropertyNb('zeus') === 1
+                        ) {
+                          <br />
+                        }
+                        @if (user.getPropertyNb('zeus') === 1) {
+                          <button
+                            class="btn"
+                            [ngClass]="{
+                              'btn-danger': player.lightning_allowed === 0,
+                              'btn-success': player.lightning_allowed === 1
+                            }"
+                            (click)="prepareLightning(player.membre_id)">
+                            <app-ic-icon [icon]="boltIcon"></app-ic-icon>
+                          </button>
+                        }
+                        <button
+                          class="btn"
+                          [ngClass]="{
+                            'btn-danger': player.attack_allowed === 0,
+                            'btn-success': player.attack_allowed === 1
+                          }"
+                          (click)="prepareAttack(player.membre_id)">
+                          <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+              @if (getAttacksWarsPageNb() > 1) {
+                <div class="input-group">
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksWarsPage(1)"
+                    (keyup.enter)="setAttacksWarsPage(1)"
+                    tabindex="0"
+                    >&lt;&lt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksWarsPage(attackPage, -1)"
+                    (keyup.enter)="setAttacksWarsPage(attackPage, -1)"
+                    tabindex="0"
+                    >&lt;</span
+                  >
+                  <select
+                    class="form-select"
+                    (change)="pageAttacksWarsLoad($event)"
+                    [(ngModel)]="attackPage">
+                    @for (
+                      item of [].constructor(getAttacksWarsPageNb());
+                      track item;
+                      let i = $index
+                    ) {
+                      <option value="{{ i + 1 }}" translate>
+                        Page {{ i + 1 }}
+                      </option>
+                    }
+                  </select>
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksWarsPage(attackPage, 1)"
+                    (keyup.enter)="setAttacksWarsPage(attackPage, 1)"
+                    tabindex="0"
+                    >&gt;</span
+                  >
+                  <span
+                    class="input-group-text"
+                    role="button"
+                    (click)="setAttacksWarsPage(getAttacksWarsPageNb())"
+                    (keyup.enter)="setAttacksWarsPage(getAttacksWarsPageNb())"
+                    tabindex="0"
+                    >&gt;&gt;</span
+                  >
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+      @if (attackMode === 0) {
+        <div class="col-xl-6 mt-1">
+          @if (getCurrentMsg().msg_id === 0) {
+            <div class="card">
+              <div class="card-header" translate>Last attacks</div>
+              <div class="card-body">
+                @if (msgList.length === 0) {
+                  <div class="text-center mt-2 mb-2" translate>
+                    This list is empty
+                  </div>
+                }
+                @for (msg of msgList; track msg) {
+                  <div
+                    class="d-flex bd-highlight"
+                    role="button"
+                    (click)="messageLoad(msg)"
+                    (keyup.enter)="messageLoad(msg)"
+                    tabindex="0">
+                    <div class="p-2 flex-grow-1 bd-highlight border-top">
+                      <app-messages-title [msg]="msg"></app-messages-title>
+                      <div class="fw-lighter">
+                        {{ msg.last_date | date: 'dd/MM/yyyy, HH:mm' }}
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @if (getCurrentMsg().msg_id > 0) {
+            <div class="card card-normal">
+              <div class="card-header card-header-auto">
+                <app-messages-title
+                  [msg]="getCurrentMsg()"></app-messages-title>
+                &nbsp;
+                <button class="btn btn-warning" (click)="shareMsg()">
+                  <app-ic-icon [icon]="share"></app-ic-icon>
+                </button>
+              </div>
+              @if (getCurrentMsg().msg_shared === 1) {
+                <div class="card-body text-center">
+                  @if (linkSaved === 1) {
+                    <div class="wg-bold text-danger" translate>
+                      Link saved to clipboard
+                    </div>
+                  }
+                  <strong translate>Share link:</strong>
+                  {{ getCurrentMsg().url }}/permalink/{{
+                    getCurrentMsg().msg_id
+                  }}
+                  <span
+                    class="badge bg-primary"
+                    role="button"
+                    (click)="copyLink()"
+                    [cbContent]="
+                      getCurrentMsg().url +
+                      '/permalink/' +
+                      getCurrentMsg().msg_id
+                    "
+                    (keyup.enter)="copyLink()"
+                    tabindex="0"
+                    ngxClipboard>
+                    <app-ic-icon [icon]="clipboardCheck"></app-ic-icon>
+                  </span>
+                </div>
+              }
+              <div class="card-body">
+                <span>
+                  @switch (getCurrentMsg().msg_type) {
+                    @case (1) {
+                      <span
+                        ><app-attacks-message
+                          [info]="
+                            getCurrentMsg().msg[0].content
+                          "></app-attacks-message
+                      ></span>
+                    }
+                    @case (3) {
+                      <span
+                        ><app-fury-message
+                          [info]="
+                            getCurrentMsg().msg[0].content
+                          "></app-fury-message
+                      ></span>
+                    }
+                    @case (8) {
+                      <span
+                        ><app-lost-message
+                          [info]="
+                            getCurrentMsg().msg[0].content
+                          "></app-lost-message
+                      ></span>
+                    }
+                    @default {
+                      <span>TODO {{ getCurrentMsg().msg_type }}</span>
+                    }
+                  }
+                </span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+      @if (attackMode > 0) {
+        <div class="col-xl-6 mt-1">
+          <div class="card card-normal">
+            @if (targetProfile.username) {
+              <div class="card-header card-header-flexible">
+                <h2 id="playerDesc">
+                  {{ targetProfile.username }}
+                  @if (targetProfile.diamond_begin > 0) {
+                    <app-ic-icon [icon]="gemIcon"></app-ic-icon>
+                  }
+                </h2>
+              </div>
+            }
+            @if (attackMode !== 12 && sanctuariesSpyInfo.sanctuaries_name) {
+              <div class="card-header card-header-flexible">
+                <h2 id="playerDesc">
+                  {{ sanctuariesSpyInfo.sanctuaries_name | translate }}
+                </h2>
+              </div>
+            }
+            @if (attackMode === 12) {
+              <div class="card-header card-header-flexible">
+                <h2 id="playerDesc">
+                  {{ sanctuariesInfo.sanctuaries_name | translate }}
+                  <span
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#sanctuaryStrengthUpdate"
+                    role="button">
+                    <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
+                  </span>
+                </h2>
+              </div>
+            }
+            <!-- Observe/Spy -->
+            @if (attackMode === 1 || attackMode === 2) {
+              <div class="card-body" id="attackEyeBlock">
+                <table aria-describedby="playerDesc" class="m-auto">
+                  @if (targetProfile.alliance > 0) {
+                    <tr>
+                      <th scope="row" translate>Alliance</th>
+                      <td>{{ targetProfile.alliance_name }}&nbsp;</td>
+                    </tr>
+                  }
+                  @if (targetProfile.alliance > 0) {
+                    <tr>
+                      <th scope="row" translate>Rank</th>
+                      <td>{{ targetProfile.rank_name }}&nbsp;</td>
+                    </tr>
+                  }
+                  <tr>
+                    <th scope="row" translate>Level</th>
+                    <td>{{ targetProfile.level }}&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" translate>Field</th>
+                    <td>
+                      {{
+                        targetProfile.field
+                          | number: '' : this.translate.currentLang
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="pe-1" translate>Victories</th>
+                    <td>
+                      {{
+                        targetProfile.victory
+                          | number: '' : this.translate.currentLang
+                      }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" translate>XP</th>
+                    <td>
+                      {{
+                        targetProfile.xp
+                          | number: '' : this.translate.currentLang
+                      }}
+                    </td>
+                  </tr>
+                </table>
+                @if (spyInfo) {
+                  <div>
+                    <br />
+                    <span class="text-center">
+                      @switch (spyInfo.error) {
+                        @case (1) {
+                          <div translate>
+                            Your espionage team was caught and executed in a
+                            public place.
+                          </div>
+                        }
+                        @case (2) {
+                          <div translate>
+                            Information reached your city but unfortunately your
+                            spy team was caught, tortured until they denounce
+                            you and executed in a public place.
+                          </div>
+                        }
+                        @case (4) {
+                          <div class="text-center" translate>
+                            You do not have spies.
+                          </div>
+                        }
+                      }
+                    </span>
+                    @if (
+                      spyInfo.poseidon_wall &&
+                      spyInfo.poseidon_wall === 1 &&
+                      (!spyInfo.defense_wall || spyInfo.defense_wall === 0)
+                    ) {
+                      <div class="text-center" translate>
+                        The wall of Poseidon protects this city.
+                      </div>
+                    }
+                    @if (
+                      spyInfo.defense_wall &&
+                      spyInfo.defense_wall >= 1 &&
+                      (!spyInfo.poseidon_wall || spyInfo.poseidon_wall === 0)
+                    ) {
+                      <div class="text-center" translate>
+                        A wall is protecting this city.
+                      </div>
+                    }
+                    @if (
+                      spyInfo.defense_wall &&
+                      spyInfo.defense_wall >= 1 &&
+                      spyInfo.poseidon_wall &&
+                      spyInfo.poseidon_wall === 1
+                    ) {
+                      <div class="text-center" translate>
+                        Many walls are protecting this city.
+                      </div>
+                    }
+                    @if (Object.keys(spyInfo).length > 0) {
+                      <div class="text-center">
+                        @if (
+                          !isProtected() && [0, 2, 3].includes(spyInfo.error)
+                        ) {
+                          <div translate>
+                            This city is not protected by any units or defense
+                            towers
+                          </div>
+                        }
+                        @if (spyInfo.unitiesNb > 0) {
+                          <div>
+                            <strong translate>Unities</strong
+                            ><strong translate>:</strong>
+                            {{
+                              spyInfo.unitiesNb
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <br />
+                          </div>
+                        }
+                        @if (spyInfo.defenseNb > 0) {
+                          <div>
+                            <strong translate>Towers</strong
+                            ><strong translate>:</strong>
+                            {{
+                              spyInfo.defenseNb
+                                | number: '' : this.translate.currentLang
+                            }}
+                            <br />
+                          </div>
+                        }
+                        <br />
+                        @if (
+                          spyInfo.buildings && spyInfo.buildings.length > 0
+                        ) {
+                          <div>
+                            <strong translate>Buildings</strong
+                            ><strong translate>:</strong>
+                            @for (build of spyInfo.buildings; track build) {
+                              <div>
+                                {{ Tools.getName(build) | translate }}
+                              </div>
+                            }
+                          </div>
+                        }
+                        @if (spyInfo.unities && spyInfo.unities.length > 0) {
+                          <div>
+                            <strong translate>Unities</strong
+                            ><strong translate>:</strong>
+                            @for (unit of spyInfo.unities; track unit) {
+                              <div>
+                                {{
+                                  Tools.getName(unit, 1, spyInfo.defenseType)
+                                    | translate
+                                }}
+                              </div>
+                            }
+                            <br />
+                          </div>
+                        }
+                        @if (spyInfo.ress && spyInfo.ress.food) {
+                          <div class="col-table center">
+                            <br />
+                            <strong translate>Resources</strong>
+                            <strong translate>:</strong>
+                            <span
+                              data-bs-toggle="modal"
+                              data-bs-target="#spyResourcesHelp"
+                              role="button"
+                              title="{{ 'Help' | translate }}">
+                              <app-ic-icon
+                                [icon]="questionCircle"></app-ic-icon>
+                            </span>
+                            <br />
+                            <div class="row">
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="food"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.food === 1,
+                                    low: spyInfo.ress.food === 2,
+                                    middle: spyInfo.ress.food === 3,
+                                    high: spyInfo.ress.food === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="water"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.water === 1,
+                                    low: spyInfo.ress.water === 2,
+                                    middle: spyInfo.ress.water === 3,
+                                    high: spyInfo.ress.water === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="wood"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.wood === 1,
+                                    low: spyInfo.ress.wood === 2,
+                                    middle: spyInfo.ress.wood === 3,
+                                    high: spyInfo.ress.wood === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="iron"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.iron === 1,
+                                    low: spyInfo.ress.iron === 2,
+                                    middle: spyInfo.ress.iron === 3,
+                                    high: spyInfo.ress.iron === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="stone"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.stone === 1,
+                                    low: spyInfo.ress.stone === 2,
+                                    middle: spyInfo.ress.stone === 3,
+                                    high: spyInfo.ress.stone === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="marble"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.marble === 1,
+                                    low: spyInfo.ress.marble === 2,
+                                    middle: spyInfo.ress.marble === 3,
+                                    high: spyInfo.ress.marble === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="grapes"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.grapes === 1,
+                                    low: spyInfo.ress.grapes === 2,
+                                    middle: spyInfo.ress.grapes === 3,
+                                    high: spyInfo.ress.grapes === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="wine"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.wine === 1,
+                                    low: spyInfo.ress.wine === 2,
+                                    middle: spyInfo.ress.wine === 3,
+                                    high: spyInfo.ress.wine === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                              <div class="col-4">
+                                <app-ew-icon
+                                  name="gold"
+                                  class="small-resource"></app-ew-icon>
+                                &nbsp;
+                                <app-ic-icon
+                                  [ngClass]="{
+                                    vlow: spyInfo.ress.gold === 1,
+                                    low: spyInfo.ress.gold === 2,
+                                    middle: spyInfo.ress.gold === 3,
+                                    high: spyInfo.ress.gold === 4
+                                  }"
+                                  [icon]="dotCircle"></app-ic-icon>
+                              </div>
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                    <div class="text-center">
+                      <br />
+                      <button
+                        class="btn btn-info fs-5"
+                        (click)="spy(targetProfile.membre_id)"
+                        title="{{ 'Send a spy to the city:' | translate }} {{
+                          targetProfile.username
+                        }}">
+                        <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                        <span class="visually-hidden">
+                          {{ 'Send a spy to the city:' | translate }}
+                          {{ targetProfile.username }}
+                        </span>
+                      </button>
+                      @if (user.getPropertyNb('apollo') === 1) {
+                        <button
+                          class="btn btn-primary fs-5"
+                          (click)="observe(targetProfile.membre_id)"
+                          title="{{ 'Observe the city:' | translate }} {{
+                            targetProfile.username
+                          }}">
+                          <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Observe the city:' | translate }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('demeter') === 1 &&
+                        furyPossible === 1
+                      ) {
+                        <button
+                          class="btn btn-success fs-5"
+                          (click)="prepareFury(targetProfile.membre_id)"
+                          title="{{
+                            'Launch a fury on the city:' | translate
+                          }} {{ targetProfile.username }}">
+                          <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Launch a fury on the city:' | translate }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('demeter') === 1 &&
+                        furyPossible === 0
+                      ) {
+                        <button
+                          class="btn btn-danger fs-5"
+                          title="{{
+                            'Impossible to launch a fury on the city:'
+                              | translate
+                          }} {{ targetProfile.username }}">
+                          <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{
+                              'Impossible to launch a fury on the city:'
+                                | translate
+                            }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('zeus') === 1 &&
+                        lightningPossible === 1
+                      ) {
+                        <button
+                          class="btn btn-success fs-5"
+                          (click)="prepareLightning(targetProfile.membre_id)"
+                          title="{{
+                            'Launch a lightning on the city:' | translate
+                          }} {{ targetProfile.username }}">
+                          <app-ic-icon [icon]="boltIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Launch a lightning on the city:' | translate }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (
+                        user.getPropertyNb('zeus') === 1 &&
+                        lightningPossible === 0
+                      ) {
+                        <button
+                          class="btn btn-danger fs-5"
+                          title="{{
+                            'Impossible to launch a lightning on the city:'
+                              | translate
+                          }} {{ targetProfile.username }}">
+                          <app-ic-icon [icon]="boltIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{
+                              'Impossible to launch a lightning on the city:'
+                                | translate
+                            }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (attackPossible > 0) {
+                        <button
+                          class="btn btn-success fs-5"
+                          (click)="prepareAttack(targetProfile.membre_id)"
+                          title="{{ 'Attack the city:' | translate }} {{
+                            targetProfile.username
+                          }}">
+                          <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Attack the city:' | translate }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                      @if (attackPossible === 0) {
+                        <button
+                          class="btn btn-danger fs-5"
+                          title="{{
+                            'Impossible to attack the city:' | translate
+                          }} {{ targetProfile.username }}">
+                          <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                          <span class="visually-hidden">
+                            {{ 'Impossible to attack the city:' | translate }}
+                            {{ targetProfile.username }}
+                          </span>
+                        </button>
+                      }
+                    </div>
+                  </div>
+                }
+                @if (attackPossible <= 0) {
+                  <div class="text-center fw-bold text-danger">
+                    <br />
+                    <div>
+                      @switch (attackPossibleError) {
+                        @case (2) {
+                          <div translate>Your army is empty</div>
+                        }
+                        @case (3) {
+                          <div translate>Error in the target</div>
+                        }
+                        @case (4) {
+                          <div translate>
+                            You can't attack a player who is in the same
+                            alliance than you
+                          </div>
+                        }
+                        @case (5) {
+                          <div translate>
+                            You don't have enough mints to launch an attack
+                          </div>
+                        }
+                        @case (7) {
+                          <div translate>
+                            This city's field has changed, refresh your attack
+                            list
+                          </div>
+                        }
+                        @case (8) {
+                          <div translate>You can't attack an Admin</div>
+                        }
+                        @case (9) {
+                          <div translate>
+                            This player is too low level for you
+                          </div>
+                        }
+                        @case (10) {
+                          <div translate>
+                            You have already attacked this player
+                          </div>
+                        }
+                        @case (11) {
+                          <div translate>
+                            You have a pact with this player's alliance
+                          </div>
+                        }
+                        @case (12) {
+                          <div translate>
+                            This city has suffered a lot, it needs time to
+                            recover
+                          </div>
+                        }
+                        @case (13) {
+                          <div translate>
+                            This city is on strike and can't be attacked
+                          </div>
+                        }
+                        @case (14) {
+                          <div translate>
+                            You are on strike, you can't attack in war
+                          </div>
+                        }
+                        @case (15) {
+                          <div translate>
+                            You are in trial period, you can't attack during a
+                            war
+                          </div>
+                        }
+                        @case (16) {
+                          <div translate>
+                            You don't have war attacks available
+                          </div>
+                        }
+                        @case (17) {
+                          <div translate>
+                            This city has too much or not enoug field
+                          </div>
+                        }
+                        @case (18) {
+                          <div translate>
+                            This city has received too many war attacks
+                          </div>
+                        }
+                        @case (19) {
+                          <div translate>The level of this city is too low</div>
+                        }
+                        @case (20) {
+                          <div translate>
+                            The level of this city is too high
+                          </div>
+                        }
+                        @case (21) {
+                          <div translate>Your army is empty</div>
+                        }
+                        @case (22) {
+                          <div translate>This city's field is too high</div>
+                        }
+                        @case (23) {
+                          <div translate>This city's field is too low</div>
+                        }
+                        @case (24) {
+                          <div translate>This city's level is too high</div>
+                        }
+                        @case (25) {
+                          <div translate>
+                            This city has received too many attacks
+                          </div>
+                        }
+                        @case (26) {
+                          <div translate>Your army is empty</div>
+                        }
+                        @case (27) {
+                          <div translate>Your army is empty</div>
+                        }
+                        @case (28) {
+                          <div translate>You have done too many attacks</div>
+                        }
+                        @case (29) {
+                          <div translate>Artemis is protecting this city</div>
+                        }
+                        @default {
+                          <div>{{ attackPossibleError }}</div>
+                        }
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            <!-- Prepare to attack -->
+            @if (attackMode === 3) {
+              <div class="card-body" id="attackPrepareBlock">
+                <div class="text-center">
+                  @if (attackPossible > 0) {
+                    <button
+                      class="btn btn-primary fs-5"
+                      (click)="launchAttack(targetProfile.membre_id)">
+                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                      &nbsp;<span translate>Attack</span>
+                    </button>
+                  }
+                  @if (attackPossible === 0) {
+                    <div translate>You can't attack this city</div>
+                  }
+                </div>
+                @if (getArmy().length > 0) {
+                  <div class="text-center">
+                    <br />
+                    <strong translate>Army summary</strong>
+                    @for (i of getArmy(); track i) {
+                      <div>
+                        <span [ngClass]="{ 'text-danger': i.all === 0 }">
+                          {{ i.nb | number: '' : this.translate.currentLang }}
+                          {{ Tools.getName(i.unit, i.nb) | translate }}
+                          @if (i.all === 0) {
+                            <span
+                              data-bs-toggle="modal"
+                              data-bs-target="#attacksUnitHelp"
+                              role="button"
+                              title="{{ 'Help' | translate }}">
+                              <app-ic-icon
+                                [icon]="questionCircle"></app-ic-icon>
+                            </span>
+                          }
+                        </span>
+                      </div>
+                    }
+                    <br />
+                    <strong translate>Offensive power</strong>
+                    <strong translate>:</strong>
+                    {{
+                      getOffensivePower()
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </div>
+                }
+                @if (getArmy().length === 0) {
+                  <div class="text-center" translate>Your army is empty</div>
+                }
+              </div>
+            }
+            <!-- Result from an attack -->
+            @if (attackMode === 4) {
+              <div class="card-body text-center">
+                <app-attacks-message
+                  [info]="attackInfo.content"></app-attacks-message>
+              </div>
+            }
+            <!-- Prepare to send a fury -->
+            @if (attackMode === 5) {
+              <div class="card-body text-center" id="furyPrepareBlock">
+                <div translate>
+                  The fury can destroy farms and growers and reserves of grapes
+                  and food of your opponents.
+                </div>
+                <br />
+                <br />
+                @if (user.getPropertyNb('fury') > 0) {
+                  <button
+                    class="btn btn-primary"
+                    (click)="launchFury(targetProfile.membre_id)">
+                    <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                    &nbsp;<span translate>Send</span>
+                  </button>
+                }
+                @if (user.getPropertyNb('fury') === 0) {
+                  <div class="fw-bold text-danger" translate>
+                    You have no furies in stock. Go to the Temple of Demeter to
+                    get some.
+                  </div>
+                }
+              </div>
+            }
+            <!-- Result from a fury -->
+            @if (attackMode === 6) {
+              <div class="card-body text-center">
+                <app-fury-message [info]="furyInfo.content"></app-fury-message>
+              </div>
+            }
+            <!-- Prepare to send a lightning -->
+            @if (attackMode === 7) {
+              <div class="card-body text-center" id="lightningPrepareBlock">
+                <div translate>
+                  The lightning can destroy the buildings of your opponents,
+                  including mints.
+                </div>
+                <br />
+                <br />
+                @if (user.getPropertyNb('lightning') > 0) {
+                  <button
+                    class="btn btn-primary"
+                    (click)="launchLightning(targetProfile.membre_id)">
+                    <app-ic-icon [icon]="fireIcon"></app-ic-icon>
+                    &nbsp;<span translate>Send</span>
+                  </button>
+                }
+                @if (user.getPropertyNb('lightning') === 0) {
+                  <div class="fw-bold text-danger" translate>
+                    You have no lightnings in stock. Go to the Temple of Zeus to
+                    get some.
+                  </div>
+                }
+              </div>
+            }
+            <!-- Result from a lightning -->
+            @if (attackMode === 8) {
+              <div class="card-body text-center">
+                <app-lost-message
+                  [info]="lightningInfo.content"></app-lost-message>
+              </div>
+            }
+            <!-- Spying a sanctuary -->
+            @if (attackMode === 9) {
+              <div class="card-body text-center" id="sanctuaryEyeBlock">
+                <span>
+                  @switch (sanctuariesSpyInfo.error) {
+                    @case (1) {
+                      <div translate>
+                        Your espionage team was caught and executed in a public
+                        place.
+                      </div>
+                    }
+                    @case (2) {
+                      <div>
+                        <span translate>
+                          Information reached your city but unfortunately your
+                          spy team was caught, tortured until they denounce you
+                          and executed in a public place.
+                        </span>
+                        <br /><br />
+                      </div>
+                    }
+                    @case (4) {
+                      <div translate>You do not have spies.</div>
+                    }
+                  }
+                </span>
+                @if (
+                  sanctuariesSpyInfo.error === 0 ||
+                  sanctuariesSpyInfo.error === 2 ||
+                  sanctuariesSpyInfo.error === 3
+                ) {
+                  <div>
+                    @if (sanctuariesSpyInfo.unitiesNb > 0) {
+                      <div>
+                        <strong translate>Unities</strong
+                        ><strong translate>:</strong>
+                        {{
+                          sanctuariesSpyInfo.unitiesNb
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </div>
+                    }
+                    @if (sanctuariesSpyInfo.unities.length > 0) {
+                      <div>
+                        <strong translate>Unities</strong
+                        ><strong translate>:</strong>
+                        @for (unit of sanctuariesSpyInfo.unities; track unit) {
+                          <div>
+                            {{ Tools.getName(unit) | translate }}
+                          </div>
+                        }
+                        <br />
+                      </div>
+                    }
+                    @if (
+                      sanctuariesSpyInfo.unitiesNb === 0 &&
+                      sanctuariesSpyInfo.unities.length === 0
+                    ) {
+                      <div translate>
+                        This sancturary is not protected by any army, fight
+                        directly the monster!
+                      </div>
+                    }
+                  </div>
+                }
+                <div>
+                  <br />
+                  <br />
+                  <button
+                    class="btn btn-info fs-5"
+                    (click)="sanctuariesSpy(sanctuariesSpyInfo.id)">
+                    <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                  </button>
+                  @if (user.getPropertyNb('apollo') === 1) {
+                    <button
+                      class="btn btn-primary fs-5"
+                      (click)="sanctuariesEye(sanctuariesSpyInfo.id)">
+                      <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                    </button>
+                  }
+                  <button
+                    class="btn btn-success fs-5"
+                    (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
+                    <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                  </button>
+                </div>
+              </div>
+            }
+            <!-- Preparing to attack a sanctuary -->
+            @if (attackMode === 10) {
+              <div class="card-body">
+                @if (getArmy().length > 0) {
+                  <div class="text-center">
+                    <br />
+                    <strong translate>Army summary</strong>
+                    @for (i of getArmy(); track i) {
+                      <div>
+                        <span [ngClass]="{ 'text-danger': i.all === 0 }">
+                          {{ i.nb | number: '' : this.translate.currentLang }}
+                          {{ Tools.getName(i.unit, i.nb) | translate }}
+                          @if (i.all === 0) {
+                            <span
+                              data-bs-toggle="modal"
+                              data-bs-target="#attacksUnitHelp"
+                              role="button"
+                              title="{{ 'Help' | translate }}">
+                              <app-ic-icon
+                                [icon]="questionCircle"></app-ic-icon>
+                            </span>
+                          }
+                        </span>
+                      </div>
+                    }
+                    <br />
+                    <strong translate>Offensive power</strong>
+                    <strong translate>:</strong>
+                    {{
+                      getOffensivePower()
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <br /><br />
+                    <div class="text-center">
+                      <button
+                        class="btn btn-success fs-5"
+                        (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                        &nbsp;<span translate>Attack</span>
                       </button>
                     </div>
                   </div>
-                </div>
+                }
+                @if (getArmy().length === 0) {
+                  <div class="text-center" translate>Your army is empty</div>
+                }
               </div>
-            </div>
-          </div>
-
-          <div
-            class="card-body text-center"
-            *ngIf="menuMode === 4 && getAttackWarsList().length === 0">
-            <p translate>
-              Your attack list is empty. You can only see cities who have
-              between 50% and 200% of your field.
-            </p>
-            <p translate>
-              During a war, if your field is under or equal 8'000, you can also
-              see all the cities of the enemis alliances who are also under
-              8'000.
-            </p>
-          </div>
-          <div
-            class="card-body"
-            *ngIf="menuMode === 4 && getAttackWarsList().length > 0">
-            <div class="visually-hidden" id="getAttackWarsListDesc" translate>
-              Attackable cities at war
-            </div>
-            <div
-              class="text-center fw-bold mb-2"
-              *ngIf="user.getPropertyNb('level') >= 1">
-              <a [routerLink]="['/strategies/attack']" translate
-                >Manage your waves to optimize your losses</a
-              >
-            </div>
-            <table
-              class="table align-middle"
-              aria-labelledby="getAttackWarsListDesc">
-              <thead>
-                <tr class="text-center">
-                  <th scope="col"></th>
-                  <th
-                    scope="col"
-                    class="d-none d-sm-table-cell"
-                    (click)="setOrder('victory')"
-                    role="button">
-                    <span translate>V</span>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 0 &&
-                        attackOrderSort === 'victory'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 1 &&
-                        attackOrderSort === 'victory'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th
-                    *ngIf="
-                      user.getDatas() &&
-                      user.getDatas().attack &&
-                      user.getPropertyNb('level') >=
-                        user.getDatas().attack.level_xp_min
-                    "
-                    scope="col"
-                    (click)="setOrder('xp')"
-                    role="button">
-                    <span translate>XP</span>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 0 && attackOrderSort === 'xp'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 1 && attackOrderSort === 'xp'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th scope="col" (click)="setOrder('field')" role="button">
-                    <span translate>Field</span>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 0 && attackOrderSort === 'field'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortDown"></app-ic-icon>
-                    <app-ic-icon
-                      *ngIf="
-                        attackOrderReverse === 1 && attackOrderSort === 'field'
-                      "
-                      title="{{ 'Current order' | translate }}"
-                      [icon]="sortUP"></app-ic-icon>
-                  </th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let player of getAttackWarsList()">
-                  <td>
-                    <a
-                      [routerLink]="['/profile/' + player.membre_id]"
-                      class="no-padding">
-                      {{ player.username }}
-                      <span *ngIf="user.getPropertyNb('level') > 0"
-                        >({{ player.level }})</span
-                      >
-                    </a>
-
-                    <app-ic-icon
-                      [icon]="gemIcon"
-                      *ngIf="player.diamond_begin > 0"></app-ic-icon>
-
-                    <a
-                      [routerLink]="['/allianceprofile/' + player.alliance]"
-                      class="fw-lighter no-padding"
-                      *ngIf="player.alliance > 0">
-                      <br />
-                      {{ player.alliance_name }}
-                    </a>
-                  </td>
-                  <td class="text-end">
-                    {{
-                      player.victory | number: '' : this.translate.currentLang
-                    }}
-                  </td>
-                  <td
-                    *ngIf="
-                      user.getDatas() &&
-                      user.getDatas().attack &&
-                      user.getPropertyNb('level') >=
-                        user.getDatas().attack.level_xp_min
-                    "
-                    class="text-end">
-                    {{ player.xp | number: '' : this.translate.currentLang }}
-                  </td>
-                  <td class="text-end">
-                    {{ player.field | number: '' : this.translate.currentLang }}
-                  </td>
-                  <td class="text-center">
-                    <button
-                      class="btn btn-primary"
-                      *ngIf="
-                        user.getPropertyNb('apollo') === 0 &&
-                        user.getPropertyNb('level') > 0
-                      "
-                      (click)="spy(player.membre_id)">
-                      <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-                    </button>
-                    <button
-                      class="btn btn-primary"
-                      *ngIf="user.getPropertyNb('apollo') === 1"
-                      (click)="observe(player.membre_id)">
-                      <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
-                    </button>
-
-                    <button
-                      class="btn"
-                      *ngIf="user.getPropertyNb('demeter') === 1"
-                      [ngClass]="{
-                        'btn-danger': player.fury_allowed === 0,
-                        'btn-success': player.fury_allowed === 1
-                      }"
-                      (click)="prepareFury(player.membre_id)">
-                      <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-                    </button>
-                    <br
-                      *ngIf="
-                        user.getPropertyNb('demeter') === 1 &&
-                        user.getPropertyNb('zeus') === 1
-                      " />
-                    <button
-                      class="btn"
-                      *ngIf="user.getPropertyNb('zeus') === 1"
-                      [ngClass]="{
-                        'btn-danger': player.lightning_allowed === 0,
-                        'btn-success': player.lightning_allowed === 1
-                      }"
-                      (click)="prepareLightning(player.membre_id)">
-                      <app-ic-icon [icon]="boltIcon"></app-ic-icon>
-                    </button>
-
-                    <button
-                      class="btn"
-                      [ngClass]="{
-                        'btn-danger': player.attack_allowed === 0,
-                        'btn-success': player.attack_allowed === 1
-                      }"
-                      (click)="prepareAttack(player.membre_id)">
-                      <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="input-group" *ngIf="getAttacksWarsPageNb() > 1">
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksWarsPage(1)"
-                (keyup.enter)="setAttacksWarsPage(1)"
-                tabindex="0"
-                >&lt;&lt;</span
-              >
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksWarsPage(attackPage, -1)"
-                (keyup.enter)="setAttacksWarsPage(attackPage, -1)"
-                tabindex="0"
-                >&lt;</span
-              >
-              <select
-                class="form-select"
-                (change)="pageAttacksWarsLoad($event)"
-                [(ngModel)]="attackPage">
-                <option
-                  *ngFor="
-                    let item of [].constructor(getAttacksWarsPageNb());
-                    let i = index
-                  "
-                  value="{{ i + 1 }}"
-                  translate>
-                  Page {{ i + 1 }}
-                </option>
-              </select>
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksWarsPage(attackPage, 1)"
-                (keyup.enter)="setAttacksWarsPage(attackPage, 1)"
-                tabindex="0"
-                >&gt;</span
-              >
-              <span
-                class="input-group-text"
-                role="button"
-                (click)="setAttacksWarsPage(getAttacksWarsPageNb())"
-                (keyup.enter)="setAttacksWarsPage(getAttacksWarsPageNb())"
-                tabindex="0"
-                >&gt;&gt;</span
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-6 mt-1" *ngIf="attackMode === 0">
-        <div class="card" *ngIf="getCurrentMsg().msg_id === 0">
-          <div class="card-header" translate>Last attacks</div>
-          <div class="card-body">
-            <div
-              class="text-center mt-2 mb-2"
-              *ngIf="msgList.length === 0"
-              translate>
-              This list is empty
-            </div>
-            <div
-              *ngFor="let msg of msgList"
-              class="d-flex bd-highlight"
-              role="button"
-              (click)="messageLoad(msg)"
-              (keyup.enter)="messageLoad(msg)"
-              tabindex="0">
-              <div class="p-2 flex-grow-1 bd-highlight border-top">
-                <app-messages-title [msg]="msg"></app-messages-title>
-                <div class="fw-lighter">
-                  {{ msg.last_date | date: 'dd/MM/yyyy, HH:mm' }}
-                </div>
+            }
+            <!-- Attacking a sanctuary -->
+            @if (attackMode === 11) {
+              <div class="card-body">
+                <app-sanctuary-message
+                  [info]="
+                    sanctuariesAttackInfo.content
+                  "></app-sanctuary-message>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="card card-normal" *ngIf="getCurrentMsg().msg_id > 0">
-          <div class="card-header card-header-auto">
-            <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
-            &nbsp;
-            <button class="btn btn-warning" (click)="shareMsg()">
-              <app-ic-icon [icon]="share"></app-ic-icon>
-            </button>
-          </div>
-          <div
-            *ngIf="getCurrentMsg().msg_shared === 1"
-            class="card-body text-center">
-            <div class="wg-bold text-danger" *ngIf="linkSaved === 1" translate>
-              Link saved to clipboard
-            </div>
-            <strong translate>Share link:</strong>
-            {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().msg_id }}
-            <span
-              class="badge bg-primary"
-              role="button"
-              (click)="copyLink()"
-              [cbContent]="
-                getCurrentMsg().url + '/permalink/' + getCurrentMsg().msg_id
-              "
-              (keyup.enter)="copyLink()"
-              tabindex="0"
-              ngxClipboard>
-              <app-ic-icon [icon]="clipboardCheck"></app-ic-icon>
-            </span>
-          </div>
-          <div class="card-body">
-            <span [ngSwitch]="getCurrentMsg().msg_type">
-              <span *ngSwitchCase="1"
-                ><app-attacks-message
-                  [info]="getCurrentMsg().msg[0].content"></app-attacks-message
-              ></span>
-              <span *ngSwitchCase="3"
-                ><app-fury-message
-                  [info]="getCurrentMsg().msg[0].content"></app-fury-message
-              ></span>
-              <span *ngSwitchCase="8"
-                ><app-lost-message
-                  [info]="getCurrentMsg().msg[0].content"></app-lost-message
-              ></span>
-              <span *ngSwitchDefault>TODO {{ getCurrentMsg().msg_type }}</span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-6 mt-1" *ngIf="attackMode > 0">
-        <div class="card card-normal">
-          <div
-            class="card-header card-header-flexible"
-            *ngIf="targetProfile.username">
-            <h2 id="playerDesc">
-              {{ targetProfile.username }}
-              <app-ic-icon
-                [icon]="gemIcon"
-                *ngIf="targetProfile.diamond_begin > 0"></app-ic-icon>
-            </h2>
-          </div>
-          <div
-            class="card-header card-header-flexible"
-            *ngIf="attackMode !== 12 && sanctuariesSpyInfo.sanctuaries_name">
-            <h2 id="playerDesc">
-              {{ sanctuariesSpyInfo.sanctuaries_name | translate }}
-            </h2>
-          </div>
-          <div
-            class="card-header card-header-flexible"
-            *ngIf="attackMode === 12">
-            <h2 id="playerDesc">
-              {{ sanctuariesInfo.sanctuaries_name | translate }}
-
-              <span
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#sanctuaryStrengthUpdate"
-                role="button">
-                <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
-              </span>
-            </h2>
-          </div>
-
-          <!-- Observe/Spy -->
-          <div
-            class="card-body"
-            *ngIf="attackMode === 1 || attackMode === 2"
-            id="attackEyeBlock">
-            <table aria-describedby="playerDesc" class="m-auto">
-              <tr *ngIf="targetProfile.alliance > 0">
-                <th scope="row" translate>Alliance</th>
-                <td>{{ targetProfile.alliance_name }}&nbsp;</td>
-              </tr>
-              <tr *ngIf="targetProfile.alliance > 0">
-                <th scope="row" translate>Rank</th>
-                <td>{{ targetProfile.rank_name }}&nbsp;</td>
-              </tr>
-              <tr>
-                <th scope="row" translate>Level</th>
-                <td>{{ targetProfile.level }}&nbsp;</td>
-              </tr>
-              <tr>
-                <th scope="row" translate>Field</th>
-                <td>
-                  {{
-                    targetProfile.field
-                      | number: '' : this.translate.currentLang
-                  }}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" class="pe-1" translate>Victories</th>
-                <td>
-                  {{
-                    targetProfile.victory
-                      | number: '' : this.translate.currentLang
-                  }}
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" translate>XP</th>
-                <td>
-                  {{
-                    targetProfile.xp | number: '' : this.translate.currentLang
-                  }}
-                </td>
-              </tr>
-            </table>
-
-            <div *ngIf="spyInfo">
-              <span [ngSwitch]="spyInfo.error" class="text-center">
-                <br />
-                <div *ngSwitchCase="1" translate>
-                  Your espionage team was caught and executed in a public place.
+            }
+            <!-- Sanctuary info -->
+            @if (attackMode === 12) {
+              <div class="card-body" id="sanctuaryInfoBlock">
+                <div class="text-center">
+                  @switch (sanctuariesInfo.sanctuaries_id) {
+                    @case (1) {
+                      <span translate>
+                        Your city is protected against the fury of Demeter
+                      </span>
+                    }
+                    @case (2) {
+                      <span translate>
+                        The Lernaean Hydra will corrupt your enemies water,
+                        grape and food stocks when they will plunder your city
+                      </span>
+                    }
+                    @case (3) {
+                      <span translate>
+                        Your city produces 24 additional Ambrosia a day
+                      </span>
+                    }
+                    @case (4) {
+                      <span translate>
+                        Your city is protected against the Zeus lightning
+                      </span>
+                    }
+                    @case (5) {
+                      <span translate>
+                        Typhon will help you to protect your city against the
+                        negative effects of the weather
+                      </span>
+                    }
+                    @default {
+                      <span>TODO</span>
+                    }
+                  }
                 </div>
-                <div *ngSwitchCase="2" translate>
-                  Information reached your city but unfortunately your spy team
-                  was caught, tortured until they denounce you and executed in a
-                  public place.
-                </div>
-                <div *ngSwitchCase="4" class="text-center" translate>
-                  You do not have spies.
-                </div>
-              </span>
-
-              <div
-                *ngIf="
-                  spyInfo.poseidon_wall &&
-                  spyInfo.poseidon_wall === 1 &&
-                  (!spyInfo.defense_wall || spyInfo.defense_wall === 0)
-                "
-                class="text-center"
-                translate>
-                The wall of Poseidon protects this city.
-              </div>
-              <div
-                *ngIf="
-                  spyInfo.defense_wall &&
-                  spyInfo.defense_wall >= 1 &&
-                  (!spyInfo.poseidon_wall || spyInfo.poseidon_wall === 0)
-                "
-                class="text-center"
-                translate>
-                A wall is protecting this city.
-              </div>
-              <div
-                *ngIf="
-                  spyInfo.defense_wall &&
-                  spyInfo.defense_wall >= 1 &&
-                  spyInfo.poseidon_wall &&
-                  spyInfo.poseidon_wall === 1
-                "
-                class="text-center"
-                translate>
-                Many walls are protecting this city.
-              </div>
-
-              <div class="text-center" *ngIf="Object.keys(spyInfo).length > 0">
-                <div
-                  *ngIf="!isProtected() && [0, 2, 3].includes(spyInfo.error)"
-                  translate>
-                  This city is not protected by any units or defense towers
-                </div>
-                <div *ngIf="spyInfo.unitiesNb > 0">
-                  <strong translate>Unities</strong><strong translate>:</strong>
-                  {{
-                    spyInfo.unitiesNb | number: '' : this.translate.currentLang
-                  }}
+                <div class="text-center">
+                  <strong translate>Victories</strong>
+                  <strong translate>:</strong>
+                  {{ sanctuariesInfo.sanctuaries_victory }}
                   <br />
-                </div>
-                <div *ngIf="spyInfo.defenseNb > 0">
-                  <strong translate>Towers</strong><strong translate>:</strong>
-                  {{
-                    spyInfo.defenseNb | number: '' : this.translate.currentLang
-                  }}
-                  <br />
-                </div>
-                <br />
-
-                <div *ngIf="spyInfo.buildings && spyInfo.buildings.length > 0">
-                  <strong translate>Buildings</strong
-                  ><strong translate>:</strong>
-                  <div *ngFor="let build of spyInfo.buildings">
-                    {{ Tools.getName(build) | translate }}
-                  </div>
-                </div>
-
-                <div *ngIf="spyInfo.unities && spyInfo.unities.length > 0">
-                  <strong translate>Unities</strong><strong translate>:</strong>
-                  <div *ngFor="let unit of spyInfo.unities">
-                    {{
-                      Tools.getName(unit, 1, spyInfo.defenseType) | translate
-                    }}
-                  </div>
-                  <br />
-                </div>
-                <div
-                  class="col-table center"
-                  *ngIf="spyInfo.ress && spyInfo.ress.food">
-                  <br />
-                  <strong translate>Resources</strong>
+                  <strong translate>Strength</strong>
                   <strong translate>:</strong>
                   <span
+                    [ngClass]="{
+                      'text-danger': sanctuariesInfo.sanctuaries_power === 0
+                    }">
+                    {{ Math.min(100, sanctuariesInfo.sanctuaries_power) }}%
+                  </span>
+                  <span
                     data-bs-toggle="modal"
-                    data-bs-target="#spyResourcesHelp"
+                    data-bs-target="#sanctuaryStrengthHelp"
                     role="button"
                     title="{{ 'Help' | translate }}">
                     <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                   </span>
                   <br />
-                  <div class="row">
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="food"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.food === 1,
-                          low: spyInfo.ress.food === 2,
-                          middle: spyInfo.ress.food === 3,
-                          high: spyInfo.ress.food === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="water"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.water === 1,
-                          low: spyInfo.ress.water === 2,
-                          middle: spyInfo.ress.water === 3,
-                          high: spyInfo.ress.water === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="wood"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.wood === 1,
-                          low: spyInfo.ress.wood === 2,
-                          middle: spyInfo.ress.wood === 3,
-                          high: spyInfo.ress.wood === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="iron"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.iron === 1,
-                          low: spyInfo.ress.iron === 2,
-                          middle: spyInfo.ress.iron === 3,
-                          high: spyInfo.ress.iron === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="stone"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.stone === 1,
-                          low: spyInfo.ress.stone === 2,
-                          middle: spyInfo.ress.stone === 3,
-                          high: spyInfo.ress.stone === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="marble"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.marble === 1,
-                          low: spyInfo.ress.marble === 2,
-                          middle: spyInfo.ress.marble === 3,
-                          high: spyInfo.ress.marble === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="grapes"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.grapes === 1,
-                          low: spyInfo.ress.grapes === 2,
-                          middle: spyInfo.ress.grapes === 3,
-                          high: spyInfo.ress.grapes === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="wine"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.wine === 1,
-                          low: spyInfo.ress.wine === 2,
-                          middle: spyInfo.ress.wine === 3,
-                          high: spyInfo.ress.wine === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
-                    <div class="col-4">
-                      <app-ew-icon
-                        name="gold"
-                        class="small-resource"></app-ew-icon>
-                      &nbsp;
-                      <app-ic-icon
-                        [ngClass]="{
-                          vlow: spyInfo.ress.gold === 1,
-                          low: spyInfo.ress.gold === 2,
-                          middle: spyInfo.ress.gold === 3,
-                          high: spyInfo.ress.gold === 4
-                        }"
-                        [icon]="dotCircle"></app-ic-icon>
-                    </div>
+                  <strong translate>Base defense</strong>
+                  <strong translate>:</strong>
+                  {{
+                    sanctuariesInfo.sanctuaries_defense
+                      | number: '' : this.translate.currentLang
+                  }}
+                </div>
+                <div
+                  class="fw-bold text-danger text-center"
+                  id="sanctuariesWaveTabDesc"
+                  translate>
+                  Units you send to a sanctuary cannot return to your city. They
+                  also don't consume any resources.
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <table aria-labelledby="sanctuariesWaveTabDesc">
+                      @for (
+                        unit of sanctuariesWaveTab;
+                        track unit;
+                        let i = $index
+                      ) {
+                        <tbody>
+                          <tr>
+                            <th scope="col" role="button" colspan="2">
+                              <strong>
+                                {{
+                                  Tools.getName(
+                                    getArmy()[i].unit,
+                                    getArmy()[i].nb
+                                  ) | translate
+                                }}
+                                {{ ':' | translate }}
+                              </strong>
+                              {{
+                                getArmy()[i].nb
+                                  | number: '' : this.translate.currentLang
+                              }}
+                            </th>
+                          </tr>
+                          <tr>
+                            <td class="text-center" rowspan="2">
+                              <app-ew-icon
+                                title="{{
+                                  Tools.getName(
+                                    getArmy()[i].unit,
+                                    getArmy()[i].nb
+                                  ) | translate
+                                }}"
+                                name="{{ getArmy()[i].unit }}"
+                                height="70px"
+                                class="img-sanctuary"></app-ew-icon>
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td class="input-group-sanctuary">
+                              <div class="input-group">
+                                <input
+                                  type="number"
+                                  [(ngModel)]="sanctuariesWave[i]"
+                                  [attr.min]="0"
+                                  [attr.max]="getArmy()[i].nb"
+                                  size="6"
+                                  placeholder="0"
+                                  class="form-control" />
+                                <span
+                                  class="input-group-text"
+                                  role="button"
+                                  (click)="waveNew(i, sanctuariesWave[i])"
+                                  (keyup.enter)="waveNew(i, sanctuariesWave[i])"
+                                  tabindex="0">
+                                  <app-ic-icon [icon]="plusIcon"></app-ic-icon>
+                                  <span class="visually-hidden" translate
+                                    >Add</span
+                                  >
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      }
+                    </table>
+                  </div>
+                  <div class="col-6">
+                    @for (unit of getSanctuariesDefense(); track unit) {
+                      <div>
+                        {{ unit.nb | number: '' : this.translate.currentLang }}
+                        {{ Tools.getName(unit.unit, unit.nb) | translate }}
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
-              <div class="text-center">
-                <br />
-                <button
-                  class="btn btn-info fs-5"
-                  (click)="spy(targetProfile.membre_id)"
-                  title="{{ 'Send a spy to the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Send a spy to the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-
-                <button
-                  class="btn btn-primary fs-5"
-                  *ngIf="user.getPropertyNb('apollo') === 1"
-                  (click)="observe(targetProfile.membre_id)"
-                  title="{{ 'Observe the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Observe the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-
-                <button
-                  class="btn btn-success fs-5"
-                  *ngIf="
-                    user.getPropertyNb('demeter') === 1 && furyPossible === 1
-                  "
-                  (click)="prepareFury(targetProfile.membre_id)"
-                  title="{{ 'Launch a fury on the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Launch a fury on the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-                <button
-                  class="btn btn-danger fs-5"
-                  *ngIf="
-                    user.getPropertyNb('demeter') === 1 && furyPossible === 0
-                  "
-                  title="{{
-                    'Impossible to launch a fury on the city:' | translate
-                  }} {{ targetProfile.username }}">
-                  <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Impossible to launch a fury on the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-
-                <button
-                  class="btn btn-success fs-5"
-                  *ngIf="
-                    user.getPropertyNb('zeus') === 1 && lightningPossible === 1
-                  "
-                  (click)="prepareLightning(targetProfile.membre_id)"
-                  title="{{ 'Launch a lightning on the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="boltIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Launch a lightning on the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-                <button
-                  class="btn btn-danger fs-5"
-                  *ngIf="
-                    user.getPropertyNb('zeus') === 1 && lightningPossible === 0
-                  "
-                  title="{{
-                    'Impossible to launch a lightning on the city:' | translate
-                  }} {{ targetProfile.username }}">
-                  <app-ic-icon [icon]="boltIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{
-                      'Impossible to launch a lightning on the city:'
-                        | translate
-                    }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-                <button
-                  class="btn btn-success fs-5"
-                  *ngIf="attackPossible > 0"
-                  (click)="prepareAttack(targetProfile.membre_id)"
-                  title="{{ 'Attack the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Attack the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-                <button
-                  class="btn btn-danger fs-5"
-                  *ngIf="attackPossible === 0"
-                  title="{{ 'Impossible to attack the city:' | translate }} {{
-                    targetProfile.username
-                  }}">
-                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Impossible to attack the city:' | translate }}
-                    {{ targetProfile.username }}
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="text-center fw-bold text-danger"
-              [ngSwitch]="attackPossibleError"
-              *ngIf="attackPossible <= 0">
-              <br />
-              <div *ngSwitchCase="2" translate>Your army is empty</div>
-              <div *ngSwitchCase="3" translate>Error in the target</div>
-              <div *ngSwitchCase="4" translate>
-                You can't attack a player who is in the same alliance than you
-              </div>
-              <div *ngSwitchCase="5" translate>
-                You don't have enough mints to launch an attack
-              </div>
-              <div *ngSwitchCase="7" translate>
-                This city's field has changed, refresh your attack list
-              </div>
-              <div *ngSwitchCase="8" translate>You can't attack an Admin</div>
-              <div *ngSwitchCase="9" translate>
-                This player is too low level for you
-              </div>
-              <div *ngSwitchCase="10" translate>
-                You have already attacked this player
-              </div>
-              <div *ngSwitchCase="11" translate>
-                You have a pact with this player's alliance
-              </div>
-              <div *ngSwitchCase="12" translate>
-                This city has suffered a lot, it needs time to recover
-              </div>
-              <div *ngSwitchCase="13" translate>
-                This city is on strike and can't be attacked
-              </div>
-              <div *ngSwitchCase="14" translate>
-                You are on strike, you can't attack in war
-              </div>
-              <div *ngSwitchCase="15" translate>
-                You are in trial period, you can't attack during a war
-              </div>
-              <div *ngSwitchCase="16" translate>
-                You don't have war attacks available
-              </div>
-              <div *ngSwitchCase="17" translate>
-                This city has too much or not enoug field
-              </div>
-              <div *ngSwitchCase="18" translate>
-                This city has received too many war attacks
-              </div>
-              <div *ngSwitchCase="19" translate>
-                The level of this city is too low
-              </div>
-              <div *ngSwitchCase="20" translate>
-                The level of this city is too high
-              </div>
-              <div *ngSwitchCase="21" translate>Your army is empty</div>
-              <div *ngSwitchCase="22" translate>
-                This city's field is too high
-              </div>
-              <div *ngSwitchCase="23" translate>
-                This city's field is too low
-              </div>
-              <div *ngSwitchCase="24" translate>
-                This city's level is too high
-              </div>
-              <div *ngSwitchCase="25" translate>
-                This city has received too many attacks
-              </div>
-              <div *ngSwitchCase="26" translate>Your army is empty</div>
-              <div *ngSwitchCase="27" translate>Your army is empty</div>
-              <div *ngSwitchCase="28" translate>
-                You have done too many attacks
-              </div>
-              <div *ngSwitchCase="29" translate>
-                Artemis is protecting this city
-              </div>
-              <div *ngSwitchDefault>{{ attackPossibleError }}</div>
-            </div>
-          </div>
-
-          <!-- Prepare to attack -->
-          <div
-            class="card-body"
-            *ngIf="attackMode === 3"
-            id="attackPrepareBlock">
-            <div class="text-center">
-              <button
-                class="btn btn-primary fs-5"
-                *ngIf="attackPossible > 0"
-                (click)="launchAttack(targetProfile.membre_id)">
-                <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                &nbsp;<span translate>Attack</span>
-              </button>
-              <div *ngIf="attackPossible === 0" translate>
-                You can't attack this city
-              </div>
-            </div>
-            <div *ngIf="getArmy().length > 0" class="text-center">
-              <br />
-              <strong translate>Army summary</strong>
-              <div *ngFor="let i of getArmy()">
-                <span [ngClass]="{ 'text-danger': i.all === 0 }">
-                  {{ i.nb | number: '' : this.translate.currentLang }}
-                  {{ Tools.getName(i.unit, i.nb) | translate }}
-                  <span
-                    data-bs-toggle="modal"
-                    data-bs-target="#attacksUnitHelp"
-                    role="button"
-                    title="{{ 'Help' | translate }}"
-                    *ngIf="i.all === 0">
-                    <app-ic-icon [icon]="questionCircle"></app-ic-icon>
-                  </span>
-                </span>
-              </div>
-              <br />
-              <strong translate>Offensive power</strong>
-              <strong translate>:</strong>
-              {{
-                getOffensivePower() | number: '' : this.translate.currentLang
-              }}
-            </div>
-            <div *ngIf="getArmy().length === 0" class="text-center" translate>
-              Your army is empty
-            </div>
-          </div>
-
-          <!-- Result from an attack -->
-          <div class="card-body text-center" *ngIf="attackMode === 4">
-            <app-attacks-message
-              [info]="attackInfo.content"></app-attacks-message>
-          </div>
-
-          <!-- Prepare to send a fury -->
-          <div
-            class="card-body text-center"
-            *ngIf="attackMode === 5"
-            id="furyPrepareBlock">
-            <div translate>
-              The fury can destroy farms and growers and reserves of grapes and
-              food of your opponents.
-            </div>
-            <br />
-            <br />
-            <button
-              class="btn btn-primary"
-              *ngIf="user.getPropertyNb('fury') > 0"
-              (click)="launchFury(targetProfile.membre_id)">
-              <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-              &nbsp;<span translate>Send</span>
-            </button>
-            <div
-              class="fw-bold text-danger"
-              *ngIf="user.getPropertyNb('fury') === 0"
-              translate>
-              You have no furies in stock. Go to the Temple of Demeter to get
-              some.
-            </div>
-          </div>
-
-          <!-- Result from a fury -->
-          <div class="card-body text-center" *ngIf="attackMode === 6">
-            <app-fury-message [info]="furyInfo.content"></app-fury-message>
-          </div>
-
-          <!-- Prepare to send a lightning -->
-          <div
-            class="card-body text-center"
-            *ngIf="attackMode === 7"
-            id="lightningPrepareBlock">
-            <div translate>
-              The lightning can destroy the buildings of your opponents,
-              including mints.
-            </div>
-            <br />
-            <br />
-            <button
-              class="btn btn-primary"
-              *ngIf="user.getPropertyNb('lightning') > 0"
-              (click)="launchLightning(targetProfile.membre_id)">
-              <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-              &nbsp;<span translate>Send</span>
-            </button>
-            <div
-              class="fw-bold text-danger"
-              *ngIf="user.getPropertyNb('lightning') === 0"
-              translate>
-              You have no lightnings in stock. Go to the Temple of Zeus to get
-              some.
-            </div>
-          </div>
-
-          <!-- Result from a lightning -->
-          <div class="card-body text-center" *ngIf="attackMode === 8">
-            <app-lost-message [info]="lightningInfo.content"></app-lost-message>
-          </div>
-
-          <!-- Spying a sanctuary -->
-          <div
-            class="card-body text-center"
-            *ngIf="attackMode === 9"
-            id="sanctuaryEyeBlock">
-            <span [ngSwitch]="sanctuariesSpyInfo.error">
-              <div *ngSwitchCase="1" translate>
-                Your espionage team was caught and executed in a public place.
-              </div>
-              <div *ngSwitchCase="2">
-                <span translate>
-                  Information reached your city but unfortunately your spy team
-                  was caught, tortured until they denounce you and executed in a
-                  public place.
-                </span>
-                <br /><br />
-              </div>
-              <div *ngSwitchCase="4" translate>You do not have spies.</div>
-            </span>
-
-            <div
-              *ngIf="
-                sanctuariesSpyInfo.error === 0 ||
-                sanctuariesSpyInfo.error === 2 ||
-                sanctuariesSpyInfo.error === 3
-              ">
-              <div *ngIf="sanctuariesSpyInfo.unitiesNb > 0">
-                <strong translate>Unities</strong><strong translate>:</strong>
-                {{
-                  sanctuariesSpyInfo.unitiesNb
-                    | number: '' : this.translate.currentLang
-                }}
-              </div>
-              <div *ngIf="sanctuariesSpyInfo.unities.length > 0">
-                <strong translate>Unities</strong><strong translate>:</strong>
-                <div *ngFor="let unit of sanctuariesSpyInfo.unities">
-                  {{ Tools.getName(unit) | translate }}
-                </div>
-                <br />
-              </div>
-              <div
-                *ngIf="
-                  sanctuariesSpyInfo.unitiesNb === 0 &&
-                  sanctuariesSpyInfo.unities.length === 0
-                "
-                translate>
-                This sancturary is not protected by any army, fight directly the
-                monster!
-              </div>
-            </div>
-            <div>
-              <br />
-              <br />
-              <button
-                class="btn btn-info fs-5"
-                (click)="sanctuariesSpy(sanctuariesSpyInfo.id)">
-                <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
-              </button>
-              <button
-                class="btn btn-primary fs-5"
-                (click)="sanctuariesEye(sanctuariesSpyInfo.id)"
-                *ngIf="user.getPropertyNb('apollo') === 1">
-                <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
-              </button>
-
-              <button
-                class="btn btn-success fs-5"
-                (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
-                <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-              </button>
-            </div>
-          </div>
-
-          <!-- Preparing to attack a sanctuary -->
-          <div class="card-body" *ngIf="attackMode === 10">
-            <div *ngIf="getArmy().length > 0" class="text-center">
-              <br />
-              <strong translate>Army summary</strong>
-              <div *ngFor="let i of getArmy()">
-                <span [ngClass]="{ 'text-danger': i.all === 0 }">
-                  {{ i.nb | number: '' : this.translate.currentLang }}
-                  {{ Tools.getName(i.unit, i.nb) | translate }}
-                  <span
-                    data-bs-toggle="modal"
-                    data-bs-target="#attacksUnitHelp"
-                    role="button"
-                    title="{{ 'Help' | translate }}"
-                    *ngIf="i.all === 0">
-                    <app-ic-icon [icon]="questionCircle"></app-ic-icon>
-                  </span>
-                </span>
-              </div>
-              <br />
-              <strong translate>Offensive power</strong>
-              <strong translate>:</strong>
-              {{
-                getOffensivePower() | number: '' : this.translate.currentLang
-              }}
-              <br /><br />
-              <div class="text-center">
-                <button
-                  class="btn btn-success fs-5"
-                  (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
-                  <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                  &nbsp;<span translate>Attack</span>
-                </button>
-              </div>
-            </div>
-            <div *ngIf="getArmy().length === 0" class="text-center" translate>
-              Your army is empty
-            </div>
-          </div>
-
-          <!-- Attacking a sanctuary -->
-          <div class="card-body" *ngIf="attackMode === 11">
-            <app-sanctuary-message
-              [info]="sanctuariesAttackInfo.content"></app-sanctuary-message>
-          </div>
-
-          <!-- Sanctuary info -->
-          <div
-            class="card-body"
-            *ngIf="attackMode === 12"
-            id="sanctuaryInfoBlock">
-            <div
-              [ngSwitch]="sanctuariesInfo.sanctuaries_id"
-              class="text-center">
-              <span *ngSwitchCase="1" translate>
-                Your city is protected against the fury of Demeter
-              </span>
-              <span *ngSwitchCase="2" translate>
-                The Lernaean Hydra will corrupt your enemies water, grape and
-                food stocks when they will plunder your city
-              </span>
-              <span *ngSwitchCase="3" translate>
-                Your city produces 24 additional Ambrosia a day
-              </span>
-              <span *ngSwitchCase="4" translate>
-                Your city is protected against the Zeus lightning
-              </span>
-              <span *ngSwitchCase="5" translate>
-                Typhon will help you to protect your city against the negative
-                effects of the weather
-              </span>
-              <span *ngSwitchDefault>TODO</span>
-            </div>
-            <div class="text-center">
-              <strong translate>Victories</strong>
-              <strong translate>:</strong>
-              {{ sanctuariesInfo.sanctuaries_victory }}
-              <br />
-              <strong translate>Strength</strong>
-              <strong translate>:</strong>
-              <span
-                [ngClass]="{
-                  'text-danger': sanctuariesInfo.sanctuaries_power === 0
-                }">
-                {{ Math.min(100, sanctuariesInfo.sanctuaries_power) }}%
-              </span>
-              <span
-                data-bs-toggle="modal"
-                data-bs-target="#sanctuaryStrengthHelp"
-                role="button"
-                title="{{ 'Help' | translate }}">
-                <app-ic-icon [icon]="questionCircle"></app-ic-icon>
-              </span>
-              <br />
-              <strong translate>Base defense</strong>
-              <strong translate>:</strong>
-              {{
-                sanctuariesInfo.sanctuaries_defense
-                  | number: '' : this.translate.currentLang
-              }}
-            </div>
-            <div
-              class="fw-bold text-danger text-center"
-              id="sanctuariesWaveTabDesc"
-              translate>
-              Units you send to a sanctuary cannot return to your city. They
-              also don't consume any resources.
-            </div>
-
-            <div class="row">
-              <div class="col-6">
-                <table aria-labelledby="sanctuariesWaveTabDesc">
-                  <tbody *ngFor="let unit of sanctuariesWaveTab; let i = index">
-                    <tr>
-                      <th scope="col" role="button" colspan="2">
-                        <strong>
-                          {{
-                            Tools.getName(getArmy()[i].unit, getArmy()[i].nb)
-                              | translate
-                          }}
-                          {{ ':' | translate }}
-                        </strong>
-                        {{
-                          getArmy()[i].nb
-                            | number: '' : this.translate.currentLang
-                        }}
-                      </th>
-                    </tr>
-                    <tr>
-                      <td class="text-center" rowspan="2">
-                        <app-ew-icon
-                          title="{{
-                            Tools.getName(getArmy()[i].unit, getArmy()[i].nb)
-                              | translate
-                          }}"
-                          name="{{ getArmy()[i].unit }}"
-                          height="70px"
-                          class="img-sanctuary"></app-ew-icon>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td class="input-group-sanctuary">
-                        <div class="input-group">
-                          <input
-                            type="number"
-                            [(ngModel)]="sanctuariesWave[i]"
-                            [attr.min]="0"
-                            [attr.max]="getArmy()[i].nb"
-                            size="6"
-                            placeholder="0"
-                            class="form-control" />
-                          <span
-                            class="input-group-text"
-                            role="button"
-                            (click)="waveNew(i, sanctuariesWave[i])"
-                            (keyup.enter)="waveNew(i, sanctuariesWave[i])"
-                            tabindex="0">
-                            <app-ic-icon [icon]="plusIcon"></app-ic-icon>
-                            <span class="visually-hidden" translate>Add</span>
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="col-6">
-                <div *ngFor="let unit of getSanctuariesDefense()">
-                  {{ unit.nb | number: '' : this.translate.currentLang }}
-                  {{ Tools.getName(unit.unit, unit.nb) | translate }}
-                </div>
-              </div>
-            </div>
+            }
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </main>
