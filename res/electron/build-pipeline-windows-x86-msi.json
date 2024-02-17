@@ -2,7 +2,7 @@
   "electron": {
     "windows": {
       "package": [ "msi" ],
-      "arch": [ "x64" ],
+      "arch": [ "ia32" ],
       "category": "Game",
       "signing": {
         "release": {
