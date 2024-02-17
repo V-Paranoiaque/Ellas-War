@@ -4,14 +4,14 @@
 * An alliance without any active member will be protected from receiving war declarations
 * Decrease the field of the wells
 * Decrease the iron consumption of the sawmills
-* Destructing an altar removes now 50 of honnor instead of 10
+* Destructing an altar removes now 50 of honor instead of 10
 * Display more information about the Gaia defenders
-* Display more information about the Honnor
+* Display more information about the Honor
 * Display more information about the XP
 * Display more information in the sanctuaries
 * Display the reason when an account is blocked
 * Display validated quests in the menu
-* History for the honnor contest
+* History for the honor contest
 * Improvement of the building interface
 * Improvement of the temple popup
 * New Agora, based of small batches with who sell or buy
@@ -37,3 +37,9 @@
 * Fix display in the sanctuaries
 * Fix the popup to manage the taxes
 * New popup to display the wars
+
+# 2.0.3
+* Fix the button to Turn off the weather
+* Global improvement
+* Improve English language
+* Make the game lighter
