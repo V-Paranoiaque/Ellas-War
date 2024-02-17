@@ -75,7 +75,7 @@ jobs:
             -w /ew --platform linux/arm64/v8 \
             --env SNAPCRAFT_STORE_CREDENTIALS=${SNAPCRAFT_STORE_CREDENTIALS} \
             --privileged \
-            -t vparanoiaque/cordova-snap sh -c "cordova build electron --no-telemetry"
+            -t vparanoiaque/cordova-snap sh -c "cordova build electron --no-telemetry --release"
         env:
           WORKSPACE: '${{ github.workspace }}'
 
