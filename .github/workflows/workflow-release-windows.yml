@@ -114,7 +114,7 @@ jobs:
           cp ${{ env.KEY_PATH }} sign_TemporaryKey.pfx
           cordova platform add electron@^${{ inputs.electron }}
           cp -r res/electron/appx platforms/electron/build-res/
-          cp res/electron/build-pipeline-windows-msi-x86.json build.json
+          cp res/electron/build-pipeline-windows-x86-msi.json build.json
           cordova build electron --no-telemetry --release
           rm sign_TemporaryKey.pfx
         env:
