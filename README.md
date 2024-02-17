@@ -1,6 +1,6 @@
 # Ellas War
 
-Ellas War is an online Video Game started in 2007. The action takes place approximately to -500 during the Golden Age of ancient Greece. When we have migrated the frontend from AngularJS to Angular, we have decided to release it under a free license. Officially supported languages are English and French, but we are open to contributions.
+Ellas War is an online Video Game started in 2007. The action takes place approximately around -500 during the Golden Age of ancient Greece. When we have migrated the frontend from AngularJS to Angular, we have decided to release it under a free license. Officially supported languages are English and French, but we are open to contributions.
 
 ## Dependencies
 You will need to install
