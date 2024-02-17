@@ -27,20 +27,20 @@
         <br />
 
         <a
-          [routerLink]="['/honnor/' + user.getPropertyNb('level')]"
+          [routerLink]="['/honor/' + user.getPropertyNb('level')]"
           data-bs-dismiss="modal">
-          <strong translate>Honnor</strong>
+          <strong translate>Honor</strong>
           <strong translate>:</strong>
           {{
-            user.getPropertyNb('honnor')
+            user.getPropertyNb('honor')
               | number: '' : this.translate.currentLang
           }}
         </a>
         <span
           data-bs-toggle="modal"
-          data-bs-target="#honnorHelp"
+          data-bs-target="#honorHelp"
           role="button"
-          title="{{ 'Honnor' | translate }}"
+          title="{{ 'Honor' | translate }}"
           class="ms-1"
           tabindex="0">
           <app-ic-icon [icon]="questionCircle"></app-ic-icon>

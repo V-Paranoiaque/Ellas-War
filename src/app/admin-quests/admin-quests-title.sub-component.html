@@ -84,8 +84,8 @@
       <span>
         {{
           quest.quest_goal === 1
-            ? ('Win the Honnor challenge' | translate)
-            : ('Win the Honnor challenge { value } times'
+            ? ('Win the Honor challenge' | translate)
+            : ('Win the Honor challenge { value } times'
               | translate: { value: quest.quest_goal })
         }}
       </span>
@@ -113,7 +113,8 @@
     @case (13) {
       <span>
         {{
-          'Buy { value } lotto tickets' | translate: { value: quest.quest_goal }
+          'Buy { value } lottery tickets'
+            | translate: { value: quest.quest_goal }
         }}
       </span>
     }

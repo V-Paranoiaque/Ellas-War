@@ -9,21 +9,21 @@ import { UserComponent as User } from '../../services/user.service';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
-type honnorLine = {
+type honorLine = {
   membre_id: number;
   username: string;
   field: number;
   xp: number;
   victory: number;
-  honnor: number;
+  honor: number;
 };
 
 @Component({
-  templateUrl: './honnor.component.html',
+  templateUrl: './honor.component.html',
 })
-export class HonnorComponent implements OnInit, OnDestroy {
+export class HonorComponent implements OnInit, OnDestroy {
   public id = 0;
-  public list: honnorLine[];
+  public list: honorLine[];
   public levels: number[];
 
   private subRank: Subscription;
@@ -56,13 +56,13 @@ export class HonnorComponent implements OnInit, OnDestroy {
 
       this.load(id);
     });
-    this.socket.on('rankingHonnorRefresh', () => {
+    this.socket.on('rankingHonorRefresh', () => {
       this.load(this.id);
     });
   }
 
   ngOnDestroy() {
-    this.socket.removeListener('rankingHonnorRefresh');
+    this.socket.removeListener('rankingHonorRefresh');
     this.subRank.unsubscribe();
     this.subTitle.unsubscribe();
   }
@@ -76,25 +76,25 @@ export class HonnorComponent implements OnInit, OnDestroy {
 
     if (this.id > 0) {
       this.subTitle = this.translate
-        .get('Ranking of Honor, page')
+        .get('Honor Ranking, page')
         .subscribe((res: string) => {
           this.titleService.setTitle(res + ' ' + this.id);
         });
     } else {
       this.subTitle = this.translate
-        .get('Honnor ranking, the best fighters')
+        .get('Honor ranking, the best fighters')
         .subscribe((res: string) => {
           this.titleService.setTitle(res);
         });
     }
 
-    const url = this.socket.url + '/api/rankingHonnor/' + this.id + '.json';
+    const url = this.socket.url + '/api/rankingHonor/' + this.id + '.json';
     this.subRank = this.http.get(url).subscribe(res => {
       this.list = res as typeof this.list;
     });
   }
 
   getReward() {
-    return this.user.getDatas().honnor.rewards[this.id];
+    return this.user.getDatas().honor.rewards[this.id];
   }
 }

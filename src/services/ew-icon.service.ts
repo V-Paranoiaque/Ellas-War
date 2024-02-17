@@ -37,7 +37,7 @@ export class EwIconSubComponent implements OnDestroy {
       amazon: { url: 'army/amazon.webp', title: 'Amazon' },
       automaton: { url: 'army/automaton.webp', title: 'Automaton' },
       centaur: { url: 'army/centaur.webp', title: 'Centaur' },
-      creature: { url: 'army/creature.webp', title: 'Creature of tartar' },
+      creature: { url: 'army/creature.webp', title: 'Creature of Tartarus' },
       cyclops: { url: 'army/cyclops.webp', title: 'Cyclops' },
       elitehoplite: { url: 'army/elitehoplite.webp', title: 'Elite hoplite' },
       gaia: { url: 'army/gaia.webp', title: 'Defender of Gaia' },

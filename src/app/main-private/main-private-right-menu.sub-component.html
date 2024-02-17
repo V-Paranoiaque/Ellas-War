@@ -1,7 +1,7 @@
 <app-main-private-favors-popup></app-main-private-favors-popup>
 <app-main-private-xp-help-popup
   [info]="xpCompare"></app-main-private-xp-help-popup>
-<app-main-private-honnor-help-popup></app-main-private-honnor-help-popup>
+<app-main-private-honor-help-popup></app-main-private-honor-help-popup>
 
 <div class="modal fade" id="weatherInfo" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -479,21 +479,21 @@
           </a>
           <br />
           <a
-            href="/honnor/{{ user.getPropertyNb('level') }}"
-            [routerLink]="['/honnor/' + user.getPropertyNb('level')]">
+            href="/honor/{{ user.getPropertyNb('level') }}"
+            [routerLink]="['/honor/' + user.getPropertyNb('level')]">
             {{
-              user.getPropertyNb('honnor')
+              user.getPropertyNb('honor')
                 | number: '' : this.translate.currentLang
             }}
             <app-ic-icon
               [icon]="crown"
-              title="{{ 'Honnor' | translate }}"></app-ic-icon>
+              title="{{ 'Honor' | translate }}"></app-ic-icon>
           </a>
           <span
             data-bs-toggle="modal"
-            data-bs-target="#honnorHelp"
+            data-bs-target="#honorHelp"
             role="button"
-            title="{{ 'Honnor' | translate }}"
+            title="{{ 'Honor' | translate }}"
             class="ms-1"
             tabindex="0">
             <app-ic-icon [icon]="questionCircle"></app-ic-icon>

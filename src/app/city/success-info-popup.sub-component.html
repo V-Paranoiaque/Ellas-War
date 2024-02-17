@@ -278,7 +278,7 @@
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[18] === 1 }"
             title="{{ 'Do you hear me?' | translate }}"
-            text="{{ 'Be heard by the gods at a prayer' | translate }}"
+            text="{{ 'Be heard by the gods during a prayer' | translate }}"
             currently="{{ statsPlayer.priere }}"
             point="1">
           </app-success-card>
@@ -567,7 +567,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[36] === 1 }"
             title="{{ 'Generous' | translate }}"
             text="{{
-              'Giving { value } Drachmas on donations'
+              'Giving { value } Drachmas in donations'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
             }}"
@@ -580,7 +580,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[37] === 1 }"
             title="{{ 'Generous' | translate }}"
             text="{{
-              'Giving { value } Drachmas on donations'
+              'Giving { value } Drachmas in donations'
                 | translate
                   : {
                       value: 10000000 | number: '' : this.translate.currentLang
@@ -595,7 +595,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[38] === 1 }"
             title="{{ 'Generous' | translate }}"
             text="{{
-              'Giving { value } Drachmas on donations'
+              'Giving { value } Drachmas in donations'
                 | translate
                   : {
                       value: 100000000 | number: '' : this.translate.currentLang
@@ -1132,12 +1132,12 @@
           </app-success-card>
         }
 
-        <!-- Honnor -->
+        <!-- Honor -->
         @if (listDisplay[97] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[97] === 1 }"
             title="{{ 'There are not two like me' | translate }}"
-            text="{{ 'Win the Honnor challenge' | translate }}"
+            text="{{ 'Win the Honor challenge' | translate }}"
             currently="{{ statsPlayer.classh }}"
             point="1">
           </app-success-card>
@@ -1147,7 +1147,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[98] === 1 }"
             title="{{ 'There are not two like me' | translate }}"
             text="{{
-              'Win the Honnor challenge { value } times'
+              'Win the Honor challenge { value } times'
                 | translate: { value: 5 }
             }}"
             currently="{{ statsPlayer.classh }}"
@@ -1159,7 +1159,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[99] === 1 }"
             title="{{ 'There are not two like me' | translate }}"
             text="{{
-              'Win the Honnor challenge { value } times'
+              'Win the Honor challenge { value } times'
                 | translate: { value: 10 }
             }}"
             currently="{{ statsPlayer.classh }}"
@@ -1171,7 +1171,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[100] === 1 }"
             title="{{ 'There are not two like me' | translate }}"
             text="{{
-              'Win the Honnor challenge { value } times'
+              'Win the Honor challenge { value } times'
                 | translate: { value: 20 }
             }}"
             currently="{{ statsPlayer.classh }}"
@@ -1195,7 +1195,7 @@
         @if (listDisplay[124] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[124] === 1 }"
-            title="{{ 'Morning, noon and evening' | translate }}"
+            title="{{ 'Morning, noon, and evening' | translate }}"
             text="{{
               'Connect every day for { value } days.' | translate: { value: 10 }
             }}"
@@ -1206,7 +1206,7 @@
         @if (listDisplay[125] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[125] === 1 }"
-            title="{{ 'Morning, noon and evening' | translate }}"
+            title="{{ 'Morning, noon, and evening' | translate }}"
             text="{{
               'Connect every day for { value } days.' | translate: { value: 20 }
             }}"
@@ -1217,7 +1217,7 @@
         @if (listDisplay[126] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[126] === 1 }"
-            title="{{ 'Morning, noon and evening' | translate }}"
+            title="{{ 'Morning, noon, and evening' | translate }}"
             text="{{
               'Connect every day for { value } days.' | translate: { value: 30 }
             }}"
@@ -1228,7 +1228,7 @@
         @if (listDisplay[127] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[127] === 1 }"
-            title="{{ 'Morning, noon and evening' | translate }}"
+            title="{{ 'Morning, noon, and evening' | translate }}"
             text="{{
               'Connect every day for { value } days.' | translate: { value: 40 }
             }}"
@@ -1239,7 +1239,7 @@
         @if (listDisplay[128] > 0) {
           <app-success-card
             [ngClass]="{ 'text-secondary': listDisplay[128] === 1 }"
-            title="{{ 'Morning, noon and evening' | translate }}"
+            title="{{ 'Morning, noon, and evening' | translate }}"
             text="{{
               'Connect every day for { value } days.' | translate: { value: 50 }
             }}"
@@ -1377,7 +1377,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[129] === 1 }"
             title="{{ 'Winner - Act 1' | translate }}"
             text="{{
-              'Being part of the first tournaments Ellas War winning team'
+              'Being part of the winning team of the first Ellas War tournament'
                 | translate
             }}"
             point="1">
@@ -1388,7 +1388,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[130] === 1 }"
             title="{{ 'Next time - Act 1' | translate }}"
             text="{{
-              'Teaming the party finishing second in the first tournament Ellas War'
+              'Teaming with the party finishing second in the first tournament Ellas War'
                 | translate
             }}"
             point="1">
@@ -1399,7 +1399,7 @@
             [ngClass]="{ 'text-secondary': listDisplay[131] === 1 }"
             title="{{ 'Who loose, win - Act 1' | translate }}"
             text="{{
-              'Being part of the first tournaments Ellas War winning team'
+              'Being part of the winning team of the first Ellas War tournament'
                 | translate
             }}"
             point="1">
@@ -1532,8 +1532,8 @@
 
         @if (successType.selected === 7 && listDisplay[0] === 0) {
           <div class="text-danger fw-bold text-center" translate>
-            Feats of Strength are reserved for the bravest warriors. They only
-            bring prestige to your city.
+            Feats of Strength are reserved for the bravest warriors and bring
+            prestige to your city.
           </div>
         }
       </div>

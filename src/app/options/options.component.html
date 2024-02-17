@@ -20,8 +20,8 @@
               (change)="styleChange($event)"
               [(ngModel)]="currentStyle">
               <option value="default" translate>Default Style</option>
-              <option value="ewnextv2" translate>Red Style</option>
-              <option value="ewnextv3" translate>Blue Style</option>
+              <option value="ewnextv2" translate>Red Theme</option>
+              <option value="ewnextv3" translate>Blue Theme</option>
             </select>
           </div>
         }
@@ -176,7 +176,7 @@
         </div>
 
         @if (user.getPropertyNb('level') === 0) {
-          <div translate>From level 1 starting cost passes to one Favor</div>
+          <div translate>From level 1, the starting cost becomes one Favor</div>
         }
 
         <div>
@@ -341,7 +341,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Reinitialize your account</h5>
+        <h5 class="modal-title" translate>Reset your account</h5>
         <button
           type="button"
           class="btn-close"
@@ -609,9 +609,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#ResetAccount"
                 role="button">
-                <div class="flex-grow-1" translate>
-                  Reinitialize your account
-                </div>
+                <div class="flex-grow-1" translate>Reset your account</div>
               </div>
             </div>
           </div>

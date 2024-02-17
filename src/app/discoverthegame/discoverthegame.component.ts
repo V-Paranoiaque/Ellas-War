@@ -84,7 +84,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
 
         case 'attack':
           this.sub = this.translate
-            .get('Build your offensive strategy to attack other cities')
+            .get('Develop your offensive strategy for attacking other cities')
             .subscribe((res: string) => {
               this.titleService.setTitle(res);
             });

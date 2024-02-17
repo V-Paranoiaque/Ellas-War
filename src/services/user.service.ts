@@ -37,7 +37,7 @@ export class UserComponent {
           bonus: [],
         },
         building: [],
-        honnor: {
+        honor: {
           rewards: [],
         },
         ress_lvl: {},
@@ -142,7 +142,7 @@ export class UserComponent {
         marble: number;
         grapes: number;
       };
-      honnor: {
+      honor: {
         rewards: number[];
       };
       storeroom_min: number;

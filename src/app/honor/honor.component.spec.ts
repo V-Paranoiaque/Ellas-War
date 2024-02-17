@@ -11,16 +11,16 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
 
-import { HonnorComponent } from './honnor.component';
+import { HonorComponent } from './honor.component';
 import { environment } from '../../environments/environment';
 
-describe('HonnorComponent', () => {
+describe('HonorComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [HonnorComponent],
+      declarations: [HonorComponent],
       imports: [
         RouterTestingModule,
         TranslateModule.forRoot({
@@ -40,7 +40,7 @@ describe('HonnorComponent', () => {
   });
 
   it('should create the service', () => {
-    const fixture = TestBed.createComponent(HonnorComponent);
+    const fixture = TestBed.createComponent(HonorComponent);
     const app = fixture.componentInstance;
 
     fixture.detectChanges();

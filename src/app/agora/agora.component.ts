@@ -93,6 +93,9 @@ export class AgoraComponent implements OnInit, OnDestroy {
     this.socket.on('tradeMyList', data => {
       this.tradeMyList = data as typeof this.tradeMyList;
     });
+    this.socket.on('tradeMyListReload', () => {
+      this.socket.emit('tradeMyList');
+    });
     this.socket.on('tradeSell', (err: number) => {
       this.error = err;
     });

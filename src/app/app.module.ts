@@ -57,7 +57,7 @@ import { SanctuaryIncludeComponent } from './sanctuary/sanctuary-include.compone
 import { AgoraIncludeComponent } from './agora/agora-include.component';
 import { CityIncludeComponent } from './city/city-include.component';
 import { RankingplayersIncludeComponent } from './rankingplayers/rankingplayers-include.component';
-import { HonnorIncludeComponent } from './honnor/honnor-include.component';
+import { HonorIncludeComponent } from './honor/honor-include.component';
 import { RankingalliancesComponent } from './rankingalliances/rankingalliances.component';
 import { ConnectedplayersComponent } from './connectedplayers/connectedplayers.component';
 import { ConfirmComponent } from './confirm/confirm.component';
@@ -151,7 +151,7 @@ import { AdminAlliancesComponent } from './admin-alliances/admin-alliances.compo
 
     AdminIncludeComponent,
     RankingplayersIncludeComponent,
-    HonnorIncludeComponent,
+    HonorIncludeComponent,
     RankingalliancesComponent,
     ConnectedplayersComponent,
     ConfirmComponent,

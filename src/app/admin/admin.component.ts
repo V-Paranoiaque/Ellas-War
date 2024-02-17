@@ -14,7 +14,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
 })
 export class AdminComponent implements OnInit, OnDestroy {
   public adminStats = {
-    honnor_last_time: 0,
+    honor_last_time: 0,
     diamond_last_time: 0,
     daily_last_time: 0,
     weekly_last_time: 0,

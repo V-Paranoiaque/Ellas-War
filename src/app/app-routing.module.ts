@@ -47,7 +47,7 @@ import { AdminComponent } from './admin/admin.component';
 
 import { AlliancemembersComponent } from './alliancemembers/alliancemembers.component';
 import { AllianceprofileComponent } from './allianceprofile/allianceprofile.component';
-import { HonnorComponent } from './honnor/honnor.component';
+import { HonorComponent } from './honor/honor.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RankingalliancesComponent } from './rankingalliances/rankingalliances.component';
 import { RankingplayersComponent } from './rankingplayers/rankingplayers.component';
@@ -110,8 +110,8 @@ export const routes: Routes = [
   { path: 'fewwords', component: FewwordsComponent },
   { path: 'free-game', component: FreeGameComponent },
   { path: 'help', component: HelpComponent },
-  { path: 'honnor', component: HonnorComponent },
-  { path: 'honnor/:id', component: HonnorComponent },
+  { path: 'honor', component: HonorComponent },
+  { path: 'honor/:id', component: HonorComponent },
   { path: 'news', component: NewsComponent },
   { path: 'partners', component: PartnersComponent },
   { path: 'permalink', component: PermalinkComponent },

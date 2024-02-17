@@ -1,4 +1,4 @@
-<app-honnor-help-popup></app-honnor-help-popup>
+<app-honor-help-popup></app-honor-help-popup>
 
 <app-main-left></app-main-left>
 
@@ -18,11 +18,11 @@
             </a>
             <a
               class="btn btn-danger flex-grow-1 design-background"
-              href="/honnor"
-              [routerLink]="['/honnor']"
-              title="{{ 'Honnor Ranking' | translate }}"
+              href="/honor"
+              [routerLink]="['/honor']"
+              title="{{ 'Honor Ranking' | translate }}"
               translate>
-              Honnor Ranking
+              Honor Ranking
             </a>
             <a
               class="btn btn-primary flex-grow-1 design-background"
@@ -39,14 +39,14 @@
         <div class="card col-12 mb-2">
           <div class="card-body">
             <div class="text-center">
-              <h1 id="honnorDesc">
-                <span translate>Honnor Ranking</span>
+              <h1 id="honorDesc">
+                <span translate>Honor Ranking</span>
                 <app-ic-icon
                   role="button"
                   [icon]="questionCircle"
                   class="fs-3 ms-1"
                   data-bs-toggle="modal"
-                  data-bs-target="#HonnorHelpPopup"></app-ic-icon>
+                  data-bs-target="#HonorHelpPopup"></app-ic-icon>
               </h1>
               <span translate
                 >Every week, the player with the most honor earns a
@@ -76,13 +76,13 @@
             <nav
               class="mt-2 text-center"
               attr.aria-label="{{
-                'Select a level to display its honnor ranking' | translate
+                'Select a level to display its honor ranking' | translate
               }}">
               <button
                 class="btn btn-primary d-inline d-sm-none"
                 role="button"
                 [ngClass]="{ active: id === 0 }"
-                [routerLink]="['/honnor']"
+                [routerLink]="['/honor']"
                 translate>
                 Global ranking
               </button>
@@ -90,13 +90,13 @@
                 <li
                   class="page-item d-none d-sm-block"
                   [ngClass]="{ active: id === 0 }">
-                  <a class="page-link" [routerLink]="['/honnor']">#</a>
+                  <a class="page-link" [routerLink]="['/honor']">#</a>
                 </li>
                 @for (j of levels; track j; let i = $index) {
                   <li class="page-item" [ngClass]="{ active: id === i + 1 }">
                     <a
                       class="page-link"
-                      [routerLink]="['/honnor/' + (i + 1)]"
+                      [routerLink]="['/honor/' + (i + 1)]"
                       rel="nofollow"
                       >{{ i + 1 }}</a
                     >
@@ -112,7 +112,7 @@
             @if (list.length > 0) {
               <table
                 class="table table-striped table-middle"
-                aria-describedby="honnorDesc">
+                aria-describedby="honorDesc">
                 <thead>
                   <tr>
                     <th scope="col" translate>Player</th>
@@ -125,7 +125,7 @@
                     <th scope="col" class="d-none d-sm-table-cell" translate>
                       Victories
                     </th>
-                    <th scope="col" translate>Honnor</th>
+                    <th scope="col" translate>Honor</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -151,7 +151,7 @@
                         }}
                       </td>
                       <td>
-                        {{ p.honnor | number: '' : this.translate.currentLang }}
+                        {{ p.honor | number: '' : this.translate.currentLang }}
                       </td>
                     </tr>
                   }

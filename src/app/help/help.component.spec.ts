@@ -14,7 +14,7 @@ import { FormBuilder } from '@angular/forms';
 import { HelpComponent } from './help.component';
 import { environment } from '../../environments/environment';
 
-describe('HonnorComponent', () => {
+describe('HonorComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {

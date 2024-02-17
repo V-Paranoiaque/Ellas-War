@@ -19,7 +19,7 @@ type rankingLine = {
   xp: number;
   victory: number;
   field: number;
-  honnor: number;
+  honor: number;
 };
 
 @Component({

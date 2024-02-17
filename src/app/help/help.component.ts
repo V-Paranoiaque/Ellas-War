@@ -38,7 +38,7 @@ export class HelpComponent implements OnInit, OnDestroy {
     this.subDesc = Tools.setDescription(
       this.translate,
       this.metaService,
-      "Don't hesitate to contact us on Discord or Facebook. We will try to answer to you as soon as possible."
+      "Don't hesitate to contact us on Discord or Facebook. We will try to Answer you as soon as possible."
     );
   }
 

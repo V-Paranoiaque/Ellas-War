@@ -34,7 +34,7 @@
   
   "Being in an alliance level { value } or more": "Being in an alliance level {{ value }} or more",
   "Build a total of { value } { building }.": "Build a total of {{ value }} {{ building }}.",
-  "Buy { value } lotto tickets": "Buy {{ value }} lotto tickets",
+  "Buy { value } lottery tickets": "Buy {{ value }} lottery tickets",
   "By { value }": "By {{ value }}",
   
   "Candidate to join { value }": "Candidate to join {{ value }}",
@@ -55,8 +55,8 @@
   "Each unit has unique characteristics. They allow you to carry out your conquests or defend your city.": "<a href=\"/discoverthegame/recruitment\" class=\"link-secondary\">Each unit</a> has unique characteristics. They allow you to carry out your conquests or defend your city. These can be human or mythological, on foot or horseback, melee or remotely. These features enable you to build your own strategies or improve those of your opponents.",
   "Eject { value } from the alliance": "Eject {{ value }} from the alliance",
   "Ejected member: { value }": "Ejected member: {{ value }}",
-  "Ellar War is a free strategy game online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece.": "Ellar War is a <a href=\"/strategy-game\" class=\"link-secondary\">free strategy game</a> online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece. Upon his release in April 2007, it was a personal project, gradually the <a href=\"/team\" class=\"link-secondary\">site team</a> was strengthened and its competences were extended. This has evolved over time both graphically and technically. The game is in constant development and updates are added regularly.",
-  "Ellas War is rapidly evolving": "Ellas War is rapidly evolving and <a href=\"/team\" class=\"link-secondary\">our staff</a> must regularly strengthen. If you think you have the qualities to be part of it, do not hesitate to contact us by our facebook page or through <a href=\"/contactus\" class=\"link-secondary\">the contact page</a>. The Prophets are the guarantors of justice on the game and the facebook page. They resolve conflicts between players and take care of the application of <a href=\"/tandcs\" class=\"link-secondary\">the Regulation</a>.",
+  "Ellas War is a free online browser strategy game. The action takes place approximately to -500 during the Golden Age of ancient Greece.": "Ellar War is a <a href=\"/strategy-game\" class=\"link-secondary\">free strategy game</a> online browser. The action takes place approximately to -500 during the Golden Age of ancient Greece. Upon his release in April 2007, it was a personal project, gradually the <a href=\"/team\" class=\"link-secondary\">site team</a> was strengthened and its competences were extended. This has evolved over time both graphically and technically. The game is in constant development and updates are added regularly.",
+  "Ellas War is evolving rapidly": "Ellas War is evolving rapidly and <a href=\"/team\" class=\"link-secondary\">our staff</a> must regularly strengthen. If you think you have the qualities to be part of it, do not hesitate to contact us by our facebook page or through <a href=\"/contactus\" class=\"link-secondary\">the contact page</a>. The Prophets are the guarantors of justice on the game and the facebook page. They resolve conflicts between players and take care of the application of <a href=\"/tandcs\" class=\"link-secondary\">the Regulation</a>.",
   "Engage { value } Units": "Engage {{ value }} Units",
   "Engage a total of { value } { unit }.": "Engage a total of {{ value }} {{ unit }}.",
   "Espionage from { value }": "Espionage from {{ value }}",
@@ -69,7 +69,7 @@
   "Fury from { value }": "Fury from {{ value }}",
   
   "Give drachmas to { value }": "Give drachmas to {{ value }}",
-  "Giving { value } Drachmas on donations": "Giving {{ value }} Drachmas on donations",
+  "Giving { value } Drachmas in donations": "Giving {{ value }} Drachmas in donations",
   "Go to the level { value }": "Go to the level {{ value }}",
   "Get { value } defensive victories": "Get {{ value }} defensive victories",
   
@@ -165,10 +165,10 @@
   "Win a war with { value } Drachmas as reward": "Win a war with {{ value }} Drachmas as reward",
   "Win a war with more than { value } victories": "Win a war with more than {{ value }} victories",
   "Win the Diamond challenge { value } times": "Win the Diamond challenge {{ value }} times",
-  "Win the Honnor challenge { value } times": "Win the Honnor challenge {{ value }} times",
+  "Win the Honor challenge { value } times": "Win the Honor challenge {{ value }} times",
   
   "You are at the point of declare war to { value } alliance, it will start in 24h.": "You are at the point of declare war to {{ value }} alliance, it will start in 24h.",
-  "You can break out anytime you want { value } hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.": "You can break out anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to break out, it will allow you to return earlier on the game.",
+  "You can resume play anytime you want { value } hours before the end of your pause. If you want, you can use a favor to resume play, it will allow you to return earlier on the game.": "You can resume play anytime you want {{ value }} hours before the end of your pause. If you want, you can use a favor to resume play, it will allow you to return earlier on the game.",
   "You can now go level { value }.": "You can now go level {{ value }}.",
   "You can request a private Discord channel from an Administrator or using the support page.": "You can request a <a href=\"{{ value }}\" target=\"_blank\">private Discord channel from an Administrator</a> or using <a href=\"support\" ui-sref=\"support\">the support page</a>.",
   "You can sell a maximum of { value } batches": "You can sell a maximum of {{ value }} batches",

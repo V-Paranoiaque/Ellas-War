@@ -26,7 +26,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
   public msgPageNb: number;
   public currentPage: number;
 
-  public begining: string;
+  public beginning: string;
   public beginDate: number;
   public minRate: string;
   public maxRate: string;
@@ -48,7 +48,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
     this.msgPageNb = 1;
     this.currentPage = 1;
 
-    this.begining = '';
+    this.beginning = '';
     this.beginDate = 0;
     this.minRate = '';
     this.maxRate = '';
@@ -63,7 +63,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
 
-    this.begining = this.researchDate();
+    this.beginning = this.researchDate();
     this.adminTradeList(0);
 
     this.socket.on(
@@ -92,7 +92,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
     this.socket.emit('adminTradeList', {
       minRate: this.minRate,
       maxRate: this.maxRate,
-      begining: this.begining,
+      beginning: this.beginning,
       still: this.still,
       solded: this.solded,
       resource: this.resource,
@@ -109,8 +109,8 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
       this.msgPageNb = 1;
     }
     let beginDate;
-    if (this.begining != '') {
-      const beginDateTmp = this.begining.split('/');
+    if (this.beginning != '') {
+      const beginDateTmp = this.beginning.split('/');
       beginDate = parseInt(
         (
           new Date(
@@ -119,13 +119,13 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
         ).toFixed(0)
       );
     } else {
-      beginDate = this.begining;
+      beginDate = this.beginning;
     }
 
     this.socket.emit('adminTradeList', {
       minRate: this.minRate,
       maxRate: this.maxRate,
-      begining: beginDate,
+      beginning: beginDate,
       still: this.still,
       solded: this.solded,
       resource: this.resource,

@@ -18,11 +18,11 @@
             </a>
             <a
               class="btn btn-primary flex-grow-1 design-background"
-              href="/honnor"
-              [routerLink]="['/honnor']"
-              title="{{ 'Honnor Ranking' | translate }}"
+              href="/honor"
+              [routerLink]="['/honor']"
+              title="{{ 'Honor Ranking' | translate }}"
               translate>
-              Honnor Ranking
+              Honor Ranking
             </a>
             <a
               class="btn btn-primary flex-grow-1 design-background"
@@ -107,10 +107,10 @@
                   </th>
                   <th
                     scope="col"
-                    (click)="rankingChooseOrder('honnor')"
+                    (click)="rankingChooseOrder('honor')"
                     class="d-none d-sm-table-cell">
-                    <span role="button" translate>Honnor</span>
-                    @if (rankingOrder === 'honnor') {
+                    <span role="button" translate>Honor</span>
+                    @if (rankingOrder === 'honor') {
                       <app-ic-icon
                         role="button"
                         [icon]="sortUP"
@@ -144,7 +144,7 @@
                       {{ p.field | number: '' : this.translate.currentLang }}
                     </td>
                     <td class="d-none d-sm-table-cell text-end">
-                      {{ p.honnor | number: '' : this.translate.currentLang }}
+                      {{ p.honor | number: '' : this.translate.currentLang }}
                     </td>
                   </tr>
                 }

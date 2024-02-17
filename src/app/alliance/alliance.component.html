@@ -81,10 +81,10 @@
                   class="btn btn-success"
                   data-bs-toggle="modal"
                   data-bs-target="#AllianceDissolve"
-                  title="{{ 'Dissolve your alliance' | translate }}">
+                  title="{{ 'Disband your alliance' | translate }}">
                   <app-ic-icon [icon]="times"></app-ic-icon>
                   <span class="visually-hidden" translate
-                    >Dissolve your alliance</span
+                    >Disband your alliance</span
                   >
                 </button>
               }
@@ -238,10 +238,10 @@
                           (click)="setPlayer(p, 2)"
                           data-bs-toggle="modal"
                           data-bs-target="#AllianceEvict"
-                          title="{{ 'Evict from the alliance' | translate }}">
+                          title="{{ 'Expel from the alliance' | translate }}">
                           <app-ic-icon [icon]="times"></app-ic-icon>
                           <span class="visually-hidden">
-                            {{ 'Evict from the alliance' | translate }}
+                            {{ 'Expel from the alliance' | translate }}
                           </span>
                         </button>
                       }
@@ -277,8 +277,12 @@
                 <div>
                   <br />
                   <strong translate>Legend</strong><strong translate>:</strong>
-                  <div class="text-danger" translate>The member is blocked</div>
-                  <div class="text-warning" translate>The member is paused</div>
+                  <div class="text-danger" translate>
+                    The member has been blocked
+                  </div>
+                  <div class="text-warning" translate>
+                    The member's status is paused
+                  </div>
                 </div>
               }
             </table>

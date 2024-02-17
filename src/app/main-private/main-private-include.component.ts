@@ -1,7 +1,7 @@
 import { IdToWeatherSubComponent } from './id-to-weather.sub-component';
 import { MainPrivateBottomMenuSubComponent } from './main-private-bottom-menu.sub-component';
 import { MainPrivateFavorsPopupSunComponent } from './main-private-favors-popup.sub-component';
-import { MainPrivateHonnorHelpPopupSubComponent } from './main-private-honnor-help-popup.sub-component';
+import { MainPrivateHonorHelpPopupSubComponent } from './main-private-honor-help-popup.sub-component';
 import { MainPrivateLeftMenuSubComponent } from './main-private-left-menu.sub-component';
 import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-info-popup.sub-component';
 import { MainPrivateRightMenuSubComponent } from './main-private-right-menu.sub-component';
@@ -11,7 +11,7 @@ export const MainPrivateIncludeComponent = [
   IdToWeatherSubComponent,
   MainPrivateBottomMenuSubComponent,
   MainPrivateFavorsPopupSunComponent,
-  MainPrivateHonnorHelpPopupSubComponent,
+  MainPrivateHonorHelpPopupSubComponent,
   MainPrivateLeftMenuSubComponent,
   MainPrivatePlayerInfoPopupSubComponent,
   MainPrivateRightMenuSubComponent,

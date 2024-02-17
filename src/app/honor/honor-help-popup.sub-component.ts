@@ -4,16 +4,16 @@ import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 
 @Component({
-  selector: 'app-honnor-help-popup',
-  templateUrl: './honnor-help-popup.sub-component.html',
+  selector: 'app-honor-help-popup',
+  templateUrl: './honor-help-popup.sub-component.html',
 })
-export class HonnorHelpPopupSubComponent implements OnInit, OnDestroy {
+export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public list: {
     id: number;
     player_id: number;
     username: string;
-    honnor: number;
+    honor: number;
   }[] = [];
 
   constructor(
@@ -24,7 +24,7 @@ export class HonnorHelpPopupSubComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const url = this.socket.url + '/api/historyHonnor.json';
+    const url = this.socket.url + '/api/historyHonor.json';
 
     this.sub = this.http.get(url).subscribe(result => {
       this.list = result as typeof this.list;

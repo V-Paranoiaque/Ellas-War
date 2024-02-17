@@ -26,7 +26,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
   public msgPageNb: number;
   public currentPage: number;
 
-  public begining: string;
+  public beginning: string;
   public minRate: string;
   public maxRate: string;
   public player1: string;
@@ -47,7 +47,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
     this.msgPageNb = 1;
     this.currentPage = 1;
 
-    this.begining = '';
+    this.beginning = '';
     this.minRate = '';
     this.maxRate = '';
     this.player1 = '';
@@ -61,7 +61,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user.checkPermissions([1]);
 
-    this.begining = this.researchDate();
+    this.beginning = this.researchDate();
     this.adminStoreroomList(0);
 
     this.socket.on(
@@ -90,7 +90,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
     this.socket.emit('adminStoreroomList', {
       minRate: this.minRate,
       maxRate: this.maxRate,
-      begining: this.begining,
+      beginning: this.beginning,
       still: this.still,
       solded: this.solded,
       resource: this.resource,
@@ -107,8 +107,8 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
       this.msgPageNb = 1;
     }
     let beginDate;
-    if (this.begining != '') {
-      const beginDateTmp = this.begining.split('/');
+    if (this.beginning != '') {
+      const beginDateTmp = this.beginning.split('/');
       beginDate = parseInt(
         (
           new Date(
@@ -117,13 +117,13 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
         ).toFixed(0)
       );
     } else {
-      beginDate = this.begining;
+      beginDate = this.beginning;
     }
 
     this.socket.emit('adminStoreroomList', {
       minRate: this.minRate,
       maxRate: this.maxRate,
-      begining: beginDate,
+      beginning: beginDate,
       still: this.still,
       solded: this.solded,
       resource: this.resource,
