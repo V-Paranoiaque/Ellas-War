@@ -1,4 +1,4 @@
-name: Windows
+name: Workflow Windows
 
 on:
   workflow_call:
