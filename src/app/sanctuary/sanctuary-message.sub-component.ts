@@ -32,11 +32,11 @@ export class SanctuaryMessageSubComponent {
       }
     }
 
-    for (const i in listUnits) {
-      if (listUnits.get(i)! > 0) {
+    for (const [unit, nb] of listUnits) {
+      if (nb > 0) {
         list.push({
-          code: i,
-          nb: listUnits.get(i),
+          code: unit,
+          nb: nb,
         });
       }
     }
@@ -59,11 +59,11 @@ export class SanctuaryMessageSubComponent {
       }
     }
 
-    for (const i in listUnits) {
-      if (listUnits.get(i)! > 0) {
+    for (const [unit, nb] of listUnits) {
+      if (nb > 0) {
         list.push({
-          code: i,
-          nb: listUnits.get(i),
+          code: unit,
+          nb: nb,
         });
       }
     }
@@ -86,11 +86,11 @@ export class SanctuaryMessageSubComponent {
       }
     }
 
-    for (const i in listUnits) {
-      if (listUnits.get(i)! > 0) {
+    for (const [unit, nb] of listUnits) {
+      if (nb > 0) {
         list.push({
-          code: i,
-          nb: listUnits.get(i),
+          code: unit,
+          nb: nb,
         });
       }
     }
