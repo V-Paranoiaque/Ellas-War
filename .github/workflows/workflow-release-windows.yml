@@ -150,6 +150,7 @@ jobs:
           npm install
 
       - name: Download the project
+        uses: actions/download-artifact@v4
         with:
           name: "mobile.zip"
       - name: Extract the project
