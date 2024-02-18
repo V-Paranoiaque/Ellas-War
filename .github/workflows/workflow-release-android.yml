@@ -86,19 +86,21 @@ jobs:
           AAB_JSON: ${{ steps.aab_json.outputs.filePath }}
           APK_JSON: ${{ steps.apk_json.outputs.filePath }}
           KEYSTORE: ${{ steps.keystore.outputs.filePath }}
-  
+
       - name: Upload aab file to release
-        uses: actions/upload-artifact@v4
+        uses: svenstaro/upload-release-action@v2
         with:
-          path: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/bundle/release/app-release.aab
-          name: app-release.aab
-          compression-level: 0
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/bundle/release/app-release.aab
+          asset_name: app-release.aab
+          tag: ${{ github.ref }}
       - name: Upload apk file to release
-        uses: actions/upload-artifact@v4
+        uses: svenstaro/upload-release-action@v2
         with:
-          path: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
-          name: app-release.apk
-          compression-level: 0
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/apk/release/app-release.apk
+          asset_name: app-release.apk
+          tag: ${{ github.ref }}
       - name: Upload to the Amazon AppStore
         continue-on-error: true
         uses: ALJAZEERAPLUS/amazon-appstore-action@v1.1.1

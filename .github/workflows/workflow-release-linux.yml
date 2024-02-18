@@ -79,3 +79,13 @@ jobs:
         env:
           WORKSPACE: '${{ github.workspace }}'
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'

@@ -1,0 +1,36 @@
+name: Zip
+
+on:
+  workflow_call:
+
+jobs:
+  zip:
+    name: "Publish Zip"
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Download the mobile project
+        uses: actions/download-artifact@v4
+        with:
+          name: "mobile.zip"
+      - name: Download the web project
+        uses: actions/download-artifact@v4
+        with:
+          name: "web.zip"
+
+      # Upload
+      - name: Upload web zip file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: ./web.zip
+          asset_name: web.zip
+          tag: ${{ github.ref }}
+
+      - name: Upload mobile zip file to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GH_TOKEN }}
+          file: ./mobile.zip
+          asset_name: mobile.zip
+          tag: ${{ github.ref }}
