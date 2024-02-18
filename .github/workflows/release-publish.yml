@@ -1,9 +1,6 @@
 name: Release all
 
 on:
-  release:
-    types:
-      - published
   workflow_dispatch:
 
 jobs:
@@ -48,16 +45,7 @@ jobs:
     with:
       electron: 3.1.0
       node: 20
-  
-  #Android
-  package-android:
-    uses: ./.github/workflows/workflow-release-android.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      android: 12.0.1
-      node: 20
-  
+
   #Windows
   package-windows:
     uses: ./.github/workflows/workflow-release-windows.yml
