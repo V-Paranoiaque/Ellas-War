@@ -150,10 +150,8 @@ jobs:
           npm install
 
       - name: Download the project
-        uses: robinraju/release-downloader@v1.8
         with:
-          latest: true
-          fileName: "mobile.zip"
+          name: "mobile.zip"
       - name: Extract the project
         run: unzip mobile.zip
 
