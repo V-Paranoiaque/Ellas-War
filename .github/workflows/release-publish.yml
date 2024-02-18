@@ -21,3 +21,8 @@ jobs:
     with:
       android: 12.0.1
       node: 20
+
+  #Upload ZIP
+  zip:
+    uses: ./.github/workflows/workflow-release-zip.yml
+    secrets: inherit
