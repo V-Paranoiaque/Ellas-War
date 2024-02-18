@@ -1,4 +1,4 @@
-name: Linux Armhf
+name: Workflow Linux Armhf
 
 on:
   workflow_call:
@@ -53,13 +53,5 @@ jobs:
           cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-      
-      - name: Publish Snap
-        run: |
-          FILE=$(ls platforms/electron/build/*.snap)
-          for i in $FILE
-          do
-            snapcraft upload --release=stable $i
-          done
-        env:
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
+      

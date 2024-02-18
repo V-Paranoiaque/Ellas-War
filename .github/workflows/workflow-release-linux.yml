@@ -1,4 +1,4 @@
-name: Linux
+name: Workflow Linux
 
 on:
   workflow_call:

@@ -49,17 +49,14 @@ jobs:
           zip -r mobile.zip www
 
       - name: Upload web zip file to release
-        uses: svenstaro/upload-release-action@v2
+        uses: actions/upload-artifact@v4
         with:
-          repo_token: ${{ secrets.GH_TOKEN }}
-          file: /home/runner/work/Ellas-War/Ellas-War/web.zip
-          asset_name: web.zip
-          tag: ${{ github.ref }}
-
+          path: /home/runner/work/Ellas-War/Ellas-War/web.zip
+          name: web.zip
+          compression-level: 0
       - name: Upload mobile zip file to release
-        uses: svenstaro/upload-release-action@v2
+        uses: actions/upload-artifact@v4
         with:
-          repo_token: ${{ secrets.GH_TOKEN }}
-          file: /home/runner/work/Ellas-War/Ellas-War/mobile.zip
-          asset_name: mobile.zip
-          tag: ${{ github.ref }}
+          path: /home/runner/work/Ellas-War/Ellas-War/mobile.zip
+          name: mobile.zip
+          compression-level: 0
