@@ -1,4 +1,4 @@
-name: Linux
+name: Workflow Linux
 
 on:
   workflow_call:
@@ -78,4 +78,14 @@ jobs:
             -t vparanoiaque/cordova-snap sh -c "cordova build electron --no-telemetry --release"
         env:
           WORKSPACE: '${{ github.workspace }}'
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
+      
+      - name: Publish Snap
+        run: |
+          FILE=$(ls platforms/electron/build/*.snap)
+          for i in $FILE
+          do
+            snapcraft upload --release=stable $i
+          done
+        env:
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'

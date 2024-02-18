@@ -1,4 +1,4 @@
-name: Linux Arm64
+name: Workflow Linux Arm64
 
 on:
   workflow_call:

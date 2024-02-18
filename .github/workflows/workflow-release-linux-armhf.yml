@@ -1,4 +1,4 @@
-name: Linux Armhf
+name: Workflow Linux Armhf
 
 on:
   workflow_call:
@@ -53,6 +53,7 @@ jobs:
           cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
+          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
       
       - name: Publish Snap
         run: |

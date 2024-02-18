@@ -13,42 +13,6 @@ jobs:
     with:
       node: 20
   
-  #X64 Arch
-  package-x64:
-    uses: ./.github/workflows/workflow-release-linux.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20
-  
-  #X86 Arch
-  package-x86:
-    uses: ./.github/workflows/workflow-release-linux-x86.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20
-  
-  #arm64 Arch
-  package-arm64:
-    uses: ./.github/workflows/workflow-release-linux-arm64.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20
-
-  #armhf Arch
-  package-armv7l:
-    uses: ./.github/workflows/workflow-release-linux-armhf.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20
-  
   #Android
   package-android:
     uses: ./.github/workflows/workflow-release-android.yml
@@ -57,21 +21,9 @@ jobs:
     with:
       android: 12.0.1
       node: 20
-  
-  #Windows
-  package-windows:
-    uses: ./.github/workflows/workflow-release-windows.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20
 
-  #Mac OS
-  package-mac:
-    uses: ./.github/workflows/workflow-release-mac.yml
+  #Upload ZIP
+  zip:
+    uses: ./.github/workflows/workflow-release-zip.yml
     secrets: inherit
     needs: prepare
-    with:
-      electron: 3.1.0
-      node: 20

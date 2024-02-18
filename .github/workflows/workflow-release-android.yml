@@ -1,4 +1,4 @@
-name: Android
+name: Workflow Android
 
 on:
   workflow_call:
@@ -86,7 +86,7 @@ jobs:
           AAB_JSON: ${{ steps.aab_json.outputs.filePath }}
           APK_JSON: ${{ steps.apk_json.outputs.filePath }}
           KEYSTORE: ${{ steps.keystore.outputs.filePath }}
-  
+
       - name: Upload aab file to release
         uses: svenstaro/upload-release-action@v2
         with:
@@ -94,7 +94,6 @@ jobs:
           file: /home/runner/work/Ellas-War/Ellas-War/platforms/android/app/build/outputs/bundle/release/app-release.aab
           asset_name: app-release.aab
           tag: ${{ github.ref }}
-  
       - name: Upload apk file to release
         uses: svenstaro/upload-release-action@v2
         with:

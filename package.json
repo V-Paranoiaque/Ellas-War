@@ -1,7 +1,7 @@
 {
   "name": "@v-paranoiaque/ew",
   "description": "Front-end of the Ellas War Game",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "homepage": "https://ellaswar.eu",
   "author": {
     "name": "Ellas War Team",
@@ -147,23 +147,6 @@
     "flatpak": {
       "baseVersion": "23.08",
       "runtimeVersion": "23.08"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "releaseType": "release"
-      },
-      {
-        "provider": "snapStore",
-        "channels": [
-          "stable"
-        ]
-      }
-    ],
-    "win": {
-      "publish": [
-        "github"
-      ]
     }
   }
 }
