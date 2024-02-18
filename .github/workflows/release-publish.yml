@@ -26,3 +26,4 @@ jobs:
   zip:
     uses: ./.github/workflows/workflow-release-zip.yml
     secrets: inherit
+    needs: prepare
