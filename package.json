@@ -147,23 +147,6 @@
     "flatpak": {
       "baseVersion": "23.08",
       "runtimeVersion": "23.08"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "releaseType": "release"
-      },
-      {
-        "provider": "snapStore",
-        "channels": [
-          "stable"
-        ]
-      }
-    ],
-    "win": {
-      "publish": [
-        "github"
-      ]
     }
   }
 }
