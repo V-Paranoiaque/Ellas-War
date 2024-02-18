@@ -1,4 +1,4 @@
-name: Release all
+name: Build all files
 
 on:
   workflow_dispatch:
