@@ -34,8 +34,6 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
   public player2: string;
   public resource: string;
   public sort: string;
-  public still: boolean;
-  public solded: boolean;
 
   Tools = Tools;
 
@@ -56,8 +54,6 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
     this.player2 = '';
     this.resource = '';
     this.sort = '';
-    this.still = false;
-    this.solded = false;
   }
 
   ngOnInit() {
@@ -93,8 +89,6 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
       minRate: this.minRate,
       maxRate: this.maxRate,
       beginning: this.beginning,
-      still: this.still,
-      solded: this.solded,
       resource: this.resource,
       player1: this.player1,
       player2: this.player2,
@@ -126,9 +120,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
       minRate: this.minRate,
       maxRate: this.maxRate,
       beginning: beginDate,
-      still: this.still,
-      solded: this.solded,
-      resource: this.resource,
+      resource: Tools.getResId(this.resource),
       player1: this.player1,
       player2: this.player2,
       sort: this.sort,
