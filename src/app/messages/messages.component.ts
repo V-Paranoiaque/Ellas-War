@@ -33,6 +33,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   public msgTitle: string;
   public msgText: string;
   public categoryList: number[];
+  public msgPrivateNb: number;
 
   public currentCategory: number;
   private msgList: Message[];
@@ -74,8 +75,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.msgTitle = '';
     this.msgText = '';
 
-    this.currentCategory = 0;
     this.categoryList = [];
+    this.msgPrivateNb = 0;
+    this.currentCategory = 0;
     this.msgList = [];
     this.msgPageNb = 1;
     this.currentMsg = new Message();
@@ -89,6 +91,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user.checkPermissions([1]);
+    this.socket.emit('msgPrivateNb');
 
     this.subMsg = this.socket.onChange.subscribe({
       next: (event: { action: string; username: string }) => {
@@ -124,11 +127,16 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }, 100);
     });
 
+    this.socket.on('msgPrivateNb', msgPrivateNb => {
+      this.msgPrivateNb = msgPrivateNb;
+    });
+
     this.socket.on('msgRefresh', () => {
       this.setPage(this.currentPage);
       this.currentMsg.msg_read = 0;
       this.messageLoad(this.currentMsg);
       this.socket.emit('msgCategoryList');
+      this.socket.emit('msgPrivateNb');
     });
 
     this.setPage(this.currentPage);
@@ -350,6 +358,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   switchMessageMode() {
     this.newMessageMode = (this.newMessageMode + 1) % 2;
+    this.msgPageNb = 1;
+    this.setPage(1);
+  }
+
+  selectPlayerMessages() {
+    this.currentCategory = 2;
+    this.newMessageMode = 1;
     this.msgPageNb = 1;
     this.setPage(1);
   }
