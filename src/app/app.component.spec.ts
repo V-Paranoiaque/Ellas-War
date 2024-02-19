@@ -60,12 +60,6 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.innerHTML).toContain('router-outlet');
   });
-  it('run functions', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    fixture.detectChanges();
-    expect(app.detectBrowserLanguage()).toEqual('en');
-  });
 });
 
 // AOT compilation support

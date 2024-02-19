@@ -103,7 +103,7 @@ export class SocketComponent {
         localStorage.removeItem('server');
       }
 
-      const language = this.detectLanguage();
+      const language = SocketComponent.detectLanguage();
       url = this.getServerUrl(language);
 
       if (url !== '') {
@@ -151,11 +151,11 @@ export class SocketComponent {
   /**
    * Language management
    **/
-  detectLanguage() {
+  static detectLanguage() {
     let language: string = localStorage.getItem('language') ?? '';
 
     if (!language || !environment.language.allowed.includes(language)) {
-      language = this.detectBrowserLanguage();
+      language = SocketComponent.detectBrowserLanguage(navigator.languages);
     }
 
     return language;
@@ -168,15 +168,17 @@ export class SocketComponent {
     return 'en';
   }
 
-  saveLanguage(language: string) {
+  static saveLanguage(language: string) {
     localStorage.setItem('language', language);
   }
 
-  detectBrowserLanguage() {
-    const browserLanguage = navigator.language.split('-')[0];
-    if (!environment.language.allowed.includes(browserLanguage)) {
-      return environment.language.default;
+  static detectBrowserLanguage(languages: readonly string[]) {
+    for (const language of languages) {
+      const browserLanguage = language.split('-')[0];
+      if (environment.language.allowed.includes(browserLanguage)) {
+        return browserLanguage;
+      }
     }
-    return browserLanguage;
+    return environment.language.default;
   }
 }

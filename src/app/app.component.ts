@@ -78,7 +78,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (environment.mobile == 0) {
       language = this.socket.detectServerLanguage();
     } else {
-      language = this.socket.detectLanguage();
+      language = Socket.detectLanguage();
     }
     this.translate.use(language);
 
@@ -190,14 +190,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
-  }
-
-  detectBrowserLanguage() {
-    const browserLanguage = navigator.language.split('-')[0];
-    if (!environment.language.allowed.includes(browserLanguage)) {
-      return environment.language.default;
-    }
-    return browserLanguage;
   }
 
   public setTitle(newTitle: string) {
