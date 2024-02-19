@@ -43,10 +43,18 @@
                 <span translate>Honor Ranking</span>
                 <app-ic-icon
                   role="button"
+                  [icon]="crown"
+                  class="fs-3 ms-1"
+                  data-bs-toggle="modal"
+                  data-bs-target="#HonorHelpPopup"
+                  title="{{ 'Honor history' | translate }}"></app-ic-icon>
+                <app-ic-icon
+                  role="button"
                   [icon]="questionCircle"
                   class="fs-3 ms-1"
                   data-bs-toggle="modal"
-                  data-bs-target="#HonorHelpPopup"></app-ic-icon>
+                  data-bs-target="#honorHelp"
+                  title="{{ 'Honor' | translate }}"></app-ic-icon>
               </h1>
               <span translate
                 >Every week, the player with the most honor earns a

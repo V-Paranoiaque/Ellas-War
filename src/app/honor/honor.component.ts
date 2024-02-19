@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
+import crown from '@iconify/icons-fa6-solid/crown';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
 type honorLine = {
@@ -29,6 +30,7 @@ export class HonorComponent implements OnInit, OnDestroy {
   private subRank: Subscription;
   private subTitle: Subscription;
 
+  crown = crown;
   questionCircle = questionCircle;
 
   constructor(
