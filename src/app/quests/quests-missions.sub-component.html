@@ -97,51 +97,6 @@
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
-                      <app-ew-icon name="ironmine"></app-ew-icon>
-                    </div>
-                    <div class="col-lg-10 col-md-8 p-2">
-                      <p translate>
-                        Iron mines produce Iron. It's will help you to produce
-                        Drachmas and arm your city.
-                      </p>
-                      <p>
-                        {{
-                          'Build a total of { value } { building }.'
-                            | translate
-                              : {
-                                  value:
-                                    4 | number: '' : this.translate.currentLang,
-                                  building: 'iron mines' | translate
-                                }
-                        }}
-                      </p>
-                      <strong translate>Reward:</strong>
-                      {{ 4000 | number: '' : this.translate.currentLang }}
-                      <app-ew-icon
-                        name="drachma"
-                        class="small-resource"></app-ew-icon>
-                      {{ 2000 | number: '' : this.translate.currentLang }}
-                      <app-ew-icon
-                        name="wood"
-                        class="small-resource"></app-ew-icon>
-                    </div>
-                  </div>
-                  @if (user.getPropertyNb('quest_validate') === 0) {
-                    <a
-                      class="card-button card-button-primary d-block py-2 mt-2"
-                      [routerLink]="['/']"
-                      data-bs-dismiss="modal"
-                      role="button"
-                      translate>
-                      Access to the buildings &gt;&gt;
-                    </a>
-                  }
-                </span>
-              }
-              @case (4) {
-                <span>
-                  <div class="row g-0">
-                    <div class="col-lg-2 col-md-4 p-2">
                       <app-ew-icon name="well"></app-ew-icon>
                     </div>
                     <div class="col-lg-10 col-md-8 p-2">
@@ -179,7 +134,7 @@
                   }
                 </span>
               }
-              @case (5) {
+              @case (4) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -213,14 +168,17 @@
                   }
                 </span>
               }
-              @case (6) {
+              @case (5) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
                       <app-ew-icon name="ironmine"></app-ew-icon>
                     </div>
                     <div class="col-lg-10 col-md-8 p-2">
-                      <p translate>You will need more Iron for your city.</p>
+                      <p translate>
+                        Iron mines produce Iron. It's will help you to produce
+                        Drachmas and arm your city.
+                      </p>
                       <p>
                         {{
                           'Build a total of { value } { building }.'
@@ -231,6 +189,41 @@
                                   building: 'iron mines' | translate
                                 }
                         }}
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 4000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                      {{ 2000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <a
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </a>
+                  }
+                </span>
+              }
+              @case (6) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="agora"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        The weather can influence your city. It can modify the
+                        productions, consumptions and the attack/defense of your
+                        army.
                       </p>
                       <strong translate>Reward:</strong>
                       {{ 10000 | number: '' : this.translate.currentLang }}
@@ -244,14 +237,18 @@
                     </div>
                   </div>
                   @if (user.getPropertyNb('quest_validate') === 0) {
-                    <div
+                    <a
                       class="card-button card-button-primary d-block py-2 mt-2"
-                      [routerLink]="['/']"
+                      data-bs-toggle="modal"
+                      data-bs-target="#weatherHelp"
                       data-bs-dismiss="modal"
                       role="button"
+                      (click)="user.questValidateAuto()"
+                      (keyup.enter)="user.questValidateAuto()"
+                      tabindex="0"
                       translate>
-                      Access to the buildings &gt;&gt;
-                    </div>
+                      Access to the weather &gt;&gt;
+                    </a>
                   }
                 </span>
               }
@@ -366,21 +363,25 @@
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
-                      <app-ew-icon name="watchtower"></app-ew-icon>
+                      <app-ew-icon name="attacks"></app-ew-icon>
                     </div>
                     <div class="col-lg-10 col-md-8 p-2">
-                      <p translate>
-                        To protect your city, you can also build towers. These
-                        have the advantage on the units to not have consumption.
-                        But they can not attack. Go to your City and build a
-                        total of 5 towers.
+                      <p>
+                        <span translate
+                          >Every week, the player with the most honor earns a
+                          reward.</span
+                        >
+                        <span translate
+                          >You have two ways earn honor, you can build mints and
+                          make victories.</span
+                        >
                       </p>
                       <strong translate>Reward:</strong>
                       {{ 20000 | number: '' : this.translate.currentLang }}
                       <app-ew-icon
                         name="drachma"
                         class="small-resource"></app-ew-icon>
-                      {{ 20000 | number: '' : this.translate.currentLang }}
+                      {{ 25000 | number: '' : this.translate.currentLang }}
                       <app-ew-icon
                         name="iron"
                         class="small-resource"></app-ew-icon>
@@ -389,16 +390,54 @@
                   @if (user.getPropertyNb('quest_validate') === 0) {
                     <div
                       class="card-button card-button-primary d-block py-2 mt-2"
-                      [routerLink]="['/']"
+                      [routerLink]="['/honor/0']"
                       data-bs-dismiss="modal"
                       role="button"
+                      (click)="user.questValidateAuto()"
+                      (keyup.enter)="user.questValidateAuto()"
+                      tabindex="0"
                       translate>
-                      Access to the buildings &gt;&gt;
+                      Access to the honor ranking &gt;&gt;
                     </div>
                   }
                 </span>
               }
               @case (11) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="smenu-stats"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        From the attacks page, there is a stats page that
+                        display the information about your attacks. Visit the
+                        stats page to validate this quest.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="wood"
+                        class="small-resource"></app-ew-icon>
+                      {{ 25000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="iron"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/attacks']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the attacks &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (12) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -436,7 +475,7 @@
                   }
                 </span>
               }
-              @case (12) {
+              @case (13) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -466,7 +505,7 @@
                   }
                 </span>
               }
-              @case (13) {
+              @case (14) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -496,7 +535,7 @@
                   }
                 </span>
               }
-              @case (14) {
+              @case (15) {
                 <div>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -507,17 +546,24 @@
                         >You can now reach level 1. Before doing so, a few tips
                         from an old warrior:</span
                       >
-                      <br />- <span translate>Build a maximum of mints.</span>
                       <br />-
-                      <span translate
-                        >Keep an eye on your resources to optimize your
-                        production and your defense.</span
-                      >
+                      <span
+                        [innerHTML]="
+                          'Build a maximum of mints.' | translate
+                        "></span>
                       <br />-
-                      <span translate
-                        >Join the Ellas War's Facebook Page. You'll find advice
-                        and answers to your questions.</span
-                      >
+                      <span
+                        [innerHTML]="
+                          'Keep an eye on your resources to optimize your production and your defense.'
+                            | translate
+                        "></span>
+                      <br />-
+                      <span
+                        [innerHTML]="
+                          'Join the Ellas War\'s Facebook Page. You\'ll find advice and answers to your questions.'
+                            | translate
+                        "></span>
+                      <br />
                       <br />
                       <strong translate>Reward:</strong>
                       {{ 50000 | number: '' : this.translate.currentLang }}
@@ -559,6 +605,35 @@
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
+                      <app-ew-icon name="hut"></app-ew-icon>
+                    </div>
+                    <div class="col-lg-10 col-md-8 p-2">
+                      <p translate>
+                        Build a total of 10 huts to house your army.
+                      </p>
+                      <strong translate>Reward:</strong>
+                      {{ 40000 | number: '' : this.translate.currentLang }}
+                      <app-ew-icon
+                        name="drachma"
+                        class="small-resource"></app-ew-icon>
+                    </div>
+                  </div>
+                  @if (user.getPropertyNb('quest_validate') === 0) {
+                    <div
+                      class="card-button card-button-primary d-block py-2 mt-2"
+                      [routerLink]="['/']"
+                      data-bs-dismiss="modal"
+                      role="button"
+                      translate>
+                      Access to the buildings &gt;&gt;
+                    </div>
+                  }
+                </span>
+              }
+              @case (2) {
+                <span>
+                  <div class="row g-0">
+                    <div class="col-lg-2 col-md-4 p-2">
                       <app-ew-icon name="silver_man"></app-ew-icon>
                     </div>
                     <div class="col-lg-10 col-md-8 p-2">
@@ -586,7 +661,7 @@
                   }
                 </span>
               }
-              @case (2) {
+              @case (3) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -617,7 +692,7 @@
                   }
                 </span>
               }
-              @case (3) {
+              @case (4) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -625,12 +700,11 @@
                     </div>
                     <div class="col-lg-10 col-md-8 p-2">
                       <p translate>You are still there?</p>
-                      <p translate>
-                        You are stronger than I thought. Show me your skills in
-                        combat. Now that you have recruited an army, continue to
-                        attack. I advise you to use spies to find the faibles.
-                        Win 5 victories and return to me.
-                      </p>
+                      <p
+                        [innerHTML]="
+                          'You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the weak cities. Win 5 victories and return to me.'
+                            | translate
+                        "></p>
                       <strong translate>Reward:</strong>
                       {{ 25000 | number: '' : this.translate.currentLang }}
                       <app-ew-icon
@@ -650,7 +724,7 @@
                   }
                 </span>
               }
-              @case (4) {
+              @case (5) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -681,7 +755,7 @@
                   }
                 </span>
               }
-              @case (5) {
+              @case (6) {
                 <span>
                   <div class="row g-0">
                     <div class="col-lg-2 col-md-4 p-2">
@@ -718,35 +792,6 @@
                       role="button"
                       translate>
                       Access to the treasure &gt;&gt;
-                    </div>
-                  }
-                </span>
-              }
-              @case (6) {
-                <span>
-                  <div class="row g-0">
-                    <div class="col-lg-2 col-md-4 p-2">
-                      <app-ew-icon name="hut"></app-ew-icon>
-                    </div>
-                    <div class="col-lg-10 col-md-8 p-2">
-                      <p translate>
-                        Build a total of 10 huts to house your army.
-                      </p>
-                      <strong translate>Reward:</strong>
-                      {{ 40000 | number: '' : this.translate.currentLang }}
-                      <app-ew-icon
-                        name="drachma"
-                        class="small-resource"></app-ew-icon>
-                    </div>
-                  </div>
-                  @if (user.getPropertyNb('quest_validate') === 0) {
-                    <div
-                      class="card-button card-button-primary d-block py-2 mt-2"
-                      [routerLink]="['/']"
-                      data-bs-dismiss="modal"
-                      role="button"
-                      translate>
-                      Access to the buildings &gt;&gt;
                     </div>
                   }
                 </span>

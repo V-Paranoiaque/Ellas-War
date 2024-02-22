@@ -324,7 +324,7 @@ export class UserComponent {
   getQuestMax() {
     switch (this.getPropertyNb('level')) {
       case 0:
-        return 14;
+        return 15;
       case 1:
         return 14;
       case 2:
@@ -483,5 +483,9 @@ export class UserComponent {
       alliance: { create: 0 },
       war: { minmembers: 0 },
     };
+  }
+
+  questValidateAuto() {
+    this.socket.emit('questValidateAuto');
   }
 }

@@ -872,6 +872,12 @@ export class AttacksComponent implements OnInit, OnDestroy {
         break;
       case 1:
         this.attackMode = 0;
+        if (
+          this.user.getPropertyNb('level') === 0 &&
+          this.user.getPropertyNb('quest') === 11
+        ) {
+          this.user.questValidateAuto();
+        }
         break;
       case 2:
         this.attackMode = 0;

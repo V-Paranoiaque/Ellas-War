@@ -33,6 +33,7 @@
   "Attempted espionage of your sanctuary from { value }": "Attempted espionage of your sanctuary from {{ value }}",
   
   "Being in an alliance level { value } or more": "Being in an alliance level {{ value }} or more",
+  "Build a maximum of mints.": "Build a maximum of <strong>mints</strong>.",
   "Build a total of { value } { building }.": "Build a total of {{ value }} {{ building }}.",
   "Buy { value } lottery tickets": "Buy {{ value }} lottery tickets",
   "By { value }": "By {{ value }}",
@@ -88,6 +89,9 @@
   "In addition to the site, Ellas War also has a Facebook page and a GitHub repository.": "In addition to the site, Ellas War also has a Facebook page and a GitHub repository. On the Facebook page you can exchange with the rest of <a href=\"/community\" class=\"link-secondary\">the community</a> and staff. It is animated and moderated by the team of the game, you will find information and ask questions. Ellas War has a GitHub repository where you can find the source code of the client part of the game. You can submit bug reports or provide improvement requests directly from this repository.",
   
   "Join { value } on Ellas War!": "Join <strong>{{ value }}</strong> on Ellas War!",
+  "Join the Ellas War's Facebook Page. You'll find advice and answers to your questions.": "Join the <strong>Ellas War's Facebook Page</strong>. You'll find advice and answers to your questions.",
+
+  "Keep an eye on your resources to optimize your production and your defense.": "Keep an eye on <strong>your resources</strong> to optimize <strong>your production</strong> and <strong>your defense</strong>.",
 
   "Last { value } days": "Last {{ value }} days",
   "Level { value }": "Level {{ value }}",
@@ -131,7 +135,6 @@
   "Spend { value } Ambrosia": "Spend {{ value }} Ambrosia",
   
   "Take the Diamond { value } times": "Take the Diamond {{ value }} times",
-  "Taken resources": "Ressources won",
   "The alliance { value } has accepted a pact with your alliance": "The alliance {{ value }} has accepted a pact with your alliance",
   "The alliance { value } has canceled a pact request with your alliance.": "The alliance {{ value }} has canceled a pact request with your alliance.",
   "The alliance { value } has destroyed the pact with your alliance.": "The alliance {{ value }} has destroyed the pact with your alliance.",
@@ -189,6 +192,7 @@
   "Your alliance destroyed a pact with the alliance { value }": "Your alliance destroyed a pact with the alliance {{ value }}",
   "Your alliance has refused a pact with the alliance { value }.": "Your alliance has refused a pact with the alliance {{ value }}.",
   "Your alliance win { value } Drachmas": "Your alliance win {{ value }} Drachmas",
+  "You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the weak cities. Win 5 victories and return to me.": "You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. <strong>I advise you to use spies to find the weak cities.</strong> Win 5 victories and return to me.",
   "Your army will do its utmost to defend": "Your army will do its utmost to defend <a href=\"/discoverthegame\" class=\"link-secondary\">your city</a> or invade the enemy cities.",
   "Your city has resisted against { value }": "Your city has resisted against {{ value }}",
   "Your city was sacked by { value }": "Your city was sacked by {{ value }}",
