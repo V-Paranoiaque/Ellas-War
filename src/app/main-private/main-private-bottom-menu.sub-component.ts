@@ -13,6 +13,7 @@ import { environment } from './../../environments/environment';
 import comments from '@iconify/icons-fa6-solid/comments';
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import times from '@iconify/icons-fa6-solid/xmark';
+import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import users from '@iconify/icons-fa6-solid/users';
 
 @Component({
@@ -30,6 +31,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
     username: string;
   }[];
   public chat_user_msgs: {
+    chat_id: number;
     user_id: number;
     rank: number;
     time: number;
@@ -46,6 +48,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
     username: string;
   }[];
   public chat_alli_msgs: {
+    chat_id: number;
     user_id: number;
     rank: number;
     time: number;
@@ -54,6 +57,23 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   }[];
   public chatAlliMsg: string;
   public chat_alli_nb: number;
+  public reported = 0;
+  public chat = 0;
+  public selectedMsg: {
+    chat_id: number;
+    user_id: number;
+    rank: number;
+    time: number;
+    username: string;
+    msg: string;
+  } = {
+    chat_id: 0,
+    user_id: 0,
+    rank: 0,
+    time: 0,
+    username: '',
+    msg: '',
+  };
 
   @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
   @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
@@ -63,6 +83,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   comments = comments;
   discordIcon = discordIcon;
   times = times;
+  triangleExclamation = triangleExclamation;
   users = users;
 
   constructor(
@@ -104,6 +125,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       'chatUserMsg',
       (
         msg: {
+          chat_id: number;
           user_id: number;
           rank: number;
           time: number;
@@ -136,6 +158,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       'chatAlliMsg',
       (
         msg: {
+          chat_id: number;
           user_id: number;
           rank: number;
           time: number;
@@ -223,5 +246,29 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
 
   disconnect() {
     this.user.disconnect();
+  }
+
+  reportPrepare(
+    data: {
+      chat_id: number;
+      user_id: number;
+      rank: number;
+      time: number;
+      username: string;
+      msg: string;
+    },
+    chat: number
+  ) {
+    this.reported = 0;
+    this.chat = chat;
+    this.selectedMsg = data;
+  }
+
+  report() {
+    this.reported = 1;
+    this.socket.emit('problemReport', {
+      type: 3 + this.chat,
+      id: this.selectedMsg.chat_id,
+    });
   }
 }

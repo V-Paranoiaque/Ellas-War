@@ -1,6 +1,53 @@
 <app-messages-popup></app-messages-popup>
 <app-options-account-information-popup></app-options-account-information-popup>
 
+<div class="modal fade" id="AccountReport" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" translate>Report the profile</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          @if (reported === 0) {
+            {{
+              'Are you sure that you want to signal the profile of { value }?'
+                | translate: { value: profile.username }
+            }}
+          } @else {
+            <span class="text-danger" translate
+              >The profile has been reported, we will check it shortly</span
+            >
+          }
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            translate>
+            Close
+          </button>
+          @if (reported === 0) {
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="report()"
+              translate>
+              Confirm
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-main-left></app-main-left>
 
 <main class="mt-1 mb-4">
@@ -37,6 +84,15 @@
                     data-bs-target="#MsgNew"
                     title="{{ 'Write a new message' | translate }}">
                     <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+                  </button>
+                }
+                @if (user.getPropertyNb('mstatus') > 0) {
+                  <button
+                    class="btn btn-warning text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#AccountReport"
+                    title="{{ 'Report the profile' | translate }}">
+                    <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
                   </button>
                 }
                 @if (user.getPropertyNb('rank') > 1) {

@@ -14,6 +14,7 @@ import plusIcon from '@iconify/icons-bi/plus';
 import share from '@iconify/icons-bi/share';
 import trash2Icon from '@iconify/icons-bi/trash2';
 import trashIcon from '@iconify/icons-bi/trash';
+import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import xIcon from '@iconify/icons-bi/x';
 import { Message } from 'src/services/message.class';
 
@@ -34,6 +35,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   public msgText: string;
   public categoryList: number[];
   public msgPrivateNb: number;
+  public reported = 0;
 
   public currentCategory: number;
   private msgList: Message[];
@@ -55,6 +57,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   share = share;
   trash2Icon = trash2Icon;
   trashIcon = trashIcon;
+  triangleExclamation = triangleExclamation;
   xIcon = xIcon;
 
   constructor(
@@ -122,6 +125,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.socket.on('msgInfo', msgInfo => {
       this.currentMsg = msgInfo;
+      this.reported = 0;
       setTimeout(() => {
         this.scroller.scrollToAnchor('msgBlock');
       }, 100);
@@ -367,5 +371,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.newMessageMode = 1;
     this.msgPageNb = 1;
     this.setPage(1);
+  }
+
+  report() {
+    this.reported = 1;
+    this.socket.emit('problemReport', { type: 0, id: this.currentMsg.msg_id });
   }
 }

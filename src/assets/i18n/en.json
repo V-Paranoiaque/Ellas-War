@@ -27,6 +27,7 @@
   
   "Against { value }": "Against {{ value }}",
   "Are you sure that you want to name { value } chief of your alliance?": "Are you sure that you want to name {{ value }} chief of your alliance?",
+  "Are you sure that you want to signal the profile of { value }?": "Are you sure that you want to signal the profile of {{ value }}?",
   "Artemis will help you to protect your city and give you { value } Amazons.": "Artemis will help you to protect your city and give you {{ value }} Amazons.",
   "Attack { value } sanctuaries": "Attack {{ value }} sanctuaries",
   "Attempted espionage from { value }": "Attempted espionage from {{ value }}",

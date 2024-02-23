@@ -98,6 +98,52 @@
   </div>
 </div>
 
+<div class="modal fade" id="MessageReport" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" translate>Report the message</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          @if (reported === 0) {
+            <span translate>
+              Are you sure that you want to signal this message?</span
+            >
+          } @else {
+            <span class="text-danger" translate
+              >The message has been reported, we will check it shortly</span
+            >
+          }
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            translate>
+            Close
+          </button>
+          @if (reported === 0) {
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="report()"
+              translate>
+              Confirm
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <main class="mb-4">
   <div class="container">
     <div class="row mt-1">
@@ -315,10 +361,18 @@
                 <app-messages-title
                   [msg]="getCurrentMsg()"></app-messages-title>
                 &nbsp;
-                <button class="btn btn-warning" (click)="shareMsg()">
+                <button class="btn btn-primary" (click)="shareMsg()">
                   <app-ic-icon [icon]="share"></app-ic-icon>
                 </button>
-                &nbsp;
+                @if (user.getPropertyNb('mstatus') > 0) {
+                  <button
+                    class="btn btn-warning text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#MessageReport"
+                    title="{{ 'Report the message' | translate }}">
+                    <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
+                  </button>
+                }
                 <button
                   class="btn btn-danger"
                   data-bs-toggle="modal"

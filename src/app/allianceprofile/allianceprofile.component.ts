@@ -8,6 +8,7 @@ import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Title, Meta } from '@angular/platform-browser';
 
+import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
 
 @Component({
@@ -35,7 +36,10 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
     defeats: 0,
     description: '',
   };
+  public reported = 0;
+
   userPlus = userPlus;
+  triangleExclamation = triangleExclamation;
 
   constructor(
     public http: HttpClient,
@@ -124,5 +128,13 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
           this.allianceProfile.alliance_name = res;
         });
     }
+  }
+
+  report() {
+    this.reported = 1;
+    this.socket.emit('problemReport', {
+      type: 2,
+      id: this.allianceProfile.alliance_id,
+    });
   }
 }

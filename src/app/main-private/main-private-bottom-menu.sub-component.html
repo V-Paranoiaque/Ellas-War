@@ -1,5 +1,56 @@
 <app-main-private-player-info-popup></app-main-private-player-info-popup>
 
+<div class="modal fade" id="ChatReport" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" translate>Report the message</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          @if (reported === 0) {
+            <span translate>
+              Are you sure that you want to signal this message?</span
+            >
+            <br />
+            <br />
+            <strong>{{ selectedMsg.username }}</strong>
+            <strong translate>:</strong>
+            {{ selectedMsg.msg }}
+          } @else {
+            <span class="text-danger" translate
+              >The message has been reported, we will check it shortly</span
+            >
+          }
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            translate>
+            Close
+          </button>
+          @if (reported === 0) {
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="report()"
+              translate>
+              Confirm
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div
   class="modal modal-bottom fade"
   id="mobile-menu"
@@ -269,6 +320,14 @@
         #chatGeneral>
         @for (msg of chat_user_msgs; track msg) {
           <div>
+            <app-ic-icon
+              [icon]="triangleExclamation"
+              class="text-warning me-1"
+              data-bs-toggle="modal"
+              data-bs-target="#ChatReport"
+              title="{{ 'Report the message' | translate }}"
+              (click)="reportPrepare(msg, 0)"
+              role="button"></app-ic-icon>
             <a
               [routerLink]="['/profile/' + msg.user_id]"
               [ngClass]="{ 'text-danger': msg.rank === 5 }"
@@ -343,6 +402,14 @@
           #chatAlliance>
           @for (msg of chat_alli_msgs; track msg) {
             <div>
+              <app-ic-icon
+                [icon]="triangleExclamation"
+                class="text-warning me-1"
+                data-bs-toggle="modal"
+                data-bs-target="#ChatReport"
+                title="{{ 'Report the message' | translate }}"
+                (click)="reportPrepare(msg, 1)"
+                role="button"></app-ic-icon>
               <a
                 [routerLink]="['/profile/' + msg.user_id]"
                 [ngClass]="{ 'text-danger fw-bold': msg.rank === 5 }"

@@ -9,6 +9,7 @@ import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
 import brushIcon from '@iconify/icons-bi/brush';
+import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userCircle from '@iconify/icons-fa6-solid/circle-user';
 import userShield from '@iconify/icons-fa6-solid/user-shield';
 
@@ -37,12 +38,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   public id = 0;
   public profile: profile;
+  public reported = 0;
 
   private subPlayer: Subscription;
   private subTitle: Subscription;
   private subDesc: Subscription;
 
   brushIcon = brushIcon;
+  triangleExclamation = triangleExclamation;
   userCircle = userCircle;
   userShield = userShield;
 
@@ -127,5 +130,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  report() {
+    this.reported = 1;
+    this.socket.emit('problemReport', { type: 1, id: this.profile.membre_id });
   }
 }
