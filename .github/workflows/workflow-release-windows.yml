@@ -40,7 +40,7 @@ jobs:
           npm install
   
       - name: Download the project
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@v1.9
         with:
           latest: true
           fileName: "mobile.zip"
@@ -95,7 +95,7 @@ jobs:
           npm install
 
       - name: Download the project
-        uses: robinraju/release-downloader@v1.8
+        uses: robinraju/release-downloader@v1.9
         with:
           latest: true
           fileName: "mobile.zip"
