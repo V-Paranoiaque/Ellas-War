@@ -43,3 +43,13 @@
 * Global improvement
 * Improve English language
 * Make the game lighter
+
+# 2.0.4
+* Minor fixes
+
+# 2.0.5
+* Button to report a message
+* Button to report a profile
+* Fix sanctuary reports
+* Reorg the level 0 and 1 quests
+* Shortcut to new private messages
