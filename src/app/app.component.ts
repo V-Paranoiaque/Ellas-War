@@ -128,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('redirect', () => {
-      this.router.navigate(['/']);
+      void this.router.navigate(['/']);
     });
 
     this.socket.on('config', (data: object) => {
@@ -138,11 +138,11 @@ export class AppComponent implements OnInit, OnDestroy {
     //oauth
     this.socket.on('connectionToken', (data: { token: string }) => {
       localStorage.removeItem('token');
-      if (data?.token) {
+      if (data.token) {
         const token = data.token;
         this.socket.emit('ewAuth', { token: token });
         localStorage.setItem('token', token);
-        this.router.navigate(['/']);
+        void this.router.navigate(['/']);
       }
     });
 
@@ -173,7 +173,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('redirect', () => {
-      this.router.navigate(['/']);
+      void this.router.navigate(['/']);
     });
   }
 
@@ -186,10 +186,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.removeListener('oauth2Server');
     this.socket.removeListener('oauth2Close');
     this.socket.removeListener('redirect');
-
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
   }
 
   public setTitle(newTitle: string) {

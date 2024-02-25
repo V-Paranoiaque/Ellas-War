@@ -54,7 +54,12 @@ export class AdminHistoryComponent implements OnInit, OnDestroy {
             username: h.username,
             type: h.admin_history_type,
             time: h.admin_history_time,
-            data: JSON.parse(h.admin_history_data),
+            data: JSON.parse(h.admin_history_data) as {
+              player_id: number;
+              player_username: string;
+              searchType: string;
+              research: string;
+            },
           });
         }
       }

@@ -98,10 +98,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     this.socket.removeListener('wallDefense');
     this.socket.removeListener('myAttacksList');
     this.socket.removeListener('powersUse');
-
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
   }
 
   furyBuy(nb: string) {
@@ -165,7 +162,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
 
       this.sub = this.http.get(url).subscribe(result => {
         const res = result as { membre_id: number };
-        if (res?.membre_id) {
+        if (res.membre_id) {
           info = {
             id: this.temple.power,
             param: res.membre_id,

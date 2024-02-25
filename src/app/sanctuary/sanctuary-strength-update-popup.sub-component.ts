@@ -32,7 +32,7 @@ export class SanctuaryStrengthUpdatePopupSubComponent {
   }
 
   canUpdate() {
-    if (this?.info?.price) {
+    if (this.info.price) {
       if (this.info.sanctuaries_power >= 125) {
         return false;
       }

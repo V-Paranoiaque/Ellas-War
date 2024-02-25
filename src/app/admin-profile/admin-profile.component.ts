@@ -260,7 +260,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
       '.json';
     this.subPlayer = this.http.get(url).subscribe((res: object) => {
       const player = res as typeof this.profile;
-      if (player?.membre_id) {
+      if (player.membre_id) {
         this.profile = player;
 
         this.subTitle = this.translate

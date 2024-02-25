@@ -13,7 +13,7 @@ import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userCircle from '@iconify/icons-fa6-solid/circle-user';
 import userShield from '@iconify/icons-fa6-solid/user-shield';
 
-type profile = {
+interface Profile {
   membre_id: number;
   username: '';
   level: number;
@@ -28,7 +28,7 @@ type profile = {
   inscription: number;
   description: string;
   membre_img: string;
-};
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 
   public id = 0;
-  public profile: profile;
+  public profile: Profile;
   public reported = 0;
 
   private subPlayer: Subscription;
@@ -106,8 +106,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.socket.emit('accountInfo');
 
     this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
-      const player = resPlayer as profile;
-      if (player?.membre_id) {
+      const player = resPlayer as Profile;
+      if (player.membre_id) {
         this.profile = player;
 
         this.subTitle = this.translate

@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
       const player = resPlayer as { membre_id: number; username: string };
-      if (player?.membre_id) {
+      if (player.membre_id) {
         this.login = player.username;
         localStorage.setItem('invite', player.membre_id.toString());
       }

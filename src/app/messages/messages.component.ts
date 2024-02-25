@@ -152,12 +152,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
     this.socket.removeListener('msgRefresh');
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-    if (this.subMsg) {
-      this.subMsg.unsubscribe();
-    }
+    this.sub.unsubscribe();
+    this.subMsg.unsubscribe();
   }
 
   addDestGUi(username: number | string) {
@@ -182,7 +178,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.sub = this.http.get(url).subscribe(result => {
       const res = result as { membre_id: number; username: string };
-      if (res?.membre_id) {
+      if (res.membre_id) {
         this.removeDest(res.membre_id);
         this.destList.push({
           id: res.membre_id,
@@ -276,7 +272,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   pageLoad(event: Event) {
-    const id = parseInt((event?.target as HTMLInputElement)?.value);
+    const id = parseInt((event.target as HTMLInputElement).value);
 
     if (id >= 1) {
       this.currentPage = id;

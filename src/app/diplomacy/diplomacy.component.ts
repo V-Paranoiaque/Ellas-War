@@ -83,7 +83,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     });
     this.socket.on('allianceNew', (data: number) => {
       if (data === 1) {
-        this.router.navigate(['/alliance']);
+        void this.router.navigate(['/alliance']);
       }
     });
     this.socket.on('alliancePactAsk', () => {
@@ -104,10 +104,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.removeListener('alliancePactAsk');
     this.socket.removeListener('allianceRankingRefresh');
     this.socket.removeListener('allianceWait');
-
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
   }
 
   allianceListOrder(order: string) {
@@ -123,9 +120,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     const url = this.socket.url + '/api/allianceProfile/' + id + '.json';
 
     this.sub = this.http.get(url).subscribe(res => {
-      if (res) {
-        this.allianceProfile = res as typeof this.allianceProfile;
-      }
+      this.allianceProfile = res as typeof this.allianceProfile;
     });
   }
 

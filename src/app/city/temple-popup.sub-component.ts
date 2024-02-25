@@ -8,7 +8,7 @@ import { UserComponent as User } from '../../services/user.service';
   templateUrl: './temple-popup.sub-component.html',
 })
 export class TemplePopupSubComponent {
-  public temple: number = 0;
+  public temple = 0;
   public price: { resource: string; quantity: number }[] = [];
 
   constructor(

@@ -37,7 +37,7 @@ export class MainPublicTopMenuSubComponent implements OnInit {
   }
 
   onSubmit(data: object) {
-    this.router.navigateByUrl('login');
+    void this.router.navigateByUrl('login');
     const info = data as { username: string; password: string };
     this.socket.emit('connection', {
       username: info.username,

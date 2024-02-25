@@ -126,11 +126,11 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
     }
 
     if (this.rankingOrder && this.rankingOrder != 'level') {
-      this.router.navigate([
+      void this.router.navigate([
         '/rankingalliances/' + page + '/' + this.rankingOrder,
       ]);
     } else {
-      this.router.navigate(['/rankingalliances/' + page]);
+      void this.router.navigate(['/rankingalliances/' + page]);
     }
   }
 }

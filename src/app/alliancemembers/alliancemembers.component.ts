@@ -102,7 +102,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
 
     this.subProfile = this.http.get(url).subscribe(alli => {
       const profile = alli as typeof this.allianceProfile;
-      if (profile?.alliance_id) {
+      if (profile.alliance_id) {
         this.allianceProfile = profile;
 
         this.subTitle = this.translate

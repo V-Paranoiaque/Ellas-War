@@ -66,7 +66,7 @@ export class OptionsSponsoringInformationPopupSubComponent
       this.socket.url + '/api/playerProfile/' + id.toString() + '.json';
     this.subPlayer = this.http.get(url).subscribe((res: object) => {
       const player = res as { membre_id: number; username: string };
-      if (player?.membre_id) {
+      if (player.membre_id) {
         this.sponsorUsername = player.username;
       }
     });

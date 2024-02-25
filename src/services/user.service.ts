@@ -229,9 +229,11 @@ export class UserComponent {
 
   reload() {
     const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
+    void this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => {
+        void this.router.navigate([currentUrl]);
+      });
   }
 
   buildTemple1Allowed() {
@@ -275,7 +277,7 @@ export class UserComponent {
       return;
     }
     if (!status.includes(this.getPropertyNb('mstatus'))) {
-      this.router.navigate(['/']);
+      void this.router.navigate(['/']);
     }
   }
 
@@ -352,7 +354,7 @@ export class UserComponent {
     const datas = this.getProperty('datas') as { ress_lvl: object };
 
     if (
-      datas?.ress_lvl &&
+      datas.ress_lvl &&
       this.getPropertyNb('level') >=
         datas.ress_lvl[ress as keyof typeof datas.ress_lvl]
     ) {
@@ -373,7 +375,7 @@ export class UserComponent {
     this.setProperty('id', 0);
     this.setProperty('mstatus', 0);
 
-    this.router.navigate(['/']);
+    void this.router.navigate(['/']);
   }
 
   getExtra() {
@@ -386,7 +388,7 @@ export class UserComponent {
   getLevelRess(ress: string) {
     const datas = this.getProperty('datas') as { ress_lvl: object };
 
-    if (datas?.ress_lvl[ress as keyof typeof datas.ress_lvl]) {
+    if (datas.ress_lvl[ress as keyof typeof datas.ress_lvl]) {
       return datas.ress_lvl[ress as keyof typeof datas.ress_lvl];
     } else {
       return 0;
@@ -460,7 +462,7 @@ export class UserComponent {
           });
         },
         (msg: Error) => {
-          alert('error: ' + msg);
+          alert('error: ' + msg.toString());
         }
       );
     } else {
@@ -476,7 +478,7 @@ export class UserComponent {
       war: { minmembers: number };
     };
 
-    if (datas?.alliance) {
+    if (datas.alliance) {
       return datas;
     }
     return {

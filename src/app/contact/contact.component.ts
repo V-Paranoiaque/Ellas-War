@@ -35,7 +35,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //Redirect to the support page if connected
     if (this.user.getInit() == 1 && this.user.getPropertyNb('id') > 0) {
-      this.router.navigate(['/support']);
+      void this.router.navigate(['/support']);
     }
 
     this.sub = this.translate

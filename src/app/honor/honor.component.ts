@@ -10,21 +10,21 @@ import { UserComponent as User } from '../../services/user.service';
 import crown from '@iconify/icons-fa6-solid/crown';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
-type honorLine = {
+interface HonorLine {
   membre_id: number;
   username: string;
   field: number;
   xp: number;
   victory: number;
   honor: number;
-};
+}
 
 @Component({
   templateUrl: './honor.component.html',
 })
 export class HonorComponent implements OnInit, OnDestroy {
   public id = 0;
-  public list: honorLine[];
+  public list: HonorLine[];
   public levels: number[];
 
   private subRank: Subscription;
@@ -42,7 +42,7 @@ export class HonorComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private titleService: Title
   ) {
-    this.levels = Array(10);
+    this.levels = Array(10) as typeof this.levels;
     this.subRank = new Subscription();
     this.subTitle = new Subscription();
     this.list = [];

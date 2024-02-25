@@ -18,6 +18,6 @@ export class AllianceDissolvePopupSubComponent {
 
   myAllianceDissolve() {
     this.socket.emit('myAllianceDissolve');
-    this.router.navigate(['/diplomacy']);
+    void this.router.navigate(['/diplomacy']);
   }
 }

@@ -8,13 +8,13 @@ import { UserComponent as User } from '../../services/user.service';
 import brushIcon from '@iconify/icons-bi/brush';
 import trash2Icon from '@iconify/icons-bi/trash2';
 
-export type newsType = {
+export interface NewsType {
   news_id: number;
   title: string;
   link: string;
   author: string;
   news_date: number;
-};
+}
 
 @Component({
   selector: 'app-admin-news',
@@ -22,10 +22,10 @@ export type newsType = {
   styleUrls: ['../admin/admin.component.css'],
 })
 export class AdminNewsComponent implements OnInit, OnDestroy {
-  public adminNewsList: newsType[];
+  public adminNewsList: NewsType[];
   public adminNewsMax: number;
   public adminNewsPage: number;
-  public newsSelected: newsType;
+  public newsSelected: NewsType;
 
   Tools = Tools;
   parseInt = parseInt;
@@ -69,7 +69,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminNewsList',
       (msg: { list: object[]; cPage: number; max: number }) => {
-        this.adminNewsList = msg.list as newsType[];
+        this.adminNewsList = msg.list as NewsType[];
         this.adminNewsPage = msg.cPage;
         this.adminNewsMax = msg.max;
       }
@@ -93,7 +93,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   }
 
   setNews(info: object) {
-    this.newsSelected = { ...(info as newsType) };
+    this.newsSelected = { ...(info as NewsType) };
   }
 
   newsDelete() {
@@ -138,6 +138,6 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
       page = this.adminNewsMax;
     }
 
-    this.router.navigate(['/admin/support/' + page]);
+    void this.router.navigate(['/admin/support/' + page]);
   }
 }

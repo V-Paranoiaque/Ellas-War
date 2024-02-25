@@ -94,7 +94,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('contactNew', (data: number) => {
-      this.router.navigate(['/support/1/' + data]);
+      void this.router.navigate(['/support/1/' + data]);
     });
 
     this.socket.on('contactInfo', data => {
@@ -133,7 +133,7 @@ export class SupportComponent implements OnInit, OnDestroy {
 
       const element: HTMLElement = document.getElementById(
         'SupportNewTopicClose'
-      ) as HTMLElement;
+      )!;
       element.click();
 
       this.contactNewTitle = '';
@@ -156,6 +156,6 @@ export class SupportComponent implements OnInit, OnDestroy {
       page = this.contactNb;
     }
 
-    this.router.navigate(['/support/' + page]);
+    void this.router.navigate(['/support/' + page]);
   }
 }

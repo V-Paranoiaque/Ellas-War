@@ -41,9 +41,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
 
     const elements = document.getElementsByClassName('modal');
     while (elements.length > 0) {

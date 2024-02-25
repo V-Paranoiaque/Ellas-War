@@ -618,7 +618,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
 
   getAttackWarsList() {
-    if (this?.attackWarsListInfo?.list) {
+    if (this.attackWarsListInfo.list) {
       return this.attackWarsListInfo.list;
     } else {
       return [];
@@ -701,11 +701,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
   }
 
   pageAttacksLoad(event: Event) {
-    const id = (event?.target as HTMLInputElement)?.value;
+    const id = (event.target as HTMLInputElement).value;
     this.setAttacksPage(parseInt(id));
   }
   pageAttacksWarsLoad(event: Event) {
-    const id = (event?.target as HTMLInputElement)?.value;
+    const id = (event.target as HTMLInputElement).value;
     this.setAttacksWarsPage(parseInt(id));
   }
 

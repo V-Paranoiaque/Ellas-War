@@ -145,9 +145,7 @@ export class CityComponent implements OnInit, OnDestroy {
       this.user.getPropertyNb('quest') === 1
     ) {
       setTimeout(() => {
-        const element: HTMLElement = document.getElementById(
-          'FirstInfoOpen'
-        ) as HTMLElement;
+        const element: HTMLElement = document.getElementById('FirstInfoOpen')!;
         if (element) {
           element.click();
         }
@@ -187,9 +185,7 @@ export class CityComponent implements OnInit, OnDestroy {
         this.dailyCo.basket = 0;
       }
 
-      const element: HTMLElement = document.getElementById(
-        'DailyCoCheckOpen'
-      ) as HTMLElement;
+      const element: HTMLElement = document.getElementById('DailyCoCheckOpen')!;
       if (element) {
         element.click();
       }

@@ -124,7 +124,7 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   }
 
   onSubmitConnect(data: object) {
-    this.router.navigateByUrl('login');
+    void this.router.navigateByUrl('login');
     const info = data as { username: string; password: string };
     this.socket.emit('connection', {
       username: info.username,

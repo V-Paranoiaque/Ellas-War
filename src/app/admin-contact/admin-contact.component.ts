@@ -7,14 +7,14 @@ import { UserComponent as User } from '../../services/user.service';
 
 import angellistIcon from '@iconify-icons/fa6-brands/angellist';
 
-type contactList = {
+interface ContactList {
   id: number;
   name: string;
   email: string;
   text: string;
   send_date: number;
   resolve: number;
-};
+}
 
 @Component({
   selector: 'app-admin-contact',
@@ -22,7 +22,7 @@ type contactList = {
   styleUrls: ['../admin/admin.component.css'],
 })
 export class AdminContactComponent implements OnInit, OnDestroy {
-  public adminContactList: contactList[];
+  public adminContactList: ContactList[];
   public adminContactMax: number;
   public adminContactPage: number;
 
@@ -60,7 +60,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminContactList',
       (msg: { list: object[]; cPage: number; max: number }) => {
-        this.adminContactList = msg.list as contactList[];
+        this.adminContactList = msg.list as ContactList[];
         this.adminContactPage = msg.cPage;
         this.adminContactMax = msg.max;
       }
@@ -80,7 +80,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
       page = this.adminContactMax;
     }
 
-    this.router.navigate(['/admin/contact/' + page]);
+    void this.router.navigate(['/admin/contact/' + page]);
   }
 
   adminContactResolve(id: number) {

@@ -37,7 +37,7 @@ export class MessagesPopupSubComponent
     this.user.checkPermissions([0, 1, 2, 3, 4, 5]);
 
     this.subLoad = this.route.paramMap.subscribe(params => {
-      const id = parseInt(params.get('id') as string) ?? 0;
+      const id = parseInt(params.get('id')!) ?? 0;
       this.reinitDest();
       if (id) {
         this.addDestGUi(id);

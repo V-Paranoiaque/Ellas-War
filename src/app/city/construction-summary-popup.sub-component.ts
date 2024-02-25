@@ -58,7 +58,7 @@ export class ConstructionSummaryPopupSubComponent {
 
   getTempleField() {
     const data = this.user.getDatas();
-    if (data?.temples) {
+    if (data.temples) {
       return data.temples;
     } else {
       return {

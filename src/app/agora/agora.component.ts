@@ -129,21 +129,22 @@ export class AgoraComponent implements OnInit, OnDestroy {
   getLimit(res: string) {
     const resList = this.user.getDatas().trade;
 
-    return (
-      (resList?.[res as keyof typeof resList] as {
+    if (typeof resList === 'object' && Object.hasOwn(resList, res)) {
+      return resList[res as keyof typeof resList] as {
         minrate: number;
         maxrate: number;
         limit: number;
         limit_flash: number;
         type: number;
-      }) ?? {
-        minrate: 0,
-        maxrate: 0,
-        limit: 0,
-        limit_flash: 0,
-        type: 0,
-      }
-    );
+      };
+    }
+    return {
+      minrate: 0,
+      maxrate: 0,
+      limit: 0,
+      limit_flash: 0,
+      type: 0,
+    };
   }
 
   selectBatch(batch: object) {

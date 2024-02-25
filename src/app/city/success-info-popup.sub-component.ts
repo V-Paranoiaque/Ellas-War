@@ -78,7 +78,7 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
 
     const hfNextLength = this.hfNext.length;
     for (let i = 0; i < hfNextLength; i++) {
-      if (this.hfNext?.[i]?.id) {
+      if (this.hfNext[i]?.id) {
         this.listDisplay[this.hfNext[i].id] = 1;
       }
     }

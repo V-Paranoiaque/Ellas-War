@@ -55,9 +55,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('adminStats');
-
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
   }
 }

@@ -58,7 +58,7 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
 
     if (
       !this.myAllianceProfile ||
-      this.myAllianceProfile['stock_drachma'] < 250000
+      this.myAllianceProfile.stock_drachma < 250000
     ) {
       return false;
     }

@@ -18,6 +18,6 @@ export class AllianceLeavePopupSubComponent {
 
   allianceLeave() {
     this.socket.emit('myAllianceLeave');
-    this.router.navigate(['/diplomacy']);
+    void this.router.navigate(['/diplomacy']);
   }
 }

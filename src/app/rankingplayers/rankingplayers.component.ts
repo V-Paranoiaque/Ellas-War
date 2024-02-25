@@ -11,7 +11,7 @@ import { UserComponent as User } from '../../services/user.service';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 import sortUP from '@iconify/icons-fa6-solid/sort-up';
 
-type rankingLine = {
+interface RankingLine {
   membre_id: number;
   ranking: number;
   level: number;
@@ -20,14 +20,14 @@ type rankingLine = {
   victory: number;
   field: number;
   honor: number;
-};
+}
 
 @Component({
   selector: 'app-rankingplayers',
   templateUrl: './rankingplayers.component.html',
 })
 export class RankingplayersComponent implements OnInit, OnDestroy {
-  public rankingList: rankingLine[];
+  public rankingList: RankingLine[];
   public rankingMax: number;
   public rankingOrder: string;
   public rankingPage: number;
@@ -98,7 +98,7 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
       const result = res as {
         cPage: number;
         max: number;
-        ranking: rankingLine[];
+        ranking: RankingLine[];
         order: string;
       };
       this.rankingPage = result.cPage;
@@ -123,11 +123,11 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
     }
 
     if (this.rankingOrder && this.rankingOrder != 'level') {
-      this.router.navigate([
+      void this.router.navigate([
         '/rankingplayers/' + page + '/' + this.rankingOrder,
       ]);
     } else {
-      this.router.navigate(['/rankingplayers/' + page]);
+      void this.router.navigate(['/rankingplayers/' + page]);
     }
   }
 }

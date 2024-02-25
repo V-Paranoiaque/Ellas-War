@@ -64,7 +64,7 @@ export class OptionsAccountInformationPopupSubComponent
   }
 
   uploadImage(event: Event) {
-    const files = (event?.target as HTMLInputElement)?.files;
+    const files = (event.target as HTMLInputElement).files;
     if (files?.[0]) {
       const reader = new FileReader();
       const name = files[0].name;

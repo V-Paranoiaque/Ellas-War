@@ -196,7 +196,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
     return 1;
   }
   setQuarryBalance(event: Event) {
-    const value = parseInt((event?.target as HTMLInputElement)?.value);
+    const value = parseInt((event.target as HTMLInputElement).value);
     this.socket.emit('quarryBalance', value);
   }
 }

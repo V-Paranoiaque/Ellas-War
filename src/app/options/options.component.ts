@@ -102,7 +102,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
       this.translate.use(language);
     });
     this.socket.on('reset', () => {
-      this.router.navigate(['']);
+      void this.router.navigate(['']);
     });
     this.socket.on('soundModify', (sound: number) => {
       this.sound = sound;
@@ -183,12 +183,12 @@ export class OptionsComponent implements OnInit, OnDestroy {
   }
 
   styleChange(event: Event) {
-    const style = (event?.target as HTMLInputElement)?.value;
+    const style = (event.target as HTMLInputElement).value;
     this.socket.emit('styleModify', style);
   }
 
   languageChange(event: Event) {
-    const language = (event?.target as HTMLInputElement)?.value;
+    const language = (event.target as HTMLInputElement).value;
     this.socket.emit('languageModify', language);
   }
 }

@@ -42,7 +42,7 @@ export class DiplomacyPactAskPopupSubComponent implements OnInit, OnDestroy {
 
     if (
       !this.myAllianceProfile ||
-      this.myAllianceProfile['stock_drachma'] < 750000
+      this.myAllianceProfile.stock_drachma < 750000
     ) {
       return false;
     }

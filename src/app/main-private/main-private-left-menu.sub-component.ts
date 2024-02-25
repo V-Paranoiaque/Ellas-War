@@ -9,9 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-private.component.css'],
 })
 export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
-  private favicon: HTMLLinkElement = document.querySelector(
-    '#favicon'
-  ) as HTMLLinkElement;
+  private favicon: HTMLLinkElement = document.querySelector('#favicon')!;
   private audio: HTMLAudioElement;
 
   constructor(

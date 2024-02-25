@@ -48,13 +48,13 @@ export class AdminEmailsComponent implements OnInit, OnDestroy {
     this.socket.removeListener('adminEmailModification');
   }
 
-  getPage(id: number, inc: number = 0) {
+  getPage(id: number, inc = 0) {
     id += inc;
     this.socket.emit('adminEmailModification', id);
   }
 
   pageLoad(event: Event) {
-    const page = (event?.target as HTMLInputElement)?.value;
+    const page = (event.target as HTMLInputElement).value;
     this.getPage(parseInt(page));
   }
 }

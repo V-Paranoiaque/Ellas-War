@@ -48,7 +48,7 @@ export class AttacksMessageSubComponent {
       const datas = this.user.getProperty('datas') as { building: object };
       for (const code in this.info.lost_build) {
         if (
-          !datas?.building[code as keyof typeof datas.building] ||
+          !datas.building[code as keyof typeof datas.building] ||
           this.info.lost_build[code as keyof object] === 0
         ) {
           continue;
@@ -164,7 +164,7 @@ export class AttacksMessageSubComponent {
 
     if (this.info.ress_def) {
       for (const code in this.info.ress_def) {
-        if (this.info.ress_def[code as keyof object]! > 0) {
+        if (this.info.ress_def[code as keyof object] > 0) {
           list.push({
             res_id: code,
             quantity: this.info.ress_def[code as keyof object],

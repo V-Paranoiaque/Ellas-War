@@ -18,7 +18,7 @@ export class BlockedComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([3]);
 
     this.socket.on('reset', () => {
-      this.router.navigate(['/']);
+      void this.router.navigate(['/']);
     });
   }
 
