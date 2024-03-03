@@ -333,7 +333,11 @@
             @if (info.code === 'quarry' && user.getPropertyNb('level') >= 10) {
               <div class="mt-4">
                 <label for="stoneMarble" class="form-label fw-bold"
-                  >Balance between stone and marble: {{ range }}</label
+                  >
+                  <span translate>
+                    Balance between stone and marble:
+                  </span>
+                  {{ range }}%</label
                 >
                 <input
                   type="range"
@@ -343,6 +347,18 @@
                   max="100"
                   [(ngModel)]="range"
                   (click)="setQuarryBalance($event)" />
+              </div>
+              <div class="row">
+                <div class="col-6 text-start">
+                  <app-ew-icon
+                    name="stone"
+                    class="small-resource"></app-ew-icon>
+                </div>
+                <div class="col-6 text-end">
+                  <app-ew-icon
+                    name="marble"
+                    class="small-resource"></app-ew-icon>
+                </div>
               </div>
             }
           </div>

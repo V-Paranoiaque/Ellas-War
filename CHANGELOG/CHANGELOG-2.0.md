@@ -53,3 +53,7 @@
 * Fix sanctuary reports
 * Reorg the level 0 and 1 quests
 * Shortcut to new private messages
+
+# 2.0.6
+* Fix translations
+* Improve quarry popup
