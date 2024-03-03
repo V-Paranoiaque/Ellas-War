@@ -108,9 +108,10 @@
         @if (sponsorList.length > 0) {
           <div class="text-center">
             <br />
-            <a [routerLink]="['/sponsorship']" data-bs-dismiss="modal" translate
-              >Players that you have sponsored</a
-            >
+            <a [routerLink]="['/sponsorship']" data-bs-dismiss="modal">
+              <app-ic-icon [icon]="link" class="me-1"></app-ic-icon>
+              <span translate>Players that you have sponsored</span>
+            </a>
           </div>
         }
       </div>

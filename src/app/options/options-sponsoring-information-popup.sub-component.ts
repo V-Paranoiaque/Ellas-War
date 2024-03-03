@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import clipboardCheck from '@iconify/icons-fa6-solid/clipboard-check';
+import link from '@iconify/icons-fa6-solid/link';
 
 @Component({
   selector: 'app-options-sponsoring-information-popup',
@@ -24,6 +25,7 @@ export class OptionsSponsoringInformationPopupSubComponent
 
   //Icons
   clipboardCheck = clipboardCheck;
+  link = link;
 
   constructor(
     private http: HttpClient,
