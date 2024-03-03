@@ -332,13 +332,10 @@
 
             @if (info.code === 'quarry' && user.getPropertyNb('level') >= 10) {
               <div class="mt-4">
-                <label for="stoneMarble" class="form-label fw-bold"
-                  >
-                  <span translate>
-                    Balance between stone and marble:
-                  </span>
-                  {{ range }}%</label
-                >
+                <label for="stoneMarble" class="form-label fw-bold">
+                  <span translate> Balance between stone and marble: </span>
+                  {{ range }}%
+                </label>
                 <input
                   type="range"
                   class="form-range"
