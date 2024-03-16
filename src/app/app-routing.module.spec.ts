@@ -14,12 +14,12 @@ describe('The App Routing', () => {
       imports: [AppModule, RouterTestingModule.withRoutes(routes)],
     });
 
-    router = TestBed.get(Router) as Router;
-    location = TestBed.get(Location) as Location;
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
   });
 
   it('Test /', fakeAsync(() => {
-    router.navigate(['']);
+    void router.navigate(['']);
     tick();
     expect(location.path()).toBe('/');
   }));

@@ -65,13 +65,8 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
     this.socket.removeListener('allianceMembersRefresh');
     this.subMembers.unsubscribe();
     this.subProfile.unsubscribe();
-
-    if (this.subTitle) {
-      this.subTitle.unsubscribe();
-    }
-    if (this.subDesc) {
-      this.subDesc.unsubscribe();
-    }
+    this.subTitle.unsubscribe();
+    this.subDesc.unsubscribe();
   }
 
   getMembers() {
@@ -79,18 +74,16 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
     const url = this.socket.url + '/api/allianceMembers/' + id + '.json';
 
     this.subMembers = this.http.get(url).subscribe(res => {
-      if (res) {
-        this.allianceMembers = res as typeof this.allianceMembers;
-        this.legend = {
-          paused: 0,
-          blocked: 0,
-        };
-        for (const p of this.allianceMembers) {
-          if (p.membre_status === 3 || p.membre_status === 5) {
-            this.legend.blocked = 1;
-          } else if (p.membre_status === 4) {
-            this.legend.paused = 1;
-          }
+      this.allianceMembers = res as typeof this.allianceMembers;
+      this.legend = {
+        paused: 0,
+        blocked: 0,
+      };
+      for (const p of this.allianceMembers) {
+        if (p.membre_status === 3 || p.membre_status === 5) {
+          this.legend.blocked = 1;
+        } else if (p.membre_status === 4) {
+          this.legend.paused = 1;
         }
       }
     });

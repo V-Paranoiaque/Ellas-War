@@ -71,16 +71,10 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('allianceMembersRefresh');
-
-    if (this.subMembers) {
-      this.subMembers.unsubscribe();
-    }
-
-    if (this.subProfile1) {
-      this.subProfile1.unsubscribe();
-      this.subProfile2.unsubscribe();
-      this.subDesc.unsubscribe();
-    }
+    this.subMembers.unsubscribe();
+    this.subProfile1.unsubscribe();
+    this.subProfile2.unsubscribe();
+    this.subDesc.unsubscribe();
   }
 
   getProfile() {

@@ -239,8 +239,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     const unit = event.item.element.nativeElement.id.split('-')[0];
     let nb = this.user.getPropertyNb(unit);
 
-    if (this.waveAttackUnit.get(unit)!) {
-      nb -= this.waveAttackUnit.get(unit)!;
+    if (this.waveAttackUnit.get(unit)) {
+      nb -= this.waveAttackUnit.get(unit) ?? 0;
     }
 
     if (wavePrevious === waveNew) {
@@ -289,7 +289,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     let nb = this.user.getPropertyNb(unit);
 
     if (this.waveDefenseUnit.get(unit)) {
-      nb -= this.waveDefenseUnit.get(unit)!;
+      nb -= this.waveDefenseUnit.get(unit) ?? 0;
     }
 
     if (wavePrevious === waveNew) {

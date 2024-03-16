@@ -236,15 +236,12 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.removeListener('waveAttackList');
     this.socket.removeListener('waveDefenseList');
     this.socket.removeListener('waveRefresh');
-
-    if (this.subTitle) {
-      this.subTitle.unsubscribe();
-    }
+    this.subTitle.unsubscribe();
   }
 
   armyDisplay(paramInfo: object) {
     const info = paramInfo as {
-      temple: string[];
+      temple?: string[];
       code: string;
       power: string;
       power_level: number;
@@ -411,7 +408,7 @@ export class CityComponent implements OnInit, OnDestroy {
     this.socket.emit('freeUnits', name);
 
     for (const [res, nb] of Object.entries(this.armyInfo.cost)) {
-      this.armyInfo.resaler.set(res, parseFloat(nb) * 0.6);
+      this.armyInfo.resaler.set(res, parseFloat(nb as string) * 0.6);
     }
   }
   selectBuilding(name: string) {
@@ -429,7 +426,7 @@ export class CityComponent implements OnInit, OnDestroy {
 
     this.socket.emit('buildPossible', name);
     for (const [res, nb] of Object.entries(this.buildingInfo.cost)) {
-      this.buildingInfo.destruct.set(res, parseFloat(nb) * 0.6);
+      this.buildingInfo.destruct.set(res, parseFloat(nb as string) * 0.6);
     }
   }
   selectDivinBonus(bonus: object) {

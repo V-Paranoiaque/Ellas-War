@@ -246,10 +246,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     this.socket.removeListener('adminProfileNotes');
 
     this.subPlayer.unsubscribe();
-
-    if (this.subTitle) {
-      this.subTitle.unsubscribe();
-    }
+    this.subTitle.unsubscribe();
   }
 
   getProfile() {
