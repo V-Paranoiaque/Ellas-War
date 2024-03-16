@@ -20,7 +20,7 @@ export const environment = {
   },
   language: {
     default: 'en',
-    allowed: ['en', 'fr'],
+    allowed: ['en', 'fr', 'tlh'],
   },
   SERVER_DEV: 'https://dev.ellaswar.com',
   facebook: {

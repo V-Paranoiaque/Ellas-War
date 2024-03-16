@@ -72,6 +72,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     let language: string;
     registerLocaleData(localeFr, 'fr');
+    registerLocaleData(localeFr, 'tlh');
 
     this.socket.setupSocketConnection(this.socket.detectServer());
 

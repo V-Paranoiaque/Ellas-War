@@ -179,6 +179,18 @@ images:
 	cwebp $(FLAGS) ./assets/i18n/en/screenshot/mobile/temples.png -o ./src/assets/i18n/en/screenshot/mobile/temples.webp
 	cwebp $(FLAGS) ./assets/i18n/en/screenshot/mobile/treasure.png -o ./src/assets/i18n/en/screenshot/mobile/treasure.webp
 
+	# Screenshots mobile en
+	mkdir -p ./src/assets/i18n/tlh/screenshot/mobile/
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/agora.png -o ./src/assets/i18n/tlh/screenshot/mobile/agora.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/army.png -o ./src/assets/i18n/tlh/screenshot/mobile/army.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/attack.png -o ./src/assets/i18n/tlh/screenshot/mobile/attack.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/buildings.png -o ./src/assets/i18n/tlh/screenshot/mobile/buildings.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/city.png -o ./src/assets/i18n/tlh/screenshot/mobile/city.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/defense.png -o ./src/assets/i18n/tlh/screenshot/mobile/defense.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/recruitment.png -o ./src/assets/i18n/tlh/screenshot/mobile/recruitment.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/temples.png -o ./src/assets/i18n/tlh/screenshot/mobile/temples.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/mobile/treasure.png -o ./src/assets/i18n/tlh/screenshot/mobile/treasure.webp
+	
 	# Screenshots mobile fr
 	mkdir -p ./src/assets/i18n/fr/screenshot/mobile/
 	cwebp $(FLAGS) ./assets/i18n/fr/screenshot/mobile/agora.png -o ./src/assets/i18n/fr/screenshot/mobile/agora.webp
@@ -214,6 +226,18 @@ images:
 	cwebp $(FLAGS) ./assets/i18n/fr/screenshot/web/recruitment.png -o ./src/assets/i18n/fr/screenshot/web/recruitment.webp
 	cwebp $(FLAGS) ./assets/i18n/fr/screenshot/web/temples.png -o ./src/assets/i18n/fr/screenshot/web/temples.webp
 	cwebp $(FLAGS) ./assets/i18n/fr/screenshot/web/treasure.png -o ./src/assets/i18n/fr/screenshot/web/treasure.webp
+
+	# Screenshots web tlh
+	mkdir -p ./src/assets/i18n/tlh/screenshot/web/
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/agora.png -o ./src/assets/i18n/tlh/screenshot/web/agora.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/army.png -o ./src/assets/i18n/tlh/screenshot/web/army.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/attack.png -o ./src/assets/i18n/tlh/screenshot/web/attack.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/buildings.png -o ./src/assets/i18n/tlh/screenshot/web/buildings.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/city.png -o ./src/assets/i18n/tlh/screenshot/web/city.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/defense.png -o ./src/assets/i18n/tlh/screenshot/web/defense.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/recruitment.png -o ./src/assets/i18n/tlh/screenshot/web/recruitment.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/temples.png -o ./src/assets/i18n/tlh/screenshot/web/temples.webp
+	cwebp $(FLAGS) ./assets/i18n/tlh/screenshot/web/treasure.png -o ./src/assets/i18n/tlh/screenshot/web/treasure.webp
 
 project:
 	npm run build
