@@ -57,3 +57,4 @@
 # 2.0.6
 * Fix translations
 * Improve quarry popup
+* Improve sponsorship popup
