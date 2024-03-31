@@ -58,3 +58,7 @@
 * Fix translations
 * Improve quarry popup
 * Improve sponsorship popup
+
+# 2.0.7
+* Add the Klingon language
+* Fix alliance ranking on mobile
