@@ -46,12 +46,21 @@
             user.getPropertyNb('dionysus') > 0 ||
             user.getPropertyNb('hephaestus') > 0
           ) {
-            <li translate>200 units of your third temple</li>
+            <li>
+              <span translate>200 units of your third temple</span>
+              <span class="text-danger">*</span>
+            </li>
           }
-          <li translate>
-            6 hours of withdrawal without taxes in your treasure
+          <li>
+            <span translate>
+              6 hours of withdrawal without taxes in your treasure
+            </span>
+            <span class="text-danger">*</span>
           </li>
-          <li translate>10 bonus attacks</li>
+          <li>
+            <span translate>10 bonus attacks</span>
+            <span class="text-danger">*</span>
+          </li>
           @if (
             user.getPropertyNb('level') >= user.getDatas().ress_lvl.ambrosia
           ) {
@@ -79,6 +88,12 @@
         <div translate>
           You get a new quest every hour and you can store a maximum of 10
           quests.
+        </div>
+        <div>
+          <span class="text-danger">*</span>
+          <span translate>
+            The following rewards are granted as divine bonuses
+          </span>
         </div>
       </div>
       <div class="modal-footer">
