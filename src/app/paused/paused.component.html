@@ -4,10 +4,10 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="card">
-          <div clas="card-body">
+        <div class="card mb-2">
+          <div class="card-body">
             <div class="row mt-2 mb-2">
-              <div class="col-12">
+              <div class="col-12 mb-2">
                 <h2 class="text-center" translate>
                   Your account is currently paused
                 </h2>
@@ -28,16 +28,21 @@
                   }}
                 </div>
               </div>
-              <div
-                class="col-6 text-center"
-                [ngClass]="{
-                  'offset-3':
-                    user.getPropertyNb('freereturn') > 0 ||
-                    user.getPropertyNb('favor') > 0
-                }">
+              <div class="col-6 text-center d-grid">
+                <div
+                  class="btn btn-danger p-2"
+                  (click)="user.disconnect()"
+                  role="button"
+                  (keyup.enter)="user.disconnect()"
+                  tabindex="0"
+                  translate>
+                  Disconnect
+                </div>
+              </div>
+              <div class="col-6 text-center d-grid">
                 @if (user.getPropertyNb('freereturn') === 1) {
                   <div
-                    class="card-button card-button-primary"
+                    class="btn btn-primary p-2"
                     (click)="pauseReturn()"
                     role="button"
                     (keyup.enter)="pauseReturn()"
@@ -45,13 +50,9 @@
                     translate>
                     Return to the game
                   </div>
-                }
-                @if (
-                  user.getPropertyNb('freereturn') === 0 &&
-                  user.getPropertyNb('favor') > 0
-                ) {
+                } @else if (user.getPropertyNb('favor') > 0) {
                   <div
-                    class="card-button card-button-primary"
+                    class="btn btn-primary p-2"
                     (click)="pauseReturn()"
                     role="button"
                     (keyup.enter)="pauseReturn()"
@@ -59,22 +60,16 @@
                     translate>
                     Return to the game
                   </div>
-                }
-              </div>
-              @if (
-                user.getPropertyNb('freereturn') === 0 &&
-                user.getPropertyNb('favor') === 0
-              ) {
-                <div class="col-6 text-center">
+                } @else {
                   <div
-                    class="card-button card-button-primary no-android no-ios no-electron"
+                    class="btn btn-primary no-android no-ios no-electron p-2"
                     [routerLink]="['/getfavors']"
                     role="button"
                     translate>
                     Get a favor and return to the game
                   </div>
-                </div>
-              }
+                }
+              </div>
             </div>
           </div>
         </div>

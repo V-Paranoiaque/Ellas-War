@@ -101,6 +101,13 @@ export class OptionsComponent implements OnInit, OnDestroy {
     this.socket.on('languageModify', (language: string) => {
       this.translate.use(language);
     });
+    this.socket.on('pause', (data: number) => {
+      if (data === 1) {
+        setTimeout(() => {
+          void this.router.navigate(['/']);
+        }, 500);
+      }
+    });
     this.socket.on('reset', () => {
       void this.router.navigate(['']);
     });
@@ -116,6 +123,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.socket.removeListener('accountRenameCost');
     this.socket.removeListener('accountRename');
+    this.socket.removeListener('pause');
     this.socket.removeListener('pauseAllowed');
     this.socket.removeListener('accountPassword');
     this.socket.removeListener('accountPasswordPossible');

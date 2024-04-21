@@ -147,6 +147,14 @@
                 </form>
               </div>
             </div>
+
+            @if (user.getPropertyNb('mstatus') !== 1) {
+              <div class="text-center mt-2">
+                <a [routerLink]="['/']" class="btn btn-primary" translate
+                  >Back</a
+                >
+              </div>
+            }
           </div>
         </div>
       </div>

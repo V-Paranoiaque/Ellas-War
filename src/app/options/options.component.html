@@ -110,7 +110,11 @@
             [attr.max]="100"
             class="form-control"
             [(ngModel)]="pauseNb" />
-          <button class="btn btn-warning" (click)="accountPause()" translate>
+          <button
+            class="btn btn-warning mt-1"
+            (click)="accountPause()"
+            data-bs-dismiss="modal"
+            translate>
             Put your account in pause
           </button>
         </div>
@@ -613,6 +617,17 @@
                 <div class="flex-grow-1" translate>Reset your account</div>
               </div>
             </div>
+          </div>
+
+          <div class="card-body text-center">
+            <a
+              href="/"
+              [routerLink]="['/']"
+              class="btn btn-primary mt-4"
+              aria-current="true"
+              translate
+              >Back
+            </a>
           </div>
         </div>
       </div>
