@@ -62,3 +62,6 @@
 # 2.0.7
 * Add the Klingon language
 * Fix alliance ranking on mobile
+
+# 2.0.8
+* Improve the popup to signal messages

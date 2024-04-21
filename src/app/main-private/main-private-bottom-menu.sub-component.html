@@ -5,7 +5,9 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" translate>Report the message</h5>
+          <h5 class="modal-title" id="chatProfileDesc" translate>
+            {{ selectedMsg.username }}
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -13,15 +15,137 @@
             aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <table class="table-responsive">
+                <tr>
+                  <th class="fw-bold" scope="row">
+                    <strong translate>Level</strong><strong translate>:</strong>
+                  </th>
+                  <td>&nbsp;&nbsp;</td>
+                  <td class="text-end">
+                    {{ selectedMsg.profile.level }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="fw-bold" scope="row">
+                    <strong translate>XP</strong><strong translate>:</strong>
+                  </th>
+                  <td>&nbsp;&nbsp;</td>
+                  <td class="text-end">
+                    {{
+                      selectedMsg.profile.xp
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="fw-bold" scope="row">
+                    <strong translate>Victories</strong
+                    ><strong translate>:</strong>
+                  </th>
+                  <td>&nbsp;&nbsp;</td>
+                  <td class="text-end">
+                    {{
+                      selectedMsg.profile.victory
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="fw-bold" scope="row">
+                    <strong translate>Field</strong><strong translate>:</strong>
+                  </th>
+                  <td>&nbsp;&nbsp;</td>
+                  <td class="text-end">
+                    {{
+                      selectedMsg.profile.field
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                </tr>
+                <tr>
+                  <th class="fw-bold" scope="row">
+                    <strong translate>Feats of Strength</strong
+                    ><strong translate>:</strong>
+                  </th>
+                  <td>&nbsp;&nbsp;</td>
+                  <td class="text-end">
+                    {{
+                      selectedMsg.profile.featsofstrength
+                        | number: '' : this.translate.currentLang
+                    }}
+                  </td>
+                </tr>
+                @if (selectedMsg.profile.alliance > 0) {
+                  <tr>
+                    <th class="fw-bold" scope="row">
+                      <strong translate>Alliance</strong
+                      ><strong translate>:</strong>
+                    </th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td class="text-end">
+                      <a
+                        [routerLink]="[
+                          '/allianceprofile/' + selectedMsg.profile.alliance
+                        ]"
+                        data-bs-dismiss="modal"
+                        >{{ selectedMsg.profile.alliance_name }}</a
+                      >
+                    </td>
+                  </tr>
+                  @if (selectedMsg.profile.rank_name !== '') {
+                    <tr>
+                      <th class="fw-bold" scope="row">
+                        <strong translate>Rank</strong
+                        ><strong translate>:</strong>
+                      </th>
+                      <td>&nbsp;&nbsp;</td>
+                      <td class="text-end">
+                        {{ selectedMsg.profile.rank_name }}
+                      </td>
+                    </tr>
+                  }
+                }
+                @if (selectedMsg.profile.inscription > 0) {
+                  <tr>
+                    <th class="fw-bold" scope="row">
+                      <strong translate>Register date</strong
+                      ><strong translate>:</strong>
+                    </th>
+                    <td>&nbsp;&nbsp;</td>
+                    <td class="text-end">
+                      {{
+                        selectedMsg.profile.inscription * 1000
+                          | date: 'dd/MM/yyyy'
+                      }}
+                    </td>
+                  </tr>
+                }
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
           @if (reported === 0) {
-            <span translate>
+            <span class="text-warning fw-bold" translate>
               Are you sure that you want to signal this message?</span
             >
             <br />
-            <br />
-            <strong>{{ selectedMsg.username }}</strong>
-            <strong translate>:</strong>
-            {{ selectedMsg.msg }}
+            <div class="text-break">
+              <strong>{{ selectedMsg.username }}</strong>
+              <strong translate>:</strong>
+              {{ selectedMsg.msg }}
+            </div>
+            <div class="text-center">
+              <button
+                type="button"
+                class="btn btn-warning btn-sm"
+                (click)="report()"
+                translate>
+                Confirm
+              </button>
+            </div>
           } @else {
             <span class="text-danger" translate
               >The message has been reported, we will check it shortly</span
@@ -36,15 +160,6 @@
             translate>
             Close
           </button>
-          @if (reported === 0) {
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="report()"
-              translate>
-              Confirm
-            </button>
-          }
         </div>
       </div>
     </div>
@@ -321,8 +436,8 @@
         @for (msg of chat_user_msgs; track msg) {
           <div>
             <app-ic-icon
-              [icon]="triangleExclamation"
-              class="text-warning me-1"
+              [icon]="questionCircle"
+              class="text-primary me-1"
               data-bs-toggle="modal"
               data-bs-target="#ChatReport"
               title="{{ 'Report the message' | translate }}"
@@ -403,8 +518,8 @@
           @for (msg of chat_alli_msgs; track msg) {
             <div>
               <app-ic-icon
-                [icon]="triangleExclamation"
-                class="text-warning me-1"
+                [icon]="questionCircle"
+                class="text-primary me-1"
                 data-bs-toggle="modal"
                 data-bs-target="#ChatReport"
                 title="{{ 'Report the message' | translate }}"
