@@ -13,6 +13,7 @@ import flag from '@iconify/icons-fa6-solid/flag';
 import handHolding from '@iconify/icons-fa6-solid/hand-holding';
 import swordIcon from '@iconify/icons-vaadin/sword';
 import times from '@iconify/icons-fa6-solid/xmark';
+import solidHandsPraying from '@iconify/icons-fa6-solid/hands-praying';
 import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 
 @Component({
@@ -42,6 +43,7 @@ export class AllianceComponent implements OnInit, OnDestroy {
     gift: number;
     remain: number;
     allow_eject: number;
+    freereturn: number;
   }[] = [];
   public myAllianceProfile: {
     alliance_name: string;
@@ -78,6 +80,7 @@ export class AllianceComponent implements OnInit, OnDestroy {
     recruiter: 0,
     strategist: 0,
     treasurer: 0,
+    freereturn: 0,
   };
   public selectedRequest: {
     resource: string;
@@ -120,6 +123,7 @@ export class AllianceComponent implements OnInit, OnDestroy {
   handHolding = handHolding;
   swordIcon = swordIcon;
   times = times;
+  solidHandsPraying = solidHandsPraying;
   sportsMedal = sportsMedal;
 
   constructor(

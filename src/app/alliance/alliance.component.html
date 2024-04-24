@@ -5,6 +5,8 @@
 <app-alliance-emergency-popup></app-alliance-emergency-popup>
 <app-alliance-evict-popup [info]="selectedPlayer"></app-alliance-evict-popup>
 <app-alliance-gift-popup [info]="selectedPlayer"></app-alliance-gift-popup>
+<app-alliance-give-favor-popup
+  [info]="selectedPlayer"></app-alliance-give-favor-popup>
 <app-alliance-leave-popup></app-alliance-leave-popup>
 <app-alliance-pact-manage-popup
   [info]="allianceProfile"></app-alliance-pact-manage-popup>
@@ -148,6 +150,20 @@
                         [routerLink]="['/profile/' + p.membre_id]">
                         ({{ p.level }})
                       </a>
+                      @if (
+                        p.membre_status === 4 &&
+                        user.getPropertyNb('favor') > 0 &&
+                        p.freereturn === 0
+                      ) {
+                        <button
+                          class="btn btn-warning"
+                          (click)="setPlayer(p, 4)"
+                          data-bs-toggle="modal"
+                          data-bs-target="#AllianceGiveFavor"
+                          title="{{ 'Give a favor' | translate }}">
+                          <app-ic-icon [icon]="solidHandsPraying"></app-ic-icon>
+                        </button>
+                      }
                       @if (p.rank_name !== '') {
                         <div class="d-block d-sm-none">
                           {{ p.rank_name }}
@@ -296,7 +312,7 @@
           <div class="card-header">
             <span id="resourcesDesc" translate> Resources </span>
             <div class="card-header-group card-header-group-right">
-              <div
+              <button
                 class="card-header-button"
                 role="button"
                 data-bs-toggle="modal"
@@ -306,7 +322,7 @@
                 (keyup.enter)="taxesInit()"
                 tabindex="0">
                 <app-ic-icon [icon]="cog"></app-ic-icon>
-              </div>
+              </button>
             </div>
           </div>
           <div class="card-body">

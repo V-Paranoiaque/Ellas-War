@@ -1,0 +1,41 @@
+<div class="modal fade" id="AllianceGiveFavor" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ info.username }} ({{ info.level }})</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <div translate>
+          This member is paused, you can give him a favor to help him to
+          comeback. If the member doesn't take advantage of the given favor,
+          this one is lost.
+        </div>
+        @if (sent === 1) {
+          <div class="text-center text-danger mt-2" translate>
+            You just sent a favor to this member
+          </div>
+        } @else if (info.freereturn === 0 && user.getPropertyNb('favor') > 0) {
+          <div class="text-center mt-2">
+            <button class="btn btn-warning" (click)="give()" translate>
+              Give a favor
+            </button>
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

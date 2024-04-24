@@ -8,6 +8,7 @@ import { AllianceDissolvePopupSubComponent } from './alliance-dissolve-popup.sub
 import { AllianceEmergencyPopupSubComponent } from './alliance-emergency-popup.sub-component';
 import { AllianceEvictPopupSubComponent } from './alliance-evict-popup.sub-component';
 import { AllianceGiftPopupSubComponent } from './alliance-gift-popup.sub-component';
+import { AllianceGiveFavorPopupSubComponent } from './alliance-give-favor-popup.sub-component';
 import { AllianceLeavePopupSubComponent } from './alliance-leave-popup.sub-component';
 import { AlliancePactManagePopupSubComponent } from './alliance-pact-manage-popup.sub-component';
 import { AllianceProfilePopupSubComponent } from './alliance-profile-popup.sub-component';
@@ -27,6 +28,7 @@ export const AllianceIncludeComponent = [
   AllianceEmergencyPopupSubComponent,
   AllianceEvictPopupSubComponent,
   AllianceGiftPopupSubComponent,
+  AllianceGiveFavorPopupSubComponent,
   AllianceLeavePopupSubComponent,
   AlliancePactManagePopupSubComponent,
   AllianceProfilePopupSubComponent,
