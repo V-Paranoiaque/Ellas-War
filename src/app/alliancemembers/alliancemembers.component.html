@@ -13,45 +13,55 @@
 
             <br />
 
-            <table
-              class="table table-striped table-middle"
-              aria-labelledby="allianceProfileDesc">
-              <thead>
-                <tr class="text-center">
-                  <th scope="col"></th>
-                  <th scope="col" translate>Level</th>
-                  <th scope="col" translate>Rank</th>
-                  <th scope="col" translate>XP</th>
-                  <th scope="col" class="d-none d-md-table-cell" translate>
-                    Victories
-                  </th>
-                  <th scope="col" translate>Field</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (p of allianceMembers; track p) {
-                  <tr>
-                    <td>
-                      <app-user-profile
-                        id="{{ p.membre_id }}"
-                        username="{{ p.username }}"
-                        status="{{ p.membre_status }}"></app-user-profile>
-                    </td>
-                    <td class="text-center">{{ p.level }}</td>
-                    <td>{{ p.rank_name }}</td>
-                    <td class="text-end">
-                      {{ p.xp | number: '' : this.translate.currentLang }}
-                    </td>
-                    <td class="text-end d-none d-md-table-cell">
-                      {{ p.victory | number: '' : this.translate.currentLang }}
-                    </td>
-                    <td class="text-end">
-                      {{ p.field | number: '' : this.translate.currentLang }}
-                    </td>
+            <div class="table-responsive">
+              <table
+                class="table table-striped table-middle"
+                aria-labelledby="allianceProfileDesc">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col"></th>
+                    <th scope="col" class="d-none d-sm-table-cell" translate>
+                      Rank
+                    </th>
+                    <th scope="col" translate>XP</th>
+                    <th scope="col" class="d-none d-md-table-cell" translate>
+                      Victories
+                    </th>
+                    <th scope="col" translate>Field</th>
                   </tr>
-                }
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  @for (p of allianceMembers; track p) {
+                    <tr>
+                      <td>
+                        <app-user-profile
+                          id="{{ p.membre_id }}"
+                          username="{{ p.username }}"
+                          status="{{ p.membre_status }}"></app-user-profile>
+                        ({{ p.level }})
+                        @if (p.rank_name !== '') {
+                          <div class="d-block d-sm-none">
+                            {{ p.rank_name }}
+                          </div>
+                        }
+                      </td>
+                      <td class="d-none d-sm-table-cell">{{ p.rank_name }}</td>
+                      <td class="text-end">
+                        {{ p.xp | number: '' : this.translate.currentLang }}
+                      </td>
+                      <td class="text-end d-none d-md-table-cell">
+                        {{
+                          p.victory | number: '' : this.translate.currentLang
+                        }}
+                      </td>
+                      <td class="text-end">
+                        {{ p.field | number: '' : this.translate.currentLang }}
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
 
             <div class="text-center fw-bold">
               <a

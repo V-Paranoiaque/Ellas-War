@@ -64,5 +64,6 @@
 * Fix alliance ranking on mobile
 
 # 2.0.8
+* Fix alliance members display on mobile
 * Fix bugs when pausing or returning
 * Improve the popup to signal messages
