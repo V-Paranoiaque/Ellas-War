@@ -20,7 +20,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import users from '@iconify/icons-fa6-solid/users';
 
-
 @Component({
   selector: 'app-main-private-bottom-menu',
   templateUrl: './main-private-bottom-menu.sub-component.html',
