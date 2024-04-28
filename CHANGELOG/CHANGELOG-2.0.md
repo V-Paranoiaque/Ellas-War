@@ -67,3 +67,4 @@
 * Fix alliance members display on mobile
 * Fix bugs when pausing or returning
 * Improve the popup to signal messages
+* Reduce the number of column in the waves on mobile
