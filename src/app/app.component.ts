@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
     };
 
     this.oauthService.configure(authConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    void this.oauthService.loadDiscoveryDocumentAndTryLogin();
 
     this.sub = this.socket.onChange.subscribe({
       next: (event: { action: string; username: string }) => {
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInitSocket() {
-    this.socket.on('ewAuth', (data: object) => {
+    this.socket.on('ewAuth', (data?: object) => {
       this.user.setInit();
       const oldStatus = this.user.getPropertyNb('mstatus');
 
@@ -111,7 +111,7 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.socket.on('user', data => {
+    this.socket.on('user', (data?: object) => {
       if (data) {
         this.user.setUser(data);
       }
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.socket.on('userRefresh', () => {
       this.socket.emit('user');
     });
-    this.socket.on('ress', data => {
+    this.socket.on('ress', (data?: object) => {
       if (data) {
         this.user.setUserRess(data);
       }
@@ -170,7 +170,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('oauth2Close', () => {
-      if (window.self) window.self.close();
+      window.self.close();
     });
 
     this.socket.on('redirect', () => {
