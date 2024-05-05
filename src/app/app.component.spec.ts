@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { SocketComponent as Socket } from '../services/socketio.service';
 import { UserComponent as User } from '../services/user.service';
@@ -25,7 +24,6 @@ describe('AppComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [AdminComponent, AppComponent, EwIconSubComponent],
       imports: [
-        RouterTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

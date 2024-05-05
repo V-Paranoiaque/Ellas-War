@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
@@ -22,7 +21,6 @@ describe('MintsComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [MintsComponent],
       imports: [
-        RouterTestingModule,
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
