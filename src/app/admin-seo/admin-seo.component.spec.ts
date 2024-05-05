@@ -13,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
 import { AdminSeoComponent } from './admin-seo.component';
 import { environment } from '../../environments/environment';
 
-describe('AdminSuspiciousipComponent', () => {
+describe('AdminSeoComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {

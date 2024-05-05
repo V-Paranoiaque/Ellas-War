@@ -13,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
 import { AllianceArchivesPopupSubComponent } from './alliance-archives-popup.sub-component';
 import { environment } from '../../environments/environment';
 
-describe('AdminSuspiciousipComponent', () => {
+describe('AllianceArchivesPopupSubComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {
