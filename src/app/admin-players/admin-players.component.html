@@ -88,119 +88,120 @@
                 </button>
                 <br />
               </div>
-
-              <table
-                class="table table-striped table-middle"
-                aria-describedby="adminPlayersTitle">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col" translate>IP</th>
-                    <th scope="col" translate>Alliance</th>
-                    <th scope="col" translate>Activity</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (p of adminPlayersList.list; track p) {
+              <div class="col-12">
+                <table
+                  class="table table-striped table-middle"
+                  aria-describedby="adminPlayersTitle">
+                  <thead>
                     <tr>
-                      <td>{{ p.membre_id }}</td>
-                      <td>
-                        <a
-                          href="admin/profile/{{ p.membre_id }}"
-                          [routerLink]="['/admin/profile/' + p.membre_id]"
-                          >{{ p.username }}</a
-                        >
-                        ({{ p.level }})
-                        <br />
-                        {{ p.email }}
-                      </td>
-                      <td>
-                        <a
-                          href="admin/ip/{{ p.last_ip }}"
-                          [routerLink]="['/admin/ip/' + p.last_ip]"
-                          >{{ p.last_ip }}</a
-                        >
-                      </td>
-                      <td>{{ p.alliance_name }}</td>
-                      <td>
-                        {{
-                          p.inscription * 1000
-                            | date
-                              : 'EEEE dd MMMM YYYY, HH:mm'
-                              : ''
-                              : user.getConfig().locale
-                        }}
-                        <br />
-                        {{
-                          p.last_activity * 1000
-                            | date
-                              : 'EEEE dd MMMM YYYY, HH:mm'
-                              : ''
-                              : user.getConfig().locale
-                        }}
-                      </td>
-                      <td></td>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                      <th scope="col" translate>IP</th>
+                      <th scope="col" translate>Alliance</th>
+                      <th scope="col" translate>Activity</th>
+                      <th scope="col"></th>
                     </tr>
-                  }
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    @for (p of adminPlayersList.list; track p) {
+                      <tr>
+                        <td>{{ p.membre_id }}</td>
+                        <td>
+                          <a
+                            href="admin/profile/{{ p.membre_id }}"
+                            [routerLink]="['/admin/profile/' + p.membre_id]"
+                            >{{ p.username }}</a
+                          >
+                          ({{ p.level }})
+                          <br />
+                          {{ p.email }}
+                        </td>
+                        <td>
+                          <a
+                            href="admin/ip/{{ p.last_ip }}"
+                            [routerLink]="['/admin/ip/' + p.last_ip]"
+                            >{{ p.last_ip }}</a
+                          >
+                        </td>
+                        <td>{{ p.alliance_name }}</td>
+                        <td>
+                          {{
+                            p.inscription * 1000
+                              | date
+                                : 'EEEE dd MMMM YYYY, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                          <br />
+                          {{
+                            p.last_activity * 1000
+                              | date
+                                : 'EEEE dd MMMM YYYY, HH:mm'
+                                : ''
+                                : user.getConfig().locale
+                          }}
+                        </td>
+                        <td></td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
 
-              @if (adminPlayersList.max > 1) {
-                <div>
-                  <br />
-                  <div class="input-group">
-                    <span
-                      class="input-group-text"
-                      role="button"
-                      (click)="setPage(1)"
-                      (keyup.enter)="setPage(1)"
-                      tabindex="0"
-                      >&lt;&lt;</span
-                    >
-                    <span
-                      class="input-group-text"
-                      role="button"
-                      (click)="setPage(adminPage - 1)"
-                      (keyup.enter)="setPage(adminPage - 1)"
-                      tabindex="0"
-                      >&lt;</span
-                    >
-                    <select
-                      class="form-select"
-                      [ngModel]="adminPage"
-                      (change)="setPage(parseInt(mySelect.value))"
-                      title="{{ 'Change page' | translate }}"
-                      #mySelect>
-                      @for (
-                        id of Tools.range(1, adminPlayersList.max);
-                        track id
-                      ) {
-                        <option value="{{ id }}" translate>
-                          Page {{ id }}
-                        </option>
-                      }
-                    </select>
-                    <span
-                      class="input-group-text"
-                      role="button"
-                      (click)="setPage(adminPage + 1)"
-                      (keyup.enter)="setPage(adminPage + 1)"
-                      tabindex="0"
-                      >&gt;</span
-                    >
-                    <span
-                      class="input-group-text"
-                      role="button"
-                      (click)="setPage(adminPlayersList.max)"
-                      (keyup.enter)="setPage(adminPlayersList.max)"
-                      tabindex="0"
-                      >&gt;&gt;</span
-                    >
+                @if (adminPlayersList.max > 1) {
+                  <div>
+                    <br />
+                    <div class="input-group">
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="setPage(1)"
+                        (keyup.enter)="setPage(1)"
+                        tabindex="0"
+                        >&lt;&lt;</span
+                      >
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="setPage(adminPage - 1)"
+                        (keyup.enter)="setPage(adminPage - 1)"
+                        tabindex="0"
+                        >&lt;</span
+                      >
+                      <select
+                        class="form-select"
+                        [ngModel]="adminPage"
+                        (change)="setPage(parseInt(mySelect.value))"
+                        title="{{ 'Change page' | translate }}"
+                        #mySelect>
+                        @for (
+                          id of Tools.range(1, adminPlayersList.max);
+                          track id
+                        ) {
+                          <option value="{{ id }}" translate>
+                            Page {{ id }}
+                          </option>
+                        }
+                      </select>
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="setPage(adminPage + 1)"
+                        (keyup.enter)="setPage(adminPage + 1)"
+                        tabindex="0"
+                        >&gt;</span
+                      >
+                      <span
+                        class="input-group-text"
+                        role="button"
+                        (click)="setPage(adminPlayersList.max)"
+                        (keyup.enter)="setPage(adminPlayersList.max)"
+                        tabindex="0"
+                        >&gt;&gt;</span
+                      >
+                    </div>
                   </div>
-                </div>
-              }
+                }
+              </div>
             </div>
           </div>
         </div>
