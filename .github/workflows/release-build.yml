@@ -16,16 +16,7 @@ jobs:
     secrets: inherit
     needs: prepare
     with:
-      electron: 3.1.0
-      node: 20
-  
-  #X86 Arch
-  package-x86:
-    uses: ./.github/workflows/workflow-release-linux-x86.yml
-    secrets: inherit
-    needs: prepare
-    with:
-      electron: 3.1.0
+      electron: 4.0.0
       node: 20
   
   #arm64 Arch
@@ -34,7 +25,7 @@ jobs:
     secrets: inherit
     needs: prepare
     with:
-      electron: 3.1.0
+      electron: 4.0.0
       node: 20
 
   #armhf Arch
@@ -43,7 +34,7 @@ jobs:
     secrets: inherit
     needs: prepare
     with:
-      electron: 3.1.0
+      electron: 4.0.0
       node: 20
 
   #Windows
@@ -52,7 +43,7 @@ jobs:
     secrets: inherit
     needs: prepare
     with:
-      electron: 3.1.0
+      electron: 4.0.0
       node: 20
 
   #Mac OS
@@ -61,5 +52,5 @@ jobs:
     secrets: inherit
     needs: prepare
     with:
-      electron: 3.1.0
+      electron: 4.0.0
       node: 20
