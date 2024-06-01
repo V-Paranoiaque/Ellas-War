@@ -68,3 +68,7 @@
 * Fix bugs when pausing or returning
 * Improve the popup to signal messages
 * Reduce the number of column in the waves on mobile
+
+# 2.0.9
+* Minor fixes
+* New page with the process to delete an account
