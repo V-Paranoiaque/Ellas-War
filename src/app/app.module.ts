@@ -63,6 +63,7 @@ import { ConnectedplayersComponent } from './connectedplayers/connectedplayers.c
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { CreditsComponent } from './credits/credits.component';
+import { DeleteAccountComponent } from './deleteaccount/deleteaccount.component';
 import { FewwordsComponent } from './fewwords/fewwords.component';
 import { FreeGameComponent } from './free-game/free-game.component';
 import { LoginComponent } from './login/login.component';
@@ -157,6 +158,7 @@ import { AdminAlliancesComponent } from './admin-alliances/admin-alliances.compo
     ConfirmComponent,
     ContactusComponent,
     CreditsComponent,
+    DeleteAccountComponent,
     FewwordsComponent,
     FreeGameComponent,
     LoginComponent,

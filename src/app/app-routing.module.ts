@@ -8,6 +8,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { ConnectedplayersComponent } from './connectedplayers/connectedplayers.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { CreditsComponent } from './credits/credits.component';
+import { DeleteAccountComponent } from './deleteaccount/deleteaccount.component';
 import { DiscoverthegameComponent } from './discoverthegame/discoverthegame.component';
 import { FewwordsComponent } from './fewwords/fewwords.component';
 import { FreeGameComponent } from './free-game/free-game.component';
@@ -105,6 +106,7 @@ export const routes: Routes = [
   { path: 'connectedplayers', component: ConnectedplayersComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'credits', component: CreditsComponent },
+  { path: 'deleteaccount', component: DeleteAccountComponent },
   { path: 'discoverthegame', component: DiscoverthegameComponent },
   { path: 'discoverthegame/:page', component: DiscoverthegameComponent },
   { path: 'fewwords', component: FewwordsComponent },
