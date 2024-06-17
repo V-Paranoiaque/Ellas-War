@@ -343,7 +343,8 @@
                   min="0"
                   max="100"
                   [(ngModel)]="range"
-                  (click)="setQuarryBalance($event)" />
+                  (click)="setQuarryBalance($event)"
+                  (touchend)="setQuarryBalance($event)" />
               </div>
               <div class="row">
                 <div class="col-6 text-start">
