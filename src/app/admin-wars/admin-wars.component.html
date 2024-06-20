@@ -21,14 +21,14 @@
                     <th scope="row">
                       <span
                         [ngClass]="{
-                          'text-danger': war.win_attacking > war.win_defender
+                          'text-danger': war.win_attacking > war.win_defender,
                         }">
                         {{ war.attacking }} {{ war.win_attacking }}
                       </span>
                       -
                       <span
                         [ngClass]="{
-                          'text-danger': war.win_defender > war.win_attacking
+                          'text-danger': war.win_defender > war.win_attacking,
                         }">
                         {{ war.win_defender }} {{ war.defender }}
                       </span>

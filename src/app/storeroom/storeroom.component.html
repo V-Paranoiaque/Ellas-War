@@ -70,7 +70,7 @@
                       : {
                           value: parseFloat(
                             (storeroomMin.rate * 0.75).toFixed(9)
-                          )
+                          ),
                         }
                 }}
               </div>
@@ -441,7 +441,7 @@
                         grey: trade.mrate === trade.rate && trade.rate > 0,
                         'bg-green':
                           (trade.mrate > 0 && trade.mrate > trade.rate) ||
-                          (trade.rate > 0 && trade.mrate === 0)
+                          (trade.rate > 0 && trade.mrate === 0),
                       }">
                       <td class="text-end">
                         {{

@@ -55,7 +55,7 @@
               <app-ic-icon
                 [ngClass]="{
                   'btn-success': profile.membre_status === 1,
-                  'btn-danger': profile.membre_status === 3
+                  'btn-danger': profile.membre_status === 3,
                 }"
                 class="btn"
                 [icon]="bomb"
@@ -63,13 +63,11 @@
               <app-ic-icon
                 [ngClass]="{
                   'btn-success': profile.chat_allowed === 1,
-                  'btn-danger': profile.chat_allowed === 0
+                  'btn-danger': profile.chat_allowed === 0,
                 }"
                 class="btn"
                 [icon]="comments"
-                (click)="adminChatBlock()"
-                >></app-ic-icon
-              >
+                (click)="adminChatBlock()"></app-ic-icon>
               @if (profile.alliance > 0) {
                 <app-ic-icon
                   class="btn btn-primary"
@@ -79,86 +77,76 @@
               }
             </div>
             <div class="d-flex mt-2">
-              <div
+              <button
                 class="btn flex-grow-1 frame-name"
-                role="button"
                 [ngClass]="{
                   'btn-danger': menu === 1,
-                  'frame-name btn-primary': menu !== 1
+                  'frame-name btn-primary': menu !== 1,
                 }"
                 (click)="setMenu(1)"
                 (keyup.enter)="setMenu(1)"
-                tabindex="0"
                 id="descConnection"
                 translate>
                 Connection
-              </div>
-              <div
+              </button>
+              <button
                 class="btn btn-secondary flex-grow-1 frame-name"
                 [ngClass]="{
                   'btn-danger': menu === 2,
-                  'frame-name btn-primary': menu !== 2
+                  'frame-name btn-primary': menu !== 2,
                 }"
                 (click)="setMenu(2)"
                 (keyup.enter)="setMenu(2)"
                 tabindex="0"
                 translate>
                 IP
-              </div>
-              <div
+              </button>
+              <button
                 class="btn flex-grow-1 frame-name"
-                role="button"
                 [ngClass]="{
                   'btn-danger': menu === 3,
-                  'frame-name btn-primary': menu !== 3
+                  'frame-name btn-primary': menu !== 3,
                 }"
                 (click)="setMenu(3)"
                 (keyup.enter)="setMenu(3)"
-                tabindex="0"
                 id="descTrade"
                 translate>
                 Agora
-              </div>
-              <div
+              </button>
+              <button
                 class="btn flex-grow-1 frame-name"
-                role="button"
                 [ngClass]="{
                   'btn-danger': menu === 4,
-                  'frame-name btn-primary': menu !== 4
+                  'frame-name btn-primary': menu !== 4,
                 }"
                 (click)="setMenu(4)"
                 (keyup.enter)="setMenu(4)"
-                tabindex="0"
                 translate>
                 Storeroom
-              </div>
-              <div
+              </button>
+              <button
                 class="btn flex-grow-1 frame-name"
-                role="button"
                 [ngClass]="{
                   'btn-danger': menu === 5,
-                  'frame-name btn-primary': menu !== 5
+                  'frame-name btn-primary': menu !== 5,
                 }"
                 (click)="setMenu(5)"
                 (keyup.enter)="setMenu(5)"
-                tabindex="0"
                 id="descAttacks"
                 translate>
                 Attacks
-              </div>
-              <div
+              </button>
+              <button
                 class="btn flex-grow-1 frame-name"
-                role="button"
                 [ngClass]="{
                   'btn-danger': menu === 6,
-                  'frame-name btn-primary': menu !== 6
+                  'frame-name btn-primary': menu !== 6,
                 }"
                 (click)="setMenu(6)"
                 (keyup.enter)="setMenu(6)"
-                tabindex="0"
                 translate>
                 Notes
-              </div>
+              </button>
             </div>
 
             @if (menu === 1) {

@@ -94,7 +94,7 @@
                         <th scope="row" class="text-start">
                           <a
                             [routerLink]="[
-                              '/support/' + contactC + '/' + info.support_id
+                              '/support/' + contactC + '/' + info.support_id,
                             ]">
                             {{ info.support_topic }}
                           </a>
@@ -109,7 +109,7 @@
                           <a
                             class="btn btn-primary"
                             [routerLink]="[
-                              '/support/' + contactC + '/' + info.support_id
+                              '/support/' + contactC + '/' + info.support_id,
                             ]">
                             <app-ic-icon [icon]="eye"></app-ic-icon>
                             <span class="visually-hidden" translate

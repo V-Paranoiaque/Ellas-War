@@ -31,7 +31,7 @@
                             [ngClass]="{
                               'text-danger':
                                 p.membre_status === 3 || p.membre_status === 5,
-                              'text-warning': p.membre_status === 4
+                              'text-warning': p.membre_status === 4,
                             }"
                             href="admin/profile/{{ p.membre_id }}"
                             [routerLink]="['/admin/profile/' + p.membre_id]"
@@ -87,7 +87,7 @@
                             [ngClass]="{
                               'text-danger':
                                 p.m1_status === 3 || p.m1_status === 5,
-                              'text-warning': p.m1_status === 4
+                              'text-warning': p.m1_status === 4,
                             }"
                             href="admin/profile/{{ p.seller_id }}"
                             [routerLink]="['/admin/profile/' + p.seller_id]"
@@ -110,7 +110,7 @@
                             [ngClass]="{
                               'text-danger':
                                 p.m2_status === 3 || p.m2_status === 5,
-                              'text-warning': p.m2_status === 4
+                              'text-warning': p.m2_status === 4,
                             }"
                             href="admin/profile/{{ p.buyer_id }}"
                             [routerLink]="['/admin/profile/' + p.buyer_id]"
@@ -181,7 +181,7 @@
                             [ngClass]="{
                               'text-danger':
                                 p.m1_status === 3 || p.m1_status === 5,
-                              'text-warning': p.m1_status === 4
+                              'text-warning': p.m1_status === 4,
                             }"
                             href="admin/profile/{{ p.seller_id }}"
                             [routerLink]="['/admin/profile/' + p.seller_id]"
@@ -205,7 +205,7 @@
                             [ngClass]="{
                               'text-danger':
                                 p.m2_status === 3 || p.m2_status === 5,
-                              'text-warning': p.m2_status === 4
+                              'text-warning': p.m2_status === 4,
                             }"
                             href="admin/profile/{{ p.buyer_id }}"
                             [routerLink]="['/admin/profile/' + p.buyer_id]"

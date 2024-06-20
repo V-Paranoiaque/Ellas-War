@@ -120,7 +120,7 @@
               class="btn flex-grow-1"
               [ngClass]="{
                 'btn-success': menu === 0,
-                'btn-transparent fw-bold': menu === 1
+                'btn-transparent fw-bold': menu === 1,
               }"
               (click)="setMenu(1)"
               (keyup.enter)="setMenu(1)"
@@ -132,7 +132,7 @@
               class="btn flex-grow-1"
               [ngClass]="{
                 'btn-transparent fw-bold': menu === 0,
-                'btn-success': menu === 1
+                'btn-success': menu === 1,
               }"
               (click)="setMenu(0)"
               (keyup.enter)="setMenu(0)"
@@ -508,7 +508,7 @@
             class="btn design-background fs-5 p-2 text-center d-md-none"
             [ngClass]="{
               'btn-danger': selectedTemple === 'poseidon',
-              'btn-primary': selectedTemple !== 'poseidon'
+              'btn-primary': selectedTemple !== 'poseidon',
             }"
             (click)="selectTemple('poseidon')"
             role="button"
@@ -524,7 +524,7 @@
             class="btn design-background fs-5 p-2 text-center d-md-none"
             [ngClass]="{
               'btn-danger': selectedTemple === 'zeus',
-              'btn-primary': selectedTemple !== 'zeus'
+              'btn-primary': selectedTemple !== 'zeus',
             }"
             (click)="selectTemple('zeus')"
             role="button"
@@ -540,7 +540,7 @@
             class="btn design-background fs-5 p-2 text-center d-md-none"
             [ngClass]="{
               'btn-danger': selectedTemple === 'hades',
-              'btn-primary': selectedTemple !== 'hades'
+              'btn-primary': selectedTemple !== 'hades',
             }"
             (click)="selectTemple('hades')"
             role="button"
@@ -556,7 +556,7 @@
           class="col-12 col-md-4 d-md-flex flex-column mt-2"
           [ngClass]="{
             'd-flex': selectedTemple === 'poseidon',
-            'd-none': selectedTemple !== 'poseidon'
+            'd-none': selectedTemple !== 'poseidon',
           }">
           <div
             class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"
@@ -571,7 +571,7 @@
           class="col-12 col-md-4 d-md-flex flex-column mt-2"
           [ngClass]="{
             'd-flex': selectedTemple === 'zeus',
-            'd-none': selectedTemple !== 'zeus'
+            'd-none': selectedTemple !== 'zeus',
           }">
           <div
             class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"
@@ -585,7 +585,7 @@
           class="col-12 col-md-4 d-md-flex flex-column mt-2"
           [ngClass]="{
             'd-flex': selectedTemple === 'hades',
-            'd-none': selectedTemple !== 'hades'
+            'd-none': selectedTemple !== 'hades',
           }">
           <div
             class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"

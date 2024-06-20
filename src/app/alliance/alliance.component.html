@@ -145,7 +145,7 @@
                         [ngClass]="{
                           'text-danger':
                             p.membre_status === 3 || p.membre_status === 5,
-                          'text-warning': p.membre_status === 4
+                          'text-warning': p.membre_status === 4,
                         }"
                         [routerLink]="['/profile/' + p.membre_id]">
                         ({{ p.level }})
@@ -417,7 +417,7 @@
                       <th scope="row">
                         <a
                           [routerLink]="[
-                            '/allianceprofile/' + alli.alliance_id
+                            '/allianceprofile/' + alli.alliance_id,
                           ]">
                           {{ alli.alliance_name }}
                         </a>
@@ -543,7 +543,7 @@
                                 <a
                                   class="fw-bold"
                                   [routerLink]="[
-                                    '/allianceprofile/' + w.alliance_attacking
+                                    '/allianceprofile/' + w.alliance_attacking,
                                   ]">
                                   {{ w.name_attacking }}
                                 </a>
@@ -570,7 +570,7 @@
                                 class="flex-grow-1 text-sm-end order-sm-2 p-2">
                                 <a
                                   [routerLink]="[
-                                    '/allianceprofile/' + w.alliance_defender
+                                    '/allianceprofile/' + w.alliance_defender,
                                   ]">
                                   {{ w.name_defender }}
                                 </a>

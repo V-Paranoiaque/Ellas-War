@@ -87,7 +87,7 @@
                     <td class="text-end">
                       <a
                         [routerLink]="[
-                          '/allianceprofile/' + selectedMsg.profile.alliance
+                          '/allianceprofile/' + selectedMsg.profile.alliance,
                         ]"
                         data-bs-dismiss="modal"
                         >{{ selectedMsg.profile.alliance_name }}</a
@@ -235,7 +235,7 @@
                       user.getPropertyNb('quest_validate') > 0 ||
                       (user.getPropertyNb('level') > 0 &&
                         user.getPropertyNb('dquest_validated') > 0) ||
-                      user.getPropertyNb('altar_available') > 0
+                      user.getPropertyNb('altar_available') > 0,
                   }"
                   translate>
                   Quests
@@ -464,7 +464,7 @@
               [routerLink]="['/profile/' + user.user_id]"
               [ngClass]="{
                 'text-danger': user.rank === 5,
-                'text-warning': user.chat_allowed === 0
+                'text-warning': user.chat_allowed === 0,
               }"
               class="fw-bold"
               >{{ user.username }}</a
@@ -540,7 +540,7 @@
         <div
           class="col-lg-2 col-md-3 col-12 chat-players"
           [ngClass]="{
-            'd-none d-md-block': chatActive !== 'alliance_members'
+            'd-none d-md-block': chatActive !== 'alliance_members',
           }">
           @for (user of chat_alli_players; track user) {
             <span class="chat-player">
@@ -548,7 +548,7 @@
                 [routerLink]="['/profile/' + user.user_id]"
                 [ngClass]="{
                   'text-danger': user.rank === 5,
-                  'text-warning': user.chat_allowed === 0
+                  'text-warning': user.chat_allowed === 0,
                 }"
                 class="fw-bold"
                 >{{ user.username }}</a

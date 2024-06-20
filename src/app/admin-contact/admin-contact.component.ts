@@ -80,7 +80,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
       page = this.adminContactMax;
     }
 
-    void this.router.navigate(['/admin/contact/' + page]);
+    void this.router.navigate(['/admin/contact/' + page.toString()]);
   }
 
   adminContactResolve(id: number) {

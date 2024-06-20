@@ -42,7 +42,7 @@
             (click)="setMenuMode(0)"
             [ngClass]="{
               'btn-danger': menuMode === 0,
-              'btn-primary': menuMode !== 0
+              'btn-primary': menuMode !== 0,
             }"
             translate>
             Production
@@ -52,7 +52,7 @@
             (click)="setMenuMode(1)"
             [ngClass]="{
               'btn-danger': menuMode === 1,
-              'btn-primary': menuMode !== 1
+              'btn-primary': menuMode !== 1,
             }"
             translate>
             Consumption
@@ -62,7 +62,7 @@
             (click)="setMenuMode(2)"
             [ngClass]="{
               'btn-danger': menuMode === 2,
-              'btn-primary': menuMode !== 2
+              'btn-primary': menuMode !== 2,
             }"
             translate>
             Evolution
@@ -212,7 +212,7 @@
                           getVariation(ress.key) >= 0 &&
                           getVariation(ress.key) >
                             user.getVarRess(ress.key) * 3600 * 24 + 0.000001,
-                        'd-none d-sm-table-cell': menuMode !== 2
+                        'd-none d-sm-table-cell': menuMode !== 2,
                       }">
                       @if (user.getVarRess(ress.key) > 0) {
                         <span>+</span>
@@ -359,12 +359,12 @@
                     </td>
                     <td
                       [ngClass]="{
-                        'd-none d-sm-table-cell': menuMode !== 1
+                        'd-none d-sm-table-cell': menuMode !== 1,
                       }"></td>
                     @if (user.getSanctuary(3) === 0) {
                       <td
                         [ngClass]="{
-                          'd-none d-sm-table-cell': menuMode !== 2
+                          'd-none d-sm-table-cell': menuMode !== 2,
                         }">
                         +{{
                           4 *
@@ -388,7 +388,7 @@
                     @if (user.getSanctuary(3) > 0) {
                       <td
                         [ngClass]="{
-                          'd-none d-sm-table-cell': menuMode !== 2
+                          'd-none d-sm-table-cell': menuMode !== 2,
                         }">
                         +{{
                           4 *

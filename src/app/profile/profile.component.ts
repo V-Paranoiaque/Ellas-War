@@ -102,7 +102,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   load(userId: number) {
-    const url = this.socket.url + '/api/playerProfile/' + userId + '.json';
+    const url =
+      this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
     this.socket.emit('accountInfo');
 
     this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {

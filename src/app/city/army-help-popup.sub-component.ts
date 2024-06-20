@@ -43,9 +43,11 @@ export class ArmyHelpPopupSubComponent {
     const bonusList = this.user.getDatas().attack.bonus;
     if (
       this.user.getDatas().attack &&
-      bonusList[(i + '') as keyof typeof bonusList]
+      bonusList[(i.toString() + '') as keyof typeof bonusList]
     ) {
-      for (const j in bonusList[(i + '') as keyof typeof bonusList]) {
+      for (const j in bonusList[
+        (i.toString() + '') as keyof typeof bonusList
+      ]) {
         res.push(parseInt(j));
       }
     }

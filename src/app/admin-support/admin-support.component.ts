@@ -93,7 +93,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
       page = this.adminSupportMax;
     }
 
-    void this.router.navigate(['/admin/support/' + page]);
+    void this.router.navigate(['/admin/support/' + page.toString()]);
   }
 
   adminSupportStatus(id: number) {

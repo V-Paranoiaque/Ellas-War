@@ -253,7 +253,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url +
       '/api/playerProfile/' +
-      this.profile.membre_id +
+      this.profile.membre_id.toString() +
       '.json';
     this.subPlayer = this.http.get(url).subscribe((res: object) => {
       const player = res as typeof this.profile;

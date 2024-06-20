@@ -70,7 +70,7 @@
                           <a
                             class="link"
                             [routerLink]="[
-                              '/alliancemembers/' + a.alliance_id
+                              '/alliancemembers/' + a.alliance_id,
                             ]">
                             {{ a.nbmembers }}
                           </a>
@@ -78,7 +78,7 @@
                         <th scope="row">
                           <a
                             [routerLink]="[
-                              '/allianceprofile/' + a.alliance_id
+                              '/allianceprofile/' + a.alliance_id,
                             ]">
                             {{ a.alliance_name }}
                           </a>

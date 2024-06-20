@@ -170,7 +170,7 @@
                       aria-valuemax="100"
                       aria-labelledby="questProgressLabel"
                       [ngStyle]="{
-                        'width.%': (100 * user.getPropertyNb('quest_step')) / 7
+                        'width.%': (100 * user.getPropertyNb('quest_step')) / 7,
                       }"></div>
                     <div class="progress-text">
                       {{ user.getPropertyNb('quest_step') }}/{{ 7 }}
@@ -224,7 +224,7 @@
                         : {
                             value:
                               user.getGoalDays()
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.currentLang,
                           }
                   }}
                 </div>
@@ -321,7 +321,7 @@
                   <div
                     class="badge bg-secondary"
                     [ngClass]="{
-                      'badge-mini': user.getPropertyNb(army) > 1000000000
+                      'badge-mini': user.getPropertyNb(army) > 1000000000,
                     }">
                     {{
                       user.getPropertyNb(army)
@@ -350,7 +350,7 @@
                       'level-quest': levelQuest(army.code),
                       'd-none d-md-block':
                         displayFavorite === 0 &&
-                        Object.keys(unitFavoriteList).length > 0
+                        Object.keys(unitFavoriteList).length > 0,
                     }"
                     data-bs-toggle="modal"
                     data-bs-target="#ArmyInfo"
@@ -366,7 +366,8 @@
                     <div
                       class="badge bg-secondary"
                       [ngClass]="{
-                        'badge-mini': user.getPropertyNb(army.code) > 1000000000
+                        'badge-mini':
+                          user.getPropertyNb(army.code) > 1000000000,
                       }">
                       {{
                         user.getPropertyNb(army.code)
@@ -534,7 +535,7 @@
               [ngClass]="{
                 'row-cols-4': nbTemples() < 5,
                 'row-cols-5': nbTemples() >= 5 && nbTemples() <= 10,
-                'row-cols-6': nbTemples() >= 11
+                'row-cols-6': nbTemples() >= 11,
               }">
               <!-- Temple informations -->
               @if (user.getPropertyNb('hermes') === 1) {
@@ -825,7 +826,7 @@
               id="successBlock"
               [ngClass]="{
                 'row-cols-6': featsOfStrengthNb > 0,
-                'row-cols-5': featsOfStrengthNb === 0
+                'row-cols-5': featsOfStrengthNb === 0,
               }">
               <div
                 class="frame d-flex flex-column"

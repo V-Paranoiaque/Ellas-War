@@ -93,8 +93,8 @@ export class SupportComponent implements OnInit, OnDestroy {
       this.loadSupport();
     });
 
-    this.socket.on('contactNew', (data: number) => {
-      void this.router.navigate(['/support/1/' + data]);
+    this.socket.on('contactNew', (page: number) => {
+      void this.router.navigate(['/support/1/' + page.toString()]);
     });
 
     this.socket.on('contactInfo', data => {
@@ -131,10 +131,12 @@ export class SupportComponent implements OnInit, OnDestroy {
       };
       this.socket.emit('contactNew', info);
 
-      const element: HTMLElement = document.getElementById(
+      const element: HTMLElement | null = document.getElementById(
         'SupportNewTopicClose'
-      )!;
-      element.click();
+      );
+      if (element) {
+        element.click();
+      }
 
       this.contactNewTitle = '';
       this.contactNewMsg = '';
@@ -156,6 +158,6 @@ export class SupportComponent implements OnInit, OnDestroy {
       page = this.contactNb;
     }
 
-    void this.router.navigate(['/support/' + page]);
+    void this.router.navigate(['/support/' + page.toString()]);
   }
 }

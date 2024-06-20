@@ -30,7 +30,7 @@
                         (click)="adminChatCensor(p.id)"
                         [ngClass]="{
                           'btn-danger': p.censured === 1,
-                          'btn-primary': p.censured === 0
+                          'btn-primary': p.censured === 0,
                         }">
                         @if (p.censured === 0) {
                           <app-ic-icon [icon]="volumeOff"></app-ic-icon>

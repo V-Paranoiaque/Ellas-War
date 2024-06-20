@@ -38,7 +38,7 @@
           <span>
             <span
               [ngClass]="{
-                'text-danger': user.getPropertyNb(res.resource) < res.quantity
+                'text-danger': user.getPropertyNb(res.resource) < res.quantity,
               }">
               {{ res.quantity | number: '' : this.translate.currentLang }}
             </span>

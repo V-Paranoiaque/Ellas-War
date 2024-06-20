@@ -40,6 +40,14 @@ describe('LostMessageSubComponent', () => {
   it('should create the service', () => {
     const fixture = TestBed.createComponent(LostMessageSubComponent);
     const app = fixture.componentInstance;
+    app.info = {
+      username: '',
+      lost_build: {
+        farm: 0,
+        growers: 0,
+      },
+      lost_ress: {},
+    } as typeof app.info;
 
     fixture.detectChanges();
     expect(app).toBeTruthy();

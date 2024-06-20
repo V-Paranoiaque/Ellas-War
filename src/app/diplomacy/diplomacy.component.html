@@ -152,7 +152,7 @@
                         <a
                           class="link"
                           [routerLink]="[
-                            '/alliancemembers/' + alli.alliance_id
+                            '/alliancemembers/' + alli.alliance_id,
                           ]">
                           {{ alli.nbmembers }}
                         </a>
@@ -160,7 +160,7 @@
                       <td>
                         <a
                           [routerLink]="[
-                            '/allianceprofile/' + alli.alliance_id
+                            '/allianceprofile/' + alli.alliance_id,
                           ]">
                           {{ alli.alliance_name }}
                         </a>
@@ -200,7 +200,7 @@
                         <a
                           class="btn btn-primary"
                           [routerLink]="[
-                            '/alliancemembers/' + alli.alliance_id
+                            '/alliancemembers/' + alli.alliance_id,
                           ]"
                           title="{{ 'Alliance members:' | translate }} {{
                             alli.alliance_name
@@ -214,7 +214,7 @@
                         <a
                           class="btn btn-info"
                           [routerLink]="[
-                            '/allianceprofile/' + alli.alliance_id
+                            '/allianceprofile/' + alli.alliance_id,
                           ]"
                           title="{{ 'Alliance profile' | translate }}{{
                             ':' | translate
@@ -239,7 +239,7 @@
                             [ngClass]="{
                               invisible:
                                 alli.recruitement_open === 0 ||
-                                alli.alliance_type > 0
+                                alli.alliance_type > 0,
                             }">
                             <app-ic-icon [icon]="userPlus"></app-ic-icon>
                             <span class="visually-hidden">

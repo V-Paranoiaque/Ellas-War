@@ -29,7 +29,7 @@
                           '/admin/support/' +
                             adminSupportPage +
                             '/' +
-                            msg.support_id
+                            msg.support_id,
                         ]">
                         {{ msg.support_topic }}
                       </a>
@@ -51,7 +51,7 @@
                           '/admin/support/' +
                             adminSupportPage +
                             '/' +
-                            msg.support_id
+                            msg.support_id,
                         ]"
                         class="btn btn-primary">
                         <app-ic-icon [icon]="eye"></app-ic-icon>
@@ -63,7 +63,7 @@
                         tabindex="0"
                         [ngClass]="{
                           'btn-success': msg.support_status === 1,
-                          'btn-danger': msg.support_status === 0
+                          'btn-danger': msg.support_status === 0,
                         }">
                         <app-ic-icon [icon]="angellistIcon"></app-ic-icon>
                       </a>

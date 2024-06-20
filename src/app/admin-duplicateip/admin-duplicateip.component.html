@@ -23,7 +23,7 @@
                   <tr
                     [ngClass]="{
                       'table-danger': p.indice === 0,
-                      'table-success': p.indice === 1
+                      'table-success': p.indice === 1,
                     }">
                     <td>{{ p.membre_id }}</td>
                     <td>
@@ -31,7 +31,7 @@
                         [ngClass]="{
                           'text-danger':
                             p.membre_status === 3 || p.membre_status === 5,
-                          'text-warning': p.membre_status === 4
+                          'text-warning': p.membre_status === 4,
                         }"
                         href="admin/profile/{{ p.membre_id }}"
                         [routerLink]="['/admin/profile/' + p.membre_id]"

@@ -70,7 +70,7 @@
                     allianceProfile.alliance_name
                   }}"
                   [ngClass]="{
-                    invisible: allianceProfile.recruitement_open === 0
+                    invisible: allianceProfile.recruitement_open === 0,
                   }">
                   <app-ic-icon [icon]="userPlus"></app-ic-icon>
                   <span class="visually-hidden">
@@ -126,7 +126,7 @@
                     <td>
                       <a
                         [routerLink]="[
-                          '/alliancemembers/' + allianceProfile.alliance_id
+                          '/alliancemembers/' + allianceProfile.alliance_id,
                         ]"
                         class="link">
                         {{ allianceProfile.nbmembers }}

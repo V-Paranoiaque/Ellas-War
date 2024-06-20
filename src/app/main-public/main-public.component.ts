@@ -139,21 +139,25 @@ export class MainPublicComponent implements OnInit, OnDestroy {
 
   selectServerRegister() {
     if (environment.mobile == 1 || this.socket.local) {
-      this.socket.setServer(this.registerForm.controls['server'].value);
+      this.socket.setServer(
+        this.registerForm.controls['server'].value as string
+      );
       this.user.reload();
     } else {
       //Redirect to the selected server
-      this.socket.redirect(this.registerForm.controls['server'].value);
+      this.socket.redirect(
+        this.registerForm.controls['server'].value as string
+      );
     }
   }
 
   selectServerLogin() {
     if (environment.mobile == 1 || this.socket.local) {
-      this.socket.setServer(this.loginForm.controls['server'].value);
+      this.socket.setServer(this.loginForm.controls['server'].value as string);
       this.user.reload();
     } else {
       //Redirect to the selected server
-      this.socket.redirect(this.loginForm.controls['server'].value);
+      this.socket.redirect(this.loginForm.controls['server'].value as string);
     }
   }
 

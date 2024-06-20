@@ -48,7 +48,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.route.snapshot.paramMap.get('id') ??
       localStorage.getItem('invite') ??
       0;
-    const url = this.socket.url + '/api/playerProfile/' + userId + '.json';
+    const url =
+      this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
 
     this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
       const player = resPlayer as { membre_id: number; username: string };
@@ -91,11 +92,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   selectServer() {
     if (environment.mobile == 1 || this.socket.local) {
-      this.socket.setServer(this.registerForm.controls['server'].value);
+      this.socket.setServer(
+        this.registerForm.controls['server'].value as string
+      );
       this.user.reload();
     } else {
       //Redirect to the selected server
-      this.socket.redirect(this.registerForm.controls['server'].value);
+      this.socket.redirect(
+        this.registerForm.controls['server'].value as string
+      );
     }
     this.login = '';
   }

@@ -23,7 +23,7 @@
                     value: currentPlayer.username,
                     qtt:
                       currentPlayer.remain
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.currentLang,
                   }
           }}
         </div>
@@ -187,7 +187,7 @@
                           [ngClass]="{
                             'btn-success': p.gift === 0,
                             'btn-danger': p.remain === 0,
-                            'btn-warning': p.gift > 0 && p.remain > 0
+                            'btn-warning': p.gift > 0 && p.remain > 0,
                           }"
                           (click)="selectPlayer(p)"
                           title="{{ 'Give drachmas' | translate }}">

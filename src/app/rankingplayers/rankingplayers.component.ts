@@ -89,7 +89,7 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url +
       '/api/rankingPlayers/' +
-      this.rankingPage +
+      this.rankingPage.toString() +
       '/' +
       this.rankingOrder +
       '.json';
@@ -124,10 +124,10 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
 
     if (this.rankingOrder && this.rankingOrder != 'level') {
       void this.router.navigate([
-        '/rankingplayers/' + page + '/' + this.rankingOrder,
+        '/rankingplayers/' + page.toString() + '/' + this.rankingOrder,
       ]);
     } else {
-      void this.router.navigate(['/rankingplayers/' + page]);
+      void this.router.navigate(['/rankingplayers/' + page.toString()]);
     }
   }
 }

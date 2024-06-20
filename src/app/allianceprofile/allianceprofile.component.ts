@@ -78,8 +78,9 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
   }
 
   getProfile() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = this.socket.url + '/api/allianceProfile/' + id + '.json';
+    const id = this.route.snapshot.paramMap.get('id') ?? '0';
+    const url =
+      this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
     if (id) {
       this.subMembers = this.http.get(url).subscribe(alli => {

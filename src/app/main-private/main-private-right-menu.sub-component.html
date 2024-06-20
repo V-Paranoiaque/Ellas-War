@@ -46,7 +46,7 @@
         @for (item of getPrice(); track item) {
           <span
             [ngClass]="{
-              'text-danger': user.getPropertyNb(item.res) < item.nb
+              'text-danger': user.getPropertyNb(item.res) < item.nb,
             }">
             {{ item.nb | number: '' : this.translate.currentLang }}
             <app-ew-icon
@@ -199,7 +199,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'sun'
+            'text-danger': selectedWeather === 'sun',
           }"></app-id-to-weather>
         <app-id-to-weather
           [weather]="'rain'"
@@ -207,7 +207,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'rain'
+            'text-danger': selectedWeather === 'rain',
           }"></app-id-to-weather>
         <app-id-to-weather
           [weather]="'storm'"
@@ -215,7 +215,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'storm'
+            'text-danger': selectedWeather === 'storm',
           }"></app-id-to-weather>
         <app-id-to-weather
           [weather]="'snow'"
@@ -223,7 +223,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'snow'
+            'text-danger': selectedWeather === 'snow',
           }"></app-id-to-weather>
         <app-id-to-weather
           [weather]="'heatwave'"
@@ -231,7 +231,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'heatwave'
+            'text-danger': selectedWeather === 'heatwave',
           }"></app-id-to-weather>
         <app-id-to-weather
           [weather]="'wind'"
@@ -239,7 +239,7 @@
           role="button"
           class="flex-grow-1"
           [ngClass]="{
-            'text-danger': selectedWeather === 'wind'
+            'text-danger': selectedWeather === 'wind',
           }"></app-id-to-weather>
 
         <button
@@ -549,7 +549,7 @@
                 [ngClass]="{
                   'icon-increase': getVariation(res) > 0,
                   'icon-equal': getVariation(res) === 0,
-                  'icon-decrease': getVariation(res) < 0
+                  'icon-decrease': getVariation(res) < 0,
                 }">
                 @if (getVariation(res) > 0) {
                   <app-ic-icon [icon]="angleUp" class="text-up"></app-ic-icon>

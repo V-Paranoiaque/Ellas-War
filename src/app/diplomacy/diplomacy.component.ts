@@ -117,7 +117,8 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   }
 
   getProfile(id: number) {
-    const url = this.socket.url + '/api/allianceProfile/' + id + '.json';
+    const url =
+      this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
     this.sub = this.http.get(url).subscribe(res => {
       this.allianceProfile = res as typeof this.allianceProfile;

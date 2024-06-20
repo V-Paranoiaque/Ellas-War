@@ -15,7 +15,7 @@
                 [routerLink]="['/quests']"
                 class="btn btn-danger flex-grow-1 design-background"
                 [ngClass]="{
-                  'text-warning': user.getPropertyNb('dquest_validated') > 0
+                  'text-warning': user.getPropertyNb('dquest_validated') > 0,
                 }"
                 data-bs-toggle="modal"
                 data-bs-target="#MsgNew"
@@ -28,7 +28,7 @@
                 [routerLink]="['/altars']"
                 class="btn btn-primary flex-grow-1 design-background"
                 [ngClass]="{
-                  'text-warning': user.getPropertyNb('altar_available') > 0
+                  'text-warning': user.getPropertyNb('altar_available') > 0,
                 }"
                 data-bs-toggle="modal"
                 data-bs-target="#MsgNew"
@@ -64,7 +64,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 1,
                     quest_available:
                       user.getPropertyNb('quest_step') === 0 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>1</p>
                 </div>
@@ -73,7 +73,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 2,
                     quest_available:
                       user.getPropertyNb('quest_step') === 1 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>2</p>
                 </div>
@@ -82,7 +82,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 3,
                     quest_available:
                       user.getPropertyNb('quest_step') === 2 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>3</p>
                 </div>
@@ -91,7 +91,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 4,
                     quest_available:
                       user.getPropertyNb('quest_step') === 3 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>4</p>
                 </div>
@@ -100,7 +100,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 5,
                     quest_available:
                       user.getPropertyNb('quest_step') === 4 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>5</p>
                 </div>
@@ -109,7 +109,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 6,
                     quest_available:
                       user.getPropertyNb('quest_step') === 5 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }">
                   <p>6</p>
                 </div>
@@ -118,7 +118,7 @@
                     quest_validated: user.getPropertyNb('quest_step') >= 7,
                     quest_available:
                       user.getPropertyNb('quest_step') === 6 &&
-                      user.getPropertyNb('quest_today') === 0
+                      user.getPropertyNb('quest_today') === 0,
                   }"
                   data-bs-toggle="modal"
                   data-bs-target="#QuestsInfo"
@@ -195,7 +195,7 @@
                               : {
                                   value:
                                     quest.quest_goal
-                                    | number: '' : this.translate.currentLang
+                                    | number: '' : this.translate.currentLang,
                                 }
                         }}"
                         [quest]="quest"
@@ -211,7 +211,7 @@
                               : {
                                   value:
                                     quest.quest_goal
-                                    | number: '' : this.translate.currentLang
+                                    | number: '' : this.translate.currentLang,
                                 }
                         }}"
                         [quest]="quest"

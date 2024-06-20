@@ -3,7 +3,7 @@
   data-bs-dismiss="modal"
   [ngClass]="{
     'text-danger': status.toString() === '3' || status.toString() === '5',
-    'text-warning': status.toString() === '4'
+    'text-warning': status.toString() === '4',
   }">
   {{ username }}
   @if (status.toString() !== '1') {

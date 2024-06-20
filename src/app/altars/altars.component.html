@@ -15,7 +15,7 @@
                 [routerLink]="['/quests']"
                 class="btn btn-primary flex-grow-1 design-background"
                 [ngClass]="{
-                  'text-warning': user.getPropertyNb('dquest_validated') > 0
+                  'text-warning': user.getPropertyNb('dquest_validated') > 0,
                 }"
                 data-bs-toggle="modal"
                 data-bs-target="#MsgNew"
@@ -28,7 +28,7 @@
                 [routerLink]="['/altars']"
                 class="btn btn-danger flex-grow-1 design-background"
                 [ngClass]="{
-                  'text-warning': user.getPropertyNb('altar_available') > 0
+                  'text-warning': user.getPropertyNb('altar_available') > 0,
                 }"
                 data-bs-toggle="modal"
                 data-bs-target="#MsgNew"
@@ -266,7 +266,7 @@
                                         (altarQuestConditionGaia.xp.quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (!altarQuestConditionGaia.xp.validated) {
@@ -304,7 +304,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (!altarQuestConditionGaia.defense.validated) {
@@ -591,7 +591,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -635,7 +635,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -679,7 +679,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -723,7 +723,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -999,7 +999,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -1045,7 +1045,7 @@
                                             .quantity
                                           | number
                                             : ''
-                                            : this.translate.currentLang)
+                                            : this.translate.currentLang),
                                       }
                               }}
                               @if (
@@ -1122,7 +1122,7 @@
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 0,
                               'fw-bold':
-                                user.getPropertyNb('divine_units') === 0
+                                user.getPropertyNb('divine_units') === 0,
                             }"
                             translate
                             >Harpies</span
@@ -1133,7 +1133,7 @@
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 1,
                               'fw-bold':
-                                user.getPropertyNb('divine_units') === 1
+                                user.getPropertyNb('divine_units') === 1,
                             }"
                             translate
                             >Griffins</span
@@ -1144,7 +1144,7 @@
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 2,
                               'fw-bold':
-                                user.getPropertyNb('divine_units') === 2
+                                user.getPropertyNb('divine_units') === 2,
                             }"
                             translate
                             >Hecatoncheires</span
@@ -1155,7 +1155,7 @@
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 3,
                               'fw-bold':
-                                user.getPropertyNb('divine_units') === 3
+                                user.getPropertyNb('divine_units') === 3,
                             }"
                             translate
                             >Manticores</span
@@ -1166,7 +1166,7 @@
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 4,
                               'fw-bold':
-                                user.getPropertyNb('divine_units') === 4
+                                user.getPropertyNb('divine_units') === 4,
                             }"
                             translate
                             >Lampads</span
@@ -1411,7 +1411,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -1455,7 +1455,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                             @if (
@@ -1499,7 +1499,7 @@
                                           .quantity
                                         | number
                                           : ''
-                                          : this.translate.currentLang)
+                                          : this.translate.currentLang),
                                     }
                             }}
                           </th>

@@ -145,7 +145,8 @@ export class CityComponent implements OnInit, OnDestroy {
       this.user.getPropertyNb('quest') === 1
     ) {
       setTimeout(() => {
-        const element: HTMLElement = document.getElementById('FirstInfoOpen')!;
+        const element: HTMLElement | null =
+          document.getElementById('FirstInfoOpen');
         if (element) {
           element.click();
         }
@@ -185,7 +186,8 @@ export class CityComponent implements OnInit, OnDestroy {
         this.dailyCo.basket = 0;
       }
 
-      const element: HTMLElement = document.getElementById('DailyCoCheckOpen')!;
+      const element: HTMLElement | null =
+        document.getElementById('DailyCoCheckOpen');
       if (element) {
         element.click();
       }
@@ -241,7 +243,7 @@ export class CityComponent implements OnInit, OnDestroy {
 
   armyDisplay(paramInfo: object) {
     const info = paramInfo as {
-      temple?: string[];
+      temple?: object;
       code: string;
       power: string;
       power_level: number;
@@ -252,7 +254,7 @@ export class CityComponent implements OnInit, OnDestroy {
 
     //Temple unit
     if (info.temple) {
-      for (const temple in info.temple) {
+      for (const temple of Object.keys(info.temple)) {
         if (this.user.getPropertyNb(temple) === 0) {
           return false;
         }
@@ -299,7 +301,9 @@ export class CityComponent implements OnInit, OnDestroy {
     }
 
     const quest =
-      this.user.getPropertyNb('level') + '_' + this.user.getPropertyNb('quest');
+      this.user.getPropertyNb('level').toString() +
+      '_' +
+      this.user.getPropertyNb('quest').toString();
 
     const array_goal = {
       //Level 0

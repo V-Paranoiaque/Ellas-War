@@ -57,7 +57,7 @@
             class="card-body p-0 row-cols-6 d-flex flex-wrap attack-menu text-break"
             [ngClass]="{
               'col-8 offset-2': user.getPropertyNb('level') < 10,
-              'col-12': user.getPropertyNb('level') >= 10
+              'col-12': user.getPropertyNb('level') >= 10,
             }">
             @if (myAllianceWar.length > 0) {
               <div
@@ -161,7 +161,7 @@
                         <td>
                           <a
                             [routerLink]="[
-                              '/profile/' + attackClosestMin.membre_id
+                              '/profile/' + attackClosestMin.membre_id,
                             ]"
                             class="no-padding"
                             >{{ attackClosestMin.username }}</a
@@ -178,7 +178,7 @@
                         <td>
                           <a
                             [routerLink]="[
-                              '/profile/' + attackClosestMax.membre_id
+                              '/profile/' + attackClosestMax.membre_id,
                             ]"
                             class="no-padding"
                             >{{ attackClosestMax.username }}</a
@@ -333,7 +333,7 @@
                         @if (player.alliance > 0) {
                           <a
                             [routerLink]="[
-                              '/allianceprofile/' + player.alliance
+                              '/allianceprofile/' + player.alliance,
                             ]"
                             class="fw-lighter no-padding">
                             <br />
@@ -387,7 +387,7 @@
                             class="btn"
                             [ngClass]="{
                               'btn-danger': player.fury_allowed === 0,
-                              'btn-success': player.fury_allowed === 1
+                              'btn-success': player.fury_allowed === 1,
                             }"
                             (click)="prepareFury(player.membre_id)">
                             <app-ic-icon [icon]="fireIcon"></app-ic-icon>
@@ -404,7 +404,7 @@
                             class="btn"
                             [ngClass]="{
                               'btn-danger': player.lightning_allowed === 0,
-                              'btn-success': player.lightning_allowed === 1
+                              'btn-success': player.lightning_allowed === 1,
                             }"
                             (click)="prepareLightning(player.membre_id)">
                             <app-ic-icon [icon]="boltIcon"></app-ic-icon>
@@ -414,7 +414,7 @@
                           class="btn"
                           [ngClass]="{
                             'btn-danger': player.attack_allowed === 0,
-                            'btn-success': player.attack_allowed === 1
+                            'btn-success': player.attack_allowed === 1,
                           }"
                           (click)="prepareAttack(player.membre_id)">
                           <app-ic-icon [icon]="swordIcon"></app-ic-icon>
@@ -765,7 +765,7 @@
                               <span
                                 [ngClass]="{
                                   'text-danger':
-                                    sanctuary.sanctuaries_power === 0
+                                    sanctuary.sanctuaries_power === 0,
                                 }">
                                 {{
                                   Math.min(100, sanctuary.sanctuaries_power)
@@ -991,7 +991,7 @@
                         @if (player.alliance > 0) {
                           <a
                             [routerLink]="[
-                              '/allianceprofile/' + player.alliance
+                              '/allianceprofile/' + player.alliance,
                             ]"
                             class="fw-lighter no-padding">
                             <br />
@@ -1045,7 +1045,7 @@
                             class="btn"
                             [ngClass]="{
                               'btn-danger': player.fury_allowed === 0,
-                              'btn-success': player.fury_allowed === 1
+                              'btn-success': player.fury_allowed === 1,
                             }"
                             (click)="prepareFury(player.membre_id)">
                             <app-ic-icon [icon]="fireIcon"></app-ic-icon>
@@ -1062,7 +1062,7 @@
                             class="btn"
                             [ngClass]="{
                               'btn-danger': player.lightning_allowed === 0,
-                              'btn-success': player.lightning_allowed === 1
+                              'btn-success': player.lightning_allowed === 1,
                             }"
                             (click)="prepareLightning(player.membre_id)">
                             <app-ic-icon [icon]="boltIcon"></app-ic-icon>
@@ -1072,7 +1072,7 @@
                           class="btn"
                           [ngClass]="{
                             'btn-danger': player.attack_allowed === 0,
-                            'btn-success': player.attack_allowed === 1
+                            'btn-success': player.attack_allowed === 1,
                           }"
                           (click)="prepareAttack(player.membre_id)">
                           <app-ic-icon [icon]="swordIcon"></app-ic-icon>
@@ -1460,7 +1460,7 @@
                                     vlow: spyInfo.ress.food === 1,
                                     low: spyInfo.ress.food === 2,
                                     middle: spyInfo.ress.food === 3,
-                                    high: spyInfo.ress.food === 4
+                                    high: spyInfo.ress.food === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1474,7 +1474,7 @@
                                     vlow: spyInfo.ress.water === 1,
                                     low: spyInfo.ress.water === 2,
                                     middle: spyInfo.ress.water === 3,
-                                    high: spyInfo.ress.water === 4
+                                    high: spyInfo.ress.water === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1488,7 +1488,7 @@
                                     vlow: spyInfo.ress.wood === 1,
                                     low: spyInfo.ress.wood === 2,
                                     middle: spyInfo.ress.wood === 3,
-                                    high: spyInfo.ress.wood === 4
+                                    high: spyInfo.ress.wood === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1502,7 +1502,7 @@
                                     vlow: spyInfo.ress.iron === 1,
                                     low: spyInfo.ress.iron === 2,
                                     middle: spyInfo.ress.iron === 3,
-                                    high: spyInfo.ress.iron === 4
+                                    high: spyInfo.ress.iron === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1516,7 +1516,7 @@
                                     vlow: spyInfo.ress.stone === 1,
                                     low: spyInfo.ress.stone === 2,
                                     middle: spyInfo.ress.stone === 3,
-                                    high: spyInfo.ress.stone === 4
+                                    high: spyInfo.ress.stone === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1530,7 +1530,7 @@
                                     vlow: spyInfo.ress.marble === 1,
                                     low: spyInfo.ress.marble === 2,
                                     middle: spyInfo.ress.marble === 3,
-                                    high: spyInfo.ress.marble === 4
+                                    high: spyInfo.ress.marble === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1544,7 +1544,7 @@
                                     vlow: spyInfo.ress.grapes === 1,
                                     low: spyInfo.ress.grapes === 2,
                                     middle: spyInfo.ress.grapes === 3,
-                                    high: spyInfo.ress.grapes === 4
+                                    high: spyInfo.ress.grapes === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1558,7 +1558,7 @@
                                     vlow: spyInfo.ress.wine === 1,
                                     low: spyInfo.ress.wine === 2,
                                     middle: spyInfo.ress.wine === 3,
-                                    high: spyInfo.ress.wine === 4
+                                    high: spyInfo.ress.wine === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -1572,7 +1572,7 @@
                                     vlow: spyInfo.ress.gold === 1,
                                     low: spyInfo.ress.gold === 2,
                                     middle: spyInfo.ress.gold === 3,
-                                    high: spyInfo.ress.gold === 4
+                                    high: spyInfo.ress.gold === 4,
                                   }"
                                   [icon]="dotCircle"></app-ic-icon>
                               </div>
@@ -2157,7 +2157,7 @@
                   <strong translate>:</strong>
                   <span
                     [ngClass]="{
-                      'text-danger': sanctuariesInfo.sanctuaries_power === 0
+                      'text-danger': sanctuariesInfo.sanctuaries_power === 0,
                     }">
                     {{ Math.min(100, sanctuariesInfo.sanctuaries_power) }}%
                   </span>

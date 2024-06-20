@@ -56,8 +56,8 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
       '.json';
 
     this.subLost = this.http.get(url).subscribe(res => {
-      const result = res as { error: number };
-      if (result) {
+      const result = res as { error?: number };
+      if (result.error) {
         this.lostpasswordError = result.error;
       } else {
         this.lostpasswordError = 0;

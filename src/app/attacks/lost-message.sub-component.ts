@@ -21,7 +21,7 @@ export class LostMessageSubComponent {
   getLostBuildings() {
     const list = [];
 
-    if (this?.info?.lost_build) {
+    if (this.info.lost_build) {
       for (const [i, nb] of Object.entries(this.info.lost_build)) {
         if (nb > 0) {
           list.push({
@@ -35,7 +35,7 @@ export class LostMessageSubComponent {
   }
 
   getLostBuildingsNb() {
-    if (this?.info?.lost_build) {
+    if (this.info.lost_build) {
       let i = 0;
       for (const [, qtt] of Object.entries(this.info.lost_build)) {
         if (qtt > 0) {
@@ -51,7 +51,7 @@ export class LostMessageSubComponent {
   getLostResources() {
     const list = [];
 
-    if (this?.info?.lost_ress) {
+    if (this.info.lost_ress) {
       for (const [i, nb] of Object.entries(this.info.lost_ress)) {
         if (nb > 0) {
           list.push({
@@ -65,7 +65,7 @@ export class LostMessageSubComponent {
   }
 
   getLostResourcesNb() {
-    if (this?.info?.lost_ress) {
+    if (this.info.lost_ress) {
       let i = 0;
       for (const [, qtt] of Object.entries(this.info.lost_ress)) {
         if (qtt > 0) {
@@ -81,7 +81,7 @@ export class LostMessageSubComponent {
   getLostUnits() {
     const list = [];
 
-    if (this?.info?.lost_unit) {
+    if (this.info.lost_unit) {
       for (const [i, nb] of Object.entries(this.info.lost_unit)) {
         if (parseInt(nb as string) > 0) {
           list.push({
@@ -94,7 +94,7 @@ export class LostMessageSubComponent {
     return list;
   }
   getLostUnitsNb() {
-    if (this?.info?.lost_unit) {
+    if (this.info.lost_unit) {
       return Object.keys(this.info.lost_unit).length;
     } else {
       return 0;

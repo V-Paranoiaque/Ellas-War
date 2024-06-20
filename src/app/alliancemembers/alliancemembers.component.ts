@@ -70,8 +70,9 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
   }
 
   getMembers() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = this.socket.url + '/api/allianceMembers/' + id + '.json';
+    const id = this.route.snapshot.paramMap.get('id') ?? '0';
+    const url =
+      this.socket.url + '/api/allianceMembers/' + id.toString() + '.json';
 
     this.subMembers = this.http.get(url).subscribe(res => {
       this.allianceMembers = res as typeof this.allianceMembers;
@@ -90,8 +91,9 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
   }
 
   getProfile() {
-    const id = this.route.snapshot.paramMap.get('id');
-    const url = this.socket.url + '/api/allianceProfile/' + id + '.json';
+    const id = this.route.snapshot.paramMap.get('id') ?? '0';
+    const url =
+      this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
     this.subProfile = this.http.get(url).subscribe(alli => {
       const profile = alli as typeof this.allianceProfile;

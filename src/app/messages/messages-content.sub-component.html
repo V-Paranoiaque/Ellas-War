@@ -51,7 +51,7 @@
             | translate
               : {
                   value: msg.content.attacking_name,
-                  name: msg.content.defender_name
+                  name: msg.content.defender_name,
                 }
         }}
       </span>
@@ -68,7 +68,7 @@
             | translate
               : {
                   value: msg.content.attacking_name,
-                  name: msg.content.defender_name
+                  name: msg.content.defender_name,
                 }
         }}
       </span>
@@ -428,7 +428,8 @@
             | translate
               : {
                   value:
-                    msg.content.reward | number: '' : this.translate.currentLang
+                    msg.content.reward
+                    | number: '' : this.translate.currentLang,
                 }
         }}
       </span>
@@ -440,7 +441,8 @@
             | translate
               : {
                   value:
-                    msg.content.reward | number: '' : this.translate.currentLang
+                    msg.content.reward
+                    | number: '' : this.translate.currentLang,
                 }
         }}
       </span>
@@ -453,7 +455,7 @@
               : {
                   value: msg.content.username,
                   name1: msg.content.dst_name,
-                  name2: msg.content.ask_name
+                  name2: msg.content.ask_name,
                 }
         }}.
       </span>
@@ -466,7 +468,7 @@
               : {
                   value: msg.content.username,
                   name1: msg.content.dst_name,
-                  name2: msg.content.ask_name
+                  name2: msg.content.ask_name,
                 }
         }}.
       </span>

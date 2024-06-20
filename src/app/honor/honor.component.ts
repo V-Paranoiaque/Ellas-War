@@ -80,7 +80,7 @@ export class HonorComponent implements OnInit, OnDestroy {
       this.subTitle = this.translate
         .get('Honor Ranking, page')
         .subscribe((res: string) => {
-          this.titleService.setTitle(res + ' ' + this.id);
+          this.titleService.setTitle(res + ' ' + this.id.toString());
         });
     } else {
       this.subTitle = this.translate
@@ -90,7 +90,8 @@ export class HonorComponent implements OnInit, OnDestroy {
         });
     }
 
-    const url = this.socket.url + '/api/rankingHonor/' + this.id + '.json';
+    const url =
+      this.socket.url + '/api/rankingHonor/' + this.id.toString() + '.json';
     this.subRank = this.http.get(url).subscribe(res => {
       this.list = res as typeof this.list;
     });

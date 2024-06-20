@@ -422,7 +422,8 @@
                   @if (index > 0 && user.hasLevelRess(res)) {
                     <tr
                       [ngClass]="{
-                        'table-danger': index.toString() === agoraRes.toString()
+                        'table-danger':
+                          index.toString() === agoraRes.toString(),
                       }"
                       (click)="selectAgoraRes(index)"
                       role="button">

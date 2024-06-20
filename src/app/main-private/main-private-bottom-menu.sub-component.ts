@@ -305,7 +305,10 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
     this.chat = chat;
 
     const url =
-      this.socket.url + '/api/playerProfile/' + data.user_id + '.json';
+      this.socket.url +
+      '/api/playerProfile/' +
+      data.user_id.toString() +
+      '.json';
     this.socket.emit('accountInfo');
 
     this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {

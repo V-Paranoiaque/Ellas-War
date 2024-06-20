@@ -33,6 +33,7 @@ export class UserComponent {
     this.info = {
       language: environment.language.default,
       datas: {
+        alliance: { create: 0 },
         attack: {
           bonus: [],
         },
@@ -41,6 +42,7 @@ export class UserComponent {
           rewards: [],
         },
         ress_lvl: {},
+        war: { minmembers: 0 },
       },
     };
     this.newMsg = 0;
@@ -73,7 +75,7 @@ export class UserComponent {
   }
 
   getProperty(name: string): string | object {
-    if (this.info[name as keyof typeof this.info]) {
+    if (Object.hasOwn(this.info, name)) {
       return this.info[name as keyof typeof this.info];
     } else {
       return '';
@@ -81,7 +83,7 @@ export class UserComponent {
   }
 
   getPropertyNb(name: string): number {
-    if (this.info[name as keyof typeof this.info]) {
+    if (Object.hasOwn(this.info, name)) {
       return this.info[name as keyof typeof this.info];
     } else {
       return 0;
@@ -351,7 +353,7 @@ export class UserComponent {
   }
 
   hasLevelRess(ress: string) {
-    const datas = this.getProperty('datas') as { ress_lvl: object };
+    const datas = this.getProperty('datas') as { ress_lvl?: object };
 
     if (
       datas.ress_lvl &&
@@ -478,13 +480,7 @@ export class UserComponent {
       war: { minmembers: number };
     };
 
-    if (datas.alliance) {
-      return datas;
-    }
-    return {
-      alliance: { create: 0 },
-      war: { minmembers: 0 },
-    };
+    return datas;
   }
 
   questValidateAuto() {

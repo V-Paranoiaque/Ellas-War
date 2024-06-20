@@ -202,7 +202,7 @@
               }
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 360
+                  'text-danger': user.getPropertyNb('ambrosia') < 360,
                 }">
                 <strong translate>Cost:</strong>
                 360
@@ -287,7 +287,7 @@
                     <th
                       scope="row"
                       [ngClass]="{
-                        'text-danger': user.getPropertyNb('ambrosia') < 12
+                        'text-danger': user.getPropertyNb('ambrosia') < 12,
                       }">
                       12
                       <app-ew-icon
@@ -311,7 +311,7 @@
                       scope="row"
                       class="border-bottom-0"
                       [ngClass]="{
-                        'text-danger': user.getPropertyNb('ambrosia') < 20
+                        'text-danger': user.getPropertyNb('ambrosia') < 20,
                       }">
                       20
                       <app-ew-icon
@@ -371,7 +371,7 @@
               <div translate>Looting is increased by 5 to 15% for 2 hours.</div>
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 4
+                  'text-danger': user.getPropertyNb('ambrosia') < 4,
                 }">
                 <strong translate>Cost:</strong>
                 4
@@ -468,7 +468,7 @@
                       | translate
                         : {
                             value: user.getDatas().army.amazon.nbmax,
-                            name: Tools.getName('amazon', 2) | translate
+                            name: Tools.getName('amazon', 2) | translate,
                           }
                   }}
                 </div>
@@ -527,7 +527,7 @@
               }
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 1
+                  'text-danger': user.getPropertyNb('ambrosia') < 1,
                 }">
                 <strong translate>Cost:</strong>
                 1
@@ -569,7 +569,7 @@
               }
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 90
+                  'text-danger': user.getPropertyNb('ambrosia') < 90,
                 }">
                 <strong translate>Cost:</strong>
                 180
@@ -632,7 +632,7 @@
                       | translate
                         : {
                             value: user.getDatas().army.automaton.nbmax,
-                            name: Tools.getName('automaton', 2) | translate
+                            name: Tools.getName('automaton', 2) | translate,
                           }
                   }}
                 </div>
@@ -692,7 +692,7 @@
               </div>
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 40
+                  'text-danger': user.getPropertyNb('ambrosia') < 40,
                 }">
                 <strong translate>Cost:</strong>
                 40
@@ -724,7 +724,7 @@
               }
               <div
                 [ngClass]="{
-                  'text-danger': user.getPropertyNb('ambrosia') < 120
+                  'text-danger': user.getPropertyNb('ambrosia') < 120,
                 }">
                 <strong translate>Cost:</strong>
                 120
@@ -780,7 +780,7 @@
                       | translate
                         : {
                             value: user.getDatas().army.centaur.nbmax,
-                            name: Tools.getName('centaur', 2) | translate
+                            name: Tools.getName('centaur', 2) | translate,
                           }
                   }}
                 </div>
@@ -853,7 +853,7 @@
                   <span
                     [ngClass]="{
                       'text-danger':
-                        resource.value < user.getPropertyNb(resource.key)
+                        resource.value < user.getPropertyNb(resource.key),
                     }">
                     {{
                       Number(resource.value)
@@ -900,7 +900,7 @@
             }
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 100
+                'text-danger': user.getPropertyNb('ambrosia') < 100,
               }">
               <strong translate>Cost:</strong>
               100
@@ -939,7 +939,7 @@
             </div>
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 90
+                'text-danger': user.getPropertyNb('ambrosia') < 90,
               }">
               <strong translate>Cost:</strong>
               90
@@ -992,7 +992,7 @@
                   <th
                     scope="row"
                     [ngClass]="{
-                      'text-danger': user.getPropertyNb('ambrosia') < 12
+                      'text-danger': user.getPropertyNb('ambrosia') < 12,
                     }">
                     12
                     <app-ew-icon
@@ -1016,7 +1016,7 @@
                     scope="row"
                     class="border-bottom-0"
                     [ngClass]="{
-                      'text-danger': user.getPropertyNb('ambrosia') < 20
+                      'text-danger': user.getPropertyNb('ambrosia') < 20,
                     }">
                     20
                     <app-ew-icon
@@ -1081,7 +1081,7 @@
             </div>
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 400
+                'text-danger': user.getPropertyNb('ambrosia') < 400,
               }">
               <strong translate>Cost:</strong>
               400
@@ -1132,7 +1132,7 @@
                   <th
                     scope="row"
                     [ngClass]="{
-                      'text-danger': user.getPropertyNb('ambrosia') < 24
+                      'text-danger': user.getPropertyNb('ambrosia') < 24,
                     }">
                     24
                     <app-ew-icon
@@ -1156,7 +1156,7 @@
                     scope="row"
                     class="border-bottom-0"
                     [ngClass]="{
-                      'text-danger': user.getPropertyNb('ambrosia') < 40
+                      'text-danger': user.getPropertyNb('ambrosia') < 40,
                     }">
                     40
                     <app-ew-icon
@@ -1192,7 +1192,7 @@
             </div>
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 20
+                'text-danger': user.getPropertyNb('ambrosia') < 20,
               }">
               <strong translate>Cost:</strong>
               20
@@ -1252,7 +1252,7 @@
                           [ngClass]="{
                             'text-danger':
                               user.getPropertyNb('water') <
-                              user.getDatas().poseidon_wall.water
+                              user.getDatas().poseidon_wall.water,
                           }">
                           {{
                             user.getDatas().poseidon_wall.water
@@ -1266,7 +1266,7 @@
                           [ngClass]="{
                             'text-danger':
                               user.getPropertyNb('marble') <
-                              user.getDatas().poseidon_wall.marble
+                              user.getDatas().poseidon_wall.marble,
                           }">
                           {{
                             user.getDatas().poseidon_wall.marble
@@ -1280,7 +1280,7 @@
                           [ngClass]="{
                             'text-danger':
                               user.getPropertyNb('gold') <
-                              user.getDatas().poseidon_wall.gold
+                              user.getDatas().poseidon_wall.gold,
                           }">
                           {{
                             user.getDatas().poseidon_wall.gold
@@ -1308,7 +1308,7 @@
                       <th
                         scope="row"
                         [ngClass]="{
-                          'text-danger': user.getPropertyNb('ambrosia') < 160
+                          'text-danger': user.getPropertyNb('ambrosia') < 160,
                         }">
                         160
                         <app-ew-icon
@@ -1343,7 +1343,7 @@
             }
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 40
+                'text-danger': user.getPropertyNb('ambrosia') < 40,
               }">
               <strong translate>Cost:</strong>
               40
@@ -1378,7 +1378,7 @@
             }
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 120
+                'text-danger': user.getPropertyNb('ambrosia') < 120,
               }">
               <strong translate>Cost:</strong>
               120
@@ -1425,7 +1425,7 @@
             </div>
             <div
               [ngClass]="{
-                'text-danger': user.getPropertyNb('ambrosia') < 40
+                'text-danger': user.getPropertyNb('ambrosia') < 40,
               }">
               <strong translate>Cost:</strong>
               40

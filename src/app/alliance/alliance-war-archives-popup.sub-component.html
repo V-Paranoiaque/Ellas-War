@@ -41,7 +41,7 @@
               | translate
                 : {
                     value: getWarInfo().war.victory,
-                    value2: getWarInfo().war.diff
+                    value2: getWarInfo().war.diff,
                   }
           }}
           <br />
@@ -81,7 +81,7 @@
                 <tr
                   [ngClass]="{
                     'bg-light':
-                      p.alliance_attacking === user.getPropertyNb('alliance')
+                      p.alliance_attacking === user.getPropertyNb('alliance'),
                   }">
                   <td>
                     <app-user-profile

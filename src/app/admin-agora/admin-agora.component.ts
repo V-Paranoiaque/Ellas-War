@@ -79,7 +79,11 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
     const date = new Date();
     date.setDate(date.getDate() - 7);
     return (
-      date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+      date.getDate().toString() +
+      '/' +
+      (date.getMonth() + 1).toString() +
+      '/' +
+      date.getFullYear().toString()
     );
   }
 

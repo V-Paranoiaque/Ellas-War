@@ -264,7 +264,7 @@
                 class="d-flex bd-highlight"
                 [ngClass]="{
                   selected: msg.msg_id === getCurrentMsg().msg_id,
-                  new: msg.msg_read === 0
+                  new: msg.msg_read === 0,
                 }"
                 role="button"
                 (click)="messageLoad(msg)"

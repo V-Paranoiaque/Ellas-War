@@ -138,6 +138,6 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
       page = this.adminNewsMax;
     }
 
-    void this.router.navigate(['/admin/support/' + page]);
+    void this.router.navigate(['/admin/support/' + page.toString()]);
   }
 }

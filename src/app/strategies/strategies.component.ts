@@ -375,20 +375,22 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     for (let i = 1; i <= waveNb; i++) {
       for (const unit in this.waveAttackList[i]) {
         if (Object.hasOwn(this.waveAttackList[i], unit)) {
-          if (!this.waveAttackUnit.get(unit)!) {
+          if (!this.waveAttackUnit.get(unit)) {
             this.waveAttackUnit.set(unit, 0);
           }
           this.waveAttackUnit.set(
             unit,
-            this.waveAttackUnit.get(unit)! +
-              this.getWaveUnit(this.waveAttackList[i], unit)
+            this.waveAttackUnit.get(unit) ??
+              0 + this.getWaveUnit(this.waveAttackList[i], unit)
           );
         }
       }
-      this.waveAttackDropList.push('wave-attack-' + i);
+      this.waveAttackDropList.push('wave-attack-' + i.toString());
     }
     if (data.list.length < this.waveAttackMax) {
-      this.waveAttackDropList.push('wave-attack-' + data.list.length);
+      this.waveAttackDropList.push(
+        'wave-attack-' + data.list.length.toString()
+      );
     }
   }
 
@@ -409,15 +411,17 @@ export class StrategiesComponent implements OnInit, OnDestroy {
           }
           this.waveDefenseUnit.set(
             unit,
-            this.waveDefenseUnit.get(unit)! +
-              this.getWaveUnit(this.waveDefenseList[i], unit)
+            this.waveDefenseUnit.get(unit) ??
+              0 + this.getWaveUnit(this.waveDefenseList[i], unit)
           );
         }
       }
-      this.waveDefenseDropList.push('wave-defense-' + i);
+      this.waveDefenseDropList.push('wave-defense-' + i.toString());
     }
     if (data.list.length < this.waveDefenseMax) {
-      this.waveDefenseDropList.push('wave-defense-' + data.list.length);
+      this.waveDefenseDropList.push(
+        'wave-defense-' + data.list.length.toString()
+      );
     }
   }
 
