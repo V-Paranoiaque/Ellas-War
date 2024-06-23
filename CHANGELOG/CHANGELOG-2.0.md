@@ -72,3 +72,7 @@
 # 2.0.9
 * Minor fixes
 * New page with the process to delete an account
+
+# 2.0.10
+* Fix marble/stone bar on touch screens
+* Fix top display on Android

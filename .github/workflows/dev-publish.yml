@@ -46,7 +46,7 @@ jobs:
           cordova build electron --no-telemetry --edge
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
-          electron: 3.1.0
+          electron: 4.0.0
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.snapcraft_token_edge }}'
       
       - name: Publish Snap
