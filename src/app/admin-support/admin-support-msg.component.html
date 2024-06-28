@@ -23,8 +23,7 @@
 
             @for (msg of adminSupportInfo.msg; track msg) {
               <div>
-                <div class="text-prewrap">{{ msg.support_msg }}</div>
-                <br />
+                <div class="text-prewrap mb-3">{{ msg.support_msg }}</div>
                 <div class="text-end fw-bold">
                   <a [routerLink]="['/admin/profile/' + msg.support_membre]">
                     {{

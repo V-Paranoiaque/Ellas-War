@@ -143,3 +143,8 @@ th .small-resource {
   background-color: lightgrey;
   border: #36135a solid 1px;
 }
+
+/** Messages **/
+.text-prewrap {
+  white-space: pre;
+}
