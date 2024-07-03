@@ -16,7 +16,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   styleUrls: ['./attacks.component.css'],
 })
 export class AttacksDiamondComponent implements OnInit, OnDestroy {
-
   public attackInfo = new MessageContent();
   public attackMode: number;
   public attackPossible = 0;
@@ -183,7 +182,7 @@ export class AttacksDiamondComponent implements OnInit, OnDestroy {
     this.socket.removeListener('realWaveAttackSum');
     this.socket.removeListener('waveAttackSum');
   }
-  
+
   prepareAttack(id: number) {
     this.attackMode = 3;
 

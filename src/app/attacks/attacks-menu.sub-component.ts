@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'app-attacks-menu',
   templateUrl: './attacks-menu.sub-component.html',
 })
-export class AttacksMenuSubComponent {
+export class AttacksMenuSubComponent implements OnInit, OnDestroy {
   public myAllianceWar: object[];
 
   constructor(

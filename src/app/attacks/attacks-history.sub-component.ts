@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Message } from 'src/services/message.class';
 
@@ -11,8 +11,7 @@ import share from '@iconify/icons-bi/share';
   templateUrl: './attacks-history.sub-component.html',
   styleUrls: ['./attacks.component.css'],
 })
-export class AttacksHistorySubComponent {
-
+export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   public currentMsg: Message;
   public msgList: Message[];
   public linkSaved: number;
@@ -22,8 +21,7 @@ export class AttacksHistorySubComponent {
   clipboardCheck = clipboardCheck;
   share = share;
 
-  constructor(
-    protected socket: Socket) {
+  constructor(protected socket: Socket) {
     this.currentMsg = new Message();
     this.msgList = [];
     this.linkSaved = 0;

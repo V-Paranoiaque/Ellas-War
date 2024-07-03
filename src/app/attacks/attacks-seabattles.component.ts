@@ -8,18 +8,15 @@ import { UserComponent as User } from '../../services/user.service';
   styleUrls: ['./attacks.component.css'],
 })
 export class AttacksSeabattlesComponent implements OnInit, OnDestroy {
-
   constructor(
     protected socket: Socket,
     public user: User,
     public translate: TranslateService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.socket.emit('sbGet');
-  };
+  }
 
-  ngOnDestroy() {
-  };
+  ngOnDestroy() {}
 }

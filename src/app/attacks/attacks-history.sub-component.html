@@ -3,9 +3,7 @@
     <div class="card-header" translate>Last attacks</div>
     <div class="card-body">
       @if (msgList.length === 0) {
-        <div class="text-center mt-2 mb-2" translate>
-          This list is empty
-        </div>
+        <div class="text-center mt-2 mb-2" translate>This list is empty</div>
       }
       @for (msg of msgList; track msg) {
         <div
@@ -24,12 +22,10 @@
       }
     </div>
   </div>
-}
-@else {
+} @else {
   <div class="card card-normal">
     <div class="card-header card-header-auto">
-      <app-messages-title
-        [msg]="getCurrentMsg()"></app-messages-title>
+      <app-messages-title [msg]="getCurrentMsg()"></app-messages-title>
       &nbsp;
       <button class="btn btn-primary" (click)="shareMsg()">
         <app-ic-icon [icon]="share"></app-ic-icon>
@@ -46,17 +42,13 @@
           </div>
         }
         <strong translate>Share link:</strong>
-        {{ getCurrentMsg().url }}/permalink/{{
-          getCurrentMsg().msg_id
-        }}
+        {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().msg_id }}
         <span
           class="badge bg-primary"
           role="button"
           (click)="copyLink()"
           [cbContent]="
-            getCurrentMsg().url +
-            '/permalink/' +
-            getCurrentMsg().msg_id
+            getCurrentMsg().url + '/permalink/' + getCurrentMsg().msg_id
           "
           (keyup.enter)="copyLink()"
           tabindex="0"
@@ -71,25 +63,19 @@
           @case (1) {
             <span
               ><app-attacks-message
-                [info]="
-                  getCurrentMsg().msg[0].content
-                "></app-attacks-message
+                [info]="getCurrentMsg().msg[0].content"></app-attacks-message
             ></span>
           }
           @case (3) {
             <span
               ><app-fury-message
-                [info]="
-                  getCurrentMsg().msg[0].content
-                "></app-fury-message
+                [info]="getCurrentMsg().msg[0].content"></app-fury-message
             ></span>
           }
           @case (8) {
             <span
               ><app-lost-message
-                [info]="
-                  getCurrentMsg().msg[0].content
-                "></app-lost-message
+                [info]="getCurrentMsg().msg[0].content"></app-lost-message
             ></span>
           }
           @default {

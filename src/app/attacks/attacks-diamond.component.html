@@ -4,7 +4,6 @@
 
 <main class="mb-4">
   <div class="container">
-
     <div class="row">
       <div class="col-xl-6 mt-1">
         <div class="card">
@@ -27,9 +26,7 @@
               }
               <strong translate>Field</strong>
               <strong translate>:</strong>
-              {{
-                diamondInfo.field | number: '' : this.translate.currentLang
-              }}
+              {{ diamondInfo.field | number: '' : this.translate.currentLang }}
               <br />
               <strong translate>Victories</strong>
               <strong translate>:</strong>
@@ -93,13 +90,12 @@
                       {{ diamondInfo.username }}
                     </span>
                   </button>
-                }
-                @else if (diamondInfo.attack_allowed === 0) {
+                } @else if (diamondInfo.attack_allowed === 0) {
                   <button
                     class="btn btn-danger fs-5"
-                    title="{{
-                      'Impossible to attack the city:' | translate
-                    }} {{ diamondInfo.username }}">
+                    title="{{ 'Impossible to attack the city:' | translate }} {{
+                      diamondInfo.username
+                    }}">
                     <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                     <span class="visually-hidden">
                       {{ 'Impossible to attack the city:' | translate }}
@@ -111,8 +107,8 @@
             }
             @if (user.getPropertyNb('id') === diamondInfo.last_id) {
               <div class="text-center text-danger fw-bold" translate>
-                You won the diamond last week, you can't participate until
-                next week
+                You won the diamond last week, you can't participate until next
+                week
               </div>
             }
             <div class="row">
@@ -197,8 +193,7 @@
                           {{ p.ranking }}
                         </td>
                         <td>
-                          <a
-                            [routerLink]="['/allianceprofile/' + p.alliance]">
+                          <a [routerLink]="['/allianceprofile/' + p.alliance]">
                             {{ p.alliance_name }}
                           </a>
                           @if (p.alliance === 0) {
@@ -247,8 +242,8 @@
               <div translate>
                 Each week, the player and the alliance that have kept the
                 diamond the longest win 2,500,000 Drachmas. If 4 to 7 players
-                got it, the reward goes to 5'000'000, and to 10'000'000 if 8
-                or more got it.
+                got it, the reward goes to 5'000'000, and to 10'000'000 if 8 or
+                more got it.
               </div>
               <div translate>
                 The player with the diamond can receive an unlimited number of
@@ -261,8 +256,7 @@
       <div class="col-xl-6 mt-1">
         @if (attackMode === 0) {
           <app-attacks-history></app-attacks-history>
-        }
-        @else if (attackMode === 3) {
+        } @else if (attackMode === 3) {
           <!-- Prepare to attack -->
           <div class="card-body" id="attackPrepareBlock">
             <div class="text-center">
@@ -273,8 +267,7 @@
                   <app-ic-icon [icon]="swordIcon"></app-ic-icon>
                   &nbsp;<span translate>Attack</span>
                 </button>
-              }
-              @else if (attackPossible === 0) {
+              } @else if (attackPossible === 0) {
                 <div translate>You can't attack this city</div>
               }
             </div>
@@ -293,8 +286,7 @@
                           data-bs-target="#attacksUnitHelp"
                           role="button"
                           title="{{ 'Help' | translate }}">
-                          <app-ic-icon
-                            [icon]="questionCircle"></app-ic-icon>
+                          <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                         </span>
                       }
                     </span>
@@ -304,8 +296,7 @@
                 <strong translate>Offensive power</strong>
                 <strong translate>:</strong>
                 {{
-                  getOffensivePower()
-                    | number: '' : this.translate.currentLang
+                  getOffensivePower() | number: '' : this.translate.currentLang
                 }}
               </div>
             }

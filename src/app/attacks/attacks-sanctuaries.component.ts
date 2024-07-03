@@ -19,8 +19,7 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   styleUrls: ['./attacks.component.css'],
 })
 export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
-
-  public attackMode:number;
+  public attackMode: number;
   public sanctuariesAttackInfo: MessageContent;
   public sanctuariesDefense: object[];
   public sanctuariesList: {
@@ -199,7 +198,7 @@ export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
     this.socket.on('waveAttackSum', data => {
       this.waveAttackSum = data;
     });
-  };
+  }
 
   ngOnDestroy() {
     this.socket.removeListener('realWaveAttackSum');

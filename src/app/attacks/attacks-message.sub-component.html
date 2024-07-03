@@ -191,7 +191,8 @@
   <div class="col-table text-center">
     {{
       'Your enemies has saved { value } unities of his lost'
-        | translate: { value: getSavedOther() | number: '' : this.translate.currentLang }
+        | translate
+          : { value: getSavedOther() | number: '' : this.translate.currentLang }
     }}
   </div>
 }

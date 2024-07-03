@@ -4,7 +4,11 @@ import { provideRouter } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,17 +23,19 @@ describe('AuthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    schemas: [NO_ERRORS_SCHEMA],
-    declarations: [AuthComponent],
-    imports: [TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: httpTranslateLoader,
-                deps: [HttpClient],
-            },
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [AuthComponent],
+      imports: [
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient],
+          },
         }),
-        OAuthModule.forRoot()],
-    providers: [
+        OAuthModule.forRoot(),
+      ],
+      providers: [
         provideRouter([]),
         Socket,
         User,
@@ -38,8 +44,8 @@ describe('AuthComponent', () => {
         FormBuilder,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-    ]
-}).compileComponents();
+      ],
+    }).compileComponents();
     socket = TestBed.inject(Socket);
     socket.setupSocketConnection(environment.SERVER_DEV);
   });

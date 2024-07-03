@@ -275,7 +275,7 @@ export class AttacksWarComponent implements OnInit, OnDestroy {
     this.socket.on('waveAttackSum', data => {
       this.waveAttackSum = data;
     });
-  };
+  }
 
   ngOnDestroy() {
     this.socket.removeListener('attack');

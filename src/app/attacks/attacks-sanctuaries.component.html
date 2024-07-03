@@ -6,7 +6,6 @@
 
 <main class="mb-4">
   <div class="container">
-
     <div class="row">
       <div class="col-xl-6 mt-1">
         <div class="card">
@@ -49,9 +48,7 @@
                                 'text-danger':
                                   sanctuary.sanctuaries_power === 0,
                               }">
-                              {{
-                                Math.min(100, sanctuary.sanctuaries_power)
-                              }}%
+                              {{ Math.min(100, sanctuary.sanctuaries_power) }}%
                             </span>
                             <span
                               data-bs-toggle="modal"
@@ -74,15 +71,15 @@
                                 }
                                 @case (2) {
                                   <span translate>
-                                    The Lernaean Hydra will corrupt your
-                                    enemies water, grape and food stocks when
-                                    they will plunder your city
+                                    The Lernaean Hydra will corrupt your enemies
+                                    water, grape and food stocks when they will
+                                    plunder your city
                                   </span>
                                 }
                                 @case (3) {
                                   <span translate>
-                                    Your city produces 24 additional Ambrosia
-                                    a day
+                                    Your city produces 24 additional Ambrosia a
+                                    day
                                   </span>
                                 }
                                 @case (4) {
@@ -94,8 +91,7 @@
                                 @case (5) {
                                   <span translate>
                                     Typhon will help you to protect your city
-                                    against the negative effects of the
-                                    weather
+                                    against the negative effects of the weather
                                   </span>
                                 }
                                 @default {
@@ -105,23 +101,18 @@
                             </span>
                           </p>
                         </div>
-                        @if (
-                          sanctuary.membre_id === user.getPropertyNb('id')
-                        ) {
+                        @if (sanctuary.membre_id === user.getPropertyNb('id')) {
                           <div class="card-body text-center">
                             <button
                               class="btn btn-success fs-5"
                               (click)="
                                 sanctuaryManage(sanctuary.sanctuaries_id)
                               ">
-                              <app-ic-icon
-                                [icon]="twotoneFence"></app-ic-icon>
+                              <app-ic-icon [icon]="twotoneFence"></app-ic-icon>
                             </button>
                           </div>
                         }
-                        @if (
-                          sanctuary.membre_id !== user.getPropertyNb('id')
-                        ) {
+                        @if (sanctuary.membre_id !== user.getPropertyNb('id')) {
                           <div class="card-body text-center">
                             @if (
                               user.getPropertyNb('apollo') === 0 &&
@@ -159,8 +150,7 @@
       </div>
       @if (attackMode === 0) {
         <app-attacks-history class="col-xl-6 mt-1"></app-attacks-history>
-      }
-      @else {
+      } @else {
         <div class="col-xl-6 mt-1">
           <div class="card card-normal">
             @if (attackMode !== 12 && sanctuariesSpyInfo.sanctuaries_name) {
@@ -183,7 +173,8 @@
                   </span>
                 </h2>
               </div>
-            }            <!-- Spying a sanctuary -->
+            }
+            <!-- Spying a sanctuary -->
             @if (attackMode === 9) {
               <div class="card-body text-center" id="sanctuaryEyeBlock">
                 <span>

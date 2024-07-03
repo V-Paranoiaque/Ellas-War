@@ -7,10 +7,9 @@ import { UserComponent as User } from '../../services/user.service';
   styleUrls: ['./attacks.component.css'],
 })
 export class AttacksStatsComponent implements OnInit, OnDestroy {
-
   constructor(
     protected socket: Socket,
-    public user: User,
+    public user: User
   ) {}
   ngOnInit() {
     if (
@@ -25,7 +24,5 @@ export class AttacksStatsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() {}
 }
