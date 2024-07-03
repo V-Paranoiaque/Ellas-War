@@ -3,8 +3,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -18,21 +18,18 @@ describe('AllianceArchivesPopupSubComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [AllianceArchivesPopupSubComponent],
-      imports: [
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: httpTranslateLoader,
-            deps: [HttpClient],
-          },
+    schemas: [NO_ERRORS_SCHEMA],
+    declarations: [AllianceArchivesPopupSubComponent],
+    imports: [TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: httpTranslateLoader,
+                deps: [HttpClient],
+            },
         }),
-        OAuthModule.forRoot(),
-        HttpClientTestingModule,
-      ],
-      providers: [Socket, User, OAuthService, BsModalService, FormBuilder],
-    }).compileComponents();
+        OAuthModule.forRoot()],
+    providers: [Socket, User, OAuthService, BsModalService, FormBuilder, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
     socket = TestBed.inject(Socket);
     socket.setupSocketConnection(environment.SERVER_DEV);
   });

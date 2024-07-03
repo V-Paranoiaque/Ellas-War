@@ -9,8 +9,8 @@ import {
   OAuthService,
   UrlHelperService,
 } from 'angular-oauth2-oidc';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -21,21 +21,18 @@ import { EwIconSubComponent } from '../services/ew-icon.service';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [AdminComponent, AppComponent, EwIconSubComponent],
-      imports: [
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: httpTranslateLoader,
-            deps: [HttpClient],
-          },
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    declarations: [AdminComponent, AppComponent, EwIconSubComponent],
+    imports: [TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: httpTranslateLoader,
+                deps: [HttpClient],
+            },
         }),
-        OAuthModule.forRoot(),
-        HttpClientTestingModule,
-      ],
-      providers: [Socket, User, OAuthService, OAuthLogger, UrlHelperService],
-    }).compileComponents();
+        OAuthModule.forRoot()],
+    providers: [Socket, User, OAuthService, OAuthLogger, UrlHelperService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

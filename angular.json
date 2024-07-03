@@ -11,11 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "web",
+            "outputPath": {
+              "base": "web"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -43,11 +44,14 @@
               "@iconify/icons-fa6-solid",
               "@iconify/icons-vaadin",
               "@iconify/icons-whh"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
-              "outputPath": "web",
+              "outputPath": {
+                "base": "web"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -69,7 +73,9 @@
               "outputHashing": "all"
             },
             "mobile": {
-              "outputPath": "www",
+              "outputPath": {
+                "base": "www"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -95,9 +101,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
