@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 
@@ -6,7 +6,7 @@ import { UserComponent as User } from '../../services/user.service';
   templateUrl: './attacks-stats.component.html',
   styleUrls: ['./attacks.component.css'],
 })
-export class AttacksStatsComponent implements OnInit, OnDestroy {
+export class AttacksStatsComponent implements OnInit {
   constructor(
     protected socket: Socket,
     public user: User
@@ -23,6 +23,4 @@ export class AttacksStatsComponent implements OnInit, OnDestroy {
       category: 4,
     });
   }
-
-  ngOnDestroy() {}
 }

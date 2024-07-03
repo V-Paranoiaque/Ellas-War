@@ -14,7 +14,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": {
-              "base": "web"
+              "base": "web",
+              "browser": ""
             },
             "index": "src/index.html",
             "polyfills": [
@@ -50,7 +51,8 @@
           "configurations": {
             "production": {
               "outputPath": {
-                "base": "web"
+                "base": "web",
+                "browser": ""
               },
               "fileReplacements": [
                 {
@@ -74,7 +76,8 @@
             },
             "mobile": {
               "outputPath": {
-                "base": "www"
+                "base": "www",
+                "browser": ""
               },
               "fileReplacements": [
                 {
