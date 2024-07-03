@@ -200,6 +200,7 @@ export class EwIconSubComponent implements OnDestroy {
         title: 'Disconnect',
       },
       'menu-options': { url: 'menu/menu-options.webp', title: 'Options' },
+      'menu-seabattle': { url: 'menu/menu-seabattle.webp', title: 'Sea Battles' },
       'menu-support': { url: 'menu/menu-support.webp', title: 'Support' },
       'menu-temple': {
         url: 'menu/menu-temple.webp',

@@ -1,0 +1,491 @@
+<app-sanctuary-strength-help-popup></app-sanctuary-strength-help-popup>
+<app-sanctuary-strength-update-popup
+  [info]="sanctuariesInfo"></app-sanctuary-strength-update-popup>
+
+<app-main-left></app-main-left>
+
+<main class="mb-4">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xl-6 mt-1">
+        <div class="card">
+          <app-attacks-menu></app-attacks-menu>
+
+          <div class="card-body">
+            @for (
+              sanctuary of sanctuariesList;
+              track sanctuary;
+              let i = $index
+            ) {
+              <div>
+                @if (i > 0) {
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <app-ew-icon
+                          title="{{ sanctuary.sanctuaries_name | translate }}"
+                          name="sanctuary_{{ sanctuary.sanctuaries_id }}"
+                          class="revert"></app-ew-icon>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">
+                            {{ sanctuary.sanctuaries_name | translate }}
+                          </h5>
+                          <p class="card-text">
+                            <strong translate>Controlled by</strong>
+                            <strong translate>:</strong>
+                            {{ sanctuary.username }}
+                            <br />
+                            <strong translate>Victories</strong>
+                            <strong translate>:</strong>
+                            {{ sanctuary.sanctuaries_victory }}
+                            <br />
+                            <strong translate>Strength</strong>
+                            <strong translate>:</strong>
+                            <span
+                              [ngClass]="{
+                                'text-danger':
+                                  sanctuary.sanctuaries_power === 0,
+                              }">
+                              {{
+                                Math.min(100, sanctuary.sanctuaries_power)
+                              }}%
+                            </span>
+                            <span
+                              data-bs-toggle="modal"
+                              data-bs-target="#sanctuaryStrengthHelp"
+                              role="button"
+                              title="{{ 'Help' | translate }}">
+                              <app-ic-icon
+                                [icon]="questionCircle"></app-ic-icon>
+                            </span>
+                            <br />
+                            <strong translate>Power</strong>
+                            <strong translate>:</strong>
+                            <span>
+                              @switch (sanctuary.sanctuaries_id) {
+                                @case (1) {
+                                  <span translate>
+                                    Your city is protected against the fury of
+                                    Demeter
+                                  </span>
+                                }
+                                @case (2) {
+                                  <span translate>
+                                    The Lernaean Hydra will corrupt your
+                                    enemies water, grape and food stocks when
+                                    they will plunder your city
+                                  </span>
+                                }
+                                @case (3) {
+                                  <span translate>
+                                    Your city produces 24 additional Ambrosia
+                                    a day
+                                  </span>
+                                }
+                                @case (4) {
+                                  <span translate>
+                                    Your city is protected against the Zeus
+                                    lightning
+                                  </span>
+                                }
+                                @case (5) {
+                                  <span translate>
+                                    Typhon will help you to protect your city
+                                    against the negative effects of the
+                                    weather
+                                  </span>
+                                }
+                                @default {
+                                  <span>TODO</span>
+                                }
+                              }
+                            </span>
+                          </p>
+                        </div>
+                        @if (
+                          sanctuary.membre_id === user.getPropertyNb('id')
+                        ) {
+                          <div class="card-body text-center">
+                            <button
+                              class="btn btn-success fs-5"
+                              (click)="
+                                sanctuaryManage(sanctuary.sanctuaries_id)
+                              ">
+                              <app-ic-icon
+                                [icon]="twotoneFence"></app-ic-icon>
+                            </button>
+                          </div>
+                        }
+                        @if (
+                          sanctuary.membre_id !== user.getPropertyNb('id')
+                        ) {
+                          <div class="card-body text-center">
+                            @if (
+                              user.getPropertyNb('apollo') === 0 &&
+                              user.getPropertyNb('level') > 0
+                            ) {
+                              <button
+                                class="btn btn-info fs-5"
+                                (click)="
+                                  sanctuariesSpy(sanctuary.sanctuaries_id)
+                                ">
+                                <app-ic-icon
+                                  [icon]="bleedingEyes"></app-ic-icon>
+                              </button>
+                            }
+                            @if (user.getPropertyNb('apollo') === 1) {
+                              <button
+                                class="btn btn-primary fs-5"
+                                (click)="
+                                  sanctuariesEye(sanctuary.sanctuaries_id)
+                                ">
+                                <app-ic-icon
+                                  [icon]="gooeyEyedSun"></app-ic-icon>
+                              </button>
+                            }
+                          </div>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      @if (attackMode === 0) {
+        <app-attacks-history class="col-xl-6 mt-1"></app-attacks-history>
+      }
+      @else {
+        <div class="col-xl-6 mt-1">
+          <div class="card card-normal">
+            @if (attackMode !== 12 && sanctuariesSpyInfo.sanctuaries_name) {
+              <div class="card-header card-header-flexible">
+                <h2 id="playerDesc">
+                  {{ sanctuariesSpyInfo.sanctuaries_name | translate }}
+                </h2>
+              </div>
+            }
+            @if (attackMode === 12) {
+              <div class="card-header card-header-flexible">
+                <h2 id="playerDesc">
+                  {{ sanctuariesInfo.sanctuaries_name | translate }}
+                  <span
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#sanctuaryStrengthUpdate"
+                    role="button">
+                    <app-ic-icon [icon]="shieldShaded"></app-ic-icon>
+                  </span>
+                </h2>
+              </div>
+            }            <!-- Spying a sanctuary -->
+            @if (attackMode === 9) {
+              <div class="card-body text-center" id="sanctuaryEyeBlock">
+                <span>
+                  @switch (sanctuariesSpyInfo.error) {
+                    @case (1) {
+                      <div translate>
+                        Your espionage team was caught and executed in a public
+                        place.
+                      </div>
+                    }
+                    @case (2) {
+                      <div>
+                        <span translate>
+                          Information reached your city but unfortunately your
+                          spy team was caught, tortured until they denounce you
+                          and executed in a public place.
+                        </span>
+                        <br /><br />
+                      </div>
+                    }
+                    @case (4) {
+                      <div translate>You do not have spies.</div>
+                    }
+                  }
+                </span>
+                @if (
+                  sanctuariesSpyInfo.error === 0 ||
+                  sanctuariesSpyInfo.error === 2 ||
+                  sanctuariesSpyInfo.error === 3
+                ) {
+                  <div>
+                    @if (sanctuariesSpyInfo.unitiesNb > 0) {
+                      <div>
+                        <strong translate>Unities</strong
+                        ><strong translate>:</strong>
+                        {{
+                          sanctuariesSpyInfo.unitiesNb
+                            | number: '' : this.translate.currentLang
+                        }}
+                      </div>
+                    }
+                    @if (sanctuariesSpyInfo.unities.length > 0) {
+                      <div>
+                        <strong translate>Unities</strong
+                        ><strong translate>:</strong>
+                        @for (unit of sanctuariesSpyInfo.unities; track unit) {
+                          <div>
+                            {{ Tools.getName(unit) | translate }}
+                          </div>
+                        }
+                        <br />
+                      </div>
+                    }
+                    @if (
+                      sanctuariesSpyInfo.unitiesNb === 0 &&
+                      sanctuariesSpyInfo.unities.length === 0
+                    ) {
+                      <div translate>
+                        This sancturary is not protected by any army, fight
+                        directly the monster!
+                      </div>
+                    }
+                  </div>
+                }
+                <div>
+                  <br />
+                  <br />
+                  <button
+                    class="btn btn-info fs-5"
+                    (click)="sanctuariesSpy(sanctuariesSpyInfo.id)">
+                    <app-ic-icon [icon]="bleedingEyes"></app-ic-icon>
+                  </button>
+                  @if (user.getPropertyNb('apollo') === 1) {
+                    <button
+                      class="btn btn-primary fs-5"
+                      (click)="sanctuariesEye(sanctuariesSpyInfo.id)">
+                      <app-ic-icon [icon]="gooeyEyedSun"></app-ic-icon>
+                    </button>
+                  }
+                  <button
+                    class="btn btn-success fs-5"
+                    (click)="sanctuariesPrepare(sanctuariesSpyInfo.id)">
+                    <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                  </button>
+                </div>
+              </div>
+            }
+            <!-- Preparing to attack a sanctuary -->
+            @if (attackMode === 10) {
+              <div class="card-body">
+                @if (getArmy().length > 0) {
+                  <div class="text-center">
+                    <br />
+                    <strong translate>Army summary</strong>
+                    @for (i of getArmy(); track i) {
+                      <div>
+                        <span [ngClass]="{ 'text-danger': i.all === 0 }">
+                          {{ i.nb | number: '' : this.translate.currentLang }}
+                          {{ Tools.getName(i.unit, i.nb) | translate }}
+                          @if (i.all === 0) {
+                            <span
+                              data-bs-toggle="modal"
+                              data-bs-target="#attacksUnitHelp"
+                              role="button"
+                              title="{{ 'Help' | translate }}">
+                              <app-ic-icon
+                                [icon]="questionCircle"></app-ic-icon>
+                            </span>
+                          }
+                        </span>
+                      </div>
+                    }
+                    <br />
+                    <strong translate>Offensive power</strong>
+                    <strong translate>:</strong>
+                    {{
+                      getOffensivePower()
+                        | number: '' : this.translate.currentLang
+                    }}
+                    <br /><br />
+                    <div class="text-center">
+                      <button
+                        class="btn btn-success fs-5"
+                        (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
+                        <app-ic-icon [icon]="swordIcon"></app-ic-icon>
+                        &nbsp;<span translate>Attack</span>
+                      </button>
+                    </div>
+                  </div>
+                }
+                @if (getArmy().length === 0) {
+                  <div class="text-center" translate>Your army is empty</div>
+                }
+              </div>
+            }
+            <!-- Attacking a sanctuary -->
+            @if (attackMode === 11) {
+              <div class="card-body">
+                <app-sanctuary-message
+                  [info]="
+                    sanctuariesAttackInfo.content
+                  "></app-sanctuary-message>
+              </div>
+            }
+            <!-- Sanctuary info -->
+            @if (attackMode === 12) {
+              <div class="card-body" id="sanctuaryInfoBlock">
+                <div class="text-center">
+                  @switch (sanctuariesInfo.sanctuaries_id) {
+                    @case (1) {
+                      <span translate>
+                        Your city is protected against the fury of Demeter
+                      </span>
+                    }
+                    @case (2) {
+                      <span translate>
+                        The Lernaean Hydra will corrupt your enemies water,
+                        grape and food stocks when they will plunder your city
+                      </span>
+                    }
+                    @case (3) {
+                      <span translate>
+                        Your city produces 24 additional Ambrosia a day
+                      </span>
+                    }
+                    @case (4) {
+                      <span translate>
+                        Your city is protected against the Zeus lightning
+                      </span>
+                    }
+                    @case (5) {
+                      <span translate>
+                        Typhon will help you to protect your city against the
+                        negative effects of the weather
+                      </span>
+                    }
+                    @default {
+                      <span>TODO</span>
+                    }
+                  }
+                </div>
+                <div class="text-center">
+                  <strong translate>Victories</strong>
+                  <strong translate>:</strong>
+                  {{ sanctuariesInfo.sanctuaries_victory }}
+                  <br />
+                  <strong translate>Strength</strong>
+                  <strong translate>:</strong>
+                  <span
+                    [ngClass]="{
+                      'text-danger': sanctuariesInfo.sanctuaries_power === 0,
+                    }">
+                    {{ Math.min(100, sanctuariesInfo.sanctuaries_power) }}%
+                  </span>
+                  <span
+                    data-bs-toggle="modal"
+                    data-bs-target="#sanctuaryStrengthHelp"
+                    role="button"
+                    title="{{ 'Help' | translate }}">
+                    <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                  </span>
+                  <br />
+                  <strong translate>Base defense</strong>
+                  <strong translate>:</strong>
+                  {{
+                    sanctuariesInfo.sanctuaries_defense
+                      | number: '' : this.translate.currentLang
+                  }}
+                </div>
+                <div
+                  class="fw-bold text-danger text-center my-1"
+                  id="sanctuariesWaveTabDesc"
+                  translate>
+                  Units you send to a sanctuary cannot return to your city. They
+                  also don't consume any resources.
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <table aria-labelledby="sanctuariesWaveTabDesc">
+                      @for (
+                        unit of sanctuariesWaveTab;
+                        track unit;
+                        let i = $index
+                      ) {
+                        <tbody>
+                          <tr>
+                            <th scope="col" role="button" colspan="2">
+                              <strong>
+                                {{
+                                  Tools.getName(
+                                    getArmy()[i].unit,
+                                    getArmy()[i].nb
+                                  ) | translate
+                                }}
+                                {{ ':' | translate }}
+                              </strong>
+                              {{
+                                getArmy()[i].nb
+                                  | number: '' : this.translate.currentLang
+                              }}
+                            </th>
+                          </tr>
+                          <tr>
+                            <td class="text-center" rowspan="2">
+                              <app-ew-icon
+                                title="{{
+                                  Tools.getName(
+                                    getArmy()[i].unit,
+                                    getArmy()[i].nb
+                                  ) | translate
+                                }}"
+                                name="{{ getArmy()[i].unit }}"
+                                height="70px"
+                                class="img-sanctuary"></app-ew-icon>
+                            </td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td class="input-group-sanctuary">
+                              <div class="input-group">
+                                <input
+                                  type="number"
+                                  [(ngModel)]="sanctuariesWave[i]"
+                                  [attr.min]="0"
+                                  [attr.max]="getArmy()[i].nb"
+                                  size="6"
+                                  placeholder="0"
+                                  class="form-control" />
+                                <span
+                                  class="input-group-text"
+                                  role="button"
+                                  (click)="waveNew(i, sanctuariesWave[i])"
+                                  (keyup.enter)="waveNew(i, sanctuariesWave[i])"
+                                  tabindex="0">
+                                  <app-ic-icon [icon]="plusIcon"></app-ic-icon>
+                                  <span class="visually-hidden" translate
+                                    >Add</span
+                                  >
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      }
+                    </table>
+                  </div>
+                  <div class="col-6">
+                    @for (unit of getSanctuariesDefense(); track unit) {
+                      <div>
+                        {{ unit.nb | number: '' : this.translate.currentLang }}
+                        {{ Tools.getName(unit.unit, unit.nb) | translate }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
+
+<app-main-right></app-main-right>

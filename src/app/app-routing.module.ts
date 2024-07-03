@@ -31,6 +31,11 @@ import { AgoraComponent } from './agora/agora.component';
 import { AllianceComponent } from './alliance/alliance.component';
 import { AltarsComponent } from './altars/altars.component';
 import { AttacksComponent } from './attacks/attacks.component';
+import { AttacksDiamondComponent } from './attacks/attacks-diamond.component';
+import { AttacksSanctuariesComponent } from './attacks/attacks-sanctuaries.component';
+import { AttacksSeabattlesComponent } from './attacks/attacks-seabattles.component';
+import { AttacksStatsComponent } from './attacks/attacks-stats.component';
+import { AttacksWarComponent } from './attacks/attacks-war.component';
 import { CityComponent } from './city/city.component';
 import { DetailsComponent } from './details/details.component';
 import { DiplomacyComponent } from './diplomacy/diplomacy.component';
@@ -140,6 +145,11 @@ export const routes: Routes = [
   { path: 'alliance', component: AllianceComponent },
   { path: 'altars', component: AltarsComponent },
   { path: 'attacks', component: AttacksComponent },
+  { path: 'attacks-diamond', component: AttacksDiamondComponent },
+  { path: 'attacks-sanctuaries', component: AttacksSanctuariesComponent },
+  { path: 'attacks-seabattles', component: AttacksSeabattlesComponent },
+  { path: 'attacks-stats', component: AttacksStatsComponent },
+  { path: 'attacks-war', component: AttacksWarComponent },
   { path: 'city', component: CityComponent },
   { path: 'details', component: DetailsComponent },
   { path: 'diplomacy', component: DiplomacyComponent },

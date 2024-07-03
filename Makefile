@@ -104,6 +104,7 @@ images:
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/menu-support.jpg -o ./src/assets/menu/menu-support.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/menu-temple.jpg -o ./src/assets/menu/menu-temple.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/minus.jpg -o ./src/assets/menu/minus.webp
+	cwebp $(FLAGS) -resize 512 0 ./assets/menu/menu-seabattle.jpg -o ./src/assets/menu/menu-seabattle.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/menu-temple.jpg -o ./src/assets/menu/menu-temple.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/messages.jpg -o ./src/assets/menu/messages.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/menu/player.jpg -o ./src/assets/menu/player.webp

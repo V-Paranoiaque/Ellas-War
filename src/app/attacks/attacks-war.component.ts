@@ -12,20 +12,16 @@ import dotCircle from '@iconify/icons-fa6-solid/circle-dot';
 import fireIcon from '@iconify/icons-fa6-solid/fire';
 import gemIcon from '@iconify/icons-fa6-regular/gem';
 import gooeyEyedSun from '@iconify/icons-game-icons/gooey-eyed-sun';
-import plusIcon from '@iconify/icons-bi/plus';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
-import search from '@iconify/icons-fa6-solid/magnifying-glass';
-import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import sortDown from '@iconify/icons-fa6-solid/sort-down';
 import sortUP from '@iconify/icons-fa6-solid/sort-up';
 import swordIcon from '@iconify/icons-vaadin/sword';
-import twotoneFence from '@iconify/icons-ic/twotone-fence';
 
 @Component({
-  templateUrl: './attacks.component.html',
+  templateUrl: './attacks-war.component.html',
   styleUrls: ['./attacks.component.css'],
 })
-export class AttacksComponent implements OnInit, OnDestroy {
+export class AttacksWarComponent implements OnInit, OnDestroy {
   public attackInfo = new MessageContent();
   public attackMode: number;
   public attackOrderSort: string;
@@ -33,7 +29,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   public attackPage: number;
   public attackPossible = 0;
   public attackPossibleError: number;
-  private attackListInfo: {
+  private attackWarsListInfo: {
     list: {
       membre_id: number;
       username: string;
@@ -56,9 +52,6 @@ export class AttacksComponent implements OnInit, OnDestroy {
   public lightningPossible = 0;
   public lightningInfo: MessageContent;
   public nbpp: number;
-
-  public attackClosestMax = { membre_id: 0, username: '', field: 0 };
-  public attackClosestMin = { membre_id: 0, username: '', field: 0 };
   public realWaveAttackCheck: {
     ress: object;
     habitation: {
@@ -102,8 +95,6 @@ export class AttacksComponent implements OnInit, OnDestroy {
     diamond_begin: number;
   };
   public waveAttackSum: object;
-  public attackSearchError = 0;
-  public attackSearchText = '';
 
   Object = Object;
   Tools = Tools;
@@ -115,14 +106,10 @@ export class AttacksComponent implements OnInit, OnDestroy {
   fireIcon = fireIcon;
   gemIcon = gemIcon;
   gooeyEyedSun = gooeyEyedSun;
-  plusIcon = plusIcon;
   questionCircle = questionCircle;
-  search = search;
-  shieldShaded = shieldShaded;
   sortDown = sortDown;
   sortUP = sortUP;
   swordIcon = swordIcon;
-  twotoneFence = twotoneFence;
 
   constructor(
     protected socket: Socket,
@@ -146,20 +133,28 @@ export class AttacksComponent implements OnInit, OnDestroy {
      *12: Sanctuary info
      */
     this.attackMode = 0;
-    this.attackListInfo = {
-      list: [],
-      max: 0,
-      cPage: 0,
-    };
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
     this.attackPage = 1;
     this.attackPossibleError = 0;
     //Number of targets by attack page
-    this.nbpp = 10;
-
+    this.attackWarsListInfo = {
+      list: [],
+      max: 0,
+      cPage: 0,
+    };
     this.furyInfo = new MessageContent();
     this.lightningInfo = new MessageContent();
+    this.nbpp = 10;
+    this.realWaveAttackCheck = {
+      ress: {},
+      habitation: {
+        normal: 0,
+        palace: 0,
+        cavern: 0,
+      },
+    };
+    this.realWaveAttackSum = {};
     this.spyInfo = {
       error: 0,
       poseidon_wall: 0,
@@ -194,45 +189,19 @@ export class AttacksComponent implements OnInit, OnDestroy {
       diamond_begin: 0,
     };
     this.waveAttackSum = {};
-    this.realWaveAttackSum = {};
-
-    this.realWaveAttackCheck = {
-      ress: {},
-      habitation: {
-        normal: 0,
-        palace: 0,
-        cavern: 0,
-      },
-    };
   }
 
   ngOnInit() {
-    this.user.checkPermissions([1]);
-
-    this.attackListInit();
+    this.attackListWarInit();
 
     this.socket.on('attack', datas => {
       this.attackMode = 4;
       this.attackInfo = new MessageContent({ content: datas });
-      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     });
-
-    this.socket.on('attackClosestMax', datas => {
-      this.attackClosestMax = datas as typeof this.attackClosestMax;
-    });
-
-    this.socket.on('attackClosestMin', datas => {
-      this.attackClosestMin = datas as typeof this.attackClosestMin;
-    });
-
-    this.socket.on('attackList', (datas: object) => {
-      this.attackListInfo = datas as typeof this.attackListInfo;
-      this.attackPage = this.attackListInfo.cPage;
-      this.socket.emit('attackClosestMax');
-      this.socket.emit('attackClosestMin');
-    });
-    this.socket.on('attackSearchError', (data: number) => {
-      this.attackSearchError = data;
+    this.socket.on('attackWarsList', (datas: object) => {
+      this.attackWarsListInfo = datas as typeof this.attackWarsListInfo;
+      this.attackPage = this.attackWarsListInfo.cPage;
     });
     this.socket.on(
       'attackPossible',
@@ -251,7 +220,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('fury', data => {
       this.attackMode = 6;
       this.furyInfo = new MessageContent({ content: data });
-      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     });
     this.socket.on('furyPossible', data => {
       this.furyPossible = parseInt(data as string);
@@ -264,7 +233,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
           data.lost_build[building as keyof typeof data.lost_build];
       }
       this.lightningInfo = new MessageContent({ content: lost_build });
-      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     });
     this.socket.on('lightningPossible', data => {
       this.lightningPossible = parseInt(data as string);
@@ -297,7 +266,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('refreshAttacksPage', () => {
-      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     });
     this.socket.on('spyInfo', data => {
       this.setSpy(data);
@@ -306,12 +275,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.on('waveAttackSum', data => {
       this.waveAttackSum = data;
     });
-  }
+  };
 
   ngOnDestroy() {
     this.socket.removeListener('attack');
-    this.socket.removeListener('attackList');
-    this.socket.removeListener('attackSearchError');
+    this.socket.removeListener('attackWarsList');
     this.socket.removeListener('attackPossible');
     this.socket.removeListener('eye');
     this.socket.removeListener('fury');
@@ -326,11 +294,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.removeListener('waveAttackSum');
   }
 
-  attackListInit() {
+  attackListWarInit() {
     this.attackOrderSort = 'other';
     this.attackOrderReverse = 0;
 
-    this.refreshAttacksPage();
+    this.refreshAttacksWarsPage();
     this.socket.emit('realWaveAttackCheck');
 
     this.socket.emit('msgPage', {
@@ -338,11 +306,6 @@ export class AttacksComponent implements OnInit, OnDestroy {
       category: 4,
     });
   }
-
-  getAttackList() {
-    return this.attackListInfo.list;
-  }
-
   getArmy() {
     const list = [];
     for (const i in this.waveAttackSum) {
@@ -366,11 +329,12 @@ export class AttacksComponent implements OnInit, OnDestroy {
 
     return list;
   }
-
-  getAttacksPageNb() {
-    return this.attackListInfo.max;
+  getAttackWarsList() {
+    return this.attackWarsListInfo.list;
   }
-
+  getAttacksWarsPageNb() {
+    return this.attackWarsListInfo.max;
+  }
   getOffensivePower() {
     let result = 0;
 
@@ -420,9 +384,9 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.emit('attackPossible', id);
     this.socket.emit('eye', id);
   }
-  pageAttacksLoad(event: Event) {
+  pageAttacksWarsLoad(event: Event) {
     const id = (event.target as HTMLInputElement).value;
-    this.setAttacksPage(parseInt(id));
+    this.setAttacksWarsPage(parseInt(id));
   }
 
   prepareAttack(id: number) {
@@ -445,47 +409,21 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.socket.emit('profile', id);
     this.socket.emit('lightningPossible', id);
   }
-
-  setAttacksPage(id: number, i = 0) {
+  setAttacksWarsPage(id: number, i = 0) {
     id += i;
-    if (id >= 1 && id <= this.getAttacksPageNb()) {
+    if (id >= 1 && id <= this.getAttacksWarsPageNb()) {
       this.attackPage = id;
-      this.refreshAttacksPage();
+      this.refreshAttacksWarsPage();
     }
   }
-
-  refreshAttacksPage() {
-    if (this.attackSearchError === 0) {
-      this.socket.emit('attackList', {
-        page: this.attackPage,
-        order: this.attackOrderSort,
-        reverse: this.attackOrderReverse,
-        nbpp: this.nbpp,
-      });
-    } else {
-      this.socket.emit('attackSearch', {
-        order: this.attackOrderSort,
-        reverse: this.attackOrderReverse,
-        username: this.attackSearchText,
-      });
-    }
+  refreshAttacksWarsPage() {
+    this.socket.emit('attackWarsList', {
+      page: this.attackPage,
+      order: this.attackOrderSort,
+      reverse: this.attackOrderReverse,
+      nbpp: this.nbpp,
+    });
   }
-
-  attackSearch() {
-    this.attackSearchText = this.attackSearchText.trim();
-    this.attackSearchError = 0;
-
-    if (this.attackSearchText.length === 0) {
-      this.refreshAttacksPage();
-    } else {
-      this.socket.emit('attackSearch', {
-        order: this.attackOrderSort,
-        reverse: this.attackOrderReverse,
-        username: this.attackSearchText,
-      });
-    }
-  }
-
   realWaveAttackCheckHabitation() {
     let nb = 0;
     for (const [, qtt] of Object.entries(this.realWaveAttackCheck.habitation)) {
@@ -493,13 +431,12 @@ export class AttacksComponent implements OnInit, OnDestroy {
     }
     return nb;
   }
-
   setOrder(newOrder: string) {
     if (newOrder === this.attackOrderSort) {
       this.attackOrderReverse = (this.attackOrderReverse + 1) % 2;
     }
     this.attackOrderSort = newOrder;
-    this.refreshAttacksPage();
+    this.refreshAttacksWarsPage();
   }
 
   setSpy(data: object) {

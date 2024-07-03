@@ -1,0 +1,102 @@
+@if (getCurrentMsg().msg_id === 0) {
+  <div class="card">
+    <div class="card-header" translate>Last attacks</div>
+    <div class="card-body">
+      @if (msgList.length === 0) {
+        <div class="text-center mt-2 mb-2" translate>
+          This list is empty
+        </div>
+      }
+      @for (msg of msgList; track msg) {
+        <div
+          class="d-flex bd-highlight"
+          role="button"
+          (click)="messageLoad(msg)"
+          (keyup.enter)="messageLoad(msg)"
+          tabindex="0">
+          <div class="p-2 flex-grow-1 bd-highlight border-top">
+            <app-messages-title [msg]="msg"></app-messages-title>
+            <div class="fw-lighter">
+              {{ msg.last_date | date: 'dd/MM/yyyy, HH:mm' }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}
+@else {
+  <div class="card card-normal">
+    <div class="card-header card-header-auto">
+      <app-messages-title
+        [msg]="getCurrentMsg()"></app-messages-title>
+      &nbsp;
+      <button class="btn btn-primary" (click)="shareMsg()">
+        <app-ic-icon [icon]="share"></app-ic-icon>
+      </button>
+      <button class="btn btn-warning" (click)="back()">
+        <app-ic-icon [icon]="arrowReturnLeft"></app-ic-icon>
+      </button>
+    </div>
+    @if (getCurrentMsg().msg_shared === 1) {
+      <div class="card-body text-center">
+        @if (linkSaved === 1) {
+          <div class="wg-bold text-danger" translate>
+            Link saved to clipboard
+          </div>
+        }
+        <strong translate>Share link:</strong>
+        {{ getCurrentMsg().url }}/permalink/{{
+          getCurrentMsg().msg_id
+        }}
+        <span
+          class="badge bg-primary"
+          role="button"
+          (click)="copyLink()"
+          [cbContent]="
+            getCurrentMsg().url +
+            '/permalink/' +
+            getCurrentMsg().msg_id
+          "
+          (keyup.enter)="copyLink()"
+          tabindex="0"
+          ngxClipboard>
+          <app-ic-icon [icon]="clipboardCheck"></app-ic-icon>
+        </span>
+      </div>
+    }
+    <div class="card-body">
+      <span>
+        @switch (getCurrentMsg().msg_type) {
+          @case (1) {
+            <span
+              ><app-attacks-message
+                [info]="
+                  getCurrentMsg().msg[0].content
+                "></app-attacks-message
+            ></span>
+          }
+          @case (3) {
+            <span
+              ><app-fury-message
+                [info]="
+                  getCurrentMsg().msg[0].content
+                "></app-fury-message
+            ></span>
+          }
+          @case (8) {
+            <span
+              ><app-lost-message
+                [info]="
+                  getCurrentMsg().msg[0].content
+                "></app-lost-message
+            ></span>
+          }
+          @default {
+            <span>TODO {{ getCurrentMsg().msg_type }}</span>
+          }
+        }
+      </span>
+    </div>
+  </div>
+}
