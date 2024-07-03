@@ -18,7 +18,7 @@
   "main": "index.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disable-host-check true",
+    "start": "ng serve",
     "build": "ng build --configuration=mobile;ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "mbuild": "ng build --configuration=mobile",
