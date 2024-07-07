@@ -322,7 +322,6 @@ export class StrategiesComponent implements OnInit, OnDestroy {
 
   selectArmy(name: string) {
     const datas = this.user.getProperty('datas') as { army: object };
-
     this.armyInfo = datas.army[name as keyof typeof datas.army];
     this.armyInfo.engageNb = '';
     this.armyInfo.liberatenb = '';
@@ -331,14 +330,13 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.armyInfo.rLiberateNb = 0;
     this.armyInfo.rEngagePossible = 0;
     this.armyInfo.error = 0;
+    this.armyInfo.free = 0;
 
     this.socket.emit('engagePossible', name);
+    this.socket.emit('freeUnits', name);
 
-    for (const res in this.armyInfo.cost) {
-      this.armyInfo.resaler.set(
-        res,
-        this.armyInfo.cost.get(res) * this.armyInfo.resale
-      );
+    for (const [res, nb] of Object.entries(this.armyInfo.cost)) {
+      this.armyInfo.resaler.set(res, parseFloat(nb as string) * 0.6);
     }
   }
   selectBuilding(name: string) {
