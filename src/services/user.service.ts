@@ -43,6 +43,30 @@ export class UserComponent {
         },
         ress_lvl: {},
         war: { minmembers: 0 },
+        sea_battles: {
+          units: {
+            bireme: {
+              attack: 5,
+              defense: 6,
+              cost: 2,
+            },
+            trireme: {
+              attack: 15,
+              defense: 22,
+              cost: 5,
+            },
+            quadrireme: {
+              attack: 25,
+              defense: 10,
+              cost: 8,
+            },
+            leviathan: {
+              attack: 45,
+              defense: 75,
+              cost: 20,
+            },
+          },
+        },
       },
     };
     this.newMsg = 0;
@@ -164,6 +188,30 @@ export class UserComponent {
       };
       trade: object;
       weather_cost: object;
+      sea_battles: {
+        units: {
+          bireme: {
+            attack: number;
+            defense: number;
+            cost: number;
+          };
+          trireme: {
+            attack: number;
+            defense: number;
+            cost: number;
+          };
+          quadrireme: {
+            attack: number;
+            defense: number;
+            cost: number;
+          };
+          leviathan: {
+            attack: number;
+            defense: number;
+            cost: number;
+          };
+        };
+      };
     };
   }
 

@@ -9,6 +9,7 @@ import { AttacksHelpPopupSubComponent } from './attacks-help-popup.sub-component
 import { AttacksHistorySubComponent } from './attacks-history.sub-component';
 import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
 import { AttacksMessageSubComponent } from './attacks-message.sub-component';
+import { AttacksSeabattlesEngagePopupSubComponent } from './attacks-seabattles-engage-popup.sub-component';
 import { AttacksSpyResourcesHelpPopupSubComponent } from './attacks-spy-resources-help-popup.sub-component';
 import { AttacksStatsSubComponent } from './attacks-stats.sub-component';
 import { AttacksUnitHelpPopupSubComponent } from './attacks-unit-help-popup.sub-component';
@@ -27,6 +28,7 @@ export const AttacksIncludeComponent = [
   AttacksHistorySubComponent,
   AttacksMenuSubComponent,
   AttacksMessageSubComponent,
+  AttacksSeabattlesEngagePopupSubComponent,
   AttacksSpyResourcesHelpPopupSubComponent,
   AttacksStatsSubComponent,
   AttacksUnitHelpPopupSubComponent,

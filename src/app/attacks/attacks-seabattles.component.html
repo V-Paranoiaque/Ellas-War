@@ -1,4 +1,6 @@
-<app-attacks-unit-help-popup></app-attacks-unit-help-popup>
+<app-attacks-seabattles-engage-popup
+  [unit]="currentUnit"
+  [case]="currentCase"></app-attacks-seabattles-engage-popup>
 
 <app-main-left></app-main-left>
 
@@ -8,10 +10,171 @@
       <div class="col-xl-6 mt-1">
         <div class="card">
           <app-attacks-menu></app-attacks-menu>
+          <div class="card-body text-center">
+            @if (sbData.sb_id === 0) {
+              You are not in any Sea Battle for the moment.
 
-          <div class="card-body text-center">Sea Battles</div>
+              <div class="mt-2">
+                <button class="btn btn-primary" (click)="sbJoin()" translate>
+                  Join a Sea Battle
+                </button>
+              </div>
+            } @else if (sbData.sb_status === 0) {
+              <div class="text-center">
+                Waiting for another member to join the Sea Battles
+              </div>
+            } @else if (sbData.sb_status === 1) {
+              <div class="text-center">Waiting for the Sea Battle to start</div>
+            } @else {
+              <div>
+                @switch (currentCase.case_type) {
+                  @case (-1) {
+                    <div class="fw-bold text-center" translate>
+                      Select a case to get more information
+                    </div>
+                  }
+                  @case (0) {
+                    <div class="fw-bold text-center" translate>
+                      The mountains are not reachable by the boats
+                    </div>
+                  }
+                  @case (1) {
+                    <div class="fw-bold text-center" translate>
+                      This case is not explored, we don't know what is there
+                    </div>
+                  }
+                  @case (2) {
+                    <div class="fw-bold text-center" translate>
+                      This case is available, you can move your boats there
+                    </div>
+                  }
+                  @default {
+                    @if (currentCase.case_type === 3) {
+                      <div class="fw-bold text-center" translate>Army</div>
+                    } @else if (currentCase.case_type === 4) {
+                      <div class="fw-bold text-center" translate>Capital</div>
+                    } @else {
+                      <div class="text-center" translate>Unkwnon type</div>
+                    }
+                    <div class="m-2">
+                      <span translate>Gold coins</span>
+                      <span translate>:</span> {{ sbData.coins }}
+                    </div>
+                    @if (currentCase.can_engage === 0) {
+                      <div class="text-center text-danger fw-bold" translate>
+                        This case is not connected to your capital, so
+                        engagement is not allowed
+                      </div>
+                    }
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="column" translate>Units</th>
+                          <th scope="column" translate>Currently</th>
+                          <th scope="column" translate>Statistics</th>
+                          <th scope="column"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @for (info of this.getUnits(); track info.code) {
+                          <tr>
+                            <th scope="row" class="text-start">
+                              {{ Tools.getName(info.code) }}
+                            </th>
+                            <td>
+                              {{
+                                getUnitsCurrent(info.code)
+                                  | number: '' : this.translate.currentLang
+                              }}
+                            </td>
+                            <td>
+                              <span>
+                                {{
+                                  info.attack
+                                    | number: '' : this.translate.currentLang
+                                }}
+                                <app-ic-icon
+                                  [icon]="swordIcon"
+                                  title="{{
+                                    'Attack' | translate
+                                  }}"></app-ic-icon>
+                              </span>
+                              <span>
+                                {{
+                                  info.defense
+                                    | number: '' : this.translate.currentLang
+                                }}
+                                <app-ic-icon
+                                  [icon]="shieldShaded"
+                                  title="{{
+                                    'Defense' | translate
+                                  }}"></app-ic-icon>
+                              </span>
+                            </td>
+                            <td>
+                              <button
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#seaBattlesEngage"
+                                (click)="selectUnit(info)">
+                                <app-ic-icon
+                                  [icon]="trireme"
+                                  title="{{
+                                    'Information' | translate
+                                  }}"></app-ic-icon>
+                              </button>
+                            </td>
+                          </tr>
+                        }
+                      </tbody>
+                    </table>
+                  }
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 mt-1">
+        <div class="card">
+          <div class="card-header" translate>Ranking</div>
+          <div class="card-body">
+            <div class="background">
+              @for (y of Tools.range(1, 15); track y) {
+                @for (x of Tools.range(1, 15); track x) {
+                  @switch (getCase(x, y).case_type) {
+                    @case (1) {
+                      <div
+                        class="case unknown"
+                        tabIndex="0"
+                        (click)="selectCase(x, y)"></div>
+                    }
+                    @case (3) {
+                      <div
+                        class="case {{ 'player' + getCase(x, y).color_id }}"
+                        (click)="selectCase(x, y)">
+                        <div class="army"></div>
+                      </div>
+                    }
+                    @case (4) {
+                      <div
+                        class="case {{ 'player' + getCase(x, y).color_id }}"
+                        (click)="selectCase(x, y)">
+                        <div class="capital"></div>
+                      </div>
+                    }
+                    @default {
+                      <div class="case" (click)="selectCase(x, y)"></div>
+                    }
+                  }
+                }
+              }
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </main>
+
+<app-main-right></app-main-right>

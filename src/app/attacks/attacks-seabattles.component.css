@@ -1,0 +1,49 @@
+.background {
+  background-image: url('../../assets/backgrounds/sea-map.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.case {
+  width: calc(100%/15);
+  aspect-ratio: 1/1;
+  background-color: transparent;
+  position: relative;
+  float: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+.unknown {
+  background-color: black;
+}
+
+.case > .capital {
+  content: "";
+  background-image: url('../../assets/sea-battles/tower-1.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.case > .army {
+  content: "";
+  background-image: url('../../assets/sea-battles/ship-small.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.case.player1 {
+  background-image: url('../../assets/sea-battles/mosaic-1.webp');
+}

@@ -11,6 +11,7 @@ images:
 		src/assets/menu \
 		src/assets/resources \
 		src/assets/sanctuaries \
+		src/assets/sea-battles \
 		src/assets/temples
 
 	# Altars
@@ -50,6 +51,7 @@ images:
 	# Backgrounds
 	cwebp $(FLAGS) -resize 512 0 ./assets/backgrounds/divine-power.jpg -o ./src/assets/backgrounds/divine-power.webp
 	cwebp $(FLAGS) ./assets/backgrounds/dark_blue_opal_texture_S2506739336_St25_G7.5.jpg -o ./src/assets/backgrounds/dark_blue_opal_texture_S2506739336_St25_G7.5.webp
+	cwebp $(FLAGS) ./assets/backgrounds/sea-map.png -o ./src/assets/backgrounds/sea-map.webp
 
 	# Buildings
 	cwebp $(FLAGS) -resize 512 0 ./assets/buildings/cursedcave.jpg -o ./src/assets/buildings/cursedcave.webp
@@ -138,6 +140,17 @@ images:
 	cwebp $(FLAGS) -resize 512 0 ./assets/sanctuaries/tantalus.jpg -o ./src/assets/sanctuaries/tantalus.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/sanctuaries/cyclop.jpg -o ./src/assets/sanctuaries/cyclop.webp
 	cwebp $(FLAGS) -resize 512 0 ./assets/sanctuaries/typhon.jpg -o ./src/assets/sanctuaries/typhon.webp
+
+	# Sea Battles
+	cwebp $(FLAGS) ./assets/sea-battles/ship-small.png -o ./src/assets/sea-battles/ship-small.webp
+	cwebp $(FLAGS) ./assets/sea-battles/mosaic-1.png -o ./src/assets/sea-battles/mosaic-1.webp
+	cwebp $(FLAGS) ./assets/sea-battles/mosaic-2.png -o ./src/assets/sea-battles/mosaic-2.webp
+	cwebp $(FLAGS) ./assets/sea-battles/mosaic-3.png -o ./src/assets/sea-battles/mosaic-3.webp
+	cwebp $(FLAGS) ./assets/sea-battles/mosaic-4.png -o ./src/assets/sea-battles/mosaic-4.webp
+	cwebp $(FLAGS) ./assets/sea-battles/tower-1.png -o ./src/assets/sea-battles/tower-1.webp
+	cwebp $(FLAGS) ./assets/sea-battles/tower-2.png -o ./src/assets/sea-battles/tower-2.webp
+	cwebp $(FLAGS) ./assets/sea-battles/tower-3.png -o ./src/assets/sea-battles/tower-3.webp
+	cwebp $(FLAGS) ./assets/sea-battles/tower-4.png -o ./src/assets/sea-battles/tower-4.webp
 
 	# Temples
 	cwebp $(FLAGS) -resize 512 0 ./assets/temples/apollo.jpg -o ./src/assets/temples/apollo.webp

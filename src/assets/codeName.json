@@ -53,5 +53,10 @@
   "hoplitemercenary": { "name": "Hoplite Mercenary", "names": "Hoplite Mercenaries" },
   "immortal": { "name": "Immortal", "names": "Immortals" },
   "scythedchariot": { "name": "Scythed chariot", "names": "Scythed chariots" },
-  "warelephant": { "name": "War elephant", "names": "War elephants" }
+  "warelephant": { "name": "War elephant", "names": "War elephants" },
+
+  "bireme": { "name": "Bireme", "names": "Biremes" },
+  "trireme": { "name": "Trireme", "names": "Triremes" },
+  "quadrireme": { "name": "Quadrireme", "names": "Quadriremes" },
+  "leviathan": { "name": "Leviathan", "names": "Leviathans" }
 }
