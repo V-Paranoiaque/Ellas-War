@@ -11,24 +11,24 @@ import { AttacksSeabattlesComponent } from './attacks-seabattles.component';
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
 })
 export class AttacksSeabattlesEngagePopupSubComponent extends AttacksSeabattlesComponent {
-  @Input() case!:{
-    case_type: number,
-    can_engage: number,
-    color_id: number,
-    username: string,
-    x: number,
-    y: number,
-    bireme: number,
-    trireme: number,
-    quadrireme: number,
-    leviathan: number,
+  @Input() case!: {
+    case_type: number;
+    can_engage: number;
+    color_id: number;
+    username: string;
+    x: number;
+    y: number;
+    bireme: number;
+    trireme: number;
+    quadrireme: number;
+    leviathan: number;
   };
-  @Input() unit!:{
-    name: string,
-    code: string,
-    attack: number,
-    defense: number,
-    cost: number,
+  @Input() unit!: {
+    name: string;
+    code: string;
+    attack: number;
+    defense: number;
+    cost: number;
   };
 
   constructor(

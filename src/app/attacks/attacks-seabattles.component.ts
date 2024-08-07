@@ -62,8 +62,10 @@ export class AttacksSeabattlesComponent implements OnInit, OnDestroy {
     });
     this.socket.on('sbGetCase', (data: object) => {
       this.currentCase = data as typeof this.currentCase;
-      const name = this.currentCase.x.toString() + '_' + this.currentCase.y.toString();
-      (this.sbData.sb_map[name as keyof typeof this.sbData.sb_map] as object) = this.currentCase;
+      const name =
+        this.currentCase.x.toString() + '_' + this.currentCase.y.toString();
+      (this.sbData.sb_map[name as keyof typeof this.sbData.sb_map] as object) =
+        this.currentCase;
     });
     this.socket.on('sbJoin', (data: object) => {
       this.sbData = data as typeof this.sbData;
@@ -148,17 +150,22 @@ export class AttacksSeabattlesComponent implements OnInit, OnDestroy {
   }
 
   getUnits() {
-    const list:{
-      attack: number,
-      defense: number,
-      cost: number,
-      code: string
+    const list: {
+      attack: number;
+      defense: number;
+      cost: number;
+      code: string;
     }[] = [];
-    for(const [code, unit] of Object.entries(this.user.getDatas().sea_battles.units)) {
-      list.push({...unit, ...{
-        code: code,
-        name: Tools.getName(code),
-      }});
+    for (const [code, unit] of Object.entries(
+      this.user.getDatas().sea_battles.units
+    )) {
+      list.push({
+        ...unit,
+        ...{
+          code: code,
+          name: Tools.getName(code),
+        },
+      });
     }
     return list;
   }
