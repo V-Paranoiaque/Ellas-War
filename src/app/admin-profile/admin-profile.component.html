@@ -677,7 +677,10 @@
                   <textarea [(ngModel)]="profileNotes" class="form-control">{{
                     profileNotes
                   }}</textarea>
-                  <button class="btn btn-primary" (click)="profileNotesSave()">
+                  <button
+                    class="btn btn-primary"
+                    (click)="profileNotesSave()"
+                    translate>
                     Save
                   </button>
                 </div>
@@ -688,7 +691,10 @@
                     class="form-control"
                     >{{ adminProfile.blocked_reason }}</textarea
                   >
-                  <button class="btn btn-primary" (click)="reasonSave()">
+                  <button
+                    class="btn btn-primary"
+                    (click)="reasonSave()"
+                    translate>
                     Save
                   </button>
                 </div>
