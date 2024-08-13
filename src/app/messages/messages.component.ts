@@ -123,8 +123,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.socket.on('msgInfo', msgInfo => {
-      this.currentMsg = msgInfo;
+    this.socket.on('msgInfo', (msgInfo: object) => {
+      this.currentMsg = msgInfo as typeof this.currentMsg;
       this.reported = 0;
       setTimeout(() => {
         this.scroller.scrollToAnchor('msgBlock');
@@ -174,7 +174,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const url = this.socket.url + '/api/playerProfile/' + username + '.json';
+    const url =
+      this.socket.url + '/api/playerProfile/' + username.toString() + '.json';
 
     this.sub = this.http.get(url).subscribe(result => {
       const res = result as { membre_id: number; username: string };

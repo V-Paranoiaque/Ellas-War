@@ -65,15 +65,16 @@ export class DetailsComponent implements OnInit {
     const buildingList = this.user.getBuildings();
 
     for (const i in buildingList) {
-      if (this.user.getPropertyNb(buildingList[i].code) > 0) {
-        if (buildingList[i].consumption) {
-          const consumption = buildingList[i].consumption;
-          for (const consum in consumption) {
-            this.variation[consum as keyof typeof this.variation] -=
-              consumption[consum as keyof typeof consumption] *
-              this.user.getPropertyNb(buildingList[i].code);
-            this.nbvariation[consum as keyof typeof this.nbvariation]++;
-          }
+      if (
+        this.user.getPropertyNb(buildingList[i].code) > 0 &&
+        buildingList[i].consumption
+      ) {
+        const consumption = buildingList[i].consumption;
+        for (const consum in consumption) {
+          this.variation[consum as keyof typeof this.variation] -=
+            consumption[consum as keyof typeof consumption] *
+            this.user.getPropertyNb(buildingList[i].code);
+          this.nbvariation[consum as keyof typeof this.nbvariation]++;
         }
       }
     }

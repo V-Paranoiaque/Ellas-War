@@ -146,25 +146,42 @@
                     @case (1) {
                       <div
                         class="case unknown"
+                        role="button"
                         tabIndex="0"
-                        (click)="selectCase(x, y)"></div>
+                        aria-hidden="true"
+                        (click)="selectCase(x, y)"
+                        (keyup.enter)="selectCase(x, y)"></div>
                     }
                     @case (3) {
                       <div
                         class="case {{ 'player' + getCase(x, y).color_id }}"
-                        (click)="selectCase(x, y)">
+                        role="button"
+                        tabIndex="0"
+                        aria-hidden="true"
+                        (click)="selectCase(x, y)"
+                        (keyup.enter)="selectCase(x, y)">
                         <div class="army"></div>
                       </div>
                     }
                     @case (4) {
                       <div
                         class="case {{ 'player' + getCase(x, y).color_id }}"
-                        (click)="selectCase(x, y)">
+                        role="button"
+                        tabIndex="0"
+                        aria-hidden="true"
+                        (click)="selectCase(x, y)"
+                        (keyup.enter)="selectCase(x, y)">
                         <div class="capital"></div>
                       </div>
                     }
                     @default {
-                      <div class="case" (click)="selectCase(x, y)"></div>
+                      <div
+                        class="case"
+                        role="button"
+                        tabIndex="0"
+                        aria-hidden="true"
+                        (click)="selectCase(x, y)"
+                        (keyup.enter)="selectCase(x, y)"></div>
                     }
                   }
                 }

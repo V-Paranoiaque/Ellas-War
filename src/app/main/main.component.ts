@@ -91,8 +91,9 @@ export class MainComponent implements OnInit, OnDestroy {
               this.checkMaintenance(result.maintenance);
             }
           }
-        } catch (e) {
+        } catch (e: unknown) {
           this.displayServerModal = true;
+          console.log(e);
         }
 
         if (this.displayServerModal) {

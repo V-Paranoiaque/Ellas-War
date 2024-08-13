@@ -156,16 +156,6 @@ export class AttacksDiamondComponent implements OnInit, OnDestroy {
     });
     this.socket.on('realWaveAttackSum', data => {
       this.realWaveAttackSum = data;
-      const newTab = [];
-      let j = 0;
-      for (const i in this.realWaveAttackSum) {
-        if (
-          this.realWaveAttackSum[i as keyof typeof this.realWaveAttackSum] > 0
-        ) {
-          newTab.push(j);
-          j++;
-        }
-      }
     });
     this.socket.on('waveAttackSum', data => {
       this.waveAttackSum = data;

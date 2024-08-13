@@ -523,12 +523,10 @@ export class UserComponent {
   }
 
   getDatasAlliance() {
-    const datas = this.getProperty('datas') as {
+    return this.getProperty('datas') as {
       alliance: { create: number };
       war: { minmembers: number };
     };
-
-    return datas;
   }
 
   questValidateAuto() {

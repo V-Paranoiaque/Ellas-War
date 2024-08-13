@@ -61,7 +61,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.storeroomList = [];
     this.storeroomMyList = [];
 
-    this.storeroom_ress = [].constructor(10);
+    this.storeroom_ress = [].constructor(10) as typeof this.storeroom_ress;
     this.storeroomMin = {
       min: 0,
       rate: 0,

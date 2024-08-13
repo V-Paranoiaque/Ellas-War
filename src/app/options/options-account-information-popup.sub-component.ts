@@ -71,11 +71,13 @@ export class OptionsAccountInformationPopupSubComponent
 
       reader.readAsDataURL(files[0]);
       reader.onload = (event2: ProgressEvent<FileReader>) => {
-        const playerImage = {
-          name: name,
-          data: event2.target!.result,
-        };
-        this.socket.emit('accountImgUpload', playerImage);
+        if (event2.target) {
+          const playerImage = {
+            name: name,
+            data: event2.target.result,
+          };
+          this.socket.emit('accountImgUpload', playerImage);
+        }
       };
     }
   }

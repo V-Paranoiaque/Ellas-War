@@ -26,12 +26,8 @@ export class AllianceEvictPopupSubComponent {
   }
 
   possible() {
-    if (
-      this.user.getPropertyNb('recruiter') > 0 &&
-      this.info.allow_eject === 1
-    ) {
-      return true;
-    }
-    return false;
+    return (
+      this.user.getPropertyNb('recruiter') > 0 && this.info.allow_eject === 1
+    );
   }
 }
