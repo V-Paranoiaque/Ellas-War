@@ -76,3 +76,9 @@
 # 2.0.10
 * Fix marble/stone bar on touch screens
 * Fix top display on Android
+
+# 2.0.11
+* Fix displayed price when liberating resources
+* Fix missing translations
+* Improve some texts
+* Split the attack page in different URL

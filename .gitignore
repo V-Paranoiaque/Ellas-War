@@ -69,6 +69,8 @@ build.json
 
 # SonarQube
 .scannerwork
+.sonar
+sonar-project.properties
 
 # Generated images
 src/**/*.webp
