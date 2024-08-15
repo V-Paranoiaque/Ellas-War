@@ -146,6 +146,11 @@
                     @case (1) {
                       <div
                         class="case unknown"
+                        [ngClass]="{
+                          selected:
+                            this.currentCase.x === x &&
+                            this.currentCase.y === y,
+                        }"
                         role="button"
                         tabIndex="0"
                         aria-hidden="true"
@@ -155,6 +160,11 @@
                     @case (3) {
                       <div
                         class="case {{ 'player' + getCase(x, y).color_id }}"
+                        [ngClass]="{
+                          selected:
+                            this.currentCase.x === x &&
+                            this.currentCase.y === y,
+                        }"
                         role="button"
                         tabIndex="0"
                         aria-hidden="true"
@@ -166,6 +176,11 @@
                     @case (4) {
                       <div
                         class="case {{ 'player' + getCase(x, y).color_id }}"
+                        [ngClass]="{
+                          selected:
+                            this.currentCase.x === x &&
+                            this.currentCase.y === y,
+                        }"
                         role="button"
                         tabIndex="0"
                         aria-hidden="true"
@@ -177,6 +192,11 @@
                     @default {
                       <div
                         class="case"
+                        [ngClass]="{
+                          selected:
+                            this.currentCase.x === x &&
+                            this.currentCase.y === y,
+                        }"
                         role="button"
                         tabIndex="0"
                         aria-hidden="true"

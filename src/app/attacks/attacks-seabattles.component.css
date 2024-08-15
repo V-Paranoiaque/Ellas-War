@@ -5,6 +5,7 @@
   width: 100%;
   aspect-ratio: 1/1;
 }
+
 .case {
   width: calc(100%/15);
   aspect-ratio: 1/1;
@@ -15,11 +16,12 @@
   background-size: cover;
   cursor: pointer;
 }
+
 .unknown {
   background-color: black;
 }
 
-.case > .capital {
+.case>.capital {
   content: "";
   background-image: url('../../assets/sea-battles/tower-1.webp');
   background-repeat: no-repeat;
@@ -31,7 +33,8 @@
   bottom: 0;
   right: 0;
 }
-.case > .army {
+
+.case>.army {
   content: "";
   background-image: url('../../assets/sea-battles/ship-small.webp');
   background-repeat: no-repeat;
@@ -46,4 +49,12 @@
 
 .case.player1 {
   background-image: url('../../assets/sea-battles/mosaic-1.webp');
+}
+
+.case.selected {
+  border: 3px black solid;
+}
+
+.case.unknown.selected {
+  border-color: white;
 }
