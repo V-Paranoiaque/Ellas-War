@@ -9,22 +9,26 @@ a {
 }
 
 @media (max-width: 991.98px) {
-  .container, .container-fluid {
+
+  .container,
+  .container-fluid {
     padding-right: calc(var(--bs-gutter-x) * .25);
     padding-left: calc(var(--bs-gutter-x) * .25);
   }
+
   .row {
     margin-right: calc(-.25 * var(--bs-gutter-x));
     margin-left: calc(-.25 * var(--bs-gutter-x));
   }
-  .row > * {
+
+  .row>* {
     padding-right: calc(var(--bs-gutter-x) * .25);
     padding-left: calc(var(--bs-gutter-x) * .25);
   }
 }
 
 .text-justify,
-div > .text-justify {
+div>.text-justify {
   text-align: justify;
 }
 
@@ -33,9 +37,15 @@ div > .text-justify {
 }
 
 /* forms */
-.btn, input, textarea, .form-control, .input-group-sm > .form-control,
-.input-group-sm > .input-group-text, .form-select,
-.input-group-text, .page-item:first-child .page-link,
+.btn,
+input,
+textarea,
+.form-control,
+.input-group-sm>.form-control,
+.input-group-sm>.input-group-text,
+.form-select,
+.input-group-text,
+.page-item:first-child .page-link,
 .page-item:last-child .page-link {
   border-radius: 0px;
 }
@@ -46,10 +56,12 @@ div > .text-justify {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  color:white;
+  color: white;
 }
 
-.card-header, .card-button, .card-footer {
+.card-header,
+.card-button,
+.card-footer {
   text-align: center;
   padding: 4px;
 }
@@ -63,12 +75,14 @@ div > .text-justify {
 .card-header .card-header-group-right {
   right: 0px;
 }
+
 .card-header .card-header-group-left {
   left: 0px;
 }
+
 .card-header .card-header-group .card-header-button {
   padding: 0px 3px;
-  float:left;
+  float: left;
   height: 32px;
   width: 32px;
   margin: 0px;
@@ -93,9 +107,11 @@ div > .text-justify {
   color: white;
   border-radius: 0px;
 }
+
 .progress .bg-success {
   background-color: #418459;
 }
+
 .progress-text {
   position: absolute;
   width: calc(100% - var(--bs-card-spacer-y) - var(--bs-card-spacer-x));
@@ -112,6 +128,7 @@ div > .text-justify {
 main {
   min-height: calc(100vh - (167px));
 }
+
 @media (min-width: 992px) {
   main {
     margin-left: 180px;
@@ -130,6 +147,7 @@ main {
   width: 144px;
   display: inline-block;
 }
+
 th .small-resource {
   padding: 0px;
 }
@@ -139,6 +157,7 @@ th .small-resource {
   background-color: white;
   border: #5865F2 solid 1px;
 }
+
 .btn-discord:hover {
   background-color: lightgrey;
   border: #36135a solid 1px;
@@ -146,5 +165,5 @@ th .small-resource {
 
 /** Messages **/
 .text-prewrap {
-  white-space: pre;
+  white-space: pre-line;
 }
