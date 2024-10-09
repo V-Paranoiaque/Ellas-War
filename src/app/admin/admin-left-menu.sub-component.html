@@ -1,187 +1,230 @@
 <div id="topMosaic"></div>
 <header>
   @if (user.getPropertyNb('rank') > 1) {
-    <nav
-      id="sidebarMenu"
-      class="collapse d-lg-block sidebar sidebar-left collapse">
-      <div class="position-sticky">
-        <div class="list-group list-goup-flush mt-1">
-          <a
-            href="/"
-            [routerLink]="['/']"
-            class="list-group-item list-group-item-action ripple"
-            aria-current="true">
-            <span class="ms-2" translate>Back</span>
-          </a>
-          <a
-            href="/admin/"
-            [routerLink]="['/admin/']"
-            class="list-group-item list-group-item-action ripple"
-            aria-current="true">
+  <div class="modal fade" id="adminMenuPopup" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" translate>Admin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body container-fluid row">
+
+          <a href="/admin/" [routerLink]="['/admin/']" class="col-6" data-bs-dismiss="modal" aria-current="true">
             <span class="ms-2" translate>Home</span>
           </a>
-          <a
-            href="/admin/players"
-            [routerLink]="['/admin/players']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/players" [routerLink]="['/admin/players']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Players</span>
           </a>
           @if (user.getPropertyNb('rank') >= 5) {
-            <a
-              href="/admin/alliances"
-              [routerLink]="['/admin/alliances']"
-              class="list-group-item list-group-item-action ripple"
-              aria-current="true">
-              <span class="ms-2" translate>Alliances</span>
-            </a>
+          <a href="/admin/alliances" [routerLink]="['/admin/alliances']" class="col-6" data-bs-dismiss="modal"
+            aria-current="true">
+            <span class="ms-2" translate>Alliances</span>
+          </a>
           }
-          <a
-            href="/admin/messages"
-            [routerLink]="['/admin/messages']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/messages" [routerLink]="['/admin/messages']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Send a message</span>
           </a>
-          <a
-            href="/admin/prayers"
-            [routerLink]="['/admin/prayers']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/prayers" [routerLink]="['/admin/prayers']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Prayers</span>
           </a>
-          <a
-            href="/admin/resources"
-            [routerLink]="['/admin/resources']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/resources" [routerLink]="['/admin/resources']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Resources</span>
           </a>
-          <a
-            href="/admin/news"
-            [routerLink]="['/admin/news']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/news" [routerLink]="['/admin/news']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>News</span>
           </a>
-          <a
-            href="/admin/emails"
-            [routerLink]="['/admin/emails']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/emails" [routerLink]="['/admin/emails']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Email Switching</span>
           </a>
-          <a
-            href="/admin/pauses"
-            [routerLink]="['/admin/pauses']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/pauses" [routerLink]="['/admin/pauses']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Pauses</span>
           </a>
-          <a
-            href="/admin/agora"
-            [routerLink]="['/admin/agora']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/agora" [routerLink]="['/admin/agora']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Agora</span>
           </a>
-          <a
-            href="/admin/storeroom"
-            [routerLink]="['/admin/storeroom']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/storeroom" [routerLink]="['/admin/storeroom']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Storeroom</span>
           </a>
-          <a
-            href="/admin/quests"
-            [routerLink]="['/admin/quests']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/quests" [routerLink]="['/admin/quests']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Quests</span>
           </a>
-          <a
-            href="/admin/wars"
-            [routerLink]="['/admin/wars']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/wars" [routerLink]="['/admin/wars']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Wars</span>
           </a>
-          <a
-            href="/admin/chat"
-            [routerLink]="['/admin/chat']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/chat" [routerLink]="['/admin/chat']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Chat</span>
           </a>
-          <a
-            href="/admin/permissions"
-            [routerLink]="['/admin/permissions']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/permissions" [routerLink]="['/admin/permissions']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Permissions</span>
           </a>
-          <a
-            href="/admin/actions"
-            [routerLink]="['/admin/actions']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/actions" [routerLink]="['/admin/actions']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Actions</span>
           </a>
-          <a
-            href="/admin/contact"
-            [routerLink]="['/admin/contact']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/contact" [routerLink]="['/admin/contact']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Contact</span>
           </a>
-          <a
-            href="/admin/support"
-            [routerLink]="['/admin/support']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/support" [routerLink]="['/admin/support']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Support</span>
           </a>
-          <a
-            href="/admin/page404"
-            [routerLink]="['/admin/page404']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/page404" [routerLink]="['/admin/page404']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>404</span>
           </a>
-          <a
-            href="/admin/aimage"
-            [routerLink]="['/admin/aimage']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/aimage" [routerLink]="['/admin/aimage']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Alliance images</span>
           </a>
-          <a
-            href="/admin/pimage"
-            [routerLink]="['/admin/pimage']"
-            class="list-group-item list-group-item-action ripple"
+          <a href="/admin/pimage" [routerLink]="['/admin/pimage']" class="col-6" data-bs-dismiss="modal"
             aria-current="true">
             <span class="ms-2" translate>Player images</span>
           </a>
           @if (user.getPropertyNb('rank') >= 5) {
-            <a
-              href="/admin/history"
-              [routerLink]="['/admin/history']"
-              class="list-group-item list-group-item-action ripple"
-              aria-current="true">
-              <span class="ms-2" translate>History</span>
-            </a>
+          <a href="/admin/history" [routerLink]="['/admin/history']" class="col-6" data-bs-dismiss="modal"
+            aria-current="true">
+            <span class="ms-2" translate>History</span>
+          </a>
           }
           @if (user.getPropertyNb('rank') >= 5) {
-            <a
-              href="/admin/seo"
-              [routerLink]="['/admin/seo']"
-              class="list-group-item list-group-item-action ripple"
-              aria-current="true">
-              <span class="ms-2" translate>SEO</span>
-            </a>
+          <a href="/admin/seo" [routerLink]="['/admin/seo']" class="col-6" data-bs-dismiss="modal" aria-current="true">
+            <span class="ms-2" translate>SEO</span>
+          </a>
           }
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
+            Close
+          </button>
+        </div>
       </div>
-    </nav>
+    </div>
+  </div>
+
+  <nav id="adminMenu" class="d-block d-lg-none" data-bs-toggle="modal" data-bs-target="#adminMenuPopup" role="button">
+    <app-ic-icon [icon]="fileLines"></app-ic-icon>
+  </nav>
+  <nav id=" sidebarMenu" class="collapse d-lg-block sidebar sidebar-left collapse">
+    <div class="position-sticky">
+      <div class="list-group list-goup-flush mt-1">
+        <a href="/" [routerLink]="['/']" class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Back</span>
+        </a>
+        <a href="/admin/" [routerLink]="['/admin/']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Home</span>
+        </a>
+        <a href="/admin/players" [routerLink]="['/admin/players']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Players</span>
+        </a>
+        @if (user.getPropertyNb('rank') >= 5) {
+        <a href="/admin/alliances" [routerLink]="['/admin/alliances']"
+          class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Alliances</span>
+        </a>
+        }
+        <a href="/admin/messages" [routerLink]="['/admin/messages']"
+          class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Send a message</span>
+        </a>
+        <a href="/admin/prayers" [routerLink]="['/admin/prayers']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Prayers</span>
+        </a>
+        <a href="/admin/resources" [routerLink]="['/admin/resources']"
+          class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Resources</span>
+        </a>
+        <a href="/admin/news" [routerLink]="['/admin/news']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>News</span>
+        </a>
+        <a href="/admin/emails" [routerLink]="['/admin/emails']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Email Switching</span>
+        </a>
+        <a href="/admin/pauses" [routerLink]="['/admin/pauses']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Pauses</span>
+        </a>
+        <a href="/admin/agora" [routerLink]="['/admin/agora']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Agora</span>
+        </a>
+        <a href="/admin/storeroom" [routerLink]="['/admin/storeroom']"
+          class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Storeroom</span>
+        </a>
+        <a href="/admin/quests" [routerLink]="['/admin/quests']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Quests</span>
+        </a>
+        <a href="/admin/wars" [routerLink]="['/admin/wars']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Wars</span>
+        </a>
+        <a href="/admin/chat" [routerLink]="['/admin/chat']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Chat</span>
+        </a>
+        <a href="/admin/permissions" [routerLink]="['/admin/permissions']"
+          class="list-group-item list-group-item-action ripple" aria-current="true">
+          <span class="ms-2" translate>Permissions</span>
+        </a>
+        <a href="/admin/actions" [routerLink]="['/admin/actions']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Actions</span>
+        </a>
+        <a href="/admin/contact" [routerLink]="['/admin/contact']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Contact</span>
+        </a>
+        <a href="/admin/support" [routerLink]="['/admin/support']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Support</span>
+        </a>
+        <a href="/admin/page404" [routerLink]="['/admin/page404']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>404</span>
+        </a>
+        <a href="/admin/aimage" [routerLink]="['/admin/aimage']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Alliance images</span>
+        </a>
+        <a href="/admin/pimage" [routerLink]="['/admin/pimage']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>Player images</span>
+        </a>
+        @if (user.getPropertyNb('rank') >= 5) {
+        <a href="/admin/history" [routerLink]="['/admin/history']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>History</span>
+        </a>
+        }
+        @if (user.getPropertyNb('rank') >= 5) {
+        <a href="/admin/seo" [routerLink]="['/admin/seo']" class="list-group-item list-group-item-action ripple"
+          aria-current="true">
+          <span class="ms-2" translate>SEO</span>
+        </a>
+        }
+      </div>
+    </div>
+  </nav>
   }
 </header>

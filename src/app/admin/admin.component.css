@@ -3,3 +3,16 @@
     margin-right: 0;
   }
 }
+
+#adminMenu {
+  border-radius: 50%;
+  background-color: #1F1D37;
+  border: 1px solid white;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 14px;
+  cursor: pointer;
+  z-index: 1000;
+}
