@@ -287,6 +287,15 @@
     @case (31) {
       <span translate>Defeat of your alliance</span>
     }
+    @case (32) {
+      <span translate>The Sea Battle is starting soon</span>
+    }
+    @case (33) {
+      <span>{{
+        '{ value } has won the Sea Battle'
+          | translate: { value: msg.title.username }
+      }}</span>
+    }
     @default {
       <span>
         @if (msg.msg_type > 0) {

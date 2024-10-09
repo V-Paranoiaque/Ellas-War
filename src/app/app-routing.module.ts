@@ -57,6 +57,7 @@ import { HonorComponent } from './honor/honor.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RankingalliancesComponent } from './rankingalliances/rankingalliances.component';
 import { RankingplayersComponent } from './rankingplayers/rankingplayers.component';
+import { RankingseabattlesComponent } from './rankingseabattles/rankingseabattles.component';
 
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { MainComponent } from './main/main.component';
@@ -130,6 +131,8 @@ export const routes: Routes = [
   { path: 'rankingplayers', component: RankingplayersComponent },
   { path: 'rankingplayers/:id', component: RankingplayersComponent },
   { path: 'rankingplayers/:id/:order', component: RankingplayersComponent },
+  { path: 'rankingseabattles', component: RankingseabattlesComponent },
+  { path: 'rankingseabattles/:id', component: RankingseabattlesComponent },
   { path: 'sitemap', component: SitemapComponent },
   { path: 'strategy-game', component: StrategyGameComponent },
   { path: 'tandcs', component: TandcsComponent },

@@ -48,7 +48,7 @@
       </div>
     </a>
   }
-  @if (user.getPropertyNb('rank') > 5) {
+  @if (user.getPropertyNb('level') >= 1 && user.getPropertyNb('rank') >= 5) {
     <a
       [routerLink]="['/attacks-seabattles']"
       class="frame d-flex flex-column flex-grow-1">

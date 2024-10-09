@@ -51,6 +51,18 @@
   background-image: url('../../assets/sea-battles/mosaic-1.webp');
 }
 
+.case.player2 {
+  background-image: url('../../assets/sea-battles/mosaic-2.webp');
+}
+
+.case.player3 {
+  background-image: url('../../assets/sea-battles/mosaic-3.webp');
+}
+
+.case.player4 {
+  background-image: url('../../assets/sea-battles/mosaic-4.webp');
+}
+
 .case.selected {
   border: 3px black solid;
 }

@@ -10,10 +10,94 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        {{ unit | json }}
-        <button class="btn btn-primary" (click)="engage()" translate>
-          Engage
-        </button>
+        <div class="row">
+          @if (unit.error >= 0) {
+            <div class="col-12 text-center text-danger fw-bold">
+              @switch (unit.error) {
+                @case (0) {
+                  <div class="text-success" translate>Unit engaged</div>
+                }
+                @case (1) {
+                  <div translate>This unit doesn't exist</div>
+                }
+                @case (2) {
+                  <div translate>Impossible to access to this Sea Battle</div>
+                }
+                @case (3) {
+                  <div translate>
+                    You don't have enough Gold coins to engage this unit
+                  </div>
+                }
+                @case (4) {
+                  <div translate>Impossible to engage on this case</div>
+                }
+              }
+            </div>
+          }
+          @if (
+            getEngage() >= 1 &&
+            unit.cost * getEngage() > coins &&
+            unit.error !== 3
+          ) {
+            <div class="col-12 text-center text-danger fw-bold" translate>
+              You don't have enough Gold coins to engage this unit
+            </div>
+          }
+          <div class="col-6">
+            <strong translate>Strength</strong>
+            <strong translate>:</strong>
+            <span>
+              {{ unit.attack | number: '' : this.translate.currentLang }}
+              <app-ic-icon
+                [icon]="swordIcon"
+                title="{{ 'Attack' | translate }}"></app-ic-icon>
+            </span>
+            <span>
+              {{ unit.defense | number: '' : this.translate.currentLang }}
+              <app-ic-icon
+                [icon]="shieldShaded"
+                title="{{ 'Defense' | translate }}"></app-ic-icon>
+            </span>
+            @if (unit.cost) {
+              <div>
+                <strong translate>Commitment</strong>
+                <strong translate>:</strong>
+                <br />
+                {{
+                  unit.cost * getEngage()
+                    | number: '' : this.translate.currentLang
+                }}
+                <span translate>Gold coins</span>
+              </div>
+            }
+          </div>
+          <div class="col-6">
+            <strong translate>Currently</strong>
+            <strong translate>:</strong>
+            {{ getCurrent() | number: '' : this.translate.currentLang }}
+            <div class="d-flex">
+              <div class="d-flex flex-column">
+                <input
+                  type="number"
+                  placeholder="0"
+                  [attr.min]="0"
+                  step="1"
+                  class="form-control mt-2"
+                  [(ngModel)]="unit.engage" />
+              </div>
+              <div class="d-flex flex-column">
+                @if (case.can_engage === 1) {
+                  <button
+                    class="btn btn-primary mt-2"
+                    (click)="engage()"
+                    translate>
+                    Engage
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button

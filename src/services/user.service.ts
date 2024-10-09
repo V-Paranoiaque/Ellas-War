@@ -3,6 +3,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { environment } from './../environments/environment';
 import { SocketComponent as Socket } from './socketio.service';
+import { ToolsComponent as Tools } from './tools.service';
 
 declare let device: {
   platform: string;
@@ -66,7 +67,16 @@ export class UserComponent {
               cost: 20,
             },
           },
+          towers: {
+            oxybeles: {
+              attack: 0,
+              defense: 250,
+              cost: 0,
+            },
+          },
         },
+        max_actions: 0,
+        coins_start: 0,
       },
     };
     this.newMsg = 0;
@@ -211,6 +221,15 @@ export class UserComponent {
             cost: number;
           };
         };
+        towers: {
+          oxybeles: {
+            attack: number;
+            defense: number;
+            cost: number;
+          };
+        };
+        max_actions: number;
+        coins_start: number;
       };
     };
   }
@@ -531,5 +550,46 @@ export class UserComponent {
 
   questValidateAuto() {
     this.socket.emit('questValidateAuto');
+  }
+
+  getSBUnits() {
+    const list: {
+      attack: number;
+      defense: number;
+      cost: number;
+      code: string;
+    }[] = [];
+    for (const [code, unit] of Object.entries(
+      this.getDatas().sea_battles.units
+    )) {
+      list.push({
+        ...unit,
+        ...{
+          code: code,
+          name: Tools.getName(code),
+        },
+      });
+    }
+    return list;
+  }
+  getSBTowers() {
+    const list: {
+      attack: number;
+      defense: number;
+      cost: number;
+      code: string;
+    }[] = [];
+    for (const [code, tower] of Object.entries(
+      this.getDatas().sea_battles.towers
+    )) {
+      list.push({
+        ...tower,
+        ...{
+          code: code,
+          name: Tools.getName(code),
+        },
+      });
+    }
+    return list;
   }
 }

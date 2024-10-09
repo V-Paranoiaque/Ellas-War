@@ -1,62 +1,238 @@
 {
-  "mint": { "name": "Mint", "names": "Mints" },
-  "well": { "name": "Well", "names": "Wells" },
-  "farm": { "name": "Farm", "names": "Farms" },
-  "growers": { "name" : "Grower's lodge", "names" : "Grower's lodges" },
-  "winery": { "name": "Winery", "names": "Wineries" },
-  "ironmine": { "name": "Iron mine", "names": "Iron mines" },
-  "goldmine": { "name": "Gold mine", "names": "Gold mines" },
-  "quarry": { "name": "Quarry", "names": "Quarries" },
-  "sawmill": { "name": "Sawmill", "names": "Sawmills" },
-  "denofspies": { "name": "Den of Spies", "names": "Dens of Spies" },
-  "militarycamp": { "name": "Barracks", "names": "Barracks" },
-  "archerschool": { "name": "Archer's school", "names": "Archer's schools" },
-  "cavalryschool": { "name": "Cavalry's school", "names": "Cavalry's schools" },
-  "academy": { "name": "Academy", "names": "Academies" },
-  "hut": { "name": "Hut", "names": "Huts" },
-  "habitation": { "name": "Habitation", "names": "Habitations" },
-  "palace": { "name": "Palace", "names": "Palaces" },
-  "cursedcave": { "name": "Cursed cave", "names": "Cursed caves" },
-  "watchtower": { "name": "Watchtower", "names": "Watchtowers" },
-  "observationtower": { "name": "Observation tower", "names": "Observation towers" },
-  "towerofduty": { "name": "Duty tower", "names": "Duty towers" },
-  "mirrortower": { "name": "Mirror tower", "names": "Mirror towers" },
-  "volunteer": { "name": "Volunteer", "names": "Volunteers" },
-  "silver_man": { "name": "Silverman", "names": "Silvermen" },
-  "peltast": { "name": "Peltast", "names": "Peltasts" },
-  "slinger": { "name": "Slinger", "names": "Slingers" },
-  "shortbow": { "name": "Short bow archery", "names": "Short bow archeries" },
-  "longbow": { "name": "Long bow archery", "names": "Long bow archeries" },
-  "hippeis": { "name": "Hippeis", "names": "Hippeus" },
-  "mountedarchery": { "name": "Mounted archery", "names": "Mounted archeries" },
-  "hoplite": { "name": "Hoplite", "names": "Hoplites" },
-  "mountedhoplite": { "name": "Mounted hoplite", "names" : "Mounted hoplites" },
-  "elitehoplite": { "name": "Elite hoplite", "names" : "Elite hoplites" },
-  "amazon": { "name": "Amazon", "names": "Amazons" },
-  "automaton": { "name": "Automaton", "names": "Automatons" },
-  "centaur": { "name": "Centaur", "names": "Centaurs" },
-  "spartan": { "name": "Spartan", "names": "Spartans" },
-  "myrmidon": { "name": "Myrmidon", "names": "Myrmidons" },
-  "soul": { "name": "Tormented soul", "names": "Tormented souls" },
-  "spy": { "name": "Spy", "names": "Spies" },
-  "satyr": { "name": "Satyr", "names": "Satyrs" },
-  "cyclops": { "name": "Cyclops", "names": "Cyclopes" },
-  "creature": { "name": "Creature of Tartarus", "names": "Creatures of Tartarus" },
-  "lion": { "name": "Lion", "names": "Lions" },
-  "gaia": { "name": "Defender of Gaia", "names": "Defenders of Gaia" },
-  "harpy": { "name": "Harpy", "names": "Harpies" },
-  "griffin": { "name": "Griffin", "names": "Griffins" },
-  "hecatoncheir": { "name": "Hecatoncheir", "names": "Hecatoncheires" },
-  "manticore": { "name": "Manticore", "names": "Manticores" },
-  "lampad": { "name": "Lampad", "names": "Lampads" },
-
-  "hoplitemercenary": { "name": "Hoplite Mercenary", "names": "Hoplite Mercenaries" },
-  "immortal": { "name": "Immortal", "names": "Immortals" },
-  "scythedchariot": { "name": "Scythed chariot", "names": "Scythed chariots" },
-  "warelephant": { "name": "War elephant", "names": "War elephants" },
-
-  "bireme": { "name": "Bireme", "names": "Biremes" },
-  "trireme": { "name": "Trireme", "names": "Triremes" },
-  "quadrireme": { "name": "Quadrireme", "names": "Quadriremes" },
-  "leviathan": { "name": "Leviathan", "names": "Leviathans" }
+  "mint": {
+    "name": "Mint",
+    "names": "Mints"
+  },
+  "well": {
+    "name": "Well",
+    "names": "Wells"
+  },
+  "farm": {
+    "name": "Farm",
+    "names": "Farms"
+  },
+  "growers": {
+    "name": "Grower's lodge",
+    "names": "Grower's lodges"
+  },
+  "winery": {
+    "name": "Winery",
+    "names": "Wineries"
+  },
+  "ironmine": {
+    "name": "Iron mine",
+    "names": "Iron mines"
+  },
+  "goldmine": {
+    "name": "Gold mine",
+    "names": "Gold mines"
+  },
+  "quarry": {
+    "name": "Quarry",
+    "names": "Quarries"
+  },
+  "sawmill": {
+    "name": "Sawmill",
+    "names": "Sawmills"
+  },
+  "denofspies": {
+    "name": "Den of Spies",
+    "names": "Dens of Spies"
+  },
+  "militarycamp": {
+    "name": "Barracks",
+    "names": "Barracks"
+  },
+  "archerschool": {
+    "name": "Archer's school",
+    "names": "Archer's schools"
+  },
+  "cavalryschool": {
+    "name": "Cavalry's school",
+    "names": "Cavalry's schools"
+  },
+  "academy": {
+    "name": "Academy",
+    "names": "Academies"
+  },
+  "hut": {
+    "name": "Hut",
+    "names": "Huts"
+  },
+  "habitation": {
+    "name": "Habitation",
+    "names": "Habitations"
+  },
+  "palace": {
+    "name": "Palace",
+    "names": "Palaces"
+  },
+  "cursedcave": {
+    "name": "Cursed cave",
+    "names": "Cursed caves"
+  },
+  "watchtower": {
+    "name": "Watchtower",
+    "names": "Watchtowers"
+  },
+  "observationtower": {
+    "name": "Observation tower",
+    "names": "Observation towers"
+  },
+  "towerofduty": {
+    "name": "Duty tower",
+    "names": "Duty towers"
+  },
+  "mirrortower": {
+    "name": "Mirror tower",
+    "names": "Mirror towers"
+  },
+  "volunteer": {
+    "name": "Volunteer",
+    "names": "Volunteers"
+  },
+  "silver_man": {
+    "name": "Silverman",
+    "names": "Silvermen"
+  },
+  "peltast": {
+    "name": "Peltast",
+    "names": "Peltasts"
+  },
+  "slinger": {
+    "name": "Slinger",
+    "names": "Slingers"
+  },
+  "shortbow": {
+    "name": "Short bow archery",
+    "names": "Short bow archeries"
+  },
+  "longbow": {
+    "name": "Long bow archery",
+    "names": "Long bow archeries"
+  },
+  "hippeis": {
+    "name": "Hippeis",
+    "names": "Hippeus"
+  },
+  "mountedarchery": {
+    "name": "Mounted archery",
+    "names": "Mounted archeries"
+  },
+  "hoplite": {
+    "name": "Hoplite",
+    "names": "Hoplites"
+  },
+  "mountedhoplite": {
+    "name": "Mounted hoplite",
+    "names": "Mounted hoplites"
+  },
+  "elitehoplite": {
+    "name": "Elite hoplite",
+    "names": "Elite hoplites"
+  },
+  "amazon": {
+    "name": "Amazon",
+    "names": "Amazons"
+  },
+  "automaton": {
+    "name": "Automaton",
+    "names": "Automatons"
+  },
+  "centaur": {
+    "name": "Centaur",
+    "names": "Centaurs"
+  },
+  "spartan": {
+    "name": "Spartan",
+    "names": "Spartans"
+  },
+  "myrmidon": {
+    "name": "Myrmidon",
+    "names": "Myrmidons"
+  },
+  "soul": {
+    "name": "Tormented soul",
+    "names": "Tormented souls"
+  },
+  "spy": {
+    "name": "Spy",
+    "names": "Spies"
+  },
+  "satyr": {
+    "name": "Satyr",
+    "names": "Satyrs"
+  },
+  "cyclops": {
+    "name": "Cyclops",
+    "names": "Cyclopes"
+  },
+  "creature": {
+    "name": "Creature of Tartarus",
+    "names": "Creatures of Tartarus"
+  },
+  "lion": {
+    "name": "Lion",
+    "names": "Lions"
+  },
+  "gaia": {
+    "name": "Defender of Gaia",
+    "names": "Defenders of Gaia"
+  },
+  "harpy": {
+    "name": "Harpy",
+    "names": "Harpies"
+  },
+  "griffin": {
+    "name": "Griffin",
+    "names": "Griffins"
+  },
+  "hecatoncheir": {
+    "name": "Hecatoncheir",
+    "names": "Hecatoncheires"
+  },
+  "manticore": {
+    "name": "Manticore",
+    "names": "Manticores"
+  },
+  "lampad": {
+    "name": "Lampad",
+    "names": "Lampads"
+  },
+  "hoplitemercenary": {
+    "name": "Hoplite Mercenary",
+    "names": "Hoplite Mercenaries"
+  },
+  "immortal": {
+    "name": "Immortal",
+    "names": "Immortals"
+  },
+  "scythedchariot": {
+    "name": "Scythed chariot",
+    "names": "Scythed chariots"
+  },
+  "warelephant": {
+    "name": "War elephant",
+    "names": "War elephants"
+  },
+  "bireme": {
+    "name": "Bireme",
+    "names": "Biremes"
+  },
+  "trireme": {
+    "name": "Trireme",
+    "names": "Triremes"
+  },
+  "quadrireme": {
+    "name": "Quadrireme",
+    "names": "Quadriremes"
+  },
+  "leviathan": {
+    "name": "Leviathan",
+    "names": "Leviathans"
+  },
+  "oxybeles": {
+    "name": "Oxybeles tower",
+    "names": "Oxybeles towers"
+  }
 }

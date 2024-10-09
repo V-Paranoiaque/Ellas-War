@@ -1,0 +1,51 @@
+<div
+  class="modal fade"
+  id="seaBattlesCoinsHelp"
+  tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" translate>Sea Battles coins</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body container-fluid">
+        <ul>
+          <li>
+            {{
+              'You start the game with { value } coins'
+                | translate
+                  : {
+                      value:
+                        this.user.getDatas().sea_battles.coins_start
+                        | number: '' : this.translate.currentLang,
+                    }
+            }}
+          </li>
+          <li translate>
+            Every hour, you earn 10 coins for each case that you control
+          </li>
+          <li translate>The middle case gives you 50 coins</li>
+          <li translate>
+            The coins are reinitialized between each Sea battle and can't be
+            saved
+          </li>
+          <li translate>The coins can't be stolen</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          translate>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

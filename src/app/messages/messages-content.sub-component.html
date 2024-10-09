@@ -592,7 +592,7 @@
       </span>
     }
     @case (31) {
-      <span translate>
+      <span>
         <div translate>
           The battle was long, unfortunately your alliance lost the war.
         </div>
@@ -606,6 +606,17 @@
         <strong translate>Reward:</strong>
         {{ msg.content.benefits | number: '' : this.translate.currentLang }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+      </span>
+    }
+    @case (32) {
+      <span translate>Prepare your boats, the Sea Battle starts in 23h! </span>
+    }
+    @case (3) {
+      <span>
+        {{
+          'The battle has been long, but { value } has won the Sea Battle'
+            | translate: { value: msg.content.username }
+        }}
       </span>
     }
     @default {

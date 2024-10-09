@@ -60,6 +60,7 @@ import { CityIncludeComponent } from './city/city-include.component';
 import { RankingplayersIncludeComponent } from './rankingplayers/rankingplayers-include.component';
 import { HonorIncludeComponent } from './honor/honor-include.component';
 import { RankingalliancesComponent } from './rankingalliances/rankingalliances.component';
+import { RankingseabattlesIncludeComponent } from './rankingseabattles/rankingseabattles-include.component';
 import { ConnectedplayersComponent } from './connectedplayers/connectedplayers.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { ContactusComponent } from './contactus/contactus.component';
@@ -151,6 +152,7 @@ import { AdminAlliancesComponent } from './admin-alliances/admin-alliances.compo
     RankingplayersIncludeComponent,
     HonorIncludeComponent,
     RankingalliancesComponent,
+    RankingseabattlesIncludeComponent,
     ConnectedplayersComponent,
     ConfirmComponent,
     ContactusComponent,
