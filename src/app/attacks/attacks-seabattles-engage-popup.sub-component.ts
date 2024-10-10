@@ -68,7 +68,7 @@ export class AttacksSeabattlesEngagePopupSubComponent
   engage() {
     this.unit.error = -1;
     this.socket.emit('sbEngage', {
-      map_id: this.sbData.sb_id,
+      sb_id: this.sbData.sb_id,
       x: this.case.x,
       y: this.case.y,
       unit_name: this.unit.code,

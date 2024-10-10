@@ -111,7 +111,7 @@ export class AttacksSeabattlesMovePopupSubComponent
 
     if (this.src_case && this.dest_case) {
       this.socket.emit('sbMoveOrAttack', {
-        map_id: this.sb_id,
+        sb_id: this.sb_id,
         src: { x: this.src_case.x, y: this.src_case.y },
         dest: { x: this.dest_case.x, y: this.dest_case.y },
         units: Object.fromEntries(this.moveArray.entries()),

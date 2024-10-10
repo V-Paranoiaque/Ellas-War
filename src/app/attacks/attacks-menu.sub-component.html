@@ -1,14 +1,18 @@
-<div class="card-body p-0 row-cols-6 d-flex flex-wrap attack-menu text-break" [ngClass]="{
+<div
+  class="card-body p-0 row-cols-6 d-flex flex-wrap attack-menu text-break"
+  [ngClass]="{
     'col-8 offset-2': user.getPropertyNb('level') < 10,
     'col-12': user.getPropertyNb('level') >= 10,
   }">
   @if (myAllianceWar.length > 0) {
-  <a [routerLink]="['/attacks-war']" class="frame d-flex flex-column flex-grow-1">
-    <app-ew-icon name="smenu-war"></app-ew-icon>
-    <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Wars</div>
-    </div>
-  </a>
+    <a
+      [routerLink]="['/attacks-war']"
+      class="frame d-flex flex-column flex-grow-1">
+      <app-ew-icon name="smenu-war"></app-ew-icon>
+      <div class="frame-name flex-grow-1 justify-content-center d-flex">
+        <div class="align-self-center" translate>Wars</div>
+      </div>
+    </a>
   }
   <a [routerLink]="['/attacks']" class="frame d-flex flex-column flex-grow-1">
     <app-ew-icon name="smenu-attacks"></app-ew-icon>
@@ -16,34 +20,42 @@
       <div class="align-self-center" translate>Attacks</div>
     </div>
   </a>
-  <a [routerLink]="['/attacks-stats']" class="frame d-flex flex-column flex-grow-1">
+  <a
+    [routerLink]="['/attacks-stats']"
+    class="frame d-flex flex-column flex-grow-1">
     <app-ew-icon name="smenu-stats"></app-ew-icon>
     <div class="frame-name flex-grow-1 justify-content-center d-flex">
       <div class="align-self-center" translate>Stats</div>
     </div>
   </a>
   @if (user.getPropertyNb('level') >= 10) {
-  <a [routerLink]="['/attacks-diamond']" class="frame d-flex flex-column flex-grow-1">
-    <app-ew-icon name="smenu-diamond"></app-ew-icon>
-    <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Diamond</div>
-    </div>
-  </a>
+    <a
+      [routerLink]="['/attacks-diamond']"
+      class="frame d-flex flex-column flex-grow-1">
+      <app-ew-icon name="smenu-diamond"></app-ew-icon>
+      <div class="frame-name flex-grow-1 justify-content-center d-flex">
+        <div class="align-self-center" translate>Diamond</div>
+      </div>
+    </a>
   }
   @if (user.getPropertyNb('level') >= 10) {
-  <a [routerLink]="['/attacks-sanctuaries']" class="frame d-flex flex-column flex-grow-1">
-    <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
-    <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Sanctuaries</div>
-    </div>
-  </a>
+    <a
+      [routerLink]="['/attacks-sanctuaries']"
+      class="frame d-flex flex-column flex-grow-1">
+      <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
+      <div class="frame-name flex-grow-1 justify-content-center d-flex">
+        <div class="align-self-center" translate>Sanctuaries</div>
+      </div>
+    </a>
   }
   @if (user.getPropertyNb('level') >= 1 && user.getConfig().development === 1) {
-  <a [routerLink]="['/attacks-seabattles']" class="frame d-flex flex-column flex-grow-1">
-    <app-ew-icon name="menu-seabattle"></app-ew-icon>
-    <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Sea Battles</div>
-    </div>
-  </a>
+    <a
+      [routerLink]="['/attacks-seabattles']"
+      class="frame d-flex flex-column flex-grow-1">
+      <app-ew-icon name="menu-seabattle"></app-ew-icon>
+      <div class="frame-name flex-grow-1 justify-content-center d-flex">
+        <div class="align-self-center" translate>Sea Battles</div>
+      </div>
+    </a>
   }
 </div>

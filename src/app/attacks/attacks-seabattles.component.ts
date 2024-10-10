@@ -112,7 +112,7 @@ export class AttacksSeabattlesComponent implements OnInit, OnDestroy {
     });
     this.socket.on('sbCaseRefresh', () => {
       this.socket.emit('sbGetCase', {
-        map_id: this.sbData.sb_id,
+        sb_id: this.sbData.sb_id,
         x: this.currentCase.x,
         y: this.currentCase.y,
       });
@@ -192,7 +192,7 @@ export class AttacksSeabattlesComponent implements OnInit, OnDestroy {
   selectCase(x: number, y: number) {
     this.currentCase = this.getCase(x, y) as typeof this.currentCase;
     this.socket.emit('sbGetCase', {
-      map_id: this.sbData.sb_id,
+      sb_id: this.sbData.sb_id,
       x: this.currentCase.x,
       y: this.currentCase.y,
     });
