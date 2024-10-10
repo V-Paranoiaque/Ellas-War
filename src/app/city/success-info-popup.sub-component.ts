@@ -23,6 +23,7 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
     classh: 0,
     classh10: 0,
     nbdays: 0,
+    sb_win: 0,
   };
   public hfNext: { id: number; type: number }[];
   public hfDisplay: { id: number; type: number }[];

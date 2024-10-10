@@ -3,1551 +3,1152 @@
     <div class="modal-content">
       <div class="modal-header">
         @switch (successType.selected) {
-          @case (1) {
-            <h5 class="modal-title" translate>General</h5>
-          }
-          @case (2) {
-            <h5 class="modal-title" translate>Constructions</h5>
-          }
-          @case (3) {
-            <h5 class="modal-title" translate>Alliance</h5>
-          }
-          @case (5) {
-            <h5 class="modal-title" translate>Attacks</h5>
-          }
-          @case (6) {
-            <h5 class="modal-title" translate>Mythology</h5>
-          }
-          @case (7) {
-            <h5 class="modal-title" translate>Feats of Strength</h5>
-          }
+        @case (1) {
+        <h5 class="modal-title" translate>General</h5>
         }
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        @case (2) {
+        <h5 class="modal-title" translate>Constructions</h5>
+        }
+        @case (3) {
+        <h5 class="modal-title" translate>Alliance</h5>
+        }
+        @case (5) {
+        <h5 class="modal-title" translate>Attacks</h5>
+        }
+        @case (6) {
+        <h5 class="modal-title" translate>Mythology</h5>
+        }
+        @case (7) {
+        <h5 class="modal-title" translate>Feats of Strength</h5>
+        }
+        }
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
         <!-- Levels -->
         @if (listDisplay[1] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[1] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 1 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 1 } }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[1] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 1 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 1 } }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[2] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[2] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 2 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 2 } }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[2] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 2 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 2 } }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[3] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[3] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 3 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 3 } }}"
-            point="3">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[3] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 3 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 3 } }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[4] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[4] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 4 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 4 } }}"
-            point="4">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[4] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 4 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 4 } }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[5] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[5] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 5 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 5 } }}"
-            point="5">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[5] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 5 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 5 } }}" point="5">
+        </app-success-card>
         }
         @if (listDisplay[6] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[6] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 6 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 6 } }}"
-            point="6">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[6] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 6 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 6 } }}" point="6">
+        </app-success-card>
         }
         @if (listDisplay[7] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[7] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 7 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 7 } }}"
-            point="7">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[7] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 7 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 7 } }}" point="7">
+        </app-success-card>
         }
         @if (listDisplay[8] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[8] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 8 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 8 } }}"
-            point="8">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[8] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 8 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 8 } }}" point="8">
+        </app-success-card>
         }
         @if (listDisplay[9] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[9] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 9 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 9 } }}"
-            point="9">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[9] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 9 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 9 } }}" point="9">
+        </app-success-card>
         }
         @if (listDisplay[10] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[10] === 1 }"
-            title="{{ 'Level { value }' | translate: { value: 10 } }}"
-            text="{{ 'Go to the level { value }' | translate: { value: 10 } }}"
-            point="10">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[10] === 1 }"
+          title="{{ 'Level { value }' | translate: { value: 10 } }}"
+          text="{{ 'Go to the level { value }' | translate: { value: 10 } }}" point="10">
+        </app-success-card>
         }
 
         <!-- Temples -->
         @if (listDisplay[11] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[11] === 1 }"
-            title="{{ 'Servant of the gods' | translate }}"
-            text="{{ 'Build a temple' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[11] === 1 }"
+          title="{{ 'Servant of the gods' | translate }}" text="{{ 'Build a temple' | translate }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[12] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[12] === 1 }"
-            title="{{ 'Servant of the gods' | translate }}"
-            text="{{ 'Build two temples' | translate }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[12] === 1 }"
+          title="{{ 'Servant of the gods' | translate }}" text="{{ 'Build two temples' | translate }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[13] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[13] === 1 }"
-            title="{{ 'Servant of the gods' | translate }}"
-            text="{{ 'Build three temples' | translate }}"
-            point="3">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[13] === 1 }"
+          title="{{ 'Servant of the gods' | translate }}" text="{{ 'Build three temples' | translate }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[14] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[14] === 1 }"
-            title="{{ 'Servant of the gods' | translate }}"
-            text="{{ 'Build four temples' | translate }}"
-            point="4">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[14] === 1 }"
+          title="{{ 'Servant of the gods' | translate }}" text="{{ 'Build four temples' | translate }}" point="4">
+        </app-success-card>
         }
 
         <!-- Mints -->
         @if (listDisplay[47] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[47] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 10 } }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[47] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 10 } }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[46] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[46] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 20 } }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[46] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 20 } }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[45] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[45] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 30 } }}"
-            point="3">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[45] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 30 } }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[44] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[44] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 40 } }}"
-            point="4">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[44] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 40 } }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[43] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[43] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 50 } }}"
-            point="5">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[43] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 50 } }}" point="5">
+        </app-success-card>
         }
         @if (listDisplay[42] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[42] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 60 } }}"
-            point="6">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[42] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 60 } }}" point="6">
+        </app-success-card>
         }
         @if (listDisplay[41] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[41] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 70 } }}"
-            point="7">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[41] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 70 } }}" point="7">
+        </app-success-card>
         }
         @if (listDisplay[40] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[40] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 80 } }}"
-            point="8">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[40] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 80 } }}" point="8">
+        </app-success-card>
         }
         @if (listDisplay[39] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[39] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 90 } }}"
-            point="9">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[39] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 90 } }}" point="9">
+        </app-success-card>
         }
         @if (listDisplay[15] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[15] === 1 }"
-            title="{{ 'Coin' | translate }}"
-            text="{{ 'Own { value } mints' | translate: { value: 100 } }}"
-            point="10">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[15] === 1 }" title="{{ 'Coin' | translate }}"
+          text="{{ 'Own { value } mints' | translate: { value: 100 } }}" point="10">
+        </app-success-card>
         }
 
         <!-- Treasure -->
         @if (listDisplay[16] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[16] === 1 }"
-            title="{{ 'As rich as Croesus' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[16] === 1 }"
+          title="{{ 'As rich as Croesus' | translate }}" text="{{
               'Own { value } Drachmas in your treasure'
                 | translate
                   : {
                       value:
                         100000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[17] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[17] === 1 }"
-            title="{{ 'As rich as Croesus' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[17] === 1 }"
+          title="{{ 'As rich as Croesus' | translate }}" text="{{
               'Own { value } Drachmas in your treasure'
                 | translate
                   : {
                       value:
                         400000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[117] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[117] === 1 }"
-            title="{{ 'As rich as Croesus' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[117] === 1 }"
+          title="{{ 'As rich as Croesus' | translate }}" text="{{
               'Own { value } Drachmas in your treasure'
                 | translate
                   : {
                       value:
                         1000000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         <!-- Prayers -->
         @if (listDisplay[18] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[18] === 1 }"
-            title="{{ 'Do you hear me?' | translate }}"
-            text="{{ 'Be heard by the gods during a prayer' | translate }}"
-            currently="{{ statsPlayer.priere }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[18] === 1 }"
+          title="{{ 'Do you hear me?' | translate }}" text="{{ 'Be heard by the gods during a prayer' | translate }}"
+          currently="{{ statsPlayer.priere }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[19] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[19] === 1 }"
-            title="{{ 'Do you hear me?' | translate }}"
-            text="{{ 'Be heard by the gods in 10 prayers' | translate }}"
-            currently="{{ statsPlayer.priere }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[19] === 1 }"
+          title="{{ 'Do you hear me?' | translate }}" text="{{ 'Be heard by the gods in 10 prayers' | translate }}"
+          currently="{{ statsPlayer.priere }}" point="2">
+        </app-success-card>
         }
 
         <!-- Victory defenses -->
         @if (listDisplay[20] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[20] === 1 }"
-            title="{{ 'You Shall Not Pass' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[20] === 1 }"
+          title="{{ 'You Shall Not Pass' | translate }}" text="{{
               'Get { value } defensive victories' | translate: { value: 10 }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[21] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[21] === 1 }"
-            title="{{ 'You Shall Not Pass' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[21] === 1 }"
+          title="{{ 'You Shall Not Pass' | translate }}" text="{{
               'Get { value } defensive victories' | translate: { value: 50 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[22] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[22] === 1 }"
-            title="{{ 'You Shall Not Pass' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[22] === 1 }"
+          title="{{ 'You Shall Not Pass' | translate }}" text="{{
               'Get { value } defensive victories' | translate: { value: 100 }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         <!-- Army size -->
         @if (listDisplay[23] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[23] === 1 }"
-            title="{{ 'More the merrier...' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[23] === 1 }"
+          title="{{ 'More the merrier...' | translate }}" text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
                   : { value: 100000 | number: '' : this.translate.currentLang }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[24] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[24] === 1 }"
-            title="{{ 'More the merrier...' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[24] === 1 }"
+          title="{{ 'More the merrier...' | translate }}" text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
                   : { value: 500000 | number: '' : this.translate.currentLang }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[25] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[25] === 1 }"
-            title="{{ 'More the merrier...' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[25] === 1 }"
+          title="{{ 'More the merrier...' | translate }}" text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         @if (listDisplay[26] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[26] === 1 }"
-            title="{{ 'On the edge' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[26] === 1 }"
+          title="{{ 'On the edge' | translate }}" text="{{
               'A victory with only one survivor. You must have committed at least 10,000 units in battle.'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[27] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[27] === 1 }"
-            title="{{ 'Pyrrhic victory' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[27] === 1 }"
+          title="{{ 'Pyrrhic victory' | translate }}" text="{{
               'Win a defensive victory in a battle with at least 10 000 units while the two protagonists were lost all their army.'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[28] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[28] === 1 }"
-            title="{{ 'Try again' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[28] === 1 }" title="{{ 'Try again' | translate }}"
+          text="{{
               'Losing a battle as the two protagonists had lost all their army'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
 
         <!-- Altars -->
         @if (listDisplay[29] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[29] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{ 'Owning 1 altar of the gods' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[29] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{ 'Owning 1 altar of the gods' | translate }}"
+          point="1">
+        </app-success-card>
         }
         @if (listDisplay[30] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[30] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[30] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 5 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[31] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[31] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[31] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 10 }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[32] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[32] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[32] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 15 }
-            }}"
-            point="4">
-          </app-success-card>
+            }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[33] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[33] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[33] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 20 }
-            }}"
-            point="5">
-          </app-success-card>
+            }}" point="5">
+        </app-success-card>
         }
         @if (listDisplay[34] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[34] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[34] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 25 }
-            }}"
-            point="6">
-          </app-success-card>
+            }}" point="6">
+        </app-success-card>
         }
         @if (listDisplay[35] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[35] === 1 }"
-            title="{{ 'Beloved of the gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[35] === 1 }"
+          title="{{ 'Beloved of the gods' | translate }}" text="{{
               'Owning { value } altars of the gods' | translate: { value: 30 }
-            }}"
-            point="7">
-          </app-success-card>
+            }}" point="7">
+        </app-success-card>
         }
 
         @if (listDisplay[88] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[88] === 1 }"
-            title="{{ 'Lover of Aphrodite' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[88] === 1 }"
+          title="{{ 'Lover of Aphrodite' | translate }}" text="{{
               'Have the level 5 of the attraction of Aphrodite' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[89] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[89] === 1 }"
-            title="{{ 'Dinocrates\'s student' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[89] === 1 }"
+          title="{{ 'Dinocrates\'s student' | translate }}" text="{{
               'Have the level 5 of the development of Dinocrates' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[90] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[90] === 1 }"
-            title="{{ 'Five stars Altar' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[90] === 1 }"
+          title="{{ 'Five stars Altar' | translate }}" text="{{
               'Have the level 5 of the Hestia hospitality' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[91] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[91] === 1 }"
-            title="{{ 'Here my kitty' | translate }}"
-            text="{{ 'Have the level 5 of the Atlas lions' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[91] === 1 }"
+          title="{{ 'Here my kitty' | translate }}" text="{{ 'Have the level 5 of the Atlas lions' | translate }}"
+          point="1">
+        </app-success-card>
         }
         @if (listDisplay[92] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[92] === 1 }"
-            title="{{ 'Thank you gods' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[92] === 1 }"
+          title="{{ 'Thank you gods' | translate }}" text="{{
               'Have the level 5 of the dream of Prometheus' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[93] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[93] === 1 }"
-            title="{{ 'Our beloved creatures' | translate }}"
-            text="{{ 'Have the level 5 of the divine units' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[93] === 1 }"
+          title="{{ 'Our beloved creatures' | translate }}"
+          text="{{ 'Have the level 5 of the divine units' | translate }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[137] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[137] === 1 }"
-            title="{{ 'Nature\'s Revenge' | translate }}"
-            text="{{ 'Have the level 5 of the Gaia\'s defense' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[137] === 1 }"
+          title="{{ 'Nature\'s Revenge' | translate }}"
+          text="{{ 'Have the level 5 of the Gaia\'s defense' | translate }}" point="1">
+        </app-success-card>
         }
 
         <!-- Statues -->
         @if (listDisplay[94] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[94] === 1 }"
-            title="{{ 'Renowned sculptor' | translate }}"
-            text="{{ 'Owning a statue with 10 ornaments' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[94] === 1 }"
+          title="{{ 'Renowned sculptor' | translate }}" text="{{ 'Owning a statue with 10 ornaments' | translate }}"
+          point="1">
+        </app-success-card>
         }
         @if (listDisplay[95] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[95] === 1 }"
-            title="{{ 'Renowned sculptor' | translate }}"
-            text="{{ 'Owning two statues with 10 ornaments' | translate }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[95] === 1 }"
+          title="{{ 'Renowned sculptor' | translate }}" text="{{ 'Owning two statues with 10 ornaments' | translate }}"
+          point="2">
+        </app-success-card>
         }
         @if (listDisplay[96] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[96] === 1 }"
-            title="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[96] === 1 }" title="{{
               'The large driveway with plenty of statues' | translate
-            }}"
-            text="{{ 'Build three statues' | translate }}"
-            point="1">
-          </app-success-card>
+            }}" text="{{ 'Build three statues' | translate }}" point="1">
+        </app-success-card>
         }
 
         <!-- Giving -->
 
         @if (listDisplay[36] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[36] === 1 }"
-            title="{{ 'Generous' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[36] === 1 }" title="{{ 'Generous' | translate }}"
+          text="{{
               'Giving { value } Drachmas in donations'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
-            }}"
-            currently="{{ statsPlayer.don }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.don }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[37] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[37] === 1 }"
-            title="{{ 'Generous' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[37] === 1 }" title="{{ 'Generous' | translate }}"
+          text="{{
               'Giving { value } Drachmas in donations'
                 | translate
                   : {
                       value: 10000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            currently="{{ statsPlayer.don }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.don }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[38] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[38] === 1 }"
-            title="{{ 'Generous' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[38] === 1 }" title="{{ 'Generous' | translate }}"
+          text="{{
               'Giving { value } Drachmas in donations'
                 | translate
                   : {
                       value:
                         100000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            currently="{{ statsPlayer.don }}"
-            point="3">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.don }}" point="3">
+        </app-success-card>
         }
 
         <!-- War -->
         @if (listDisplay[48] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[48] === 1 }"
-            title="{{ 'The war, it pays' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[48] === 1 }"
+          title="{{ 'The war, it pays' | translate }}" text="{{
               'Win a war with { value } Drachmas as reward'
                 | translate
                   : {
                       value: 50000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[49] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[49] === 1 }"
-            title="{{ 'The war, it pays' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[49] === 1 }"
+          title="{{ 'The war, it pays' | translate }}" text="{{
               'Win a war with { value } Drachmas as reward'
                 | translate
                   : {
                       value:
                         100000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
 
         @if (listDisplay[72] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[72] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win 1 war' | translate }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[72] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win 1 war' | translate }}"
+          currently="{{ statsPlayer.gagner }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[73] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[73] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win { value } wars' | translate: { value: 5 } }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[73] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win { value } wars' | translate: { value: 5 } }}"
+          currently="{{ statsPlayer.gagner }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[74] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[74] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win { value } wars' | translate: { value: 10 } }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="3">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[74] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win { value } wars' | translate: { value: 10 } }}"
+          currently="{{ statsPlayer.gagner }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[75] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[75] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win { value } wars' | translate: { value: 20 } }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="4">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[75] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win { value } wars' | translate: { value: 20 } }}"
+          currently="{{ statsPlayer.gagner }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[76] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[76] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win { value } wars' | translate: { value: 50 } }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="5">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[76] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win { value } wars' | translate: { value: 50 } }}"
+          currently="{{ statsPlayer.gagner }}" point="5">
+        </app-success-card>
         }
         @if (listDisplay[77] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[77] === 1 }"
-            title="{{ 'Who are the Winners?' | translate }}"
-            text="{{ 'Win { value } wars' | translate: { value: 100 } }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="6">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[77] === 1 }"
+          title="{{ 'Who are the Winners?' | translate }}" text="{{ 'Win { value } wars' | translate: { value: 100 } }}"
+          currently="{{ statsPlayer.gagner }}" point="6">
+        </app-success-card>
         }
 
         @if (listDisplay[78] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[78] === 1 }"
-            title="{{ 'The best defense is the defense' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[78] === 1 }"
+          title="{{ 'The best defense is the defense' | translate }}" text="{{
               'Win a war with { value } defensive victories'
                 | translate: { value: 10 }
-            }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.gagner }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[79] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[79] === 1 }"
-            title="{{ 'The best defense is the defense' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[79] === 1 }"
+          title="{{ 'The best defense is the defense' | translate }}" text="{{
               'Win a war with { value } defensive victories'
                 | translate: { value: 50 }
-            }}"
-            currently="{{ statsPlayer.gagner }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.gagner }}" point="2">
+        </app-success-card>
         }
 
         @if (listDisplay[82] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[82] === 1 }"
-            title="{{ 'And one extra' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[82] === 1 }"
+          title="{{ 'And one extra' | translate }}" text="{{
               'Win a war with more than { value } victories'
                 | translate: { value: 200 }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[83] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[83] === 1 }"
-            title="{{ 'And one extra' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[83] === 1 }"
+          title="{{ 'And one extra' | translate }}" text="{{
               'Win a war with more than { value } victories'
                 | translate: { value: 500 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[84] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[84] === 1 }"
-            title="{{ 'And one extra' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[84] === 1 }"
+          title="{{ 'And one extra' | translate }}" text="{{
               'Win a war with more than { value } victories'
                 | translate
                   : { value: 1000 | number: '' : this.translate.currentLang }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         @if (listDisplay[85] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[85] === 1 }"
-            title="{{ 'Hundred Years\' War' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[85] === 1 }"
+          title="{{ 'Hundred Years\' War' | translate }}" text="{{
               'Reach over { value } victories in a war'
                 | translate: { value: 200 }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[86] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[86] === 1 }"
-            title="{{ 'Hundred Years\' War' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[86] === 1 }"
+          title="{{ 'Hundred Years\' War' | translate }}" text="{{
               'Reach over { value } victories in a war'
                 | translate: { value: 500 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[87] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[87] === 1 }"
-            title="{{ 'Hundred Years\' War' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[87] === 1 }"
+          title="{{ 'Hundred Years\' War' | translate }}" text="{{
               'Reach over { value } victories in a war'
                 | translate
                   : { value: 1000 | number: '' : this.translate.currentLang }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         @if (listDisplay[108] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[108] === 1 }"
-            title="{{ 'Knockout' | translate }}"
-            text="{{ 'Finish a war' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[108] === 1 }" title="{{ 'Knockout' | translate }}"
+          text="{{ 'Finish a war' | translate }}" point="1">
+        </app-success-card>
         }
 
         @if (listDisplay[109] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[109] === 1 }"
-            title="{{ 'Charge!' | translate }}"
-            text="{{ 'Declare a war' | translate }}"
-            currently="{{ statsPlayer.declarer }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[109] === 1 }" title="{{ 'Charge!' | translate }}"
+          text="{{ 'Declare a war' | translate }}" currently="{{ statsPlayer.declarer }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[110] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[110] === 1 }"
-            title="{{ 'Charge!' | translate }}"
-            text="{{ 'Declare 10 wars' | translate }}"
-            currently="{{ statsPlayer.declarer }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[110] === 1 }" title="{{ 'Charge!' | translate }}"
+          text="{{ 'Declare 10 wars' | translate }}" currently="{{ statsPlayer.declarer }}" point="2">
+        </app-success-card>
         }
 
         <!-- Alliance -->
         @if (listDisplay[111] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[111] === 1 }"
-            title="{{ 'Founder' | translate }}"
-            text="{{ 'Found an alliance' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[111] === 1 }" title="{{ 'Founder' | translate }}"
+          text="{{ 'Found an alliance' | translate }}" point="1">
+        </app-success-card>
         }
 
         <!-- Alliance levels -->
         @if (listDisplay[51] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[51] === 1 }"
-            title="{{ 'Team spirit' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[51] === 1 }"
+          title="{{ 'Team spirit' | translate }}" text="{{
               'Being in an alliance level { value } or more'
                 | translate: { value: 1 }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[52] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[52] === 1 }"
-            title="{{ 'Team spirit' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[52] === 1 }"
+          title="{{ 'Team spirit' | translate }}" text="{{
               'Being in an alliance level { value } or more'
                 | translate: { value: 2 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[53] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[53] === 1 }"
-            title="{{ 'Team spirit' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[53] === 1 }"
+          title="{{ 'Team spirit' | translate }}" text="{{
               'Being in an alliance level { value } or more'
                 | translate: { value: 3 }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[54] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[54] === 1 }"
-            title="{{ 'Team spirit' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[54] === 1 }"
+          title="{{ 'Team spirit' | translate }}" text="{{
               'Being in an alliance level { value } or more'
                 | translate: { value: 4 }
-            }}"
-            point="4">
-          </app-success-card>
+            }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[55] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[55] === 1 }"
-            title="{{ 'Team spirit' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[55] === 1 }"
+          title="{{ 'Team spirit' | translate }}" text="{{
               'Being in an alliance level { value } or more'
                 | translate: { value: 5 }
-            }}"
-            point="5">
-          </app-success-card>
+            }}" point="5">
+        </app-success-card>
         }
 
         <!-- Alliance pacts -->
         @if (listDisplay[56] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[56] === 1 }"
-            title="{{ 'Ambassador' | translate }}"
-            text="{{ 'Sign 1 pact' | translate }}"
-            currently="{{ statsPlayer.signer }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[56] === 1 }" title="{{ 'Ambassador' | translate }}"
+          text="{{ 'Sign 1 pact' | translate }}" currently="{{ statsPlayer.signer }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[57] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[57] === 1 }"
-            title="{{ 'Ambassador' | translate }}"
-            text="{{ 'Sign { value } pacts' | translate: { value: 5 } }}"
-            currently="{{ statsPlayer.signer }}"
-            point="2">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[57] === 1 }" title="{{ 'Ambassador' | translate }}"
+          text="{{ 'Sign { value } pacts' | translate: { value: 5 } }}" currently="{{ statsPlayer.signer }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[58] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[58] === 1 }"
-            title="{{ 'Ambassador' | translate }}"
-            text="{{ 'Sign { value } pacts' | translate: { value: 10 } }}"
-            currently="{{ statsPlayer.signer }}"
-            point="3">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[58] === 1 }" title="{{ 'Ambassador' | translate }}"
+          text="{{ 'Sign { value } pacts' | translate: { value: 10 } }}" currently="{{ statsPlayer.signer }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[59] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[59] === 1 }"
-            title="{{ 'Ambassador' | translate }}"
-            text="{{ 'Sign { value } pacts' | translate: { value: 20 } }}"
-            currently="{{ statsPlayer.signer }}"
-            point="4">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[59] === 1 }" title="{{ 'Ambassador' | translate }}"
+          text="{{ 'Sign { value } pacts' | translate: { value: 20 } }}" currently="{{ statsPlayer.signer }}" point="4">
+        </app-success-card>
         }
 
         <!-- Victories -->
         @if (listDisplay[60] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[60] === 1 }"
-            title="{{ 'I am a barbarian' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[60] === 1 }"
+          title="{{ 'I am a barbarian' | translate }}" text="{{
               'Make { value } victories'
                 | translate
                   : { value: 1000 | number: '' : this.translate.currentLang }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[61] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[61] === 1 }"
-            title="{{ 'I am a barbarian' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[61] === 1 }"
+          title="{{ 'I am a barbarian' | translate }}" text="{{
               'Make { value } victories'
                 | translate
                   : { value: 2000 | number: '' : this.translate.currentLang }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[62] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[62] === 1 }"
-            title="{{ 'I am a barbarian' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[62] === 1 }"
+          title="{{ 'I am a barbarian' | translate }}" text="{{
               'Make { value } victories'
                 | translate
                   : { value: 3000 | number: '' : this.translate.currentLang }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[63] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[63] === 1 }"
-            title="{{ 'I am a barbarian' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[63] === 1 }"
+          title="{{ 'I am a barbarian' | translate }}" text="{{
               'Make { value } victories'
                 | translate
                   : { value: 4000 | number: '' : this.translate.currentLang }
-            }}"
-            point="4">
-          </app-success-card>
+            }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[64] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[64] === 1 }"
-            title="{{ 'I am a barbarian' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[64] === 1 }"
+          title="{{ 'I am a barbarian' | translate }}" text="{{
               'Make { value } victories'
                 | translate
                   : { value: 5000 | number: '' : this.translate.currentLang }
-            }}"
-            point="5">
-          </app-success-card>
+            }}" point="5">
+        </app-success-card>
         }
 
         <!-- XP -->
         @if (listDisplay[65] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[65] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[65] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 100000 | number: '' : this.translate.currentLang }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[66] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[66] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[66] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 200000 | number: '' : this.translate.currentLang }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[67] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[67] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[67] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 500000 | number: '' : this.translate.currentLang }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[68] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[68] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[68] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="4">
-          </app-success-card>
+            }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[69] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[69] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[69] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 2000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="5">
-          </app-success-card>
+            }}" point="5">
+        </app-success-card>
         }
         @if (listDisplay[70] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[70] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[70] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : { value: 5000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="6">
-          </app-success-card>
+            }}" point="6">
+        </app-success-card>
         }
         @if (listDisplay[71] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[71] === 1 }"
-            title="{{ 'A star in the making' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[71] === 1 }"
+          title="{{ 'A star in the making' | translate }}" text="{{
               'Have { value } XP with the old system'
                 | translate
                   : {
                       value: 10000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="7">
-          </app-success-card>
+            }}" point="7">
+        </app-success-card>
         }
         @if (listDisplay[122] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[122] === 1 }"
-            title="{{ 'Number One' | translate }}"
-            text="{{ 'Become the first ranking of XP' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[122] === 1 }"
+          title="{{ 'Number One' | translate }}" text="{{ 'Become the first ranking of XP' | translate }}" point="1">
+        </app-success-card>
         }
 
         @if (listDisplay[138] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[138] === 1 }"
-            title="{{ 'XP Golden Champion' | translate }}"
-            text="{{ 'Win the XP season' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[138] === 1 }"
+          title="{{ 'XP Golden Champion' | translate }}" text="{{ 'Win the XP season' | translate }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[139] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[139] === 1 }"
-            title="{{ 'XP Silver Champion' | translate }}"
-            text="{{ 'Finish second of the XP season' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[139] === 1 }"
+          title="{{ 'XP Silver Champion' | translate }}" text="{{ 'Finish second of the XP season' | translate }}"
+          point="1">
+        </app-success-card>
         }
         @if (listDisplay[140] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[140] === 1 }"
-            title="{{ 'XP Bronze Champion' | translate }}"
-            text="{{ 'Finish third of the XP season' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[140] === 1 }"
+          title="{{ 'XP Bronze Champion' | translate }}" text="{{ 'Finish third of the XP season' | translate }}"
+          point="1">
+        </app-success-card>
         }
 
         <!-- Spies -->
         @if (listDisplay[80] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[80] === 1 }"
-            title="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[80] === 1 }" title="{{
               'They see me, they don\'t see me, oh they see me' | translate
-            }}"
-            text="{{
+            }}" text="{{
               'Losing { value } spies at espionage.' | translate: { value: 100 }
-            }}"
-            currently="{{ statsPlayer.espion }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.espion }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[81] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[81] === 1 }"
-            title="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[81] === 1 }" title="{{
               'They see me, they don\'t see me, oh they see me' | translate
-            }}"
-            text="{{
+            }}" text="{{
               'Losing { value } spies at espionage.'
                 | translate
                   : { value: 1000 | number: '' : this.translate.currentLang }
-            }}"
-            currently="{{ statsPlayer.espion }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.espion }}" point="2">
+        </app-success-card>
         }
 
         <!-- Honor -->
         @if (listDisplay[97] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[97] === 1 }"
-            title="{{ 'There are not two like me' | translate }}"
-            text="{{ 'Win the Honor challenge' | translate }}"
-            currently="{{ statsPlayer.classh }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[97] === 1 }"
+          title="{{ 'There are not two like me' | translate }}" text="{{ 'Win the Honor challenge' | translate }}"
+          currently="{{ statsPlayer.classh }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[98] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[98] === 1 }"
-            title="{{ 'There are not two like me' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[98] === 1 }"
+          title="{{ 'There are not two like me' | translate }}" text="{{
               'Win the Honor challenge { value } times'
                 | translate: { value: 5 }
-            }}"
-            currently="{{ statsPlayer.classh }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.classh }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[99] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[99] === 1 }"
-            title="{{ 'There are not two like me' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[99] === 1 }"
+          title="{{ 'There are not two like me' | translate }}" text="{{
               'Win the Honor challenge { value } times'
                 | translate: { value: 10 }
-            }}"
-            currently="{{ statsPlayer.classh }}"
-            point="3">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.classh }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[100] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[100] === 1 }"
-            title="{{ 'There are not two like me' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[100] === 1 }"
+          title="{{ 'There are not two like me' | translate }}" text="{{
               'Win the Honor challenge { value } times'
                 | translate: { value: 20 }
-            }}"
-            currently="{{ statsPlayer.classh }}"
-            point="4">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.classh }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[101] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[101] === 1 }"
-            title="{{ 'Grand Slam' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[101] === 1 }"
+          title="{{ 'Grand Slam' | translate }}" text="{{
               'Win the ranking of honor of the level 10, 5 times in a row'
                 | translate
-            }}"
-            currently="{{ statsPlayer.classh10 }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.classh10 }}" point="1">
+        </app-success-card>
         }
 
         <!-- Connections -->
         @if (listDisplay[124] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[124] === 1 }"
-            title="{{ 'Morning, noon, and evening' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[124] === 1 }"
+          title="{{ 'Morning, noon, and evening' | translate }}" text="{{
               'Connect every day for { value } days.' | translate: { value: 10 }
-            }}"
-            currently="{{ statsPlayer.nbdays }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.nbdays }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[125] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[125] === 1 }"
-            title="{{ 'Morning, noon, and evening' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[125] === 1 }"
+          title="{{ 'Morning, noon, and evening' | translate }}" text="{{
               'Connect every day for { value } days.' | translate: { value: 20 }
-            }}"
-            currently="{{ statsPlayer.nbdays }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.nbdays }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[126] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[126] === 1 }"
-            title="{{ 'Morning, noon, and evening' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[126] === 1 }"
+          title="{{ 'Morning, noon, and evening' | translate }}" text="{{
               'Connect every day for { value } days.' | translate: { value: 30 }
-            }}"
-            currently="{{ statsPlayer.nbdays }}"
-            point="3">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.nbdays }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[127] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[127] === 1 }"
-            title="{{ 'Morning, noon, and evening' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[127] === 1 }"
+          title="{{ 'Morning, noon, and evening' | translate }}" text="{{
               'Connect every day for { value } days.' | translate: { value: 40 }
-            }}"
-            currently="{{ statsPlayer.nbdays }}"
-            point="4">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.nbdays }}" point="4">
+        </app-success-card>
         }
         @if (listDisplay[128] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[128] === 1 }"
-            title="{{ 'Morning, noon, and evening' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[128] === 1 }"
+          title="{{ 'Morning, noon, and evening' | translate }}" text="{{
               'Connect every day for { value } days.' | translate: { value: 50 }
-            }}"
-            currently="{{ statsPlayer.nbdays }}"
-            point="5">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.nbdays }}" point="5">
+        </app-success-card>
         }
 
         <!-- Field -->
         @if (listDisplay[102] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[102] === 1 }"
-            title="{{ 'Still more buildings' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[102] === 1 }"
+          title="{{ 'Still more buildings' | translate }}" text="{{
               'Reach { value } field'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[103] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[103] === 1 }"
-            title="{{ 'Still more buildings' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[103] === 1 }"
+          title="{{ 'Still more buildings' | translate }}" text="{{
               'Reach { value } field'
                 | translate
                   : { value: 5000000 | number: '' : this.translate.currentLang }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[104] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[104] === 1 }"
-            title="{{ 'Still more buildings' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[104] === 1 }"
+          title="{{ 'Still more buildings' | translate }}" text="{{
               'Reach { value } field'
                 | translate
                   : {
                       value: 10000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
 
         <!-- Games -->
         @if (listDisplay[105] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[105] === 1 }"
-            title="{{ 'Place your bets' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[105] === 1 }"
+          title="{{ 'Place your bets' | translate }}" text="{{
               'Win { value } Drachmas through games.'
                 | translate
                   : { value: 1000000 | number: '' : this.translate.currentLang }
-            }}"
-            currently="{{ statsPlayer.jeux }}"
-            point="1">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.jeux }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[106] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[106] === 1 }"
-            title="{{ 'Place your bets' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[106] === 1 }"
+          title="{{ 'Place your bets' | translate }}" text="{{
               'Win { value } Drachmas through games.'
                 | translate
                   : { value: 5000000 | number: '' : this.translate.currentLang }
-            }}"
-            currently="{{ statsPlayer.jeux }}"
-            point="2">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.jeux }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[107] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[107] === 1 }"
-            title="{{ 'Place your bets' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[107] === 1 }"
+          title="{{ 'Place your bets' | translate }}" text="{{
               'Win { value } Drachmas through games.'
                 | translate
                   : {
                       value: 10000000 | number: '' : this.translate.currentLang,
                     }
-            }}"
-            currently="{{ statsPlayer.jeux }}"
-            point="3">
-          </app-success-card>
+            }}" currently="{{ statsPlayer.jeux }}" point="3">
+        </app-success-card>
         }
 
         <!-- Godchild -->
         @if (listDisplay[118] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[118] === 1 }"
-            title="{{ 'Come friends' | translate }}"
-            text="{{ 'Owning one godchild' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[118] === 1 }"
+          title="{{ 'Come friends' | translate }}" text="{{ 'Owning one godchild' | translate }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[119] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[119] === 1 }"
-            title="{{ 'Come friends' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[119] === 1 }"
+          title="{{ 'Come friends' | translate }}" text="{{
               'Owning { value } godchildren' | translate: { value: 5 }
-            }}"
-            point="2">
-          </app-success-card>
+            }}" point="2">
+        </app-success-card>
         }
         @if (listDisplay[120] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[120] === 1 }"
-            title="{{ 'Come friends' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[120] === 1 }"
+          title="{{ 'Come friends' | translate }}" text="{{
               'Owning { value } godchildren' | translate: { value: 10 }
-            }}"
-            point="3">
-          </app-success-card>
+            }}" point="3">
+        </app-success-card>
         }
         @if (listDisplay[121] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[121] === 1 }"
-            title="{{ 'Come friends' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[121] === 1 }"
+          title="{{ 'Come friends' | translate }}" text="{{
               'Owning { value } godchildren' | translate: { value: 20 }
-            }}"
-            point="4">
-          </app-success-card>
+            }}" point="4">
+        </app-success-card>
         }
 
         <!-- Tournaments -->
         @if (listDisplay[129] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[129] === 1 }"
-            title="{{ 'Winner - Act 1' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[129] === 1 }"
+          title="{{ 'Winner - Act 1' | translate }}" text="{{
               'Being part of the winning team of the first Ellas War tournament'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[130] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[130] === 1 }"
-            title="{{ 'Next time - Act 1' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[130] === 1 }"
+          title="{{ 'Next time - Act 1' | translate }}" text="{{
               'Teaming with the party finishing second in the first tournament Ellas War'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[131] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[131] === 1 }"
-            title="{{ 'Who loose, win - Act 1' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[131] === 1 }"
+          title="{{ 'Who loose, win - Act 1' | translate }}" text="{{
               'Being part of the winning team of the first Ellas War tournament'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
 
         <!-- Birthday -->
         @if (listDisplay[112] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[112] === 1 }"
-            title="{{ 'Wedding of Wood' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[112] === 1 }"
+          title="{{ 'Wedding of Wood' | translate }}" text="{{
               'Connect the day of the 5th anniversary of the game.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[133] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[133] === 1 }"
-            title="{{ 'Wedding of Iron' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[133] === 1 }"
+          title="{{ 'Wedding of Iron' | translate }}" text="{{
               'Connect the day of the 6th anniversary of the game.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[134] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[134] === 1 }"
-            title="{{ 'Wedding of Bronze' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[134] === 1 }"
+          title="{{ 'Wedding of Bronze' | translate }}" text="{{
               'Connect the day of the 6th anniversary of the game.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[135] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[135] === 1 }"
-            title="{{ 'Wedding of Pottery' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[135] === 1 }"
+          title="{{ 'Wedding of Pottery' | translate }}" text="{{
               'Connect the day of the 9th anniversary of the game.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[136] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[136] === 1 }"
-            title="{{ 'Perfect wedding' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[136] === 1 }"
+          title="{{ 'Perfect wedding' | translate }}" text="{{
               'Connect the day of the anniversary of the game.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
 
         @if (listDisplay[132] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[132] === 1 }"
-            title="{{ 'Worshiper of the unconquered sun' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[132] === 1 }"
+          title="{{ 'Worshiper of the unconquered sun' | translate }}" text="{{
               'Login to Ellas War the day of the feast of the unconquered sun.'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
+        }
+
+        <!-- Sea Battles -->
+        @if (listDisplay[141] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[141] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win 1 Sea Battle' | translate }}" currently="{{ statsPlayer.sb_win }}" point="1">
+        </app-success-card>
+        }
+        @if (listDisplay[142] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[142] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win { value } Sea Battles' | translate: { value: 5 } }}" currently="{{ statsPlayer.gagner }}"
+          point="2">
+        </app-success-card>
+        }
+        @if (listDisplay[143] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[143] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win { value } Sea Battles' | translate: { value: 10 } }}" currently="{{ statsPlayer.gagner }}"
+          point="3">
+        </app-success-card>
+        }
+        @if (listDisplay[144] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[144] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win { value } Sea Battles' | translate: { value: 20 } }}" currently="{{ statsPlayer.gagner }}"
+          point="4">
+        </app-success-card>
+        }
+        @if (listDisplay[145] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[145] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win { value } Sea Battles' | translate: { value: 50 } }}" currently="{{ statsPlayer.gagner }}"
+          point="5">
+        </app-success-card>
+        }
+        @if (listDisplay[146] > 0) {
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[146] === 1 }" title="{{ 'Sea leg' | translate }}"
+          text="{{ 'Win { value } Sea Battles' | translate: { value: 100 } }}" currently="{{ statsPlayer.gagner }}"
+          point="6">
+        </app-success-card>
         }
 
         <!-- Feats of Strength -->
         @if (listDisplay[50] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[50] === 1 }"
-            title="{{ 'As the drawing' | translate }}"
-            text="{{ 'Owning a complete city in your city tour.' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[50] === 1 }"
+          title="{{ 'As the drawing' | translate }}"
+          text="{{ 'Owning a complete city in your city tour.' | translate }}" point="1">
+        </app-success-card>
         }
 
         @if (listDisplay[113] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[113] === 1 }"
-            title="{{ 'Heroes serving the people' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[113] === 1 }"
+          title="{{ 'Heroes serving the people' | translate }}" text="{{
               'Become a prophet in the service of the game' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[114] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[114] === 1 }"
-            title="{{ 'No-one is a prophet in his own country' | translate }}"
-            text="{{ 'Become a hero and moderate the forum' | translate }}"
-            point="1">
-          </app-success-card>
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[114] === 1 }"
+          title="{{ 'No-one is a prophet in his own country' | translate }}"
+          text="{{ 'Become a hero and moderate the forum' | translate }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[115] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[115] === 1 }"
-            title="{{ 'God among mortals' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[115] === 1 }"
+          title="{{ 'God among mortals' | translate }}" text="{{
               'Being administrator of the game or the forum' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[116] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[116] === 1 }"
-            title="{{ 'The atmosphere I like it' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[116] === 1 }"
+          title="{{ 'The atmosphere I like it' | translate }}" text="{{
               'Become a presenter on the TeamSpeak server.' | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
         @if (listDisplay[123] > 0) {
-          <app-success-card
-            [ngClass]="{ 'text-secondary': listDisplay[123] === 1 }"
-            title="{{ 'Divine link' | translate }}"
-            text="{{
+        <app-success-card [ngClass]="{ 'text-secondary': listDisplay[123] === 1 }"
+          title="{{ 'Divine link' | translate }}" text="{{
               'Become Oracle and serve as a link between the staff and the players.'
                 | translate
-            }}"
-            point="1">
-          </app-success-card>
+            }}" point="1">
+        </app-success-card>
         }
 
         @if (successType.selected === 7 && listDisplay[0] === 0) {
-          <div class="text-danger fw-bold text-center" translate>
-            Feats of Strength are reserved for the bravest warriors and bring
-            prestige to your city.
-          </div>
+        <div class="text-danger fw-bold text-center" translate>
+          Feats of Strength are reserved for the bravest warriors and bring
+          prestige to your city.
+        </div>
         }
       </div>
 
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
       </div>
