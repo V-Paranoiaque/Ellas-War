@@ -7,9 +7,12 @@ import fileLines from '@iconify/icons-fa6-regular/file-lines';
 @Component({
   selector: 'app-admin-left-menu',
   templateUrl: './admin-left-menu.sub-component.html',
-  styleUrls: ['../main-private/main-private.component.css', './admin.component.css'],
+  styleUrls: [
+    '../main-private/main-private.component.css',
+    './admin.component.css',
+  ],
 })
 export class AdminLeftMenuSubComponent {
   fileLines = fileLines;
-  constructor(public user: User) { }
+  constructor(public user: User) {}
 }
