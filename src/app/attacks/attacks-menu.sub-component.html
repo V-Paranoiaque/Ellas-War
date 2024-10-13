@@ -48,7 +48,7 @@
       </div>
     </a>
   }
-  @if (user.getPropertyNb('level') >= 1 && user.getConfig().development === 1) {
+  @if (user.getPropertyNb('level') >= 6 || user.getConfig().development === 1) {
     <a
       [routerLink]="['/attacks-seabattles']"
       class="frame d-flex flex-column flex-grow-1">
