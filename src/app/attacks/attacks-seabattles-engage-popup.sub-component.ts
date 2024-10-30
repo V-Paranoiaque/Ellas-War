@@ -41,6 +41,8 @@ export class AttacksSeabattlesEngagePopupSubComponent
   @Input() coins!: number;
   @Input() mouvements!: number;
 
+  Math = Math;
+
   constructor(
     protected override http: HttpClient,
     protected override socket: Socket,
@@ -83,5 +85,9 @@ export class AttacksSeabattlesEngagePopupSubComponent
   getEngage() {
     const engage = Math.round(parseInt(this.unit.engage));
     return engage > 0 ? engage : 1;
+  }
+
+  setEngage(nb: number) {
+    this.unit.engage = nb.toString();
   }
 }

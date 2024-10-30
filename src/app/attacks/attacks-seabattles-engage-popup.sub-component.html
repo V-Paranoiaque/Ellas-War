@@ -75,12 +75,28 @@
             <strong translate>Currently</strong>
             <strong translate>:</strong>
             {{ getCurrent() | number: '' : this.translate.currentLang }}
+
+            @if (unit.cost > 0) {
+              <div
+                role="button"
+                (click)="setEngage(Math.floor(coins / unit.cost))">
+                <strong
+                  >{{ 'Max possible' | translate }}{{ ':' | translate }}</strong
+                >
+                {{
+                  Math.floor(coins / unit.cost)
+                    | number: '' : this.translate.currentLang
+                }}
+              </div>
+            }
+
             <div class="d-flex">
               <div class="d-flex flex-column">
                 <input
                   type="number"
                   placeholder="0"
                   [attr.min]="0"
+                  [attr.max]="Math.floor(coins / unit.cost)"
                   step="1"
                   class="form-control mt-2"
                   [(ngModel)]="unit.engage" />
