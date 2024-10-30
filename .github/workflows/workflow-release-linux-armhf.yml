@@ -14,7 +14,7 @@ jobs:
   #armhf Arch
   package-armv7l:
     name: "Build armv7l packages"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
