@@ -47,8 +47,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       this.storeroomStats = data;
     });
 
-    this.socket.emit('storeroomStats');
+    this.socket.emit('tradeMyStats');
     this.socket.emit('tradeStats');
+    this.socket.emit('storeroomMyStats');
+    this.socket.emit('storeroomStats');
   }
 
   ngOnDestroy() {
