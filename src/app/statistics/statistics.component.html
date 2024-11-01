@@ -81,7 +81,10 @@
                           <td>
                             {{
                               batch.rate
-                                | number: '' : this.translate.currentLang
+                                | number
+                                  : '1.0-' +
+                                      Math.max(3, Tools.nbDigits(batch.rate))
+                                  : this.translate.currentLang
                             }}
                           </td>
                           <td>
@@ -150,7 +153,10 @@
                           <td>
                             {{
                               batch.rate
-                                | number: '' : this.translate.currentLang
+                                | number
+                                  : '1.0-' +
+                                      Math.max(3, Tools.nbDigits(batch.rate))
+                                  : this.translate.currentLang
                             }}
                           </td>
                           <td>
@@ -232,7 +238,10 @@
                           <td>
                             {{
                               batch.rate
-                                | number: '' : this.translate.currentLang
+                                | number
+                                  : '1.0-' +
+                                      Math.max(3, Tools.nbDigits(batch.rate))
+                                  : this.translate.currentLang
                             }}
                           </td>
                           <td>
@@ -301,7 +310,10 @@
                           <td>
                             {{
                               batch.rate
-                                | number: '' : this.translate.currentLang
+                                | number
+                                  : '1.0-' +
+                                      Math.max(3, Tools.nbDigits(batch.rate))
+                                  : this.translate.currentLang
                             }}
                           </td>
                           <td>

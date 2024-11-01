@@ -18,6 +18,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }[];
   private storeroomStats: { quantity: number; rate: number; solded: number }[];
 
+  Math = Math;
+  parseFloat = parseFloat;
   Tools = Tools;
 
   constructor(
