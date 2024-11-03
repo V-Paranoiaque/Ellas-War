@@ -1,7 +1,4 @@
-<app-attacks-seabattles-engage-popup
-  [unit]="currentUnit"
-  [case]="currentCase"
-  [coins]="sbData.coins"
+<app-attacks-seabattles-engage-popup [unit]="currentUnit" [case]="currentCase" [coins]="sbData.coins"
   [mouvements]="sbData.mouvements"></app-attacks-seabattles-engage-popup>
 <app-attacks-seabattles-coins-help-popup></app-attacks-seabattles-coins-help-popup>
 <app-attacks-seabattles-mouvements-help-popup></app-attacks-seabattles-mouvements-help-popup>
@@ -16,401 +13,329 @@
           <app-attacks-menu></app-attacks-menu>
           <div class="card-body text-center">
             @if (sbData.sb_id === 0) {
-              <div class="text-center" translate>
-                You are not in any Sea Battle for the moment
-              </div>
-              <div class="mt-2">
-                <button class="btn btn-primary" (click)="sbJoin()" translate>
-                  Join a Sea Battle
-                </button>
-              </div>
+            <div class="text-center" translate>
+              You are not in any Sea Battle for the moment
+            </div>
+            <div class="mt-2">
+              <button class="btn btn-primary" (click)="sbJoin()" translate>
+                Join a Sea Battle
+              </button>
+            </div>
             } @else if (sbData.sb_status === 0) {
-              <div class="text-center mt-2 mb-2" translate>
-                Waiting for another member to join the Sea Battles
-              </div>
+            <div class="text-center mt-2 mb-2" translate>
+              Waiting for another member to join the Sea Battles
+            </div>
             } @else if (sbData.sb_status === 1) {
-              <div class="text-center mt-2 mb-2" translate>
-                Waiting for the Sea Battle to start
-              </div>
+            <div class="text-center mt-2 mb-2" translate>
+              Waiting for the Sea Battle to start
+            </div>
             } @else {
-              <div>
-                @switch (currentCase.case_type) {
-                  @case (-1) {
-                    <div class="fw-bold text-center" translate>
-                      Select a case to get more information
-                    </div>
-                  }
-                  @case (0) {
-                    <div class="fw-bold text-center" translate>
-                      The mountains are not reachable by the boats
-                    </div>
-                  }
-                  @case (1) {
-                    <div class="fw-bold text-center" translate>
-                      This case is not explored, we don't know what is there
-                    </div>
-                  }
-                  @case (2) {
-                    <div class="fw-bold text-center" translate>
-                      This case is available, you can move your boats there
-                    </div>
-                  }
-                  @default {
-                    @if (currentCase.case_type === 3) {
-                      <div class="fw-bold text-center" translate>Army</div>
-                    } @else if (currentCase.case_type === 4) {
-                      <div class="fw-bold text-center" translate>Capital</div>
-                    } @else {
-                      <div class="text-center" translate>Unkwnon type</div>
-                    }
+            <div>
+              @switch (currentCase.case_type) {
+              @case (-1) {
+              <div class="fw-bold text-center" translate>
+                Select a case to get more information
+              </div>
+              }
+              @case (0) {
+              <div class="fw-bold text-center" translate>
+                The mountains are not reachable by the boats
+              </div>
+              }
+              @case (1) {
+              <div class="fw-bold text-center" translate>
+                This case is not explored, we don't know what is there
+              </div>
+              }
+              @case (2) {
+              <div class="fw-bold text-center" translate>
+                This case is available, you can move your boats there
+              </div>
+              }
+              @default {
+              @if (currentCase.case_type === 3) {
+              <div class="fw-bold text-center" translate>Army</div>
+              } @else if (currentCase.case_type === 4) {
+              <div class="fw-bold text-center" translate>Capital</div>
+              } @else {
+              <div class="text-center" translate>Unkwnon type</div>
+              }
 
-                    @if (currentCase.player_id !== user.getPropertyNb('id')) {
-                      <div class="m-2 row">
-                        <div class="col-12" translate>
-                          This case is owned by another player
-                        </div>
-                      </div>
-                    } @else {
-                      <div class="m-2 row">
-                        <div class="col-6">
-                          <span translate>Gold coins</span>
-                          <span translate>:</span>
-                          {{
-                            sbData.coins
-                              | number: '' : this.translate.currentLang
-                          }}
-                          <span
-                            data-bs-toggle="modal"
-                            data-bs-target="#seaBattlesCoinsHelp"
-                            role="button"
-                            title="{{ 'Help' | translate }}">
-                            <app-ic-icon [icon]="questionCircle"></app-ic-icon>
-                          </span>
-                        </div>
-                        <div class="col-6">
-                          <span translate>Actions</span>
-                          <span translate>:</span>
-                          <span
-                            [ngClass]="{
+              @if (currentCase.player_id !== user.getPropertyNb('id')) {
+              <div class="m-2 row">
+                <div class="col-12">
+                  <span translate>
+                    This case is owned by another player
+                  </span>
+                  (
+                  <app-user-profile id="{{ currentCase.player_id }}" username="{{ currentCase.username }}"
+                    status="1"></app-user-profile>)
+                </div>
+              </div>
+              } @else {
+              <div class="m-2 row">
+                <div class="col-6">
+                  <span translate>Gold coins</span>
+                  <span translate>:</span>
+                  {{
+                  sbData.coins
+                  | number: '' : this.translate.currentLang
+                  }}
+                  <span data-bs-toggle="modal" data-bs-target="#seaBattlesCoinsHelp" role="button"
+                    title="{{ 'Help' | translate }}">
+                    <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                  </span>
+                </div>
+                <div class="col-6">
+                  <span translate>Actions</span>
+                  <span translate>:</span>
+                  <span [ngClass]="{
                               'text-danger':
                                 sbData.mouvements >=
                                 user.getDatas().sea_battles.max_actions,
                             }">
-                            {{
-                              sbData.mouvements
-                                | number: '' : this.translate.currentLang
-                            }}
-                            /
-                            {{
-                              user.getDatas().sea_battles.max_actions
-                                | number: '' : this.translate.currentLang
-                            }}
-                            <span
-                              data-bs-toggle="modal"
-                              data-bs-target="#seaBattlesMouvementsHelp"
-                              role="button"
-                              title="{{ 'Help' | translate }}">
-                              <app-ic-icon
-                                [icon]="questionCircle"></app-ic-icon>
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                      @if (currentCase.can_engage === 0) {
-                        <div class="text-center text-danger fw-bold" translate>
-                          This case is not connected to your capital, so
-                          engagement is not allowed
-                        </div>
-                      }
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="column" translate>Units</th>
-                            <th scope="column" translate>Currently</th>
-                            <th scope="column" translate>Strength</th>
-                            <th scope="column"></th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @for (
-                            info of this.user.getSBUnits();
-                            track info.code
-                          ) {
-                            <tr>
-                              <th scope="row" class="text-start">
-                                {{ Tools.getName(info.code) | translate }}
-                              </th>
-                              <td>
-                                {{
-                                  getUnitsCurrent(info.code)
-                                    | number: '' : this.translate.currentLang
-                                }}
-                              </td>
-                              <td>
-                                <span>
-                                  {{
-                                    info.attack
-                                      | number: '' : this.translate.currentLang
-                                  }}
-                                  <app-ic-icon
-                                    [icon]="swordIcon"
-                                    title="{{
+                    {{
+                    sbData.mouvements
+                    | number: '' : this.translate.currentLang
+                    }}
+                    /
+                    {{
+                    user.getDatas().sea_battles.max_actions
+                    | number: '' : this.translate.currentLang
+                    }}
+                    <span data-bs-toggle="modal" data-bs-target="#seaBattlesMouvementsHelp" role="button"
+                      title="{{ 'Help' | translate }}">
+                      <app-ic-icon [icon]="questionCircle"></app-ic-icon>
+                    </span>
+                  </span>
+                </div>
+              </div>
+              @if (currentCase.can_engage === 0) {
+              <div class="text-center text-danger fw-bold" translate>
+                This case is not connected to your capital, so
+                engagement is not allowed
+              </div>
+              }
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="column" translate>Units</th>
+                    <th scope="column" translate>Currently</th>
+                    <th scope="column" translate>Strength</th>
+                    <th scope="column"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                  info of this.user.getSBUnits();
+                  track info.code
+                  ) {
+                  <tr>
+                    <th scope="row" class="text-start">
+                      {{ Tools.getName(info.code) | translate }}
+                    </th>
+                    <td>
+                      {{
+                      getUnitsCurrent(info.code)
+                      | number: '' : this.translate.currentLang
+                      }}
+                    </td>
+                    <td>
+                      <span>
+                        {{
+                        info.attack
+                        | number: '' : this.translate.currentLang
+                        }}
+                        <app-ic-icon [icon]="swordIcon" title="{{
                                       'Attack' | translate
                                     }}"></app-ic-icon>
-                                </span>
-                                <span>
-                                  {{
-                                    info.defense
-                                      | number: '' : this.translate.currentLang
-                                  }}
-                                  <app-ic-icon
-                                    [icon]="shieldShaded"
-                                    title="{{
+                      </span>
+                      <span>
+                        {{
+                        info.defense
+                        | number: '' : this.translate.currentLang
+                        }}
+                        <app-ic-icon [icon]="shieldShaded" title="{{
                                       'Defense' | translate
                                     }}"></app-ic-icon>
-                                </span>
-                              </td>
-                              <td>
-                                @if (currentCase.can_engage === 1) {
-                                  <button
-                                    class="btn btn-primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#seaBattlesEngage"
-                                    (click)="selectUnit(info)">
-                                    <app-ic-icon
-                                      [icon]="trireme"
-                                      title="{{
+                      </span>
+                    </td>
+                    <td>
+                      @if (currentCase.can_engage === 1) {
+                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seaBattlesEngage"
+                        (click)="selectUnit(info)">
+                        <app-ic-icon [icon]="trireme" title="{{
                                         'Information' | translate
                                       }}"></app-ic-icon>
-                                  </button>
-                                }
-                              </td>
-                            </tr>
-                          }
-                          @for (
-                            info of this.user.getSBTowers();
-                            track info.code
-                          ) {
-                            <tr>
-                              <th scope="row" class="text-start">
-                                {{ Tools.getName(info.code) | translate }}
-                              </th>
-                              <td>
-                                {{
-                                  getUnitsCurrent(info.code)
-                                    | number: '' : this.translate.currentLang
-                                }}
-                              </td>
-                              <td>
-                                <span>
-                                  {{
-                                    info.attack
-                                      | number: '' : this.translate.currentLang
-                                  }}
-                                  <app-ic-icon
-                                    [icon]="swordIcon"
-                                    title="{{
+                      </button>
+                      }
+                    </td>
+                  </tr>
+                  }
+                  @for (
+                  info of this.user.getSBTowers();
+                  track info.code
+                  ) {
+                  <tr>
+                    <th scope="row" class="text-start">
+                      {{ Tools.getName(info.code) | translate }}
+                    </th>
+                    <td>
+                      {{
+                      getUnitsCurrent(info.code)
+                      | number: '' : this.translate.currentLang
+                      }}
+                    </td>
+                    <td>
+                      <span>
+                        {{
+                        info.attack
+                        | number: '' : this.translate.currentLang
+                        }}
+                        <app-ic-icon [icon]="swordIcon" title="{{
                                       'Attack' | translate
                                     }}"></app-ic-icon>
-                                </span>
-                                <span>
-                                  {{
-                                    info.defense
-                                      | number: '' : this.translate.currentLang
-                                  }}
-                                  <app-ic-icon
-                                    [icon]="shieldShaded"
-                                    title="{{
+                      </span>
+                      <span>
+                        {{
+                        info.defense
+                        | number: '' : this.translate.currentLang
+                        }}
+                        <app-ic-icon [icon]="shieldShaded" title="{{
                                       'Defense' | translate
                                     }}"></app-ic-icon>
-                                </span>
-                              </td>
-                              <td></td>
-                            </tr>
-                          }
-                        </tbody>
-                      </table>
-                    }
+                      </span>
+                    </td>
+                    <td></td>
+                  </tr>
                   }
-                }
-              </div>
+                </tbody>
+              </table>
+              }
+              }
+              }
+            </div>
             }
           </div>
         </div>
       </div>
       <div class="col-xl-6 mt-1">
         <div class="card">
-          @if (sbData.sb_id === 0 || sbData.sb_status <= 1) {
-            <div class="card-header" translate>Ranking</div>
-            <div class="card-body">
-              <table
-                class="table table-striped table-middle align-middle"
-                aria-labelledby="rankingDesc">
-                <thead>
-                  <tr class="text-center">
-                    <th scope="col"></th>
-                    <th scope="col">
-                      <span translate>Player</span>
-                    </th>
-                    <th scope="col">
-                      <span translate>Points</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (p of rankingList; track p) {
-                    <tr>
-                      <td>
-                        {{ p.ranking }}
-                      </td>
-                      <td>
-                        <app-user-profile
-                          id="{{ p.player_id }}"
-                          username="{{ p.username }}"
-                          status="1"></app-user-profile>
-                      </td>
-                      <td class="text-end">
-                        {{ p.points | number: '' : this.translate.currentLang }}
-                      </td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
-            </div>
-          } @else {
-            <div class="card-body">
-              @if (
-                sbData.mouvements >= user.getDatas().sea_battles.max_actions
-              ) {
-                <div class="text-center fw-bold text-danger" translate>
-                  You don't have any more actions available
-                </div>
-              } @else {
-                <div class="text-center fw-bold" translate>
-                  Move the boats on the map to conquer extra cases and reach you
-                  ennemies
-                </div>
+          @if (sbData.sb_id === 0 || sbData.sb_status <= 1) { <div class="card-header" translate>Ranking</div>
+        <div class="card-body">
+          <table class="table table-striped table-middle align-middle" aria-labelledby="rankingDesc">
+            <thead>
+              <tr class="text-center">
+                <th scope="col"></th>
+                <th scope="col">
+                  <span translate>Player</span>
+                </th>
+                <th scope="col">
+                  <span translate>Points</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of rankingList; track p) {
+              <tr>
+                <td>
+                  {{ p.ranking }}
+                </td>
+                <td>
+                  <app-user-profile id="{{ p.player_id }}" username="{{ p.username }}" status="1"></app-user-profile>
+                </td>
+                <td class="text-end">
+                  {{ p.points | number: '' : this.translate.currentLang }}
+                </td>
+              </tr>
               }
-              <div class="background">
-                @for (y of Tools.range(1, 15); track y) {
-                  @for (x of Tools.range(1, 15); track x) {
-                    @switch (getCase(x, y).case_type) {
-                      @case (1) {
-                        <div
-                          class="case unknown"
-                          [ngClass]="{
-                            selected:
-                              this.currentCase.x === x &&
-                              this.currentCase.y === y,
-                          }"
-                          role="button"
-                          tabIndex="0"
-                          aria-hidden="true"
-                          (click)="selectCase(x, y)"
-                          (keyup.enter)="selectCase(x, y)"></div>
-                      }
-                      @case (3) {
-                        <div
-                          class="case {{ 'player' + getCase(x, y).color_id }}"
-                          [ngClass]="{
-                            selected:
-                              this.currentCase.x === x &&
-                              this.currentCase.y === y,
-                          }"
-                          role="button"
-                          tabIndex="0"
-                          aria-hidden="true"
-                          (click)="selectCase(x, y)"
-                          (keyup.enter)="selectCase(x, y)"
-                          id="case-{{ x }}-{{ y }}"
-                          cdkDropList
-                          (cdkDropListDropped)="onDropCase($event)"
-                          [cdkDropListData]="this.currentCase"
-                          [cdkDropListConnectedTo]="caseList">
-                          <div
-                            class="army"
-                            id="army-{{ x }}-{{ y }}"
-                            cdkDrag></div>
-                        </div>
-                      }
-                      @case (4) {
-                        <div
-                          class="case {{ 'player' + getCase(x, y).color_id }}"
-                          [ngClass]="{
-                            selected:
-                              this.currentCase.x === x &&
-                              this.currentCase.y === y,
-                          }"
-                          role="button"
-                          tabIndex="0"
-                          aria-hidden="true"
-                          (click)="selectCase(x, y)"
-                          (keyup.enter)="selectCase(x, y)"
-                          id="case-{{ x }}-{{ y }}"
-                          cdkDropList
-                          (cdkDropListDropped)="onDropCase($event)"
-                          [cdkDropListData]="this.currentCase"
-                          [cdkDropListConnectedTo]="caseList">
-                          <div class="capital"></div>
-                          <div
-                            class="army"
-                            id="army-{{ x }}-{{ y }}"
-                            cdkDrag></div>
-                        </div>
-                      }
-                      @default {
-                        @if (
-                          (x <= 5 && y <= 5) ||
-                          (x > 10 && y <= 5) ||
-                          (x <= 5 && y > 10) ||
-                          (x > 10 && y > 10)
-                        ) {
-                          <div
-                            class="case"
-                            [ngClass]="{
-                              selected:
-                                this.currentCase.x === x &&
-                                this.currentCase.y === y,
-                            }"
-                            role="button"
-                            tabIndex="0"
-                            aria-hidden="true"
-                            (click)="selectCase(x, y)"
-                            (keyup.enter)="selectCase(x, y)"
-                            id="case-{{ x }}-{{ y }}"
-                            cdkDropList
-                            (cdkDropListDropped)="onDropCaseNull()"
-                            [cdkDropListData]="this.currentCase"
-                            [cdkDropListConnectedTo]="caseList"></div>
-                        } @else {
-                          <div
-                            class="case"
-                            [ngClass]="{
-                              selected:
-                                this.currentCase.x === x &&
-                                this.currentCase.y === y,
-                            }"
-                            role="button"
-                            tabIndex="0"
-                            aria-hidden="true"
-                            (click)="selectCase(x, y)"
-                            (keyup.enter)="selectCase(x, y)"
-                            id="case-{{ x }}-{{ y }}"
-                            cdkDropList
-                            (cdkDropListDropped)="onDropCase($event)"
-                            [cdkDropListData]="this.currentCase"
-                            [cdkDropListConnectedTo]="caseList"></div>
-                        }
-                      }
-                    }
-                  }
-                }
-              </div>
-            </div>
-          }
+            </tbody>
+          </table>
         </div>
+        } @else {
+        <div class="card-body">
+          @if (
+          sbData.mouvements >= user.getDatas().sea_battles.max_actions
+          ) {
+          <div class="text-center fw-bold text-danger" translate>
+            You don't have any more actions available
+          </div>
+          } @else {
+          <div class="text-center fw-bold" translate>
+            Move the boats on the map to conquer extra cases and reach you
+            ennemies
+          </div>
+          }
+          <div class="background">
+            @for (y of Tools.range(1, 15); track y) {
+            @for (x of Tools.range(1, 15); track x) {
+            @switch (getCase(x, y).case_type) {
+            @case (1) {
+            <div class="case unknown" [ngClass]="{
+                            selected:
+                              this.currentCase.x === x &&
+                              this.currentCase.y === y,
+                          }" role="button" tabIndex="0" aria-hidden="true" (click)="selectCase(x, y)"
+              (keyup.enter)="selectCase(x, y)"></div>
+            }
+            @case (3) {
+            <div class="case {{ 'player' + getCase(x, y).color_id }}" [ngClass]="{
+                            selected:
+                              this.currentCase.x === x &&
+                              this.currentCase.y === y,
+                          }" role="button" tabIndex="0" aria-hidden="true" (click)="selectCase(x, y)"
+              (keyup.enter)="selectCase(x, y)" id="case-{{ x }}-{{ y }}" cdkDropList
+              (cdkDropListDropped)="onDropCase($event)" [cdkDropListData]="this.currentCase"
+              [cdkDropListConnectedTo]="caseList">
+              <div class="army" id="army-{{ x }}-{{ y }}" cdkDrag></div>
+            </div>
+            }
+            @case (4) {
+            <div class="case {{ 'player' + getCase(x, y).color_id }}" [ngClass]="{
+                            selected:
+                              this.currentCase.x === x &&
+                              this.currentCase.y === y,
+                          }" role="button" tabIndex="0" aria-hidden="true" (click)="selectCase(x, y)"
+              (keyup.enter)="selectCase(x, y)" id="case-{{ x }}-{{ y }}" cdkDropList
+              (cdkDropListDropped)="onDropCase($event)" [cdkDropListData]="this.currentCase"
+              [cdkDropListConnectedTo]="caseList">
+              <div class="capital"></div>
+              <div class="army" id="army-{{ x }}-{{ y }}" cdkDrag></div>
+            </div>
+            }
+            @default {
+            @if (
+            (x <= 5 && y <=5) || (x> 10 && y <= 5) || (x <=5 && y> 10) ||
+                (x > 10 && y > 10)
+                ) {
+                <div class="case" [ngClass]="{
+                              selected:
+                                this.currentCase.x === x &&
+                                this.currentCase.y === y,
+                            }" role="button" tabIndex="0" aria-hidden="true" (click)="selectCase(x, y)"
+                  (keyup.enter)="selectCase(x, y)" id="case-{{ x }}-{{ y }}" cdkDropList
+                  (cdkDropListDropped)="onDropCaseNull()" [cdkDropListData]="this.currentCase"
+                  [cdkDropListConnectedTo]="caseList"></div>
+                } @else {
+                <div class="case" [ngClass]="{
+                              selected:
+                                this.currentCase.x === x &&
+                                this.currentCase.y === y,
+                            }" role="button" tabIndex="0" aria-hidden="true" (click)="selectCase(x, y)"
+                  (keyup.enter)="selectCase(x, y)" id="case-{{ x }}-{{ y }}" cdkDropList
+                  (cdkDropListDropped)="onDropCase($event)" [cdkDropListData]="this.currentCase"
+                  [cdkDropListConnectedTo]="caseList"></div>
+                }
+                }
+                }
+                }
+                }
+          </div>
+        </div>
+        }
       </div>
     </div>
+  </div>
   </div>
 </main>
 
