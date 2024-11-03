@@ -2,3 +2,10 @@
 * Admin mobile menu
 * New feature: Sea Battles
 * New successes
+
+# 2.1.1
+* Enable Sea Battles
+
+# 2.1.2
+* Fix display in the Agora stats
+* Improve engage popup in Sea Battles
