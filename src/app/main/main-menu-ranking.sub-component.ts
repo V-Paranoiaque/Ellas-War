@@ -9,7 +9,9 @@ import { UserComponent as User } from 'src/services/user.service';
 export class MainMenuRankingSubComponent {
   public localPage: string;
   constructor(
-    private router: Router, public user: User) {
+    private router: Router,
+    public user: User
+  ) {
     this.localPage = this.router.url.split('/')[1];
   }
 }

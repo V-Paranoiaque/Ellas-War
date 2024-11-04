@@ -1,23 +1,51 @@
 <div class="card">
   <div class="d-flex justify-content-center">
-    <a class="btn flex-grow-1 design-background" href="/rankingplayers/1"
-      [ngClass]="{ 'btn-danger': localPage === 'rankingplayers', 'btn-primary': localPage !== 'rankingplayers'}"
-      [routerLink]="['/rankingplayers/1']" title="{{ 'Player Ranking' | translate }}" translate>
+    <a
+      class="btn flex-grow-1 design-background"
+      href="/rankingplayers/1"
+      [ngClass]="{
+        'btn-danger': localPage === 'rankingplayers',
+        'btn-primary': localPage !== 'rankingplayers',
+      }"
+      [routerLink]="['/rankingplayers/1']"
+      title="{{ 'Player Ranking' | translate }}"
+      translate>
       Players
     </a>
-    <a class="btn flex-grow-1 design-background" href="/honor" [routerLink]="['/honor']"
-      [ngClass]="{ 'btn-danger': localPage === 'honor', 'btn-primary': localPage !== 'honor'}"
-      title="{{ 'Honor Ranking' | translate }}" translate>
+    <a
+      class="btn flex-grow-1 design-background"
+      href="/honor"
+      [routerLink]="['/honor']"
+      [ngClass]="{
+        'btn-danger': localPage === 'honor',
+        'btn-primary': localPage !== 'honor',
+      }"
+      title="{{ 'Honor Ranking' | translate }}"
+      translate>
       Honor
     </a>
-    <a class="btn flex-grow-1 design-background" href="/rankingalliances/1"
-      [ngClass]="{ 'btn-danger': localPage === 'rankingalliances', 'btn-primary': localPage !== 'rankingalliances'}"
-      [routerLink]="['/rankingalliances/1']" title="{{ 'Alliance Ranking' | translate }}" translate>
+    <a
+      class="btn flex-grow-1 design-background"
+      href="/rankingalliances/1"
+      [ngClass]="{
+        'btn-danger': localPage === 'rankingalliances',
+        'btn-primary': localPage !== 'rankingalliances',
+      }"
+      [routerLink]="['/rankingalliances/1']"
+      title="{{ 'Alliance Ranking' | translate }}"
+      translate>
       Alliances
     </a>
-    <a class="btn flex-grow-1 design-background" href="/rankingseabattles/1"
-      [ngClass]="{ 'btn-danger': localPage === 'rankingseabattles', 'btn-primary': localPage !== 'rankingseabattles'}"
-      [routerLink]="['/rankingseabattles/1']" title="{{ 'Sea Battles Ranking' | translate }}" translate>
+    <a
+      class="btn flex-grow-1 design-background"
+      href="/rankingseabattles/1"
+      [ngClass]="{
+        'btn-danger': localPage === 'rankingseabattles',
+        'btn-primary': localPage !== 'rankingseabattles',
+      }"
+      [routerLink]="['/rankingseabattles/1']"
+      title="{{ 'Sea Battles Ranking' | translate }}"
+      translate>
       Sea Battles
     </a>
   </div>
