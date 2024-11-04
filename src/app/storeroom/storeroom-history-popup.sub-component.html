@@ -12,7 +12,6 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        <div class="text-center" translate>Your history is empty</div>
         @if (list.length > 0) {
           <table
             class="table align-middle table-middle"
@@ -46,6 +45,8 @@
               }
             </tbody>
           </table>
+        } @else {
+          <div class="text-center" translate>Your history is empty</div>
         }
       </div>
       <div class="modal-footer">
