@@ -1,160 +1,146 @@
 <div class="modal-header">
   <h5 class="modal-title">
     @if (
-      src_case &&
-      src_case.x &&
-      src_case.y &&
-      dest_case &&
-      dest_case.x &&
-      dest_case.y
+    src_case &&
+    src_case.x &&
+    src_case.y &&
+    dest_case &&
+    dest_case.x &&
+    dest_case.y
     ) {
-      {{
-        'Move units from the case { src } to { dest }'
-          | translate
-            : {
-                src: src_case.x.toString() + ':' + src_case.y.toString(),
-                dest: dest_case.x.toString() + ':' + dest_case.y.toString(),
-              }
-      }}
+    {{
+    'Move units from the case { src } to { dest }'
+    | translate
+    : {
+    src: src_case.x.toString() + ':' + src_case.y.toString(),
+    dest: dest_case.x.toString() + ':' + dest_case.y.toString(),
+    }
+    }}
     }
   </h5>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="modal"
-    aria-label="Close"
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
     (click)="bsModalRef.hide()"></button>
 </div>
 <div class="modal-body container-fluid">
   @if (lost.init === 1) {
-    <div class="row">
-      <div class="col-12 fw-bold mb-2 fs-5 text-center">
-        <strong translate>Lost units</strong>
-      </div>
-      <div class="col-6">
-        <div class="text-center fw-bold" translate>Attacker</div>
+  <div class="row">
+    <div class="col-12 fw-bold mb-2 fs-5 text-center">
+      <strong translate>Lost units</strong>
+    </div>
+    <div class="col-6">
+      <div class="text-center fw-bold" translate>Attacker</div>
+      <ul class="list-unstyled">
         @for (info of this.user.getSBUnits(); track info.code) {
-          @if (getLostAttacker(info.code) > 0) {
-            {{
-              getLostAttacker(info.code)
-                | number: '' : this.translate.currentLang
-            }}
-            {{ Tools.getName(info.code) | translate }}
-          }
+        @if (getLostAttacker(info.code) > 0) {
+        <li>
+          {{
+          getLostAttacker(info.code)
+          | number: '' : this.translate.currentLang
+          }}
+          {{ Tools.getName(info.code) | translate }}
+        </li>
         }
-      </div>
-      <div class="col-6">
-        <div class="text-center fw-bold" translate>Defender</div>
+        }
+      </ul>
+    </div>
+    <div class="col-6">
+      <div class="text-center fw-bold" translate>Defender</div>
+      <ul class="list-unstyled">
         @for (info of this.user.getSBUnits(); track info.code) {
-          @if (getLostDefender(info.code) > 0) {
-            {{
-              getLostDefender(info.code)
-                | number: '' : this.translate.currentLang
-            }}
-            {{ Tools.getName(info.code) | translate }}
-          }
+        @if (getLostDefender(info.code) > 0) {
+        <li>
+          {{
+          getLostDefender(info.code)
+          | number: '' : this.translate.currentLang
+          }}
+          {{ Tools.getName(info.code) | translate }}
+        </li>
+        }
         }
         @for (info of this.user.getSBTowers(); track info.code) {
-          @if (getLostDefender(info.code) > 0) {
-            {{
-              getLostDefender(info.code)
-                | number: '' : this.translate.currentLang
-            }}
-            {{ Tools.getName(info.code) | translate }}
-          }
+        @if (getLostDefender(info.code) > 0) {
+        <li>
+          {{
+          getLostDefender(info.code)
+          | number: '' : this.translate.currentLang
+          }}
+          {{ Tools.getName(info.code) | translate }}
+        </li>
         }
-      </div>
+        }
+      </ul>
     </div>
+  </div>
   } @else if (src_case && dest_case && !sbMovePossible(src_case, dest_case)) {
-    <div class="text-center text-danger" translate>
-      The source and the destionation cases are too far from each other
-    </div>
+  <div class="text-center text-danger" translate>
+    The source and the destionation cases are too far from each other
+  </div>
   } @else if (unitSum === 0) {
-    <div class="text-center text-danger" translate>
-      The source case doesn't contain any units that can be moved to this
-      destination
-    </div>
+  <div class="text-center text-danger" translate>
+    The source case doesn't contain any units that can be moved to this
+    destination
+  </div>
   } @else {
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="column" translate>Units</th>
-          <th scope="column"></th>
-          <th scope="column" translate>Strength</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (info of this.user.getSBUnits(); track info.code) {
-          @if (getUnitsCurrent(info.code) > 0) {
-            <tr class="align-middle">
-              <th scope="row" class="text-start">
-                {{ Tools.getName(info.code) | translate }}
-              </th>
-              <td class="text-center">
-                {{
-                  moveArray.get(info.code)
-                    | number: '' : this.translate.currentLang
-                }}
-                /
-                {{
-                  getUnitsCurrent(info.code)
-                    | number: '' : this.translate.currentLang
-                }}
-                <br />
-                <input
-                  type="range"
-                  class="form-range"
-                  min="0"
-                  value="{{ getUnitsCurrent(info.code) }}"
-                  max="{{ getUnitsCurrent(info.code) }}"
-                  (click)="setMoveUnits($event, info.code)"
-                  id="move-{{ info.code }}"
-                  (touchend)="setMoveUnits($event, info.code)" />
-              </td>
-              <td>
-                <span>
-                  {{ info.attack | number: '' : this.translate.currentLang }}
-                  <app-ic-icon
-                    [icon]="swordIcon"
-                    title="{{ 'Attack' | translate }}"></app-ic-icon>
-                </span>
-                <span>
-                  {{ info.defense | number: '' : this.translate.currentLang }}
-                  <app-ic-icon
-                    [icon]="shieldShaded"
-                    title="{{ 'Defense' | translate }}"></app-ic-icon>
-                </span>
-              </td>
-            </tr>
-          }
-        }
-      </tbody>
-    </table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="column" translate>Units</th>
+        <th scope="column"></th>
+        <th scope="column" translate>Strength</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (info of this.user.getSBUnits(); track info.code) {
+      @if (getUnitsCurrent(info.code) > 0) {
+      <tr class="align-middle">
+        <th scope="row" class="text-start">
+          {{ Tools.getName(info.code) | translate }}
+        </th>
+        <td class="text-center">
+          {{
+          moveArray.get(info.code)
+          | number: '' : this.translate.currentLang
+          }}
+          /
+          {{
+          getUnitsCurrent(info.code)
+          | number: '' : this.translate.currentLang
+          }}
+          <br />
+          <input type="range" class="form-range" min="0" value="{{ getUnitsCurrent(info.code) }}"
+            max="{{ getUnitsCurrent(info.code) }}" (click)="setMoveUnits($event, info.code)" id="move-{{ info.code }}"
+            (touchend)="setMoveUnits($event, info.code)" />
+        </td>
+        <td>
+          <span>
+            {{ info.attack | number: '' : this.translate.currentLang }}
+            <app-ic-icon [icon]="swordIcon" title="{{ 'Attack' | translate }}"></app-ic-icon>
+          </span>
+          <span>
+            {{ info.defense | number: '' : this.translate.currentLang }}
+            <app-ic-icon [icon]="shieldShaded" title="{{ 'Defense' | translate }}"></app-ic-icon>
+          </span>
+        </td>
+      </tr>
+      }
+      }
+    </tbody>
+  </table>
   }
 </div>
 <div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    data-bs-dismiss="modal"
-    (click)="bsModalRef.hide()"
-    translate>
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()" translate>
     Close
   </button>
   @if (unitSum > 0 && lost.init === 0) {
-    @if (player_id === 0 || player_id === user.getPropertyNb('id')) {
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-dismiss="modal"
-        (click)="send(1)"
-        translate>
-        Send
-      </button>
-    } @else {
-      <button type="button" class="btn btn-primary" (click)="send(0)" translate>
-        Send
-      </button>
-    }
+  @if (player_id === 0 || player_id === user.getPropertyNb('id')) {
+  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="send(1)" translate>
+    Send
+  </button>
+  } @else {
+  <button type="button" class="btn btn-primary" (click)="send(0)" translate>
+    Send
+  </button>
+  }
   }
 </div>
