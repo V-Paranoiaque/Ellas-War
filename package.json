@@ -1,7 +1,7 @@
 {
   "name": "@v-paranoiaque/ew",
   "description": "Front-end of the Ellas War Game",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "homepage": "https://ellaswar.eu",
   "author": {
     "name": "Ellas War Team",
@@ -78,8 +78,8 @@
     "@iconify/icons-whh": "^1.2.3",
     "@types/bootstrap": "^5.2.10",
     "@types/jasmine": "~5.1.4",
-    "@typescript-eslint/eslint-plugin": "8.12.2",
-    "@typescript-eslint/parser": "8.12.2",
+    "@typescript-eslint/eslint-plugin": "8.13.0",
+    "@typescript-eslint/parser": "8.13.0",
     "cordova-android": "^13.0.0",
     "cordova-electron": "^4.0.0",
     "cordova-ios": "^7.1.1",
@@ -109,8 +109,8 @@
     "sonarqube-scanner": "^4.2.5"
   },
   "overrides": {
-    "electron@<=32.0.0": "$electron",
-    "electron-builder@<=25.0.0": "$electron-builder"
+    "electron@<=33.0.0": "$electron",
+    "electron-builder@<=25.1.0": "$electron-builder"
   },
   "cordova": {
     "platforms": [
