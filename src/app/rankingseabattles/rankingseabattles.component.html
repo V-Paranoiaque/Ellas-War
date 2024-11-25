@@ -19,9 +19,10 @@
                 <tr class="text-center">
                   <th scope="col"></th>
                   <th scope="col" translate>Player</th>
-                  <th scope="col" class="d-none d-sm-table-cell" translate>
-                    Points
+                  <th scope="col" class="d-none d-sm-table-cell">
+                    % <span translate>Victory</span>
                   </th>
+                  <th scope="col" translate>Points</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +36,16 @@
                         id="{{ p.player_id }}"
                         username="{{ p.username }}"
                         status="1"></app-user-profile>
+                    </td>
+                    <td class="text-center d-none d-sm-table-cell">
+                      @if (p.sb_participate > 0) {
+                        {{
+                          (100 * p.sb_win) / p.sb_participate
+                            | number: '1.0-2' : this.translate.currentLang
+                        }}%
+                      } @else {
+                        -
+                      }
                     </td>
                     <td class="text-end">
                       {{ p.points | number: '' : this.translate.currentLang }}

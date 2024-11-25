@@ -15,6 +15,8 @@ interface RankingSBLine {
   username: string;
   ranking: number;
   points: number;
+  sb_participate: number;
+  sb_win: number;
 }
 
 @Component({
