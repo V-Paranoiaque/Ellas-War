@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/work/Ellas-War/Ellas-War/www
-          key: www-${{ runner.GITHUB_RUN_ID }}
+          key: www-${{ github.run_id }}
       
       - name: Install dependencies
         run: |
