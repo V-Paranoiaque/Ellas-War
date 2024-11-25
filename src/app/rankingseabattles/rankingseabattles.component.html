@@ -12,97 +12,64 @@
             <h1 class="text-center" id="rankingDesc">
               <span translate>Sea Battles Ranking</span>
             </h1>
-            <table
-              class="table table-striped table-middle align-middle"
-              aria-labelledby="rankingDesc">
+            <table class="table table-striped table-middle align-middle" aria-labelledby="rankingDesc">
               <thead>
                 <tr class="text-center">
                   <th scope="col"></th>
                   <th scope="col" translate>Player</th>
                   <th scope="col" class="d-none d-sm-table-cell">
-                    % <span translate>Victory</span>
+                    % <span translate>Victories</span>
                   </th>
                   <th scope="col" translate>Points</th>
                 </tr>
               </thead>
               <tbody>
                 @for (p of rankingList; track p) {
-                  <tr>
-                    <td>
-                      {{ p.ranking }}
-                    </td>
-                    <td>
-                      <app-user-profile
-                        id="{{ p.player_id }}"
-                        username="{{ p.username }}"
-                        status="1"></app-user-profile>
-                    </td>
-                    <td class="text-center d-none d-sm-table-cell">
-                      @if (p.sb_participate > 0) {
-                        {{
-                          (100 * p.sb_win) / p.sb_participate
-                            | number: '1.0-2' : this.translate.currentLang
-                        }}%
-                      } @else {
-                        -
-                      }
-                    </td>
-                    <td class="text-end">
-                      {{ p.points | number: '' : this.translate.currentLang }}
-                    </td>
-                  </tr>
+                <tr>
+                  <td>
+                    {{ p.ranking }}
+                  </td>
+                  <td>
+                    <app-user-profile id="{{ p.player_id }}" username="{{ p.username }}" status="1"></app-user-profile>
+                  </td>
+                  <td class="text-center d-none d-sm-table-cell">
+                    @if (p.sb_participate > 0) {
+                    {{
+                    (100 * p.sb_win) / p.sb_participate
+                    | number: '1.0-2' : this.translate.currentLang
+                    }}%
+                    } @else {
+                    -
+                    }
+                  </td>
+                  <td class="text-end">
+                    {{ p.points | number: '' : this.translate.currentLang }}
+                  </td>
+                </tr>
                 }
               </tbody>
             </table>
 
             @if (rankingMax > 1) {
-              <div>
-                <br />
-                <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    role="button"
-                    (click)="rankingPageChange(1)"
-                    (keyup.enter)="rankingPageChange(1)"
-                    tabindex="0"
-                    >&lt;&lt;</span
-                  >
-                  <span
-                    class="input-group-text"
-                    role="button"
-                    (click)="rankingPageChange(rankingPage - 1)"
-                    (keyup.enter)="rankingPageChange(rankingPage - 1)"
-                    tabindex="0"
-                    >&lt;</span
-                  >
-                  <select
-                    class="form-select"
-                    #mySelect
-                    (change)="rankingPageChange(parseInt(mySelect.value))"
-                    [ngModel]="rankingPage"
-                    title="{{ 'Change page' | translate }}">
-                    @for (id of Tools.range(1, rankingMax); track id) {
-                      <option value="{{ id }}" translate>Page {{ id }}</option>
-                    }
-                  </select>
-                  <span
-                    class="input-group-text"
-                    role="button"
-                    (click)="rankingPageChange(rankingPage + 1)"
-                    (keyup.enter)="rankingPageChange(rankingPage + 1)"
-                    tabindex="0"
-                    >&gt;</span
-                  >
-                  <span
-                    class="input-group-text"
-                    role="button"
-                    (click)="rankingPageChange(rankingMax)"
-                    (keyup.enter)="rankingPageChange(rankingMax)"
-                    tabindex="0"
-                    >&gt;&gt;</span
-                  >
-                </div>
+            <div>
+              <br />
+              <div class="input-group">
+                <span class="input-group-text" role="button" (click)="rankingPageChange(1)"
+                  (keyup.enter)="rankingPageChange(1)" tabindex="0">&lt;&lt;</span>
+                <span class="input-group-text" role="button" (click)="rankingPageChange(rankingPage - 1)"
+                  (keyup.enter)="rankingPageChange(rankingPage - 1)" tabindex="0">&lt;</span>
+                <select class="form-select" #mySelect (change)="rankingPageChange(parseInt(mySelect.value))"
+                  [ngModel]="rankingPage" title="{{ 'Change page' | translate }}">
+                  @for (id of Tools.range(1, rankingMax); track id) {
+                  <option value="{{ id }}" translate>Page {{ id }}</option>
+                  }
+                </select>
+                <span class="input-group-text" role="button" (click)="rankingPageChange(rankingPage + 1)"
+                  (keyup.enter)="rankingPageChange(rankingPage + 1)" tabindex="0">&gt;</span>
+                <span class="input-group-text" role="button" (click)="rankingPageChange(rankingMax)"
+                  (keyup.enter)="rankingPageChange(rankingMax)" tabindex="0">&gt;&gt;</span>
               </div>
+            </div>
             }
           </div>
         </div>
