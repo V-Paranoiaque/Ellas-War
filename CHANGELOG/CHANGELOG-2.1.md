@@ -13,3 +13,7 @@
 # 2.1.3
 * Fix menu selector in ranking
 * Improve Sea Battles display
+
+# 2.1.4
+* Display % of victory in the SB ranking
+* Sea battle success for participating
