@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/workflow-release-prepare.yml
     secrets: inherit
     with:
-      node: 20
+      node: 22
   
   #Android
   package-android:
@@ -20,7 +20,7 @@ jobs:
     needs: prepare
     with:
       android: 13.0.0
-      node: 20
+      node: 22
 
   #Upload ZIP
   zip:
