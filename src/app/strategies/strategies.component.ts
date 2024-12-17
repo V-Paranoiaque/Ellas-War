@@ -1,10 +1,22 @@
 import { Component, Output, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateService } from '@ngx-translate/core';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+
+import { ArmyHelpPopupSubComponent } from '../city/army-help-popup.sub-component';
+import { ArmyPopupSubComponent } from '../city/army-popup.sub-component';
+import { ConstructionPopupSubComponent } from '../city/construction-popup.sub-component';
+import { DefenseEmptyPopupSubComponent } from '../city/defense-empty-popup.sub-component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { StrategiesHelpPopupSubComponent } from './strategies-help-popup.sub-component';
+import { WaveDividePopupSubComponent } from './wave-divide-popup.sub-component';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
@@ -14,6 +26,22 @@ import times from '@iconify/icons-fa6-solid/xmark';
 
 @Component({
   templateUrl: './strategies.component.html',
+  imports: [
+    ArmyHelpPopupSubComponent,
+    ArmyPopupSubComponent,
+    CommonModule,
+    ConstructionPopupSubComponent,
+    DefenseEmptyPopupSubComponent,
+    DragDropModule,
+    EwIconSubComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    IcIconComponent,
+    RouterModule,
+    StrategiesHelpPopupSubComponent,
+    TranslateModule,
+    WaveDividePopupSubComponent,
+  ],
 })
 export class StrategiesComponent implements OnInit, OnDestroy {
   @Output()

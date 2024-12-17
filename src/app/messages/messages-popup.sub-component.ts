@@ -1,25 +1,39 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 import { UserComponent as User } from '../../services/user.service';
-
-import { MessagesComponent } from './messages.component';
 import { Subscription } from 'rxjs';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MessagesAbstractComponent } from './messages-abstract.component';
+
+import plusIcon from '@iconify/icons-bi/plus';
+import xIcon from '@iconify/icons-bi/x';
 
 @Component({
   selector: 'app-messages-popup',
   templateUrl: './messages-popup.sub-component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class MessagesPopupSubComponent
-  extends MessagesComponent
+  extends MessagesAbstractComponent
   implements OnInit, OnDestroy
 {
   private subLoad: Subscription;
+
+  plusIcon = plusIcon;
+  xIcon = xIcon;
 
   constructor(
     override http: HttpClient,

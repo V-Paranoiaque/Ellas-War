@@ -1,9 +1,19 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { environment } from '../../environments/environment';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AgoraIncludeComponent } from './agora-include.component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import bagIcon from '@iconify/icons-bi/bag';
 import jarIcon from '@iconify-icons/akar-icons/jar';
@@ -13,6 +23,18 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   selector: 'app-agora',
   templateUrl: './agora.component.html',
   styleUrls: ['./agora.component.css'],
+  imports: [
+    AgoraIncludeComponent,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class AgoraComponent implements OnInit, OnDestroy {
   quantity: string;

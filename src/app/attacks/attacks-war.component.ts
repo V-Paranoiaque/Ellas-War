@@ -1,10 +1,19 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from 'src/services/message.class';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AttacksIncludeComponent } from './attacks-include.component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import bleedingEye from '@iconify/icons-game-icons/bleeding-eye';
 import boltIcon from '@iconify/icons-fa6-solid/bolt';
@@ -20,6 +29,17 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   templateUrl: './attacks-war.component.html',
   styleUrls: ['./attacks.component.css'],
+  imports: [
+    AttacksIncludeComponent,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AttacksWarComponent implements OnInit, OnDestroy {
   public attackInfo = new MessageContent();

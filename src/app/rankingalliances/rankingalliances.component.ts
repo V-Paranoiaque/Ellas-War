@@ -5,8 +5,17 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import users from '@iconify/icons-fa6-solid/users';
 import sortUP from '@iconify/icons-fa6-solid/sort-up';
@@ -14,6 +23,17 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
 @Component({
   selector: 'app-rankingalliances',
   templateUrl: './rankingalliances.component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainMenuRankingSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class RankingalliancesComponent implements OnInit, OnDestroy {
   public rankingList: {

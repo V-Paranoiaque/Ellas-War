@@ -1,12 +1,17 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
@@ -14,6 +19,14 @@ import userPlus from '@iconify/icons-fa6-solid/user-plus';
 @Component({
   selector: 'app-allianceprofile',
   templateUrl: './allianceprofile.component.html',
+  imports: [
+    CommonModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AllianceprofileComponent implements OnInit, OnDestroy {
   private subMembers: Subscription;

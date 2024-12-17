@@ -1,11 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
 import { environment } from './../../environments/environment';
+
+import { AlliancePactManagePopupSubComponent } from '../alliance/alliance-pact-manage-popup.sub-component';
+import { DiplomacyIncludeComponent } from './diplomacy-include.component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import fileAlt from '@iconify/icons-fa6-solid/file-lines';
@@ -17,6 +24,16 @@ import users from '@iconify/icons-fa6-solid/users';
 
 @Component({
   templateUrl: './diplomacy.component.html',
+  imports: [
+    AlliancePactManagePopupSubComponent,
+    CommonModule,
+    DiplomacyIncludeComponent,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class DiplomacyComponent implements OnInit, OnDestroy {
   public allianceList: {

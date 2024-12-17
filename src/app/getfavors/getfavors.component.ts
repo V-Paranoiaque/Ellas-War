@@ -1,11 +1,21 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
+
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-getfavors',
   templateUrl: './getfavors.component.html',
+  imports: [
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class GetfavorsComponent implements OnInit {
   constructor(

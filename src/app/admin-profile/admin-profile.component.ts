@@ -1,12 +1,19 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import bomb from '@iconify/icons-fa6-solid/bomb';
 import eye from '@iconify/icons-fa6-solid/eye';
@@ -17,6 +24,16 @@ import users from '@iconify/icons-fa6-solid/users';
   selector: 'app-admin-profile',
   templateUrl: './admin-profile.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainPrivateBottomMenuSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AdminProfileComponent implements OnInit, OnDestroy {
   public profile = {

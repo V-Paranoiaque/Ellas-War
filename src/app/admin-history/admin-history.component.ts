@@ -1,12 +1,24 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
   selector: 'app-admin-history',
   templateUrl: './admin-history.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    MainPrivateBottomMenuSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AdminHistoryComponent implements OnInit, OnDestroy {
   public adminUserHistoryList: {

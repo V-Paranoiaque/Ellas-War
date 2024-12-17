@@ -1,10 +1,17 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from 'src/services/message.class';
+import { CommonModule } from '@angular/common';
+
+import { AttacksIncludeComponent } from './attacks-include.component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import bleedingEye from '@iconify/icons-game-icons/bleeding-eye';
 import gooeyEyedSun from '@iconify/icons-game-icons/gooey-eyed-sun';
@@ -14,6 +21,15 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   templateUrl: './attacks-diamond.component.html',
   styleUrls: ['./attacks.component.css'],
+  imports: [
+    AttacksIncludeComponent,
+    CommonModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AttacksDiamondComponent implements OnInit, OnDestroy {
   public attackInfo = new MessageContent();

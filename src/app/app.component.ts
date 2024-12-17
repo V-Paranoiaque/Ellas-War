@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../services/user.service';
 import { ToolsComponent as Tools } from '../services/tools.service';
 import {
@@ -23,6 +23,7 @@ declare let cordova: {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  imports: [RouterModule, TranslateModule],
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Ellas War';

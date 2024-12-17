@@ -1,13 +1,23 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
+  imports: [
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class ConfirmComponent implements OnInit, OnDestroy {
   public confirmResult: number;

@@ -1,7 +1,15 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { QuestsIncludeComponent } from '../quests/quests-include.component';
 
 import checkIcon from '@iconify/icons-mdi/check';
 import times from '@iconify/icons-fa6-solid/xmark';
@@ -10,6 +18,16 @@ import times from '@iconify/icons-fa6-solid/xmark';
   selector: 'app-altars',
   templateUrl: './altars.component.html',
   styleUrls: ['./altars.component.css'],
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    QuestsIncludeComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AltarsComponent implements OnInit, OnDestroy {
   public altarQuestConditionDivineunits = {

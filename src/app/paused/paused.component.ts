@@ -1,11 +1,14 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-paused',
   templateUrl: './paused.component.html',
+  imports: [CommonModule, RouterModule, TranslateModule],
 })
 export class PausedComponent implements OnInit, OnDestroy {
   constructor(

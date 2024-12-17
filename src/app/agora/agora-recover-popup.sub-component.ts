@@ -1,13 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
 
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 @Component({
   selector: 'app-agora-recover-popup',
   templateUrl: './agora-recover-popup.sub-component.html',
   styleUrls: ['./agora.component.css'],
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AgoraRecoverPopupSubComponent {
   @Input() info!: {

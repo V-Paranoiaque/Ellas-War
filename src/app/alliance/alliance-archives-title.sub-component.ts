@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-alliance-archives-title',
   templateUrl: './alliance-archives-title.sub-component.html',
+  imports: [TranslateModule],
 })
 export class AllianceArchivesTitleSubComponent {
   @Input() type!: number;

@@ -1,12 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule } from '@angular/forms';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
   selector: 'app-admin-actions',
   templateUrl: './admin-actions.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+
+    FormsModule,
+    MainPrivateBottomMenuSubComponent,
+    TranslateModule,
+  ],
 })
 export class AdminActionsComponent implements OnInit, OnDestroy {
   public adminActions: string;

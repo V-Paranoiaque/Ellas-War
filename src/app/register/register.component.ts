@@ -1,13 +1,19 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import googleIcon from '@iconify-icons/logos/google-icon';
@@ -16,6 +22,16 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;

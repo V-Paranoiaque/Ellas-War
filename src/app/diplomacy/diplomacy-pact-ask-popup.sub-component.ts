@@ -1,11 +1,15 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
 @Component({
   selector: 'app-diplomacy-pact-ask-popup',
   templateUrl: './diplomacy-pact-ask-popup.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class DiplomacyPactAskPopupSubComponent implements OnInit, OnDestroy {
   @Input() info!: { alliance_id: number; alliance_name: string };

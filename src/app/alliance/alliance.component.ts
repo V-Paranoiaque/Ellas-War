@@ -1,8 +1,18 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { AllianceAbstractComponent } from './alliance-abstract.component';
+import { AllianceIncludeComponent } from './alliance-include.component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import brushIcon from '@iconify/icons-bi/brush';
 import cog from '@iconify/icons-fa6-solid/gear';
@@ -19,8 +29,22 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 @Component({
   templateUrl: './alliance.component.html',
   styleUrls: ['./alliance.component.css'],
+  imports: [
+    AllianceIncludeComponent,
+    CommonModule,
+    EwIconSubComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    IcIconComponent,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
-export class AllianceComponent implements OnInit, OnDestroy {
+export class AllianceComponent
+  extends AllianceAbstractComponent
+  implements OnInit, OnDestroy
+{
   public allianceProfile = {
     pact_id: 0,
     alliance_id: 0,
@@ -127,10 +151,12 @@ export class AllianceComponent implements OnInit, OnDestroy {
   sportsMedal = sportsMedal;
 
   constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
+    protected override socket: Socket,
+    public override user: User,
+    public override translate: TranslateService
   ) {
+    super(socket, user, translate);
+
     this.allowDissolve = 0;
     this.allowLeave = 0;
     this.myAllianceProfile = {

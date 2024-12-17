@@ -1,14 +1,27 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
   selector: 'app-admin-ip',
   templateUrl: './admin-ip.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    EwIconSubComponent,
+    MainPrivateBottomMenuSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AdminIpComponent implements OnInit, OnDestroy {
   public list: {

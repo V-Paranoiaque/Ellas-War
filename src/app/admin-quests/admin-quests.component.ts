@@ -1,11 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { AdminQuestsTitleSubComponent } from './admin-quests-title.sub-component';
 import { environment } from './../../environments/environment';
 import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import brushIcon from '@iconify/icons-bi/brush';
 
@@ -13,6 +20,16 @@ import brushIcon from '@iconify/icons-bi/brush';
   selector: 'app-admin-quests',
   templateUrl: './admin-quests.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    AdminQuestsTitleSubComponent,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainPrivateBottomMenuSubComponent,
+    TranslateModule,
+  ],
 })
 export class AdminQuestsComponent implements OnInit, OnDestroy {
   public adminQuestList: {

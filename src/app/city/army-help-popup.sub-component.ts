@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 import bowAndArrow from '@iconify-icons/emojione-monotone/bow-and-arrow';
 import footPrint from '@iconify-icons/mdi/foot-print';
@@ -14,6 +17,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-help-popup',
   templateUrl: './army-help-popup.sub-component.html',
+  imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class ArmyHelpPopupSubComponent {
   Tools = Tools;

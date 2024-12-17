@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-construction-summary-popup',
   templateUrl: './construction-summary-popup.sub-component.html',
+  imports: [CommonModule, TranslateModule],
 })
 export class ConstructionSummaryPopupSubComponent {
   Tools = Tools;

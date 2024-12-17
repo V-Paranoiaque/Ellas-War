@@ -1,14 +1,26 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import googleIcon from '@iconify-icons/logos/google-icon';
 import { environment } from './../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
+  imports: [
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AuthComponent implements OnInit {
   public confirmResult: number;

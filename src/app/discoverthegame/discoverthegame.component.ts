@@ -1,15 +1,28 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import arrowLeft from '@iconify/icons-fa6-solid/arrow-left';
 import arrowRight from '@iconify/icons-fa6-solid/arrow-right';
 
+import { DiscoverthegameMenuSubComponent } from './discoverthegame-menu.sub-component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+
 @Component({
   selector: 'app-discoverthegame',
   templateUrl: './discoverthegame.component.html',
+  imports: [
+    DiscoverthegameMenuSubComponent,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class DiscoverthegameComponent implements OnInit, OnDestroy {
   public page: string;

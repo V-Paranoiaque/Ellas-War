@@ -1,18 +1,33 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-
 import check from '@iconify/icons-fa6-solid/check';
-import { AllianceComponent } from './alliance.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AllianceAbstractComponent } from './alliance-abstract.component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
+
+import times from '@iconify/icons-fa6-solid/xmark';
 
 @Component({
   selector: 'app-alliance-requests-popup',
   templateUrl: './alliance-requests-popup.sub-component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class AllianceRequestsPopupSubComponent
-  extends AllianceComponent
+  extends AllianceAbstractComponent
   implements OnInit, OnDestroy
 {
   @Input() info!: { resource: string; quantity: string; stock: number };
@@ -37,6 +52,7 @@ export class AllianceRequestsPopupSubComponent
   }[];
 
   check = check;
+  times = times;
 
   constructor(
     protected override socket: Socket,
@@ -50,7 +66,7 @@ export class AllianceRequestsPopupSubComponent
     this.myAllianceAskMy = [];
   }
 
-  override ngOnInit() {
+  ngOnInit() {
     this.socket.on('myAllianceAskAccept', (data: number) => {
       this.myAllianceAskAcceptError = data;
     });
@@ -84,7 +100,7 @@ export class AllianceRequestsPopupSubComponent
     });
   }
 
-  override ngOnDestroy() {
+  ngOnDestroy() {
     this.socket.removeListener('myAllianceAskAccept');
     this.socket.removeListener('myAllianceAskList');
     this.socket.removeListener('myAllianceAskMy');

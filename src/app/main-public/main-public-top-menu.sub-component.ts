@@ -3,14 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-public-top-menu',
   templateUrl: './main-public-top-menu.sub-component.html',
   styleUrls: ['./main-public.component.css'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class MainPublicTopMenuSubComponent implements OnInit {
   @Input()

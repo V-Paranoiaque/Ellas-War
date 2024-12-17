@@ -2,13 +2,17 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-temple-info-popup',
   templateUrl: './temple-info-popup.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   @Input() temple!: {

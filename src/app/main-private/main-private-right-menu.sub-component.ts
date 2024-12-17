@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { UserComponent as User } from 'src/services/user.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IdToWeatherSubComponent } from './id-to-weather.sub-component';
 
 import { environment } from '../../environments/environment';
+import { MainPrivateIncludeComponent } from './main-private-include.component';
 
 import angleDown from '@iconify/icons-fa6-solid/angle-down';
 import angleUp from '@iconify/icons-fa6-solid/angle-up';
@@ -21,6 +27,15 @@ import trophy from '@iconify/icons-fa6-solid/trophy';
   selector: 'app-main-private-right-menu',
   templateUrl: './main-private-right-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    IcIconComponent,
+    IdToWeatherSubComponent,
+    MainPrivateIncludeComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class MainPrivateRightMenuSubComponent {
   public ressList: string[];

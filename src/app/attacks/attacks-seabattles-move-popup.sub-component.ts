@@ -1,9 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from 'src/services/tools.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
+import { IcIconComponent } from 'src/services/ic-icon.service';
 
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -12,6 +14,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   selector: 'app-attacks-seabattles-move-popup',
   templateUrl: './attacks-seabattles-move-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
+  imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class AttacksSeabattlesMovePopupSubComponent
   implements OnInit, OnDestroy

@@ -2,10 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 @Component({
   selector: 'app-honor-help-popup',
   templateUrl: './honor-help-popup.sub-component.html',
+  imports: [TranslateModule, UserProfileSubComponent],
 })
 export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
   private sub: Subscription;

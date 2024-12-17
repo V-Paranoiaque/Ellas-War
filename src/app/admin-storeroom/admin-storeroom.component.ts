@@ -1,13 +1,29 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
   selector: 'app-admin-storeroom',
   templateUrl: './admin-storeroom.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    MainPrivateBottomMenuSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AdminStoreroomComponent implements OnInit, OnDestroy {
   public list: {

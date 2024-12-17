@@ -412,15 +412,18 @@
                 Your city can not be attacked for 30 min thanks to the immense
                 forest that covers the city.
               </div>
-              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 100 }) {
-                <div>
-                  <strong translate>Cost:</strong>
-                  100
-                  <app-ew-icon
-                    name="ambrosia"
-                    class="small-resource"></app-ew-icon>
-                </div>
-              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 100,
+                }"
+                ]>
+                <strong translate>Cost:</strong>
+                100
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+
               @if (user.getPropertyNb('ambrosia') >= 100) {
                 <button
                   class="btn btn-success"
@@ -449,15 +452,17 @@
                     | translate: { value: 200 }
                 }}
               </div>
-              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
-                <div>
-                  <strong translate>Cost:</strong>
-                  1
-                  <app-ew-icon
-                    name="ambrosia"
-                    class="small-resource"></app-ew-icon>
-                </div>
-              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 2,
+                }">
+                <strong translate>Cost:</strong>
+                1
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+
               @if (
                 user.getPropertyNb('amazon') + 200 >
                 user.getDatas().army.amazon.nbmax
@@ -613,15 +618,18 @@
                     | translate: { value: 250 }
                 }}
               </div>
-              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
-                <div>
-                  <strong translate>Cost:</strong>
-                  1
-                  <app-ew-icon
-                    name="ambrosia"
-                    class="small-resource"></app-ew-icon>
-                </div>
-              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 2,
+                }"
+                ]>
+                <strong translate>Cost:</strong>
+                1
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+
               @if (
                 user.getPropertyNb('automaton') + 250 >
                 user.getDatas().army.automaton.nbmax
@@ -761,15 +769,18 @@
                     | translate: { value: 125 }
                 }}
               </div>
-              @if ({ 'text-danger': user.getPropertyNb('ambrosia') < 2 }) {
-                <div>
-                  <strong translate>Cost:</strong>
-                  1
-                  <app-ew-icon
-                    name="ambrosia"
-                    class="small-resource"></app-ew-icon>
-                </div>
-              }
+              <div
+                [ngClass]="{
+                  'text-danger': user.getPropertyNb('ambrosia') < 2,
+                }"
+                ]>
+                <strong translate>Cost:</strong>
+                1
+                <app-ew-icon
+                  name="ambrosia"
+                  class="small-resource"></app-ew-icon>
+              </div>
+
               @if (
                 user.getPropertyNb('centaur') + 125 >
                 user.getDatas().army.centaur.nbmax

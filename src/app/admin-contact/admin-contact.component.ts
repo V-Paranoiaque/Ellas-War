@@ -2,8 +2,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule } from '@angular/forms';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { CommonModule } from '@angular/common';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import angellistIcon from '@iconify-icons/fa6-brands/angellist';
 
@@ -20,6 +26,14 @@ interface ContactList {
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainPrivateBottomMenuSubComponent,
+    TranslateModule,
+  ],
 })
 export class AdminContactComponent implements OnInit, OnDestroy {
   public adminContactList: ContactList[];

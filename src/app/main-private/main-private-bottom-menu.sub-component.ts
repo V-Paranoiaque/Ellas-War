@@ -6,12 +6,14 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from 'src/services/user.service';
 import { environment } from './../../environments/environment';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 import comments from '@iconify/icons-fa6-solid/comments';
 import discordIcon from '@iconify-icons/logos/discord-icon';
@@ -20,10 +22,23 @@ import times from '@iconify/icons-fa6-solid/xmark';
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import users from '@iconify/icons-fa6-solid/users';
 
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainPrivateIncludeComponent } from './main-private-include.component';
+
 @Component({
   selector: 'app-main-private-bottom-menu',
   templateUrl: './main-private-bottom-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainPrivateIncludeComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   public chatActive: string;

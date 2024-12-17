@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -5,7 +6,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import googleIcon from '@iconify-icons/logos/google-icon';
 
@@ -13,6 +19,15 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../register/register.component.css'],
+  imports: [
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private sub: Subscription;

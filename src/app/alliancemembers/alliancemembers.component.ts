@@ -1,15 +1,28 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 @Component({
   selector: 'app-alliancemembers',
   templateUrl: './alliancemembers.component.html',
+  imports: [
+    CommonModule,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class AlliancemembersComponent implements OnInit, OnDestroy {
   public allianceMembers: {

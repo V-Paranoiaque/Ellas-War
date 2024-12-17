@@ -1,13 +1,29 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
 
 @Component({
   templateUrl: './sponsorship.component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class SponsorshipComponent implements OnInit, OnDestroy {
   public sponsorList: {

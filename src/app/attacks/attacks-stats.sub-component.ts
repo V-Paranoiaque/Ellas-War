@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
@@ -12,6 +15,7 @@ import swordCross from '@iconify/icons-mdi/sword-cross';
   selector: 'app-attacks-stats',
   templateUrl: './attacks-stats.sub-component.html',
   styleUrls: ['./attacks.component.css'],
+  imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   public attackStats = {

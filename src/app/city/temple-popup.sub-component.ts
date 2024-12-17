@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-temple-popup',
   templateUrl: './temple-popup.sub-component.html',
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
 })
 export class TemplePopupSubComponent {
   public temple = 0;

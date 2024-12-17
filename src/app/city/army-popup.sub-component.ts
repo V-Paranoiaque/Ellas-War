@@ -1,8 +1,12 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { FormsModule } from '@angular/forms';
 
 import { environment } from './../../environments/environment';
 
@@ -21,6 +25,13 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-popup',
   templateUrl: './army-popup.sub-component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    TranslateModule,
+  ],
 })
 export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   @Input() info!: {

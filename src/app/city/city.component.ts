@@ -1,12 +1,21 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
 import { SocketComponent as Socket } from 'src/services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from 'src/services/user.service';
 import { ToolsComponent as Tools } from 'src/services/tools.service';
 import { environment } from '../../environments/environment';
+import { CommonModule } from '@angular/common';
+
+import { CityIncludeComponent } from './city-include.component';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { QuestsIncludeComponent } from '../quests/quests-include.component';
 
 import cloud from '@iconify/icons-fa6-solid/cloud';
 import cog from '@iconify/icons-fa6-solid/gear';
@@ -20,6 +29,17 @@ import waterWave from '@iconify/icons-emojione-monotone/water-wave';
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
+  imports: [
+    CityIncludeComponent,
+    CommonModule,
+    EwIconSubComponent,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    QuestsIncludeComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class CityComponent implements OnInit, OnDestroy {
   private subTitle: Subscription;

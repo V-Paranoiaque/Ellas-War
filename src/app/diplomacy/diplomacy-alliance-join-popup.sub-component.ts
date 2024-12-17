@@ -1,11 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-diplomacy-alliance-join-popup',
   templateUrl: './diplomacy-alliance-join-popup.sub-component.html',
+  imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class DiplomacyAllianceJoinPopupSubComponent {
   @Input() info!: { alliance_id: number; alliance_name: string };

@@ -1,14 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { MessageContent } from 'src/services/message.class';
+import { CommonModule } from '@angular/common';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
 @Component({
   selector: 'app-attacks-message',
   templateUrl: './attacks-message.sub-component.html',
   styleUrls: ['./attacks.component.css'],
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AttacksMessageSubComponent {
   @Input() info!: MessageContent['content'];

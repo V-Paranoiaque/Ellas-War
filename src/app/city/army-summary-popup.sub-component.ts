@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+import { IcIconComponent } from 'src/services/ic-icon.service';
 
 import shieldShaded from '@iconify/icons-bi/shield-shaded';
 import swordIcon from '@iconify/icons-vaadin/sword';
@@ -10,6 +12,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-summary-popup',
   templateUrl: './army-summary-popup.sub-component.html',
+  imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
   private army: {

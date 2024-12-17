@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { AllianceIncludeComponent } from './alliance-include.component';
 
 @Component({
   selector: 'app-alliance-archives-popup',
   templateUrl: './alliance-archives-popup.sub-component.html',
+  imports: [AllianceIncludeComponent, CommonModule, TranslateModule],
 })
 export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
   public archiveCurrent: number;

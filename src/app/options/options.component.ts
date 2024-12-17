@@ -1,8 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { OptionsIncludeComponent } from './options-include.component';
 
 import crown from '@iconify/icons-fa6-solid/crown';
 import cog from '@iconify/icons-fa6-solid/gear';
@@ -16,6 +23,16 @@ import redo from '@iconify/icons-fa6-solid/rotate-right';
 @Component({
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.css'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    OptionsIncludeComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class OptionsComponent implements OnInit, OnDestroy {
   public accountPasswordPossible: number;

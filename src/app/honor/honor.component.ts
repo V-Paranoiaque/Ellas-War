@@ -1,11 +1,21 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { HonorHelpPopupSubComponent } from './honor-help-popup.sub-component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import crown from '@iconify/icons-fa6-solid/crown';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
@@ -21,6 +31,20 @@ interface HonorLine {
 
 @Component({
   templateUrl: './honor.component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    MainLeftSubComponent,
+    MainMenuRankingSubComponent,
+    MainRightSubComponent,
+    HonorHelpPopupSubComponent,
+    IcIconComponent,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class HonorComponent implements OnInit, OnDestroy {
   public id = 0;

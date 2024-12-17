@@ -1,7 +1,13 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import users from '@iconify/icons-fa6-solid/users';
 import times from '@iconify/icons-fa6-solid/xmark';
@@ -10,6 +16,14 @@ import times from '@iconify/icons-fa6-solid/xmark';
   selector: 'app-admin-alliances',
   templateUrl: './admin-alliances.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  imports: [
+    AdminLeftMenuSubComponent,
+    CommonModule,
+    IcIconComponent,
+    MainPrivateBottomMenuSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class AdminAlliancesComponent implements OnInit, OnDestroy {
   public adminAlliancesList: {

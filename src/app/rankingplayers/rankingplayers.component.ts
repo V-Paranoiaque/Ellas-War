@@ -4,9 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { RankingplayersHelpPopupSubComponent } from './rankingplayers-help-popup.sub-component';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 import sortUP from '@iconify/icons-fa6-solid/sort-up';
@@ -25,6 +34,17 @@ interface RankingLine {
 @Component({
   selector: 'app-rankingplayers',
   templateUrl: './rankingplayers.component.html',
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainMenuRankingSubComponent,
+    MainRightSubComponent,
+    RankingplayersHelpPopupSubComponent,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class RankingplayersComponent implements OnInit, OnDestroy {
   public rankingList: RankingLine[];

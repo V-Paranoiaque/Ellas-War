@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-quests-title',
   templateUrl: './admin-quests-title.sub-component.html',
+  imports: [CommonModule, TranslateModule],
 })
 export class AdminQuestsTitleSubComponent {
   @Input() quest!: {

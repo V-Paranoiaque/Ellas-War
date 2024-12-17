@@ -1,12 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-wave-divide-popup',
   templateUrl: './wave-divide-popup.sub-component.html',
+  imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class WaveDividePopupSubComponent {
   @Input() info!: {

@@ -1,8 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { StoreroomIncludeComponent } from './storeroom-include.component';
 
 import bagIcon from '@iconify/icons-bi/bag';
 import clockIcon from '@iconify/icons-fa6-regular/clock';
@@ -12,6 +21,17 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
 @Component({
   templateUrl: './storeroom.component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    StoreroomIncludeComponent,
+    TranslateModule,
+  ],
 })
 export class StoreroomComponent implements OnInit, OnDestroy {
   private storeroomList: {

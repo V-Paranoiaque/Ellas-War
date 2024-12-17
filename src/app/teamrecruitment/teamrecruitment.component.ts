@@ -1,10 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
 import { ToolsComponent as Tools } from 'src/services/tools.service';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import facebookIcon from '@iconify-icons/logos/facebook';
@@ -13,6 +17,12 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
 @Component({
   selector: 'app-teamrecruitment',
   templateUrl: './teamrecruitment.component.html',
+  imports: [
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    IcIconComponent,
+    TranslateModule,
+  ],
 })
 export class TeamrecruitmentComponent implements OnInit, OnDestroy {
   private sub: Subscription;

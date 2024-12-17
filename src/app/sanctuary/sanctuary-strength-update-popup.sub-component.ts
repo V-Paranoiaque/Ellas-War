@@ -1,11 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
 @Component({
   selector: 'app-sanctuary-strength-update-popup',
   templateUrl: './sanctuary-strength-update-popup.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class SanctuaryStrengthUpdatePopupSubComponent {
   @Input() info: {

@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
 @Component({
   selector: 'app-alliance-archives-text',
   templateUrl: './alliance-archives-text.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AllianceArchivesTextSubComponent {
   @Input() msg!: {

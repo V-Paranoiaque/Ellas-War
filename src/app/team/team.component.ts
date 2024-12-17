@@ -1,11 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
+  imports: [MainLeftSubComponent, MainRightSubComponent, TranslateModule],
 })
 export class TeamComponent implements OnInit, OnDestroy {
   private sub: Subscription;

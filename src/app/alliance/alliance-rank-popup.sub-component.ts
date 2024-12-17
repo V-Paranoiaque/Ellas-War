@@ -1,13 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
 @Component({
   selector: 'app-alliance-rank-popup',
   templateUrl: './alliance-rank-popup.sub-component.html',
+  imports: [FormsModule, IcIconComponent, TranslateModule],
 })
 export class AllianceRankPopupSubComponent {
   @Input() info!: {

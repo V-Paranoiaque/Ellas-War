@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-alliance-profile-popup',
   templateUrl: './alliance-profile-popup.sub-component.html',
+  imports: [FormsModule, TranslateModule],
 })
 export class AllianceProfilePopupSubComponent {
   @Input() allianceProfile!: {

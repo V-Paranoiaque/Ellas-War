@@ -4,13 +4,33 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
+import {
+  BsModalService,
+  ModalDirective,
+  ModalModule,
+} from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { environment } from './../../environments/environment';
+import { CommonModule } from '@angular/common';
+
+import { BlockedComponent } from '../blocked/blocked.component';
+import { CityComponent } from '../city/city.component';
+import { PausedComponent } from '../paused/paused.component';
+import { MainPublicComponent } from '../main-public/main-public.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
+  imports: [
+    BlockedComponent,
+    CityComponent,
+    CommonModule,
+    MainPublicComponent,
+    ModalModule,
+    PausedComponent,
+    TranslateModule,
+  ],
 })
 export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;

@@ -1,16 +1,28 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from '../../environments/environment';
 import { ToolsComponent as Tools } from 'src/services/tools.service';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import discordIcon from '@iconify-icons/logos/discord-icon';
 
 @Component({
   selector: 'app-help',
   templateUrl: './help.component.html',
+  imports: [
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class HelpComponent implements OnInit, OnDestroy {
   private sub: Subscription;

@@ -1,10 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
+import { CommonModule } from '@angular/common';
+import { IdToDivineBonusSubComponent } from './id-to-divinebonus.sub-component';
 
 @Component({
   selector: 'app-divinebonus-info-popup',
   templateUrl: './divinebonus-info-popup.sub-component.html',
+  imports: [CommonModule, IdToDivineBonusSubComponent, TranslateModule],
 })
 export class DivineBonusInfoPopupSubComponent {
   @Input() divineBonus!: { bonus_id: number; nb: number; error: number };

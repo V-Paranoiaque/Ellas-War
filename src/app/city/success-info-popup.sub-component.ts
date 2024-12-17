@@ -1,11 +1,15 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+
+import { CommonModule } from '@angular/common';
+import { SuccessCardSubComponent } from './success-card.sub-component';
 
 @Component({
   selector: 'app-success-info-popup',
   templateUrl: './success-info-popup.sub-component.html',
+  imports: [CommonModule, SuccessCardSubComponent, TranslateModule],
 })
 export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
   @Input() successType!: {

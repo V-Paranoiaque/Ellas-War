@@ -1,12 +1,26 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class StatisticsComponent implements OnInit, OnDestroy {
   private agoraMyStats: { quantity: number; rate: number; solded: number }[];

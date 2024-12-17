@@ -1,9 +1,16 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import eye from '@iconify/icons-fa6-solid/eye';
@@ -11,6 +18,15 @@ import eye from '@iconify/icons-fa6-solid/eye';
 @Component({
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.css'],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    IcIconComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class SupportComponent implements OnInit, OnDestroy {
   public msg = 0;

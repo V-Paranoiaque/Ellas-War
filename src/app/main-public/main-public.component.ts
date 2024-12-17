@@ -1,13 +1,21 @@
+import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { Router } from '@angular/router';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import discordIcon from '@iconify-icons/logos/discord-icon';
 import facebookIcon from '@iconify-icons/logos/facebook';
@@ -17,6 +25,17 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-main-public',
   templateUrl: './main-public.component.html',
   styleUrls: ['./main-public.component.css'],
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule,
+  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class MainPublicComponent implements OnInit, OnDestroy {

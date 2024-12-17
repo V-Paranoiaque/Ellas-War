@@ -3,13 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from 'src/services/tools.service';
+import { CommonModule } from '@angular/common';
+
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
+  imports: [
+    CommonModule,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    TranslateModule,
+  ],
 })
 export class NewsComponent implements OnInit, OnDestroy {
   private newsList: {

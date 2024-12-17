@@ -1,13 +1,15 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
+  imports: [RouterModule, TranslateModule],
 })
 export class UnsubscribeComponent implements OnInit, OnDestroy {
   public id = '';

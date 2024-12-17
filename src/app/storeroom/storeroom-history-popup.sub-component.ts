@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-storeroom-history-popup',
   templateUrl: './storeroom-history-popup.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {
   public list: {

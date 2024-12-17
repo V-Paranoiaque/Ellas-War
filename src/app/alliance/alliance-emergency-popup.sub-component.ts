@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 @Component({
   selector: 'app-alliance-emergency-popup',
   templateUrl: './alliance-emergency-popup.sub-component.html',
+  imports: [TranslateModule],
 })
 export class AllianceEmergencyPopupSubComponent {
   constructor(

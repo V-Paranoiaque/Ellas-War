@@ -1,12 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
 @Component({
   selector: 'app-quests-daily',
   templateUrl: './quests-daily.sub-component.html',
   styleUrls: ['./quests.component.css'],
+  imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateModule],
 })
 export class QuestsDailySubComponent {
   @Input()

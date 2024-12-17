@@ -1,12 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from 'src/services/message.class';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lost-message',
   templateUrl: './lost-message.sub-component.html',
+  imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class LostMessageSubComponent {
   @Input() info!: MessageContent['content'];

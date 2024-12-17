@@ -1,12 +1,19 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { CommonModule } from '@angular/common';
+
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MainLeftSubComponent } from '../main/main-left.sub-component';
+import { MainRightSubComponent } from '../main/main-right.sub-component';
+import { MessagesPopupSubComponent } from '../messages/messages-popup.sub-component';
+import { OptionsIncludeComponent } from '../options/options-include.component';
 
 import brushIcon from '@iconify/icons-bi/brush';
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
@@ -32,6 +39,16 @@ interface Profile {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
+  imports: [
+    CommonModule,
+    IcIconComponent,
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    MessagesPopupSubComponent,
+    OptionsIncludeComponent,
+    TranslateModule,
+    RouterModule,
+  ],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   public onChange: EventEmitter<object> = new EventEmitter<object>();

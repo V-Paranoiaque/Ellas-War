@@ -1,10 +1,15 @@
+import { RouterModule } from '@angular/router';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { environment } from './../../environments/environment';
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
 
 import chartLine from '@iconify/icons-fa6-solid/chart-line';
 import landFields from '@iconify/icons-mdi/land-fields';
@@ -13,6 +18,14 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 @Component({
   selector: 'app-construction-popup',
   templateUrl: './construction-popup.sub-component.html',
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    RouterModule,
+    TranslateModule,
+  ],
 })
 export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   @Input() info!: {

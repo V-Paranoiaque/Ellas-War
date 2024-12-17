@@ -1,19 +1,26 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { AttacksSeabattlesComponent } from './attacks-seabattles.component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { AttacksSeabattlesAbstractComponent } from './attacks-seabattles-abstract.component';
+
+import shieldShaded from '@iconify/icons-bi/shield-shaded';
+import swordIcon from '@iconify/icons-vaadin/sword';
 
 @Component({
   selector: 'app-attacks-seabattles-engage-popup',
   templateUrl: './attacks-seabattles-engage-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
+  imports: [CommonModule, FormsModule, IcIconComponent, TranslateModule],
 })
 export class AttacksSeabattlesEngagePopupSubComponent
-  extends AttacksSeabattlesComponent
+  extends AttacksSeabattlesAbstractComponent
   implements OnInit, OnDestroy
 {
   @Input() case!: {
@@ -42,6 +49,8 @@ export class AttacksSeabattlesEngagePopupSubComponent
   @Input() mouvements!: number;
 
   Math = Math;
+  shieldShaded = shieldShaded;
+  swordIcon = swordIcon;
 
   constructor(
     protected override http: HttpClient,
@@ -53,7 +62,7 @@ export class AttacksSeabattlesEngagePopupSubComponent
     super(http, socket, user, translate, modalService);
   }
 
-  override ngOnInit() {
+  ngOnInit() {
     this.socket.on('sbEngage', (data: number) => {
       this.unit.error = data;
     });
@@ -62,7 +71,7 @@ export class AttacksSeabattlesEngagePopupSubComponent
     });
   }
 
-  override ngOnDestroy() {
+  ngOnDestroy() {
     this.socket.removeListener('sbEngage');
     this.socket.removeListener('sbGet');
   }

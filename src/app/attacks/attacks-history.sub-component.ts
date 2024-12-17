@@ -1,6 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Message } from 'src/services/message.class';
+import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
+import { TranslateModule } from '@ngx-translate/core';
+
+import { AttacksIncludeComponent } from './attacks-include.component';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MessagesIncludeComponent } from '../messages/messages-include.component';
 
 import arrowReturnLeft from '@iconify/icons-bi/arrow-return-left';
 import clipboardCheck from '@iconify/icons-fa6-solid/clipboard-check';
@@ -10,6 +17,14 @@ import share from '@iconify/icons-bi/share';
   selector: 'app-attacks-history',
   templateUrl: './attacks-history.sub-component.html',
   styleUrls: ['./attacks.component.css'],
+  imports: [
+    AttacksIncludeComponent,
+    ClipboardModule,
+    CommonModule,
+    IcIconComponent,
+    MessagesIncludeComponent,
+    TranslateModule,
+  ],
 })
 export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   public currentMsg: Message;

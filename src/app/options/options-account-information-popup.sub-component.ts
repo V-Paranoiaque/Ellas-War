@@ -1,12 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-options-account-information-popup',
   templateUrl: './options-account-information-popup.sub-component.html',
+  imports: [ClipboardModule, CommonModule, FormsModule, TranslateModule],
 })
 export class OptionsAccountInformationPopupSubComponent
   implements OnInit, OnDestroy

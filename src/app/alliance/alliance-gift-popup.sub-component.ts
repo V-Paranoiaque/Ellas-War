@@ -1,11 +1,14 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 import { UserComponent as User } from '../../services/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-alliance-gift-popup',
   templateUrl: './alliance-gift-popup.sub-component.html',
+  imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
   @Input() info!: {

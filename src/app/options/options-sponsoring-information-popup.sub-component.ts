@@ -1,9 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { ClipboardModule } from 'ngx-clipboard';
+import { FormsModule } from '@angular/forms';
+
+import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { IcIconComponent } from 'src/services/ic-icon.service';
+import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import clipboardCheck from '@iconify/icons-fa6-solid/clipboard-check';
 import link from '@iconify/icons-fa6-solid/link';
@@ -11,6 +19,16 @@ import link from '@iconify/icons-fa6-solid/link';
 @Component({
   selector: 'app-options-sponsoring-information-popup',
   templateUrl: './options-sponsoring-information-popup.sub-component.html',
+  imports: [
+    ClipboardModule,
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    IcIconComponent,
+    RouterModule,
+    TranslateModule,
+    UserProfileSubComponent,
+  ],
 })
 export class OptionsSponsoringInformationPopupSubComponent
   implements OnInit, OnDestroy
