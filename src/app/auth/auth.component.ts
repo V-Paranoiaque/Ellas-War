@@ -29,7 +29,7 @@ export class AuthComponent implements OnInit {
   googleIcon = googleIcon;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     private route: ActivatedRoute,
     public user: User
   ) {

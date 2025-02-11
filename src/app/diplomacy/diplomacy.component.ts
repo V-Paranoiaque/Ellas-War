@@ -75,9 +75,9 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   users = users;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private http: HttpClient,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

@@ -147,7 +147,7 @@ export class CityComponent implements OnInit, OnDestroy {
   environment = environment;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService,
     private titleService: Title

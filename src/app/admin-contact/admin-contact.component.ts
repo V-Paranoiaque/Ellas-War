@@ -46,11 +46,11 @@ export class AdminContactComponent implements OnInit, OnDestroy {
   angellistIcon = angellistIcon;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private route: ActivatedRoute,
     public user: User,
     public translate: TranslateService,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.adminContactPage = 1;
     this.adminContactList = [];

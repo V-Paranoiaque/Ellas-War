@@ -63,9 +63,9 @@ export class OptionsComponent implements OnInit, OnDestroy {
   redo = redo;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
-    private router: Router,
+    private readonly router: Router,
     public translate: TranslateService
   ) {
     this.user.checkPermissions([1, 2, 3, 4, 5]);

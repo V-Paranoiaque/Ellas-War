@@ -75,7 +75,7 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
   EwIcon = EwIconSubComponent;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

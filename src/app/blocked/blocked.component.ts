@@ -12,8 +12,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class BlockedComponent implements OnInit, OnDestroy {
   constructor(
     public user: User,
-    private socket: Socket,
-    private router: Router
+    private readonly socket: Socket,
+    private readonly router: Router
   ) {}
 
   ngOnInit() {

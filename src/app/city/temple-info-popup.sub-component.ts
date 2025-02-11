@@ -48,7 +48,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

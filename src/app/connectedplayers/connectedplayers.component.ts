@@ -39,7 +39,7 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   constructor(
     public user: User,
     private http: HttpClient,
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService,
     private titleService: Title
   ) {

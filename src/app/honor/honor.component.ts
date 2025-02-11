@@ -58,9 +58,9 @@ export class HonorComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private route: ActivatedRoute,
-    private socket: Socket,
+    private readonly socket: Socket,
     private http: HttpClient,
     public user: User,
     public translate: TranslateService,

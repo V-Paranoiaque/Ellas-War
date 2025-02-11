@@ -55,9 +55,9 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router,
+    private readonly router: Router,
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService,
     private titleService: Title
   ) {

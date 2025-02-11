@@ -21,8 +21,8 @@ export class OptionsAccountInformationPopupSubComponent
   public location: string;
 
   constructor(
-    private router: Router,
-    private socket: Socket,
+    private readonly router: Router,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

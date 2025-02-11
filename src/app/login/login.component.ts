@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private titleService: Title,
     public translate: TranslateService,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     private formBuilder: FormBuilder
   ) {

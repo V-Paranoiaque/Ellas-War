@@ -13,7 +13,7 @@ export class DivineBonusInfoPopupSubComponent {
   @Input() divineBonus!: { bonus_id: number; nb: number; error: number };
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService
   ) {}
 

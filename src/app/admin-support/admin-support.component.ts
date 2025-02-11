@@ -52,9 +52,9 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   eye = eye;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private route: ActivatedRoute,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

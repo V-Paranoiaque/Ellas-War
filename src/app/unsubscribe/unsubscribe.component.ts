@@ -21,7 +21,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
 
   constructor(
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     private http: HttpClient,
     private route: ActivatedRoute
   ) {

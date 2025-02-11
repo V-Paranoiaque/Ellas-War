@@ -27,7 +27,7 @@ export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
 
   Tools = Tools;
 
-  constructor(private socket: Socket) {}
+  constructor(private readonly socket: Socket) {}
 
   ngOnInit() {
     this.socket.on('divineBonus', (data: { nb: number; list: object[] }) => {

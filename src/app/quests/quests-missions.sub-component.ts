@@ -37,7 +37,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     private http: HttpClient,
     public translate: TranslateService

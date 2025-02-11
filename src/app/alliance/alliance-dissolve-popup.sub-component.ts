@@ -11,8 +11,8 @@ import { UserComponent as User } from '../../services/user.service';
 })
 export class AllianceDissolvePopupSubComponent {
   constructor(
-    private router: Router,
-    private socket: Socket,
+    private readonly router: Router,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

@@ -62,9 +62,9 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
   constructor(
     public http: HttpClient,
     private route: ActivatedRoute,
-    private router: Router,
+    private readonly router: Router,
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     private titleService: Title,
     public translate: TranslateService
   ) {

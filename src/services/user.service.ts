@@ -27,9 +27,9 @@ export class UserComponent {
   newMsg: number;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private oauthService: OAuthService,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.init = 0;
     this.info = {

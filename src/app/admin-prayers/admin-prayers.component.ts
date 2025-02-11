@@ -45,7 +45,7 @@ export class AdminPrayersComponent implements OnInit, OnDestroy {
   plusIcon = plusIcon;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

@@ -23,7 +23,7 @@ export class AdminPimageComponent implements OnInit, OnDestroy {
   }[] = [];
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

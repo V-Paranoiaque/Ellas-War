@@ -29,7 +29,7 @@ export class AdminMessagesComponent implements OnInit, OnDestroy {
 
   constructor(
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService
   ) {
     this.msgError = 0;

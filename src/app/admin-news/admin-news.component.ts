@@ -48,9 +48,9 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   trash2Icon = trash2Icon;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private route: ActivatedRoute,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

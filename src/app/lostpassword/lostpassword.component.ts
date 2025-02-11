@@ -36,7 +36,7 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
     private titleService: Title,
     public user: User,
     public translate: TranslateService,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.lostpasswordError = 0;
     this.lostvalue = '';

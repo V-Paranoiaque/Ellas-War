@@ -139,7 +139,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public translate: TranslateService,
     private titleService: Title,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.subPlayer = new Subscription();
     this.subTitle = new Subscription();

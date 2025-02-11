@@ -56,7 +56,7 @@ export class SponsorshipComponent implements OnInit, OnDestroy {
   coinBagSolid = coinBagSolid;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     private titleService: Title,
     public translate: TranslateService
   ) {

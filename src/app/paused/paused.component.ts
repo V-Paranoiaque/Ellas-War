@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PausedComponent implements OnInit, OnDestroy {
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

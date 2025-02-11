@@ -13,8 +13,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 })
 export class Page404Component implements OnInit {
   constructor(
-    private router: Router,
-    private socket: Socket
+    private readonly router: Router,
+    private readonly socket: Socket
   ) {}
 
   ngOnInit() {

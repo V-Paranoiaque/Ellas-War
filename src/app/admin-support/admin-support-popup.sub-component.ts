@@ -15,7 +15,7 @@ export class AdminSupportPopupSubComponent {
   msgTitle = '';
   msgText = '';
 
-  constructor(private socket: Socket) {}
+  constructor(private readonly socket: Socket) {}
 
   send() {
     this.msgTitle = this.msgTitle.trim();

@@ -22,7 +22,7 @@ export class MintsComponent implements OnInit, OnDestroy {
   public list: number[] = [];
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

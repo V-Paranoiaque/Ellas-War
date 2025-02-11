@@ -54,10 +54,10 @@ export class SupportComponent implements OnInit, OnDestroy {
   eye = eye;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     public user: User,
     private route: ActivatedRoute,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.answerMsg = '';
     this.contactList = [];

@@ -72,12 +72,12 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   googleIcon = googleIcon;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     private formBuilder: FormBuilder,
     private http: HttpClient,
     public translate: TranslateService,
     public user: User,
-    private router: Router,
+    private readonly router: Router,
     private titleService: Title
   ) {
     this.newsList = [];

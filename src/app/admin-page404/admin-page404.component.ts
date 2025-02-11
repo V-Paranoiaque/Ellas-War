@@ -22,7 +22,7 @@ export class AdminPage404Component implements OnInit, OnDestroy {
   public pageList: { url: string; nb: number }[];
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

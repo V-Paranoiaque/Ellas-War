@@ -34,9 +34,9 @@ export class AppComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
-    private router: Router,
+    private readonly router: Router,
     public translate: TranslateService,
     public sanitizer: DomSanitizer,
     private oauthService: OAuthService,
@@ -49,6 +49,19 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cssUrl = this.setUrl(this.setStyle());
     this.cssPlatform = this.setUrl(this.cssBase + 'platform.css');
 
+    this.oauthInit();
+
+    this.sub = this.socket.onChange.subscribe({
+      next: (event: { action: string; username: string }) => {
+        if (event.action == 'appReload') {
+          this.ngOnDestroy();
+          this.ngOnInit();
+        }
+      },
+    });
+  }
+
+  oauthInit() {
     const authConfig: AuthConfig = {
       issuer: 'https://accounts.google.com',
       redirectUri: window.location.origin + '/auth/google',
@@ -59,15 +72,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.oauthService.configure(authConfig);
     void this.oauthService.loadDiscoveryDocumentAndTryLogin();
-
-    this.sub = this.socket.onChange.subscribe({
-      next: (event: { action: string; username: string }) => {
-        if (event.action == 'appReload') {
-          this.ngOnDestroy();
-          this.ngOnInit();
-        }
-      },
-    });
   }
 
   ngOnInit() {

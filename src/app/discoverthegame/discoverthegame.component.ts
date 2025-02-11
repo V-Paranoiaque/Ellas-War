@@ -34,7 +34,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private readonly router: Router,
     private titleService: Title,
     public translate: TranslateService
   ) {

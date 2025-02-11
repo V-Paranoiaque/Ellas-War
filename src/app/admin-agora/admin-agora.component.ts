@@ -55,7 +55,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
 
   constructor(
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService
   ) {
     this.list = [];

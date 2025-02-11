@@ -93,7 +93,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   swordIcon = swordIcon;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

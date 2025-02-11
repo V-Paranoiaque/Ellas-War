@@ -13,7 +13,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   styleUrls: ['../admin/admin.component.css'],
   imports: [
     AdminLeftMenuSubComponent,
-
     FormsModule,
     MainPrivateBottomMenuSubComponent,
     TranslateModule,
@@ -36,7 +35,7 @@ export class AdminActionsComponent implements OnInit, OnDestroy {
   public adminStoreroom = { ...this.adminAgora };
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

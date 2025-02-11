@@ -39,7 +39,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   volumeOff = volumeOff;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

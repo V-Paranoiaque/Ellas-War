@@ -27,7 +27,7 @@ export class PermalinkComponent implements OnInit, OnDestroy {
   constructor(
     private titleService: Title,
     public translate: TranslateService,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     private route: ActivatedRoute
   ) {

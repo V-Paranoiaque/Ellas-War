@@ -34,7 +34,7 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
   public listDisplay: number[];
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

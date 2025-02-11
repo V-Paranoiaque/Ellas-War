@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   constructor(
     protected http: HttpClient,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

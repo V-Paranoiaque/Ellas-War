@@ -57,7 +57,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
   constructor(
     public http: HttpClient,
     private route: ActivatedRoute,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     private titleService: Title,
     private metaService: Meta,

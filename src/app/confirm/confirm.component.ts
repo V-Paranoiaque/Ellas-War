@@ -27,7 +27,7 @@ export class ConfirmComponent implements OnInit, OnDestroy {
     public user: User,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.confirmResult = 0;
     this.sub = new Subscription();

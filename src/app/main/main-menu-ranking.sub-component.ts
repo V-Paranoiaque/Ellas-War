@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class MainMenuRankingSubComponent {
   public localPage: string;
   constructor(
-    private router: Router,
+    private readonly router: Router,
     public user: User
   ) {
     this.localPage = this.router.url.split('/')[1];

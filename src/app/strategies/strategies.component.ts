@@ -162,7 +162,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   times = times;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     private route: ActivatedRoute,
     public user: User,
     public translate: TranslateService

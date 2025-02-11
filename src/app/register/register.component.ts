@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     protected http: HttpClient,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     private route: ActivatedRoute,
     public translate: TranslateService,

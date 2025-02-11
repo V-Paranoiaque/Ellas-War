@@ -14,7 +14,7 @@ export class DiplomacyAllianceCreatePopupSubComponent {
     description: string;
   };
 
-  constructor(private socket: Socket) {
+  constructor(private readonly socket: Socket) {
     this.alliance = {
       name: '',
       description: '',

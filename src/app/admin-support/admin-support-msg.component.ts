@@ -46,9 +46,9 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   angellistIcon = angellistIcon;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     private route: ActivatedRoute,
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User
   ) {
     this.msg = 0;

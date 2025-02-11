@@ -37,7 +37,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     public translate: TranslateService,
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     private http: HttpClient
   ) {
     this.newsList = [];

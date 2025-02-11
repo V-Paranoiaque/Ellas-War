@@ -46,7 +46,7 @@ export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   treasureChest = treasureChest;
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

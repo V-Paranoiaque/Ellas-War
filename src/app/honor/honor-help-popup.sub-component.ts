@@ -22,7 +22,7 @@ export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private socket: Socket
+    private readonly socket: Socket
   ) {
     this.sub = new Subscription();
   }

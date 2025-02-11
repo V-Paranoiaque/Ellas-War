@@ -29,9 +29,9 @@ export class ContactusComponent implements OnInit, OnDestroy {
   private sub: Subscription;
 
   constructor(
-    private router: Router,
+    private readonly router: Router,
     public user: User,
-    private socket: Socket,
+    private readonly socket: Socket,
     public translate: TranslateService,
     private titleService: Title
   ) {

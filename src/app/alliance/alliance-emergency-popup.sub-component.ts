@@ -10,7 +10,7 @@ import { UserComponent as User } from '../../services/user.service';
 })
 export class AllianceEmergencyPopupSubComponent {
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}

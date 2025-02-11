@@ -22,7 +22,7 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
   public myAllianceProfile!: { stock_drachma: number };
 
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {

@@ -19,7 +19,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 })
 export class GetfavorsComponent implements OnInit {
   constructor(
-    private socket: Socket,
+    private readonly socket: Socket,
     public user: User,
     public translate: TranslateService
   ) {}
