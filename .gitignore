@@ -74,3 +74,4 @@ sonar-project.properties
 
 # Generated images
 src/**/*.webp
+src/**/*.jpg
