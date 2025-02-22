@@ -248,7 +248,7 @@ export class EwIconSubComponent implements OnDestroy {
   }
 
   constructor(
-    private element: ElementRef,
+    private readonly element: ElementRef,
     public translate: TranslateService
   ) {
     this.sub = new Subscription();

@@ -18,7 +18,7 @@ export class IcIconComponent implements OnChanges {
   iconHtml: SafeHtml = '';
   viewbox = '';
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private readonly sanitizer: DomSanitizer) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.icon && changes['icon']) {
