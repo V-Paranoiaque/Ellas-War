@@ -42,7 +42,6 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   public localevars = {
     facebook: '',
     store: {
-      amazon: '',
       google: '',
       microsoft: '',
       pling: '',

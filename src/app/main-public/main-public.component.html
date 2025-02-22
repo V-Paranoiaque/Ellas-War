@@ -1,143 +1,81 @@
 <app-main-left></app-main-left>
 
 @if (environment.mobile === 0 && localevars.facebook) {
-  <div
-    id="social-media-frame"
-    role="region"
-    class="d-none d-md-flex"
-    attr.aria-label="{{ 'Follow us on our Facebook Page' | translate }}">
-    <div class="column"></div>
-    <div class="social">
-      <a
-        href="{{ localevars.facebook }}"
-        target="_blank"
-        rel="external nofollow noopener">
-        <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
-        {{ 'Follow us' | translate }}
-      </a>
-      <br />
-      <a
-        href="{{ environment.discord }}"
-        target="_blank"
-        rel="external nofollow noopener">
-        <app-ic-icon [icon]="discordIcon" class="fs-6"></app-ic-icon>
-        {{ 'Join us' | translate }}
-      </a>
-    </div>
+<div id="social-media-frame" role="region" class="d-none d-md-flex"
+  attr.aria-label="{{ 'Follow us on our Facebook Page' | translate }}">
+  <div class="column"></div>
+  <div class="social">
+    <a href="{{ localevars.facebook }}" target="_blank" rel="external nofollow noopener">
+      <app-ic-icon [icon]="facebookIcon" class="fs-6"></app-ic-icon>
+      {{ 'Follow us' | translate }}
+    </a>
+    <br />
+    <a href="{{ environment.discord }}" target="_blank" rel="external nofollow noopener">
+      <app-ic-icon [icon]="discordIcon" class="fs-6"></app-ic-icon>
+      {{ 'Join us' | translate }}
+    </a>
   </div>
+</div>
 }
 
 @if (environment.mobile === 0) {
-  <div
-    id="app-store-frame"
-    class="d-none d-md-block"
-    role="region"
-    attr.aria-label="{{ 'Links to the App stores' | translate }}">
-    <div class="column"></div>
-    <div class="apps">
-      @if (localevars.store.amazon) {
-        <a
-          target="_blank"
-          rel="external nofollow noopener"
-          href="{{ localevars.store.amazon }}"
-          title="{{ 'Download on Amazon Appstore' | translate }}">
-          <img
-            [src]="
-              'assets/i18n/' +
-              translate.currentLang +
-              '/amazon-appstore-badge.png'
-            "
-            alt="{{ 'Download on Amazon Appstore' | translate }}" />
-        </a>
-      }
-      @if (localevars.store.microsoft) {
-        <a
-          target="_blank"
-          rel="external nofollow noopener"
-          href="{{ localevars.store.microsoft }}"
-          title="{{ 'Download on the Microsoft Store' | translate }}">
-          <img
-            [src]="
+<div id="app-store-frame" class="d-none d-md-block" role="region"
+  attr.aria-label="{{ 'Links to the App stores' | translate }}">
+  <div class="column"></div>
+  <div class="apps">
+    @if (localevars.store.microsoft) {
+    <a target="_blank" rel="external nofollow noopener" href="{{ localevars.store.microsoft }}"
+      title="{{ 'Download on the Microsoft Store' | translate }}">
+      <img [src]="
               'assets/i18n/' +
               translate.currentLang +
               '/microsoft-appstore-badge.png'
-            "
-            alt="{{ 'Download on the Microsoft Store' | translate }}" />
-        </a>
-      }
-      @if (localevars.store.google) {
-        <a
-          target="_blank"
-          rel="external nofollow noopener"
-          href="{{ localevars.store.google }}"
-          title="{{ 'Download on Google Play' | translate }}">
-          <img
-            [src]="
+            " alt="{{ 'Download on the Microsoft Store' | translate }}" />
+    </a>
+    }
+    @if (localevars.store.google) {
+    <a target="_blank" rel="external nofollow noopener" href="{{ localevars.store.google }}"
+      title="{{ 'Download on Google Play' | translate }}">
+      <img [src]="
               'assets/i18n/' + translate.currentLang + '/google-play-badge.png'
-            "
-            alt="{{ 'Download on Google Play' | translate }}" />
-        </a>
-      }
-      @if (localevars.store.snap) {
-        <a
-          target="_blank"
-          rel="external nofollow noopener"
-          href="{{ localevars.store.snap }}"
-          title="{{ 'Get it from the Snap Store' | translate }}">
-          <img
-            [src]="
+            " alt="{{ 'Download on Google Play' | translate }}" />
+    </a>
+    }
+    @if (localevars.store.snap) {
+    <a target="_blank" rel="external nofollow noopener" href="{{ localevars.store.snap }}"
+      title="{{ 'Get it from the Snap Store' | translate }}">
+      <img [src]="
               'assets/i18n/' + translate.currentLang + '/snap-store-black.svg'
-            "
-            alt="{{ 'Get it from the Snap Store' | translate }}" />
-        </a>
-      }
-      @if (localevars.store.pling) {
-        <a
-          target="_blank"
-          rel="external nofollow noopener"
-          href="{{ localevars.store.pling }}"
-          title="{{ 'Download on Pling' | translate }}">
-          <img
-            [src]="'assets/ban/pling.png'"
-            alt="{{ 'Download on Pling' | translate }}" />
-        </a>
-      }
-    </div>
+            " alt="{{ 'Get it from the Snap Store' | translate }}" />
+    </a>
+    }
+    @if (localevars.store.pling) {
+    <a target="_blank" rel="external nofollow noopener" href="{{ localevars.store.pling }}"
+      title="{{ 'Download on Pling' | translate }}">
+      <img [src]="'assets/ban/pling.png'" alt="{{ 'Download on Pling' | translate }}" />
+    </a>
+    }
   </div>
+</div>
 }
 
 <main>
   <div id="home-home" class="pb-5">
     <div class="row mx-0">
-      <div
-        class="d-flex"
-        role="main"
-        attr.aria-label="{{ 'Main content of the page' | translate }}">
+      <div class="d-flex" role="main" attr.aria-label="{{ 'Main content of the page' | translate }}">
         <div class="column left-column flex-grow-1"></div>
         <div class="card pt-4">
           <div class="card-body d-flex p-0">
-            <h1
-              class="btn flex-grow-1"
-              [ngClass]="{
+            <h1 class="btn flex-grow-1" [ngClass]="{
                 'btn-success': menu === 0,
                 'btn-transparent fw-bold': menu === 1,
-              }"
-              (click)="setMenu(1)"
-              (keyup.enter)="setMenu(1)"
-              tabindex="0"
-              translate>
+              }" (click)="setMenu(1)" (keyup.enter)="setMenu(1)" tabindex="0" translate>
               Connect
             </h1>
-            <h1
-              class="btn flex-grow-1"
-              [ngClass]="{
+            <h1 class="btn flex-grow-1" [ngClass]="{
                 'btn-transparent fw-bold': menu === 0,
                 'btn-success': menu === 1,
-              }"
-              (click)="setMenu(0)"
-              (keyup.enter)="setMenu(0)"
-              tabindex="0"
-              translate>
+              }" (click)="setMenu(0)" (keyup.enter)="setMenu(0)" tabindex="0" translate>
               Register
             </h1>
           </div>
@@ -152,224 +90,120 @@
             </div>
           </div>
           @if (menu === 0) {
-            <div class="card-body text-center p-4">
-              @if (rerror > 0) {
-                <div>
-                  <div class="text-danger text-center fw-bold">
-                    @switch (rerror) {
-                      @case (1) {
-                        <div translate>Please enter your username</div>
-                      }
-                      @case (2) {
-                        <div translate>Please enter your password</div>
-                      }
-                      @case (3) {
-                        <div translate>Enter your email</div>
-                      }
-                      @case (4) {
-                        <div translate>
-                          Your username must be at least 6 characters.
-                        </div>
-                      }
-                      @case (5) {
-                        <div translate>
-                          Your password must be at least 8 characters.
-                        </div>
-                      }
-                      @case (6) {
-                        <div translate>Enter your email</div>
-                      }
-                      @case (7) {
-                        <div translate>This username is already used</div>
-                      }
-                      @case (8) {
-                        <div translate>This email is already used</div>
-                      }
-                    }
-                  </div>
-                  <br />
+          <div class="card-body text-center p-4">
+            @if (rerror > 0) {
+            <div>
+              <div class="text-danger text-center fw-bold">
+                @switch (rerror) {
+                @case (1) {
+                <div translate>Please enter your username</div>
+                }
+                @case (2) {
+                <div translate>Please enter your password</div>
+                }
+                @case (3) {
+                <div translate>Enter your email</div>
+                }
+                @case (4) {
+                <div translate>
+                  Your username must be at least 6 characters.
                 </div>
-              }
-              <form
-                method="POST"
-                action="/register"
-                [formGroup]="registerForm"
-                (ngSubmit)="onSubmit(registerForm.value)">
-                <fieldset>
-                  <legend class="visually-hidden" translate>
-                    Register on the game
-                  </legend>
-                  <label class="fw-bold" for="server-re" translate
-                    >Server</label
-                  >
-                  <select
-                    class="mb-2 form-select"
-                    name="server"
-                    id="server-re"
-                    formControlName="server"
-                    attr.aria-label="{{
-                      'Select the server you want to play on' | translate
-                    }}"
-                    (change)="selectServerRegister()">
-                    <option value="fr" translate>French</option>
-                    <option value="en" translate>English</option>
-                    <option value="dev" translate>
-                      Development (International)
-                    </option>
-                  </select>
-                  <label
-                    id="username-re-label"
-                    class="fw-bold"
-                    for="username-re"
-                    translate
-                    >Username</label
-                  >
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="{{ 'Username' | translate }}"
-                    class="mb-2 form-control"
-                    formControlName="username"
-                    aria-labelledby="username-re-label"
-                    id="username-re"
-                    required />
-                  <label
-                    id="email-re-label"
-                    class="fw-bold"
-                    for="email-re"
-                    translate
-                    >Email</label
-                  >
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="{{ 'Email address' | translate }}"
-                    class="mb-2 form-control"
-                    formControlName="email"
-                    aria-labelledby="email-re-label"
-                    id="email-re"
-                    required />
-                  <label
-                    id="password-re-label"
-                    class="fw-bold"
-                    for="password-re"
-                    translate
-                    >Password</label
-                  >
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="{{ 'Password' | translate }}"
-                    class="mb-4 form-control"
-                    formControlName="password"
-                    aria-labelledby="password-re-label"
-                    id="password-re"
-                    required />
-                  <button class="btn btn-success mb-2" type="submit" translate>
-                    Register
-                  </button>
-                </fieldset>
-              </form>
+                }
+                @case (5) {
+                <div translate>
+                  Your password must be at least 8 characters.
+                </div>
+                }
+                @case (6) {
+                <div translate>Enter your email</div>
+                }
+                @case (7) {
+                <div translate>This username is already used</div>
+                }
+                @case (8) {
+                <div translate>This email is already used</div>
+                }
+                }
+              </div>
+              <br />
             </div>
+            }
+            <form method="POST" action="/register" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+              <fieldset>
+                <legend class="visually-hidden" translate>
+                  Register on the game
+                </legend>
+                <label class="fw-bold" for="server-re" translate>Server</label>
+                <select class="mb-2 form-select" name="server" id="server-re" formControlName="server" attr.aria-label="{{
+                      'Select the server you want to play on' | translate
+                    }}" (change)="selectServerRegister()">
+                  <option value="fr" translate>French</option>
+                  <option value="en" translate>English</option>
+                  <option value="dev" translate>
+                    Development (International)
+                  </option>
+                </select>
+                <label id="username-re-label" class="fw-bold" for="username-re" translate>Username</label>
+                <input type="text" name="username" placeholder="{{ 'Username' | translate }}" class="mb-2 form-control"
+                  formControlName="username" aria-labelledby="username-re-label" id="username-re" required />
+                <label id="email-re-label" class="fw-bold" for="email-re" translate>Email</label>
+                <input type="email" name="email" placeholder="{{ 'Email address' | translate }}"
+                  class="mb-2 form-control" formControlName="email" aria-labelledby="email-re-label" id="email-re"
+                  required />
+                <label id="password-re-label" class="fw-bold" for="password-re" translate>Password</label>
+                <input type="password" name="password" placeholder="{{ 'Password' | translate }}"
+                  class="mb-4 form-control" formControlName="password" aria-labelledby="password-re-label"
+                  id="password-re" required />
+                <button class="btn btn-success mb-2" type="submit" translate>
+                  Register
+                </button>
+              </fieldset>
+            </form>
+          </div>
           }
           @if (menu === 1) {
-            <div class="card-body text-center p-4">
-              <form
-                method="POST"
-                action="/login"
-                [formGroup]="loginForm"
-                (ngSubmit)="onSubmitConnect(loginForm.value)">
-                <fieldset>
-                  <legend class="visually-hidden" translate>
-                    Login to the game
-                  </legend>
-                  <label class="fw-bold" for="server-re" translate
-                    >Server</label
-                  >
-                  <select
-                    class="mb-2 form-select"
-                    name="server"
-                    id="server-re"
-                    formControlName="server"
-                    attr.aria-label="{{
+          <div class="card-body text-center p-4">
+            <form method="POST" action="/login" [formGroup]="loginForm" (ngSubmit)="onSubmitConnect(loginForm.value)">
+              <fieldset>
+                <legend class="visually-hidden" translate>
+                  Login to the game
+                </legend>
+                <label class="fw-bold" for="server-re" translate>Server</label>
+                <select class="mb-2 form-select" name="server" id="server-re" formControlName="server" attr.aria-label="{{
                       'Select the server you want to play on' | translate
-                    }}"
-                    (change)="selectServerLogin()">
-                    <option value="fr" translate>French</option>
-                    <option value="en" translate>English</option>
-                    <option value="dev" translate>
-                      Development (International)
-                    </option>
-                  </select>
-                  <label
-                    id="username-label"
-                    class="fw-bold"
-                    for="username"
-                    translate
-                    >Username</label
-                  >
-                  <input
-                    class="form-control mb-2"
-                    type="text"
-                    id="username"
-                    placeholder="{{ 'Login' | translate }}"
-                    name="username"
-                    formControlName="username"
-                    aria-labelledby="username-label"
-                    required="required" />
-                  <label
-                    id="password-label"
-                    class="fw-bold"
-                    for="password"
-                    translate
-                    >Password</label
-                  >
-                  <input
-                    class="form-control mb-4"
-                    type="password"
-                    id="password"
-                    placeholder="{{ 'Password' | translate }}"
-                    name="password"
-                    formControlName="password"
-                    aria-labelledby="password-label"
-                    required="required" />
-                  <div class="text-center mb-2">
-                    <input
-                      type="hidden"
-                      formControlName="mobile"
-                      name="mobile" />
-                    <button
-                      class="btn btn-success btn-primary mb-2"
-                      type="submit"
-                      translate>
-                      Connect
-                    </button>
-                  </div>
-                </fieldset>
-                <div class="text-center">
-                  <a
-                    [routerLink]="['/lostpassword']"
-                    title="{{ 'Request a new password' | translate }}"
-                    attr.aria-label="{{ 'Forgot your password?' | translate }}"
-                    translate
-                    >Forgot your password?</a
-                  >
+                    }}" (change)="selectServerLogin()">
+                  <option value="fr" translate>French</option>
+                  <option value="en" translate>English</option>
+                  <option value="dev" translate>
+                    Development (International)
+                  </option>
+                </select>
+                <label id="username-label" class="fw-bold" for="username" translate>Username</label>
+                <input class="form-control mb-2" type="text" id="username" placeholder="{{ 'Login' | translate }}"
+                  name="username" formControlName="username" aria-labelledby="username-label" required="required" />
+                <label id="password-label" class="fw-bold" for="password" translate>Password</label>
+                <input class="form-control mb-4" type="password" id="password"
+                  placeholder="{{ 'Password' | translate }}" name="password" formControlName="password"
+                  aria-labelledby="password-label" required="required" />
+                <div class="text-center mb-2">
+                  <input type="hidden" formControlName="mobile" name="mobile" />
+                  <button class="btn btn-success btn-primary mb-2" type="submit" translate>
+                    Connect
+                  </button>
                 </div>
-              </form>
-            </div>
+              </fieldset>
+              <div class="text-center">
+                <a [routerLink]="['/lostpassword']" title="{{ 'Request a new password' | translate }}"
+                  attr.aria-label="{{ 'Forgot your password?' | translate }}" translate>Forgot your password?</a>
+              </div>
+            </form>
+          </div>
           }
-          <div
-            class="row"
-            role="navigation"
-            attr.aria-label="{{ 'Discover the Game' | translate }}">
+          <div class="row" role="navigation" attr.aria-label="{{ 'Discover the Game' | translate }}">
             <div class="card mt-0">
               <div class="card-body d-flex p-0">
-                <a
-                  class="btn btn-primary btn-lg flex-fill"
-                  [routerLink]="['/discoverthegame']"
-                  translate
-                  >Discover the Game</a
-                >
+                <a class="btn btn-primary btn-lg flex-fill" [routerLink]="['/discoverthegame']" translate>Discover the
+                  Game</a>
               </div>
             </div>
           </div>
@@ -380,30 +214,12 @@
   </div>
 
   <div class="py-4 text-center d-flex justify-content-center">
-    <a [routerLink]="['/news']" class="frame-name fs-4 p-2 px-4 mx-2" translate
-      >News</a
-    >
-    <a
-      [routerLink]="['/honor']"
-      class="frame-name fs-4 p-2 px-4 mx-2 d-none d-sm-block"
-      translate
-      >Rankings</a
-    >
-    <a
-      [routerLink]="['/fewwords']"
-      class="frame-name fs-4 p-2 px-4 mx-2 d-none d-lg-block"
-      translate
-      >Few words</a
-    >
-    <a [routerLink]="['/help']" class="frame-name fs-4 p-2 px-4 mx-2" translate
-      >Help</a
-    >
-    <a
-      [routerLink]="['/confidentiality']"
-      class="frame-name fs-4 p-2 px-4 mx-2 d-none d-md-block"
-      translate
-      >Privacy policy home</a
-    >
+    <a [routerLink]="['/news']" class="frame-name fs-4 p-2 px-4 mx-2" translate>News</a>
+    <a [routerLink]="['/honor']" class="frame-name fs-4 p-2 px-4 mx-2 d-none d-sm-block" translate>Rankings</a>
+    <a [routerLink]="['/fewwords']" class="frame-name fs-4 p-2 px-4 mx-2 d-none d-lg-block" translate>Few words</a>
+    <a [routerLink]="['/help']" class="frame-name fs-4 p-2 px-4 mx-2" translate>Help</a>
+    <a [routerLink]="['/confidentiality']" class="frame-name fs-4 p-2 px-4 mx-2 d-none d-md-block" translate>Privacy
+      policy home</a>
   </div>
 
   <div id="home-discover" class="py-4 text-center">
@@ -413,15 +229,11 @@
           <div class="column left-column flex-grow-1"></div>
           <div class="card">
             <div class="card-body p-3">
-              <div
-                class="mb-4 text-justify"
-                [innerHTML]="
+              <div class="mb-4 text-justify" [innerHTML]="
                   'Explore Ancient Greece on Ellas-War. Start the development of'
                     | translate
                 "></div>
-              <div
-                class="text-justify"
-                [innerHTML]="
+              <div class="text-justify" [innerHTML]="
                   'Do stocks through your purse or spend any to improve'
                     | translate
                 "></div>
@@ -432,9 +244,7 @@
                 <div class="row">
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="bonus-food"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="bonus-food" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       12 Resources
@@ -442,9 +252,7 @@
                   </div>
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="watchtower"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="watchtower" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       20 Buildings
@@ -452,9 +260,7 @@
                   </div>
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="hoplite"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="hoplite" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       27 Units
@@ -462,9 +268,7 @@
                   </div>
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="olympus"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="olympus" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       11 Temples
@@ -472,9 +276,7 @@
                   </div>
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="divine-power"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="divine-power" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       25 Divine Powers
@@ -482,9 +284,7 @@
                   </div>
                   <div class="col-12 col-lg-4 col-md-6 mt-4 d-flex">
                     <div>
-                      <app-ew-icon
-                        name="attacks"
-                        class="medium-resource me-1 float-start"></app-ew-icon>
+                      <app-ew-icon name="attacks" class="medium-resource me-1 float-start"></app-ew-icon>
                     </div>
                     <div class="d-flex align-items-center" translate>
                       More than 100 quests
@@ -504,92 +304,62 @@
     <div class="container mb-5">
       <div class="row mt-2">
         <div class="col-4 d-flex flex-column">
-          <div
-            class="btn design-background fs-5 p-2 text-center d-md-none"
-            [ngClass]="{
+          <div class="btn design-background fs-5 p-2 text-center d-md-none" [ngClass]="{
               'btn-danger': selectedTemple === 'poseidon',
               'btn-primary': selectedTemple !== 'poseidon',
-            }"
-            (click)="selectTemple('poseidon')"
-            role="button"
-            (keyup.enter)="selectTemple('poseidon')"
-            tabindex="0"
+            }" (click)="selectTemple('poseidon')" role="button" (keyup.enter)="selectTemple('poseidon')" tabindex="0"
             translate>
             Poseidon
           </div>
           <app-ew-icon name="poseidon"></app-ew-icon>
         </div>
         <div class="col-4 d-flex flex-column">
-          <div
-            class="btn design-background fs-5 p-2 text-center d-md-none"
-            [ngClass]="{
+          <div class="btn design-background fs-5 p-2 text-center d-md-none" [ngClass]="{
               'btn-danger': selectedTemple === 'zeus',
               'btn-primary': selectedTemple !== 'zeus',
-            }"
-            (click)="selectTemple('zeus')"
-            role="button"
-            (keyup.enter)="selectTemple('zeus')"
-            tabindex="0"
+            }" (click)="selectTemple('zeus')" role="button" (keyup.enter)="selectTemple('zeus')" tabindex="0"
             translate>
             Zeus
           </div>
           <app-ew-icon name="zeus"></app-ew-icon>
         </div>
         <div class="col-4 d-flex flex-column">
-          <div
-            class="btn design-background fs-5 p-2 text-center d-md-none"
-            [ngClass]="{
+          <div class="btn design-background fs-5 p-2 text-center d-md-none" [ngClass]="{
               'btn-danger': selectedTemple === 'hades',
               'btn-primary': selectedTemple !== 'hades',
-            }"
-            (click)="selectTemple('hades')"
-            role="button"
-            (keyup.enter)="selectTemple('hades')"
-            tabindex="0"
+            }" (click)="selectTemple('hades')" role="button" (keyup.enter)="selectTemple('hades')" tabindex="0"
             translate>
             Hades
           </div>
           <app-ew-icon name="hades"></app-ew-icon>
         </div>
 
-        <div
-          class="col-12 col-md-4 d-md-flex flex-column mt-2"
-          [ngClass]="{
+        <div class="col-12 col-md-4 d-md-flex flex-column mt-2" [ngClass]="{
             'd-flex': selectedTemple === 'poseidon',
             'd-none': selectedTemple !== 'poseidon',
           }">
-          <div
-            class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"
-            translate>
+          <div class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description" translate>
             With Poseidon, your cavalry units cost 50% less and consume 50%
             fewer resources. It will also build a wall around your city to repel
             enemies. The defense of your wall increases with your field. As the
             god of the oceans will increase the production of your wells.
           </div>
         </div>
-        <div
-          class="col-12 col-md-4 d-md-flex flex-column mt-2"
-          [ngClass]="{
+        <div class="col-12 col-md-4 d-md-flex flex-column mt-2" [ngClass]="{
             'd-flex': selectedTemple === 'zeus',
             'd-none': selectedTemple !== 'zeus',
           }">
-          <div
-            class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"
-            translate>
+          <div class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description" translate>
             Zeus does lightning strike your enemies with your wishes, burning
             down buildings. It will also allow you to hire his terrible
             myrmidons.
           </div>
         </div>
-        <div
-          class="col-12 col-md-4 d-md-flex flex-column mt-2"
-          [ngClass]="{
+        <div class="col-12 col-md-4 d-md-flex flex-column mt-2" [ngClass]="{
             'd-flex': selectedTemple === 'hades',
             'd-none': selectedTemple !== 'hades',
           }">
-          <div
-            class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description"
-            translate>
+          <div class="frame-name flex-grow-1 fs-7 p-2 text-justify temple-description" translate>
             Hades will increase the production of your mines and quarries. It
             could also lend its invisibility helmet for you to visit the cities
             of your enemies. During your terrible battles, the souls of your men
@@ -602,8 +372,7 @@
           <div class="column left-column flex-grow-1"></div>
           <div class="card">
             <div class="card-body d-flex p-3">
-              <div
-                [innerHTML]="
+              <div [innerHTML]="
                   'Each temple gives a unique advantage. It is up to you to choose them according to'
                     | translate
                 "></div>
@@ -612,10 +381,7 @@
           <div class="column right-column flex-grow-1"></div>
         </div>
       </div>
-      <a
-        class="btn btn-lg btn-primary my-3"
-        [routerLink]="['/discoverthegame/temples']"
-        translate>
+      <a class="btn btn-lg btn-primary my-3" [routerLink]="['/discoverthegame/temples']" translate>
         Discover all the temples
       </a>
     </div>

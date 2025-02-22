@@ -45,7 +45,6 @@ To scan the code and export the results to SonarQube, run `npm run sonar`.
 It's possible to build the project for more platforms using Electron, for more information check the [Cordova documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/electron/index.html).
 
 ### Stores
-- [Amazon Store](https://www.amazon.fr/Virgil-Ellas-War/dp/B079CHD5BX)
 - [Google Play Store](https://play.google.com/store/apps/details?id=com.ellaswar.ewnextmobile)
 - [Microsoft Store](https://www.microsoft.com/p/ellas-war/9p12xq81l3qp)
 - [Pling Store](https://www.pling.com/p/1891540)
