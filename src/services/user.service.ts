@@ -426,7 +426,7 @@ export class UserComponent {
     if (
       datas.ress_lvl &&
       this.getPropertyNb('level') >=
-      datas.ress_lvl[ress as keyof typeof datas.ress_lvl]
+        datas.ress_lvl[ress as keyof typeof datas.ress_lvl]
     ) {
       return true;
     } else {
