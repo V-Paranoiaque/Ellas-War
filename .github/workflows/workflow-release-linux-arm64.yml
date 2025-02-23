@@ -43,6 +43,8 @@ jobs:
         run: |
           sudo snap install multipass --edge
           sudo snap install lxd
+          USER=$(whoami)
+          sudo usermod -a -G lxd $USER
           sudo apt update -qq
           sudo apt install -y -qq flatpak-builder rpm 
           sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
