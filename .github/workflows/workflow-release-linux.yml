@@ -59,27 +59,6 @@ jobs:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-          image: tonistiigi/binfmt:latest
-          platforms: arm64
-
-      - name: Install Docker
-        uses: docker-practice/actions-setup-docker@master
-      - name: Build snap arm64
-        run: |
-          docker run --rm \
-            -v $WORKSPACE:/ew \
-            -v $WORKSPACE/res/electron/build-snap-arm64.json:/ew/build.json \
-            -w /ew --platform linux/arm64/v8 \
-            --env SNAPCRAFT_STORE_CREDENTIALS=${SNAPCRAFT_STORE_CREDENTIALS} \
-            --privileged \
-            -t vparanoiaque/cordova-snap sh -c "cordova build electron --no-telemetry --release"
-        env:
-          WORKSPACE: '${{ github.workspace }}'
-          SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
-      
       - name: Publish Snap
         run: |
           FILE=$(ls platforms/electron/build/*.snap)
