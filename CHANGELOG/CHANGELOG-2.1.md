@@ -17,3 +17,6 @@
 # 2.1.4
 * Display % of victory in the SB ranking
 * Sea battle success for participating
+
+# 2.1.5
+* Remove Amazon App Store
