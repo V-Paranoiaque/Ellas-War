@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo snap install multipass --edge
-          sudp snap install lxd
+          sudo snap install lxd
           sudo apt update -qq
           sudo apt install -y -qq flatpak-builder rpm 
           sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
