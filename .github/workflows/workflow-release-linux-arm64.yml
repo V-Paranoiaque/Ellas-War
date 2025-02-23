@@ -62,6 +62,7 @@ jobs:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
           SNAPCRAFT_BUILD_ENVIRONMENT: host
+          USE_SYSTEM_FPM: true
 
       - name: Publish Snap
         run: |
