@@ -20,3 +20,6 @@
 
 # 2.1.5
 * Remove Amazon App Store
+
+# 2.1.6
+* Minor fixes
