@@ -66,7 +66,7 @@ jobs:
           platforms: arm64
 
       - name: Install Docker
-        uses: docker-practice/actions-setup-docker@master
+        uses: docker/setup-docker-action@v4
       - name: Build snap arm64
         run: |
           docker run --rm \
