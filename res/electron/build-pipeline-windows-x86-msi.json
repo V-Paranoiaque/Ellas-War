@@ -1,12 +1,18 @@
 {
   "electron": {
     "windows": {
-      "package": [ "msi" ],
-      "arch": [ "ia32" ],
+      "package": [
+        "msi"
+      ],
+      "arch": [
+        "ia32"
+      ],
       "category": "Game",
       "signing": {
         "release": {
-          "certificateFile": "sign_TemporaryKey.pfx"
+          "signtoolOptions": {
+            "certificateFile": "sign_TemporaryKey.pfx"
+          }
         }
       }
     }
