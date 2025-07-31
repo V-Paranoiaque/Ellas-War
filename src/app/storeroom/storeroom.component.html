@@ -89,7 +89,7 @@
                               parseFloat(storeroomMin.rate.toString())
                             )
                           )
-                      : this.translate.currentLang
+                      : this.translate.getCurrentLang()
                 }}
                 <app-ew-icon
                   name="drachma"
@@ -110,7 +110,7 @@
                               parseFloat(storeroomMin.you.toString())
                             )
                           )
-                      : this.translate.currentLang
+                      : this.translate.getCurrentLang()
                 }}
                 <app-ew-icon
                   name="drachma"
@@ -263,13 +263,13 @@
                             @if (trade.remaining > 0) {
                               <span>{{
                                 trade.remaining
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}</span>
                             }
                             @if (trade.remaining === 0) {
                               <span>{{
                                 trade.mremaining
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}</span>
                             }
                             &nbsp;
@@ -289,7 +289,7 @@
                                             parseFloat(trade.rate.toString())
                                           )
                                         )
-                                    : this.translate.currentLang
+                                    : this.translate.getCurrentLang()
                               }}</span>
                             }
                             @if (trade.remaining === 0) {
@@ -303,7 +303,7 @@
                                             parseFloat(trade.mrate.toString())
                                           )
                                         )
-                                    : this.translate.currentLang
+                                    : this.translate.getCurrentLang()
                               }}</span>
                             }
                           </td>
@@ -373,7 +373,7 @@
                 <span>
                   {{
                     80 + user.getPropertyNb('hermes') * 17.5
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}%
                 </span>
               }
@@ -383,7 +383,7 @@
                     80 +
                       user.getPropertyNb('hermes') * 17.5 +
                       (20 - user.getPropertyNb('hermes') * 17.5) / 2
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </span>
               }
@@ -393,7 +393,7 @@
                 <span>
                   {{
                     75 + user.getPropertyNb('hermes') * 17.5
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}%
                 </span>
               }
@@ -403,7 +403,7 @@
                     75 +
                       user.getPropertyNb('hermes') * 17.5 +
                       (25 - user.getPropertyNb('hermes') * 17.5) / 2
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </span>
               }
@@ -446,7 +446,7 @@
                       <td class="text-end">
                         {{
                           trade.remaining
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="{{ Tools.getResName(trade.resource_id) }}"
@@ -463,13 +463,13 @@
                                       parseFloat(trade.rate.toString())
                                     )
                                   )
-                              : this.translate.currentLang
+                              : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-end">
                         {{
                           trade.rate * trade.remaining
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="drachma"

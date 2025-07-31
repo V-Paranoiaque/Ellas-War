@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from 'src/services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -17,5 +17,5 @@ import { MainPublicBottomMenuSubComponent } from '../main-public/main-public-bot
   ],
 })
 export class MainRightSubComponent {
-  constructor(public user: User) {}
+  user = inject(User);
 }

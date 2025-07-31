@@ -110,7 +110,7 @@
                               +{{
                                 getRess(building.production, ress.key) *
                                   user.getPropertyNb(building.code)
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}
                               <app-ew-icon
                                 name="{{ ress.key }}"
@@ -150,7 +150,7 @@
                               -{{
                                 getRess(building.consumption, ress.key) *
                                   user.getPropertyNb(building.code)
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}
                               <app-ew-icon
                                 name="{{ ress.key }}"
@@ -175,7 +175,7 @@
                               -{{
                                 getRess(unit.consumption, ress.key) *
                                   user.getPropertyNb(unit.code)
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}
                               <app-ew-icon
                                 name="{{ ress.key }}"
@@ -194,7 +194,7 @@
                         <span>
                           -{{
                             user.getTaxes(ress.key)
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="{{ ress.key }}"
@@ -219,7 +219,7 @@
                       }
                       {{
                         user.getVarRess(ress.key) * 3600 * 24
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                       <app-ew-icon
                         name="{{ ress.key }}"

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -8,7 +8,10 @@ import { RouterModule } from '@angular/router';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
-import { QuestsIncludeComponent } from './quests-include.component';
+import { QuestsDailySubComponent } from './quests-daily.sub-component';
+import { QuestsInfoPopupSubComponent } from './quests-info-popup.sub-component';
+import { QuestsMissionsInfoPopupSubComponent } from './quests-missions-info-popup.sub-component';
+import { QuestsMissionsSubComponent } from './quests-missions.sub-component';
 
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 import treasureChest from '@iconify-icons/mdi/treasure-chest';
@@ -21,12 +24,19 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    QuestsIncludeComponent,
+    QuestsDailySubComponent,
+    QuestsInfoPopupSubComponent,
+    QuestsMissionsInfoPopupSubComponent,
+    QuestsMissionsSubComponent,
     RouterModule,
     TranslateModule,
   ],
 })
 export class QuestsComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   private myQuestList: {
     quest_id: number;
     reward_ress: string;
@@ -41,11 +51,7 @@ export class QuestsComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
   treasureChest = treasureChest;
 
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.myQuestList = [];
   }
 

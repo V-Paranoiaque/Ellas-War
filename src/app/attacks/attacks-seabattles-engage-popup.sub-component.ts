@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -23,6 +23,12 @@ export class AttacksSeabattlesEngagePopupSubComponent
   extends AttacksSeabattlesAbstractComponent
   implements OnInit, OnDestroy
 {
+  protected override http: HttpClient;
+  protected override socket: Socket;
+  override user: User;
+  override translate: TranslateService;
+  protected override modalService: BsModalService;
+
   @Input() case!: {
     case_type: number;
     can_engage: number;
@@ -52,14 +58,20 @@ export class AttacksSeabattlesEngagePopupSubComponent
   shieldShaded = shieldShaded;
   swordIcon = swordIcon;
 
-  constructor(
-    protected override http: HttpClient,
-    protected override socket: Socket,
-    public override user: User,
-    public override translate: TranslateService,
-    protected override modalService: BsModalService
-  ) {
-    super(http, socket, user, translate, modalService);
+  constructor() {
+    const http = inject(HttpClient);
+    const socket = inject(Socket);
+    const user = inject(User);
+    const translate = inject(TranslateService);
+    const modalService = inject(BsModalService);
+
+    super();
+
+    this.http = http;
+    this.socket = socket;
+    this.user = user;
+    this.translate = translate;
+    this.modalService = modalService;
   }
 
   ngOnInit() {

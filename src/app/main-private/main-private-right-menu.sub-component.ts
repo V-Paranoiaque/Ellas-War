@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from 'src/services/user.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -9,7 +9,9 @@ import { IcIconComponent } from 'src/services/ic-icon.service';
 import { IdToWeatherSubComponent } from './id-to-weather.sub-component';
 
 import { environment } from '../../environments/environment';
-import { MainPrivateIncludeComponent } from './main-private-include.component';
+import { MainPrivateFavorsPopupSunComponent } from './main-private-favors-popup.sub-component';
+import { MainPrivateHonorHelpPopupSubComponent } from './main-private-honor-help-popup.sub-component';
+import { MainPrivateXpHelpPopupSubComponent } from './main-private-xp-help-popup.sub-component';
 
 import angleDown from '@iconify/icons-fa6-solid/angle-down';
 import angleUp from '@iconify/icons-fa6-solid/angle-up';
@@ -32,12 +34,18 @@ import trophy from '@iconify/icons-fa6-solid/trophy';
     EwIconSubComponent,
     IcIconComponent,
     IdToWeatherSubComponent,
-    MainPrivateIncludeComponent,
+    MainPrivateFavorsPopupSunComponent,
+    MainPrivateHonorHelpPopupSubComponent,
+    MainPrivateXpHelpPopupSubComponent,
     RouterModule,
     TranslateModule,
   ],
 })
 export class MainPrivateRightMenuSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+  socket = inject(Socket);
+
   public ressList: string[];
   public selectedWeather: string;
   public xpCompare: {
@@ -58,11 +66,9 @@ export class MainPrivateRightMenuSubComponent {
   swordIcon = swordIcon;
   trophy = trophy;
 
-  constructor(
-    public user: User,
-    public translate: TranslateService,
-    public socket: Socket
-  ) {
+  constructor() {
+    const user = this.user;
+
     this.ressList = environment.resources;
     this.selectedWeather = user.getConfig().weather;
     this.xpCompare = {

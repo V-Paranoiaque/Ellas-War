@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -34,6 +34,14 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   ],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private route = inject(ActivatedRoute);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+  private formBuilder = inject(FormBuilder);
+
   registerForm: FormGroup;
   public rerror: number;
   private subPlayer: Subscription;
@@ -43,15 +51,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
 
-  constructor(
-    protected http: HttpClient,
-    private readonly socket: Socket,
-    public user: User,
-    private route: ActivatedRoute,
-    public translate: TranslateService,
-    private titleService: Title,
-    private formBuilder: FormBuilder
-  ) {
+  constructor() {
     this.registerForm = this.formBuilder.group({});
     this.rerror = 0;
     this.subPlayer = new Subscription();

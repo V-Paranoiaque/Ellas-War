@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -36,6 +36,12 @@ interface ContactList {
   ],
 })
 export class AdminContactComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private route = inject(ActivatedRoute);
+  user = inject(User);
+  translate = inject(TranslateService);
+  private readonly socket = inject(Socket);
+
   public adminContactList: ContactList[];
   public adminContactMax: number;
   public adminContactPage: number;
@@ -45,13 +51,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
 
   angellistIcon = angellistIcon;
 
-  constructor(
-    private readonly router: Router,
-    private route: ActivatedRoute,
-    public user: User,
-    public translate: TranslateService,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.adminContactPage = 1;
     this.adminContactList = [];
     this.adminContactMax = 1;

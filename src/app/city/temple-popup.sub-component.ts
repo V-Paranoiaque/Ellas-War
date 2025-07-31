@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -11,14 +11,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
 })
 export class TemplePopupSubComponent {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public temple = 0;
   public price: { resource: string; quantity: number }[] = [];
-
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   setTemple(id: number) {
     if (id === this.temple) {

@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -23,16 +23,16 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class AuthComponent implements OnInit {
+  private readonly socket = inject(Socket);
+  private route = inject(ActivatedRoute);
+  user = inject(User);
+
   public confirmResult: number;
   public provider: string;
 
   googleIcon = googleIcon;
 
-  constructor(
-    private readonly socket: Socket,
-    private route: ActivatedRoute,
-    public user: User
-  ) {
+  constructor() {
     this.confirmResult = 0;
     this.provider = '';
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../services/socketio.service';
@@ -26,6 +26,14 @@ declare let cordova: {
   imports: [RouterModule, TranslateModule],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private readonly router = inject(Router);
+  translate = inject(TranslateService);
+  sanitizer = inject(DomSanitizer);
+  private oauthService = inject(OAuthService);
+  private titleService = inject(Title);
+
   title = 'Ellas War';
 
   public cssUrl: SafeResourceUrl;
@@ -33,17 +41,11 @@ export class AppComponent implements OnInit, OnDestroy {
   private cssBase: string;
   private sub: Subscription;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    private readonly router: Router,
-    public translate: TranslateService,
-    public sanitizer: DomSanitizer,
-    private oauthService: OAuthService,
-    private titleService: Title
-  ) {
+  constructor() {
+    const translate = this.translate;
+
     translate.addLangs(environment.language.allowed);
-    translate.setDefaultLang(environment.language.default);
+    translate.setFallbackLang(environment.language.default);
 
     this.cssBase = './assets/styles/';
     this.cssUrl = this.setUrl(this.setStyle());

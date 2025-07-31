@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -33,6 +33,13 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class MainComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  protected socket = inject(Socket);
+  protected router = inject(Router);
+  user = inject(User);
+  protected modalService = inject(BsModalService);
+  private platformLocation = inject(PlatformLocation);
+
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
   displayServerModal = false;
   displayVersionModal = false;
@@ -42,14 +49,9 @@ export class MainComponent implements OnInit, OnDestroy {
   public remoteVersion: number;
   private sub: Subscription;
 
-  constructor(
-    protected http: HttpClient,
-    protected socket: Socket,
-    protected router: Router,
-    public user: User,
-    protected modalService: BsModalService,
-    private platformLocation: PlatformLocation
-  ) {
+  constructor() {
+    const platformLocation = this.platformLocation;
+
     this.localVersion = environment.version;
     this.remoteVersion = 0;
     this.sub = new Subscription();

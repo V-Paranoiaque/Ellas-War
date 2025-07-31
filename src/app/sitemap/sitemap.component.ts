@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -19,14 +19,14 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class SitemapComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+
   private sub: Subscription;
   private subDesc: Subscription;
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
     this.subDesc = new Subscription();
   }

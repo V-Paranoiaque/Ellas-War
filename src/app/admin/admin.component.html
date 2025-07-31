@@ -11,7 +11,8 @@
                 <h2 translate>General</h2>
                 <strong translate>Uptime:</strong>
                 {{
-                  apiInfo.uptime | number: '1.0-0' : this.translate.currentLang
+                  apiInfo.uptime
+                    | number: '1.0-0' : this.translate.getCurrentLang()
                 }}s
                 <br />
                 <strong translate>Date</strong><strong translate>:</strong>

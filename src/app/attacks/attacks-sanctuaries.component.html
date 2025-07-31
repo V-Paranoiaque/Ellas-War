@@ -212,7 +212,7 @@
                         ><strong translate>:</strong>
                         {{
                           sanctuariesSpyInfo.unitiesNb
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </div>
                     }
@@ -272,7 +272,9 @@
                     @for (i of getArmy(); track i) {
                       <div>
                         <span [ngClass]="{ 'text-danger': i.all === 0 }">
-                          {{ i.nb | number: '' : this.translate.currentLang }}
+                          {{
+                            i.nb | number: '' : this.translate.getCurrentLang()
+                          }}
                           {{ Tools.getName(i.unit, i.nb) | translate }}
                           @if (i.all === 0) {
                             <span
@@ -292,7 +294,7 @@
                     <strong translate>:</strong>
                     {{
                       getOffensivePower()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <br /><br />
                     <div class="text-center">
@@ -381,7 +383,7 @@
                   <strong translate>:</strong>
                   {{
                     sanctuariesInfo.sanctuaries_defense
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </div>
                 <div
@@ -413,7 +415,7 @@
                               </strong>
                               {{
                                 getArmy()[i].nb
-                                  | number: '' : this.translate.currentLang
+                                  | number: '' : this.translate.getCurrentLang()
                               }}
                             </th>
                           </tr>
@@ -464,7 +466,9 @@
                   <div class="col-6">
                     @for (unit of getSanctuariesDefense(); track unit) {
                       <div>
-                        {{ unit.nb | number: '' : this.translate.currentLang }}
+                        {{
+                          unit.nb | number: '' : this.translate.getCurrentLang()
+                        }}
                         {{ Tools.getName(unit.unit, unit.nb) | translate }}
                       </div>
                     }

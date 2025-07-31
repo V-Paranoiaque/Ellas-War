@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
@@ -29,6 +29,14 @@ import userPlus from '@iconify/icons-fa6-solid/user-plus';
   ],
 })
 export class AllianceprofileComponent implements OnInit, OnDestroy {
+  http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+
   private subMembers: Subscription;
   private subProfile1: Subscription;
   private subProfile2: Subscription;
@@ -54,15 +62,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
   userPlus = userPlus;
   triangleExclamation = triangleExclamation;
 
-  constructor(
-    public http: HttpClient,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    public user: User,
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.allianceProfile.alliance_img =
       '../assets/styles/' +
       Tools.getStyle(this.user.getProperty('style') as string) +

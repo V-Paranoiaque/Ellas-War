@@ -85,7 +85,7 @@
                           <span translate>:</span>
                           {{
                             sbData.coins
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <span
                             data-bs-toggle="modal"
@@ -106,12 +106,12 @@
                             }">
                             {{
                               sbData.mouvements
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             /
                             {{
                               user.getDatas().sea_battles.max_actions
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <span
                               data-bs-toggle="modal"
@@ -151,14 +151,18 @@
                               <td>
                                 {{
                                   getUnitsCurrent(info.code)
-                                    | number: '' : this.translate.currentLang
+                                    | number
+                                      : ''
+                                      : this.translate.getCurrentLang()
                                 }}
                               </td>
                               <td>
                                 <span>
                                   {{
                                     info.attack
-                                      | number: '' : this.translate.currentLang
+                                      | number
+                                        : ''
+                                        : this.translate.getCurrentLang()
                                   }}
                                   <app-ic-icon
                                     [icon]="swordIcon"
@@ -169,7 +173,9 @@
                                 <span>
                                   {{
                                     info.defense
-                                      | number: '' : this.translate.currentLang
+                                      | number
+                                        : ''
+                                        : this.translate.getCurrentLang()
                                   }}
                                   <app-ic-icon
                                     [icon]="shieldShaded"
@@ -206,14 +212,18 @@
                               <td>
                                 {{
                                   getUnitsCurrent(info.code)
-                                    | number: '' : this.translate.currentLang
+                                    | number
+                                      : ''
+                                      : this.translate.getCurrentLang()
                                 }}
                               </td>
                               <td>
                                 <span>
                                   {{
                                     info.attack
-                                      | number: '' : this.translate.currentLang
+                                      | number
+                                        : ''
+                                        : this.translate.getCurrentLang()
                                   }}
                                   <app-ic-icon
                                     [icon]="swordIcon"
@@ -224,7 +234,9 @@
                                 <span>
                                   {{
                                     info.defense
-                                      | number: '' : this.translate.currentLang
+                                      | number
+                                        : ''
+                                        : this.translate.getCurrentLang()
                                   }}
                                   <app-ic-icon
                                     [icon]="shieldShaded"
@@ -278,7 +290,10 @@
                           status="1"></app-user-profile>
                       </td>
                       <td class="text-end">
-                        {{ p.points | number: '' : this.translate.currentLang }}
+                        {{
+                          p.points
+                            | number: '' : this.translate.getCurrentLang()
+                        }}
                       </td>
                     </tr>
                   }

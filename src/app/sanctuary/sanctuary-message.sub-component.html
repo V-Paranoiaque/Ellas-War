@@ -2,7 +2,7 @@
   <strong translate>Army sent</strong>
   @for (unit of getSentUnits(); track unit) {
     <div>
-      {{ unit.nb | number: '' : this.translate.currentLang }}
+      {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
       {{ Tools.getName(unit.code, unit.nb) | translate }}
     </div>
   }
@@ -16,7 +16,7 @@
       <strong translate>Attacker losses</strong>
       @for (unit of getAttackLost(); track unit) {
         <div>
-          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
           {{ Tools.getName(unit.code, unit.nb) | translate }}
         </div>
       }
@@ -29,7 +29,7 @@
       <strong translate>Defender losses</strong>
       @for (unit of getDefenseLost(); track unit) {
         <div>
-          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
           {{ Tools.getName(unit.code, unit.nb) | translate }}
         </div>
       }
@@ -46,7 +46,7 @@
     }}</strong>
     @for (unit of getSanctuaryLost(); track unit) {
       <div>
-        {{ unit.nb | number: '' : this.translate.currentLang }}
+        {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
         {{ Tools.getName(unit.code, unit.nb) | translate }}
       </div>
     }

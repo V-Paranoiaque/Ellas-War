@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -13,13 +13,13 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateModule],
 })
 export class AttacksMenuSubComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public myAllianceWar: object[];
 
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.myAllianceWar = [];
   }
 

@@ -41,14 +41,16 @@
                       @if (p.sb_participate > 0) {
                         {{
                           (100 * p.sb_win) / p.sb_participate
-                            | number: '1.0-2' : this.translate.currentLang
+                            | number: '1.0-2' : this.translate.getCurrentLang()
                         }}%
                       } @else {
                         -
                       }
                     </td>
                     <td class="text-end">
-                      {{ p.points | number: '' : this.translate.currentLang }}
+                      {{
+                        p.points | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                   </tr>
                 }

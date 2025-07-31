@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -11,11 +11,11 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class AdminSupportPopupSubComponent {
+  private readonly socket = inject(Socket);
+
   msgPlayer = '';
   msgTitle = '';
   msgText = '';
-
-  constructor(private readonly socket: Socket) {}
 
   send() {
     this.msgTitle = this.msgTitle.trim();

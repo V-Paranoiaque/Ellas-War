@@ -110,7 +110,7 @@
               <span translate class="fw-bold">:</span>
               {{
                 user.getPropertyNb('fury')
-                  | number: '' : this.translate.currentLang
+                  | number: '' : this.translate.getCurrentLang()
               }}
             </div>
             <div class="clearfix"></div>
@@ -133,7 +133,7 @@
                 <span>
                   {{
                     Number(resource.value)
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                   <app-ew-icon
                     name="{{ resource.key }}"
@@ -842,7 +842,7 @@
               <span translate class="fw-bold">:</span>
               {{
                 user.getPropertyNb('lightning')
-                  | number: '' : this.translate.currentLang
+                  | number: '' : this.translate.getCurrentLang()
               }}
             </div>
             @if (lightningCostMissing().length > 0) {
@@ -868,7 +868,7 @@
                     }">
                     {{
                       Number(resource.value)
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -1212,7 +1212,7 @@
             @if (user.getPropertyNb('ambrosia') >= 20) {
               <button class="btn btn-primary" (click)="powerUse(14, 1)">
                 <span translate>Get</span>
-                {{ '40000' | number: '' : this.translate.currentLang }}
+                {{ '40000' | number: '' : this.translate.getCurrentLang() }}
                 <app-ew-icon name="stone" class="small-resource"></app-ew-icon>
               </button>
             }
@@ -1247,7 +1247,7 @@
             <div class="text-center">
               <strong id="WallDesc" translate>Poseidon's wall's defense</strong>
               <strong translate>:</strong>
-              {{ wallDefense | number: '' : this.translate.currentLang }}
+              {{ wallDefense | number: '' : this.translate.getCurrentLang() }}
               <br />
               @if (user.getPropertyNb('poseidon_wall') === 1) {
                 <div class="fw-bold text-danger" translate>
@@ -1267,7 +1267,7 @@
                           }">
                           {{
                             user.getDatas().poseidon_wall.water
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="water"
@@ -1281,7 +1281,7 @@
                           }">
                           {{
                             user.getDatas().poseidon_wall.marble
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="marble"
@@ -1295,7 +1295,7 @@
                           }">
                           {{
                             user.getDatas().poseidon_wall.gold
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="gold"

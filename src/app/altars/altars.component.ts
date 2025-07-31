@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -30,6 +30,10 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class AltarsComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public altarQuestConditionDivineunits = {
     food: { quantity: 0, validated: 0, currently: 0 },
     grapes: { quantity: 0, validated: 0, currently: 0 },
@@ -67,12 +71,6 @@ export class AltarsComponent implements OnInit, OnDestroy {
 
   checkIcon = checkIcon;
   times = times;
-
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
   ngOnInit() {
     this.user.checkPermissions([1]);
 

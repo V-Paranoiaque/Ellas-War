@@ -139,7 +139,8 @@
                         </td>
                         <td>
                           {{
-                            p.nbress | number: '' : this.translate.currentLang
+                            p.nbress
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="{{ Tools.getResName(p.ress_type) }}"
@@ -147,7 +148,7 @@
                           <br />
                           {{
                             p.nbress * p.rate
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="drachma"
@@ -235,7 +236,8 @@
                         </td>
                         <td>
                           {{
-                            p.quantity | number: '' : this.translate.currentLang
+                            p.quantity
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="{{ Tools.getResName(p.resource_id) }}"
@@ -243,7 +245,7 @@
                           <br />
                           {{
                             p.quantity * p.rate
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                           <app-ew-icon
                             name="drachma"

@@ -10,30 +10,23 @@ import {
   UrlHelperService,
 } from 'angular-oauth2-oidc';
 import {
-  HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { AdminComponent } from './admin/admin.component';
-
-import { EwIconSubComponent } from '../services/ew-icon.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      declarations: [AdminComponent, AppComponent, EwIconSubComponent],
       imports: [
         TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: httpTranslateLoader,
-            deps: [HttpClient],
-          },
+          loader: provideTranslateHttpLoader({
+            prefix: './assets/i18n/',
+            suffix: '.json',
+          }),
         }),
         OAuthModule.forRoot(),
       ],
@@ -70,8 +63,3 @@ describe('AppComponent', () => {
     expect(compiled.innerHTML).toContain('router-outlet');
   });
 });
-
-// AOT compilation support
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/');
-}

@@ -20,7 +20,9 @@
                   <tr>
                     <td class="text-break">{{ page.url }}</td>
                     <td class="text-end">
-                      {{ page.nb | number: '' : this.translate.currentLang }}
+                      {{
+                        page.nb | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                   </tr>
                 }

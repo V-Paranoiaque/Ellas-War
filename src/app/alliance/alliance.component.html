@@ -172,13 +172,17 @@
                     </td>
                     <td class="d-none d-sm-table-cell">{{ p.rank_name }}</td>
                     <td class="text-end">
-                      {{ p.xp | number: '' : this.translate.currentLang }}
+                      {{ p.xp | number: '' : this.translate.getCurrentLang() }}
                     </td>
                     <td class="d-none d-sm-table-cell">
-                      {{ p.victory | number: '' : this.translate.currentLang }}
+                      {{
+                        p.victory | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                     <td class="d-none d-sm-table-cell text-end">
-                      {{ p.field | number: '' : this.translate.currentLang }}
+                      {{
+                        p.field | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                     <td class="text-center">
                       {{ p.last_activity * 1000 | date: 'dd/MM yyyy, HH:mm' }}
@@ -339,7 +343,7 @@
                     <td class="text-end">
                       {{
                         getStock(res)
-                          | number: '1.0-0' : this.translate.currentLang
+                          | number: '1.0-0' : this.translate.getCurrentLang()
                       }}
                     </td>
                     <td class="text-center">

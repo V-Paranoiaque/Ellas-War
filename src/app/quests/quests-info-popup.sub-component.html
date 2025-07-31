@@ -74,7 +74,7 @@
             user.getPropertyNb('level') < user.getDatas().ress_lvl.ambrosia
           ) {
             <li>
-              {{ 200000 | number: '' : this.translate.currentLang }}
+              {{ 200000 | number: '' : this.translate.getCurrentLang() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </li>
           }

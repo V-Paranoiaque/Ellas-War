@@ -238,7 +238,8 @@
                 | translate
                   : {
                       value:
-                        100000000 | number: '' : this.translate.currentLang,
+                        100000000
+                        | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="1">
@@ -253,7 +254,8 @@
                 | translate
                   : {
                       value:
-                        400000000 | number: '' : this.translate.currentLang,
+                        400000000
+                        | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="2">
@@ -268,7 +270,8 @@
                 | translate
                   : {
                       value:
-                        1000000000 | number: '' : this.translate.currentLang,
+                        1000000000
+                        | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="3">
@@ -335,7 +338,10 @@
             text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
-                  : { value: 100000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        100000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="1">
           </app-success-card>
@@ -347,7 +353,10 @@
             text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
-                  : { value: 500000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        500000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="2">
           </app-success-card>
@@ -359,7 +368,10 @@
             text="{{
               'Send at least { value } soldiers in a battle'
                 | translate
-                  : { value: 1000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="3">
           </app-success-card>
@@ -571,7 +583,10 @@
             text="{{
               'Giving { value } Drachmas in donations'
                 | translate
-                  : { value: 1000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             currently="{{ statsPlayer.don }}"
             point="1">
@@ -585,7 +600,8 @@
               'Giving { value } Drachmas in donations'
                 | translate
                   : {
-                      value: 10000000 | number: '' : this.translate.currentLang,
+                      value:
+                        10000000 | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             currently="{{ statsPlayer.don }}"
@@ -601,7 +617,8 @@
                 | translate
                   : {
                       value:
-                        100000000 | number: '' : this.translate.currentLang,
+                        100000000
+                        | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             currently="{{ statsPlayer.don }}"
@@ -618,7 +635,8 @@
               'Win a war with { value } Drachmas as reward'
                 | translate
                   : {
-                      value: 50000000 | number: '' : this.translate.currentLang,
+                      value:
+                        50000000 | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="1">
@@ -633,7 +651,8 @@
                 | translate
                   : {
                       value:
-                        100000000 | number: '' : this.translate.currentLang,
+                        100000000
+                        | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="2">
@@ -749,7 +768,10 @@
             text="{{
               'Win a war with more than { value } victories'
                 | translate
-                  : { value: 1000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="3">
           </app-success-card>
@@ -784,7 +806,10 @@
             text="{{
               'Reach over { value } victories in a war'
                 | translate
-                  : { value: 1000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="3">
           </app-success-card>
@@ -931,7 +956,10 @@
             text="{{
               'Make { value } victories'
                 | translate
-                  : { value: 1000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="1">
           </app-success-card>
@@ -943,7 +971,10 @@
             text="{{
               'Make { value } victories'
                 | translate
-                  : { value: 2000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        2000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="2">
           </app-success-card>
@@ -955,7 +986,10 @@
             text="{{
               'Make { value } victories'
                 | translate
-                  : { value: 3000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        3000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="3">
           </app-success-card>
@@ -967,7 +1001,10 @@
             text="{{
               'Make { value } victories'
                 | translate
-                  : { value: 4000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        4000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="4">
           </app-success-card>
@@ -979,7 +1016,10 @@
             text="{{
               'Make { value } victories'
                 | translate
-                  : { value: 5000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        5000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="5">
           </app-success-card>
@@ -993,7 +1033,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 100000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        100000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="1">
           </app-success-card>
@@ -1005,7 +1048,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 200000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        200000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="2">
           </app-success-card>
@@ -1017,7 +1063,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 500000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        500000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="3">
           </app-success-card>
@@ -1029,7 +1078,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 1000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="4">
           </app-success-card>
@@ -1041,7 +1093,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 2000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        2000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="5">
           </app-success-card>
@@ -1053,7 +1108,10 @@
             text="{{
               'Have { value } XP with the old system'
                 | translate
-                  : { value: 5000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        5000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="6">
           </app-success-card>
@@ -1066,7 +1124,8 @@
               'Have { value } XP with the old system'
                 | translate
                   : {
-                      value: 10000000 | number: '' : this.translate.currentLang,
+                      value:
+                        10000000 | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="7">
@@ -1129,7 +1188,10 @@
             text="{{
               'Losing { value } spies at espionage.'
                 | translate
-                  : { value: 1000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             currently="{{ statsPlayer.espion }}"
             point="2">
@@ -1260,7 +1322,10 @@
             text="{{
               'Reach { value } field'
                 | translate
-                  : { value: 1000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="1">
           </app-success-card>
@@ -1272,7 +1337,10 @@
             text="{{
               'Reach { value } field'
                 | translate
-                  : { value: 5000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        5000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             point="2">
           </app-success-card>
@@ -1285,7 +1353,8 @@
               'Reach { value } field'
                 | translate
                   : {
-                      value: 10000000 | number: '' : this.translate.currentLang,
+                      value:
+                        10000000 | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             point="3">
@@ -1300,7 +1369,10 @@
             text="{{
               'Win { value } Drachmas through games.'
                 | translate
-                  : { value: 1000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        1000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             currently="{{ statsPlayer.jeux }}"
             point="1">
@@ -1313,7 +1385,10 @@
             text="{{
               'Win { value } Drachmas through games.'
                 | translate
-                  : { value: 5000000 | number: '' : this.translate.currentLang }
+                  : {
+                      value:
+                        5000000 | number: '' : this.translate.getCurrentLang(),
+                    }
             }}"
             currently="{{ statsPlayer.jeux }}"
             point="2">
@@ -1327,7 +1402,8 @@
               'Win { value } Drachmas through games.'
                 | translate
                   : {
-                      value: 10000000 | number: '' : this.translate.currentLang,
+                      value:
+                        10000000 | number: '' : this.translate.getCurrentLang(),
                     }
             }}"
             currently="{{ statsPlayer.jeux }}"

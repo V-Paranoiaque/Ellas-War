@@ -95,16 +95,20 @@
                     </td>
                     <td class="text-end">
                       {{
-                        p.nbmembers | number: '' : this.translate.currentLang
+                        p.nbmembers
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </td>
                     <td class="text-end">
                       {{
-                        p.victories | number: '' : this.translate.currentLang
+                        p.victories
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </td>
                     <td class="d-none d-sm-table-cell text-end">
-                      {{ p.defeats | number: '' : this.translate.currentLang }}
+                      {{
+                        p.defeats | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                   </tr>
                 }

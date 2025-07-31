@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -12,6 +12,9 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   imports: [TranslateModule, UserProfileSubComponent],
 })
 export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+
   private sub: Subscription;
   public list: {
     id: number;
@@ -20,10 +23,7 @@ export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
     honor: number;
   }[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

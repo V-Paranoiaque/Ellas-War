@@ -19,7 +19,9 @@
           <div class="text-center">
             <strong translate>Defense</strong>
             <strong translate>:</strong>
-            {{ defenseWallStrength | number: '' : this.translate.currentLang }}
+            {{
+              defenseWallStrength | number: '' : this.translate.getCurrentLang()
+            }}
             <app-ic-icon
               [icon]="shieldShaded"
               title="{{ 'Defense' | translate }}"></app-ic-icon>
@@ -28,7 +30,7 @@
             <strong translate>:</strong>
             {{
               user.getPropertyNb('defense_wall')
-                | number: '' : this.translate.currentLang
+                | number: '' : this.translate.getCurrentLang()
             }}
           </div>
         </div>

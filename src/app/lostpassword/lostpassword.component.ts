@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -25,19 +25,19 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class LostpasswordComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+  private titleService = inject(Title);
+  user = inject(User);
+  translate = inject(TranslateService);
+  private readonly socket = inject(Socket);
+
   public lostpasswordError: number;
   public lostvalue: string;
 
   private subLost: Subscription;
   private subTitle: Subscription;
 
-  constructor(
-    private http: HttpClient,
-    private titleService: Title,
-    public user: User,
-    public translate: TranslateService,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.lostpasswordError = 0;
     this.lostvalue = '';
     this.subLost = new Subscription();

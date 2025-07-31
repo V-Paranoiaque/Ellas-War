@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -36,6 +36,14 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
   ],
 })
 export class RankingalliancesComponent implements OnInit, OnDestroy {
+  http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+
   public rankingList: {
     ranking: number;
     alliance_id: number;
@@ -59,15 +67,7 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
   sortUP = sortUP;
   users = users;
 
-  constructor(
-    public http: HttpClient,
-    private route: ActivatedRoute,
-    private readonly router: Router,
-    public user: User,
-    private readonly socket: Socket,
-    private titleService: Title,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.rankingList = [];
     this.rankingMax = 1;
     this.rankingOrder = 'level';

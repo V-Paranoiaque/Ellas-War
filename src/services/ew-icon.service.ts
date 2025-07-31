@@ -4,6 +4,7 @@ import {
   ElementRef,
   Input,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -15,6 +16,9 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EwIconSubComponent implements OnDestroy {
+  private readonly element = inject(ElementRef);
+  translate = inject(TranslateService);
+
   sub: Subscription;
 
   @Input() set name(iconName: string) {
@@ -247,10 +251,7 @@ export class EwIconSubComponent implements OnDestroy {
     });
   }
 
-  constructor(
-    private readonly element: ElementRef,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

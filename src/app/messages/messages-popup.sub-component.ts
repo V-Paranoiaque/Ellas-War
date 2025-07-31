@@ -1,12 +1,9 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule, ViewportScroller } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
 
 import { IcIconComponent } from 'src/services/ic-icon.service';
@@ -30,20 +27,15 @@ export class MessagesPopupSubComponent
   extends MessagesAbstractComponent
   implements OnInit, OnDestroy
 {
+  protected route = inject(ActivatedRoute);
+
   private subLoad: Subscription;
 
   plusIcon = plusIcon;
   xIcon = xIcon;
 
-  constructor(
-    override http: HttpClient,
-    override user: User,
-    override socket: Socket,
-    override translate: TranslateService,
-    override scroller: ViewportScroller,
-    protected route: ActivatedRoute
-  ) {
-    super(http, user, socket, translate, scroller);
+  constructor() {
+    super();
     this.subLoad = new Subscription();
   }
 

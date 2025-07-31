@@ -188,12 +188,13 @@
                       <td>
                         {{
                           alli.victories
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td>
                         {{
-                          alli.defeats | number: '' : this.translate.currentLang
+                          alli.defeats
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-center">

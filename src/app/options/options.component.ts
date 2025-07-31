@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
-import { OptionsIncludeComponent } from './options-include.component';
+import { OptionsAccountInformationPopupSubComponent } from './options-account-information-popup.sub-component';
+import { OptionsSponsoringInformationPopupSubComponent } from './options-sponsoring-information-popup.sub-component';
 
 import crown from '@iconify/icons-fa6-solid/crown';
 import cog from '@iconify/icons-fa6-solid/gear';
@@ -29,12 +30,18 @@ import redo from '@iconify/icons-fa6-solid/rotate-right';
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    OptionsIncludeComponent,
+    OptionsAccountInformationPopupSubComponent,
+    OptionsSponsoringInformationPopupSubComponent,
     RouterModule,
     TranslateModule,
   ],
 })
 export class OptionsComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private readonly router = inject(Router);
+  translate = inject(TranslateService);
+
   public accountPasswordPossible: number;
   private accountRenameCost: number;
 
@@ -62,12 +69,9 @@ export class OptionsComponent implements OnInit, OnDestroy {
   userCircle = userCircle;
   redo = redo;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    private readonly router: Router,
-    public translate: TranslateService
-  ) {
+  constructor() {
+    const user = this.user;
+
     this.user.checkPermissions([1, 2, 3, 4, 5]);
 
     this.accountPasswordPossible = 0;

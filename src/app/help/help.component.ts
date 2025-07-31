@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -25,18 +25,18 @@ import discordIcon from '@iconify-icons/logos/discord-icon';
   ],
 })
 export class HelpComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+
   private sub: Subscription;
   private subDesc: Subscription;
 
   discordIcon = discordIcon;
   environment = environment;
 
-  constructor(
-    public user: User,
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
     this.subDesc = new Subscription();
   }

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -47,6 +47,14 @@ interface HonorLine {
   ],
 })
 export class HonorComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  private http = inject(HttpClient);
+  user = inject(User);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+
   public id = 0;
   public list: HonorLine[];
   public levels: number[];
@@ -57,15 +65,7 @@ export class HonorComponent implements OnInit, OnDestroy {
   crown = crown;
   questionCircle = questionCircle;
 
-  constructor(
-    private readonly router: Router,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    private http: HttpClient,
-    public user: User,
-    public translate: TranslateService,
-    private titleService: Title
-  ) {
+  constructor() {
     this.levels = Array(10) as typeof this.levels;
     this.subRank = new Subscription();
     this.subTitle = new Subscription();

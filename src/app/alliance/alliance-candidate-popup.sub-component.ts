@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -9,6 +9,10 @@ import { UserComponent as User } from '../../services/user.service';
   imports: [TranslateModule],
 })
 export class AllianceCandidatePopupSubComponent {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() candidate!: {
     membre_id: number;
     username: string;
@@ -16,12 +20,6 @@ export class AllianceCandidatePopupSubComponent {
     motivations: string;
     help: number;
   };
-
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   accept() {
     this.socket.emit('myAllianceAccept', this.candidate.membre_id);

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,6 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [TranslateModule],
 })
 export class AllianceArchivesTitleSubComponent {
+  user = inject(User);
+
   @Input() type!: number;
   @Input() title!: {
     attacker: string;
@@ -23,6 +25,4 @@ export class AllianceArchivesTitleSubComponent {
     member: string;
     chief_new: string;
   };
-
-  constructor(public user: User) {}
 }

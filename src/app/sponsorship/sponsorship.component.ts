@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -26,6 +26,10 @@ import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
   ],
 })
 export class SponsorshipComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+
   public sponsorList: {
     membre_id: number;
     username: string;
@@ -55,11 +59,7 @@ export class SponsorshipComponent implements OnInit, OnDestroy {
 
   coinBagSolid = coinBagSolid;
 
-  constructor(
-    private readonly socket: Socket,
-    private titleService: Title,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sponsorList = [];
     this.currentPlayer = {
       membre_id: 0,

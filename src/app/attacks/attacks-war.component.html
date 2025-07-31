@@ -188,7 +188,7 @@
                       <td class="text-end">
                         {{
                           player.victory
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       @if (
@@ -199,13 +199,15 @@
                       ) {
                         <td class="text-end">
                           {{
-                            player.xp | number: '' : this.translate.currentLang
+                            player.xp
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                       }
                       <td class="text-end">
                         {{
-                          player.field | number: '' : this.translate.currentLang
+                          player.field
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-center">
@@ -362,7 +364,7 @@
                     <td>
                       {{
                         targetProfile.field
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </td>
                   </tr>
@@ -371,7 +373,7 @@
                     <td>
                       {{
                         targetProfile.victory
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </td>
                   </tr>
@@ -380,7 +382,7 @@
                     <td>
                       {{
                         targetProfile.xp
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </td>
                   </tr>
@@ -454,7 +456,7 @@
                             ><strong translate>:</strong>
                             {{
                               spyInfo.unitiesNb
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <br />
                           </div>
@@ -465,7 +467,7 @@
                             ><strong translate>:</strong>
                             {{
                               spyInfo.defenseNb
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <br />
                           </div>
@@ -931,7 +933,9 @@
                     @for (i of getArmy(); track i) {
                       <div>
                         <span [ngClass]="{ 'text-danger': i.all === 0 }">
-                          {{ i.nb | number: '' : this.translate.currentLang }}
+                          {{
+                            i.nb | number: '' : this.translate.getCurrentLang()
+                          }}
                           {{ Tools.getName(i.unit, i.nb) | translate }}
                           @if (i.all === 0) {
                             <span
@@ -951,7 +955,7 @@
                     <strong translate>:</strong>
                     {{
                       getOffensivePower()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </div>
                 }

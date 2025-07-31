@@ -44,7 +44,7 @@
           <img
             [src]="
               'assets/i18n/' +
-              translate.currentLang +
+              translate.getCurrentLang() +
               '/microsoft-appstore-badge.png'
             "
             alt="{{ 'Download on the Microsoft Store' | translate }}" />
@@ -58,7 +58,9 @@
           title="{{ 'Download on Google Play' | translate }}">
           <img
             [src]="
-              'assets/i18n/' + translate.currentLang + '/google-play-badge.png'
+              'assets/i18n/' +
+              translate.getCurrentLang() +
+              '/google-play-badge.png'
             "
             alt="{{ 'Download on Google Play' | translate }}" />
         </a>
@@ -71,7 +73,9 @@
           title="{{ 'Get it from the Snap Store' | translate }}">
           <img
             [src]="
-              'assets/i18n/' + translate.currentLang + '/snap-store-black.svg'
+              'assets/i18n/' +
+              translate.getCurrentLang() +
+              '/snap-store-black.svg'
             "
             alt="{{ 'Get it from the Snap Store' | translate }}" />
         </a>

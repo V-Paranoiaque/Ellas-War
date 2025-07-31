@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -11,15 +11,15 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class DiplomacyAllianceJoinPopupSubComponent {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: { alliance_id: number; alliance_name: string };
 
   public candidatetext: string;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.candidatetext = '';
   }
 

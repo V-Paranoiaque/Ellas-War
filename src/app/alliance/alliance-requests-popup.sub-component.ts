@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -30,6 +30,10 @@ export class AllianceRequestsPopupSubComponent
   extends AllianceAbstractComponent
   implements OnInit, OnDestroy
 {
+  protected override socket: Socket;
+  override user: User;
+  override translate: TranslateService;
+
   @Input() info!: { resource: string; quantity: string; stock: number };
   @Input() profile!: {
     alliance_name: string;
@@ -54,12 +58,15 @@ export class AllianceRequestsPopupSubComponent
   check = check;
   times = times;
 
-  constructor(
-    protected override socket: Socket,
-    public override user: User,
-    public override translate: TranslateService
-  ) {
-    super(socket, user, translate);
+  constructor() {
+    const socket = inject(Socket);
+    const user = inject(User);
+    const translate = inject(TranslateService);
+
+    super();
+    this.socket = socket;
+    this.user = user;
+    this.translate = translate;
 
     this.myAllianceAskAcceptError = 0;
     this.myAllianceAskList = [];

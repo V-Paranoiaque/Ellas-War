@@ -120,7 +120,7 @@
         <br />
         {{ 'Level { value }' | translate: { value: 1 } }}
         <span translate>:</span>
-        {{ 250000 | number: '' : this.translate.currentLang }}
+        {{ 250000 | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
         <br />
         {{ 'Level { value }' | translate: { value: 5 } }}

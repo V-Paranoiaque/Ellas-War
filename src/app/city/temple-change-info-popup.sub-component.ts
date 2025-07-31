@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -11,6 +11,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public temple: number;
   public templeChangeError: number;
   public templeChangeHistory: {
@@ -19,11 +23,7 @@ export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
     temple_new: number;
   }[];
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.temple = 0;
     this.templeChangeError = 0;
     this.templeChangeHistory = [];

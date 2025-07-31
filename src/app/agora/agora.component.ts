@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -8,7 +8,9 @@ import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { AgoraIncludeComponent } from './agora-include.component';
+import { AgoraBuyPopupSubComponent } from './agora-buy-popup.sub-component';
+import { AgoraRecoverPopupSubComponent } from './agora-recover-popup.sub-component';
+import { AgoraSellHelpPopupSubComponent } from './agora-sell-help-popup.sub-component';
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -24,7 +26,9 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   templateUrl: './agora.component.html',
   styleUrls: ['./agora.component.css'],
   imports: [
-    AgoraIncludeComponent,
+    AgoraBuyPopupSubComponent,
+    AgoraRecoverPopupSubComponent,
+    AgoraSellHelpPopupSubComponent,
     CommonModule,
     EwIconSubComponent,
     FormsModule,
@@ -37,6 +41,10 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class AgoraComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   quantity: string;
   rate: string;
   agoraRes: number;
@@ -87,11 +95,7 @@ export class AgoraComponent implements OnInit, OnDestroy {
   environment = environment;
   parseFloat = parseFloat;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.quantity = '';
     this.rate = '';
     this.agoraRes = 1;

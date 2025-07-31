@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -13,12 +13,20 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
 })
 export class Temple2PopupSubComponent extends TemplePopupSubComponent {
-  constructor(
-    protected override socket: Socket,
-    public override user: User,
-    public override translate: TranslateService
-  ) {
-    super(socket, user, translate);
+  protected override socket: Socket;
+  override user: User;
+  override translate: TranslateService;
+
+  constructor() {
+    const socket = inject(Socket);
+    const user = inject(User);
+    const translate = inject(TranslateService);
+
+    super();
+    this.socket = socket;
+    this.user = user;
+    this.translate = translate;
+
     this.price = [
       { resource: 'drachma', quantity: 500000 },
       { resource: 'wood', quantity: 400000 },

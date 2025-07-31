@@ -6,7 +6,7 @@
         @if (info.xp_attack > 0) {
           <span>+</span>
         }
-        {{ info.xp_attack | number: '1.0-0' : this.translate.currentLang }}
+        {{ info.xp_attack | number: '1.0-0' : this.translate.getCurrentLang() }}
         <span translate>XP</span>
       </div>
     }
@@ -16,7 +16,9 @@
         @if (info.xp_defense > 0) {
           <span>+</span>
         }
-        {{ info.xp_defense | number: '1.0-0' : this.translate.currentLang }}
+        {{
+          info.xp_defense | number: '1.0-0' : this.translate.getCurrentLang()
+        }}
         <span translate>XP</span>
       </div>
     }
@@ -26,7 +28,9 @@
         @if (info.xp_defense > 0) {
           <span>+</span>
         }
-        {{ info.xp_defense | number: '1.0-0' : this.translate.currentLang }}
+        {{
+          info.xp_defense | number: '1.0-0' : this.translate.getCurrentLang()
+        }}
         <span translate>XP</span>
       </div>
     }
@@ -36,7 +40,7 @@
         @if (info.xp_attack > 0) {
           <span>+</span>
         }
-        {{ info.xp_attack | number: '1.0-0' : this.translate.currentLang }}
+        {{ info.xp_attack | number: '1.0-0' : this.translate.getCurrentLang() }}
         <span translate>XP</span>
       </div>
     }
@@ -49,7 +53,7 @@
     <strong translate>Army sent</strong>
     @for (unit of getSentUnits(); track unit) {
       <div>
-        {{ unit.nb | number: '' : this.translate.currentLang }}
+        {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
         {{ Tools.getName(unit.code, unit.nb) | translate }}
       </div>
     }
@@ -75,7 +79,7 @@
       <strong translate>Attacker losses</strong>
       @for (unit of getAttackLost(); track unit) {
         <div>
-          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
           {{ Tools.getName(unit.code, unit.nb, info.attackType) | translate }}
         </div>
       }
@@ -88,7 +92,7 @@
       <strong translate>Defender losses</strong>
       @for (unit of getDefenseLost(); track unit) {
         <div>
-          {{ unit.nb | number: '' : this.translate.currentLang }}
+          {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
           {{ Tools.getName(unit.code, unit.nb, info.defenseType) | translate }}
         </div>
       }
@@ -109,7 +113,7 @@
       @for (res of getLostRes(); track res) {
         <tr>
           <td class="col-6 text-end">
-            {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
+            {{ res.nb | number: '1.0-0' : this.translate.getCurrentLang() }}
           </td>
           <th scope="row" class="col-6 text-start">
             <app-ew-icon
@@ -129,7 +133,9 @@
       @for (res of getLostStoreroom(); track res) {
         <tr>
           <td class="col-6 text-end">
-            {{ res.quantity | number: '1.0-0' : this.translate.currentLang }}
+            {{
+              res.quantity | number: '1.0-0' : this.translate.getCurrentLang()
+            }}
           </td>
           <th scope="row" class="col-6 text-start">
             <app-ew-icon
@@ -149,7 +155,7 @@
       @for (building of getLostBuildings(); track building) {
         <tr>
           <td class="col-6 text-end">
-            {{ building.nb | number: '' : this.translate.currentLang }}
+            {{ building.nb | number: '' : this.translate.getCurrentLang() }}
           </td>
           <th scope="row" class="col-6 text-start fw-normal">
             {{ Tools.getName(building.code, building.nb) | translate }}
@@ -165,7 +171,7 @@
     <br />
     <strong translate>Souls saved</strong>
     <strong translate>:</strong>
-    {{ info.hades_saving | number: '' : this.translate.currentLang }}
+    {{ info.hades_saving | number: '' : this.translate.getCurrentLang() }}
   </div>
 }
 
@@ -176,7 +182,7 @@
       @for (unit of getSaved(); track unit) {
         <tr>
           <td class="col-6 text-end">
-            {{ unit.nb | number: '' : this.translate.currentLang }}
+            {{ unit.nb | number: '' : this.translate.getCurrentLang() }}
           </td>
           <th scope="row" class="col-6 text-start fw-normal">
             {{ Tools.getName(unit.code, unit.nb) | translate }}
@@ -192,7 +198,10 @@
     {{
       'Your enemies has saved { value } unities of his lost'
         | translate
-          : { value: getSavedOther() | number: '' : this.translate.currentLang }
+          : {
+              value:
+                getSavedOther() | number: '' : this.translate.getCurrentLang(),
+            }
     }}
   </div>
 }
@@ -204,7 +213,9 @@
       @for (res of getSavedRes(); track res) {
         <tr>
           <td class="col-6 text-end">
-            {{ res.quantity | number: '1.0-0' : this.translate.currentLang }}
+            {{
+              res.quantity | number: '1.0-0' : this.translate.getCurrentLang()
+            }}
           </td>
           <th scope="row" class="col-6 text-start">
             <app-ew-icon
@@ -225,7 +236,7 @@
         <tr>
           @if (res.nb > 0) {
             <td>
-              {{ res.nb | number: '1.0-0' : this.translate.currentLang }}
+              {{ res.nb | number: '1.0-0' : this.translate.getCurrentLang() }}
             </td>
           }
           @if (res.nb > 0) {

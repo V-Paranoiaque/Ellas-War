@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnInit,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -24,7 +25,7 @@ import users from '@iconify/icons-fa6-solid/users';
 
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
-import { MainPrivateIncludeComponent } from './main-private-include.component';
+import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-info-popup.sub-component';
 
 @Component({
   selector: 'app-main-private-bottom-menu',
@@ -35,12 +36,18 @@ import { MainPrivateIncludeComponent } from './main-private-include.component';
     EwIconSubComponent,
     FormsModule,
     IcIconComponent,
-    MainPrivateIncludeComponent,
+    MainPrivatePlayerInfoPopupSubComponent,
     RouterModule,
     TranslateModule,
   ],
 })
 export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  user = inject(User);
+  protected socket = inject(Socket);
+  translate = inject(TranslateService);
+  router = inject(Router);
+
   public chatActive: string;
 
   public chat_user_players: {
@@ -137,13 +144,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   triangleExclamation = triangleExclamation;
   users = users;
 
-  constructor(
-    protected http: HttpClient,
-    public user: User,
-    protected socket: Socket,
-    public translate: TranslateService,
-    public router: Router
-  ) {
+  constructor() {
     this.chatActive = '';
 
     this.chat_user_players = [];

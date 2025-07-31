@@ -1,18 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { AttacksIncludeComponent } from './attacks-include.component';
+import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
 import { AttacksSeabattlesAbstractComponent } from './attacks-seabattles-abstract.component';
+import { AttacksSeabattlesCoinsHelpPopupSubComponent } from './attacks-seabattles-coins-help-popup.sub-component';
+import { AttacksSeabattlesEngagePopupSubComponent } from './attacks-seabattles-engage-popup.sub-component';
 import { AttacksSeabattlesMovePopupSubComponent } from './attacks-seabattles-move-popup.sub-component';
+import { AttacksSeabattlesMouvementsHelpPopupSubComponent } from './attacks-seabattles-mouvements-help-popup.sub-component';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -34,7 +36,10 @@ interface RankingLineSB {
   templateUrl: './attacks-seabattles.component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
   imports: [
-    AttacksIncludeComponent,
+    AttacksMenuSubComponent,
+    AttacksSeabattlesCoinsHelpPopupSubComponent,
+    AttacksSeabattlesEngagePopupSubComponent,
+    AttacksSeabattlesMouvementsHelpPopupSubComponent,
     CommonModule,
     DragDropModule,
     IcIconComponent,
@@ -48,6 +53,12 @@ export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
   implements OnInit, OnDestroy
 {
+  protected override http: HttpClient;
+  protected override socket: Socket;
+  override user: User;
+  override translate: TranslateService;
+  protected override modalService: BsModalService;
+
   public currentCase = {
     case_type: -1,
     can_engage: 0,
@@ -87,14 +98,20 @@ export class AttacksSeabattlesComponent
   Object = Object;
   Tools = Tools;
 
-  constructor(
-    protected override http: HttpClient,
-    protected override socket: Socket,
-    public override user: User,
-    public override translate: TranslateService,
-    protected override modalService: BsModalService
-  ) {
-    super(http, socket, user, translate, modalService);
+  constructor() {
+    const http = inject(HttpClient);
+    const socket = inject(Socket);
+    const user = inject(User);
+    const translate = inject(TranslateService);
+    const modalService = inject(BsModalService);
+
+    super();
+    this.http = http;
+    this.socket = socket;
+    this.user = user;
+    this.translate = translate;
+    this.modalService = modalService;
+
     this.subRank = new Subscription();
     for (let i = 1; i <= 15; i++) {
       for (let j = 1; j <= 15; j++) {

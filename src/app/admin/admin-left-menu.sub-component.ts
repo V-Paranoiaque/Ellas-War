@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from 'src/services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -17,6 +17,7 @@ import fileLines from '@iconify/icons-fa6-regular/file-lines';
   imports: [IcIconComponent, RouterModule, TranslateModule],
 })
 export class AdminLeftMenuSubComponent {
+  user = inject(User);
+
   fileLines = fileLines;
-  constructor(public user: User) {}
 }

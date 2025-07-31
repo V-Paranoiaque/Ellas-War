@@ -1,5 +1,11 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  EventEmitter,
+  inject,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -51,6 +57,14 @@ interface Profile {
   ],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  user = inject(User);
+  protected socket = inject(Socket);
+  translate = inject(TranslateService);
+  private route = inject(ActivatedRoute);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 
   public id = 0;
@@ -66,15 +80,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userCircle = userCircle;
   userShield = userShield;
 
-  constructor(
-    protected http: HttpClient,
-    public user: User,
-    protected socket: Socket,
-    public translate: TranslateService,
-    private route: ActivatedRoute,
-    private titleService: Title,
-    private metaService: Meta
-  ) {
+  constructor() {
     this.profile = {
       membre_id: 0,
       username: '',

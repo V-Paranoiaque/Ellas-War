@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -33,6 +33,11 @@ import link from '@iconify/icons-fa6-solid/link';
 export class OptionsSponsoringInformationPopupSubComponent
   implements OnInit, OnDestroy
 {
+  private http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public sponsorList: object[] = [];
   public linkSaved: number;
   public sponsorError = 0;
@@ -45,12 +50,7 @@ export class OptionsSponsoringInformationPopupSubComponent
   clipboardCheck = clipboardCheck;
   link = link;
 
-  constructor(
-    private http: HttpClient,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.linkSaved = 0;
     this.subPlayer = new Subscription();
   }

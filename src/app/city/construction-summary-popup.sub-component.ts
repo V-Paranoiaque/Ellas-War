@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -10,12 +10,10 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TranslateModule],
 })
 export class ConstructionSummaryPopupSubComponent {
-  Tools = Tools;
+  user = inject(User);
+  translate = inject(TranslateService);
 
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
+  Tools = Tools;
 
   getField() {
     let field = 0;

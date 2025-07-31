@@ -117,7 +117,9 @@
               <div>
                 <strong translate>Defense</strong>
                 <strong translate>:</strong>
-                {{ info.defense | number: '' : this.translate.currentLang }}
+                {{
+                  info.defense | number: '' : this.translate.getCurrentLang()
+                }}
                 <app-ic-icon
                   [icon]="shieldShaded"
                   title="{{ 'Defense' | translate }}"></app-ic-icon>
@@ -133,7 +135,7 @@
                   <span>
                     {{
                       Number(resource.value) * realBuildNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -152,7 +154,7 @@
                   <span>
                     {{
                       Number(resource.value) * realDestructNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -171,7 +173,7 @@
                   <span>
                     {{
                       Number(i.nb) * realBuildNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ i.code }}"
@@ -190,7 +192,7 @@
                   <span>
                     {{
                       Number(i.nb) * realBuildNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ i.code }}"
@@ -228,12 +230,15 @@
               <span role="button" (click)="setDestruct()">
                 {{
                   user.getPropertyNb(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </span>
               @if (info.nbmax) {
                 <span (click)="setBuild(info.nbmax)">
-                  / {{ info.nbmax | number: '' : this.translate.currentLang }}
+                  /
+                  {{
+                    info.nbmax | number: '' : this.translate.getCurrentLang()
+                  }}
                 </span>
               }
             </div>
@@ -254,7 +259,8 @@
                   >{{ 'Max possible' | translate }}{{ ':' | translate }}</strong
                 >
                 {{
-                  info.rBuildPossible | number: '' : this.translate.currentLang
+                  info.rBuildPossible
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }
@@ -270,7 +276,7 @@
               <strong translate>:</strong>
               {{
                 info.field * realBuildNb()
-                  | number: '' : this.translate.currentLang
+                  | number: '' : this.translate.getCurrentLang()
               }}
               <app-ic-icon [icon]="landFields"></app-ic-icon>
             </div>
@@ -383,7 +389,7 @@
               {{
                 resource.value
                   ? (Number(resource.value)
-                    | number: '' : this.translate.currentLang)
+                    | number: '' : this.translate.getCurrentLang())
                   : 0
               }}
               <app-ew-icon
@@ -417,7 +423,7 @@
               {{
                 resource.value
                   ? (Number(resource.value)
-                    | number: '' : this.translate.currentLang)
+                    | number: '' : this.translate.getCurrentLang())
                   : 0
               }}
               <app-ew-icon
@@ -451,7 +457,7 @@
               {{
                 resource.value
                   ? (Number(resource.value)
-                    | number: '' : this.translate.currentLang)
+                    | number: '' : this.translate.getCurrentLang())
                   : 0
               }}
               <app-ew-icon

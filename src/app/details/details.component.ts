@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -25,6 +25,9 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class DetailsComponent implements OnInit {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   Tools = Tools;
 
   public nbvariation = {
@@ -55,10 +58,7 @@ export class DetailsComponent implements OnInit {
 
   questionCircle = questionCircle;
 
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     /**
      * 0: Production
      * 1: Comsumption

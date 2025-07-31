@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -11,7 +11,8 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
-import { StoreroomIncludeComponent } from './storeroom-include.component';
+import { StoreroomHistoryPopupSubComponent } from './storeroom-history-popup.sub-component';
+import { StoreroomSellHelpPopupSubComponent } from './storeroom-sell-help-popup.sub-component';
 
 import bagIcon from '@iconify/icons-bi/bag';
 import clockIcon from '@iconify/icons-fa6-regular/clock';
@@ -29,11 +30,16 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    StoreroomIncludeComponent,
+    StoreroomHistoryPopupSubComponent,
+    StoreroomSellHelpPopupSubComponent,
     TranslateModule,
   ],
 })
 export class StoreroomComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   private storeroomList: {
     resource_id: number;
     remaining: number;
@@ -73,11 +79,7 @@ export class StoreroomComponent implements OnInit, OnDestroy {
   Math = Math;
   Tools = Tools;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.storeroomList = [];
     this.storeroomMyList = [];
 

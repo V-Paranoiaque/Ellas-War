@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
-import { QuestsIncludeComponent } from './quests-include.component';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
@@ -22,12 +21,16 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     CommonModule,
     EwIconSubComponent,
     IcIconComponent,
-    QuestsIncludeComponent,
     RouterModule,
     TranslateModule,
   ],
 })
 export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private readonly http = inject(HttpClient);
+  translate = inject(TranslateService);
+
   public localevars = {
     facebook: '',
   };
@@ -36,18 +39,15 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   facebookIcon = facebookIcon;
   questionCircle = questionCircle;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    private http: HttpClient,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 
   ngOnInit() {
     this.sub = this.http
-      .get('./assets/i18n/' + this.translate.currentLang + '/localevars.json')
+      .get(
+        './assets/i18n/' + this.translate.getCurrentLang() + '/localevars.json'
+      )
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;
       });

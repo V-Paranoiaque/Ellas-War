@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -27,6 +27,11 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class AdminComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public adminStats = {
     honor_last_time: 0,
     diamond_last_time: 0,
@@ -43,12 +48,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   eye = eye;
 
-  constructor(
-    protected http: HttpClient,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

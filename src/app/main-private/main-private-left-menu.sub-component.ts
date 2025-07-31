@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -14,14 +14,13 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateModule],
 })
 export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
+  socket = inject(Socket);
+  user = inject(User);
+
   private favicon: HTMLLinkElement = document.querySelector('#favicon')!;
   private audio: HTMLAudioElement;
 
-  constructor(
-    public socket: Socket,
-    router: Router,
-    public user: User
-  ) {
+  constructor() {
     this.audio = new Audio();
     this.audio.src = './assets/audio/2042.mp3';
     this.audio.load();

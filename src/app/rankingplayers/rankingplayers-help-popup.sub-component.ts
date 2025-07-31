@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -7,5 +7,5 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   imports: [TranslateModule],
 })
 export class RankingplayersHelpPopupSubComponent {
-  constructor(public translate: TranslateService) {}
+  translate = inject(TranslateService);
 }

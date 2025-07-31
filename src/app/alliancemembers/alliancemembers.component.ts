@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
@@ -25,6 +25,14 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   ],
 })
 export class AlliancemembersComponent implements OnInit, OnDestroy {
+  http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+
   public allianceMembers: {
     membre_id: number;
     username: string;
@@ -49,15 +57,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
     blocked: 0,
   };
 
-  constructor(
-    public http: HttpClient,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    public user: User,
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.allianceMembers = [];
     this.subMembers = new Subscription();
     this.subProfile = new Subscription();

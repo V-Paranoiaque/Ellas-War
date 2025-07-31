@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -25,6 +25,11 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class TeamrecruitmentComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+  user = inject(User);
+
   private sub: Subscription;
   private subDesc: Subscription;
 
@@ -34,12 +39,7 @@ export class TeamrecruitmentComponent implements OnInit, OnDestroy {
   facebookIcon = facebookIcon;
   githubOctocat = githubOctocat;
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService,
-    public user: User
-  ) {
+  constructor() {
     this.sub = new Subscription();
     this.subDesc = new Subscription();
   }

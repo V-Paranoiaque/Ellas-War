@@ -15,14 +15,15 @@
         <strong translate>Field</strong>
         <strong translate>:</strong>
         {{
-          user.getPropertyNb('field') | number: '' : this.translate.currentLang
+          user.getPropertyNb('field')
+            | number: '' : this.translate.getCurrentLang()
         }}
         <br />
         <strong translate>Victories</strong>
         <strong translate>:</strong>
         {{
           user.getPropertyNb('victory')
-            | number: '' : this.translate.currentLang
+            | number: '' : this.translate.getCurrentLang()
         }}
         <br />
 
@@ -33,7 +34,7 @@
           <strong translate>:</strong>
           {{
             user.getPropertyNb('honor')
-              | number: '' : this.translate.currentLang
+              | number: '' : this.translate.getCurrentLang()
           }}
         </a>
         <span
@@ -51,7 +52,8 @@
           <strong translate>XP</strong>
           <strong translate>:</strong>
           {{
-            user.getPropertyNb('xp') | number: '' : this.translate.currentLang
+            user.getPropertyNb('xp')
+              | number: '' : this.translate.getCurrentLang()
           }}
         </a>
         <span
@@ -107,7 +109,7 @@
                 <td class="text-end">
                   {{
                     user.getPropertyNb(res)
-                      | number: '1.0-2' : this.translate.currentLang
+                      | number: '1.0-2' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <th scope="row">
@@ -122,9 +124,8 @@
             <tr>
               <td>
                 @if (user.getPropertyNb('ambrosia') < 400) {
-                  <app-ic-icon
-                    class="text-success"
-                    [icon]="angleUp"></app-ic-icon>
+                  <app-ic-icon class="text-success" [icon]="angleUp">
+                  </app-ic-icon>
                 } @else {
                   <app-ic-icon
                     [icon]="equals"
@@ -134,7 +135,7 @@
               <td class="text-end">
                 {{
                   user.getPropertyNb('ambrosia')
-                    | number: '1.0-2' : this.translate.currentLang
+                    | number: '1.0-2' : this.translate.getCurrentLang()
                 }}
               </td>
               <th scope="row">
@@ -159,7 +160,7 @@
               <td class="text-end">
                 {{
                   user.getPropertyNb('favor')
-                    | number: '1.0-2' : this.translate.currentLang
+                    | number: '1.0-2' : this.translate.getCurrentLang()
                 }}
               </td>
               <th scope="row">

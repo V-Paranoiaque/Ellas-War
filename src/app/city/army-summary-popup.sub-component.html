@@ -38,19 +38,19 @@
                     }}
                     ({{
                       user.getPropertyNb(unit.code)
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }})
                   </th>
                   <td class="text-end">
                     {{
                       user.getPropertyNb(unit.code) * unit.attack
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                   <td class="text-end">
                     {{
                       user.getPropertyNb(unit.code) * unit.defense
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                 </tr>
@@ -74,7 +74,7 @@
                   <td class="text-end">
                     {{
                       user.getPropertyNb(building.code) * building.defense
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                 </tr>
@@ -87,7 +87,7 @@
                 <td class="text-end">
                   {{
                     defenseWallStrength
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -97,7 +97,9 @@
                 <th scope="row" translate>Wall of Poseidon</th>
                 <td class="text-end">0</td>
                 <td class="text-end">
-                  {{ wallDefense | number: '' : this.translate.currentLang }}
+                  {{
+                    wallDefense | number: '' : this.translate.getCurrentLang()
+                  }}
                 </td>
               </tr>
             }
@@ -107,10 +109,14 @@
               <tr>
                 <td></td>
                 <td class="text-end">
-                  {{ getAttack() | number: '' : this.translate.currentLang }}
+                  {{
+                    getAttack() | number: '' : this.translate.getCurrentLang()
+                  }}
                 </td>
                 <td class="text-end">
-                  {{ getDefense() | number: '' : this.translate.currentLang }}
+                  {{
+                    getDefense() | number: '' : this.translate.getCurrentLang()
+                  }}
                 </td>
               </tr>
             </tfoot>

@@ -12,12 +12,12 @@
       <div class="modal-body container-fluid">
         <div class="text-center fw-bold">
           {{ 'Production field:' | translate }}
-          {{ getProdField() | number: '' : this.translate.currentLang }}
+          {{ getProdField() | number: '' : this.translate.getCurrentLang() }}
           @if (user.getDatas().maxField > 0) {
             <span
               >/{{
                 user.getDatas().maxField
-                  | number: '' : this.translate.currentLang
+                  | number: '' : this.translate.getCurrentLang()
               }}</span
             >
           }
@@ -42,12 +42,15 @@
                   ({{ user.getPropertyNb(building.code) }})
                 </th>
                 <td class="text-end">
-                  {{ building.field | number: '' : this.translate.currentLang }}
+                  {{
+                    building.field
+                      | number: '' : this.translate.getCurrentLang()
+                  }}
                 </td>
                 <td class="text-end">
                   {{
                     user.getPropertyNb(building.code) * building.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -78,13 +81,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -95,13 +98,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -112,13 +115,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple1.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -130,13 +133,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple2.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple2.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -147,13 +150,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple2.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple2.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -165,13 +168,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -182,13 +185,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -199,13 +202,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple3.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -217,13 +220,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -234,13 +237,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -251,13 +254,13 @@
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
                 <td class="text-end">
                   {{
                     getTempleField().temple4.field
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </td>
               </tr>
@@ -268,7 +271,7 @@
               <td></td>
               <td></td>
               <td class="text-end">
-                {{ getField() | number: '' : this.translate.currentLang }}
+                {{ getField() | number: '' : this.translate.getCurrentLang() }}
               </td>
             </tr>
           </tfoot>

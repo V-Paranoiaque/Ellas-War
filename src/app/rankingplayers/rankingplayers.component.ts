@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -47,6 +47,14 @@ interface RankingLine {
   ],
 })
 export class RankingplayersComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+
   public rankingList: RankingLine[];
   public rankingMax: number;
   public rankingOrder: string;
@@ -61,15 +69,7 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
   sortUP = sortUP;
 
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private readonly router: Router,
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService,
-    private titleService: Title
-  ) {
+  constructor() {
     this.rankingList = [];
     this.rankingMax = 1;
     this.rankingOrder = 'level';

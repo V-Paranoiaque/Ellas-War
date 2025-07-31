@@ -13,8 +13,8 @@
         <h2>{{ Tools.getName(info.code, info.nb) | translate }}</h2>
 
         <strong>
-          {{ info.nbUnit | number: '' : this.translate.currentLang }}/{{
-            info.nb | number: '' : this.translate.currentLang
+          {{ info.nbUnit | number: '' : this.translate.getCurrentLang() }}/{{
+            info.nb | number: '' : this.translate.getCurrentLang()
           }}
         </strong>
 

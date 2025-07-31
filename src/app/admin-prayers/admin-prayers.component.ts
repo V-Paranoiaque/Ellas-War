@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -27,6 +27,10 @@ import plusIcon from '@iconify/icons-bi/plus';
   ],
 })
 export class AdminPrayersComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public adminPrayersList: {
     ask_date: number;
     ask_username: string;
@@ -44,11 +48,7 @@ export class AdminPrayersComponent implements OnInit, OnDestroy {
 
   plusIcon = plusIcon;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.adminPrayersList = [];
   }
 

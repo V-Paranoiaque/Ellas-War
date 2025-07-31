@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -12,12 +12,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class FuryMessageSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: MessageContent['content'];
 
   Tools = Tools;
-
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
 }

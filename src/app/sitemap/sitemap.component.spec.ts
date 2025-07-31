@@ -4,15 +4,15 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import {
-  HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { SitemapComponent } from './sitemap.component';
 import { environment } from '../../environments/environment';
@@ -23,14 +23,13 @@ describe('SitemapComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [SitemapComponent],
       imports: [
+        RouterModule.forRoot([]),
         TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useFactory: httpTranslateLoader,
-            deps: [HttpClient],
-          },
+          loader: provideTranslateHttpLoader({
+            prefix: './assets/i18n/',
+            suffix: '.json',
+          }),
         }),
         OAuthModule.forRoot(),
       ],
@@ -56,8 +55,3 @@ describe('SitemapComponent', () => {
     expect(app).toBeTruthy();
   });
 });
-
-// AOT compilation support
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/');
-}

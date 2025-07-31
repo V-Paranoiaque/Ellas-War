@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 
@@ -9,5 +9,5 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule, TranslateModule],
 })
 export class MainPublicBottomMenuSubComponent {
-  constructor(public translate: TranslateService) {}
+  translate = inject(TranslateService);
 }

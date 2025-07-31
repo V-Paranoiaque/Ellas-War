@@ -34,7 +34,8 @@
             | translate
               : {
                   value:
-                    quest.quest_goal | number: '' : this.translate.currentLang,
+                    quest.quest_goal
+                    | number: '' : this.translate.getCurrentLang(),
                 }
         }}
       </span>
@@ -46,7 +47,8 @@
             | translate
               : {
                   value:
-                    quest.quest_goal | number: '' : this.translate.currentLang,
+                    quest.quest_goal
+                    | number: '' : this.translate.getCurrentLang(),
                 }
         }}
       </span>

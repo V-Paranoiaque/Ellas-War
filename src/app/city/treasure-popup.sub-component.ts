@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -22,6 +22,10 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
   ],
 })
 export class TreasurePopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     amount: string;
     treasureMode: number;
@@ -45,11 +49,7 @@ export class TreasurePopupSubComponent implements OnInit, OnDestroy {
   //Icons
   treasureChest = treasureChest;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.treasureHistory = [];
     this.taxDeduction = 1;
     this.treasureMax = 200000;

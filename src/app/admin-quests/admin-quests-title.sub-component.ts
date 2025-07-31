@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TranslateModule],
 })
 export class AdminQuestsTitleSubComponent {
+  translate = inject(TranslateService);
+
   @Input() quest!: {
     quest_reward: number;
     quest_difficulty: number;
@@ -16,6 +18,4 @@ export class AdminQuestsTitleSubComponent {
     quest_type: number;
     quest_levelmax: number;
   };
-
-  constructor(public translate: TranslateService) {}
 }

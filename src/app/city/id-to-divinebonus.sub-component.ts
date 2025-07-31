@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -11,12 +11,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class IdToDivineBonusSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input()
   id!: number;
   Tools = ToolsComponent;
-
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
 }

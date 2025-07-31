@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
@@ -13,13 +13,13 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateModule],
 })
 export class StrategyGameComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+  user = inject(User);
+
   private sub: Subscription;
 
-  constructor(
-    private titleService: Title,
-    public translate: TranslateService,
-    public user: User
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

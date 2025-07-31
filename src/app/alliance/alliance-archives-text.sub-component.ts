@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,9 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AllianceArchivesTextSubComponent {
+  translate = inject(TranslateService);
+  user = inject(User);
+
   @Input() msg!: {
     type: number;
     title: {
@@ -45,9 +48,4 @@ export class AllianceArchivesTextSubComponent {
     };
     alliance_history_date: number;
   };
-
-  constructor(
-    public translate: TranslateService,
-    public user: User
-  ) {}
 }

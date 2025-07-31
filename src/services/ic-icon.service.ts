@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { IconifyIcon } from 'iconify-icon';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -14,11 +20,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     '<svg [innerHTML]="iconHtml" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" [attr.viewBox]="viewbox" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);width: inherit;height: inherit;"></svg>',
 })
 export class IcIconComponent implements OnChanges {
+  private readonly sanitizer = inject(DomSanitizer);
+
   @Input() icon: IconifyIcon | null = null;
   iconHtml: SafeHtml = '';
   viewbox = '';
-
-  constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.icon && changes['icon']) {

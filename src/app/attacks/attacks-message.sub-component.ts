@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,16 +15,16 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AttacksMessageSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: MessageContent['content'];
   public resources: string[];
 
   Object = Object;
   Tools = Tools;
 
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.resources = environment.resources;
   }
 

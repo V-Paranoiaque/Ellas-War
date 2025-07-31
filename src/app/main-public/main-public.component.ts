@@ -1,5 +1,11 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation,
+  inject,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -39,6 +45,14 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   encapsulation: ViewEncapsulation.None,
 })
 export class MainPublicComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  private formBuilder = inject(FormBuilder);
+  private http = inject(HttpClient);
+  translate = inject(TranslateService);
+  user = inject(User);
+  private readonly router = inject(Router);
+  private titleService = inject(Title);
+
   public localevars = {
     facebook: '',
     store: {
@@ -70,15 +84,7 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
 
-  constructor(
-    private readonly socket: Socket,
-    private formBuilder: FormBuilder,
-    private http: HttpClient,
-    public translate: TranslateService,
-    public user: User,
-    private readonly router: Router,
-    private titleService: Title
-  ) {
+  constructor() {
     this.newsList = [];
 
     this.loginForm = this.formBuilder.group({});
@@ -94,7 +100,9 @@ export class MainPublicComponent implements OnInit, OnDestroy {
     const userId = localStorage.getItem('invite') ?? 0;
 
     this.subLang = this.http
-      .get('./assets/i18n/' + this.translate.currentLang + '/localevars.json')
+      .get(
+        './assets/i18n/' + this.translate.getCurrentLang() + '/localevars.json'
+      )
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;
       });

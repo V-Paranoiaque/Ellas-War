@@ -48,7 +48,7 @@
             [ngClass]="{
               'text-danger': user.getPropertyNb(item.res) < item.nb,
             }">
-            {{ item.nb | number: '' : this.translate.currentLang }}
+            {{ item.nb | number: '' : this.translate.getCurrentLang() }}
             <app-ew-icon
               name="{{ item.res }}"
               class="small-resource"></app-ew-icon>
@@ -461,7 +461,7 @@
             [routerLink]="['/rankingplayers/1/field']">
             {{
               user.getPropertyNb('field')
-                | number: '' : this.translate.currentLang
+                | number: '' : this.translate.getCurrentLang()
             }}
             <app-ic-icon [icon]="landFields"></app-ic-icon>
           </a>
@@ -471,7 +471,7 @@
             [routerLink]="['/rankingplayers/1/victory']">
             {{
               user.getPropertyNb('victory')
-                | number: '' : this.translate.currentLang
+                | number: '' : this.translate.getCurrentLang()
             }}
             <app-ic-icon
               [icon]="swordIcon"
@@ -483,7 +483,7 @@
             [routerLink]="['/honor/' + user.getPropertyNb('level')]">
             {{
               user.getPropertyNb('honor')
-                | number: '' : this.translate.currentLang
+                | number: '' : this.translate.getCurrentLang()
             }}
             <app-ic-icon
               [icon]="crown"
@@ -501,7 +501,8 @@
           <br />
           <a href="/rankingplayers" [routerLink]="['/rankingplayers/']">
             {{
-              user.getPropertyNb('xp') | number: '' : this.translate.currentLang
+              user.getPropertyNb('xp')
+                | number: '' : this.translate.getCurrentLang()
             }}
             <app-ic-icon
               [icon]="trophy"
@@ -566,7 +567,10 @@
                 }
               </div>
               <div class="py-1 flex-grow-1 text-end text-break">
-                {{ getRes(res) | number: '1.0-2' : this.translate.currentLang }}
+                {{
+                  getRes(res)
+                    | number: '1.0-2' : this.translate.getCurrentLang()
+                }}
               </div>
               <div class="p-1 icon">
                 <app-ew-icon
@@ -600,7 +604,7 @@
           <div class="py-1 flex-grow-1 text-end">
             {{
               user.getPropertyNb('ambrosia')
-                | number: '1.0-2' : this.translate.currentLang
+                | number: '1.0-2' : this.translate.getCurrentLang()
             }}
           </div>
           <div class="p-1 icon">
@@ -625,7 +629,7 @@
           <div class="py-1 flex-grow-1 text-end">
             {{
               user.getPropertyNb('favor')
-                | number: '1.0-2' : this.translate.currentLang
+                | number: '1.0-2' : this.translate.getCurrentLang()
             }}
           </div>
           <div class="p-1 icon">

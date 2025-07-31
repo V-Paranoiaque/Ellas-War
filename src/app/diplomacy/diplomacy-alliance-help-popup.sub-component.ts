@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,5 +8,5 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [TranslateModule],
 })
 export class DiplomacyAllianceHelpPopupSubComponent {
-  constructor(public user: User) {}
+  user = inject(User);
 }

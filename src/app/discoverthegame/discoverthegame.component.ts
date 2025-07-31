@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -25,6 +25,11 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class DiscoverthegameComponent implements OnInit, OnDestroy {
+  private route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+
   public page: string;
 
   private sub: Subscription;
@@ -32,12 +37,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
   arrowLeft = arrowLeft;
   arrowRight = arrowRight;
 
-  constructor(
-    private route: ActivatedRoute,
-    private readonly router: Router,
-    private titleService: Title,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.page = '';
     this.sub = new Subscription();
   }

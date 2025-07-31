@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -26,6 +26,10 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminStoreroomComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+
   public list: {
     seller_id: number;
     buyer_id: number;
@@ -52,11 +56,7 @@ export class AdminStoreroomComponent implements OnInit, OnDestroy {
 
   Tools = Tools;
 
-  constructor(
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.list = [];
     this.msgPageNb = 1;
     this.currentPage = 1;

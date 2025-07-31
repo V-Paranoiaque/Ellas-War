@@ -7,7 +7,9 @@
         <small class="text-muted">
           <strong translate>Currently</strong>
           <strong translate>:</strong>
-          {{ parseInt(currently) | number: '' : this.translate.currentLang }}
+          {{
+            parseInt(currently) | number: '' : this.translate.getCurrentLang()
+          }}
         </small>
       </p>
     }

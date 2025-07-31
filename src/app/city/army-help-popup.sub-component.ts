@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
@@ -20,6 +20,8 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class ArmyHelpPopupSubComponent {
+  user = inject(User);
+
   Tools = Tools;
 
   minotaurIcon = minotaurIcon;
@@ -34,7 +36,7 @@ export class ArmyHelpPopupSubComponent {
   groupList: number[];
   selectedGroup: number;
 
-  constructor(public user: User) {
+  constructor() {
     this.groupList = [];
     for (let i = 1; i <= 8; i++) {
       this.groupList.push(i);

@@ -84,19 +84,19 @@
                                 | number
                                   : '1.0-' +
                                       Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.currentLang
+                                  : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.quantity
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                         }
@@ -156,25 +156,25 @@
                                 | number
                                   : '1.0-' +
                                       Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.currentLang
+                                  : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.quantity
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.rate * batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -241,19 +241,19 @@
                                 | number
                                   : '1.0-' +
                                       Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.currentLang
+                                  : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.quantity
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                         }
@@ -313,25 +313,25 @@
                                 | number
                                   : '1.0-' +
                                       Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.currentLang
+                                  : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.quantity
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                           </td>
                           <td>
                             {{
                               batch.rate * batch.solded
-                                | number: '' : this.translate.currentLang
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,17 +15,17 @@ import { FormsModule } from '@angular/forms';
 export class OptionsAccountInformationPopupSubComponent
   implements OnInit, OnDestroy
 {
+  private readonly router = inject(Router);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public description: string;
   public errorAccountSave: number;
   public imageProfile: string;
   public location: string;
 
-  constructor(
-    private readonly router: Router,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.description = '';
     this.errorAccountSave = 0;
     this.imageProfile = '';

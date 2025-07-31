@@ -43,7 +43,8 @@
                   }}</span
                   >&nbsp;<span class="fw-bold"
                     >{{
-                      getReward() | number: '' : this.translate.currentLang
+                      getReward()
+                        | number: '' : this.translate.getCurrentLang()
                     }}&nbsp;
                     <app-ew-icon
                       name="drachma"
@@ -119,19 +120,26 @@
                       </td>
                       @if (id === 10) {
                         <td>
-                          {{ p.xp | number: '' : this.translate.currentLang }}
+                          {{
+                            p.xp | number: '' : this.translate.getCurrentLang()
+                          }}
                         </td>
                       }
                       <td class="d-none d-sm-table-cell">
-                        {{ p.field | number: '' : this.translate.currentLang }}
+                        {{
+                          p.field | number: '' : this.translate.getCurrentLang()
+                        }}
                       </td>
                       <td class="d-none d-sm-table-cell">
                         {{
-                          p.victory | number: '' : this.translate.currentLang
+                          p.victory
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td>
-                        {{ p.honor | number: '' : this.translate.currentLang }}
+                        {{
+                          p.honor | number: '' : this.translate.getCurrentLang()
+                        }}
                       </td>
                     </tr>
                   }

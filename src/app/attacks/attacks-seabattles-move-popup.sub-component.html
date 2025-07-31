@@ -39,7 +39,7 @@
               <li>
                 {{
                   getLostAttacker(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 {{ Tools.getName(info.code) | translate }}
               </li>
@@ -55,7 +55,7 @@
               <li>
                 {{
                   getLostDefender(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 {{ Tools.getName(info.code) | translate }}
               </li>
@@ -66,7 +66,7 @@
               <li>
                 {{
                   getLostDefender(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 {{ Tools.getName(info.code) | translate }}
               </li>
@@ -103,12 +103,12 @@
               <td class="text-center">
                 {{
                   moveArray.get(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 /
                 {{
                   getUnitsCurrent(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 <br />
                 <input
@@ -123,13 +123,17 @@
               </td>
               <td>
                 <span>
-                  {{ info.attack | number: '' : this.translate.currentLang }}
+                  {{
+                    info.attack | number: '' : this.translate.getCurrentLang()
+                  }}
                   <app-ic-icon
                     [icon]="swordIcon"
                     title="{{ 'Attack' | translate }}"></app-ic-icon>
                 </span>
                 <span>
-                  {{ info.defense | number: '' : this.translate.currentLang }}
+                  {{
+                    info.defense | number: '' : this.translate.getCurrentLang()
+                  }}
                   <app-ic-icon
                     [icon]="shieldShaded"
                     title="{{ 'Defense' | translate }}"></app-ic-icon>

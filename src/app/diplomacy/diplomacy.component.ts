@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -9,7 +9,12 @@ import { CommonModule } from '@angular/common';
 import { environment } from './../../environments/environment';
 
 import { AlliancePactManagePopupSubComponent } from '../alliance/alliance-pact-manage-popup.sub-component';
-import { DiplomacyIncludeComponent } from './diplomacy-include.component';
+import { DiplomacyAllianceCreatePopupSubComponent } from './diplomacy-alliance-create-popup.sub-component';
+import { DiplomacyInvasionHelpPopupSubComponent } from './diplomacy-invasion-help-popup.sub-component';
+import { DiplomacyAllianceJoinPopupSubComponent } from './diplomacy-alliance-join-popup.sub-component';
+import { DiplomacyPactAskPopupSubComponent } from './diplomacy-pact-ask-popup.sub-component';
+import { DiplomacyWarDeclarePopupSubComponent } from './diplomacy-war-declare-popup.sub-component';
+import { DiplomacyAllianceHelpPopupSubComponent } from './diplomacy-alliance-help-popup.sub-component';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -27,7 +32,12 @@ import users from '@iconify/icons-fa6-solid/users';
   imports: [
     AlliancePactManagePopupSubComponent,
     CommonModule,
-    DiplomacyIncludeComponent,
+    DiplomacyAllianceCreatePopupSubComponent,
+    DiplomacyInvasionHelpPopupSubComponent,
+    DiplomacyAllianceJoinPopupSubComponent,
+    DiplomacyAllianceHelpPopupSubComponent,
+    DiplomacyPactAskPopupSubComponent,
+    DiplomacyWarDeclarePopupSubComponent,
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -36,6 +46,12 @@ import users from '@iconify/icons-fa6-solid/users';
   ],
 })
 export class DiplomacyComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public allianceList: {
     alliance_id: number;
     alliance_name: string;
@@ -74,13 +90,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   userPlus = userPlus;
   users = users;
 
-  constructor(
-    private readonly router: Router,
-    private http: HttpClient,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.allianceList = [];
     this.order = '';
     this.sub = new Subscription();

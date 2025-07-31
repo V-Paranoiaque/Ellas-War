@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -31,6 +31,10 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class AdminSeoComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+
   public list: {
     seo_id: number;
     seo_name: string;
@@ -54,11 +58,7 @@ export class AdminSeoComponent implements OnInit, OnDestroy {
   trash2Icon = trash2Icon;
   times = times;
 
-  constructor(
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.list = [];
   }
 

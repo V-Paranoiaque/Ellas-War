@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TranslateModule],
 })
 export class SuccessCardSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input()
   title: string;
   @Input()
@@ -20,10 +23,7 @@ export class SuccessCardSubComponent {
 
   parseInt = parseInt;
 
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.title = '';
     this.text = '';
     this.point = '0';

@@ -16,7 +16,8 @@
               | translate
                 : {
                     value: info.username,
-                    qtt: giftRemain | number: '' : this.translate.currentLang,
+                    qtt:
+                      giftRemain | number: '' : this.translate.getCurrentLang(),
                   }
           }}
         </div>

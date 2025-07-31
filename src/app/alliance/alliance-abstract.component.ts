@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -7,9 +7,7 @@ import { UserComponent as User } from '../../services/user.service';
   template: '',
 })
 export class AllianceAbstractComponent {
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
 }

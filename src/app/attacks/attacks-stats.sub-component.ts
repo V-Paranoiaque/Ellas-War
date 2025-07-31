@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -18,6 +18,10 @@ import swordCross from '@iconify/icons-mdi/sword-cross';
   imports: [CommonModule, IcIconComponent, TranslateModule],
 })
 export class AttacksStatsSubComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public attackStats = {
     normal: {
       done: 0,
@@ -63,12 +67,6 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
   questionCircle = questionCircle;
   shieldShaded = shieldShaded;
   swordCross = swordCross;
-
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   ngOnInit() {
     this.socket.emit('attackStats');

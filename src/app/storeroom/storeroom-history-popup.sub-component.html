@@ -30,13 +30,15 @@
                     {{ l.day * 1000 | date: 'dd/MM/yyyy' }}
                   </th>
                   <td class="text-end">
-                    {{ l.quantity | number: '' : this.translate.currentLang }}
+                    {{
+                      l.quantity | number: '' : this.translate.getCurrentLang()
+                    }}
                     <app-ew-icon
                       name="{{ Tools.getResName(l.resource) }}"
                       class="small-resource ms-1"></app-ew-icon>
                   </td>
                   <td class="text-end">
-                    {{ l.price | number: '' : this.translate.currentLang }}
+                    {{ l.price | number: '' : this.translate.getCurrentLang() }}
                     <app-ew-icon
                       name="drachma"
                       class="small-resource"></app-ew-icon>

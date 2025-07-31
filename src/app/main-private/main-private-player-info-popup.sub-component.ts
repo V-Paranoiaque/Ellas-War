@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from 'src/services/user.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
@@ -28,6 +28,9 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class MainPrivatePlayerInfoPopupSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public ressList: string[];
   public xpCompare: {
     player1: number;
@@ -40,10 +43,7 @@ export class MainPrivatePlayerInfoPopupSubComponent {
   equals = equals;
   questionCircle = questionCircle;
 
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.ressList = environment.resources;
     this.xpCompare = {
       player1: this.user.getPropertyNb('xp'),

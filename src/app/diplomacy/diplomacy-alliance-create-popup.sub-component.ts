@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,12 +9,14 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [FormsModule, TranslateModule],
 })
 export class DiplomacyAllianceCreatePopupSubComponent {
+  private readonly socket = inject(Socket);
+
   public alliance!: {
     name: string;
     description: string;
   };
 
-  constructor(private readonly socket: Socket) {
+  constructor() {
     this.alliance = {
       name: '',
       description: '',

@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -25,6 +25,12 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   ],
 })
 export class ConnectedplayersComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+
   public connected: {
     membre_id: number;
     username: string;
@@ -36,13 +42,7 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   private subList: Subscription;
   private subTitle: Subscription;
 
-  constructor(
-    public user: User,
-    private http: HttpClient,
-    private readonly socket: Socket,
-    public translate: TranslateService,
-    private titleService: Title
-  ) {
+  constructor() {
     this.connected = [];
     this.subList = new Subscription();
     this.subTitle = new Subscription();

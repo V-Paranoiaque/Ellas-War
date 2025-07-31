@@ -285,13 +285,17 @@
                 <strong translate>Strength</strong>
                 <strong translate>:</strong>
                 <span>
-                  {{ info.attack | number: '' : this.translate.currentLang }}
+                  {{
+                    info.attack | number: '' : this.translate.getCurrentLang()
+                  }}
                   <app-ic-icon
                     [icon]="swordIcon"
                     title="{{ 'Attack' | translate }}"></app-ic-icon>
                 </span>
                 <span>
-                  {{ info.defense | number: '' : this.translate.currentLang }}
+                  {{
+                    info.defense | number: '' : this.translate.getCurrentLang()
+                  }}
                   <app-ic-icon
                     [icon]="shieldShaded"
                     title="{{ 'Defense' | translate }}"></app-ic-icon>
@@ -307,7 +311,7 @@
                   <span>
                     {{
                       Number(resource.value) * realEngageNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -324,7 +328,7 @@
                   <span>
                     {{
                       Number(resource.value) * realLiberateNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -343,7 +347,7 @@
                   <span>
                     {{
                       Number(resource.value) * realEngageNb()
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ resource.key }}"
@@ -361,12 +365,15 @@
               <span role="button" (click)="setLiberate()">
                 {{
                   user.getPropertyNb(info.code)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </span>
               @if (info.nbmax) {
                 <span role="button" (click)="setEngage(info.nbmax)">
-                  / {{ info.nbmax | number: '' : this.translate.currentLang }}
+                  /
+                  {{
+                    info.nbmax | number: '' : this.translate.getCurrentLang()
+                  }}
                 </span>
               }
             </div>
@@ -375,7 +382,7 @@
               <div>
                 <strong translate>Free units</strong>
                 <strong translate>:</strong>
-                {{ info.free | number: '' : this.translate.currentLang }}
+                {{ info.free | number: '' : this.translate.getCurrentLang() }}
               </div>
             }
 
@@ -385,7 +392,8 @@
                   >{{ 'Max possible' | translate }}{{ ':' | translate }}</strong
                 >
                 {{
-                  info.rEngagePossible | number: '' : this.translate.currentLang
+                  info.rEngagePossible
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }
@@ -400,10 +408,10 @@
                 <strong translate>:</strong>
                 {{
                   user.getPropertyNb('placenactu')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}/{{
                   user.getPropertyNb('placen')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }
@@ -417,10 +425,10 @@
                 <strong translate>:</strong>
                 {{
                   user.getPropertyNb('placenactu')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}/{{
                   user.getPropertyNb('placen')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }
@@ -430,10 +438,10 @@
                 <strong translate>:</strong>
                 {{
                   user.getPropertyNb('placepactu')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}/{{
                   user.getPropertyNb('placep')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }
@@ -443,10 +451,10 @@
                 <strong translate>:</strong>
                 {{
                   user.getPropertyNb('placecactu')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}/{{
                   user.getPropertyNb('placec')
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }

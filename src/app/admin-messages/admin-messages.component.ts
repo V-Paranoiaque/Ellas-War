@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -21,17 +21,17 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminMessagesComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+
   public msgError: number;
   public messageTest: boolean;
   public messageText: string;
   public messageTitle: string;
   public messageType: string;
 
-  constructor(
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.msgError = 0;
     this.messageTest = true;
     this.messageText = '';

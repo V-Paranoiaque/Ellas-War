@@ -12,7 +12,7 @@
       <div class="modal-body container-fluid text-center">
         <strong translate>Batch</strong>
         <strong translate>:</strong>
-        {{ info.nbress | number: '' : this.translate.currentLang }}
+        {{ info.nbress | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon
           name="{{ Tools.getResName(info.ress_type) }}"
           class="small-resource"></app-ew-icon>
@@ -25,7 +25,7 @@
           <span>
             {{
               info.nbress * (1 - (0.8 + user.getPropertyNb('hermes') * 0.175))
-                | number: '' : this.translate.currentLang
+                | number: '' : this.translate.getCurrentLang()
             }}
             <app-ew-icon
               name="{{ Tools.getResName(info.ress_type) }}"
@@ -34,7 +34,7 @@
         }
         @if (info.ress_type === 10) {
           <span>
-            {{ 20000 | number: '' : this.translate.currentLang }}
+            {{ 20000 | number: '' : this.translate.getCurrentLang() }}
             <app-ew-icon
               name="{{ Tools.getResName(info.ress_type) }}"
               class="small-resource"></app-ew-icon>

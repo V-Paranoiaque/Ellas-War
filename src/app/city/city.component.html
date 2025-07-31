@@ -94,7 +94,7 @@
                     <strong translate>Attack:</strong>
                     {{
                       waveAttackPower
-                        | number: '1.0-0' : this.translate.currentLang
+                        | number: '1.0-0' : this.translate.getCurrentLang()
                     }}
                     <a [routerLink]="['/strategies/attack']">
                       <app-ic-icon [icon]="cog"></app-ic-icon>
@@ -107,7 +107,7 @@
                     <strong translate>:</strong>
                     {{
                       waveDefensePower
-                        | number: '1.0-0' : this.translate.currentLang
+                        | number: '1.0-0' : this.translate.getCurrentLang()
                     }}
                     <a [routerLink]="['/strategies/defense']">
                       <app-ic-icon [icon]="cog"></app-ic-icon>
@@ -224,7 +224,7 @@
                         : {
                             value:
                               user.getGoalDays()
-                              | number: '' : this.translate.currentLang,
+                              | number: '' : this.translate.getCurrentLang(),
                           }
                   }}
                 </div>
@@ -325,7 +325,7 @@
                     }">
                     {{
                       user.getPropertyNb(army)
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </div>
                   <div
@@ -371,7 +371,7 @@
                       }">
                       {{
                         user.getPropertyNb(army.code)
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                     </div>
                     <div
@@ -474,7 +474,7 @@
                 <div class="badge bg-secondary">
                   {{
                     user.getPropertyNb(building.code)
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </div>
                 <div
@@ -497,7 +497,7 @@
                 <div class="badge bg-secondary">
                   {{
                     user.getPropertyNb('defense_wall')
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                 </div>
                 <div

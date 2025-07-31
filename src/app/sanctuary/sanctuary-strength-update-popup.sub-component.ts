@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -12,6 +12,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class SanctuaryStrengthUpdatePopupSubComponent {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info: {
     sanctuaries_id: number;
     sanctuaries_name: string;
@@ -22,11 +26,7 @@ export class SanctuaryStrengthUpdatePopupSubComponent {
   Number = Number;
   Math = Math;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.info = {
       sanctuaries_id: 0,
       sanctuaries_name: '',

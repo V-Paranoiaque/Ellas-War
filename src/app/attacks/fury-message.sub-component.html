@@ -19,7 +19,9 @@
       @if (info.lost_ress.food > 0) {
         <tr>
           <td class="text-end">
-            {{ info.lost_ress.food | number: '' : this.translate.currentLang }}
+            {{
+              info.lost_ress.food | number: '' : this.translate.getCurrentLang()
+            }}
           </td>
           <th scope="row" class="text-start">
             <app-ew-icon name="food" class="small-resource"></app-ew-icon>
@@ -30,7 +32,8 @@
         <tr>
           <td class="text-end">
             {{
-              info.lost_ress.grapes | number: '' : this.translate.currentLang
+              info.lost_ress.grapes
+                | number: '' : this.translate.getCurrentLang()
             }}
           </td>
           <th scope="row" class="text-start">
@@ -41,7 +44,10 @@
       @if (info.lost_build.farm > 0) {
         <tr>
           <td class="text-end">
-            {{ info.lost_build.farm | number: '' : this.translate.currentLang }}
+            {{
+              info.lost_build.farm
+                | number: '' : this.translate.getCurrentLang()
+            }}
           </td>
           <th scope="row" class="text-start">
             {{ Tools.getName('farm', info.lost_build.farm) | translate }}
@@ -52,7 +58,8 @@
         <tr>
           <td class="text-end">
             {{
-              info.lost_build.growers | number: '' : this.translate.currentLang
+              info.lost_build.growers
+                | number: '' : this.translate.getCurrentLang()
             }}
           </td>
           <th scope="row" class="text-start">

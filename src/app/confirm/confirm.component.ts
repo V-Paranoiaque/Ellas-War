@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -20,15 +20,15 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class ConfirmComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+
   public confirmResult: number;
   private sub: Subscription;
 
-  constructor(
-    public user: User,
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.confirmResult = 0;
     this.sub = new Subscription();
   }

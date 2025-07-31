@@ -20,7 +20,8 @@
                     <div>{{ i }}</div>
                     <div class="flex-grow-1 text-end">
                       {{
-                        prod | number: '1.0-0' : this.translate.currentLang
+                        prod
+                          | number: '1.0-0' : this.translate.getCurrentLang()
                       }}&nbsp;
                       <app-ew-icon
                         name="drachma"

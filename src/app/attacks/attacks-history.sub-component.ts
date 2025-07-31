@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Message } from 'src/services/message.class';
 import { CommonModule } from '@angular/common';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AttacksIncludeComponent } from './attacks-include.component';
+import { AttacksMessageSubComponent } from './attacks-message.sub-component';
+import { FuryMessageSubComponent } from './fury-message.sub-component';
 import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LostMessageSubComponent } from './lost-message.sub-component';
 import { MessagesIncludeComponent } from '../messages/messages-include.component';
 
 import arrowReturnLeft from '@iconify/icons-bi/arrow-return-left';
@@ -18,15 +20,19 @@ import share from '@iconify/icons-bi/share';
   templateUrl: './attacks-history.sub-component.html',
   styleUrls: ['./attacks.component.css'],
   imports: [
-    AttacksIncludeComponent,
+    AttacksMessageSubComponent,
     ClipboardModule,
     CommonModule,
+    FuryMessageSubComponent,
     IcIconComponent,
+    LostMessageSubComponent,
     MessagesIncludeComponent,
     TranslateModule,
   ],
 })
 export class AttacksHistorySubComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+
   public currentMsg: Message;
   public msgList: Message[];
   public linkSaved: number;
@@ -36,7 +42,7 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   clipboardCheck = clipboardCheck;
   share = share;
 
-  constructor(protected socket: Socket) {
+  constructor() {
     this.currentMsg = new Message();
     this.msgList = [];
     this.linkSaved = 0;

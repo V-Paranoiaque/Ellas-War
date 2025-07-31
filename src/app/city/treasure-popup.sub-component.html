@@ -33,7 +33,7 @@
             @if (user.getPropertyNb('level') > 5) {
               <span class="mx-1">{{
                 user.getPropertyNb('treasure')
-                  | number: '1.0-0' : this.translate.currentLang
+                  | number: '1.0-0' : this.translate.getCurrentLang()
               }}</span>
             }
             @if (user.getPropertyNb('level') <= 5) {
@@ -45,9 +45,9 @@
                 role="button"
                 >{{
                   user.getPropertyNb('treasure')
-                    | number: '1.0-0' : this.translate.currentLang
+                    | number: '1.0-0' : this.translate.getCurrentLang()
                 }}/{{
-                  treasureMax | number: '' : this.translate.currentLang
+                  treasureMax | number: '' : this.translate.getCurrentLang()
                 }}</span
               >
             }
@@ -125,7 +125,7 @@
                         {{
                           (15 - 0.5 * user.getPropertyNb('level')) *
                             taxDeduction
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}% (<span
                           role="button"
                           data-bs-toggle="modal"
@@ -182,7 +182,7 @@
                       <span>
                         {{
                           key.deposit.amount
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="drachma"
@@ -196,7 +196,7 @@
                       <span>
                         {{
                           key.pull.amount
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="drachma"

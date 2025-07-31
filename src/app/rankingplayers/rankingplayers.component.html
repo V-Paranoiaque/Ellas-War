@@ -107,16 +107,22 @@
                       {{ p.level }}
                     </td>
                     <td class="text-end">
-                      {{ p.xp | number: '' : this.translate.currentLang }}
+                      {{ p.xp | number: '' : this.translate.getCurrentLang() }}
                     </td>
                     <td class="text-end">
-                      {{ p.victory | number: '' : this.translate.currentLang }}
+                      {{
+                        p.victory | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                     <td class="d-none d-sm-table-cell text-end">
-                      {{ p.field | number: '' : this.translate.currentLang }}
+                      {{
+                        p.field | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                     <td class="d-none d-sm-table-cell text-end">
-                      {{ p.honor | number: '' : this.translate.currentLang }}
+                      {{
+                        p.honor | number: '' : this.translate.getCurrentLang()
+                      }}
                     </td>
                   </tr>
                 }

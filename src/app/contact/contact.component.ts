@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,12 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule, TranslateModule],
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+
   public contactemail: string;
   public contactError: number;
   public contactname: string;
@@ -20,13 +26,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
 
-  constructor(
-    private readonly router: Router,
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService,
-    private titleService: Title
-  ) {
+  constructor() {
     this.contactemail = '';
     this.contactError = 0;
     this.contactname = '';

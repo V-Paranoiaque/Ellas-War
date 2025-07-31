@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -7,7 +7,20 @@ import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
 import { AllianceAbstractComponent } from './alliance-abstract.component';
-import { AllianceIncludeComponent } from './alliance-include.component';
+import { AllianceArchivesPopupSubComponent } from './alliance-archives-popup.sub-component';
+import { AllianceCandidatePopupSubComponent } from './alliance-candidate-popup.sub-component';
+import { AllianceDissolvePopupSubComponent } from './alliance-dissolve-popup.sub-component';
+import { AllianceEmergencyPopupSubComponent } from './alliance-emergency-popup.sub-component';
+import { AllianceEvictPopupSubComponent } from './alliance-evict-popup.sub-component';
+import { AllianceGiftPopupSubComponent } from './alliance-gift-popup.sub-component';
+import { AllianceGiveFavorPopupSubComponent } from './alliance-give-favor-popup.sub-component';
+import { AllianceLeavePopupSubComponent } from './alliance-leave-popup.sub-component';
+import { AlliancePactManagePopupSubComponent } from './alliance-pact-manage-popup.sub-component';
+import { AllianceProfilePopupSubComponent } from './alliance-profile-popup.sub-component';
+import { AllianceRankPopupSubComponent } from './alliance-rank-popup.sub-component';
+import { AllianceRequestsPopupSubComponent } from './alliance-requests-popup.sub-component';
+import { AllianceTaxesPopupSubComponent } from './alliance-taxes-popup.sub-component';
+import { AllianceWarArchivesPopupSubComponent } from './alliance-war-archives-popup.sub-component';
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -30,7 +43,20 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
   templateUrl: './alliance.component.html',
   styleUrls: ['./alliance.component.css'],
   imports: [
-    AllianceIncludeComponent,
+    AllianceArchivesPopupSubComponent,
+    AllianceCandidatePopupSubComponent,
+    AllianceDissolvePopupSubComponent,
+    AllianceEmergencyPopupSubComponent,
+    AllianceEvictPopupSubComponent,
+    AllianceGiftPopupSubComponent,
+    AllianceGiveFavorPopupSubComponent,
+    AllianceLeavePopupSubComponent,
+    AlliancePactManagePopupSubComponent,
+    AllianceProfilePopupSubComponent,
+    AllianceRankPopupSubComponent,
+    AllianceRequestsPopupSubComponent,
+    AllianceTaxesPopupSubComponent,
+    AllianceWarArchivesPopupSubComponent,
     CommonModule,
     EwIconSubComponent,
     MainLeftSubComponent,
@@ -45,6 +71,10 @@ export class AllianceComponent
   extends AllianceAbstractComponent
   implements OnInit, OnDestroy
 {
+  protected override socket: Socket;
+  override user: User;
+  override translate: TranslateService;
+
   public allianceProfile = {
     pact_id: 0,
     alliance_id: 0,
@@ -150,12 +180,15 @@ export class AllianceComponent
   solidHandsPraying = solidHandsPraying;
   sportsMedal = sportsMedal;
 
-  constructor(
-    protected override socket: Socket,
-    public override user: User,
-    public override translate: TranslateService
-  ) {
-    super(socket, user, translate);
+  constructor() {
+    const socket = inject(Socket);
+    const user = inject(User);
+    const translate = inject(TranslateService);
+
+    super();
+    this.socket = socket;
+    this.user = user;
+    this.translate = translate;
 
     this.allowDissolve = 0;
     this.allowLeave = 0;

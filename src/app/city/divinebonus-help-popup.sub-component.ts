@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -11,12 +11,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class DivineBonusHelpPopupSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() divineBonus!: { bonus_id: number; nb: number };
 
   Object = Object;
-
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
 }

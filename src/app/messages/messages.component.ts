@@ -1,10 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule, ViewportScroller } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { UserComponent as User } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { Message } from 'src/services/message.class';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -63,14 +60,8 @@ export class MessagesComponent
   triangleExclamation = triangleExclamation;
   xIcon = xIcon;
 
-  constructor(
-    override http: HttpClient,
-    override user: User,
-    override socket: Socket,
-    override translate: TranslateService,
-    override scroller: ViewportScroller
-  ) {
-    super(http, user, socket, translate, scroller);
+  constructor() {
+    super();
 
     this.dummyMsg = new Message();
   }

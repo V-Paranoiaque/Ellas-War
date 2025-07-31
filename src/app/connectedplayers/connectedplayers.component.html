@@ -46,7 +46,9 @@
                         {{ u.level }}
                       </td>
                       <td class="text-end d-none d-sm-table-cell">
-                        {{ u.field | number: '' : this.translate.currentLang }}
+                        {{
+                          u.field | number: '' : this.translate.getCurrentLang()
+                        }}
                       </td>
                       @if (u.alliance > 0) {
                         <td class="d-none d-sm-table-cell">

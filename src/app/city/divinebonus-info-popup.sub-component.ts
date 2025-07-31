@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { CommonModule } from '@angular/common';
@@ -10,12 +10,10 @@ import { IdToDivineBonusSubComponent } from './id-to-divinebonus.sub-component';
   imports: [CommonModule, IdToDivineBonusSubComponent, TranslateModule],
 })
 export class DivineBonusInfoPopupSubComponent {
-  @Input() divineBonus!: { bonus_id: number; nb: number; error: number };
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
 
-  constructor(
-    private readonly socket: Socket,
-    public translate: TranslateService
-  ) {}
+  @Input() divineBonus!: { bonus_id: number; nb: number; error: number };
 
   divineBonusUse() {
     const msg = {

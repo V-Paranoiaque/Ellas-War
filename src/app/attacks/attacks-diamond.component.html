@@ -26,12 +26,15 @@
               }
               <strong translate>Field</strong>
               <strong translate>:</strong>
-              {{ diamondInfo.field | number: '' : this.translate.currentLang }}
+              {{
+                diamondInfo.field | number: '' : this.translate.getCurrentLang()
+              }}
               <br />
               <strong translate>Victories</strong>
               <strong translate>:</strong>
               {{
-                diamondInfo.victory | number: '' : this.translate.currentLang
+                diamondInfo.victory
+                  | number: '' : this.translate.getCurrentLang()
               }}
               <br />
               <strong translate>Last week</strong>
@@ -278,7 +281,7 @@
                 @for (i of getArmy(); track i) {
                   <div>
                     <span [ngClass]="{ 'text-danger': i.all === 0 }">
-                      {{ i.nb | number: '' : this.translate.currentLang }}
+                      {{ i.nb | number: '' : this.translate.getCurrentLang() }}
                       {{ Tools.getName(i.unit, i.nb) | translate }}
                       @if (i.all === 0) {
                         <span
@@ -296,7 +299,8 @@
                 <strong translate>Offensive power</strong>
                 <strong translate>:</strong>
                 {{
-                  getOffensivePower() | number: '' : this.translate.currentLang
+                  getOffensivePower()
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     membre_id: number;
     username: string;
@@ -21,11 +25,7 @@ export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
   public giftRemain: number;
   public qttGiftsRess: string;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.giftsError = 0;
     this.giftRemain = 0;
     this.qttGiftsRess = '';

@@ -10,7 +10,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -24,7 +26,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -216,7 +220,10 @@
         @if (msg.content.benefits) {
           <div>
             <strong translate>Reward:</strong>
-            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            {{
+              msg.content.benefits
+                | number: '' : this.translate.getCurrentLang()
+            }}
             <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
           </div>
         }
@@ -233,7 +240,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -250,7 +259,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }

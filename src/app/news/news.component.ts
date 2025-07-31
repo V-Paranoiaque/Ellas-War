@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -22,6 +22,13 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class NewsComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  private metaService = inject(Meta);
+  translate = inject(TranslateService);
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  private http = inject(HttpClient);
+
   private newsList: {
     title: string;
     link: string;
@@ -32,14 +39,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   private subTitle: Subscription;
   private subDesc: Subscription;
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    public translate: TranslateService,
-    public user: User,
-    private readonly socket: Socket,
-    private http: HttpClient
-  ) {
+  constructor() {
     this.newsList = [];
     this.subNews = new Subscription();
     this.subTitle = new Subscription();

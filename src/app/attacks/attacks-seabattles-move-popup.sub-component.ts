@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -19,6 +19,12 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 export class AttacksSeabattlesMovePopupSubComponent
   implements OnInit, OnDestroy
 {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+  protected modalService = inject(BsModalService);
+  bsModalRef = inject(BsModalRef);
+
   @Input() sb_id!: number;
   @Input() src_case?: { x: number; y: number };
   @Input() dest_case?: { x: number; y: number };
@@ -50,14 +56,6 @@ export class AttacksSeabattlesMovePopupSubComponent
   swordIcon = swordIcon;
 
   Tools = Tools;
-
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService,
-    protected modalService: BsModalService,
-    public bsModalRef: BsModalRef
-  ) {}
 
   ngOnInit() {
     this.socket.on('sbGetCase', (data: object) => {

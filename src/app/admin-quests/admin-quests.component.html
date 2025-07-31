@@ -330,7 +330,7 @@
                     <td class="text-end">
                       {{
                         p.reward_quantity
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                       <app-ew-icon
                         name="{{ p.reward_ress }}"

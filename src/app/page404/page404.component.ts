@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,10 +12,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateModule],
 })
 export class Page404Component implements OnInit {
-  constructor(
-    private readonly router: Router,
-    private readonly socket: Socket
-  ) {}
+  private readonly router = inject(Router);
+  private readonly socket = inject(Socket);
 
   ngOnInit() {
     if (this.router.url != '/404-test') {

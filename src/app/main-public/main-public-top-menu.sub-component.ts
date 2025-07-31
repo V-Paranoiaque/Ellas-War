@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -22,18 +22,18 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class MainPublicTopMenuSubComponent implements OnInit {
+  protected http = inject(HttpClient);
+  socket = inject(Socket);
+  private formBuilder = inject(FormBuilder);
+  router = inject(Router);
+  user = inject(User);
+  protected modalService = inject(BsModalService);
+
   @Input()
   active: string;
   loginForm: FormGroup;
 
-  constructor(
-    protected http: HttpClient,
-    public socket: Socket,
-    private formBuilder: FormBuilder,
-    public router: Router,
-    public user: User,
-    protected modalService: BsModalService
-  ) {
+  constructor() {
     this.loginForm = this.formBuilder.group({});
     this.active = '';
   }

@@ -47,13 +47,13 @@
             <strong translate>Strength</strong>
             <strong translate>:</strong>
             <span>
-              {{ unit.attack | number: '' : this.translate.currentLang }}
+              {{ unit.attack | number: '' : this.translate.getCurrentLang() }}
               <app-ic-icon
                 [icon]="swordIcon"
                 title="{{ 'Attack' | translate }}"></app-ic-icon>
             </span>
             <span>
-              {{ unit.defense | number: '' : this.translate.currentLang }}
+              {{ unit.defense | number: '' : this.translate.getCurrentLang() }}
               <app-ic-icon
                 [icon]="shieldShaded"
                 title="{{ 'Defense' | translate }}"></app-ic-icon>
@@ -65,7 +65,7 @@
                 <br />
                 {{
                   unit.cost * getEngage()
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 <span translate>Gold coins</span>
               </div>
@@ -74,7 +74,7 @@
           <div class="col-6">
             <strong translate>Currently</strong>
             <strong translate>:</strong>
-            {{ getCurrent() | number: '' : this.translate.currentLang }}
+            {{ getCurrent() | number: '' : this.translate.getCurrentLang() }}
 
             @if (unit.cost > 0) {
               <div
@@ -85,7 +85,7 @@
                 >
                 {{
                   Math.floor(coins / unit.cost)
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </div>
             }

@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -30,6 +30,12 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private formBuilder = inject(FormBuilder);
+
   private sub: Subscription;
 
   loginForm: FormGroup;
@@ -37,13 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   googleIcon = googleIcon;
 
-  constructor(
-    private titleService: Title,
-    public translate: TranslateService,
-    private readonly socket: Socket,
-    public user: User,
-    private formBuilder: FormBuilder
-  ) {
+  constructor() {
     this.loginForm = this.formBuilder.group({});
     this.loginError = 0;
     this.sub = new Subscription();

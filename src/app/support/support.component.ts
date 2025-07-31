@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -29,6 +29,11 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class SupportComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  user = inject(User);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+
   public msg = 0;
   public answerMsg: string;
   public contactList: {
@@ -53,12 +58,7 @@ export class SupportComponent implements OnInit, OnDestroy {
   discordIcon = discordIcon;
   eye = eye;
 
-  constructor(
-    private readonly router: Router,
-    public user: User,
-    private route: ActivatedRoute,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.answerMsg = '';
     this.contactList = [];
     this.contactC = 0;

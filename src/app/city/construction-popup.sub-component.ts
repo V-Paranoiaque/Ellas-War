@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -28,6 +28,10 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
   ],
 })
 export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     code: string;
     type: number;
@@ -59,11 +63,9 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   landFields = landFields;
   shieldShaded = shieldShaded;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
+    const user = this.user;
+
     this.range = user.getPropertyNb('quarry_pct');
   }
 

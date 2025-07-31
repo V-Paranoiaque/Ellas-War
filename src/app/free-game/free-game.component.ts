@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -24,6 +24,10 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class FreeGameComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+  user = inject(User);
+
   private sub: Subscription;
 
   environment = environment;
@@ -32,11 +36,7 @@ export class FreeGameComponent implements OnInit, OnDestroy {
   facebookIcon = facebookIcon;
   githubOctocat = githubOctocat;
 
-  constructor(
-    private titleService: Title,
-    public translate: TranslateService,
-    public user: User
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

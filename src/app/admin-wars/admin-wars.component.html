@@ -35,7 +35,9 @@
                     </th>
                     <td>{{ war.time * 1000 | date: 'dd/MM/yyyy, HH:mm' }}</td>
                     <td class="text-end">
-                      {{ war.gain | number: '' : this.translate.currentLang }}
+                      {{
+                        war.gain | number: '' : this.translate.getCurrentLang()
+                      }}
                       <app-ew-icon
                         name="drachma"
                         class="small-resource"></app-ew-icon>

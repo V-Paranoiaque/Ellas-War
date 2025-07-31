@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -12,6 +12,10 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, TranslateModule],
 })
 export class WaveDividePopupSubComponent {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     strategy: number;
     code: string;
@@ -21,12 +25,6 @@ export class WaveDividePopupSubComponent {
   };
 
   Tools = Tools;
-
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   confirm() {
     if (this.info.strategy == 1) {

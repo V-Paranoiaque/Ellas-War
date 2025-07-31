@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -22,15 +22,15 @@ import { MessagesIncludeComponent } from '../messages/messages-include.component
   ],
 })
 export class PermalinkComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  private route = inject(ActivatedRoute);
+
   private currentMsg: Message;
 
-  constructor(
-    private titleService: Title,
-    public translate: TranslateService,
-    private readonly socket: Socket,
-    public user: User,
-    private route: ActivatedRoute
-  ) {
+  constructor() {
     this.currentMsg = new Message();
   }
 

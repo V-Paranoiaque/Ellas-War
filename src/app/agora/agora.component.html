@@ -140,7 +140,7 @@
                               parseFloat(rate) * parseFloat(quantity)
                             )
                           )
-                      : this.translate.currentLang
+                      : this.translate.getCurrentLang()
                 }}
                 <app-ew-icon
                   name="drachma"
@@ -163,7 +163,7 @@
                               parseFloat(rate) * parseFloat(quantity) * 0.05
                             )
                           )
-                      : this.translate.currentLang
+                      : this.translate.getCurrentLang()
                 }}
                 <app-ew-icon
                   name="drachma"
@@ -328,7 +328,8 @@
                     <tr>
                       <td class="text-end">
                         {{
-                          trade.nbress | number: '' : this.translate.currentLang
+                          trade.nbress
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="{{ Tools.getResName(trade.ress_type) }}"
@@ -343,13 +344,13 @@
                                     3,
                                     Tools.nbDigits(parseFloat(trade.rate))
                                   )
-                              : this.translate.currentLang
+                              : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-end">
                         {{
                           trade.nbress * parseFloat(trade.rate)
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="drachma"
@@ -441,19 +442,19 @@
                                     3,
                                     Tools.nbDigits(getLimit(res).minrate)
                                   )
-                              : this.translate.currentLang
+                              : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td>
                         {{
                           getLimit(res).maxrate
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-end">
                         {{
                           getLimit(res).limit
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                     </tr>
@@ -471,19 +472,19 @@
                   <td>
                     {{
                       getLimit('favor').minrate
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                   <td>
                     {{
                       getLimit('favor').maxrate
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                   <td class="text-end">
                     {{
                       getLimit('favor').limit
-                        | number: '' : this.translate.currentLang
+                        | number: '' : this.translate.getCurrentLang()
                     }}
                   </td>
                 </tr>
@@ -526,7 +527,8 @@
                     <tr>
                       <td class="text-end">
                         {{
-                          trade.nbress | number: '' : this.translate.currentLang
+                          trade.nbress
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="{{ Tools.getResName(trade.ress_type) }}"
@@ -541,13 +543,13 @@
                                     3,
                                     Tools.nbDigits(parseFloat(trade.rate))
                                   )
-                              : this.translate.currentLang
+                              : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-end">
                         {{
                           trade.nbress * parseFloat(trade.rate)
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                         <app-ew-icon
                           name="drachma"

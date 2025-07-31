@@ -195,7 +195,9 @@
                               : {
                                   value:
                                     quest.quest_goal
-                                    | number: '' : this.translate.currentLang,
+                                    | number
+                                      : ''
+                                      : this.translate.getCurrentLang(),
                                 }
                         }}"
                         [quest]="quest"
@@ -211,7 +213,9 @@
                               : {
                                   value:
                                     quest.quest_goal
-                                    | number: '' : this.translate.currentLang,
+                                    | number
+                                      : ''
+                                      : this.translate.getCurrentLang(),
                                 }
                         }}"
                         [quest]="quest"

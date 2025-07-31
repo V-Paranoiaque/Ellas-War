@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,11 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() temple!: {
     id: number;
     error: number;
@@ -46,12 +51,9 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   Number = Number;
   Tools = Tools;
 
-  constructor(
-    private http: HttpClient,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
+    const user = this.user;
+
     this.wallDefense = 0;
     this.idToUser = '';
     this.id = 0;

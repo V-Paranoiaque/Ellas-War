@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -44,6 +44,11 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class StrategiesComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  private route = inject(ActivatedRoute);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Output()
   public armyInfo = {
     code: '',
@@ -161,12 +166,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   swordIcon = swordIcon;
   times = times;
 
-  constructor(
-    private readonly socket: Socket,
-    private route: ActivatedRoute,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.waveAttackList = [];
     this.waveAttackPower = 0;
 

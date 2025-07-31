@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { environment } from './../environments/environment';
@@ -15,6 +15,10 @@ declare let device: {
 })
 @Injectable()
 export class UserComponent {
+  private readonly router = inject(Router);
+  private readonly oauthService = inject(OAuthService);
+  private readonly socket = inject(Socket);
+
   init: number;
   info: object;
   config = {
@@ -26,11 +30,7 @@ export class UserComponent {
   };
   newMsg: number;
 
-  constructor(
-    private readonly router: Router,
-    private readonly oauthService: OAuthService,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.init = 0;
     this.info = {
       language: environment.language.default,

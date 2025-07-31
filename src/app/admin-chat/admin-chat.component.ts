@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -26,6 +26,10 @@ import volumeOff from '@iconify/icons-fa6-solid/volume-off';
   ],
 })
 export class AdminChatComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public adminChatList: {
     user_id: number;
     censured: number;
@@ -38,11 +42,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
   volumeMute = volumeMute;
   volumeOff = volumeOff;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.adminChatList = [];
   }
 

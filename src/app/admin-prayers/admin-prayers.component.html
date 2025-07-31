@@ -32,36 +32,36 @@
         </div>
         <select name="ask_type" [(ngModel)]="request.type" class="form-control">
           <option value="1">
-            {{ 10000 | number: '' : this.translate.currentLang }}
+            {{ 10000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Iron' | translate }}
           </option>
           <option value="2">
-            {{ 10000 | number: '' : this.translate.currentLang }}
+            {{ 10000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Wood' | translate }}
           </option>
           <option value="3">
-            {{ 2000 | number: '' : this.translate.currentLang }}
+            {{ 2000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Grapes' | translate }}
           </option>
           <option value="4">
-            {{ 2000 | number: '' : this.translate.currentLang }}
+            {{ 2000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Stone' | translate }}
           </option>
           <option value="5">
-            {{ 250 | number: '' : this.translate.currentLang }}
+            {{ 250 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Marble' | translate }}
           </option>
           <option value="6">
-            {{ 2000 | number: '' : this.translate.currentLang }}
+            {{ 2000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Wine' | translate }}
           </option>
           <option value="7">
-            {{ 2000 | number: '' : this.translate.currentLang }}
+            {{ 2000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Gold' | translate }}
           </option>
           <option value="8">1 {{ 'Favors' | translate }}</option>
           <option value="9">
-            {{ 80 | number: '' : this.translate.currentLang }}
+            {{ 80 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Spartans' | translate }}
           </option>
           <option value="10" translate>200 units of your third temple</option>
@@ -73,54 +73,54 @@
           </option>
           <option value="13" translate>2 bonus attacks</option>
           <option value="14">
-            {{ 20000 | number: '' : this.translate.currentLang }}
+            {{ 20000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="18">
-            {{ 25000 | number: '' : this.translate.currentLang }}
+            {{ 25000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Iron' | translate }}/{{ 'Wood' | translate
             }}{{ 'Food' | translate }}{{ 'Grapes' | translate }}
           </option>
           <option value="19">
-            {{ 50000 | number: '' : this.translate.currentLang }}
+            {{ 50000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Iron' | translate }}/{{ 'Wood' | translate
             }}{{ 'Food' | translate }}{{ 'Grapes' | translate }}
             {{ 'and' | translate }}
-            {{ 1000 | number: '' : this.translate.currentLang }}
+            {{ 1000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Stone' | translate }}
           </option>
           <option value="15">
-            {{ 100000 | number: '' : this.translate.currentLang }}
+            {{ 100000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Iron' | translate }}/{{ 'Wood' | translate
             }}{{ 'Food' | translate }}{{ 'Grapes' | translate }}
             {{ 'and' | translate }}
-            {{ 1000 | number: '' : this.translate.currentLang }}
+            {{ 1000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Stone' | translate }}/{{ 'Marble' | translate }}
           </option>
           <option value="16">
-            {{ 500000 | number: '' : this.translate.currentLang }}
+            {{ 500000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="17">
-            {{ 1000000 | number: '' : this.translate.currentLang }}
+            {{ 1000000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="20">
-            {{ 5000000 | number: '' : this.translate.currentLang }}
+            {{ 5000000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="21">
-            {{ 10000000 | number: '' : this.translate.currentLang }}
+            {{ 10000000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="22">
-            {{ 20000000 | number: '' : this.translate.currentLang }}
+            {{ 20000000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Drachmas' | translate }}
           </option>
           <option value="23">
-            {{ 10000 | number: '' : this.translate.currentLang }}
+            {{ 10000 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Grapes' | translate }}/{{ 'Marble' | translate }}
-            {{ 2500 | number: '' : this.translate.currentLang }}
+            {{ 2500 | number: '' : this.translate.getCurrentLang() }}
             {{ 'Wine' | translate }}/{{ 'Gold' | translate }}
           </option>
         </select>
@@ -198,7 +198,8 @@
                         @case (1) {
                           <span>
                             {{
-                              10000 | number: '' : this.translate.currentLang
+                              10000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="iron"
@@ -208,7 +209,8 @@
                         @case (2) {
                           <span>
                             {{
-                              10000 | number: '' : this.translate.currentLang
+                              10000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="wood"
@@ -217,7 +219,10 @@
                         }
                         @case (3) {
                           <span>
-                            {{ 2000 | number: '' : this.translate.currentLang }}
+                            {{
+                              2000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="grapes"
                               class="small-resource"></app-ew-icon>
@@ -225,7 +230,10 @@
                         }
                         @case (4) {
                           <span>
-                            {{ 2000 | number: '' : this.translate.currentLang }}
+                            {{
+                              2000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="stone"
                               class="small-resource"></app-ew-icon>
@@ -233,7 +241,9 @@
                         }
                         @case (5) {
                           <span>
-                            {{ 250 | number: '' : this.translate.currentLang }}
+                            {{
+                              250 | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="marble"
                               class="small-resource"></app-ew-icon>
@@ -241,7 +251,10 @@
                         }
                         @case (6) {
                           <span>
-                            {{ 2000 | number: '' : this.translate.currentLang }}
+                            {{
+                              2000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="wine"
                               class="small-resource"></app-ew-icon>
@@ -249,7 +262,10 @@
                         }
                         @case (7) {
                           <span>
-                            {{ 2000 | number: '' : this.translate.currentLang }}
+                            {{
+                              2000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="gold"
                               class="small-resource"></app-ew-icon>
@@ -257,7 +273,9 @@
                         }
                         @case (8) {
                           <span>
-                            {{ 1 | number: '' : this.translate.currentLang }}
+                            {{
+                              1 | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="favor"
                               class="small-resource"></app-ew-icon>
@@ -265,7 +283,9 @@
                         }
                         @case (9) {
                           <span>
-                            {{ 80 | number: '' : this.translate.currentLang }}
+                            {{
+                              80 | number: '' : this.translate.getCurrentLang()
+                            }}
                             <span translate>Spartans</span>
                           </span>
                         }
@@ -290,7 +310,8 @@
                         @case (14) {
                           <span>
                             {{
-                              20000 | number: '' : this.translate.currentLang
+                              20000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -300,35 +321,45 @@
                         @case (15) {
                           <span>
                             {{
-                              100000 | number: '' : this.translate.currentLang
+                              100000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="iron"
                               class="small-resource"></app-ew-icon>
                             {{
-                              100000 | number: '' : this.translate.currentLang
+                              100000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="wood"
                               class="small-resource"></app-ew-icon>
                             {{
-                              100000 | number: '' : this.translate.currentLang
+                              100000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="food"
                               class="small-resource"></app-ew-icon>
                             <br />
                             {{
-                              100000 | number: '' : this.translate.currentLang
+                              100000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="grapes"
                               class="small-resource"></app-ew-icon>
-                            {{ 1000 | number: '' : this.translate.currentLang }}
+                            {{
+                              1000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="stone"
                               class="small-resource"></app-ew-icon>
-                            {{ 1000 | number: '' : this.translate.currentLang }}
+                            {{
+                              1000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="marble"
                               class="small-resource"></app-ew-icon>
@@ -337,7 +368,8 @@
                         @case (16) {
                           <span>
                             {{
-                              500000 | number: '' : this.translate.currentLang
+                              500000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -347,7 +379,8 @@
                         @case (17) {
                           <span>
                             {{
-                              1000000 | number: '' : this.translate.currentLang
+                              1000000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -357,25 +390,29 @@
                         @case (18) {
                           <span>
                             {{
-                              25000 | number: '' : this.translate.currentLang
+                              25000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="iron"
                               class="small-resource"></app-ew-icon>
                             {{
-                              25000 | number: '' : this.translate.currentLang
+                              25000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="wood"
                               class="small-resource"></app-ew-icon>
                             {{
-                              25000 | number: '' : this.translate.currentLang
+                              25000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="food"
                               class="small-resource"></app-ew-icon>
                             {{
-                              25000 | number: '' : this.translate.currentLang
+                              25000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="grapes"
@@ -385,30 +422,37 @@
                         @case (19) {
                           <span>
                             {{
-                              50000 | number: '' : this.translate.currentLang
+                              50000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="iron"
                               class="small-resource"></app-ew-icon>
                             {{
-                              50000 | number: '' : this.translate.currentLang
+                              50000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="wood"
                               class="small-resource"></app-ew-icon>
                             {{
-                              50000 | number: '' : this.translate.currentLang
+                              50000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="food"
                               class="small-resource"></app-ew-icon>
                             {{
-                              50000 | number: '' : this.translate.currentLang
+                              50000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="grapes"
                               class="small-resource"></app-ew-icon>
-                            {{ 1000 | number: '' : this.translate.currentLang }}
+                            {{
+                              1000
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="stone"
                               class="small-resource"></app-ew-icon>
@@ -417,7 +461,8 @@
                         @case (20) {
                           <span>
                             {{
-                              5000000 | number: '' : this.translate.currentLang
+                              5000000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -427,7 +472,8 @@
                         @case (21) {
                           <span>
                             {{
-                              10000000 | number: '' : this.translate.currentLang
+                              10000000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -437,7 +483,8 @@
                         @case (22) {
                           <span>
                             {{
-                              20000000 | number: '' : this.translate.currentLang
+                              20000000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="drachma"
@@ -447,22 +494,30 @@
                         @case (23) {
                           <span>
                             {{
-                              10000 | number: '' : this.translate.currentLang
+                              10000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="grapes"
                               class="small-resource"></app-ew-icon>
                             {{
-                              10000 | number: '' : this.translate.currentLang
+                              10000
+                                | number: '' : this.translate.getCurrentLang()
                             }}
                             <app-ew-icon
                               name="marble"
                               class="small-resource"></app-ew-icon>
-                            {{ 2500 | number: '' : this.translate.currentLang }}
+                            {{
+                              2500
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="wine"
                               class="small-resource"></app-ew-icon>
-                            {{ 2500 | number: '' : this.translate.currentLang }}
+                            {{
+                              2500
+                                | number: '' : this.translate.getCurrentLang()
+                            }}
                             <app-ew-icon
                               name="gold"
                               class="small-resource"></app-ew-icon>

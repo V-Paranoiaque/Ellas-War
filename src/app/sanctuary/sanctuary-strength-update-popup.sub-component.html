@@ -56,7 +56,7 @@
                       }">
                       {{
                         Number(resource.value)
-                          | number: '' : this.translate.currentLang
+                          | number: '' : this.translate.getCurrentLang()
                       }}
                       <app-ew-icon
                         name="{{ resource.key }}"

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -14,6 +14,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
 })
 export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() taxes!: {
     drachma: number;
     food: number;
@@ -32,11 +36,7 @@ export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
   Object = Object;
   environment = environment;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.myAllianceProfile = { fee_min: 0 };
   }
 

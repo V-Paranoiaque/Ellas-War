@@ -18,7 +18,7 @@
       <div class="modal-body">
         <div class="text-center fw-bold mb-2">
           <span translate>Stocks:</span>
-          {{ info.stock | number: '1.0-0' : this.translate.currentLang }}
+          {{ info.stock | number: '1.0-0' : this.translate.getCurrentLang() }}
           <app-ew-icon
             name="{{ info.resource }}"
             class="small-resource"></app-ew-icon>
@@ -62,7 +62,7 @@
                   <td class="text-end">
                     {{
                       req.quantity
-                        | number: '1.0-0' : this.translate.currentLang
+                        | number: '1.0-0' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ req.resource_id }}"
@@ -116,7 +116,7 @@
                   <th scope="row" class="text-end">
                     {{
                       req.quantity
-                        | number: '1.0-0' : this.translate.currentLang
+                        | number: '1.0-0' : this.translate.getCurrentLang()
                     }}
                     <app-ew-icon
                       name="{{ req.resource_id }}"

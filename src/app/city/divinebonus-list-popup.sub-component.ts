@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { IdToDivineBonusSubComponent } from './id-to-divinebonus.sub-component';
@@ -18,6 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 })
 export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+
   @Input() divineBonus!: { error: number };
 
   public divineBonusList!: {
@@ -26,8 +28,6 @@ export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
   }[];
 
   Tools = Tools;
-
-  constructor(private readonly socket: Socket) {}
 
   ngOnInit() {
     this.socket.on('divineBonus', (data: { nb: number; list: object[] }) => {

@@ -229,18 +229,19 @@
                         <td>
                           {{
                             lot.quantity
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                         <td>
                           {{
-                            lot.rate | number: '' : this.translate.currentLang
+                            lot.rate
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                         <td>
                           {{
                             lot.quantity * lot.rate
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                       </tr>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -10,8 +10,6 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TranslateModule],
 })
 export class AttacksSeabattlesMouvementsHelpPopupSubComponent {
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
+  user = inject(User);
+  translate = inject(TranslateService);
 }

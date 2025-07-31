@@ -23,7 +23,7 @@
                     value: currentPlayer.username,
                     qtt:
                       currentPlayer.remain
-                      | number: '' : this.translate.currentLang,
+                      | number: '' : this.translate.getCurrentLang(),
                   }
           }}
         </div>
@@ -122,7 +122,9 @@
                         {{ p.username }} ({{ p.level }})
                       </th>
                       <td class="d-none d-sm-table-cell text-end">
-                        {{ p.field | number: '' : this.translate.currentLang }}
+                        {{
+                          p.field | number: '' : this.translate.getCurrentLang()
+                        }}
                       </td>
                       <td>
                         <a [routerLink]="['/allianceprofile/' + p.alliance]">
@@ -173,10 +175,10 @@
                       </td>
                       <td>
                         {{
-                          p.gift | number: '' : this.translate.currentLang
+                          p.gift | number: '' : this.translate.getCurrentLang()
                         }}/{{
                           p.gift + p.remain
-                            | number: '' : this.translate.currentLang
+                            | number: '' : this.translate.getCurrentLang()
                         }}
                       </td>
                       <td class="text-center">

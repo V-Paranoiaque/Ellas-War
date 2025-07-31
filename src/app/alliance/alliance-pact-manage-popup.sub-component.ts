@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -10,6 +10,10 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, TranslateModule],
 })
 export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     pact_id: number;
     alliance_id: number;
@@ -21,11 +25,7 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
   public alliancePactInfo!: { pact_date: number };
   public myAllianceProfile!: { stock_drachma: number };
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.alliancePactInfo = { pact_date: 0 };
   }
 

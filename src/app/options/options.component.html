@@ -171,7 +171,10 @@
         </div>
         <div>
           <strong translate>Cost:</strong>
-          {{ getAccountRenameCost() | number: '' : this.translate.currentLang }}
+          {{
+            getAccountRenameCost()
+              | number: '' : this.translate.getCurrentLang()
+          }}
           @if (getAccountRenameCost() <= 1) {
             <span translate>Favor</span>
           }
@@ -534,8 +537,7 @@
                     <p>
                       {{
                         'Choose a new Username for your account. It will cost you { value }
-                        favor(s).'
-                          | translate: { value: getAccountRenameCost() }
+                  favor(s).' | translate: { value: getAccountRenameCost() }
                       }}
                     </p>
                   }

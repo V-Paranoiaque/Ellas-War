@@ -15,7 +15,8 @@
                 <br />
                 <p>
                   {{
-                    'You can resume play anytime you want { value } hours before the end of your pause. If you want, you can use a favor to resume play, it will allow you to return earlier on the game.'
+                    'You can resume play anytime you want { value } hours before the end of your pause. If you want, you
+                  can use a favor to resume play, it will allow you to return earlier on the game.'
                       | translate: { value: user.getPropertyNb('exit_hours') }
                   }}
                 </p>
@@ -24,7 +25,7 @@
                   <span translate>End the</span>
                   {{
                     user.getPropertyNb('times') * 1000
-                      | date: 'dd/MM/YYYY, HH:mm'
+                      | date: 'dd/MM/yyyy, HH:mm'
                   }}
                 </div>
               </div>

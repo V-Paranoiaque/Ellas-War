@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -36,6 +36,12 @@ export interface NewsType {
   ],
 })
 export class AdminNewsComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public adminNewsList: NewsType[];
   public adminNewsMax: number;
   public adminNewsPage: number;
@@ -47,13 +53,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
   brushIcon = brushIcon;
   trash2Icon = trash2Icon;
 
-  constructor(
-    private readonly router: Router,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.adminNewsPage = 1;
     this.adminNewsList = [];
     this.newsSelected = {

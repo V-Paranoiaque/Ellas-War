@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy, inject } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,6 +12,12 @@ import { Component } from '@angular/core';
   template: '',
 })
 export class MessagesAbstractComponent implements OnInit, OnDestroy {
+  protected http = inject(HttpClient);
+  user = inject(User);
+  protected socket = inject(Socket);
+  translate = inject(TranslateService);
+  protected scroller = inject(ViewportScroller);
+
   public addDestError: number;
   public currentPage: number;
   public noDestError: number;
@@ -36,13 +42,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private subMsg: Subscription;
 
-  constructor(
-    protected http: HttpClient,
-    public user: User,
-    protected socket: Socket,
-    public translate: TranslateService,
-    protected scroller: ViewportScroller
-  ) {
+  constructor() {
     this.addDestError = 0;
     this.currentPage = 1;
     this.noDestError = 0;

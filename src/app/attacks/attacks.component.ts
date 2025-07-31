@@ -1,17 +1,23 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from 'src/services/message.class';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { AttacksIncludeComponent } from './attacks-include.component';
+import { AttacksHelpPopupSubComponent } from './attacks-help-popup.sub-component';
+import { AttacksHistorySubComponent } from './attacks-history.sub-component';
+import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
+import { AttacksMessageSubComponent } from './attacks-message.sub-component';
+import { AttacksSpyResourcesHelpPopupSubComponent } from './attacks-spy-resources-help-popup.sub-component';
+import { AttacksUnitHelpPopupSubComponent } from './attacks-unit-help-popup.sub-component';
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { FuryMessageSubComponent } from './fury-message.sub-component';
 import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LostMessageSubComponent } from './lost-message.sub-component';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -34,11 +40,18 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   templateUrl: './attacks.component.html',
   styleUrls: ['./attacks.component.css'],
   imports: [
-    AttacksIncludeComponent,
+    AttacksHelpPopupSubComponent,
+    AttacksHistorySubComponent,
+    AttacksMenuSubComponent,
+    AttacksMessageSubComponent,
+    AttacksSpyResourcesHelpPopupSubComponent,
+    AttacksUnitHelpPopupSubComponent,
     CommonModule,
     EwIconSubComponent,
     FormsModule,
+    FuryMessageSubComponent,
     IcIconComponent,
+    LostMessageSubComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
@@ -46,6 +59,11 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   ],
 })
 export class AttacksComponent implements OnInit, OnDestroy {
+  protected socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+  private scroller = inject(ViewportScroller);
+
   public attackInfo = new MessageContent();
   public attackMode: number;
   public attackOrderSort: string;
@@ -144,12 +162,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   swordIcon = swordIcon;
   twotoneFence = twotoneFence;
 
-  constructor(
-    protected socket: Socket,
-    public user: User,
-    public translate: TranslateService,
-    private scroller: ViewportScroller
-  ) {
+  constructor() {
     /* Mode
      * 0: History
      * 1: Observe with Apollo

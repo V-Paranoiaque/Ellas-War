@@ -228,18 +228,20 @@
                         </td>
                         <td>
                           {{
-                            lot.nbress | number: '' : this.translate.currentLang
+                            lot.nbress
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                         <td>
                           {{
-                            lot.rate | number: '' : this.translate.currentLang
+                            lot.rate
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                         <td>
                           {{
                             lot.nbress * lot.rate
-                              | number: '' : this.translate.currentLang
+                              | number: '' : this.translate.getCurrentLang()
                           }}
                         </td>
                       </tr>

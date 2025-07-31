@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -27,6 +27,10 @@ import brushIcon from '@iconify/icons-bi/brush';
   ],
 })
 export class AdminPermissionsComponent implements OnInit, OnDestroy {
+  user = inject(User);
+  private readonly socket = inject(Socket);
+  translate = inject(TranslateService);
+
   public adminPermissionsList: {
     membre_id: number;
     username: string;
@@ -43,11 +47,7 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
   //Icons
   brushIcon = brushIcon;
 
-  constructor(
-    public user: User,
-    private readonly socket: Socket,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.adminPermissionsList = [];
     this.usernameNew = '';
   }

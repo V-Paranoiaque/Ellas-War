@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,6 +13,10 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class AgoraRecoverPopupSubComponent {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     trade_id: number;
     seller_id: number;
@@ -26,12 +30,6 @@ export class AgoraRecoverPopupSubComponent {
   };
 
   Tools = Tools;
-
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   buy() {
     this.socket.emit('tradeBuy', {

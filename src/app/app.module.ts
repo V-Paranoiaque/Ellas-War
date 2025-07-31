@@ -10,17 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import {
-  HttpClient,
   provideHttpClient,
   withInterceptorsFromDi,
   withJsonpSupport,
 } from '@angular/common/http';
-import {
-  TranslateLoader,
-  TranslateModule,
-  TranslateStore,
-} from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateStore } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { ClipboardModule } from 'ngx-clipboard';
 import { SocketComponent as Socket } from '../services/socketio.service';
@@ -40,13 +35,11 @@ import { UserComponent as User } from '../services/user.service';
     OAuthModule.forRoot(),
     ReactiveFormsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
-      useDefaultLang: true,
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoader,
-        deps: [HttpClient],
-      },
+      fallbackLang: 'en',
+      loader: provideTranslateHttpLoader({
+        prefix: './assets/i18n/',
+        suffix: '.json',
+      }),
     }),
   ],
   providers: [
@@ -58,8 +51,3 @@ import { UserComponent as User } from '../services/user.service';
   ],
 })
 export class AppModule {}
-
-// AOT compilation support
-export function httpTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}

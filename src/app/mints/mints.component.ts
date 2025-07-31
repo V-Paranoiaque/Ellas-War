@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -19,13 +19,11 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class MintsComponent implements OnInit, OnDestroy {
-  public list: number[] = [];
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {}
+  public list: number[] = [];
 
   ngOnInit() {
     this.socket.on('mintProduction', (result: number[]) => {

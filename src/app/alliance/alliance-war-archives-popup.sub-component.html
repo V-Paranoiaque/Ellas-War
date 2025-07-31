@@ -37,7 +37,8 @@
           {{ warVictory() }} <span translate>Victories</span>
           <br />
           {{
-            'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in order to win.'
+            'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in
+        order to win.'
               | translate
                 : {
                     value: getWarInfo().war.victory,
@@ -57,7 +58,9 @@
               <br />
               <strong translate>Reward</strong>
               <strong translate>:</strong>
-              {{ warInfo.reward | number: '' : this.translate.currentLang }}
+              {{
+                warInfo.reward | number: '' : this.translate.getCurrentLang()
+              }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               <div translate>
                 The reward is shared in proportion to everyone's victories.

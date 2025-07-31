@@ -42,15 +42,18 @@
           <div class="progress-text">
             <span translate>Progress:</span>
             {{
-              quest.quest_current | number: '' : this.translate.currentLang
-            }}/{{ quest.quest_goal | number: '' : this.translate.currentLang }}
+              quest.quest_current
+                | number: '' : this.translate.getCurrentLang()
+            }}/{{
+              quest.quest_goal | number: '' : this.translate.getCurrentLang()
+            }}
           </div>
         </div>
       </div>
     }
     <div class="text-center mt-1 mb-1">
       <strong translate>Reward:</strong>
-      {{ quest.reward_quantity | number: '' : this.translate.currentLang }}
+      {{ quest.reward_quantity | number: '' : this.translate.getCurrentLang() }}
       <app-ew-icon
         name="{{ quest.reward_ress }}"
         class="small-resource"></app-ew-icon>

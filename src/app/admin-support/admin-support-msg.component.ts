@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -26,6 +26,11 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
   ],
 })
 export class AdminSupportMsgComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+
   public adminSupportInfo: {
     title: string;
     status: number;
@@ -45,12 +50,7 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
 
   angellistIcon = angellistIcon;
 
-  constructor(
-    private readonly router: Router,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    public user: User
-  ) {
+  constructor() {
     this.msg = 0;
     this.answertext = '';
   }

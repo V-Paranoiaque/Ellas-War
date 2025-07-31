@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
 
@@ -9,5 +9,5 @@ import { EwIconSubComponent } from 'src/services/ew-icon.service';
   imports: [EwIconSubComponent, RouterModule, TranslateModule],
 })
 export class FirstInfoPopupSubComponent {
-  constructor(public translate: TranslateService) {}
+  translate = inject(TranslateService);
 }

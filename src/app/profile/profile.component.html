@@ -121,22 +121,27 @@
                   {{ profile.level }}
                   <br />
                   <strong translate>XP</strong><strong translate>:</strong>
-                  {{ profile.xp | number: '' : this.translate.currentLang }}
+                  {{
+                    profile.xp | number: '' : this.translate.getCurrentLang()
+                  }}
                   <br />
                   <strong translate>Victories</strong
                   ><strong translate>:</strong>
                   {{
-                    profile.victory | number: '' : this.translate.currentLang
+                    profile.victory
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                   <br />
                   <strong translate>Field</strong><strong translate>:</strong>
-                  {{ profile.field | number: '' : this.translate.currentLang }}
+                  {{
+                    profile.field | number: '' : this.translate.getCurrentLang()
+                  }}
                   <br />
                   <strong translate>Feats of Strength</strong
                   ><strong translate>:</strong>
                   {{
                     profile.featsofstrength
-                      | number: '' : this.translate.currentLang
+                      | number: '' : this.translate.getCurrentLang()
                   }}
                   <br />
                   @if (profile.alliance > 0) {

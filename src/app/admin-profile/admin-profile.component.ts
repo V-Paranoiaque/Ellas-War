@@ -1,5 +1,5 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -36,6 +36,13 @@ import users from '@iconify/icons-fa6-solid/users';
   ],
 })
 export class AdminProfileComponent implements OnInit, OnDestroy {
+  private http = inject(HttpClient);
+  user = inject(User);
+  private route = inject(ActivatedRoute);
+  translate = inject(TranslateService);
+  private titleService = inject(Title);
+  private readonly socket = inject(Socket);
+
   public profile = {
     membre_id: 0,
     username: '',
@@ -133,14 +140,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
   eye = eye;
   users = users;
 
-  constructor(
-    private http: HttpClient,
-    public user: User,
-    private route: ActivatedRoute,
-    public translate: TranslateService,
-    private titleService: Title,
-    private readonly socket: Socket
-  ) {
+  constructor() {
     this.subPlayer = new Subscription();
     this.subTitle = new Subscription();
 

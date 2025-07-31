@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -12,12 +12,12 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateModule],
 })
 export class CreditsComponent implements OnInit, OnDestroy {
+  private titleService = inject(Title);
+  translate = inject(TranslateService);
+
   private sub: Subscription;
 
-  constructor(
-    private titleService: Title,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.sub = new Subscription();
   }
 

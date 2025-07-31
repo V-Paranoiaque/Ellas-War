@@ -174,7 +174,9 @@
                   'text-danger':
                     user.getPropertyNb(res.resource) < res.quantity,
                 }">
-                {{ res.quantity | number: '' : this.translate.currentLang }}
+                {{
+                  res.quantity | number: '' : this.translate.getCurrentLang()
+                }}
               </span>
               <app-ew-icon
                 name="{{ res.resource }}"

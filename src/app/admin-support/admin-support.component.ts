@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -32,6 +32,12 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class AdminSupportComponent implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public adminSupportList: {
     support_id: number;
     support_topic: string;
@@ -51,13 +57,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
   brushIcon = brushIcon;
   eye = eye;
 
-  constructor(
-    private readonly router: Router,
-    private route: ActivatedRoute,
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.adminSupportPage = 1;
     this.adminSupportList = [];
     this.adminSupportMax = 1;

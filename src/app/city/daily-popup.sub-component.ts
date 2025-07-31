@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -18,6 +18,9 @@ import { IdToDivineBonusSubComponent } from './id-to-divinebonus.sub-component';
   ],
 })
 export class DailyPopupSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: {
     bonus_id: number;
     msg: number;
@@ -29,9 +32,4 @@ export class DailyPopupSubComponent {
   };
 
   Tools = Tools;
-
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
 }

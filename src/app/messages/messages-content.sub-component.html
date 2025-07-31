@@ -21,7 +21,7 @@
       <span>
         <br /><br />
         <span translate class="fw-bold">Jackpot:</span>
-        {{ msg.content.drachma | number: '' : this.translate.currentLang }}
+        {{ msg.content.drachma | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -103,10 +103,10 @@
     }
     @case (11) {
       <span>
-        {{ msg.content.qtt | number: '' : this.translate.currentLang }}
+        {{ msg.content.qtt | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon name="{{ msg.content.ress }}"></app-ew-icon>
         <span translate>for</span>
-        {{ msg.content.price | number: '' : this.translate.currentLang }}
+        {{ msg.content.price | number: '' : this.translate.getCurrentLang() }}
         @if (msg.content.buyer_id > 0) {
           <div>
             <span translate>Buyer</span>
@@ -122,7 +122,7 @@
           '{ value } has accepted your request for:'
             | translate: { value: msg.content.user }
         }}
-        {{ msg.content.qtt | number: '' : this.translate.currentLang }}
+        {{ msg.content.qtt | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon name="{{ msg.content.ress }}"></app-ew-icon>
       </span>
     }
@@ -131,7 +131,7 @@
         <div translate>You win the Honor challenge!</div>
         <br />
         <span translate>Reward:</span>
-        {{ msg.content.reward | number: '' : this.translate.currentLang }}
+        {{ msg.content.reward | number: '' : this.translate.getCurrentLang() }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -160,7 +160,8 @@
               <th scope="row" translate>Field</th>
               <td class="text-end">
                 {{
-                  msg.content.field | number: '' : this.translate.currentLang
+                  msg.content.field
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </td>
             </tr>
@@ -168,7 +169,8 @@
               <th scope="row" translate>Victories</th>
               <td class="text-end">
                 {{
-                  msg.content.victory | number: '' : this.translate.currentLang
+                  msg.content.victory
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </td>
             </tr>
@@ -176,14 +178,17 @@
               <th scope="row" translate>Defeats</th>
               <td class="text-end">
                 {{
-                  msg.content.defeat | number: '' : this.translate.currentLang
+                  msg.content.defeat
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </td>
             </tr>
             <tr>
               <th scope="row" translate>XP</th>
               <td class="text-end">
-                {{ msg.content.xp | number: '' : this.translate.currentLang }}
+                {{
+                  msg.content.xp | number: '' : this.translate.getCurrentLang()
+                }}
               </td>
             </tr>
           </table>
@@ -230,13 +235,13 @@
                 <strong translate>Unities</strong><strong translate>:</strong>
                 {{
                   msg.content.unitiesNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 <br />
                 <strong translate>Towers</strong><strong translate>:</strong>
                 {{
                   msg.content.defenseNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </span>
             }
@@ -245,13 +250,13 @@
                 <strong translate>Unities</strong><strong translate>:</strong>
                 {{
                   msg.content.unitiesNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 <br />
                 <strong translate>Towers</strong><strong translate>:</strong>
                 {{
                   msg.content.defenseNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
               </span>
             }
@@ -319,7 +324,10 @@
         @if (msg.content.benefits) {
           <div>
             <strong translate>Reward:</strong>
-            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            {{
+              msg.content.benefits
+                | number: '' : this.translate.getCurrentLang()
+            }}
             <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
           </div>
         }
@@ -338,7 +346,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -379,7 +389,7 @@
                 <strong translate>Unities</strong><strong translate>:</strong>
                 {{
                   msg.content.unitiesNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 @if (msg.content.unities && msg.content.unities.length > 0) {
                   <div>
@@ -399,7 +409,7 @@
                 <strong translate>Unities</strong><strong translate>:</strong>
                 {{
                   msg.content.unitiesNb
-                    | number: '' : this.translate.currentLang
+                    | number: '' : this.translate.getCurrentLang()
                 }}
                 @if (msg.content.unities && msg.content.unities.length > 0) {
                   <div>
@@ -429,7 +439,7 @@
               : {
                   value:
                     msg.content.reward
-                    | number: '' : this.translate.currentLang,
+                    | number: '' : this.translate.getCurrentLang(),
                 }
         }}
       </span>
@@ -442,7 +452,7 @@
               : {
                   value:
                     msg.content.reward
-                    | number: '' : this.translate.currentLang,
+                    | number: '' : this.translate.getCurrentLang(),
                 }
         }}
       </span>
@@ -505,7 +515,7 @@
                 <app-ew-icon
                   name="{{ Tools.getDivineBonus(13) }}"
                   class="small-resource"></app-ew-icon>
-                {{ 5000000 | number: '' : this.translate.currentLang
+                {{ 5000000 | number: '' : this.translate.getCurrentLang()
                 }}<app-ew-icon
                   name="{{ Tools.getDivineBonus(14) }}"
                   class="small-resource"></app-ew-icon>
@@ -525,7 +535,7 @@
                 <app-ew-icon
                   name="{{ Tools.getDivineBonus(13) }}"
                   class="small-resource"></app-ew-icon>
-                {{ 10000000 | number: '' : this.translate.currentLang
+                {{ 10000000 | number: '' : this.translate.getCurrentLang()
                 }}<app-ew-icon
                   name="{{ Tools.getDivineBonus(14) }}"
                   class="small-resource"></app-ew-icon>
@@ -545,7 +555,7 @@
                 <app-ew-icon
                   name="{{ Tools.getDivineBonus(13) }}"
                   class="small-resource"></app-ew-icon>
-                {{ 20000000 | number: '' : this.translate.currentLang
+                {{ 20000000 | number: '' : this.translate.getCurrentLang()
                 }}<app-ew-icon
                   name="{{ Tools.getDivineBonus(14) }}"
                   class="small-resource"></app-ew-icon>
@@ -570,7 +580,10 @@
         @if (msg.content.benefits) {
           <div>
             <strong translate>Reward:</strong>
-            {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+            {{
+              msg.content.benefits
+                | number: '' : this.translate.getCurrentLang()
+            }}
             <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
           </div>
         }
@@ -587,7 +600,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }
@@ -604,7 +619,9 @@
         <br />
         <br />
         <strong translate>Reward:</strong>
-        {{ msg.content.benefits | number: '' : this.translate.currentLang }}
+        {{
+          msg.content.benefits | number: '' : this.translate.getCurrentLang()
+        }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </span>
     }

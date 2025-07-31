@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -23,6 +23,10 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class StatisticsComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   private agoraMyStats: { quantity: number; rate: number; solded: number }[];
   private agoraStats: { quantity: number; rate: number; solded: number }[];
   private storeroomMyStats: {
@@ -36,11 +40,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   parseFloat = parseFloat;
   Tools = Tools;
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.agoraMyStats = [];
     this.agoraStats = [];
     this.storeroomMyStats = [];

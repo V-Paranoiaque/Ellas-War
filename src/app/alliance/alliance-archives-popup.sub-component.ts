@@ -1,17 +1,27 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
-import { AllianceIncludeComponent } from './alliance-include.component';
+import { AllianceArchivesTextSubComponent } from './alliance-archives-text.sub-component';
+import { AllianceArchivesTitleSubComponent } from './alliance-archives-title.sub-component';
 
 @Component({
   selector: 'app-alliance-archives-popup',
   templateUrl: './alliance-archives-popup.sub-component.html',
-  imports: [AllianceIncludeComponent, CommonModule, TranslateModule],
+  imports: [
+    AllianceArchivesTextSubComponent,
+    AllianceArchivesTitleSubComponent,
+    CommonModule,
+    TranslateModule,
+  ],
 })
 export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
+  private readonly socket = inject(Socket);
+  user = inject(User);
+  translate = inject(TranslateService);
+
   public archiveCurrent: number;
   public archivePages: number;
   public archiveList: {
@@ -54,11 +64,7 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
     alliance_history_date: number;
   }[];
 
-  constructor(
-    private readonly socket: Socket,
-    public user: User,
-    public translate: TranslateService
-  ) {
+  constructor() {
     this.archiveCurrent = 1;
     this.archivePages = 1;
     this.archiveList = [];

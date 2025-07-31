@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -11,9 +11,9 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
 })
 export class MainPrivateXpHelpPopupSubComponent {
-  @Input() info!: { player1: number; player2: number };
+  user = inject(User);
 
-  constructor(public user: User) {}
+  @Input() info!: { player1: number; player2: number };
 
   eloDiff(p1: number, p2: number, coef: number) {
     const player1 = p1 / 100;

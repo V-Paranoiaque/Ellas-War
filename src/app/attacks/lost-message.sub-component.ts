@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -12,14 +12,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, EwIconSubComponent, TranslateModule],
 })
 export class LostMessageSubComponent {
+  user = inject(User);
+  translate = inject(TranslateService);
+
   @Input() info!: MessageContent['content'];
 
   Tools = Tools;
-
-  constructor(
-    public user: User,
-    public translate: TranslateService
-  ) {}
 
   getLostBuildings() {
     const list = [];
