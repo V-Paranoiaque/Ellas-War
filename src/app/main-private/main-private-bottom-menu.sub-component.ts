@@ -132,8 +132,8 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   };
   private subPlayer: Subscription;
 
-  @ViewChild('chatGeneral') private chatGeneralScroll?: ElementRef;
-  @ViewChild('chatAlliance') private chatAllianceScroll?: ElementRef;
+  @ViewChild('chatGeneral') private readonly chatGeneralScroll?: ElementRef;
+  @ViewChild('chatAlliance') private readonly chatAllianceScroll?: ElementRef;
 
   environment = environment;
 

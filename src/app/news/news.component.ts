@@ -22,12 +22,12 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class NewsComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
   user = inject(User);
   private readonly socket = inject(Socket);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   private newsList: {
     title: string;

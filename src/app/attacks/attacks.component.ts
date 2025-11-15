@@ -62,7 +62,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
-  private scroller = inject(ViewportScroller);
+  private readonly scroller = inject(ViewportScroller);
 
   public attackInfo = new MessageContent();
   public attackMode: number;

@@ -13,7 +13,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateModule],
 })
 export class PartnersComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
 

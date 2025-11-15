@@ -17,8 +17,9 @@ export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
   socket = inject(Socket);
   user = inject(User);
 
-  private favicon: HTMLLinkElement = document.querySelector('#favicon')!;
-  private audio: HTMLAudioElement;
+  private readonly favicon: HTMLLinkElement =
+    document.querySelector('#favicon')!;
+  private readonly audio: HTMLAudioElement;
 
   constructor() {
     this.audio = new Audio();

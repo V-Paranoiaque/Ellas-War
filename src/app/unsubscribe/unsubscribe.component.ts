@@ -14,8 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class UnsubscribeComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
-  private http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly http = inject(HttpClient);
+  private readonly route = inject(ActivatedRoute);
 
   public id = '';
   public check = '';

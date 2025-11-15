@@ -37,10 +37,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
   protected http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
-  private formBuilder = inject(FormBuilder);
+  private readonly titleService = inject(Title);
+  private readonly formBuilder = inject(FormBuilder);
 
   registerForm: FormGroup;
   public rerror: number;

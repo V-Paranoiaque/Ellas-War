@@ -18,7 +18,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class ConfidentialityComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
   private sub: Subscription;

@@ -27,7 +27,7 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
 })
 export class AdminSupportMsgComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
   user = inject(User);
 

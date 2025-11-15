@@ -25,9 +25,9 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class DiscoverthegameComponent implements OnInit, OnDestroy {
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
   public page: string;

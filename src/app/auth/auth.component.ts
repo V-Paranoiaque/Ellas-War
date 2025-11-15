@@ -24,7 +24,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 })
 export class AuthComponent implements OnInit {
   private readonly socket = inject(Socket);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   user = inject(User);
 
   public confirmResult: number;

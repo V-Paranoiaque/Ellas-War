@@ -12,7 +12,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   imports: [TranslateModule, UserProfileSubComponent],
 })
 export class HonorHelpPopupSubComponent implements OnInit, OnDestroy {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
 
   private sub: Subscription;

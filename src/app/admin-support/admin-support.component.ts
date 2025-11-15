@@ -33,7 +33,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
 })
 export class AdminSupportComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

@@ -26,10 +26,10 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 })
 export class ConnectedplayersComponent implements OnInit, OnDestroy {
   user = inject(User);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   public connected: {
     membre_id: number;

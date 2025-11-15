@@ -26,11 +26,11 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 })
 export class AlliancemembersComponent implements OnInit, OnDestroy {
   http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
   user = inject(User);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
 
   public allianceMembers: {

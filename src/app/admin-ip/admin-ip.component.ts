@@ -26,7 +26,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
 export class AdminIpComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   translate = inject(TranslateService);
 
   public list: {

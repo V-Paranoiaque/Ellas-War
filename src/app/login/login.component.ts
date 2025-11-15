@@ -30,11 +30,11 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);
   user = inject(User);
-  private formBuilder = inject(FormBuilder);
+  private readonly formBuilder = inject(FormBuilder);
 
   private sub: Subscription;
 

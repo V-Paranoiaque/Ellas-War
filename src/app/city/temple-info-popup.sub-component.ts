@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

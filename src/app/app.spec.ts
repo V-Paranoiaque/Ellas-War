@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { AppComponent } from './app.component';
+import { AppComponent } from './app';
 import { SocketComponent as Socket } from '../services/socketio.service';
 import { UserComponent as User } from '../services/user.service';
 import {
   OAuthModule,
-  OAuthLogger,
   OAuthService,
   UrlHelperService,
 } from 'angular-oauth2-oidc';
@@ -34,7 +33,6 @@ describe('AppComponent', () => {
         Socket,
         User,
         OAuthService,
-        OAuthLogger,
         UrlHelperService,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

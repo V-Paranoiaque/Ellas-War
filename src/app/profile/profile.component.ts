@@ -61,9 +61,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user = inject(User);
   protected socket = inject(Socket);
   translate = inject(TranslateService);
-  private route = inject(ActivatedRoute);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly route = inject(ActivatedRoute);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
 
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 

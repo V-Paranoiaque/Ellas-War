@@ -31,7 +31,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
 export class SupportComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   user = inject(User);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
 
   public msg = 0;

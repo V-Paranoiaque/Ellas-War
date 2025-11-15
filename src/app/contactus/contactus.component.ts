@@ -25,7 +25,7 @@ export class ContactusComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   public contactemail: string;
   public contactError: number;

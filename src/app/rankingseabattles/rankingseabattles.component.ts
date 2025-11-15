@@ -40,13 +40,13 @@ interface RankingSBLine {
   ],
 })
 export class RankingseabattlesComponent implements OnInit, OnDestroy {
-  private http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly http = inject(HttpClient);
+  private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   public rankingList: RankingSBLine[];
   public rankingMax: number;

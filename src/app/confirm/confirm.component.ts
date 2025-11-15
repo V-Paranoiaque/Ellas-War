@@ -21,8 +21,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 })
 export class ConfirmComponent implements OnInit, OnDestroy {
   user = inject(User);
-  private http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly http = inject(HttpClient);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
 
   public confirmResult: number;

@@ -30,11 +30,11 @@ import userPlus from '@iconify/icons-fa6-solid/user-plus';
 })
 export class AllianceprofileComponent implements OnInit, OnDestroy {
   http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
   user = inject(User);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
 
   private subMembers: Subscription;

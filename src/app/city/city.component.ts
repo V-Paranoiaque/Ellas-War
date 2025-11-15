@@ -88,7 +88,7 @@ export class CityComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   private subTitle: Subscription;
   buildingInfo = {

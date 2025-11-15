@@ -19,8 +19,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class SitemapComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
 
   private sub: Subscription;

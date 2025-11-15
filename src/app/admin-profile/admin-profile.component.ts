@@ -36,11 +36,11 @@ import users from '@iconify/icons-fa6-solid/users';
   ],
 })
 export class AdminProfileComponent implements OnInit, OnDestroy {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   user = inject(User);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   private readonly socket = inject(Socket);
 
   public profile = {

@@ -46,12 +46,12 @@ import googleIcon from '@iconify-icons/logos/google-icon';
 })
 export class MainPublicComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
-  private formBuilder = inject(FormBuilder);
-  private http = inject(HttpClient);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly http = inject(HttpClient);
   translate = inject(TranslateService);
   user = inject(User);
   private readonly router = inject(Router);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   public localevars = {
     facebook: '',

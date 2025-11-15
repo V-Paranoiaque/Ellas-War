@@ -37,7 +37,7 @@ export interface NewsType {
 })
 export class AdminNewsComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

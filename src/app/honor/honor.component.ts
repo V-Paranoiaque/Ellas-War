@@ -48,12 +48,12 @@ interface HonorLine {
 })
 export class HonorComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   user = inject(User);
   translate = inject(TranslateService);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
 
   public id = 0;
   public list: HonorLine[];

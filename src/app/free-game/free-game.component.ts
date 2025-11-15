@@ -24,7 +24,7 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class FreeGameComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
 

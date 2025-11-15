@@ -37,11 +37,11 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
 })
 export class RankingalliancesComponent implements OnInit, OnDestroy {
   http = inject(HttpClient);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   user = inject(User);
   private readonly socket = inject(Socket);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
   public rankingList: {

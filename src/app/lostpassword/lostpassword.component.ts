@@ -25,8 +25,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class LostpasswordComponent implements OnInit, OnDestroy {
-  private http = inject(HttpClient);
-  private titleService = inject(Title);
+  private readonly http = inject(HttpClient);
+  private readonly titleService = inject(Title);
   user = inject(User);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);

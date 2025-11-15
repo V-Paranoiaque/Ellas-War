@@ -22,11 +22,11 @@ import { MessagesIncludeComponent } from '../messages/messages-include.component
   ],
 })
 export class PermalinkComponent implements OnInit, OnDestroy {
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);
   user = inject(User);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
 
   private currentMsg: Message;
 

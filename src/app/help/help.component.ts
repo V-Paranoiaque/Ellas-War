@@ -26,8 +26,8 @@ import discordIcon from '@iconify-icons/logos/discord-icon';
 })
 export class HelpComponent implements OnInit, OnDestroy {
   user = inject(User);
-  private titleService = inject(Title);
-  private metaService = inject(Meta);
+  private readonly titleService = inject(Title);
+  private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
 
   private sub: Subscription;

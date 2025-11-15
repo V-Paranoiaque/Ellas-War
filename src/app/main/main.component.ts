@@ -4,11 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Router } from '@angular/router';
-import {
-  BsModalService,
-  ModalDirective,
-  ModalModule,
-} from 'ngx-bootstrap/modal';
+import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { CommonModule } from '@angular/common';
@@ -37,8 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   protected router = inject(Router);
   user = inject(User);
-  protected modalService = inject(BsModalService);
-  private platformLocation = inject(PlatformLocation);
+  private readonly platformLocation = inject(PlatformLocation);
 
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
   displayServerModal = false;

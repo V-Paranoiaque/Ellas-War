@@ -22,8 +22,10 @@ declare let cordova: {
 };
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  standalone: true,
+  templateUrl: './app.html',
   imports: [RouterModule, TranslateModule],
+  providers: [TranslateService],
 })
 export class AppComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
@@ -31,15 +33,15 @@ export class AppComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   translate = inject(TranslateService);
   sanitizer = inject(DomSanitizer);
-  private oauthService = inject(OAuthService);
-  private titleService = inject(Title);
+  private readonly oauthService = inject(OAuthService);
+  private readonly titleService = inject(Title);
 
   title = 'Ellas War';
 
   public cssUrl: SafeResourceUrl;
   public cssPlatform: SafeResourceUrl;
-  private cssBase: string;
-  private sub: Subscription;
+  private readonly cssBase: string;
+  private readonly sub: Subscription;
 
   constructor() {
     const translate = this.translate;

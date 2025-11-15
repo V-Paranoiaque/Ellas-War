@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 export class MainPublicTopMenuSubComponent implements OnInit {
   protected http = inject(HttpClient);
   socket = inject(Socket);
-  private formBuilder = inject(FormBuilder);
+  private readonly formBuilder = inject(FormBuilder);
   router = inject(Router);
   user = inject(User);
   protected modalService = inject(BsModalService);

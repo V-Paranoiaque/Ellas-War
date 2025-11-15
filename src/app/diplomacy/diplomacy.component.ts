@@ -47,7 +47,7 @@ import users from '@iconify/icons-fa6-solid/users';
 })
 export class DiplomacyComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

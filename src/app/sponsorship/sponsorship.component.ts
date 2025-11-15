@@ -27,7 +27,7 @@ import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
 })
 export class SponsorshipComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
-  private titleService = inject(Title);
+  private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
   public sponsorList: {

@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
-import { routes } from './app-routing.module';
-import { AppModule } from './app.module';
+import { AppRoutingModule, routes } from './app.routes';
+import { appConfig } from './app.config';
 
 describe('The App Routing', () => {
   let router: Router;
@@ -10,7 +10,7 @@ describe('The App Routing', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppRoutingModule, ...appConfig.imports],
       providers: [provideRouter(routes)],
     });
 

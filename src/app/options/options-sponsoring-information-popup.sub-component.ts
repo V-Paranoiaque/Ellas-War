@@ -33,7 +33,7 @@ import link from '@iconify/icons-fa6-solid/link';
 export class OptionsSponsoringInformationPopupSubComponent
   implements OnInit, OnDestroy
 {
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

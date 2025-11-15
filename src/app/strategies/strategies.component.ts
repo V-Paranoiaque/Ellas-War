@@ -45,7 +45,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
 })
 export class StrategiesComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
-  private route = inject(ActivatedRoute);
+  private readonly route = inject(ActivatedRoute);
   user = inject(User);
   translate = inject(TranslateService);
 
