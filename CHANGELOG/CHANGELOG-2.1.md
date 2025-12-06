@@ -23,3 +23,7 @@
 
 # 2.1.6
 * Minor fixes
+
+# 2.1.7
+* Upgrade dependencies
+* Security fixes
