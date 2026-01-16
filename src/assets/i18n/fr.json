@@ -239,7 +239,7 @@
   "Average rate": "Taux moyen",
   "Back": "Retour",
   "Bad password": "Mauvais mot de passe",
-  "Balance between stone and marble:": "Balance entre la pierre et le marbre :",
+  "Balance between stone ({ val1 }%) and marble ({ val2 }%)": "Balance entre la pierre ({{ val1 }}%) et le marbre ({{ val2 }}%)",
   "Banished": "Banni",
   "Barracks": "Caserne",
   "Base defense": "Défense de base",

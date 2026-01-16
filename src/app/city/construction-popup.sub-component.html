@@ -3,223 +3,192 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">{{ Tools.getName(info.code) | translate }}</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
         <div class="row">
           <div class="col-6 offset-3 mb-3">
-            <app-ew-icon
-              name="{{ info.code }}"
-              title="{{ Tools.getName(info.code) | translate }}"></app-ew-icon>
+            <app-ew-icon name="{{ info.code }}" title="{{ Tools.getName(info.code) | translate }}"></app-ew-icon>
           </div>
 
           <div class="col-12 text-center fw-bold text-danger">
             @if (missingResource().length > 0) {
-              <div>
-                <span translate>Missing resources:</span>&nbsp;
-                @for (res of missingResource(); track res) {
-                  <span>
-                    <app-ew-icon
-                      name="{{ res }}"
-                      class="small-resource"></app-ew-icon>
-                  </span>
-                }
-              </div>
-            }
-            @if (
-              (info.placen &&
-                user.getPropertyNb('placen') -
-                  user.getPropertyNb('placenactu') -
-                  Number(info.destructNb) * info.placen <
-                  0) ||
-              (info.placep &&
-                user.getPropertyNb('placep') -
-                  user.getPropertyNb('placepactu') -
-                  Number(info.destructNb) * info.placep <
-                  0) ||
-              (info.placec &&
-                user.getPropertyNb('placec') -
-                  user.getPropertyNb('placecactu') -
-                  Number(info.destructNb) * info.placec <
-                  0)
-            ) {
-              <span class="bold red" translate>
-                You can not destroy a home that is in used
+            <div>
+              <span translate>Missing resources:</span>&nbsp;
+              @for (res of missingResource(); track res) {
+              <span>
+                <app-ew-icon name="{{ res }}" class="small-resource"></app-ew-icon>
               </span>
+              }
+            </div>
             }
-
             @if (
+            (info.placen &&
+            user.getPropertyNb('placen') -
+            user.getPropertyNb('placenactu') -
+            Number(info.destructNb) * info.placen < 0) || (info.placep && user.getPropertyNb('placep') -
+              user.getPropertyNb('placepactu') - Number(info.destructNb) * info.placep < 0) || (info.placec &&
+              user.getPropertyNb('placec') - user.getPropertyNb('placecactu') - Number(info.destructNb) * info.placec <
+              0) ) { <span class="bold red" translate>
+              You can not destroy a home that is in used
+              </span>
+              }
+
+              @if (
               info.nbmax &&
               Number(info.buildNb) > 0 &&
               Number(info.buildNb) + user.getPropertyNb(info.code) > info.nbmax
-            ) {
+              ) {
               <div>
                 {{
-                  "You can't have more than { value } buildings of this type"
-                    | translate: { value: info.nbmax }
+                "You can't have more than { value } buildings of this type"
+                | translate: { value: info.nbmax }
                 }}
               </div>
-            }
-            @if (
+              }
+              @if (
               Number(info.rBuildNb) === -1 &&
               !(
-                info.nbmax &&
-                Number(info.buildNb) > 0 &&
-                Number(info.buildNb) + user.getPropertyNb(info.code) >
-                  info.nbmax
+              info.nbmax &&
+              Number(info.buildNb) > 0 &&
+              Number(info.buildNb) + user.getPropertyNb(info.code) >
+              info.nbmax
               )
-            ) {
+              ) {
               <div>
                 {{
-                  "Your production field can't be over { value }"
-                    | translate: { value: user.getDatas().maxField }
+                "Your production field can't be over { value }"
+                | translate: { value: user.getDatas().maxField }
                 }}
               </div>
-            }
-            @if (Number(info.rBuildNb) === 1) {
+              }
+              @if (Number(info.rBuildNb) === 1) {
               <div translate>Building built</div>
-            }
-            @if (Number(info.rBuildNb) > 1) {
+              }
+              @if (Number(info.rBuildNb) > 1) {
               <div translate>Buildings built</div>
-            }
-            @if (Number(info.rDestructNb) === 1) {
+              }
+              @if (Number(info.rDestructNb) === 1) {
               <div translate>Building destructed</div>
-            }
-            @if (Number(info.rDestructNb) > 1) {
+              }
+              @if (Number(info.rDestructNb) > 1) {
               <div translate>Buildings destructed</div>
-            }
-            @if (info.errorBuilding === 1) {
+              }
+              @if (info.errorBuilding === 1) {
               <div translate>
                 You need to enter the number of buildings you would like to
                 construct or destruct
               </div>
-            }
+              }
           </div>
 
           @if (user.getPropertyNb('volcano') > 0) {
-            <div class="col-12 text-danger text-center">
-              <span translate
-                >The lava falls on your city preventing you from building
-                buildings for 30 min</span
-              >
-              <br />
-              <span translate>End:</span>
-              {{ user.getPropertyNb('volcano') * 1000 | date: 'dd/MM, HH:mm' }}
-            </div>
+          <div class="col-12 text-danger text-center">
+            <span translate>The lava falls on your city preventing you from building
+              buildings for 30 min</span>
+            <br />
+            <span translate>End:</span>
+            {{ user.getPropertyNb('volcano') * 1000 | date: 'dd/MM, HH:mm' }}
+          </div>
           }
 
           <div class="col-6">
             @if (info.type === 2) {
-              <div>
-                <strong translate>Defense</strong>
-                <strong translate>:</strong>
+            <div>
+              <strong translate>Defense</strong>
+              <strong translate>:</strong>
+              {{
+              info.defense | number: '' : this.translate.getCurrentLang()
+              }}
+              <app-ic-icon [icon]="shieldShaded" title="{{ 'Defense' | translate }}"></app-ic-icon>
+            </div>
+            }
+
+            @if (info.cost) {
+            <div>
+              <strong translate>Construction cost</strong>
+              <strong translate>:</strong>
+              <br />
+              @for (resource of info.cost | keyvalue; track resource) {
+              <span>
                 {{
-                  info.defense | number: '' : this.translate.getCurrentLang()
+                Number(resource.value) * realBuildNb()
+                | number: '' : this.translate.getCurrentLang()
                 }}
-                <app-ic-icon
-                  [icon]="shieldShaded"
-                  title="{{ 'Defense' | translate }}"></app-ic-icon>
-              </div>
+                <app-ew-icon name="{{ resource.key }}" class="small-resource"></app-ew-icon>
+              </span>
+              }
+            </div>
             }
 
             @if (info.cost) {
-              <div>
-                <strong translate>Construction cost</strong>
-                <strong translate>:</strong>
-                <br />
-                @for (resource of info.cost | keyvalue; track resource) {
-                  <span>
-                    {{
-                      Number(resource.value) * realBuildNb()
-                        | number: '' : this.translate.getCurrentLang()
-                    }}
-                    <app-ew-icon
-                      name="{{ resource.key }}"
-                      class="small-resource"></app-ew-icon>
-                  </span>
-                }
-              </div>
-            }
-
-            @if (info.cost) {
-              <div>
-                <strong translate>Recovered resources</strong>
-                <strong translate>:</strong>
-                <br />
-                @for (resource of info.destruct | keyvalue; track resource) {
-                  <span>
-                    {{
-                      Number(resource.value) * realDestructNb()
-                        | number: '' : this.translate.getCurrentLang()
-                    }}
-                    <app-ew-icon
-                      name="{{ resource.key }}"
-                      class="small-resource"></app-ew-icon>
-                  </span>
-                }
-              </div>
+            <div>
+              <strong translate>Recovered resources</strong>
+              <strong translate>:</strong>
+              <br />
+              @for (resource of info.destruct | keyvalue; track resource) {
+              <span>
+                {{
+                Number(resource.value) * realDestructNb()
+                | number: '' : this.translate.getCurrentLang()
+                }}
+                <app-ew-icon name="{{ resource.key }}" class="small-resource"></app-ew-icon>
+              </span>
+              }
+            </div>
             }
 
             @if (info.production) {
-              <div>
-                <strong translate>Production</strong
-                ><strong translate>:</strong>
-                <br />
-                @for (i of getProduction(); track i) {
-                  <span>
-                    {{
-                      Number(i.nb) * realBuildNb()
-                        | number: '' : this.translate.getCurrentLang()
-                    }}
-                    <app-ew-icon
-                      name="{{ i.code }}"
-                      class="small-resource"></app-ew-icon>
-                  </span>
-                }
-              </div>
+            <div>
+              <strong translate>Production</strong><strong translate>:</strong>
+              <br />
+              @for (i of getProduction(); track i) {
+              <span>
+                {{
+                Number(i.nb) * realBuildNb()
+                | number: '' : this.translate.getCurrentLang()
+                }}
+                <app-ew-icon name="{{ i.code }}" class="small-resource"></app-ew-icon>
+              </span>
+              }
+            </div>
             }
 
             @if (info.consumption) {
-              <div>
-                <strong translate>Consumption</strong>
-                <strong translate>:</strong>
-                <br />
-                @for (i of getConsumption(); track i) {
-                  <span>
-                    {{
-                      Number(i.nb) * realBuildNb()
-                        | number: '' : this.translate.getCurrentLang()
-                    }}
-                    <app-ew-icon
-                      name="{{ i.code }}"
-                      class="small-resource"></app-ew-icon>
-                  </span>
-                }
-              </div>
+            <div>
+              <strong translate>Consumption</strong>
+              <strong translate>:</strong>
+              <br />
+              @for (i of getConsumption(); track i) {
+              <span>
+                {{
+                Number(i.nb) * realBuildNb()
+                | number: '' : this.translate.getCurrentLang()
+                }}
+                <app-ew-icon name="{{ i.code }}" class="small-resource"></app-ew-icon>
+              </span>
+              }
+            </div>
             }
 
             @if (info.placen) {
-              <div>
-                <strong>{{ 'Spots:' | translate }}</strong>
-                {{ info.placen * realBuildNb() }} {{ 'Normales' | translate }}
-              </div>
+            <div>
+              <strong>{{ 'Spots:' | translate }}</strong>
+              {{ info.placen * realBuildNb() }} {{ 'Normales' | translate }}
+            </div>
             }
             @if (info.placep) {
-              <div>
-                <strong>{{ 'Spots:' | translate }}</strong>
-                {{ info.placep * realBuildNb() }} {{ 'Luxurious' | translate }}
-              </div>
+            <div>
+              <strong>{{ 'Spots:' | translate }}</strong>
+              {{ info.placep * realBuildNb() }} {{ 'Luxurious' | translate }}
+            </div>
             }
             @if (info.placec) {
-              <div>
-                <strong>{{ 'Spots:' | translate }}</strong>
-                {{ info.placec * realBuildNb() }}
-                {{ 'Underground' | translate }}
-              </div>
+            <div>
+              <strong>{{ 'Spots:' | translate }}</strong>
+              {{ info.placec * realBuildNb() }}
+              {{ 'Underground' | translate }}
+            </div>
             }
           </div>
 
@@ -229,54 +198,52 @@
               <strong translate>:</strong>
               <span role="button" (click)="setDestruct()">
                 {{
-                  user.getPropertyNb(info.code)
-                    | number: '' : this.translate.getCurrentLang()
+                user.getPropertyNb(info.code)
+                | number: '' : this.translate.getCurrentLang()
                 }}
               </span>
               @if (info.nbmax) {
-                <span (click)="setBuild(info.nbmax)">
-                  /
-                  {{
-                    info.nbmax | number: '' : this.translate.getCurrentLang()
-                  }}
-                </span>
+              <span (click)="setBuild(info.nbmax)">
+                /
+                {{
+                info.nbmax | number: '' : this.translate.getCurrentLang()
+                }}
+              </span>
               }
             </div>
 
             @if (
-              info.code === 'militarycamp' &&
-              user.getPropertyNb('camp_level') > 0
+            info.code === 'militarycamp' &&
+            user.getPropertyNb('camp_level') > 0
             ) {
-              <div>
-                <strong translate>Level</strong>
-                <strong translate>:</strong>
-                {{ user.getPropertyNb('camp_level') }}
-              </div>
+            <div>
+              <strong translate>Level</strong>
+              <strong translate>:</strong>
+              {{ user.getPropertyNb('camp_level') }}
+            </div>
             }
             @if (info.rBuildPossible > 0 && user.getPropertyNb('level') > 0) {
-              <div role="button" (click)="setBuild(info.rBuildPossible)">
-                <strong
-                  >{{ 'Max possible' | translate }}{{ ':' | translate }}</strong
-                >
-                {{
-                  info.rBuildPossible
-                    | number: '' : this.translate.getCurrentLang()
-                }}
-              </div>
+            <div role="button" (click)="setBuild(info.rBuildPossible)">
+              <strong>{{ 'Max possible' | translate }}{{ ':' | translate }}</strong>
+              {{
+              info.rBuildPossible
+              | number: '' : this.translate.getCurrentLang()
+              }}
+            </div>
             }
             @if (info.code === 'mint' && user.getPropertyNb('level') > 0) {
-              <div>
-                <strong translate>Minimum</strong>
-                <strong translate>:</strong>
-                {{ Math.max(8 * (user.getPropertyNb('level') - 1), 1) }}
-              </div>
+            <div>
+              <strong translate>Minimum</strong>
+              <strong translate>:</strong>
+              {{ Math.max(8 * (user.getPropertyNb('level') - 1), 1) }}
+            </div>
             }
             <div>
               <strong translate>Field</strong>
               <strong translate>:</strong>
               {{
-                info.field * realBuildNb()
-                  | number: '' : this.translate.getCurrentLang()
+              info.field * realBuildNb()
+              | number: '' : this.translate.getCurrentLang()
               }}
               <app-ic-icon [icon]="landFields"></app-ic-icon>
             </div>
@@ -284,352 +251,302 @@
             <div class="d-flex">
               <div class="d-flex flex-column">
                 @if (
-                  (info.nbmax === 0 ||
-                    user.getPropertyNb(info.code) < info.nbmax) &&
-                  user.getPropertyNb('volcano') === 0
-                ) {
-                  <input
-                    type="number"
-                    placeholder="0"
-                    [attr.min]="0"
-                    step="1"
-                    [(ngModel)]="info.buildNb"
-                    class="form-control mt-2"
-                    (keydown.enter)="buildingBuild()" />
+                (info.nbmax === 0 ||
+                user.getPropertyNb(info.code)
+                < info.nbmax) && user.getPropertyNb('volcano')===0 ) { <input type="number" placeholder="0"
+                  [attr.min]="0" step="1" [(ngModel)]="info.buildNb" class="form-control mt-2"
+                  (keydown.enter)="buildingBuild()" />
                 }
-                <input
-                  type="number"
-                  placeholder="0"
-                  [attr.min]="0"
-                  step="1"
-                  [(ngModel)]="info.destructNb"
-                  class="form-control mt-2"
-                  [hidden]="
+                <input type="number" placeholder="0" [attr.min]="0" step="1" [(ngModel)]="info.destructNb"
+                  class="form-control mt-2" [hidden]="
                     user.getPropertyNb(info.code) === 0 ||
                     (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)
-                  "
-                  (keydown.enter)="buildingDestruct()" />
+                  " (keydown.enter)="buildingDestruct()" />
               </div>
               <div class="d-flex flex-column">
                 @if (
-                  (info.nbmax === 0 ||
-                    user.getPropertyNb(info.code) < info.nbmax) &&
-                  user.getPropertyNb('volcano') === 0
-                ) {
-                  <button
-                    class="btn btn-primary mt-2"
-                    (click)="buildingBuild()"
-                    translate>
-                    Build
+                (info.nbmax === 0 ||
+                user.getPropertyNb(info.code) < info.nbmax) && user.getPropertyNb('volcano')===0 ) { <button
+                  class="btn btn-primary mt-2" (click)="buildingBuild()" translate>
+                  Build
                   </button>
-                }
-                <button
-                  class="btn btn-danger mt-2"
-                  [hidden]="
+                  }
+                  <button class="btn btn-danger mt-2" [hidden]="
                     user.getPropertyNb(info.code) === 0 ||
                     (info.nbmin && user.getPropertyNb(info.code) <= info.nbmin)
-                  "
-                  (click)="buildingDestruct()"
-                  translate>
-                  Destruct
-                </button>
+                  " (click)="buildingDestruct()" translate>
+                    Destruct
+                  </button>
               </div>
             </div>
 
             @if (info.code === 'quarry' && user.getPropertyNb('level') >= 10) {
-              <div class="mt-4">
-                <label for="stoneMarble" class="form-label fw-bold">
-                  <span translate> Balance between stone and marble: </span>
-                  {{ range }}%
-                </label>
-                <input
-                  type="range"
-                  class="form-range"
-                  id="stoneMarble"
-                  min="0"
-                  max="100"
-                  [(ngModel)]="range"
-                  (click)="setQuarryBalance($event)"
-                  (touchend)="setQuarryBalance($event)" />
+            <div class="mt-4">
+              <label for="stoneMarble" class="form-label fw-bold">
+                {{'Balance between stone ({ val1 }%) and marble ({ val2 }%)' | translate : { val1 : 100-range, val2 :
+                range } }}
+              </label>
+              <input type="range" class="form-range" id="stoneMarble" min="0" max="100" [(ngModel)]="range"
+                (click)="setQuarryBalance($event)" (touchend)="setQuarryBalance($event)" />
+            </div>
+            <div class="row">
+              <div class="col-6 text-start">
+                <app-ew-icon name="stone" class="small-resource"></app-ew-icon>
               </div>
-              <div class="row">
-                <div class="col-6 text-start">
-                  <app-ew-icon
-                    name="stone"
-                    class="small-resource"></app-ew-icon>
-                </div>
-                <div class="col-6 text-end">
-                  <app-ew-icon
-                    name="marble"
-                    class="small-resource"></app-ew-icon>
-                </div>
+              <div class="col-6 text-end">
+                <app-ew-icon name="marble" class="small-resource"></app-ew-icon>
               </div>
+            </div>
             }
           </div>
         </div>
       </div>
 
       @if (
-        info.code === 'militarycamp' &&
-        user.getPropertyNb('level') >= 3 &&
-        user.getPropertyNb('camp_level') === 1
+      info.code === 'militarycamp' &&
+      user.getPropertyNb('level') >= 3 &&
+      user.getPropertyNb('camp_level') === 1
       ) {
-        <div class="modal-footer">
-          <div class="col-12" translate>Update to recruit archers</div>
-          <strong translate>Cost:</strong><br />
-          @for (
-            resource of user.getDatas().building.archerschool.cost | keyvalue;
-            track resource
-          ) {
-            <span
-              [ngClass]="{
+      <div class="modal-footer">
+        <div class="col-12" translate>Update to recruit archers</div>
+        <strong translate>Cost:</strong><br />
+        @for (
+        resource of user.getDatas().building.archerschool.cost | keyvalue;
+        track resource
+        ) {
+        <span [ngClass]="{
                 'text-danger':
                   Number(resource.value) > user.getPropertyNb(resource.key),
               }">
-              {{
-                resource.value
-                  ? (Number(resource.value)
-                    | number: '' : this.translate.getCurrentLang())
-                  : 0
-              }}
-              <app-ew-icon
-                name="{{ resource.key }}"
-                class="small-resource"></app-ew-icon>
-            </span>
-          }
-          <br />
-          <button class="btn btn-success" (click)="updateCamp()" translate>
-            Update
-          </button>
-        </div>
+          {{
+          resource.value
+          ? (Number(resource.value)
+          | number: '' : this.translate.getCurrentLang())
+          : 0
+          }}
+          <app-ew-icon name="{{ resource.key }}" class="small-resource"></app-ew-icon>
+        </span>
+        }
+        <br />
+        <button class="btn btn-success" (click)="updateCamp()" translate>
+          Update
+        </button>
+      </div>
       }
       @if (
-        info.code === 'militarycamp' &&
-        user.getPropertyNb('level') >= 6 &&
-        user.getPropertyNb('camp_level') === 2
+      info.code === 'militarycamp' &&
+      user.getPropertyNb('level') >= 6 &&
+      user.getPropertyNb('camp_level') === 2
       ) {
-        <div class="modal-footer">
-          <div class="col-12" translate>Update to recruit cavalry</div>
-          <strong translate>Cost:</strong><br />
-          @for (
-            resource of user.getDatas().building.cavalryschool.cost | keyvalue;
-            track resource
-          ) {
-            <span
-              [ngClass]="{
+      <div class="modal-footer">
+        <div class="col-12" translate>Update to recruit cavalry</div>
+        <strong translate>Cost:</strong><br />
+        @for (
+        resource of user.getDatas().building.cavalryschool.cost | keyvalue;
+        track resource
+        ) {
+        <span [ngClass]="{
                 'text-danger':
                   Number(resource.value) > user.getPropertyNb(resource.key),
               }">
-              {{
-                resource.value
-                  ? (Number(resource.value)
-                    | number: '' : this.translate.getCurrentLang())
-                  : 0
-              }}
-              <app-ew-icon
-                name="{{ resource.key }}"
-                class="small-resource"></app-ew-icon>
-            </span>
-          }
-          <br />
-          <button class="btn btn-success" (click)="updateCamp()" translate>
-            Update
-          </button>
-        </div>
+          {{
+          resource.value
+          ? (Number(resource.value)
+          | number: '' : this.translate.getCurrentLang())
+          : 0
+          }}
+          <app-ew-icon name="{{ resource.key }}" class="small-resource"></app-ew-icon>
+        </span>
+        }
+        <br />
+        <button class="btn btn-success" (click)="updateCamp()" translate>
+          Update
+        </button>
+      </div>
       }
       @if (
-        info.code === 'militarycamp' &&
-        user.getPropertyNb('level') >= 9 &&
-        user.getPropertyNb('camp_level') === 3
+      info.code === 'militarycamp' &&
+      user.getPropertyNb('level') >= 9 &&
+      user.getPropertyNb('camp_level') === 3
       ) {
-        <div class="modal-footer">
-          <div class="col-12" translate>Update to recruit elit units</div>
-          <strong translate>Cost:</strong><br />
-          @for (
-            resource of user.getDatas().building.academy.cost | keyvalue;
-            track resource
-          ) {
-            <span
-              [ngClass]="{
+      <div class="modal-footer">
+        <div class="col-12" translate>Update to recruit elit units</div>
+        <strong translate>Cost:</strong><br />
+        @for (
+        resource of user.getDatas().building.academy.cost | keyvalue;
+        track resource
+        ) {
+        <span [ngClass]="{
                 'text-danger':
                   Number(resource.value) > user.getPropertyNb(resource.key),
               }">
-              {{
-                resource.value
-                  ? (Number(resource.value)
-                    | number: '' : this.translate.getCurrentLang())
-                  : 0
-              }}
-              <app-ew-icon
-                name="{{ resource.key }}"
-                class="small-resource"></app-ew-icon>
-            </span>
-          }
-          <br />
-          <button class="btn btn-success" (click)="updateCamp()" translate>
-            Update
-          </button>
-        </div>
+          {{
+          resource.value
+          ? (Number(resource.value)
+          | number: '' : this.translate.getCurrentLang())
+          : 0
+          }}
+          <app-ew-icon name="{{ resource.key }}" class="small-resource"></app-ew-icon>
+        </span>
+        }
+        <br />
+        <button class="btn btn-success" (click)="updateCamp()" translate>
+          Update
+        </button>
+      </div>
       }
 
       <div class="modal-footer">
         @if (info.code === 'ironmine') {
-          <div translate>
-            This mine will produce iron for use by your craftsmen or your army.
-          </div>
+        <div translate>
+          This mine will produce iron for use by your craftsmen or your army.
+        </div>
         }
         @if (info.code === 'mint') {
-          <div>
-            <div translate>
-              The mints are very important, they will allow you to beat your
-              currency to pay your troops, erect buildings and trade.
-            </div>
-            <div translate>
-              Your are getting a Drachma production bonus from the 80th mint.
-            </div>
-            <br />
-            <div class="text-center">
-              <a [routerLink]="['/mints']" data-bs-dismiss="modal" class="link">
-                <app-ic-icon
-                  [icon]="chartLine"
-                  title="{{ 'Production' | translate }}"></app-ic-icon
-                >&nbsp;
-                <span translate>Drachma Production</span>
-              </a>
-            </div>
+        <div>
+          <div translate>
+            The mints are very important, they will allow you to beat your
+            currency to pay your troops, erect buildings and trade.
           </div>
+          <div translate>
+            Your are getting a Drachma production bonus from the 80th mint.
+          </div>
+          <br />
+          <div class="text-center">
+            <a [routerLink]="['/mints']" data-bs-dismiss="modal" class="link">
+              <app-ic-icon [icon]="chartLine" title="{{ 'Production' | translate }}"></app-ic-icon>&nbsp;
+              <span translate>Drachma Production</span>
+            </a>
+          </div>
+        </div>
         }
         @if (info.code === 'sawmill') {
-          <div translate>
-            The sawmill will produce wood for your archers and your buildings.
-          </div>
+        <div translate>
+          The sawmill will produce wood for your archers and your buildings.
+        </div>
         }
         @if (info.code === 'watchtower') {
-          <div translate>
-            The watchtower is a modest wooden tower with a few units, its low
-            strength and limited range make it a very poor defense.
-          </div>
+        <div translate>
+          The watchtower is a modest wooden tower with a few units, its low
+          strength and limited range make it a very poor defense.
+        </div>
         }
         @if (info.code === 'well') {
-          <div translate>
-            The wells will allow you to irrigate your crops and quench the
-            thirst of your population.
-          </div>
+        <div translate>
+          The wells will allow you to irrigate your crops and quench the
+          thirst of your population.
+        </div>
         }
         @if (info.code === 'farm') {
-          <div translate>
-            The farms produce food for your soldiers and for export.
-          </div>
+        <div translate>
+          The farms produce food for your soldiers and for export.
+        </div>
         }
         @if (info.code === 'growers') {
-          <div translate>
-            The growers produces grapes to allow your presses to produce wine,
-            for your soldiers or for export.
-          </div>
+        <div translate>
+          The growers produces grapes to allow your presses to produce wine,
+          for your soldiers or for export.
+        </div>
         }
         @if (info.code === 'winery') {
-          <div translate>
-            The winery will press your grape to make a juice and then ferment it
-            in amphorae. This wine will serve to water your troops and export.
-          </div>
+        <div translate>
+          The winery will press your grape to make a juice and then ferment it
+          in amphorae. This wine will serve to water your troops and export.
+        </div>
         }
         @if (info.code === 'goldmine') {
-          <div translate>
-            The gold extracted from the mines, you used to pay your elite troops
-            and honor the gods.
-          </div>
+        <div translate>
+          The gold extracted from the mines, you used to pay your elite troops
+          and honor the gods.
+        </div>
         }
         @if (info.code === 'quarry') {
-          <div translate>
-            The quarry will produce stone and marble for building your temples
-            and some of your buildings. It will spread your men on different
-            productions to maximize your returns.
-          </div>
+        <div translate>
+          The quarry will produce stone and marble for building your temples
+          and some of your buildings. It will spread your men on different
+          productions to maximize your returns.
+        </div>
         }
         @if (info.code === 'denofspies') {
-          <div translate>
-            Spies are mysterious characters and eager for wealth. By engaging in
-            this place you will take risks to your city, but it does not have to
-            take risks to become the most powerful Greek cities?
-          </div>
+        <div translate>
+          Spies are mysterious characters and eager for wealth. By engaging in
+          this place you will take risks to your city, but it does not have to
+          take risks to become the most powerful Greek cities?
+        </div>
         }
         @if (info.code === 'militarycamp') {
-          <div translate>
-            The barracks will train your army, you can update it to be able to
-            engage better unities.
-          </div>
+        <div translate>
+          The barracks will train your army, you can update it to be able to
+          engage better unities.
+        </div>
         }
         @if (info.code === 'archerschool') {
-          <div translate>
-            The Archers School will train your infantry and cavalry from a
-            distance.
-          </div>
+        <div translate>
+          The Archers School will train your infantry and cavalry from a
+          distance.
+        </div>
         }
         @if (info.code === 'cavalryschool') {
-          <div translate>
-            The cavalry school will train your mounted units, these units
-            although expensive, are superior to the basic infantry.
-          </div>
+        <div translate>
+          The cavalry school will train your mounted units, these units
+          although expensive, are superior to the basic infantry.
+        </div>
         }
         @if (info.code === 'academy') {
-          <div translate>
-            Military complement the barracks or the Cavalry School, the academy
-            will train the elite of your army.
-          </div>
+        <div translate>
+          Military complement the barracks or the Cavalry School, the academy
+          will train the elite of your army.
+        </div>
         }
         @if (info.code === 'hut') {
-          <div translate>
-            Your huts will allow you to house the base of your army.
-          </div>
+        <div translate>
+          Your huts will allow you to house the base of your army.
+        </div>
         }
         @if (info.code === 'habitation') {
-          <div translate>
-            This is where live the base of your army, the advantage compared to
-            the huts is that in a home you can put the equivalent of 4 huts
-            while having a lower field.
-          </div>
+        <div translate>
+          This is where live the base of your army, the advantage compared to
+          the huts is that in a home you can put the equivalent of 4 huts
+          while having a lower field.
+        </div>
         }
         @if (info.code === 'palace') {
-          <div translate>
-            This is where your elite units will stay away from the dirt and
-            noise of the city.
-          </div>
+        <div translate>
+          This is where your elite units will stay away from the dirt and
+          noise of the city.
+        </div>
         }
         @if (info.code === 'cursedcave') {
-          <div translate>
-            In the caverns are buried the most powerful creatures, created by
-            the gods themselves. The caverns can house only a few of these
-            creatures, most of whom prefer to live in small groups.
-          </div>
+        <div translate>
+          In the caverns are buried the most powerful creatures, created by
+          the gods themselves. The caverns can house only a few of these
+          creatures, most of whom prefer to live in small groups.
+        </div>
         }
         @if (info.code === 'observationtower') {
-          <div translate>
-            The observation tower will be your first tower built in hard,
-            despite its effectiveness is limited but it can repel armies of
-            small sizes by itself.
-          </div>
+        <div translate>
+          The observation tower will be your first tower built in hard,
+          despite its effectiveness is limited but it can repel armies of
+          small sizes by itself.
+        </div>
         }
         @if (info.code === 'towerofduty') {
-          <div translate>
-            This imposing stone and marble tower will be one of your best
-            defensive weapons, in return for its enormous cost, its
-            effectiveness is no longer to be demonstrated.
-          </div>
+        <div translate>
+          This imposing stone and marble tower will be one of your best
+          defensive weapons, in return for its enormous cost, its
+          effectiveness is no longer to be demonstrated.
+        </div>
         }
         @if (info.code === 'mirrortower') {
-          <div translate>
-            This imposing gold and marble tower will be one of your best
-            defensive weapons. In return for its enormous cost, its
-            effectiveness is well established.
-          </div>
+        <div translate>
+          This imposing gold and marble tower will be one of your best
+          defensive weapons. In return for its enormous cost, its
+          effectiveness is well established.
+        </div>
         }
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
       </div>

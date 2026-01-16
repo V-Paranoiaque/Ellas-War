@@ -32,6 +32,7 @@
   "Attack { value } sanctuaries": "Attack {{ value }} sanctuaries",
   "Attempted espionage from { value }": "Attempted espionage from {{ value }}",
   "Attempted espionage of your sanctuary from { value }": "Attempted espionage of your sanctuary from {{ value }}",
+  "Balance between stone ({ val1 }%) and marble ({ val2 }%)": "Balance between stone ({{ val1 }}%) and marble ({{ val2 }}%)",
   "Being in an alliance level { value } or more": "Being in an alliance level {{ value }} or more",
   "Build a maximum of mints.": "Build a maximum of <strong>mints</strong>.",
   "Build a total of { value } { building }.": "Build a total of {{ value }} {{ building }}.",
