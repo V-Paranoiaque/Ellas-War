@@ -41,6 +41,8 @@ jobs:
       
       - name: Install dependencies
         run: |
+          npm install -g cordova
+          npm install
           uname -a
           lsmod | egrep 'loop|squashfs' || true
           sudo modprobe loop || echo "modprobe loop failed"
