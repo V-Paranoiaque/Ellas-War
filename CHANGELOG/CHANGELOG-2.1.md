@@ -27,3 +27,7 @@
 # 2.1.7
 * Upgrade dependencies
 * Security fixes
+
+# 2.1.8
+* Fix sea battles page
+* Improve marble/stone balance description

@@ -51,7 +51,8 @@ interface RankingLineSB {
 })
 export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
