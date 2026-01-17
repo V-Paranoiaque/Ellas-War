@@ -54,7 +54,7 @@ jobs:
         run: |
           cordova platform add electron@^${{ inputs.electron }}
           cp res/electron/build-pipeline-linux-arm64.json build.json
-          cordova build electron --no-telemetry --release
+          sudo cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
           SNAPCRAFT_BUILD_ENVIRONMENT: host
