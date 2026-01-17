@@ -48,6 +48,7 @@ jobs:
           sudo modprobe loop || echo "modprobe loop failed"
           sudo modprobe squashfs || echo "modprobe squashfs failed"
           ls -l /dev/loop* || true
+          sudo SNAPD_DEBUG=1 SNAP_DEBUG=1 snap install gtk-common-themes --channel=latest/stable || true
       
       - name: Build packages
         run: |
