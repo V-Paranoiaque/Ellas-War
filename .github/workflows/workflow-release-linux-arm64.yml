@@ -58,3 +58,4 @@ jobs:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
           SNAPCRAFT_BUILD_ENVIRONMENT: host
           SNAPCRAFT_STORE_CREDENTIALS: '${{ secrets.SNAPCRAFT_TOKEN }}'
+          USE_SYSTEM_FPM: true
