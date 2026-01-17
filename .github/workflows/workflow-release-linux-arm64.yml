@@ -47,13 +47,16 @@ jobs:
           sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
           sudo flatpak install flathub org.freedesktop.Sdk/aarch64/23.08 -y
           sudo flatpak install flathub org.electronjs.Electron2.BaseApp/aarch64/23.08 -y
+          npm install -g cordova
           sudo npm install -g cordova
           npm install
 
       - name: Build packages
         run: |
-          sudo cordova platform add electron@^${{ inputs.electron }}
+          cordova platform add electron@^${{ inputs.electron }}
           cp res/electron/build-pipeline-linux-arm64.json build.json
+          cordova build electron --no-telemetry --release
+          cp res/electron/build-snap-arm64.json build.json
           sudo SNAPCRAFT_BUILD_ENVIRONMENT=host USE_SYSTEM_FPM=true cordova build electron --no-telemetry --release
         env:
           GH_TOKEN: '${{ secrets.GH_TOKEN }}'
