@@ -41,7 +41,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          npm install -g cordova
+          sudo npm install -g cordova
           npm install
           uname -a
           lsmod | egrep 'loop|squashfs' || true
@@ -52,7 +52,7 @@ jobs:
       
       - name: Build packages
         run: |
-          cordova platform add electron@^${{ inputs.electron }}
+          sudo cordova platform add electron@^${{ inputs.electron }}
           cp res/electron/build-pipeline-linux-arm64.json build.json
           sudo cordova build electron --no-telemetry --release
         env:
