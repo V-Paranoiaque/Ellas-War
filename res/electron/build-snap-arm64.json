@@ -2,7 +2,7 @@
   "electron": {
     "linux": {
       "package": ["snap"],
-      "arch": [ "arm64" ],
+      "arch": ["arm64"],
       "category": "Game"
     }
   }
