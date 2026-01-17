@@ -51,13 +51,11 @@ interface RankingLineSB {
 })
 export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;
-  protected override modalService: BsModalService;
 
   public currentCase = {
     case_type: -1,
@@ -103,14 +101,12 @@ export class AttacksSeabattlesComponent
     const socket = inject(Socket);
     const user = inject(User);
     const translate = inject(TranslateService);
-    const modalService = inject(BsModalService);
 
     super();
     this.http = http;
     this.socket = socket;
     this.user = user;
     this.translate = translate;
-    this.modalService = modalService;
 
     this.subRank = new Subscription();
     for (let i = 1; i <= 15; i++) {
