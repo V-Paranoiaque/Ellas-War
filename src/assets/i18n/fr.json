@@ -1743,7 +1743,7 @@
   "You are not in any Sea Battle for the moment": "Vous n'êtes inscrit dans aucune Bataille navale pour le moment",
   "You are still there?": "Vous êtes toujours là ?",
   "You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the weak cities. Win 5 victories and return to me.": "Vous êtes plus résistant que je ne le pensais. Montrez moi vos aptitudes aux combats. Maintenant que vous avez recruté une armée, passez à l'attaque. <strong>Je vous conseille d'utiliser des espions afin de trouver les cités faibles.</strong> Remportez 5 victoires et revenez me voir.",
-  "You can attack cities that have a maximum 4 levels of difference with you": "Vous ne pouvez attaquer que les cités qui ont au maximum 4 niveaux de différence avez vous",
+  "You can attack cities that have a maximum 4 levels of difference with you, except if both players have a field larger or equal to 25000": "Vous ne pouvez attaquer que les cités qui ont au maximum 4 niveaux de différence avez vous, sauf si les deux joueurs ont un terrain de 25'000 ou plus",
   "You can attack cities that have between 50% and 200% of your field": "Vous ne pouvez attaquer que les joueurs qui ont entre 50% et 200% de votre terrain",
   "You can do a maximum of { value } actions per 23h": "Vous pouvez faire un maximum de {{ value }} actions par 23h",
   "You can do more attacks using a Favor.": "Vous pouvez lancer plus d'attaques en utilisant une faveur.",
