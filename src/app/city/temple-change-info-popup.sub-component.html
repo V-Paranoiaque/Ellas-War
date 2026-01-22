@@ -347,8 +347,7 @@
           }
 
           <!-- Fourth temple -->
-          @if (temple === 10 || temple === 11) {
-          <div>
+          @if (temple <= 10 || temple===11) { <div>
             <strong translate>Zeus</strong>
             <ul>
               <li translate>
@@ -377,185 +376,183 @@
               </button>
               }
             </div>
-          </div>
-          }
-          @if (temple === 9 || temple === 11) {
-          <div>
-            <strong translate>Hades</strong>
-            <ul>
-              <li translate>+30% base gold production</li>
-              <li translate>+30% base iron production</li>
-              <li translate>+30% base marble production</li>
-              <li translate>+30% base stone production</li>
-              <li>
-                {{
-                'New unity: { unit }'
-                | translate: { unit: 'Tormented souls' | translate }
-                }}
-              </li>
-              <li translate>
-                Hades launches an epidemic on the enemy city causing the
-                immediate death of 5 to 15% of his army.
-              </li>
-              <li translate>
-                Hades returns 5 to 10% of your dead human and temple units in
-                battle as souls.
-              </li>
-              <li translate>
-                Hades grants you marble and stone to aid in defeating your
-                enemies.
-              </li>
-            </ul>
-            <div class="text-end">
-              @if (templeChangeError === 0) {
-              <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="templeChange(10)"
-                translate>
-                Build
-              </button>
-              }
-            </div>
-          </div>
-          }
-          @if (temple === 9 || temple === 10) {
-          <div>
-            <strong translate>Poseidon</strong>
-            <ul>
-              <li translate>+30% base water production</li>
-              <li translate>-50% cavalry cost</li>
-              <li translate>-50% cavalry consumption</li>
-              <li translate>+15% cavalry defensive power</li>
-              <li translate>You will be able to hire Cyclops</li>
-              <li translate>
-                Ability of building Poseidon's wall to defend
-                your city. Its defensive power is increasing with your field.
-              </li>
-              <li translate>
-                Poseidon rebuilt your wall to protect your city.
-              </li>
-              <li translate>
-                Poseidon shakes the earth and blocks the resources production
-                of an enemy for 2 hours.
-              </li>
-              <li translate>The wall gains 20% defensive power for 4h</li>
-              <li translate>200 Cyclops join you to resist the invader</li>
-            </ul>
-            <div class="text-end">
-              @if (templeChangeError === 0) {
-              <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="templeChange(11)"
-                translate>
-                Build
-              </button>
-              }
-            </div>
-          </div>
-          }
         </div>
-      </div>
-
-      @if (templeChangeHistory.length > 0) {
-      <div class="modal-body">
-        <strong id="historyDesc" translate>History</strong>
-        <table class="table table-striped table-middle" aria-labelledby="historyDesc">
-          <thead>
-            <tr>
-              <th scope="col" translate>Date</th>
-              <th scope="col" translate>Old temple</th>
-              <th scope="col" translate>New temple</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (temple of templeChangeHistory; track temple) {
-            <tr>
-              <td>{{ temple.date * 1000 | date: 'dd/MM, HH:mm' }}</td>
-              <td>
-                <span>
-                  @switch (temple.temple_old) {
-                  @case (1) {
-                  <span translate>Temple of Apollo</span>
-                  }
-                  @case (2) {
-                  <span translate>Temple of Demeter</span>
-                  }
-                  @case (3) {
-                  <span translate>Temple of Hermes</span>
-                  }
-                  @case (4) {
-                  <span translate>Temple of Ares</span>
-                  }
-                  @case (5) {
-                  <span translate>Temple of Athena</span>
-                  }
-                  @case (6) {
-                  <span translate>Temple of Artemis</span>
-                  }
-                  @case (7) {
-                  <span translate>Temple of Dionysus</span>
-                  }
-                  @case (8) {
-                  <span translate>Temple of Hephaestus</span>
-                  }
-                  @case (9) {
-                  <span translate>Temple of Zeus</span>
-                  }
-                  @case (10) {
-                  <span translate>Temple of Hades</span>
-                  }
-                  @case (11) {
-                  <span translate>Temple of Poseidon</span>
-                  }
-                  }
-                </span>
-              </td>
-              <td>
-                <span>
-                  @switch (temple.temple_new) {
-                  @case (1) {
-                  <span translate>Temple of Apollo</span>
-                  }
-                  @case (2) {
-                  <span translate>Temple of Demeter</span>
-                  }
-                  @case (3) {
-                  <span translate>Temple of Hermes</span>
-                  }
-                  @case (4) {
-                  <span translate>Temple of Ares</span>
-                  }
-                  @case (5) {
-                  <span translate>Temple of Athena</span>
-                  }
-                  @case (6) {
-                  <span translate>Temple of Artemis</span>
-                  }
-                  @case (7) {
-                  <span translate>Temple of Dionysus</span>
-                  }
-                  @case (8) {
-                  <span translate>Temple of Hephaestus</span>
-                  }
-                  @case (9) {
-                  <span translate>Temple of Zeus</span>
-                  }
-                  @case (10) {
-                  <span translate>Temple of Hades</span>
-                  }
-                  @case (11) {
-                  <span translate>Temple of Poseidon</span>
-                  }
-                  }
-                </span>
-              </td>
-            </tr>
+        }
+        @if (temple === 9 || temple === 11) {
+        <div>
+          <strong translate>Hades</strong>
+          <ul>
+            <li translate>+30% base gold production</li>
+            <li translate>+30% base iron production</li>
+            <li translate>+30% base marble production</li>
+            <li translate>+30% base stone production</li>
+            <li>
+              {{
+              'New unity: { unit }'
+              | translate: { unit: 'Tormented souls' | translate }
+              }}
+            </li>
+            <li translate>
+              Hades launches an epidemic on the enemy city causing the
+              immediate death of 5 to 15% of his army.
+            </li>
+            <li translate>
+              Hades returns 5 to 10% of your dead human and temple units in
+              battle as souls.
+            </li>
+            <li translate>
+              Hades grants you marble and stone to aid in defeating your
+              enemies.
+            </li>
+          </ul>
+          <div class="text-end">
+            @if (templeChangeError === 0) {
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="templeChange(10)" translate>
+              Build
+            </button>
             }
-          </tbody>
-        </table>
-      </div>
-      }
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+          </div>
+        </div>
+        }
+        @if (temple === 9 || temple === 10) {
+        <div>
+          <strong translate>Poseidon</strong>
+          <ul>
+            <li translate>+30% base water production</li>
+            <li translate>-50% cavalry cost</li>
+            <li translate>-50% cavalry consumption</li>
+            <li translate>+15% cavalry defensive power</li>
+            <li translate>You will be able to hire Cyclops</li>
+            <li translate>
+              Ability of building Poseidon's wall to defend your city. Its
+              defensive power is increasing with your field.
+            </li>
+            <li translate>
+              Poseidon rebuilt your wall to protect your city.
+            </li>
+            <li translate>
+              Poseidon shakes the earth and blocks the resources production
+              of an enemy for 2 hours.
+            </li>
+            <li translate>The wall gains 20% defensive power for 4h</li>
+            <li translate>200 Cyclops join you to resist the invader</li>
+          </ul>
+          <div class="text-end">
+            @if (templeChangeError === 0) {
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="templeChange(11)" translate>
+              Build
+            </button>
+            }
+          </div>
+        </div>
+        }
       </div>
     </div>
+
+    @if (templeChangeHistory.length > 0) {
+    <div class="modal-body">
+      <strong id="historyDesc" translate>History</strong>
+      <table class="table table-striped table-middle" aria-labelledby="historyDesc">
+        <thead>
+          <tr>
+            <th scope="col" translate>Date</th>
+            <th scope="col" translate>Old temple</th>
+            <th scope="col" translate>New temple</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (temple of templeChangeHistory; track temple) {
+          <tr>
+            <td>{{ temple.date * 1000 | date: 'dd/MM, HH:mm' }}</td>
+            <td>
+              <span>
+                @switch (temple.temple_old) {
+                @case (1) {
+                <span translate>Temple of Apollo</span>
+                }
+                @case (2) {
+                <span translate>Temple of Demeter</span>
+                }
+                @case (3) {
+                <span translate>Temple of Hermes</span>
+                }
+                @case (4) {
+                <span translate>Temple of Ares</span>
+                }
+                @case (5) {
+                <span translate>Temple of Athena</span>
+                }
+                @case (6) {
+                <span translate>Temple of Artemis</span>
+                }
+                @case (7) {
+                <span translate>Temple of Dionysus</span>
+                }
+                @case (8) {
+                <span translate>Temple of Hephaestus</span>
+                }
+                @case (9) {
+                <span translate>Temple of Zeus</span>
+                }
+                @case (10) {
+                <span translate>Temple of Hades</span>
+                }
+                @case (11) {
+                <span translate>Temple of Poseidon</span>
+                }
+                }
+              </span>
+            </td>
+            <td>
+              <span>
+                @switch (temple.temple_new) {
+                @case (1) {
+                <span translate>Temple of Apollo</span>
+                }
+                @case (2) {
+                <span translate>Temple of Demeter</span>
+                }
+                @case (3) {
+                <span translate>Temple of Hermes</span>
+                }
+                @case (4) {
+                <span translate>Temple of Ares</span>
+                }
+                @case (5) {
+                <span translate>Temple of Athena</span>
+                }
+                @case (6) {
+                <span translate>Temple of Artemis</span>
+                }
+                @case (7) {
+                <span translate>Temple of Dionysus</span>
+                }
+                @case (8) {
+                <span translate>Temple of Hephaestus</span>
+                }
+                @case (9) {
+                <span translate>Temple of Zeus</span>
+                }
+                @case (10) {
+                <span translate>Temple of Hades</span>
+                }
+                @case (11) {
+                <span translate>Temple of Poseidon</span>
+                }
+                }
+              </span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
+        Close
+      </button>
+    </div>
   </div>
+</div>
 </div>
