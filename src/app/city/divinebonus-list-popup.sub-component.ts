@@ -3,19 +3,14 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { IdToDivineBonusSubComponent } from './id-to-divinebonus.sub-component';
 import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-divinebonus-list-popup',
   templateUrl: './divinebonus-list-popup.sub-component.html',
   styleUrls: ['./city.component.css'],
-  imports: [
-    CommonModule,
-    EwIconSubComponent,
-    IdToDivineBonusSubComponent,
-    TranslateModule,
-  ],
+  imports: [EwIconSubComponent, IdToDivineBonusSubComponent, TranslateModule],
 })
 export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);

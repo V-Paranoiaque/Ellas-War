@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-support-popup',
   templateUrl: './admin-support-popup.sub-component.html',
   styleUrls: ['../admin/admin.component.css'],
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [FormsModule, TranslateModule],
 })
 export class AdminSupportPopupSubComponent {
   private readonly socket = inject(Socket);

@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { environment } from './../../environments/environment';
-import { CommonModule } from '@angular/common';
 
 import { BlockedComponent } from '../blocked/blocked.component';
 import { CityComponent } from '../city/city.component';
@@ -21,7 +20,6 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     BlockedComponent,
     CityComponent,
-    CommonModule,
     MainPublicComponent,
     ModalModule,
     PausedComponent,

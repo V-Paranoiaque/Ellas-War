@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
@@ -14,7 +14,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   styleUrls: ['../admin/admin.component.css'],
   imports: [
     AdminLeftMenuSubComponent,
-    CommonModule,
     FormsModule,
     MainPrivateBottomMenuSubComponent,
     TranslateModule,

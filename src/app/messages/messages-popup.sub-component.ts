@@ -1,7 +1,7 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -15,13 +15,7 @@ import xIcon from '@iconify/icons-bi/x';
 @Component({
   selector: 'app-messages-popup',
   templateUrl: './messages-popup.sub-component.html',
-  imports: [
-    CommonModule,
-    FormsModule,
-    IcIconComponent,
-    RouterModule,
-    TranslateModule,
-  ],
+  imports: [FormsModule, IcIconComponent, RouterModule, TranslateModule],
 })
 export class MessagesPopupSubComponent
   extends MessagesAbstractComponent

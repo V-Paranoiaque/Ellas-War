@@ -6,7 +6,7 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -16,7 +16,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   selector: 'app-lostpassword',
   templateUrl: './lostpassword.component.html',
   imports: [
-    CommonModule,
     FormsModule,
     MainLeftSubComponent,
     MainRightSubComponent,

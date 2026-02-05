@@ -9,7 +9,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 import { IcIconComponent } from 'src/services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -23,7 +22,6 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   imports: [
-    CommonModule,
     FormsModule,
     IcIconComponent,
     MainLeftSubComponent,
