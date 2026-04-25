@@ -31,3 +31,6 @@
 # 2.1.8
 * Fix sea battles page
 * Improve marble/stone balance description
+
+# 2.1.9
+* Upgrade dependencies
