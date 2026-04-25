@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { AppRoutingModule, routes } from './app.routes';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -31,12 +30,12 @@ export const appConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     ClipboardModule,
     DragDropModule,
     FormsModule,
     OAuthModule.forRoot(),
     ReactiveFormsModule,
+    ModalModule,
   ],
   providers: [
     TranslateStore,
@@ -54,6 +53,6 @@ export const appConfig = {
       }),
     }),
     provideRouter(routes),
-    importProvidersFrom(ModalModule.forRoot()),
+    importProvidersFrom(ModalModule),
   ],
 };
