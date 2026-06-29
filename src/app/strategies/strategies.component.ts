@@ -268,7 +268,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     let nb = this.user.getPropertyNb(unit);
 
     if (this.waveAttackUnit.get(unit)) {
-      nb -= this.waveAttackUnit.get(unit) ?? 0;
+      nb -= (this.waveAttackUnit.get(unit) ?? 0);
     }
 
     if (wavePrevious === waveNew) {
@@ -317,7 +317,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     let nb = this.user.getPropertyNb(unit);
 
     if (this.waveDefenseUnit.get(unit)) {
-      nb -= this.waveDefenseUnit.get(unit) ?? 0;
+      nb -= (this.waveDefenseUnit.get(unit) ?? 0);
     }
 
     if (wavePrevious === waveNew) {
@@ -406,8 +406,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
           }
           this.waveAttackUnit.set(
             unit,
-            this.waveAttackUnit.get(unit) ??
-              0 + this.getWaveUnit(this.waveAttackList[i], unit)
+            (this.waveAttackUnit.get(unit) ??
+              0) + this.getWaveUnit(this.waveAttackList[i], unit)
           );
         }
       }
@@ -437,8 +437,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
           }
           this.waveDefenseUnit.set(
             unit,
-            this.waveDefenseUnit.get(unit) ??
-              0 + this.getWaveUnit(this.waveDefenseList[i], unit)
+            (this.waveDefenseUnit.get(unit) ??
+              0) + this.getWaveUnit(this.waveDefenseList[i], unit)
           );
         }
       }
