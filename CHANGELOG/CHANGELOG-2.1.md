@@ -34,3 +34,6 @@
 
 # 2.1.9
 * Upgrade dependencies
+
+# 2.1.10
+* Fix in the waves
