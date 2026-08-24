@@ -6,13 +6,18 @@ import {
   OnDestroy,
   EventEmitter,
   inject,
-  signal
+  signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
@@ -49,13 +54,15 @@ interface Profile {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
     MessagesPopupSubComponent,
-    OptionsIncludeComponent, TranslatePipe,
+    OptionsIncludeComponent,
+    TranslatePipe,
     TranslateDirective,
     RouterModule,
   ],
@@ -69,7 +76,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 
@@ -131,7 +138,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
     this.socket.emit('accountInfo');
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
         const player = resPlayer as Profile;
@@ -162,6 +170,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   report() {
     this.reported = 1;
-    this.socket.emit('problemReport', { type: 1, id: this.profile().membre_id });
+    this.socket.emit('problemReport', {
+      type: 1,
+      id: this.profile().membre_id,
+    });
   }
 }

@@ -1,6 +1,15 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +19,13 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-sanctuary-strength-update-popup',
   templateUrl: './sanctuary-strength-update-popup.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class SanctuaryStrengthUpdatePopupSubComponent {
   private readonly socket = inject(Socket);

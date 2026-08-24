@@ -1,8 +1,18 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 
@@ -26,6 +36,7 @@ interface ContactList {
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,

@@ -1,11 +1,28 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -21,6 +38,7 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     IcIconComponent,
@@ -40,7 +58,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   private readonly titleService = inject(Title);
   private readonly formBuilder = inject(FormBuilder);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   registerForm: FormGroup;
   public rerror: number;
@@ -64,7 +82,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
         const player = resPlayer as { membre_id: number; username: string };

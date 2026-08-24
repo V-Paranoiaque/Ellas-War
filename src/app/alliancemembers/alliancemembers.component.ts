@@ -1,5 +1,13 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
@@ -17,6 +25,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 @Component({
   selector: 'app-alliancemembers',
   templateUrl: './alliancemembers.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     MainLeftSubComponent,
@@ -38,24 +47,24 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
   private readonly destroyRefProfile = inject(DestroyRef);
   private readonly destroyRefMembers = inject(DestroyRef);
 
-  public allianceMembers = signal<{
-    membre_id: number;
-    username: string;
-    membre_status: number;
-    level: number;
-    rank_name: string;
-    xp: number;
-    victory: number;
-    field: number;
-  }[]>([]);
+  public allianceMembers = signal<
+    {
+      membre_id: number;
+      username: string;
+      membre_status: number;
+      level: number;
+      rank_name: string;
+      xp: number;
+      victory: number;
+      field: number;
+    }[]
+  >([]);
   public allianceProfile = signal<{
-    alliance_name: string,
-    alliance_id: number
-  }
-  >({
+    alliance_name: string;
+    alliance_id: number;
+  }>({
     alliance_name: '',
     alliance_id: 0,
-
   });
 
   private subTitle: Subscription;
@@ -90,19 +99,22 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/allianceMembers/' + id.toString() + '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRefMembers))
       .subscribe(res => {
-        this.allianceMembers.set(res as {
-          membre_id: number;
-          username: string;
-          membre_status: number;
-          level: number;
-          rank_name: string;
-          xp: number;
-          victory: number;
-          field: number;
-        }[]);
+        this.allianceMembers.set(
+          res as {
+            membre_id: number;
+            username: string;
+            membre_status: number;
+            level: number;
+            rank_name: string;
+            xp: number;
+            victory: number;
+            field: number;
+          }[]
+        );
         this.legend = {
           paused: 0,
           blocked: 0,
@@ -124,14 +136,14 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
 
     this.http
       .get<{
-        alliance_name: string,
-        alliance_id: number,
+        alliance_name: string;
+        alliance_id: number;
       }>(url)
       .pipe(takeUntilDestroyed(this.destroyRefProfile))
       .subscribe(alli => {
         const profile = alli as {
-          alliance_name: string,
-          alliance_id: number,
+          alliance_name: string;
+          alliance_id: number;
         };
         if (profile.alliance_id) {
           this.allianceProfile.set(profile);

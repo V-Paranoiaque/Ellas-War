@@ -1,6 +1,17 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
@@ -17,11 +28,19 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   selector: 'app-attacks-seabattles-engage-popup',
   templateUrl: './attacks-seabattles-engage-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
-  imports: [CommonModule, FormsModule, IcIconComponent, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    FormsModule,
+    IcIconComponent,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class AttacksSeabattlesEngagePopupSubComponent
   extends AttacksSeabattlesAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;

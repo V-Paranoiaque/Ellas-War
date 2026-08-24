@@ -1,6 +1,17 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -15,10 +26,12 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   selector: 'app-attacks-seabattles-move-popup',
   templateUrl: './attacks-seabattles-move-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class AttacksSeabattlesMovePopupSubComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);

@@ -1,8 +1,20 @@
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { ClipboardModule } from 'ngx-clipboard';
@@ -20,6 +32,7 @@ import link from '@iconify/icons-fa6-solid/link';
 @Component({
   selector: 'app-options-sponsoring-information-popup',
   templateUrl: './options-sponsoring-information-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClipboardModule,
     CommonModule,
@@ -29,17 +42,18 @@ import link from '@iconify/icons-fa6-solid/link';
     RouterModule,
     TranslateDirective,
     UserProfileSubComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class OptionsSponsoringInformationPopupSubComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public sponsorList: object[] = [];
   public linkSaved: number = 0;
@@ -79,7 +93,8 @@ export class OptionsSponsoringInformationPopupSubComponent
   getSponsor(id: number) {
     const url =
       this.socket.url + '/api/playerProfile/' + id.toString() + '.json';
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: object) => {
         const player = res as { membre_id: number; username: string };

@@ -1,15 +1,24 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
-import { TranslateDirective } from "@ngx-translate/core";
+import { TranslateDirective } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, TranslateDirective],
 })
 export class UnsubscribeComponent implements OnInit, OnDestroy {
@@ -17,7 +26,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public id = '';
   public check = '';
@@ -42,7 +51,8 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
       encodeURIComponent(this.check) +
       '.json';
 
-    this.sub = this.http.get(url)
+    this.sub = this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
         this.unsubscribeResult.set(result as { error: number });
@@ -59,6 +69,6 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
       code: this.check,
     };
     this.socket.emit('unsubscribeValidate', msg);
-    this.unsubscribeResult.set({ error: 5 })
+    this.unsubscribeResult.set({ error: 5 });
   }
 }

@@ -1,6 +1,15 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, inject } from '@angular/core';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 
@@ -10,12 +19,13 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-getfavors',
   templateUrl: './getfavors.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class GetfavorsComponent implements OnInit {

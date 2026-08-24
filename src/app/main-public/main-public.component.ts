@@ -5,13 +5,23 @@ import {
   OnDestroy,
   ViewEncapsulation,
   inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -40,8 +50,9 @@ import googleIcon from '@iconify-icons/logos/google-icon';
     ReactiveFormsModule,
     RouterModule,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MainPublicComponent implements OnInit, OnDestroy {
@@ -92,9 +103,7 @@ export class MainPublicComponent implements OnInit, OnDestroy {
     const userId = localStorage.getItem('invite') ?? 0;
 
     this.subLang = this.http
-      .get(
-        './assets/i18n/' + this.currentLocale() + '/localevars.json'
-      )
+      .get('./assets/i18n/' + this.currentLocale() + '/localevars.json')
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;
       });

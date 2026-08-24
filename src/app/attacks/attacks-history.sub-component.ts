@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Message } from '../../services/message.class';
 import { CommonModule } from '@angular/common';
@@ -19,6 +25,7 @@ import share from '@iconify/icons-bi/share';
   selector: 'app-attacks-history',
   templateUrl: './attacks-history.sub-component.html',
   styleUrls: ['./attacks.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMessageSubComponent,
     ClipboardModule,

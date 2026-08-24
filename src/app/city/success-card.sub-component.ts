@@ -1,4 +1,9 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -8,6 +13,7 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-success-card',
   templateUrl: './success-card.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TranslateDirective],
 })
 export class SuccessCardSubComponent {

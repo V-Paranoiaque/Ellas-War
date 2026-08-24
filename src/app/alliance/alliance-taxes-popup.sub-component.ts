@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -12,6 +19,7 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-alliance-taxes-popup',
   templateUrl: './alliance-taxes-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateDirective],
 })
 export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {

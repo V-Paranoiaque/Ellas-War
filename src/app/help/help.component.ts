@@ -1,5 +1,11 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -16,6 +22,7 @@ import discordIcon from '@iconify-icons/logos/discord-icon';
 @Component({
   selector: 'app-help',
   templateUrl: './help.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,

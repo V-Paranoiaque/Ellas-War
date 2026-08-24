@@ -1,6 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +23,7 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   selector: 'app-main-private-player-info-popup',
   templateUrl: './main-private-player-info-popup.sub-component.html',
   styleUrls: ['./main-private.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

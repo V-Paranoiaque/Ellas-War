@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../services/socketio.service';
@@ -25,6 +31,7 @@ declare let cordova: {
   standalone: true,
   templateUrl: './app.html',
   imports: [RouterModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [TranslateService],
 })
 export class AppComponent implements OnInit, OnDestroy {

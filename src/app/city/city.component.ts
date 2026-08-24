@@ -1,10 +1,20 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { environment } from '../../environments/environment';
@@ -51,6 +61,7 @@ import waterWave from '@iconify/icons-emojione-monotone/water-wave';
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ArmyHelpPopupSubComponent,
     ArmyPopupSubComponent,

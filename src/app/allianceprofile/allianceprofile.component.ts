@@ -1,9 +1,21 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Title, Meta } from '@angular/platform-browser';
@@ -31,10 +43,11 @@ type AllianceProfile = {
   victories: number;
   defeats: number;
   description: string;
-}
+};
 @Component({
   selector: 'app-allianceprofile',
   templateUrl: './allianceprofile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
@@ -111,7 +124,8 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
       this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
     if (id) {
-      this.http.get(url)
+      this.http
+        .get(url)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(alli => {
           const profile = alli as AllianceProfile;

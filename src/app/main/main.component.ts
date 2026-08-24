@@ -1,4 +1,13 @@
-import { Component, DestroyRef, OnInit, OnDestroy, ViewChild, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -17,6 +26,7 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     BlockedComponent,
     CityComponent,
@@ -32,7 +42,7 @@ export class MainComponent implements OnInit, OnDestroy {
   protected router = inject(Router);
   user = inject(User);
   private readonly platformLocation = inject(PlatformLocation);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
   displayServerModal = signal(false);
@@ -85,7 +95,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
   getApi() {
     const url = this.socket.url + '/api.json';
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (apiResult: object) => {

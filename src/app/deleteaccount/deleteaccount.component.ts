@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
@@ -9,6 +15,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-deleteaccount',
   templateUrl: './deleteaccount.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateDirective],
 })
 export class DeleteAccountComponent implements OnInit, OnDestroy {

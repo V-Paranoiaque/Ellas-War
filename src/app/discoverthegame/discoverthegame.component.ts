@@ -1,7 +1,17 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import arrowLeft from '@iconify/icons-fa6-solid/arrow-left';
@@ -15,6 +25,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-discoverthegame',
   templateUrl: './discoverthegame.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DiscoverthegameMenuSubComponent,
     IcIconComponent,

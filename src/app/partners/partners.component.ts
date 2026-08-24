@@ -1,7 +1,17 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -10,7 +20,13 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-partners',
   templateUrl: './partners.component.html',
-  imports: [MainLeftSubComponent, MainRightSubComponent, TranslatePipe, TranslateDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    MainLeftSubComponent,
+    MainRightSubComponent,
+    TranslatePipe,
+    TranslateDirective,
+  ],
 })
 export class PartnersComponent implements OnInit, OnDestroy {
   private readonly titleService = inject(Title);

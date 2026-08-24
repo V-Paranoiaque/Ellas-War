@@ -1,9 +1,14 @@
-import { Component, EventEmitter } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-socket',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <ng-content></ng-content> `,
 })
 export class SocketComponent {

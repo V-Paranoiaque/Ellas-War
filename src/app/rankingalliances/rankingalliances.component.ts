@@ -1,11 +1,23 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +36,7 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
 @Component({
   selector: 'app-rankingalliances',
   templateUrl: './rankingalliances.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -45,19 +58,21 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
   readonly currentLocale = inject(LocaleService).currentLocale;
 
-  public rankingList = signal<{
-    ranking: number;
-    alliance_id: number;
-    alliance_name: number;
-    username: string;
-    chief_id: number;
-    nbmembers: number;
-    victories: number;
-    defeats: number;
-  }[]>([]);
+  public rankingList = signal<
+    {
+      ranking: number;
+      alliance_id: number;
+      alliance_name: number;
+      username: string;
+      chief_id: number;
+      nbmembers: number;
+      victories: number;
+      defeats: number;
+    }[]
+  >([]);
   public rankingMax = signal(1);
   public rankingOrder = signal('level');
   public rankingPage = signal(1);
@@ -113,7 +128,8 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
       this.rankingOrder +
       '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resResult: object) => {
         const result = resResult as {
@@ -125,16 +141,18 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
 
         this.rankingPage.set(result.cPage);
         this.rankingMax.set(result.max);
-        this.rankingList.set(result.ranking as {
-          ranking: number;
-          alliance_id: number;
-          alliance_name: number;
-          username: string;
-          chief_id: number;
-          nbmembers: number;
-          victories: number;
-          defeats: number;
-        }[]);
+        this.rankingList.set(
+          result.ranking as {
+            ranking: number;
+            alliance_id: number;
+            alliance_name: number;
+            username: string;
+            chief_id: number;
+            nbmembers: number;
+            victories: number;
+            defeats: number;
+          }[]
+        );
         this.rankingOrder.set(result.order);
       });
   }

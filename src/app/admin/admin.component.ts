@@ -1,5 +1,13 @@
 import { RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -18,6 +26,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -33,7 +42,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   user = inject(User);
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public adminStats = {
     honor_last_time: 0,
@@ -55,14 +64,17 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.socket.emit('adminStats');
 
     const url = this.socket.url + '/api.json';
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
-        this.apiInfo.set(result as {
-          uptime: number;
-          timestamp: number;
-          min: number;
-        })
+        this.apiInfo.set(
+          result as {
+            uptime: number;
+            timestamp: number;
+            min: number;
+          }
+        );
       });
 
     this.socket.on('adminStats', (msg: object) => {

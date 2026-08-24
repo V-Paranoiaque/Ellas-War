@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
@@ -28,6 +33,7 @@ import xIcon from '@iconify/icons-bi/x';
 @Component({
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClipboardModule,
     CommonModule,
@@ -40,12 +46,13 @@ import xIcon from '@iconify/icons-bi/x';
     MessagesTitleSubComponent,
     RouterModule,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class MessagesComponent
   extends MessagesAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   public dummyMsg: Message;
 
   //Icons

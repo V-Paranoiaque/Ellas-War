@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective } from '@ngx-translate/core';
@@ -9,6 +14,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-page404',
   templateUrl: './page404.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateDirective],
 })
 export class Page404Component implements OnInit {

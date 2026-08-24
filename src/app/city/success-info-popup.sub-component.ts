@@ -1,6 +1,17 @@
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { CommonModule } from '@angular/common';
@@ -10,7 +21,13 @@ import { SuccessCardSubComponent } from './success-card.sub-component';
 @Component({
   selector: 'app-success-info-popup',
   templateUrl: './success-info-popup.sub-component.html',
-  imports: [CommonModule, SuccessCardSubComponent, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    SuccessCardSubComponent,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);

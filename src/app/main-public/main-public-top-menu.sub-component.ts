@@ -1,8 +1,19 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
@@ -12,13 +23,14 @@ import { CommonModule } from '@angular/common';
   selector: 'app-main-public-top-menu',
   templateUrl: './main-public-top-menu.sub-component.html',
   styleUrls: ['./main-public.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class MainPublicTopMenuSubComponent implements OnInit {

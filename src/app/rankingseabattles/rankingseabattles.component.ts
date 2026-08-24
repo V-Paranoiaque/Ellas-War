@@ -1,10 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -31,6 +43,7 @@ interface RankingSBLine {
 @Component({
   selector: 'app-rankingseabattles',
   templateUrl: './rankingseabattles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -51,7 +64,7 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public rankingList = signal<RankingSBLine[]>([]);
   public rankingMax = signal(1);
@@ -97,7 +110,8 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
       this.rankingPage().toString() +
       '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         const result = res as {

@@ -1,7 +1,18 @@
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import check from '@iconify/icons-fa6-solid/check';
 import { CommonModule } from '@angular/common';
@@ -17,6 +28,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
 @Component({
   selector: 'app-alliance-requests-popup',
   templateUrl: './alliance-requests-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -29,7 +41,8 @@ import times from '@iconify/icons-fa6-solid/xmark';
 })
 export class AllianceRequestsPopupSubComponent
   extends AllianceAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;

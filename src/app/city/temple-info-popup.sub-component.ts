@@ -1,7 +1,19 @@
-import { Component, DestroyRef, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  Input,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { EwIconSubComponent } from '../../services/ew-icon.service';
@@ -14,7 +26,14 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-temple-info-popup',
   templateUrl: './temple-info-popup.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   private readonly http = inject(HttpClient);
@@ -22,7 +41,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   user = inject(User);
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   @Input() temple!: {
     id: number;
@@ -118,7 +137,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     for (const res in this.furyCost) {
       if (
         this.furyCost[res as keyof typeof this.furyCost] *
-        parseInt(this.furyNb) >
+          parseInt(this.furyNb) >
         this.user.getPropertyNb(res)
       ) {
         list.push(res);
@@ -139,7 +158,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     for (const res in this.lightningCost) {
       if (
         this.lightningCost[res as keyof typeof this.lightningCost] *
-        parseInt(this.furyNb) >
+          parseInt(this.furyNb) >
         this.user.getPropertyNb(res)
       ) {
         list.push(res);
@@ -166,7 +185,8 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       const url =
         this.socket.url + '/api/playerProfile/' + this.idToUser + '.json';
 
-      this.http.get(url)
+      this.http
+        .get(url)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(result => {
           const res = result as { membre_id: number };

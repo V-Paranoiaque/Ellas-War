@@ -1,7 +1,18 @@
 import { RouterModule } from '@angular/router';
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +30,7 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 @Component({
   selector: 'app-construction-popup',
   templateUrl: './construction-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -180,7 +192,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
           this.info.cost[res as keyof object] &&
           (this.info.cost[res as keyof object] > this.user.getPropertyNb(res) ||
             this.info.cost[res as keyof object] * parseInt(this.info.buildNb) >
-            this.user.getPropertyNb(res))
+              this.user.getPropertyNb(res))
         ) {
           list.push(res);
         }

@@ -1,6 +1,16 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -20,6 +30,7 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 @Component({
   templateUrl: './quests.component.html',
   styleUrls: ['./quests.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
@@ -30,7 +41,8 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
     QuestsMissionsInfoPopupSubComponent,
     QuestsMissionsSubComponent,
     RouterModule,
-    TranslateDirective, TranslatePipe,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class QuestsComponent implements OnInit, OnDestroy {

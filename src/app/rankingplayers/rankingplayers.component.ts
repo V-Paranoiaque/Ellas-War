@@ -1,10 +1,22 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, DestroyRef, inject, signal, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+  OnInit,
+  OnDestroy,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -36,6 +48,7 @@ interface RankingLine {
 @Component({
   selector: 'app-rankingplayers',
   templateUrl: './rankingplayers.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -58,9 +71,9 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
-  public rankingList = signal<RankingLine[]>([])
+  public rankingList = signal<RankingLine[]>([]);
   public rankingMax = signal(1);
   public rankingOrder = signal('level');
   public rankingPage = signal(1);
@@ -112,7 +125,8 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
       this.rankingOrder() +
       '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         const result = res as {

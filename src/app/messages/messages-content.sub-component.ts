@@ -1,5 +1,14 @@
-import { Component, Input, inject } from '@angular/core';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Message, MessageContent } from '../../services/message.class';
@@ -17,6 +26,7 @@ import { SanctuaryMessageSubComponent } from './../sanctuary/sanctuary-message.s
   selector: 'app-messages-content',
   templateUrl: './messages-content.sub-component.html',
   styleUrls: ['./messages.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMessageSubComponent,
     CommonModule,

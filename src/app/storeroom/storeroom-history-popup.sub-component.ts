@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -10,6 +16,7 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-storeroom-history-popup',
   templateUrl: './storeroom-history-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {

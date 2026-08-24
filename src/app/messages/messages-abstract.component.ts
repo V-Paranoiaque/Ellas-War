@@ -1,4 +1,12 @@
-import { Component, OnInit, DestroyRef, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  DestroyRef,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,6 +17,7 @@ import { Message } from '../../services/message.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 export class MessagesAbstractComponent implements OnInit, OnDestroy {
@@ -17,7 +26,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   translate = inject(TranslateService);
   protected scroller = inject(ViewportScroller);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public addDestError = signal(0);
   public currentPage: number;
@@ -152,7 +161,8 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/playerProfile/' + username.toString() + '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
         const res = result as { membre_id: number; username: string };

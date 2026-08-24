@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import * as codeList from '../assets/codeName.json';
 import { Meta } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-tools',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <ng-content></ng-content> `,
 })
 export class ToolsComponent {

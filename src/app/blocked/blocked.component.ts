@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Router, RouterModule } from '@angular/router';
@@ -7,6 +13,7 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-blocked',
   templateUrl: './blocked.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, TranslateDirective],
 })
 export class BlockedComponent implements OnInit, OnDestroy {

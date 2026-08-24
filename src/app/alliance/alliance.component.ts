@@ -1,8 +1,18 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
@@ -42,6 +52,7 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 @Component({
   templateUrl: './alliance.component.html',
   styleUrls: ['./alliance.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AllianceArchivesPopupSubComponent,
     AllianceCandidatePopupSubComponent,
@@ -70,7 +81,8 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 })
 export class AllianceComponent
   extends AllianceAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;

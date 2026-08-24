@@ -1,5 +1,11 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -15,6 +21,7 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
 @Component({
   templateUrl: './admin-support-msg.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -42,10 +49,10 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
       support_date: number;
     }[];
   } = {
-      title: '',
-      status: 0,
-      msg: [],
-    };
+    title: '',
+    status: 0,
+    msg: [],
+  };
   public answertext: string;
   private msg: number;
 

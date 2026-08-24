@@ -1,10 +1,22 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -33,6 +45,7 @@ interface HonorLine {
 
 @Component({
   templateUrl: './honor.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -58,7 +71,7 @@ export class HonorComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public id = 0;
   public list = signal<HonorLine[]>([]);
@@ -117,7 +130,8 @@ export class HonorComponent implements OnInit, OnDestroy {
 
     const url =
       this.socket.url + '/api/rankingHonor/' + this.id.toString() + '.json';
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         this.list.set(res as HonorLine[]);

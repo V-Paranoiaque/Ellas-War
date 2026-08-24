@@ -1,9 +1,20 @@
-import { Component, Output, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  Output,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
@@ -27,6 +38,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
 
 @Component({
   templateUrl: './strategies.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ArmyHelpPopupSubComponent,
     ArmyPopupSubComponent,
@@ -40,7 +52,8 @@ import times from '@iconify/icons-fa6-solid/xmark';
     IcIconComponent,
     RouterModule,
     StrategiesHelpPopupSubComponent,
-    TranslateDirective, TranslatePipe,
+    TranslateDirective,
+    TranslatePipe,
     WaveDividePopupSubComponent,
   ],
 })
@@ -270,7 +283,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     let nb = this.user.getPropertyNb(unit);
 
     if (this.waveAttackUnit.get(unit)) {
-      nb -= (this.waveAttackUnit.get(unit) ?? 0);
+      nb -= this.waveAttackUnit.get(unit) ?? 0;
     }
 
     if (wavePrevious === waveNew) {
@@ -319,7 +332,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     let nb = this.user.getPropertyNb(unit);
 
     if (this.waveDefenseUnit.get(unit)) {
-      nb -= (this.waveDefenseUnit.get(unit) ?? 0);
+      nb -= this.waveDefenseUnit.get(unit) ?? 0;
     }
 
     if (wavePrevious === waveNew) {
@@ -408,8 +421,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
           }
           this.waveAttackUnit.set(
             unit,
-            (this.waveAttackUnit.get(unit) ??
-              0) + this.getWaveUnit(this.waveAttackList[i], unit)
+            (this.waveAttackUnit.get(unit) ?? 0) +
+              this.getWaveUnit(this.waveAttackList[i], unit)
           );
         }
       }
@@ -439,8 +452,8 @@ export class StrategiesComponent implements OnInit, OnDestroy {
           }
           this.waveDefenseUnit.set(
             unit,
-            (this.waveDefenseUnit.get(unit) ??
-              0) + this.getWaveUnit(this.waveDefenseList[i], unit)
+            (this.waveDefenseUnit.get(unit) ?? 0) +
+              this.getWaveUnit(this.waveDefenseList[i], unit)
           );
         }
       }

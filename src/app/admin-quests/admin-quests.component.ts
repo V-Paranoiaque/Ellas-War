@@ -1,6 +1,16 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
@@ -21,6 +31,7 @@ import brushIcon from '@iconify/icons-bi/brush';
   selector: 'app-admin-quests',
   templateUrl: './admin-quests.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     AdminQuestsTitleSubComponent,
@@ -30,7 +41,7 @@ import brushIcon from '@iconify/icons-bi/brush';
     IcIconComponent,
     MainPrivateBottomMenuSubComponent,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class AdminQuestsComponent implements OnInit, OnDestroy {

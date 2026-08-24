@@ -1,5 +1,13 @@
 import { RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -17,6 +25,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 @Component({
   selector: 'app-connectedplayers',
   templateUrl: './connectedplayers.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     MainLeftSubComponent,
@@ -34,16 +43,18 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
 
-  public connected = signal<{
-    membre_id: number;
-    username: string;
-    level: number;
-    field: number;
-    alliance: number;
-    alliance_name: string;
-  }[]>([]);
+  public connected = signal<
+    {
+      membre_id: number;
+      username: string;
+      level: number;
+      field: number;
+      alliance: number;
+      alliance_name: string;
+    }[]
+  >([]);
   private subTitle: Subscription;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     this.subTitle = new Subscription();
@@ -65,17 +76,20 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   getPage() {
     const url = this.socket.url + '/api/connected.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
-        this.connected.set(result as {
-          membre_id: number;
-          username: string;
-          level: number;
-          field: number;
-          alliance: number;
-          alliance_name: string;
-        }[]);
+        this.connected.set(
+          result as {
+            membre_id: number;
+            username: string;
+            level: number;
+            field: number;
+            alliance: number;
+            alliance_name: string;
+          }[]
+        );
       });
     this.subTitle = this.translate
       .get('Connected players on the Ancient Greece')

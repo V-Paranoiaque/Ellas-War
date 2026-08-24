@@ -1,7 +1,17 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -18,13 +28,14 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   selector: 'app-quests-missions',
   templateUrl: './quests-missions.sub-component.html',
   styleUrls: ['./quests.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
     IcIconComponent,
     RouterModule,
     TranslateDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
 })
 export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
@@ -48,9 +59,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.http
-      .get(
-        './assets/i18n/' + this.currentLocale() + '/localevars.json'
-      )
+      .get('./assets/i18n/' + this.currentLocale() + '/localevars.json')
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;
       });

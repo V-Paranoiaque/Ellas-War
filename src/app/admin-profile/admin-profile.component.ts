@@ -1,10 +1,22 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
@@ -26,6 +38,7 @@ import users from '@iconify/icons-fa6-solid/users';
   selector: 'app-admin-profile',
   templateUrl: './admin-profile.component.html',
   styleUrls: ['../admin/admin.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -46,7 +59,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
   readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
   private readonly socket = inject(Socket);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public profile = signal({
     membre_id: 0,
@@ -277,7 +290,8 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
       '/api/playerProfile/' +
       this.profile().membre_id.toString() +
       '.json';
-    this.subPlayer = this.http.get(url)
+    this.subPlayer = this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: object) => {
         const player = res as {

@@ -1,7 +1,17 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { ClipboardModule } from 'ngx-clipboard';
@@ -10,10 +20,12 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-options-account-information-popup',
   templateUrl: './options-account-information-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClipboardModule, FormsModule, TranslateDirective, TranslatePipe],
 })
 export class OptionsAccountInformationPopupSubComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   private readonly router = inject(Router);
   private readonly socket = inject(Socket);
   user = inject(User);

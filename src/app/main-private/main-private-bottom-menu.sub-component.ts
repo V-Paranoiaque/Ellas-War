@@ -6,7 +6,8 @@ import {
   OnInit,
   OnDestroy,
   inject,
-  signal
+  signal,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -14,7 +15,11 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
 import { CommonModule } from '@angular/common';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -34,6 +39,7 @@ import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-in
   selector: 'app-main-private-bottom-menu',
   templateUrl: './main-private-bottom-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -52,7 +58,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
   router = inject(Router);
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public chatActive = '';
 
@@ -112,7 +118,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       location: string;
       inscription: number;
       description: string;
-    }
+    };
   }>({
     id: 0,
     user_id: 0,
@@ -326,7 +332,8 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       '.json';
     this.socket.emit('accountInfo');
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
         this.selectedMsg.set({
@@ -350,7 +357,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
             location: string;
             inscription: number;
             description: string;
-          }
+          },
         });
       });
   }

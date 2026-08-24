@@ -1,8 +1,18 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from '../../services/message.class';
@@ -36,6 +46,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   templateUrl: './attacks-war.component.html',
   styleUrls: ['./attacks.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksHelpPopupSubComponent,
     AttacksHistorySubComponent,

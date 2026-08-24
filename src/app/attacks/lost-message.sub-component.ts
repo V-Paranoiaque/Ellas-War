@@ -1,5 +1,14 @@
-import { Component, Input, inject } from '@angular/core';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { MessageContent } from '../../services/message.class';
@@ -11,7 +20,13 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-lost-message',
   templateUrl: './lost-message.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class LostMessageSubComponent {
   user = inject(User);

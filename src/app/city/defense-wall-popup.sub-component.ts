@@ -1,6 +1,16 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { IcIconComponent } from '../../services/ic-icon.service';
@@ -12,6 +22,7 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 @Component({
   selector: 'app-defense-wall-popup',
   templateUrl: './defense-wall-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class DefenseWallPopupSubComponent implements OnInit, OnDestroy {

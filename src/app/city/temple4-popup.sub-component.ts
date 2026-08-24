@@ -1,6 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { TemplePopupSubComponent } from './temple-popup.sub-component';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +15,14 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-temple4-popup',
   templateUrl: './temple4-popup.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateDirective, TranslatePipe],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [
+    CommonModule,
+    EwIconSubComponent,
+    FormsModule,
+    TranslateDirective,
+    TranslatePipe,
+  ],
 })
 export class Temple4PopupSubComponent extends TemplePopupSubComponent {
   protected override socket: Socket;

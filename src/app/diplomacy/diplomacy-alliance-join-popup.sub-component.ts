@@ -1,6 +1,15 @@
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { FormsModule } from '@angular/forms';
@@ -8,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-diplomacy-alliance-join-popup',
   templateUrl: './diplomacy-alliance-join-popup.sub-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class DiplomacyAllianceJoinPopupSubComponent {

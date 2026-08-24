@@ -1,4 +1,9 @@
-import { Component, Injectable, inject } from '@angular/core';
+import {
+  Component,
+  Injectable,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { environment } from './../environments/environment';
@@ -11,6 +16,7 @@ declare let device: {
 
 @Component({
   selector: 'app-user',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <ng-content></ng-content> `,
 })
 @Injectable()

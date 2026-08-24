@@ -1,6 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -30,6 +34,7 @@ import trophy from '@iconify/icons-fa6-solid/trophy';
   selector: 'app-main-private-right-menu',
   templateUrl: './main-private-right-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

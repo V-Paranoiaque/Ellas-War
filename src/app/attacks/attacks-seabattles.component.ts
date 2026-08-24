@@ -1,6 +1,18 @@
-import { Component, DestroyRef, OnDestroy, OnInit, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnDestroy,
+  OnInit,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -35,6 +47,7 @@ interface RankingLineSB {
 @Component({
   templateUrl: './attacks-seabattles.component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMenuSubComponent,
     AttacksSeabattlesCoinsHelpPopupSubComponent,
@@ -52,12 +65,13 @@ interface RankingLineSB {
 })
 export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public currentCase = {
     case_type: -1,
@@ -292,7 +306,8 @@ export class AttacksSeabattlesComponent
       '/api/rankingSeaBattles/' +
       this.rankingPage.toString() +
       '.json';
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         const result = res as {

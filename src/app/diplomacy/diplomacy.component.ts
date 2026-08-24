@@ -1,8 +1,20 @@
-import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  OnInit,
+  OnDestroy,
+  inject,
+  signal,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
@@ -36,9 +48,10 @@ type AllianceProfile = {
   pact: number;
   started: number;
   war: number;
-}
+};
 @Component({
   templateUrl: './diplomacy.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AlliancePactManagePopupSubComponent,
     CommonModule,
@@ -63,7 +76,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   user = inject(User);
   translate = inject(TranslateService);
   readonly currentLocale = inject(LocaleService).currentLocale;
-  private readonly destroyRef = inject(DestroyRef)
+  private readonly destroyRef = inject(DestroyRef);
 
   public allianceList: {
     alliance_id: number;
@@ -157,7 +170,8 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
-    this.http.get(url)
+    this.http
+      .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
         this.allianceProfile.set(res as AllianceProfile);

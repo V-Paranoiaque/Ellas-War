@@ -1,11 +1,20 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import googleIcon from '@iconify-icons/logos/google-icon';
 import { environment } from './../../environments/environment';
-import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateDirective,
+  TranslatePipe,
+  TranslateService,
+} from '@ngx-translate/core';
 
 import { LocaleService } from '../../services/locale.service';
 import { IcIconComponent } from '../../services/ic-icon.service';
@@ -15,6 +24,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,
