@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 
@@ -14,7 +14,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
 })
 export class GetfavorsComponent implements OnInit {

@@ -1,17 +1,19 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { HonorHelpPopupSubComponent } from './honor-help-popup.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -42,7 +44,8 @@ interface HonorLine {
     IcIconComponent,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
@@ -53,13 +56,14 @@ export class HonorComponent implements OnInit, OnDestroy {
   private readonly http = inject(HttpClient);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
+  private readonly destroyRef = inject(DestroyRef)
 
   public id = 0;
-  public list: HonorLine[];
+  public list = signal<HonorLine[]>([]);
   public levels: number[];
 
-  private subRank: Subscription;
   private subTitle: Subscription;
 
   crown = crown;
@@ -67,9 +71,7 @@ export class HonorComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.levels = Array(10) as typeof this.levels;
-    this.subRank = new Subscription();
     this.subTitle = new Subscription();
-    this.list = [];
   }
 
   ngOnInit() {
@@ -89,7 +91,6 @@ export class HonorComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('rankingHonorRefresh');
-    this.subRank.unsubscribe();
     this.subTitle.unsubscribe();
   }
 
@@ -116,9 +117,11 @@ export class HonorComponent implements OnInit, OnDestroy {
 
     const url =
       this.socket.url + '/api/rankingHonor/' + this.id.toString() + '.json';
-    this.subRank = this.http.get(url).subscribe(res => {
-      this.list = res as typeof this.list;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        this.list.set(res as HonorLine[]);
+      });
   }
 
   getReward() {

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -20,7 +20,8 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class CommunityComponent implements OnInit, OnDestroy {

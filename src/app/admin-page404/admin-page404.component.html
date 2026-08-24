@@ -9,31 +9,31 @@
             <h1 class="text-center" id="pages404Desc" translate>404 pages</h1>
 
             @if (pageList.length > 0) {
-              <table class="table" aria-labelledby="pages404Desc">
-                <thead>
-                  <tr>
-                    <th scope="column" translate>Page</th>
-                    <th scope="column" translate>Occurences</th>
-                  </tr>
-                </thead>
-                @for (page of pageList; track page) {
-                  <tr>
-                    <td class="text-break">{{ page.url }}</td>
-                    <td class="text-end">
-                      {{
-                        page.nb | number: '' : this.translate.getCurrentLang()
-                      }}
-                    </td>
-                  </tr>
-                }
-              </table>
+            <table class="table" aria-labelledby="pages404Desc">
+              <thead>
+                <tr>
+                  <th scope="column" translate>Page</th>
+                  <th scope="column" translate>Occurences</th>
+                </tr>
+              </thead>
+              @for (page of pageList; track page) {
+              <tr>
+                <td class="text-break">{{ page.url }}</td>
+                <td class="text-end">
+                  {{
+                  page.nb | number: '' : currentLocale()
+                  }}
+                </td>
+              </tr>
+              }
+            </table>
             }
 
             @if (pageList.length === 0) {
-              <div class="text-center fw-bold">
-                <br />
-                <div translate>No 404 page saved</div>
-              </div>
+            <div class="text-center fw-bold">
+              <br />
+              <div translate>No 404 page saved</div>
+            </div>
             }
           </div>
         </div>

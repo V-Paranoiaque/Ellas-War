@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-
+import { provideZoneChangeDetection, importProvidersFrom, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { AppRoutingModule, routes } from './app.routes';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { importProvidersFrom } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {
@@ -14,9 +13,8 @@ import {
 import {
   provideHttpClient,
   withInterceptorsFromDi,
-  withJsonpSupport,
 } from '@angular/common/http';
-import { provideTranslateService, TranslateStore } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService, TranslateStore } from '@ngx-translate/core';
 
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -38,12 +36,13 @@ export const appConfig = {
     ModalModule,
   ],
   providers: [
+    provideZoneChangeDetection(),
     TranslateStore,
     Socket,
     Tools,
     UrlHelperService,
     User,
-    provideHttpClient(withInterceptorsFromDi(), withJsonpSupport()),
+    provideHttpClient(withInterceptorsFromDi()),
     provideOAuthClient(),
     provideTranslateService({
       fallbackLang: 'en',
@@ -56,3 +55,8 @@ export const appConfig = {
     importProvidersFrom(ModalModule),
   ],
 };
+
+export function currentLocale(): string {
+  const translate = inject(TranslateService);
+  return translate.getCurrentLang() ?? 'en';
+}

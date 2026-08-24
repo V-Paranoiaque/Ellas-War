@@ -1,17 +1,9 @@
-<div
-  class="modal fade"
-  id="seaBattlesMouvementsHelp"
-  tabindex="-1"
-  aria-hidden="true">
+<div class="modal fade" id="seaBattlesMouvementsHelp" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" translate>Sea Battles actions</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
         <ul>
@@ -21,23 +13,19 @@
           </li>
           <li>
             {{
-              'You can do a maximum of { value } actions per 23h'
-                | translate
-                  : {
-                      value:
-                        user.getDatas().sea_battles.max_actions
-                        | number: '' : this.translate.getCurrentLang(),
-                    }
+            'You can do a maximum of { value } actions per 23h'
+            | translate
+            : {
+            value:
+            user.getDatas().sea_battles.max_actions
+            | number: '' : currentLocale(),
+            }
             }}
           </li>
         </ul>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
       </div>

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { Message } from 'src/services/message.class';
+import { Message } from '../../services/message.class';
 import { ClipboardModule } from 'ngx-clipboard';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { MessagesContentSubComponent } from './messages-content.sub-component';
@@ -39,13 +39,13 @@ import xIcon from '@iconify/icons-bi/x';
     MessagesPopupSubComponent,
     MessagesTitleSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
 })
 export class MessagesComponent
   extends MessagesAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   public dummyMsg: Message;
 
   //Icons

@@ -3,19 +3,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" translate>Buy the batch</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid text-center">
         <strong translate>Batch</strong>
         <strong translate>:</strong>
-        {{ info.nbress | number: '' : this.translate.getCurrentLang() }}
-        <app-ew-icon
-          name="{{ Tools.getResName(info.ress_type) }}"
-          class="small-resource"></app-ew-icon>
+        {{ info.nbress | number: '' : currentLocale() }}
+        <app-ew-icon name="{{ Tools.getResName(info.ress_type) }}" class="small-resource"></app-ew-icon>
 
         <br />
         <br />
@@ -23,41 +17,27 @@
         <strong translate>Price</strong>
         <strong translate>:</strong>
         {{
-          info.nbress * parseFloat(info.rate)
-            | number: '' : this.translate.getCurrentLang()
+        info.nbress * parseFloat(info.rate)
+        | number: '' : currentLocale()
         }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
         <br />
         <strong translate>Anonymous price</strong>
         <strong translate>:</strong>
         {{
-          info.nbress * parseFloat(info.rate) * 1.05
-            | number: '' : this.translate.getCurrentLang()
+        info.nbress * parseFloat(info.rate) * 1.05
+        | number: '' : currentLocale()
         }}
         <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
-        <button
-          type="button"
-          class="btn btn-warning"
-          data-bs-dismiss="modal"
-          (click)="buy(1)"
-          translate>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal" (click)="buy(1)" translate>
           Anonymous
         </button>
-        <button
-          type="button"
-          class="btn btn-success"
-          data-bs-dismiss="modal"
-          (click)="buy(1)"
-          translate>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="buy(1)" translate>
           Buy
         </button>
       </div>

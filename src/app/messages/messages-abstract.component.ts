@@ -1,12 +1,12 @@
-import { OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, DestroyRef, OnDestroy, inject, signal } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
-import { Message } from 'src/services/message.class';
-import { Component } from '@angular/core';
+import { Message } from '../../services/message.class';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   template: '',
@@ -17,8 +17,9 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   translate = inject(TranslateService);
   protected scroller = inject(ViewportScroller);
+  private readonly destroyRef = inject(DestroyRef)
 
-  public addDestError: number;
+  public addDestError = signal(0);
   public currentPage: number;
   public noDestError: number;
   public textError;
@@ -39,11 +40,9 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   public msgTitle: string;
   public msgText: string;
 
-  private sub: Subscription;
   private subMsg: Subscription;
 
   constructor() {
-    this.addDestError = 0;
     this.currentPage = 1;
     this.noDestError = 0;
     this.textError = 0;
@@ -63,7 +62,6 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     this.msgTitle = '';
     this.msgText = '';
 
-    this.sub = new Subscription();
     this.subMsg = new Subscription();
   }
 
@@ -126,7 +124,6 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     this.socket.removeListener('msgPage');
     this.socket.removeListener('msgInfo');
     this.socket.removeListener('msgRefresh');
-    this.sub.unsubscribe();
     this.subMsg.unsubscribe();
   }
 
@@ -141,7 +138,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   }
 
   addDest(username: number | string, callback: () => void) {
-    this.addDestError = 0;
+    this.addDestError.set(0);
     this.noDestError = 0;
     this.textError = 0;
     if (
@@ -155,20 +152,22 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/playerProfile/' + username.toString() + '.json';
 
-    this.sub = this.http.get(url).subscribe(result => {
-      const res = result as { membre_id: number; username: string };
-      if (res.membre_id) {
-        this.removeDest(res.membre_id);
-        this.destList.push({
-          id: res.membre_id,
-          username: res.username,
-        });
-      } else {
-        this.addDestError = 1;
-      }
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(result => {
+        const res = result as { membre_id: number; username: string };
+        if (res.membre_id) {
+          this.removeDest(res.membre_id);
+          this.destList.push({
+            id: res.membre_id,
+            username: res.username,
+          });
+        } else {
+          this.addDestError.set(1);
+        }
 
-      callback();
-    });
+        callback();
+      });
 
     this.msgToUser = '';
   }

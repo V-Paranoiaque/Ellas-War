@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://dev.ellaswar.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

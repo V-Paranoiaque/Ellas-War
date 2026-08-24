@@ -1,10 +1,10 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -16,22 +16,17 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
-export class ConfirmComponent implements OnInit, OnDestroy {
+export class ConfirmComponent implements OnInit {
   user = inject(User);
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
+  private readonly destroyRef = inject(DestroyRef)
 
-  public confirmResult: number;
-  private sub: Subscription;
-
-  constructor() {
-    this.confirmResult = 0;
-    this.sub = new Subscription();
-  }
+  public confirmResult = signal(0);
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id') ?? '';
@@ -45,13 +40,11 @@ export class ConfirmComponent implements OnInit, OnDestroy {
       encodeURIComponent(check) +
       '.json';
 
-    this.sub = this.http.get(url).subscribe((result: object) => {
-      const res = result as { error: number };
-      this.confirmResult = res.error;
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result: object) => {
+        const res = result as { error: number };
+        this.confirmResult.set(res.error);
+      });
   }
 }

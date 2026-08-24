@@ -4,11 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" translate>Defense wall</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div translate>
@@ -20,26 +16,20 @@
             <strong translate>Defense</strong>
             <strong translate>:</strong>
             {{
-              defenseWallStrength | number: '' : this.translate.getCurrentLang()
+            defenseWallStrength | number: '' : currentLocale()
             }}
-            <app-ic-icon
-              [icon]="shieldShaded"
-              title="{{ 'Defense' | translate }}"></app-ic-icon>
+            <app-ic-icon [icon]="shieldShaded" title="{{ 'Defense' | translate }}"></app-ic-icon>
             <br />
             <strong translate>Level</strong>
             <strong translate>:</strong>
             {{
-              user.getPropertyNb('defense_wall')
-                | number: '' : this.translate.getCurrentLang()
+            user.getPropertyNb('defense_wall')
+            | number: '' : currentLocale()
             }}
           </div>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            translate>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
             Close
           </button>
         </div>

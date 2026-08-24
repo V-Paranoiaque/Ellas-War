@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-strategies-help-popup',
   templateUrl: './strategies-help-popup.sub-component.html',
-  imports: [TranslateModule],
+  imports: [TranslateDirective],
 })
 export class StrategiesHelpPopupSubComponent {
   translate = inject(TranslateService);

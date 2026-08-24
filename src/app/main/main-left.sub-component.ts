@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { UserComponent as User } from 'src/services/user.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
 
 import { MainPrivateLeftMenuSubComponent } from '../main-private/main-private-left-menu.sub-component';
 import { MainPublicTopMenuSubComponent } from '../main-public/main-public-top-menu.sub-component';
@@ -11,7 +10,6 @@ import { MainPublicTopMenuSubComponent } from '../main-public/main-public-top-me
   imports: [
     MainPrivateLeftMenuSubComponent,
     MainPublicTopMenuSubComponent,
-    TranslateModule,
   ],
 })
 export class MainLeftSubComponent {

@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, ViewChild, inject, signal } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { ModalDirective, ModalModule } from 'ngx-bootstrap/modal';
-import { Subscription } from 'rxjs';
 import { environment } from './../../environments/environment';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { BlockedComponent } from '../blocked/blocked.component';
 import { CityComponent } from '../city/city.component';
 import { PausedComponent } from '../paused/paused.component';
 import { MainPublicComponent } from '../main-public/main-public.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +23,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MainPublicComponent,
     ModalModule,
     PausedComponent,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class MainComponent implements OnInit, OnDestroy {
@@ -32,22 +32,21 @@ export class MainComponent implements OnInit, OnDestroy {
   protected router = inject(Router);
   user = inject(User);
   private readonly platformLocation = inject(PlatformLocation);
+  private readonly destroyRef = inject(DestroyRef)
 
   @ViewChild('serverModal', { static: false }) serverModal!: ModalDirective;
-  displayServerModal = false;
-  displayVersionModal = false;
-  displayMaintenanceModal = false;
+  displayServerModal = signal(false);
+  displayVersionModal = signal(false);
+  displayMaintenanceModal = signal(false);
 
   public localVersion: number;
   public remoteVersion: number;
-  private sub: Subscription;
 
   constructor() {
     const platformLocation = this.platformLocation;
 
     this.localVersion = environment.version;
     this.remoteVersion = 0;
-    this.sub = new Subscription();
     platformLocation.onPopState(() => this.closeAll());
   }
 
@@ -56,8 +55,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
-
     const elements = document.getElementsByClassName('modal');
     while (elements.length > 0) {
       if (elements[0]) {
@@ -88,43 +85,45 @@ export class MainComponent implements OnInit, OnDestroy {
 
   getApi() {
     const url = this.socket.url + '/api.json';
-    this.sub = this.http.get(url).subscribe({
-      next: (apiResult: object) => {
-        const result = apiResult as {
-          min: number;
-          maintenance: number;
-        };
-        try {
-          if (result && !result.min) {
-            this.displayServerModal = true;
-          } else {
-            this.displayServerModal = false;
-            this.remoteVersion = result.min;
-            this.checkVersion();
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (apiResult: object) => {
+          const result = apiResult as {
+            min: number;
+            maintenance: number;
+          };
+          try {
+            if (result && !result.min) {
+              this.displayServerModal.set(true);
+            } else {
+              this.displayServerModal.set(false);
+              this.remoteVersion = result.min;
+              this.checkVersion();
 
-            if (!this.displayVersionModal) {
-              this.checkMaintenance(result.maintenance);
+              if (!this.displayVersionModal()) {
+                this.checkMaintenance(result.maintenance);
+              }
             }
+          } catch (e: unknown) {
+            this.displayServerModal.set(true);
+            console.log(e);
           }
-        } catch (e: unknown) {
-          this.displayServerModal = true;
-          console.log(e);
-        }
 
-        if (this.displayServerModal) {
+          if (this.displayServerModal()) {
+            setTimeout(() => {
+              this.getApi();
+            }, 5000);
+          }
+        },
+        error: () => {
+          this.displayServerModal.set(true);
+
           setTimeout(() => {
             this.getApi();
           }, 5000);
-        }
-      },
-      error: () => {
-        this.displayServerModal = true;
-
-        setTimeout(() => {
-          this.getApi();
-        }, 5000);
-      },
-    });
+        },
+      });
   }
 
   refresh() {
@@ -137,25 +136,25 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   onHidden(): void {
-    this.displayServerModal = false;
-    this.displayVersionModal = false;
+    this.displayServerModal.set(false);
+    this.displayVersionModal.set(false);
   }
 
   checkVersion() {
     if (this.localVersion == 0) {
-      this.displayVersionModal = false;
+      this.displayVersionModal.set(false);
     } else if (this.localVersion < this.remoteVersion) {
-      this.displayVersionModal = true;
+      this.displayVersionModal.set(true);
     } else {
-      this.displayVersionModal = false;
+      this.displayVersionModal.set(false);
     }
   }
 
   checkMaintenance(maintenance: number) {
     if (maintenance) {
-      this.displayMaintenanceModal = true;
+      this.displayMaintenanceModal.set(true);
     } else {
-      this.displayMaintenanceModal = false;
+      this.displayMaintenanceModal.set(false);
     }
   }
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
+import { LocaleService } from '../../services/locale.service';
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
@@ -15,13 +16,14 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
     AdminLeftMenuSubComponent,
     CommonModule,
     MainPrivateBottomMenuSubComponent,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminPage404Component implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public pageList: { url: string; nb: number }[];
 

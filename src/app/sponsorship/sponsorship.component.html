@@ -4,81 +4,64 @@
       <div class="modal-header">
         <h5 class="modal-title">
           {{
-            'Give drachmas to { value }'
-              | translate: { value: currentPlayer.username }
+          'Give drachmas to { value }'
+          | translate: { value: currentPlayer.username }
           }}
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="text-center" (click)="setGift()">
           {{
-            '{ value } can still receive { qtt } Drachmas'
-              | translate
-                : {
-                    value: currentPlayer.username,
-                    qtt:
-                      currentPlayer.remain
-                      | number: '' : this.translate.getCurrentLang(),
-                  }
+          '{ value } can still receive { qtt } Drachmas'
+          | translate
+          : {
+          value: currentPlayer.username,
+          qtt:
+          currentPlayer.remain
+          | number: '' : currentLocale(),
+          }
           }}
         </div>
 
         <br />
         @if (giftsError > 0) {
-          <div class="text-center">
-            @if (giftsError === 1) {
-              <div class="alert alert-danger" translate>
-                You can't give Drachmas to this member.
-              </div>
-            }
-            @if (giftsError === 2) {
-              <div class="alert alert-danger" translate>
-                You don't have enough Drachmas.
-              </div>
-            }
-            @if (giftsError === 3) {
-              <div class="alert alert-danger" translate>
-                You can't give as much drachmas to this member.
-              </div>
-            }
-            @if (giftsError === 4) {
-              <div class="alert alert-success" translate>
-                Donation completed successfully.
-              </div>
-            }
-            <br />
+        <div class="text-center">
+          @if (giftsError === 1) {
+          <div class="alert alert-danger" translate>
+            You can't give Drachmas to this member.
           </div>
+          }
+          @if (giftsError === 2) {
+          <div class="alert alert-danger" translate>
+            You don't have enough Drachmas.
+          </div>
+          }
+          @if (giftsError === 3) {
+          <div class="alert alert-danger" translate>
+            You can't give as much drachmas to this member.
+          </div>
+          }
+          @if (giftsError === 4) {
+          <div class="alert alert-success" translate>
+            Donation completed successfully.
+          </div>
+          }
+          <br />
+        </div>
         }
 
-        <input
-          type="number"
-          class="form-control"
-          placeholder="0"
-          [attr.min]="0"
-          [attr.max]="currentPlayer.remain"
+        <input type="number" class="form-control" placeholder="0" [attr.min]="0" [attr.max]="currentPlayer.remain"
           [(ngModel)]="qttGiftsRess" />
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
         @if (currentPlayer.remain > 0) {
-          <button
-            type="button"
-            class="btn btn-primary"
-            (click)="confirm()"
-            translate>
-            Confirm
-          </button>
+        <button type="button" class="btn btn-primary" (click)="confirm()" translate>
+          Confirm
+        </button>
         }
       </div>
     </div>
@@ -100,115 +83,104 @@
             <br />
 
             @if (sponsorList.length > 0) {
-              <table
-                class="table table-striped table-middle align-middle"
-                aria-labelledby="sponsorListDesc">
-                <thead>
-                  <tr>
-                    <th scope="col" translate>Player</th>
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Field
-                    </th>
-                    <th scope="col" translate>Alliance</th>
-                    <th scope="col" translate>Activity</th>
-                    <th scope="col" translate>Donations</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (p of sponsorList; track p) {
-                    <tr>
-                      <th scope="row" class="fw-normal">
-                        {{ p.username }} ({{ p.level }})
-                      </th>
-                      <td class="d-none d-sm-table-cell text-end">
-                        {{
-                          p.field | number: '' : this.translate.getCurrentLang()
+            <table class="table table-striped table-middle align-middle" aria-labelledby="sponsorListDesc">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Player</th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Field
+                  </th>
+                  <th scope="col" translate>Alliance</th>
+                  <th scope="col" translate>Activity</th>
+                  <th scope="col" translate>Donations</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of sponsorList; track p) {
+                <tr>
+                  <th scope="row" class="fw-normal">
+                    {{ p.username }} ({{ p.level }})
+                  </th>
+                  <td class="d-none d-sm-table-cell text-end">
+                    {{
+                    p.field | number: '' : currentLocale()
+                    }}
+                  </td>
+                  <td>
+                    <a [routerLink]="['/allianceprofile/' + p.alliance]">
+                      {{ p.alliance_name }}
+                    </a>
+                    @if (p.alliance === 0) {
+                    <span translate>None</span>
+                    }
+                  </td>
+                  <td>
+                    <span>
+                      @switch (p.activity) {
+                      @case (1) {
+                      <span translate>Today</span>
+                      }
+                      @case (2) {
+                      <span>{{
+                        'Last { value } days'
+                        | translate: { value: 3 }
                         }}
-                      </td>
-                      <td>
-                        <a [routerLink]="['/allianceprofile/' + p.alliance]">
-                          {{ p.alliance_name }}
-                        </a>
-                        @if (p.alliance === 0) {
-                          <span translate>None</span>
-                        }
-                      </td>
-                      <td>
-                        <span>
-                          @switch (p.activity) {
-                            @case (1) {
-                              <span translate>Today</span>
-                            }
-                            @case (2) {
-                              <span
-                                >{{
-                                  'Last { value } days'
-                                    | translate: { value: 3 }
-                                }}
-                              </span>
-                            }
-                            @case (3) {
-                              <span
-                                >{{
-                                  'Last { value } days'
-                                    | translate: { value: 7 }
-                                }}
-                              </span>
-                            }
-                            @case (4) {
-                              <span
-                                >{{
-                                  'Last { value } days'
-                                    | translate: { value: 30 }
-                                }}
-                              </span>
-                            }
-                            @case (5) {
-                              <span translate>More than 30 days</span>
-                            }
-                            @default {
-                              <span>{{ p.activity }}</span>
-                            }
-                          }
-                        </span>
-                      </td>
-                      <td>
-                        {{
-                          p.gift | number: '' : this.translate.getCurrentLang()
-                        }}/{{
-                          p.gift + p.remain
-                            | number: '' : this.translate.getCurrentLang()
+                      </span>
+                      }
+                      @case (3) {
+                      <span>{{
+                        'Last { value } days'
+                        | translate: { value: 7 }
                         }}
-                      </td>
-                      <td class="text-center">
-                        <button
-                          class="btn"
-                          data-bs-toggle="modal"
-                          data-bs-target="#sponsorshipGive"
-                          [ngClass]="{
+                      </span>
+                      }
+                      @case (4) {
+                      <span>{{
+                        'Last { value } days'
+                        | translate: { value: 30 }
+                        }}
+                      </span>
+                      }
+                      @case (5) {
+                      <span translate>More than 30 days</span>
+                      }
+                      @default {
+                      <span>{{ p.activity }}</span>
+                      }
+                      }
+                    </span>
+                  </td>
+                  <td>
+                    {{
+                    p.gift | number: '' : currentLocale()
+                    }}/{{
+                    p.gift + p.remain
+                    | number: '' : currentLocale()
+                    }}
+                  </td>
+                  <td class="text-center">
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#sponsorshipGive" [ngClass]="{
                             'btn-success': p.gift === 0,
                             'btn-danger': p.remain === 0,
                             'btn-warning': p.gift > 0 && p.remain > 0,
-                          }"
-                          (click)="selectPlayer(p)"
-                          title="{{ 'Give drachmas' | translate }}">
-                          <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
-                          <span class="visually-hidden">
-                            {{ 'Give drachmas' | translate }}
-                          </span>
-                        </button>
-                      </td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
+                          }" (click)="selectPlayer(p)" title="{{ 'Give drachmas' | translate }}">
+                      <app-ic-icon [icon]="coinBagSolid"></app-ic-icon>
+                      <span class="visually-hidden">
+                        {{ 'Give drachmas' | translate }}
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
             }
 
             @if (sponsorList.length === 0) {
-              <div class="text-center" translate>
-                You haven't sponsored any player
-              </div>
+            <div class="text-center" translate>
+              You haven't sponsored any player
+            </div>
             }
             <div class="text-center">
               <br />

@@ -1,28 +1,30 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from "@ngx-translate/core";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
-  imports: [RouterModule, TranslateModule],
+  imports: [RouterModule, TranslateDirective],
 })
 export class UnsubscribeComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
+  private readonly destroyRef = inject(DestroyRef)
 
   public id = '';
   public check = '';
   public sub: Subscription;
-  public unsubscribeResult = {
+  public unsubscribeResult = signal({
     error: 0,
-  };
+  });
 
   constructor() {
     this.sub = new Subscription();
@@ -40,9 +42,11 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
       encodeURIComponent(this.check) +
       '.json';
 
-    this.sub = this.http.get(url).subscribe(result => {
-      this.unsubscribeResult = result as { error: number };
-    });
+    this.sub = this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(result => {
+        this.unsubscribeResult.set(result as { error: number });
+      });
   }
 
   ngOnDestroy() {
@@ -55,6 +59,6 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
       code: this.check,
     };
     this.socket.emit('unsubscribeValidate', msg);
-    this.unsubscribeResult.error = 5;
+    this.unsubscribeResult.set({ error: 5 })
   }
 }

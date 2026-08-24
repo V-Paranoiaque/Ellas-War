@@ -1,12 +1,13 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-import { ToolsComponent as Tools } from 'src/services/tools.service';
+import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -18,7 +19,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     CommonModule,
     MainLeftSubComponent,
     MainRightSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class NewsComponent implements OnInit, OnDestroy {
@@ -29,28 +31,34 @@ export class NewsComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   private readonly http = inject(HttpClient);
 
-  private newsList: {
+  private newsList = signal<{
     title: string;
     link: string;
     author: string;
     news_date: number;
-  }[];
-  private subNews: Subscription;
+  }[]>([]);
   private subTitle: Subscription;
   private subDesc: Subscription;
+  private readonly destroyRef = inject(DestroyRef)
+
 
   constructor() {
-    this.newsList = [];
-    this.subNews = new Subscription();
     this.subTitle = new Subscription();
     this.subDesc = new Subscription();
   }
 
   ngOnInit() {
     const url = this.socket.url + '/api/news.json';
-    this.subNews = this.http.get(url).subscribe(res => {
-      this.newsList = res as typeof this.newsList;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        this.newsList.set(res as {
+          title: string;
+          link: string;
+          author: string;
+          news_date: number;
+        }[]);
+      });
 
     this.subTitle = this.translate
       .get('Ellas War news')
@@ -65,12 +73,11 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subNews.unsubscribe();
     this.subTitle.unsubscribe();
     this.subDesc.unsubscribe();
   }
 
   getNews() {
-    return this.newsList;
+    return this.newsList();
   }
 }

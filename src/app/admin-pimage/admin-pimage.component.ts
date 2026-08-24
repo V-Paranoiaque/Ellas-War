@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
@@ -12,7 +12,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   imports: [
     AdminLeftMenuSubComponent,
     MainPrivateBottomMenuSubComponent,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminPimageComponent implements OnInit, OnDestroy {

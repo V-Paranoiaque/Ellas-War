@@ -3,15 +3,15 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 
 @Component({
   selector: 'app-main-private-left-menu',
   templateUrl: './main-private-left-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
-  imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateDirective],
 })
 export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
   socket = inject(Socket);

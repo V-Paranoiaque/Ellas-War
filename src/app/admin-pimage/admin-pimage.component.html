@@ -9,17 +9,14 @@
             <h1 class="text-center" id="emailLabel" translate>Player images</h1>
             <div class="row">
               @for (p of adminImagePlayers; track p) {
-                <div class="col-12 col-lg-3 text-center">
-                  {{ p.username }}<br />
-                  @if (p.membre_img) {
-                    <img
-                      src="{{ user.getConfig().url }}/pprofile/{{
+              <div class="col-12 col-lg-3 text-center">
+                {{ p.username }}<br />
+                @if (p.membre_img) {
+                <img src="{{ user.getConfig().url }}/pprofile/{{
                         p.membre_img
-                      }}"
-                      class="img-fluid center-block"
-                      alt="{{ p.username }}" />
-                  }
-                </div>
+                      }}" class="img-fluid center-block" alt="{{ p.username }}" />
+                }
+              </div>
               }
             </div>
           </div>

@@ -1,13 +1,14 @@
 import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { FormsModule } from '@angular/forms';
 
+import { LocaleService } from '../../services/locale.service';
 import { environment } from './../../environments/environment';
 
 import minotaurIcon from '@iconify/icons-game-icons/minotaur';
@@ -30,13 +31,15 @@ import swordIcon from '@iconify/icons-vaadin/sword';
     EwIconSubComponent,
     FormsModule,
     IcIconComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class ArmyPopupSubComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() info!: {
     code: string;
@@ -186,21 +189,21 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
           parseInt(this.info.engageNb) * this.info.placen <
           0 ||
           this.user.getPropertyNb('placen') ===
-            this.user.getPropertyNb('placenactu'))) ||
+          this.user.getPropertyNb('placenactu'))) ||
       (this.info.placep &&
         (this.user.getPropertyNb('placep') -
           this.user.getPropertyNb('placepactu') -
           parseInt(this.info.engageNb) * this.info.placep <
           0 ||
           this.user.getPropertyNb('placep') ===
-            this.user.getPropertyNb('placepactu'))) ||
+          this.user.getPropertyNb('placepactu'))) ||
       (this.info.placec &&
         (this.user.getPropertyNb('placec') -
           this.user.getPropertyNb('placecactu') -
           parseInt(this.info.engageNb) * this.info.placec <
           0 ||
           this.user.getPropertyNb('placec') ===
-            this.user.getPropertyNb('placecactu')))
+          this.user.getPropertyNb('placecactu')))
     ) {
       return false;
     } else {
@@ -219,7 +222,7 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
           cost[res as keyof typeof cost] &&
           (cost[res as keyof typeof cost] > this.user.getPropertyNb(res) ||
             cost[res as keyof typeof cost] * parseInt(this.info.engageNb) >
-              this.user.getPropertyNb(res))
+            this.user.getPropertyNb(res))
         ) {
           list.push(res);
         }

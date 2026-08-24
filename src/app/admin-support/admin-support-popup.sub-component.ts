@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-admin-support-popup',
   templateUrl: './admin-support-popup.sub-component.html',
   styleUrls: ['../admin/admin.component.css'],
-  imports: [FormsModule, TranslateModule],
+  imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class AdminSupportPopupSubComponent {
   private readonly socket = inject(Socket);

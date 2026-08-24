@@ -1,14 +1,17 @@
 import { Component, Input, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-admin-quests-title',
   templateUrl: './admin-quests-title.sub-component.html',
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslatePipe],
 })
 export class AdminQuestsTitleSubComponent {
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() quest!: {
     quest_reward: number;

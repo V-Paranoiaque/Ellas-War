@@ -4,11 +4,11 @@ import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -25,7 +25,8 @@ import eye from '@iconify/icons-fa6-solid/eye';
     MainRightSubComponent,
     IcIconComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class SupportComponent implements OnInit, OnDestroy {

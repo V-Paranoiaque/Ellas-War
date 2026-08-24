@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
+import { LocaleService } from '../../services/locale.service';
 import { ArmyHelpPopupSubComponent } from '../city/army-help-popup.sub-component';
 import { ArmyPopupSubComponent } from '../city/army-popup.sub-component';
 import { ConstructionPopupSubComponent } from '../city/construction-popup.sub-component';
 import { DefenseEmptyPopupSubComponent } from '../city/defense-empty-popup.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { StrategiesHelpPopupSubComponent } from './strategies-help-popup.sub-component';
@@ -39,7 +40,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
     IcIconComponent,
     RouterModule,
     StrategiesHelpPopupSubComponent,
-    TranslateModule,
+    TranslateDirective, TranslatePipe,
     WaveDividePopupSubComponent,
   ],
 })
@@ -48,6 +49,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Output()
   public armyInfo = {

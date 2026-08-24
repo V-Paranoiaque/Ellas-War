@@ -1,18 +1,20 @@
 import { Component, Input, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-divinebonus-help-popup',
   templateUrl: './divinebonus-help-popup.sub-component.html',
   styleUrls: ['./city.component.css'],
-  imports: [CommonModule, EwIconSubComponent, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, TranslateDirective, TranslatePipe],
 })
 export class DivineBonusHelpPopupSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() divineBonus!: { bonus_id: number; nb: number };
 

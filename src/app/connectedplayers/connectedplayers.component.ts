@@ -1,13 +1,15 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { LocaleService } from '../../services/locale.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
@@ -20,7 +22,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
     UserProfileSubComponent,
   ],
 })
@@ -29,22 +31,21 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
 
-  public connected: {
+  public connected = signal<{
     membre_id: number;
     username: string;
     level: number;
     field: number;
     alliance: number;
     alliance_name: string;
-  }[];
-  private subList: Subscription;
+  }[]>([]);
   private subTitle: Subscription;
+  private readonly destroyRef = inject(DestroyRef)
 
   constructor() {
-    this.connected = [];
-    this.subList = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -59,15 +60,23 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.socket.removeListener('chatUserPlayersRefresh');
     this.subTitle.unsubscribe();
-    this.subList.unsubscribe();
   }
 
   getPage() {
     const url = this.socket.url + '/api/connected.json';
 
-    this.subList = this.http.get(url).subscribe(result => {
-      this.connected = result as typeof this.connected;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(result => {
+        this.connected.set(result as {
+          membre_id: number;
+          username: string;
+          level: number;
+          field: number;
+          alliance: number;
+          alliance_name: string;
+        }[]);
+      });
     this.subTitle = this.translate
       .get('Connected players on the Ancient Greece')
       .subscribe((res: string) => {

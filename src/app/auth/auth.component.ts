@@ -5,9 +5,10 @@ import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import googleIcon from '@iconify-icons/logos/google-icon';
 import { environment } from './../../environments/environment';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -19,12 +20,15 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AuthComponent implements OnInit {
   private readonly socket = inject(Socket);
   private readonly route = inject(ActivatedRoute);
+  translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   user = inject(User);
 
   public confirmResult: number;

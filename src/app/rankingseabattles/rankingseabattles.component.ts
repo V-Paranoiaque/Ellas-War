@@ -1,15 +1,17 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { LocaleService } from '../../services/locale.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -35,7 +37,8 @@ interface RankingSBLine {
     MainLeftSubComponent,
     MainMenuRankingSubComponent,
     MainRightSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
@@ -46,25 +49,22 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
+  private readonly destroyRef = inject(DestroyRef)
 
-  public rankingList: RankingSBLine[];
-  public rankingMax: number;
-  public rankingPage: number;
+  public rankingList = signal<RankingSBLine[]>([]);
+  public rankingMax = signal(1);
+  public rankingPage = signal(1);
 
-  private subRank: Subscription;
   private subTitle: Subscription;
 
-  parseInt = parseInt;
+  parseInt = Number.parseInt;
   Tools = Tools;
 
   questionCircle = questionCircle;
 
   constructor() {
-    this.rankingList = [];
-    this.rankingMax = 1;
-    this.rankingPage = 1;
-    this.subRank = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -73,7 +73,7 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
       const page = params.get('id');
 
       if (page) {
-        this.rankingPage = parseInt(page);
+        this.rankingPage.set(Number.parseInt(page));
       }
 
       this.getPage();
@@ -87,7 +87,6 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subRank.unsubscribe();
     this.subTitle.unsubscribe();
   }
 
@@ -95,19 +94,21 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url +
       '/api/rankingSeaBattles/' +
-      this.rankingPage.toString() +
+      this.rankingPage().toString() +
       '.json';
 
-    this.subRank = this.http.get(url).subscribe(res => {
-      const result = res as {
-        cPage: number;
-        max: number;
-        ranking: RankingSBLine[];
-      };
-      this.rankingPage = result.cPage;
-      this.rankingMax = result.max;
-      this.rankingList = result.ranking;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        const result = res as {
+          cPage: number;
+          max: number;
+          ranking: RankingSBLine[];
+        };
+        this.rankingPage.set(result.cPage);
+        this.rankingMax.set(result.max);
+        this.rankingList.set(result.ranking);
+      });
   }
 
   rankingPageChange(page: number) {
@@ -115,8 +116,8 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
       page = 1;
     }
 
-    if (page > this.rankingMax) {
-      page = this.rankingMax;
+    if (page > this.rankingMax()) {
+      page = this.rankingMax();
     }
     void this.router.navigate(['/rankingseabattles/' + page.toString()]);
   }

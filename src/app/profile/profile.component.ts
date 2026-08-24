@@ -1,21 +1,25 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
   Component,
+  DestroyRef,
   OnInit,
   OnDestroy,
   EventEmitter,
   inject,
+  signal
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { MessagesPopupSubComponent } from '../messages/messages-popup.sub-component';
@@ -51,8 +55,8 @@ interface Profile {
     MainLeftSubComponent,
     MainRightSubComponent,
     MessagesPopupSubComponent,
-    OptionsIncludeComponent,
-    TranslateModule,
+    OptionsIncludeComponent, TranslatePipe,
+    TranslateDirective,
     RouterModule,
   ],
 })
@@ -61,17 +65,36 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user = inject(User);
   protected socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly route = inject(ActivatedRoute);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
+  private readonly destroyRef = inject(DestroyRef)
 
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 
   public id = 0;
-  public profile: Profile;
+  public profile = signal<Profile>({
+    membre_id: 0,
+    username: '',
+    level: 0,
+    xp: 0,
+    victory: 0,
+    field: 0,
+    featsofstrength: 0,
+    alliance: 0,
+    alliance_name: '',
+    rank_name: '',
+    location: '',
+    inscription: 0,
+    description: '',
+    membre_img:
+      '../assets/styles/' +
+      Tools.getStyle(this.user.getProperty('style') as string) +
+      '/default-profile.png',
+  });
   public reported = 0;
 
-  private subPlayer: Subscription;
   private subTitle: Subscription;
   private subDesc: Subscription;
 
@@ -81,43 +104,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userShield = userShield;
 
   constructor() {
-    this.profile = {
-      membre_id: 0,
-      username: '',
-      level: 0,
-      xp: 0,
-      victory: 0,
-      field: 0,
-      featsofstrength: 0,
-      alliance: 0,
-      alliance_name: '',
-      rank_name: '',
-      location: '',
-      inscription: 0,
-      description: '',
-      membre_img:
-        '../assets/styles/' +
-        Tools.getStyle(this.user.getProperty('style') as string) +
-        '/default-profile.png',
-    };
-    this.subPlayer = new Subscription();
     this.subTitle = new Subscription();
     this.subDesc = new Subscription();
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const id = parseInt(params.get('id') ?? '0');
+      const id = Number.parseInt(params.get('id') ?? '0');
       this.load(id);
     });
     this.socket.on('accountRefresh', () => {
       const userId = this.route.snapshot.paramMap.get('id') ?? '';
-      this.load(parseInt(userId));
+      this.load(Number.parseInt(userId));
     });
   }
 
   ngOnDestroy() {
-    this.subPlayer.unsubscribe();
     this.subTitle.unsubscribe();
     this.subDesc.unsubscribe();
 
@@ -129,35 +131,37 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
     this.socket.emit('accountInfo');
 
-    this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
-      const player = resPlayer as Profile;
-      if (player.membre_id) {
-        this.profile = player;
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((resPlayer: object) => {
+        const player = resPlayer as Profile;
+        if (player.membre_id) {
+          this.profile.set(player);
 
-        this.subTitle = this.translate
-          .get('Player profile:')
-          .subscribe((res: string) => {
-            this.titleService.setTitle(res + ' ' + player.username);
-          });
-        this.subDesc = this.translate
-          .get('Visualize the statistics of')
-          .subscribe((res: string) => {
-            this.metaService.removeTag('name=description');
-            this.metaService.addTag({
-              name: 'description',
-              content: res + ' ' + player.username,
+          this.subTitle = this.translate
+            .get('Player profile:')
+            .subscribe((res: string) => {
+              this.titleService.setTitle(res + ' ' + player.username);
             });
+          this.subDesc = this.translate
+            .get('Visualize the statistics of')
+            .subscribe((res: string) => {
+              this.metaService.removeTag('name=description');
+              this.metaService.addTag({
+                name: 'description',
+                content: res + ' ' + player.username,
+              });
+            });
+          this.socket.onChange.emit({
+            action: 'addDest',
+            username: player.username,
           });
-        this.socket.onChange.emit({
-          action: 'addDest',
-          username: player.username,
-        });
-      }
-    });
+        }
+      });
   }
 
   report() {
     this.reported = 1;
-    this.socket.emit('problemReport', { type: 1, id: this.profile.membre_id });
+    this.socket.emit('problemReport', { type: 1, id: this.profile().membre_id });
   }
 }

@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sanctuary-strength-help-popup',
   templateUrl: './sanctuary-strength-help-popup.sub-component.html',
-  imports: [TranslateModule],
+  imports: [TranslateDirective],
 })
 export class SanctuaryStrengthHelpPopupSubComponent {
   translate = inject(TranslateService);

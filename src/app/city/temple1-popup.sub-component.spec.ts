@@ -8,7 +8,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
@@ -23,7 +23,7 @@ describe('Temple1PopupSubComponent', () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        TranslateModule.forRoot({
+        TranslateDirective.forRoot({
           loader: provideTranslateHttpLoader({
             prefix: './assets/i18n/',
             suffix: '.json',

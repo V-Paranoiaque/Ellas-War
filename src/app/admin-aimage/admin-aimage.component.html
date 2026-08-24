@@ -12,17 +12,14 @@
 
             <div class="row">
               @for (p of adminImageAlliance; track p) {
-                <div class="col-12 col-lg-3 text-center">
-                  {{ p.alliance_name }}<br />
-                  @if (p.alliance_img) {
-                    <img
-                      src="{{ user.getConfig().url }}/pprofile/{{
+              <div class="col-12 col-lg-3 text-center">
+                {{ p.alliance_name }}<br />
+                @if (p.alliance_img) {
+                <img src="{{ user.getConfig().url }}/pprofile/{{
                         p.alliance_img
-                      }}"
-                      class="img-fluid center-block"
-                      alt="{{ p.alliance_name }}" />
-                  }
-                </div>
+                      }}" class="img-fluid center-block" alt="{{ p.alliance_name }}" />
+                }
+              </div>
               }
             </div>
           </div>

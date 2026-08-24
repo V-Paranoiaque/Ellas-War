@@ -1,16 +1,17 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { MessageContent } from 'src/services/message.class';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { MessageContent } from '../../services/message.class';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { FormsModule } from '@angular/forms';
 
+import { LocaleService } from '../../services/locale.service';
 import { AttacksHistorySubComponent } from './attacks-history.sub-component';
 import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { SanctuaryIncludeComponent } from '../sanctuary/sanctuary-include.component';
@@ -36,13 +37,15 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
     MainLeftSubComponent,
     MainRightSubComponent,
     SanctuaryIncludeComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly scroller = inject(ViewportScroller);
 
   public attackMode: number;

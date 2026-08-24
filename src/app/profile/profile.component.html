@@ -7,40 +7,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" translate>Report the profile</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           @if (reported === 0) {
-            {{
-              'Are you sure that you want to signal the profile of { value }?'
-                | translate: { value: profile.username }
-            }}
+          {{
+          'Are you sure that you want to signal the profile of { value }?'
+          | translate: { value: profile().username }
+          }}
           } @else {
-            <span class="text-danger" translate
-              >The profile has been reported, we will check it shortly</span
-            >
+          <span class="text-danger" translate>The profile has been reported, we will check it shortly</span>
           }
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            translate>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
             Close
           </button>
           @if (reported === 0) {
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="report()"
-              translate>
-              Confirm
-            </button>
+          <button type="button" class="btn btn-primary" (click)="report()" translate>
+            Confirm
+          </button>
           }
         </div>
       </div>
@@ -56,136 +42,112 @@
       <div class="d-flex column-block">
         <div class="column left-column flex-grow-1"></div>
         <div class="card container px-0">
-          @if (!profile.username) {
-            <div class="card-body text-center">
-              <br />
-              <span translate>This account does not exist</span>
-              <br />
-              <br />
-            </div>
+          @if (!profile().username) {
+          <div class="card-body text-center">
+            <br />
+            <span translate>This account does not exist</span>
+            <br />
+            <br />
+          </div>
           }
-          @if (profile.username) {
-            <div class="card-body">
-              <h1 class="text-center">
-                {{ profile.username }}
-                @if (user.getPropertyNb('id') === profile.membre_id) {
-                  <button
-                    class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#AccountInformation"
-                    title="{{ 'Change account information' | translate }}">
-                    <app-ic-icon [icon]="userCircle"></app-ic-icon>
-                  </button>
+          @if (profile().username) {
+          <div class="card-body">
+            <h1 class="text-center">
+              {{ profile().username }}
+              @if (user.getPropertyNb('id') === profile().membre_id) {
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AccountInformation"
+                title="{{ 'Change account information' | translate }}">
+                <app-ic-icon [icon]="userCircle"></app-ic-icon>
+              </button>
+              }
+              @if (user.getPropertyNb('mstatus') === 1) {
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#MsgNew"
+                title="{{ 'Write a new message' | translate }}">
+                <app-ic-icon [icon]="brushIcon"></app-ic-icon>
+              </button>
+              }
+              @if (user.getPropertyNb('mstatus') > 0) {
+              <button class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#AccountReport"
+                title="{{ 'Report the profile' | translate }}">
+                <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
+              </button>
+              }
+              @if (user.getPropertyNb('rank') > 1) {
+              <a [routerLink]="['/admin/profile/' + profile().membre_id]" class="btn btn-danger">
+                <app-ic-icon [icon]="userShield"></app-ic-icon>
+              </a>
+              }
+            </h1>
+            <br />
+            <br />
+            <div class="row justify-content-center">
+              <div class="col-lg-8 col-sm-6 col-12">
+                @if (profile().membre_img) {
+                <img src="{{ user.getConfig().url }}/pprofile/{{
+                        profile().membre_img
+                      }}" class="img-fluid center-block" alt="{{ profile().username }}" />
                 }
-                @if (user.getPropertyNb('mstatus') === 1) {
-                  <button
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#MsgNew"
-                    title="{{ 'Write a new message' | translate }}">
-                    <app-ic-icon [icon]="brushIcon"></app-ic-icon>
-                  </button>
-                }
-                @if (user.getPropertyNb('mstatus') > 0) {
-                  <button
-                    class="btn btn-warning text-white"
-                    data-bs-toggle="modal"
-                    data-bs-target="#AccountReport"
-                    title="{{ 'Report the profile' | translate }}">
-                    <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
-                  </button>
-                }
-                @if (user.getPropertyNb('rank') > 1) {
-                  <a
-                    [routerLink]="['/admin/profile/' + profile.membre_id]"
-                    class="btn btn-danger">
-                    <app-ic-icon [icon]="userShield"></app-ic-icon>
-                  </a>
-                }
-              </h1>
-              <br />
-              <br />
-              <div class="row justify-content-center">
-                <div class="col-lg-8 col-sm-6 col-12">
-                  @if (profile.membre_img) {
-                    <img
-                      src="{{ user.getConfig().url }}/pprofile/{{
-                        profile.membre_img
-                      }}"
-                      class="img-fluid center-block"
-                      alt="{{ profile.username }}" />
-                  }
-                </div>
-                <div class="col-lg-4 col-sm-6 col-12">
-                  <strong translate>Level</strong><strong translate>:</strong>
-                  {{ profile.level }}
-                  <br />
-                  <strong translate>XP</strong><strong translate>:</strong>
-                  {{
-                    profile.xp | number: '' : this.translate.getCurrentLang()
-                  }}
-                  <br />
-                  <strong translate>Victories</strong
-                  ><strong translate>:</strong>
-                  {{
-                    profile.victory
-                      | number: '' : this.translate.getCurrentLang()
-                  }}
-                  <br />
-                  <strong translate>Field</strong><strong translate>:</strong>
-                  {{
-                    profile.field | number: '' : this.translate.getCurrentLang()
-                  }}
-                  <br />
-                  <strong translate>Feats of Strength</strong
-                  ><strong translate>:</strong>
-                  {{
-                    profile.featsofstrength
-                      | number: '' : this.translate.getCurrentLang()
-                  }}
-                  <br />
-                  @if (profile.alliance > 0) {
-                    <div>
-                      <strong
-                        >{{ 'Alliance' | translate
-                        }}{{ ':' | translate }}</strong
-                      >
-                      <a
-                        [routerLink]="['/allianceprofile/' + profile.alliance]"
-                        >{{ profile.alliance_name }}</a
-                      >
-                      @if (profile.rank_name !== '') {
-                        <div>
-                          <strong translate>Rank</strong
-                          ><strong translate>:</strong>
-                          {{ profile.rank_name }}
-                        </div>
-                      }
-                    </div>
-                  }
-                  @if (profile.location !== '') {
-                    <div>
-                      <strong translate>Location</strong
-                      ><strong translate>:</strong>
-                      {{ profile.location }}
-                    </div>
-                  }
-                  @if (profile.inscription > 0) {
-                    <div>
-                      <strong translate>Register date</strong
-                      ><strong translate>:</strong>
-                      {{ profile.inscription * 1000 | date: 'dd/MM/yyyy' }}
-                    </div>
-                  }
-                </div>
-                <div class="col-8 col-12">
-                  <br /><br />
-                  <div class="text-justify text-prewrap">
-                    {{ profile.description }}
+              </div>
+              <div class="col-lg-4 col-sm-6 col-12">
+                <strong translate>Level</strong><strong translate>:</strong>
+                {{ profile().level }}
+                <br />
+                <strong translate>XP</strong><strong translate>:</strong>
+                {{
+                profile().xp | number: '' : currentLocale()
+                }}
+                <br />
+                <strong translate>Victories</strong><strong translate>:</strong>
+                {{
+                profile().victory
+                | number: '' : currentLocale()
+                }}
+                <br />
+                <strong translate>Field</strong><strong translate>:</strong>
+                {{
+                profile().field | number: '' : currentLocale()
+                }}
+                <br />
+                <strong translate>Feats of Strength</strong><strong translate>:</strong>
+                {{
+                profile().featsofstrength
+                | number: '' : currentLocale()
+                }}
+                <br />
+                @if (profile().alliance > 0) {
+                <div>
+                  <strong>{{ 'Alliance' | translate
+                    }}{{ ':' | translate }}</strong>
+                  <a [routerLink]="['/allianceprofile/' + profile().alliance]">{{ profile().alliance_name }}</a>
+                  @if (profile().rank_name !== '') {
+                  <div>
+                    <strong translate>Rank</strong><strong translate>:</strong>
+                    {{ profile().rank_name }}
                   </div>
+                  }
+                </div>
+                }
+                @if (profile().location !== '') {
+                <div>
+                  <strong translate>Location</strong><strong translate>:</strong>
+                  {{ profile().location }}
+                </div>
+                }
+                @if (profile().inscription > 0) {
+                <div>
+                  <strong translate>Register date</strong><strong translate>:</strong>
+                  {{ profile().inscription * 1000 | date: 'dd/MM/yyyy' }}
+                </div>
+                }
+              </div>
+              <div class="col-8 col-12">
+                <br /><br />
+                <div class="text-justify text-prewrap">
+                  {{ profile().description }}
                 </div>
               </div>
             </div>
+          </div>
           }
         </div>
         <div class="column right-column flex-grow-1"></div>

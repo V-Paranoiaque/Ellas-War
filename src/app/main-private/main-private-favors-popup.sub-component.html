@@ -5,49 +5,41 @@
         <h5 class="modal-title" translate>
           Get Favors and improve your progress in the game!
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       @if (favor.id > 0) {
-        <div class="modal-body">
-          @if (favor.id === 1) {
-            <h5 class="modal-title" translate>Support of Deimos</h5>
-          }
-          @if (favor.id === 2) {
-            <h5 class="modal-title" translate>Support of Leonidas</h5>
-          }
-          @if (favor.id === 4) {
-            <h5 class="modal-title" translate>Support of Hebe</h5>
-          }
-          @if (favor.id === 5) {
-            <h5 class="modal-title" translate>Support of Plutus</h5>
-          }
-          @if (favor.id === 6) {
-            <h5 class="modal-title" translate>Support of Helios</h5>
-          }
-          @if (favor.error > 0) {
-            <div class="text-danger fw-bold text-center" translate>
-              Favor successfully validated
-            </div>
-          }
-          <div class="text-center">
-            <strong translate>Cost:</strong>
-            1 <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
-            <br />
-            @if (user.getPropertyNb('favor') > 0) {
-              <button
-                type="button"
-                class="btn btn-primary"
-                (click)="useFavor()"
-                translate>
-                Validate
-              </button>
-            }
-          </div>
+      <div class="modal-body">
+        @if (favor.id === 1) {
+        <h5 class="modal-title" translate>Support of Deimos</h5>
+        }
+        @if (favor.id === 2) {
+        <h5 class="modal-title" translate>Support of Leonidas</h5>
+        }
+        @if (favor.id === 4) {
+        <h5 class="modal-title" translate>Support of Hebe</h5>
+        }
+        @if (favor.id === 5) {
+        <h5 class="modal-title" translate>Support of Plutus</h5>
+        }
+        @if (favor.id === 6) {
+        <h5 class="modal-title" translate>Support of Helios</h5>
+        }
+        @if (favor.error > 0) {
+        <div class="text-danger fw-bold text-center" translate>
+          Favor successfully validated
         </div>
+        }
+        <div class="text-center">
+          <strong translate>Cost:</strong>
+          1 <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+          <br />
+          @if (user.getPropertyNb('favor') > 0) {
+          <button type="button" class="btn btn-primary" (click)="useFavor()" translate>
+            Validate
+          </button>
+          }
+        </div>
+      </div>
       }
       <div class="modal-body">
         <div class="container">
@@ -57,17 +49,13 @@
                 <span translate>Favors</span>
                 <span translate>:</span>
                 {{
-                  user.getPropertyNb('favor')
-                    | number: '' : this.translate.getCurrentLang()
+                user.getPropertyNb('favor')
+                | number: '' : currentLocale()
                 }}
                 <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
               </div>
-              <div
-                class="card-button card-button-primary mt-2"
-                [routerLink]="['/getfavors']"
-                data-bs-dismiss="modal"
-                role="button"
-                translate>
+              <div class="card-button card-button-primary mt-2" [routerLink]="['/getfavors']" data-bs-dismiss="modal"
+                role="button" translate>
                 Get Favors
               </div>
             </div>
@@ -85,16 +73,10 @@
                   <div class="text-center">
                     <strong translate>Cost:</strong>
                     1
-                    <app-ew-icon
-                      name="favor"
-                      class="small-resource"></app-ew-icon>
+                    <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
                   </div>
                 </div>
-                <div
-                  class="card-button card-button-primary"
-                  (click)="selectFavor(1)"
-                  role="button"
-                  translate>
+                <div class="card-button card-button-primary" (click)="selectFavor(1)" role="button" translate>
                   Get
                 </div>
               </div>
@@ -104,30 +86,21 @@
               <div class="card flex-grow-1">
                 <div class="card-header" translate>Support of Leonidas</div>
                 <div class="card-body">
-                  @if (user.getPropertyNb('level') < 10) {
-                    <span>+160&nbsp;</span>
-                  }
-                  @if (user.getPropertyNb('level') >= 10) {
+                  @if (user.getPropertyNb('level') < 10) { <span>+160&nbsp;</span>
+                    }
+                    @if (user.getPropertyNb('level') >= 10) {
                     <span>+240&nbsp;</span>
-                  }
-                  <span translate>Spartans</span> (<span translate
-                    >Divine Bonus</span
-                  >)
+                    }
+                    <span translate>Spartans</span> (<span translate>Divine Bonus</span>)
 
-                  <div translate>+200 Spies</div>
-                  <div class="text-center">
-                    <strong translate>Cost:</strong>
-                    1
-                    <app-ew-icon
-                      name="favor"
-                      class="small-resource"></app-ew-icon>
-                  </div>
+                    <div translate>+200 Spies</div>
+                    <div class="text-center">
+                      <strong translate>Cost:</strong>
+                      1
+                      <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
+                    </div>
                 </div>
-                <div
-                  class="card-button card-button-primary"
-                  (click)="selectFavor(2)"
-                  role="button"
-                  translate>
+                <div class="card-button card-button-primary" (click)="selectFavor(2)" role="button" translate>
                   Get
                 </div>
               </div>
@@ -144,16 +117,10 @@
                   <div class="text-center">
                     <strong translate>Cost:</strong>
                     1
-                    <app-ew-icon
-                      name="favor"
-                      class="small-resource"></app-ew-icon>
+                    <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
                   </div>
                 </div>
-                <div
-                  class="card-button card-button-primary"
-                  (click)="selectFavor(4)"
-                  role="button"
-                  translate>
+                <div class="card-button card-button-primary" (click)="selectFavor(4)" role="button" translate>
                   Get
                 </div>
               </div>
@@ -169,16 +136,10 @@
                   <div class="text-center">
                     <strong translate>Cost:</strong>
                     1
-                    <app-ew-icon
-                      name="favor"
-                      class="small-resource"></app-ew-icon>
+                    <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
                   </div>
                 </div>
-                <div
-                  class="card-button card-button-primary"
-                  (click)="selectFavor(5)"
-                  role="button"
-                  translate>
+                <div class="card-button card-button-primary" (click)="selectFavor(5)" role="button" translate>
                   Get
                 </div>
               </div>
@@ -195,16 +156,10 @@
                   <div class="text-center">
                     <strong translate>Cost:</strong>
                     1
-                    <app-ew-icon
-                      name="favor"
-                      class="small-resource"></app-ew-icon>
+                    <app-ew-icon name="favor" class="small-resource"></app-ew-icon>
                   </div>
                 </div>
-                <div
-                  class="card-button card-button-primary"
-                  (click)="selectFavor(6)"
-                  role="button"
-                  translate>
+                <div class="card-button card-button-primary" (click)="selectFavor(6)" role="button" translate>
                   Get
                 </div>
               </div>
@@ -213,11 +168,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          translate>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
           Close
         </button>
       </div>

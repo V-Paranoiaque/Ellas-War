@@ -1,12 +1,13 @@
 import { RouterModule } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -21,12 +22,14 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class DetailsComponent implements OnInit {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   Tools = Tools;
 

@@ -11,24 +11,20 @@
                 Production of drachmas by number of mints
               </div>
               @for (prod of list; track prod; let i = $index) {
-                @if (i > 0) {
-                  <div
-                    class="col-lg-3 col-6 d-flex"
-                    [ngClass]="{
+              @if (i > 0) {
+              <div class="col-lg-3 col-6 d-flex" [ngClass]="{
                       'text-danger': i === user.getPropertyNb('mint'),
                     }">
-                    <div>{{ i }}</div>
-                    <div class="flex-grow-1 text-end">
-                      {{
-                        prod
-                          | number: '1.0-0' : this.translate.getCurrentLang()
-                      }}&nbsp;
-                      <app-ew-icon
-                        name="drachma"
-                        class="small-resource"></app-ew-icon>
-                    </div>
-                  </div>
-                }
+                <div>{{ i }}</div>
+                <div class="flex-grow-1 text-end">
+                  {{
+                  prod
+                  | number: '1.0-0' : currentLocale()
+                  }}&nbsp;
+                  <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+                </div>
+              </div>
+              }
               }
             </div>
           </div>

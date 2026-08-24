@@ -2,13 +2,14 @@ import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { LocaleService } from '../../services/locale.service';
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
@@ -22,13 +23,15 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
     FormsModule,
     MainPrivateBottomMenuSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AdminAgoraComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public list: {
     seller_id: number;

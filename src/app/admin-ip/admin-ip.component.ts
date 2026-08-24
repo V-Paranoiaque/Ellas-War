@@ -1,13 +1,14 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
 
+import { LocaleService } from '../../services/locale.service';
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 @Component({
@@ -20,7 +21,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
     EwIconSubComponent,
     MainPrivateBottomMenuSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminIpComponent implements OnInit, OnDestroy {
@@ -28,6 +29,7 @@ export class AdminIpComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly route = inject(ActivatedRoute);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public list: {
     players: {

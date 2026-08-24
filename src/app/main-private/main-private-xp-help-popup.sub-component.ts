@@ -3,12 +3,12 @@ import { UserComponent as User } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-main-private-xp-help-popup',
   templateUrl: './main-private-xp-help-popup.sub-component.html',
-  imports: [FormsModule, RouterModule, TranslateModule],
+  imports: [FormsModule, RouterModule, TranslateDirective],
 })
 export class MainPrivateXpHelpPopupSubComponent {
   user = inject(User);

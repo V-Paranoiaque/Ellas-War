@@ -3,10 +3,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
-import { SocketComponent as Socket } from 'src/services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { UserComponent as User } from 'src/services/user.service';
-import { ToolsComponent as Tools } from 'src/services/tools.service';
+import { SocketComponent as Socket } from '../../services/socketio.service';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { ToolsComponent as Tools } from '../../services/tools.service';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 
@@ -32,11 +32,12 @@ import { Temple2PopupSubComponent } from './temple2-popup.sub-component';
 import { Temple3PopupSubComponent } from './temple3-popup.sub-component';
 import { Temple4PopupSubComponent } from './temple4-popup.sub-component';
 import { TreasurePopupSubComponent } from './treasure-popup.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { QuestsIncludeComponent } from '../quests/quests-include.component';
+import { LocaleService } from '../../services/locale.service';
 
 import cloud from '@iconify/icons-fa6-solid/cloud';
 import cog from '@iconify/icons-fa6-solid/gear';
@@ -81,7 +82,8 @@ import waterWave from '@iconify/icons-emojione-monotone/water-wave';
     MainRightSubComponent,
     QuestsIncludeComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class CityComponent implements OnInit, OnDestroy {
@@ -89,6 +91,7 @@ export class CityComponent implements OnInit, OnDestroy {
   user = inject(User);
   translate = inject(TranslateService);
   private readonly titleService = inject(Title);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   private subTitle: Subscription;
   buildingInfo = {

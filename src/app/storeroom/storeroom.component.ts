@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { StoreroomHistoryPopupSubComponent } from './storeroom-history-popup.sub-component';
@@ -32,13 +33,15 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     RouterModule,
     StoreroomHistoryPopupSubComponent,
     StoreroomSellHelpPopupSubComponent,
-    TranslateModule,
+    TranslatePipe,
+    TranslateDirective,
   ],
 })
 export class StoreroomComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   private storeroomList: {
     resource_id: number;

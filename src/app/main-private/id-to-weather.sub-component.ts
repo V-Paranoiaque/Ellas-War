@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import cloudSun from '@iconify/icons-fa6-solid/cloud-sun';
 import cloudRain from '@iconify/icons-fa6-solid/cloud-rain';
@@ -8,12 +7,12 @@ import snowflake from '@iconify/icons-fa6-solid/snowflake';
 import sun from '@iconify/icons-fa6-solid/sun';
 import wind from '@iconify/icons-fa6-solid/wind';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 
 @Component({
   selector: 'app-id-to-weather',
   templateUrl: './id-to-weather.sub-component.html',
-  imports: [IcIconComponent, TranslateModule],
+  imports: [IcIconComponent],
 })
 export class IdToWeatherSubComponent {
   @Input()

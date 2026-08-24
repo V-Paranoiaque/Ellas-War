@@ -1,14 +1,15 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { LocaleService } from '../../services/locale.service';
 import { AdminLeftMenuSubComponent } from './admin-left-menu.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import eye from '@iconify/icons-fa6-solid/eye';
@@ -23,7 +24,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
     IcIconComponent,
     MainPrivateBottomMenuSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminComponent implements OnInit, OnDestroy {
@@ -31,6 +32,8 @@ export class AdminComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
+  private readonly destroyRef = inject(DestroyRef)
 
   public adminStats = {
     honor_last_time: 0,
@@ -38,19 +41,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     daily_last_time: 0,
     weekly_last_time: 0,
   };
-  public apiInfo = {
+  public apiInfo = signal({
     uptime: 0,
     timestamp: 0,
     min: 0,
-  };
-
-  private sub: Subscription;
+  });
 
   eye = eye;
-
-  constructor() {
-    this.sub = new Subscription();
-  }
 
   ngOnInit() {
     this.user.checkPermissions([1]);
@@ -58,9 +55,15 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.socket.emit('adminStats');
 
     const url = this.socket.url + '/api.json';
-    this.sub = this.http.get(url).subscribe(result => {
-      this.apiInfo = result as typeof this.apiInfo;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(result => {
+        this.apiInfo.set(result as {
+          uptime: number;
+          timestamp: number;
+          min: number;
+        })
+      });
 
     this.socket.on('adminStats', (msg: object) => {
       this.adminStats = msg as typeof this.adminStats;
@@ -69,6 +72,5 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('adminStats');
-    this.sub.unsubscribe();
   }
 }

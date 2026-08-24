@@ -1,21 +1,37 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
 
+type AllianceProfile = {
+  alliance_id: number;
+  alliance_name: string;
+  alliance_type: number;
+  recruitement_open: number;
+  alliance_img: string;
+  chief_id: number;
+  username: string;
+  creator_id: number;
+  founder: string;
+  nbmembers: number;
+  victories: number;
+  defeats: number;
+  description: string;
+}
 @Component({
   selector: 'app-allianceprofile',
   templateUrl: './allianceprofile.component.html',
@@ -25,7 +41,8 @@ import userPlus from '@iconify/icons-fa6-solid/user-plus';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AllianceprofileComponent implements OnInit, OnDestroy {
@@ -36,13 +53,13 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
+  private readonly destroyRef = inject(DestroyRef);
 
-  private subMembers: Subscription;
   private subProfile1: Subscription;
   private subProfile2: Subscription;
   private subDesc: Subscription;
 
-  allianceProfile = {
+  allianceProfile = signal<AllianceProfile>({
     alliance_id: 0,
     alliance_name: '',
     alliance_type: 0,
@@ -56,19 +73,18 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
     victories: 0,
     defeats: 0,
     description: '',
-  };
+  });
   public reported = 0;
 
   userPlus = userPlus;
   triangleExclamation = triangleExclamation;
 
   constructor() {
-    this.allianceProfile.alliance_img =
+    this.allianceProfile().alliance_img =
       '../assets/styles/' +
       Tools.getStyle(this.user.getProperty('style') as string) +
       '/default-profile.webp';
 
-    this.subMembers = new Subscription();
     this.subProfile1 = new Subscription();
     this.subProfile2 = new Subscription();
     this.subDesc = new Subscription();
@@ -84,7 +100,6 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('allianceMembersRefresh');
-    this.subMembers.unsubscribe();
     this.subProfile1.unsubscribe();
     this.subProfile2.unsubscribe();
     this.subDesc.unsubscribe();
@@ -96,44 +111,46 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
       this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
     if (id) {
-      this.subMembers = this.http.get(url).subscribe(alli => {
-        const profile = alli as typeof this.allianceProfile;
-        if (profile.alliance_id) {
-          this.allianceProfile = profile;
+      this.http.get(url)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(alli => {
+          const profile = alli as AllianceProfile;
+          if (profile.alliance_id) {
+            this.allianceProfile.set(profile);
 
-          this.subProfile1 = this.translate
-            .get('Alliance profile')
-            .subscribe((res1: string) => {
-              this.subProfile2 = this.translate
-                .get(':')
-                .subscribe((res2: string) => {
-                  this.titleService.setTitle(
-                    res1 + res2 + ' ' + this.allianceProfile.alliance_name
-                  );
-                });
-            });
-          this.subDesc = this.translate
-            .get('Visualize the statistics of the alliance')
-            .subscribe((res: string) => {
-              this.metaService.removeTag('name=description');
-              this.metaService.addTag({
-                name: 'description',
-                content: res + ' ' + this.allianceProfile.alliance_name,
+            this.subProfile1 = this.translate
+              .get('Alliance profile')
+              .subscribe((res1: string) => {
+                this.subProfile2 = this.translate
+                  .get(':')
+                  .subscribe((res2: string) => {
+                    this.titleService.setTitle(
+                      res1 + res2 + ' ' + this.allianceProfile().alliance_name
+                    );
+                  });
               });
-            });
-        } else {
-          this.subProfile1 = this.translate
-            .get("This alliance doesn't exist")
-            .subscribe((res: string) => {
-              this.allianceProfile.alliance_name = res;
-            });
-        }
-      });
+            this.subDesc = this.translate
+              .get('Visualize the statistics of the alliance')
+              .subscribe((res: string) => {
+                this.metaService.removeTag('name=description');
+                this.metaService.addTag({
+                  name: 'description',
+                  content: res + ' ' + this.allianceProfile().alliance_name,
+                });
+              });
+          } else {
+            this.subProfile1 = this.translate
+              .get("This alliance doesn't exist")
+              .subscribe((res: string) => {
+                this.allianceProfile().alliance_name = res;
+              });
+          }
+        });
     } else {
       this.subProfile1 = this.translate
         .get("This alliance doesn't exist")
         .subscribe((res: string) => {
-          this.allianceProfile.alliance_name = res;
+          this.allianceProfile().alliance_name = res;
         });
     }
   }
@@ -142,7 +159,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
     this.reported = 1;
     this.socket.emit('problemReport', {
       type: 2,
-      id: this.allianceProfile.alliance_id,
+      id: this.allianceProfile().alliance_id,
     });
   }
 }

@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { LocaleService } from '../../services/locale.service';
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
 import { AdminQuestsTitleSubComponent } from './admin-quests-title.sub-component';
 import { environment } from './../../environments/environment';
 import { EwIconSubComponent } from '../../services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import brushIcon from '@iconify/icons-bi/brush';
@@ -28,13 +29,15 @@ import brushIcon from '@iconify/icons-bi/brush';
     FormsModule,
     IcIconComponent,
     MainPrivateBottomMenuSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
 })
 export class AdminQuestsComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public adminQuestList: {
     quest_id: number;

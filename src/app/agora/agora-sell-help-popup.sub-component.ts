@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-agora-sell-help-popup',
   templateUrl: './agora-sell-help-popup.sub-component.html',
   styleUrls: ['./agora.component.css'],
-  imports: [TranslateModule],
+  imports: [TranslateDirective, TranslatePipe],
 })
 export class AgoraSellHelpPopupSubComponent {
   user = inject(User);

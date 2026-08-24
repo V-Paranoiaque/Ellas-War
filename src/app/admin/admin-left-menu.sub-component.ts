@@ -1,9 +1,9 @@
 import { RouterModule } from '@angular/router';
 import { Component, inject } from '@angular/core';
-import { UserComponent as User } from 'src/services/user.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { TranslateDirective } from '@ngx-translate/core';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 
 import fileLines from '@iconify/icons-fa6-regular/file-lines';
 
@@ -14,7 +14,7 @@ import fileLines from '@iconify/icons-fa6-regular/file-lines';
     '../main-private/main-private.component.css',
     './admin.component.css',
   ],
-  imports: [IcIconComponent, RouterModule, TranslateModule],
+  imports: [IcIconComponent, RouterModule, TranslateDirective],
 })
 export class AdminLeftMenuSubComponent {
   user = inject(User);

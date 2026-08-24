@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { UserComponent as User } from 'src/services/user.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { IdToWeatherSubComponent } from './id-to-weather.sub-component';
 
+import { LocaleService } from '../../services/locale.service';
 import { environment } from '../../environments/environment';
 import { MainPrivateFavorsPopupSunComponent } from './main-private-favors-popup.sub-component';
 import { MainPrivateHonorHelpPopupSubComponent } from './main-private-honor-help-popup.sub-component';
@@ -38,12 +39,14 @@ import trophy from '@iconify/icons-fa6-solid/trophy';
     MainPrivateHonorHelpPopupSubComponent,
     MainPrivateXpHelpPopupSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class MainPrivateRightMenuSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   socket = inject(Socket);
 
   public ressList: string[];

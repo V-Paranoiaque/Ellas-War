@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ToolsComponent as Tools } from 'src/services/tools.service';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
+import { ToolsComponent as Tools } from '../../services/tools.service';
 import { RouterModule } from '@angular/router';
 
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
@@ -12,7 +12,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   selector: 'app-sitemap',
   templateUrl: './sitemap.component.html',
   imports: [
-    TranslateModule,
+    TranslateDirective,
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,

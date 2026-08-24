@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -18,14 +19,15 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     EwIconSubComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    RouterModule,
-    TranslateModule,
+    RouterModule, TranslatePipe,
+    TranslateDirective,
   ],
 })
 export class StatisticsComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   private agoraMyStats: { quantity: number; rate: number; solded: number }[];
   private agoraStats: { quantity: number; rate: number; solded: number }[];

@@ -1,14 +1,14 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import arrowLeft from '@iconify/icons-fa6-solid/arrow-left';
 import arrowRight from '@iconify/icons-fa6-solid/arrow-right';
 
 import { DiscoverthegameMenuSubComponent } from './discoverthegame-menu.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -21,7 +21,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class DiscoverthegameComponent implements OnInit, OnDestroy {

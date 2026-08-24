@@ -13,7 +13,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 describe('AppComponent', () => {
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        TranslateModule.forRoot({
+        TranslateDirective.forRoot({
           loader: provideTranslateHttpLoader({
             prefix: './assets/i18n/',
             suffix: '.json',

@@ -1,16 +1,19 @@
 import { Component, Input, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-alliance-archives-text',
   templateUrl: './alliance-archives-text.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, TranslateDirective, TranslatePipe],
 })
 export class AllianceArchivesTextSubComponent {
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   user = inject(User);
 
   @Input() msg!: {

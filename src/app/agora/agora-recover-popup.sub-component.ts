@@ -1,21 +1,23 @@
 import { Component, Input, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-agora-recover-popup',
   templateUrl: './agora-recover-popup.sub-component.html',
   styleUrls: ['./agora.component.css'],
-  imports: [CommonModule, EwIconSubComponent, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class AgoraRecoverPopupSubComponent {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() info!: {
     trade_id: number;

@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { OptionsAccountInformationPopupSubComponent } from './options-account-information-popup.sub-component';
@@ -33,7 +34,8 @@ import redo from '@iconify/icons-fa6-solid/rotate-right';
     OptionsAccountInformationPopupSubComponent,
     OptionsSponsoringInformationPopupSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class OptionsComponent implements OnInit, OnDestroy {
@@ -41,6 +43,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly router = inject(Router);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public accountPasswordPossible: number;
   private accountRenameCost: number;

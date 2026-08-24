@@ -6,28 +6,16 @@
       <div class="col-12 mb-2">
         <div class="card">
           <div class="d-flex justify-content-center">
-            <a
-              class="btn btn-primary flex-grow-1 design-background"
-              href="/agora"
-              [routerLink]="['/agora']"
-              title="{{ 'Player Ranking' | translate }}"
-              translate>
+            <a class="btn btn-primary flex-grow-1 design-background" href="/agora" [routerLink]="['/agora']"
+              title="{{ 'Player Ranking' | translate }}" translate>
               Agora
             </a>
-            <a
-              class="btn btn-primary flex-grow-1 design-background"
-              href="/storeroom"
-              [routerLink]="['/storeroom']"
-              title="{{ 'Honor Ranking' | translate }}"
-              translate>
+            <a class="btn btn-primary flex-grow-1 design-background" href="/storeroom" [routerLink]="['/storeroom']"
+              title="{{ 'Honor Ranking' | translate }}" translate>
               Storeroom
             </a>
-            <a
-              class="btn btn-danger flex-grow-1 design-background"
-              href="/statistics"
-              [routerLink]="['/statistics']"
-              title="{{ 'Alliance Ranking' | translate }}"
-              translate>
+            <a class="btn btn-danger flex-grow-1 design-background" href="/statistics" [routerLink]="['/statistics']"
+              title="{{ 'Alliance Ranking' | translate }}" translate>
               Statistics
             </a>
           </div>
@@ -42,149 +30,137 @@
               <strong id="titleLastWeek" translate>Sales of last week</strong>
             </div>
             @if (getAgoraStatsNb() === 0) {
-              <div class="text-center" translate>
-                No statistics available about last week
-              </div>
+            <div class="text-center" translate>
+              No statistics available about last week
+            </div>
             }
             <div class="table-responsive">
               @if (getAgoraStatsNb() > 0) {
-                <table
-                  class="table table-middle"
-                  aria-describedby="titleLastWeek">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col" translate>Average rate</th>
-                      <th scope="col" translate>Deposits</th>
-                      <th scope="col" translate>Sales</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (
-                      batch of getAgoraStats();
-                      track batch;
-                      let id = $index
+              <table class="table table-middle" aria-describedby="titleLastWeek">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" translate>Average rate</th>
+                    <th scope="col" translate>Deposits</th>
+                    <th scope="col" translate>Sales</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                  batch of getAgoraStats();
+                  track batch;
+                  let id = $index
+                  ) {
+                  <tr class="text-end">
+                    @if (
+                    id > 0 &&
+                    (batch.rate > 0 ||
+                    batch.quantity > 0 ||
+                    batch.solded > 0)
                     ) {
-                      <tr class="text-end">
-                        @if (
-                          id > 0 &&
-                          (batch.rate > 0 ||
-                            batch.quantity > 0 ||
-                            batch.solded > 0)
-                        ) {
-                          <td class="text-center">
-                            <app-ew-icon
-                              name="{{ Tools.getResName(id) }}"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                          <td>
-                            {{
-                              batch.rate
-                                | number
-                                  : '1.0-' +
-                                      Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.quantity
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                        }
-                      </tr>
+                    <td class="text-center">
+                      <app-ew-icon name="{{ Tools.getResName(id) }}" class="small-resource"></app-ew-icon>
+                    </td>
+                    <td>
+                      {{
+                      batch.rate
+                      | number
+                      : '1.0-' +
+                      Math.max(3, Tools.nbDigits(batch.rate))
+                      : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.quantity
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
                     }
-                  </tbody>
-                </table>
+                  </tr>
+                  }
+                </tbody>
+              </table>
               }
             </div>
           </div>
           <div class="card-body">
             <div class="text-center">
-              <strong id="titleLastWeek" translate
-                >Your sales from last week</strong
-              >
+              <strong id="titleLastWeek" translate>Your sales from last week</strong>
             </div>
             @if (getAgoraMyStatsNb() === 0) {
-              <div class="text-center" translate>
-                No statistics available about last week
-              </div>
+            <div class="text-center" translate>
+              No statistics available about last week
+            </div>
             }
             <div class="table-responsive">
               @if (getAgoraMyStatsNb() > 0) {
-                <table
-                  class="table table-middle"
-                  aria-describedby="titleLastWeek">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col" translate>Average rate</th>
-                      <th scope="col" translate>Deposits</th>
-                      <th scope="col" translate>Sales</th>
-                      <th scope="col" translate>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (
-                      batch of getAgoraMyStats();
-                      track batch;
-                      let id = $index
+              <table class="table table-middle" aria-describedby="titleLastWeek">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" translate>Average rate</th>
+                    <th scope="col" translate>Deposits</th>
+                    <th scope="col" translate>Sales</th>
+                    <th scope="col" translate>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                  batch of getAgoraMyStats();
+                  track batch;
+                  let id = $index
+                  ) {
+                  <tr class="text-end">
+                    @if (
+                    id > 0 &&
+                    (batch.rate > 0 ||
+                    batch.quantity > 0 ||
+                    batch.solded > 0)
                     ) {
-                      <tr class="text-end">
-                        @if (
-                          id > 0 &&
-                          (batch.rate > 0 ||
-                            batch.quantity > 0 ||
-                            batch.solded > 0)
-                        ) {
-                          <td class="text-center">
-                            <app-ew-icon
-                              name="{{ Tools.getResName(id) }}"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                          <td>
-                            {{
-                              batch.rate
-                                | number
-                                  : '1.0-' +
-                                      Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.quantity
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.rate * batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                            <app-ew-icon
-                              name="drachma"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                        }
-                      </tr>
+                    <td class="text-center">
+                      <app-ew-icon name="{{ Tools.getResName(id) }}" class="small-resource"></app-ew-icon>
+                    </td>
+                    <td>
+                      {{
+                      batch.rate
+                      | number
+                      : '1.0-' +
+                      Math.max(3, Tools.nbDigits(batch.rate))
+                      : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.quantity
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.rate * batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                      <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+                    </td>
                     }
-                  </tbody>
-                </table>
+                  </tr>
+                  }
+                </tbody>
+              </table>
               }
             </div>
           </div>
@@ -199,149 +175,137 @@
               <strong translate>Sales of last week</strong>
             </div>
             @if (getStoreroomStatsNb() === 0) {
-              <div class="text-center" translate>
-                No statistics available about last week
-              </div>
+            <div class="text-center" translate>
+              No statistics available about last week
+            </div>
             }
             <div class="table-responsive">
               @if (getStoreroomStatsNb() > 0) {
-                <table
-                  class="table table-middle"
-                  aria-describedby="titleLastWeek">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col" translate>Average rate</th>
-                      <th scope="col" translate>Deposits</th>
-                      <th scope="col" translate>Sales</th>
-                      <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (
-                      batch of getStoreroomStats();
-                      track batch;
-                      let id = $index
+              <table class="table table-middle" aria-describedby="titleLastWeek">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" translate>Average rate</th>
+                    <th scope="col" translate>Deposits</th>
+                    <th scope="col" translate>Sales</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                  batch of getStoreroomStats();
+                  track batch;
+                  let id = $index
+                  ) {
+                  <tr class="text-end">
+                    @if (
+                    id > 0 &&
+                    (batch.rate > 0 ||
+                    batch.quantity > 0 ||
+                    batch.solded > 0)
                     ) {
-                      <tr class="text-end">
-                        @if (
-                          id > 0 &&
-                          (batch.rate > 0 ||
-                            batch.quantity > 0 ||
-                            batch.solded > 0)
-                        ) {
-                          <td class="text-center">
-                            <app-ew-icon
-                              name="{{ Tools.getResName(id) }}"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                          <td>
-                            {{
-                              batch.rate
-                                | number
-                                  : '1.0-' +
-                                      Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.quantity
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                        }
-                      </tr>
+                    <td class="text-center">
+                      <app-ew-icon name="{{ Tools.getResName(id) }}" class="small-resource"></app-ew-icon>
+                    </td>
+                    <td>
+                      {{
+                      batch.rate
+                      | number
+                      : '1.0-' +
+                      Math.max(3, Tools.nbDigits(batch.rate))
+                      : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.quantity
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
                     }
-                  </tbody>
-                </table>
+                  </tr>
+                  }
+                </tbody>
+              </table>
               }
             </div>
           </div>
           <div class="card-body">
             <div class="text-center">
-              <strong id="titleLastWeek" translate
-                >Your sales from last week</strong
-              >
+              <strong id="titleLastWeek" translate>Your sales from last week</strong>
             </div>
             @if (getStoreroomMyStatsNb() === 0) {
-              <div class="text-center" translate>
-                No statistics available about last week
-              </div>
+            <div class="text-center" translate>
+              No statistics available about last week
+            </div>
             }
             <div class="table-responsive">
               @if (getStoreroomMyStatsNb() > 0) {
-                <table
-                  class="table table-middle"
-                  aria-describedby="titleLastWeek">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col" translate>Average rate</th>
-                      <th scope="col" translate>Deposits</th>
-                      <th scope="col" translate>Sales</th>
-                      <th scope="col" translate>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (
-                      batch of getStoreroomMyStats();
-                      track batch;
-                      let id = $index
+              <table class="table table-middle" aria-describedby="titleLastWeek">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col" translate>Average rate</th>
+                    <th scope="col" translate>Deposits</th>
+                    <th scope="col" translate>Sales</th>
+                    <th scope="col" translate>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                  batch of getStoreroomMyStats();
+                  track batch;
+                  let id = $index
+                  ) {
+                  <tr class="text-end">
+                    @if (
+                    id > 0 &&
+                    (batch.rate > 0 ||
+                    batch.quantity > 0 ||
+                    batch.solded > 0)
                     ) {
-                      <tr class="text-end">
-                        @if (
-                          id > 0 &&
-                          (batch.rate > 0 ||
-                            batch.quantity > 0 ||
-                            batch.solded > 0)
-                        ) {
-                          <td class="text-center">
-                            <app-ew-icon
-                              name="{{ Tools.getResName(id) }}"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                          <td>
-                            {{
-                              batch.rate
-                                | number
-                                  : '1.0-' +
-                                      Math.max(3, Tools.nbDigits(batch.rate))
-                                  : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.quantity
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                          </td>
-                          <td>
-                            {{
-                              batch.rate * batch.solded
-                                | number: '' : this.translate.getCurrentLang()
-                            }}
-                            <app-ew-icon
-                              name="drachma"
-                              class="small-resource"></app-ew-icon>
-                          </td>
-                        }
-                      </tr>
+                    <td class="text-center">
+                      <app-ew-icon name="{{ Tools.getResName(id) }}" class="small-resource"></app-ew-icon>
+                    </td>
+                    <td>
+                      {{
+                      batch.rate
+                      | number
+                      : '1.0-' +
+                      Math.max(3, Tools.nbDigits(batch.rate))
+                      : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.quantity
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                    </td>
+                    <td>
+                      {{
+                      batch.rate * batch.solded
+                      | number: '' : currentLocale()
+                      }}
+                      <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+                    </td>
                     }
-                  </tbody>
-                </table>
+                  </tr>
+                  }
+                </tbody>
+              </table>
               }
             </div>
           </div>

@@ -14,137 +14,101 @@
             <div class="text-center">
               <h1 id="honorDesc">
                 <span translate>Honor Ranking</span>
-                <app-ic-icon
-                  role="button"
-                  [icon]="crown"
-                  class="fs-3 ms-1"
-                  data-bs-toggle="modal"
-                  data-bs-target="#HonorHelpPopup"
-                  title="{{ 'Honor history' | translate }}"></app-ic-icon>
-                <app-ic-icon
-                  role="button"
-                  [icon]="questionCircle"
-                  class="fs-3 ms-1"
-                  data-bs-toggle="modal"
-                  data-bs-target="#honorHelp"
-                  title="{{ 'Honor' | translate }}"></app-ic-icon>
+                <app-ic-icon role="button" [icon]="crown" class="fs-3 ms-1" data-bs-toggle="modal"
+                  data-bs-target="#HonorHelpPopup" title="{{ 'Honor history' | translate }}"></app-ic-icon>
+                <app-ic-icon role="button" [icon]="questionCircle" class="fs-3 ms-1" data-bs-toggle="modal"
+                  data-bs-target="#honorHelp" title="{{ 'Honor' | translate }}"></app-ic-icon>
               </h1>
-              <span translate
-                >Every week, the player with the most honor earns a
-                reward.</span
-              >&nbsp;<span translate
-                >The honor is reset every Sunday morning at midnight.</span
-              >
+              <span translate>Every week, the player with the most honor earns a
+                reward.</span>&nbsp;<span translate>The honor is reset every Sunday morning at midnight.</span>
               @if (id > 0) {
-                <span>
-                  <br />
-                  <span>{{
-                    'Reward for the level { value }:' | translate: { value: id }
-                  }}</span
-                  >&nbsp;<span class="fw-bold"
-                    >{{
-                      getReward()
-                        | number: '' : this.translate.getCurrentLang()
-                    }}&nbsp;
-                    <app-ew-icon
-                      name="drachma"
-                      class="small-resource"></app-ew-icon
-                  ></span>
-                </span>
+              <span>
+                <br />
+                <span>{{
+                  'Reward for the level { value }:' | translate: { value: id }
+                  }}</span>&nbsp;<span class="fw-bold">{{
+                  getReward()
+                  | number: '' : currentLocale()
+                  }}&nbsp;
+                  <app-ew-icon name="drachma" class="small-resource"></app-ew-icon></span>
+              </span>
               }
               <br />
             </div>
 
-            <nav
-              class="mt-2 text-center"
-              attr.aria-label="{{
+            <nav class="mt-2 text-center" attr.aria-label="{{
                 'Select a level to display its honor ranking' | translate
               }}">
-              <button
-                class="btn btn-primary d-inline d-sm-none"
-                [ngClass]="{ active: id === 0 }"
-                [routerLink]="['/honor']"
-                translate>
+              <button class="btn btn-primary d-inline d-sm-none" [ngClass]="{ active: id === 0 }"
+                [routerLink]="['/honor']" translate>
                 Global ranking
               </button>
               <ul class="pagination justify-content-center">
-                <li
-                  class="page-item d-none d-sm-block"
-                  [ngClass]="{ active: id === 0 }">
+                <li class="page-item d-none d-sm-block" [ngClass]="{ active: id === 0 }">
                   <a class="page-link" [routerLink]="['/honor']">#</a>
                 </li>
                 @for (j of levels; track j; let i = $index) {
-                  <li class="page-item" [ngClass]="{ active: id === i + 1 }">
-                    <a
-                      class="page-link"
-                      [routerLink]="['/honor/' + (i + 1)]"
-                      rel="nofollow"
-                      >{{ i + 1 }}</a
-                    >
-                  </li>
+                <li class="page-item" [ngClass]="{ active: id === i + 1 }">
+                  <a class="page-link" [routerLink]="['/honor/' + (i + 1)]" rel="nofollow">{{ i + 1 }}</a>
+                </li>
                 }
               </ul>
             </nav>
 
-            @if (list.length === 0) {
-              <div class="text-center" translate>This ranking is empty</div>
+            @if (list().length === 0) {
+            <div class="text-center" translate>This ranking is empty</div>
             }
 
-            @if (list.length > 0) {
-              <table
-                class="table table-striped table-middle"
-                aria-describedby="honorDesc">
-                <thead>
-                  <tr>
-                    <th scope="col" translate>Player</th>
-                    @if (id === 10) {
-                      <th scope="col" translate>XP</th>
-                    }
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Field
-                    </th>
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Victories
-                    </th>
-                    <th scope="col" translate>Honor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (p of list; track p) {
-                    <tr>
-                      <td class="text-start">
-                        <app-user-profile
-                          id="{{ p.membre_id }}"
-                          username="{{ p.username }}"
-                          status="1"></app-user-profile>
-                      </td>
-                      @if (id === 10) {
-                        <td>
-                          {{
-                            p.xp | number: '' : this.translate.getCurrentLang()
-                          }}
-                        </td>
-                      }
-                      <td class="d-none d-sm-table-cell">
-                        {{
-                          p.field | number: '' : this.translate.getCurrentLang()
-                        }}
-                      </td>
-                      <td class="d-none d-sm-table-cell">
-                        {{
-                          p.victory
-                            | number: '' : this.translate.getCurrentLang()
-                        }}
-                      </td>
-                      <td>
-                        {{
-                          p.honor | number: '' : this.translate.getCurrentLang()
-                        }}
-                      </td>
-                    </tr>
+            @if (list().length > 0) {
+            <table class="table table-striped table-middle" aria-describedby="honorDesc">
+              <thead>
+                <tr>
+                  <th scope="col" translate>Player</th>
+                  @if (id === 10) {
+                  <th scope="col" translate>XP</th>
                   }
-                </tbody>
-              </table>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Field
+                  </th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Victories
+                  </th>
+                  <th scope="col" translate>Honor</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of list(); track p) {
+                <tr>
+                  <td class="text-start">
+                    <app-user-profile id="{{ p.membre_id }}" username="{{ p.username }}" status="1"></app-user-profile>
+                  </td>
+                  @if (id === 10) {
+                  <td>
+                    {{
+                    p.xp | number: '' : currentLocale()
+                    }}
+                  </td>
+                  }
+                  <td class="d-none d-sm-table-cell">
+                    {{
+                    p.field | number: '' : currentLocale()
+                    }}
+                  </td>
+                  <td class="d-none d-sm-table-cell">
+                    {{
+                    p.victory
+                    | number: '' : currentLocale()
+                    }}
+                  </td>
+                  <td>
+                    {{
+                    p.honor | number: '' : currentLocale()
+                    }}
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
             }
           </div>
         </div>

@@ -1,17 +1,18 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -31,7 +32,8 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
     MainMenuRankingSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
@@ -43,8 +45,10 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
+  private readonly destroyRef = inject(DestroyRef)
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
-  public rankingList: {
+  public rankingList = signal<{
     ranking: number;
     alliance_id: number;
     alliance_name: number;
@@ -53,26 +57,20 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
     nbmembers: number;
     victories: number;
     defeats: number;
-  }[];
-  public rankingMax: number;
-  public rankingOrder: string;
-  public rankingPage: number;
+  }[]>([]);
+  public rankingMax = signal(1);
+  public rankingOrder = signal('level');
+  public rankingPage = signal(1);
 
-  private subRank: Subscription;
   private subTitle: Subscription;
 
-  parseInt = parseInt;
+  parseInt = Number.parseInt;
   Tools = Tools;
 
   sortUP = sortUP;
   users = users;
 
   constructor() {
-    this.rankingList = [];
-    this.rankingMax = 1;
-    this.rankingOrder = 'level';
-    this.rankingPage = 1;
-    this.subRank = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -82,10 +80,10 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
       const rankingOrder = params.get('order');
 
       if (page) {
-        this.rankingPage = parseInt(page);
+        this.rankingPage.set(Number.parseInt(page));
       }
       if (rankingOrder) {
-        this.rankingOrder = rankingOrder;
+        this.rankingOrder.set(rankingOrder);
       }
 
       this.getPage();
@@ -103,7 +101,6 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.socket.removeListener('rankingAlliancesRefresh');
-    this.subRank.unsubscribe();
     this.subTitle.unsubscribe();
   }
 
@@ -111,28 +108,39 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url +
       '/api/rankingAlliances/' +
-      this.rankingPage.toString() +
+      this.rankingPage().toString() +
       '/' +
       this.rankingOrder +
       '.json';
 
-    this.subRank = this.http.get(url).subscribe((resResult: object) => {
-      const result = resResult as {
-        cPage: number;
-        max: number;
-        ranking: object[];
-        order: string;
-      };
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((resResult: object) => {
+        const result = resResult as {
+          cPage: number;
+          max: number;
+          ranking: object[];
+          order: string;
+        };
 
-      this.rankingPage = result.cPage;
-      this.rankingMax = result.max;
-      this.rankingList = result.ranking as typeof this.rankingList;
-      this.rankingOrder = result.order;
-    });
+        this.rankingPage.set(result.cPage);
+        this.rankingMax.set(result.max);
+        this.rankingList.set(result.ranking as {
+          ranking: number;
+          alliance_id: number;
+          alliance_name: number;
+          username: string;
+          chief_id: number;
+          nbmembers: number;
+          victories: number;
+          defeats: number;
+        }[]);
+        this.rankingOrder.set(result.order);
+      });
   }
 
   rankingChooseOrder(order: string) {
-    this.rankingOrder = order;
+    this.rankingOrder.set(order);
     this.getPage();
   }
 
@@ -141,11 +149,11 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
       page = 1;
     }
 
-    if (page > this.rankingMax) {
-      page = this.rankingMax;
+    if (page > this.rankingMax()) {
+      page = this.rankingMax();
     }
 
-    if (this.rankingOrder && this.rankingOrder != 'level') {
+    if (this.rankingOrder() && this.rankingOrder() != 'level') {
       void this.router.navigate([
         '/rankingalliances/' + page.toString() + '/' + this.rankingOrder,
       ]);

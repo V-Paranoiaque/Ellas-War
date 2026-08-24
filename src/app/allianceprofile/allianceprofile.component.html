@@ -4,40 +4,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" translate>Report the profile</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           @if (reported === 0) {
-            {{
-              'Are you sure that you want to signal the profile of { value }?'
-                | translate: { value: allianceProfile.alliance_name }
-            }}
+          {{
+          'Are you sure that you want to signal the profile of { value }?'
+          | translate: { value: allianceProfile().alliance_name }
+          }}
           } @else {
-            <span class="text-danger" translate
-              >The profile has been reported, we will check it shortly</span
-            >
+          <span class="text-danger" translate>The profile has been reported, we will check it shortly</span>
           }
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            translate>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
             Close
           </button>
           @if (reported === 0) {
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="report()"
-              translate>
-              Confirm
-            </button>
+          <button type="button" class="btn btn-primary" (click)="report()" translate>
+            Confirm
+          </button>
           }
         </div>
       </div>
@@ -55,48 +41,38 @@
         <div class="card container px-0">
           <div class="card-body">
             <h1 class="text-center" id="allianceProfileDesc">
-              {{ allianceProfile.alliance_name }}
+              {{ allianceProfile().alliance_name }}
 
               @if (
-                user.getPropertyNb('level') > 0 &&
-                user.getPropertyNb('alliance') === 0 &&
-                allianceProfile.alliance_type === 0
+              user.getPropertyNb('level') > 0 &&
+              user.getPropertyNb('alliance') === 0 &&
+              allianceProfile().alliance_type === 0
               ) {
-                <button
-                  class="btn btn-success"
-                  data-bs-toggle="modal"
-                  data-bs-target="#AllianceJoin"
-                  title="{{ 'Join the alliance:' | translate }} {{
-                    allianceProfile.alliance_name
-                  }}"
-                  [ngClass]="{
-                    invisible: allianceProfile.recruitement_open === 0,
+              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AllianceJoin" title="{{ 'Join the alliance:' | translate }} {{
+                    allianceProfile().alliance_name
+                  }}" [ngClass]="{
+                    invisible: allianceProfile().recruitement_open === 0,
                   }">
-                  <app-ic-icon [icon]="userPlus"></app-ic-icon>
-                  <span class="visually-hidden">
-                    {{ 'Join the alliance:' | translate }}
-                    {{ allianceProfile.alliance_name }}
-                  </span>
-                </button>
+                <app-ic-icon [icon]="userPlus"></app-ic-icon>
+                <span class="visually-hidden">
+                  {{ 'Join the alliance:' | translate }}
+                  {{ allianceProfile().alliance_name }}
+                </span>
+              </button>
               }
               @if (user.getPropertyNb('mstatus') > 0) {
-                <button
-                  class="btn btn-warning text-white"
-                  data-bs-toggle="modal"
-                  data-bs-target="#AccountReport"
-                  title="{{ 'Report the profile' | translate }}">
-                  <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
-                </button>
+              <button class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#AccountReport"
+                title="{{ 'Report the profile' | translate }}">
+                <app-ic-icon [icon]="triangleExclamation"></app-ic-icon>
+              </button>
               }
             </h1>
             <br />
             <div class="row">
               <div class="col-sm-6 col-12">
-                @if (allianceProfile.alliance_img !== '') {
-                  <img
-                    src="/aprofile/{{ allianceProfile.alliance_img }}"
-                    class="img-fluid center-block"
-                    alt="{{ allianceProfile.alliance_name }}" />
+                @if (allianceProfile().alliance_img !== '') {
+                <img src="/aprofile/{{ allianceProfile().alliance_img }}" class="img-fluid center-block"
+                  alt="{{ allianceProfile().alliance_name }}" />
                 }
               </div>
               <div class="col-sm-6 col-12">
@@ -104,19 +80,18 @@
                   <tr>
                     <th class="fw-bold" scope="row" translate>Chief:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td [routerLink]="['/profile/' + allianceProfile.chief_id]">
+                    <td [routerLink]="['/profile/' + allianceProfile().chief_id]">
                       <span role="button">
-                        {{ allianceProfile.username }}
+                        {{ allianceProfile().username }}
                       </span>
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-bold" scope="row" translate>Founder:</th>
                     <td>&nbsp;&nbsp;</td>
-                    <td
-                      [routerLink]="['/profile/' + allianceProfile.creator_id]">
+                    <td [routerLink]="['/profile/' + allianceProfile().creator_id]">
                       <span role="button">
-                        {{ allianceProfile.founder }}
+                        {{ allianceProfile().founder }}
                       </span>
                     </td>
                   </tr>
@@ -124,12 +99,10 @@
                     <th class="fw-bold" scope="row" translate>Members:</th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
-                      <a
-                        [routerLink]="[
-                          '/alliancemembers/' + allianceProfile.alliance_id,
-                        ]"
-                        class="link">
-                        {{ allianceProfile.nbmembers }}
+                      <a [routerLink]="[
+                          '/alliancemembers/' + allianceProfile().alliance_id,
+                        ]" class="link">
+                        {{ allianceProfile().nbmembers }}
                         (<span translate>Consult</span>)
                       </a>
                     </td>
@@ -138,20 +111,20 @@
                     <th class="fw-bold" scope="row" translate>Victories:</th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
-                      <span>{{ allianceProfile.victories }}</span>
+                      <span>{{ allianceProfile().victories }}</span>
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-bold" scope="row" translate>Defeats:</th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
-                      <span>{{ allianceProfile.defeats }}</span>
+                      <span>{{ allianceProfile().defeats }}</span>
                     </td>
                   </tr>
                 </table>
                 <br /><br />
                 <div class="text-justify text-prewrap">
-                  {{ allianceProfile.description }}
+                  {{ allianceProfile().description }}
                 </div>
               </div>
             </div>

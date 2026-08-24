@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { UserComponent as User } from 'src/services/user.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { UserComponent as User } from '../../services/user.service';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { LocaleService } from '../../services/locale.service';
 import { environment } from '../../environments/environment';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { IdToWeatherSubComponent } from './id-to-weather.sub-component';
 
 import angleDown from '@iconify/icons-fa6-solid/angle-down';
@@ -24,12 +25,14 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     IdToWeatherSubComponent,
     IcIconComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class MainPrivatePlayerInfoPopupSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public ressList: string[];
   public xpCompare: {

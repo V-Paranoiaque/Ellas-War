@@ -11,59 +11,54 @@
               Connected players
             </h1>
             <br />
-            @if (connected.length === 0) {
-              <div class="text-center fw-bold" translate>
-                No player connected
-              </div>
+            @if (connected().length === 0) {
+            <div class="text-center fw-bold" translate>
+              No player connected
+            </div>
             }
-            @if (connected.length > 0) {
-              <table class="table" aria-describedby="ConnectedPlayersDesc">
-                <thead>
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col" class="text-center" translate>Level</th>
-                    <th scope="col" class="text-center" translate>Field</th>
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Alliance
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (u of connected; track u) {
-                    <tr>
-                      <th scope="row">
-                        <app-user-profile
-                          id="{{ u.membre_id }}"
-                          username="{{ u.username }}"
-                          status="1"></app-user-profile>
-                        <a
-                          [routerLink]="['/allianceprofile/' + u.alliance]"
-                          class="fst-italic d-block d-sm-none">
-                          {{ u.alliance_name }}
-                        </a>
-                      </th>
-                      <td class="text-center">
-                        {{ u.level }}
-                      </td>
-                      <td class="text-end d-none d-sm-table-cell">
-                        {{
-                          u.field | number: '' : this.translate.getCurrentLang()
-                        }}
-                      </td>
-                      @if (u.alliance > 0) {
-                        <td class="d-none d-sm-table-cell">
-                          <a [routerLink]="['/allianceprofile/' + u.alliance]">
-                            {{ u.alliance_name }}
-                          </a>
-                        </td>
-                      }
-                      @if (u.alliance === 0) {
-                        <td translate>None</td>
-                      }
-                    </tr>
+            @if (connected().length > 0) {
+            <table class="table" aria-describedby="ConnectedPlayersDesc">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col" class="text-center" translate>Level</th>
+                  <th scope="col" class="text-center" translate>Field</th>
+                  <th scope="col" class="d-none d-sm-table-cell" translate>
+                    Alliance
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (u of connected(); track u) {
+                <tr>
+                  <th scope="row">
+                    <app-user-profile id="{{ u.membre_id }}" username="{{ u.username }}" status="1"></app-user-profile>
+                    <a [routerLink]="['/allianceprofile/' + u.alliance]" class="fst-italic d-block d-sm-none">
+                      {{ u.alliance_name }}
+                    </a>
+                  </th>
+                  <td class="text-center">
+                    {{ u.level }}
+                  </td>
+                  <td class="text-end d-none d-sm-table-cell">
+                    {{
+                    u.field | number: '' : currentLocale()
+                    }}
+                  </td>
+                  @if (u.alliance > 0) {
+                  <td class="d-none d-sm-table-cell">
+                    <a [routerLink]="['/allianceprofile/' + u.alliance]">
+                      {{ u.alliance_name }}
+                    </a>
+                  </td>
                   }
-                </tbody>
-              </table>
+                  @if (u.alliance === 0) {
+                  <td translate>None</td>
+                  }
+                </tr>
+                }
+              </tbody>
+            </table>
             }
           </div>
         </div>

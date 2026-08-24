@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 
 import facebookIcon from '@iconify-icons/logos/facebook';
 import questionCircle from '@iconify/icons-fa6-regular/circle-question';
@@ -22,7 +23,8 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
     EwIconSubComponent,
     IcIconComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
 })
 export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
@@ -30,6 +32,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly http = inject(HttpClient);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public localevars = {
     facebook: '',
@@ -46,7 +49,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.http
       .get(
-        './assets/i18n/' + this.translate.getCurrentLang() + '/localevars.json'
+        './assets/i18n/' + this.currentLocale() + '/localevars.json'
       )
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;

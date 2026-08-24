@@ -1,13 +1,13 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import angellistIcon from '@iconify-icons/fa6-brands/angellist';
@@ -22,7 +22,8 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
     IcIconComponent,
     MainPrivateBottomMenuSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AdminSupportMsgComponent implements OnInit, OnDestroy {
@@ -41,10 +42,10 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
       support_date: number;
     }[];
   } = {
-    title: '',
-    status: 0,
-    msg: [],
-  };
+      title: '',
+      status: 0,
+      msg: [],
+    };
   public answertext: string;
   private msg: number;
 

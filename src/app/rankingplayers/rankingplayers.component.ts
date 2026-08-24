@@ -1,16 +1,18 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, inject, signal, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainMenuRankingSubComponent } from '../main/main-menu-ranking.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -42,7 +44,8 @@ interface RankingLine {
     MainMenuRankingSubComponent,
     MainRightSubComponent,
     RankingplayersHelpPopupSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
@@ -53,28 +56,24 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly titleService = inject(Title);
+  private readonly destroyRef = inject(DestroyRef)
 
-  public rankingList: RankingLine[];
-  public rankingMax: number;
-  public rankingOrder: string;
-  public rankingPage: number;
+  public rankingList = signal<RankingLine[]>([])
+  public rankingMax = signal(1);
+  public rankingOrder = signal('level');
+  public rankingPage = signal(1);
 
-  private subRank: Subscription;
   private subTitle: Subscription;
 
-  parseInt = parseInt;
+  parseInt = Number.parseInt;
   Tools = Tools;
 
   questionCircle = questionCircle;
   sortUP = sortUP;
 
   constructor() {
-    this.rankingList = [];
-    this.rankingMax = 1;
-    this.rankingOrder = 'level';
-    this.rankingPage = 1;
-    this.subRank = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -84,10 +83,10 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
       const rankingOrder = params.get('order');
 
       if (page) {
-        this.rankingPage = parseInt(page);
+        this.rankingPage.set(Number.parseInt(page));
       }
       if (rankingOrder) {
-        this.rankingOrder = rankingOrder;
+        this.rankingOrder.set(rankingOrder);
       }
 
       this.getPage();
@@ -101,7 +100,6 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subRank.unsubscribe();
     this.subTitle.unsubscribe();
   }
 
@@ -109,27 +107,29 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url +
       '/api/rankingPlayers/' +
-      this.rankingPage.toString() +
+      this.rankingPage().toString() +
       '/' +
-      this.rankingOrder +
+      this.rankingOrder() +
       '.json';
 
-    this.subRank = this.http.get(url).subscribe(res => {
-      const result = res as {
-        cPage: number;
-        max: number;
-        ranking: RankingLine[];
-        order: string;
-      };
-      this.rankingPage = result.cPage;
-      this.rankingMax = result.max;
-      this.rankingList = result.ranking;
-      this.rankingOrder = result.order;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        const result = res as {
+          cPage: number;
+          max: number;
+          ranking: RankingLine[];
+          order: string;
+        };
+        this.rankingPage.set(result.cPage);
+        this.rankingMax.set(result.max);
+        this.rankingList.set(result.ranking);
+        this.rankingOrder.set(result.order);
+      });
   }
 
   rankingChooseOrder(order: string) {
-    this.rankingOrder = order;
+    this.rankingOrder.set(order);
     this.getPage();
   }
 
@@ -138,13 +138,13 @@ export class RankingplayersComponent implements OnInit, OnDestroy {
       page = 1;
     }
 
-    if (page > this.rankingMax) {
-      page = this.rankingMax;
+    if (page > this.rankingMax()) {
+      page = this.rankingMax();
     }
 
-    if (this.rankingOrder && this.rankingOrder != 'level') {
+    if (this.rankingOrder() && this.rankingOrder() != 'level') {
       void this.router.navigate([
-        '/rankingplayers/' + page.toString() + '/' + this.rankingOrder,
+        '/rankingplayers/' + page.toString() + '/' + this.rankingOrder(),
       ]);
     } else {
       void this.router.navigate(['/rankingplayers/' + page.toString()]);

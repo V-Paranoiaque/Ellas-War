@@ -1,16 +1,16 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
 import { UserComponent as User } from '../../services/user.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -28,7 +28,8 @@ import googleIcon from '@iconify-icons/logos/google-icon';
     MainRightSubComponent,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
@@ -39,12 +40,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   translate = inject(TranslateService);
   private readonly titleService = inject(Title);
   private readonly formBuilder = inject(FormBuilder);
+  private readonly destroyRef = inject(DestroyRef)
 
   registerForm: FormGroup;
   public rerror: number;
-  private subPlayer: Subscription;
   private subTitle: Subscription;
-  public login;
+  public login = signal('');
 
   facebookIcon = facebookIcon;
   googleIcon = googleIcon;
@@ -52,9 +53,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor() {
     this.registerForm = this.formBuilder.group({});
     this.rerror = 0;
-    this.subPlayer = new Subscription();
     this.subTitle = new Subscription();
-    this.login = '';
   }
 
   ngOnInit() {
@@ -65,13 +64,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/playerProfile/' + userId.toString() + '.json';
 
-    this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
-      const player = resPlayer as { membre_id: number; username: string };
-      if (player.membre_id) {
-        this.login = player.username;
-        localStorage.setItem('invite', player.membre_id.toString());
-      }
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((resPlayer: object) => {
+        const player = resPlayer as { membre_id: number; username: string };
+        if (player.membre_id) {
+          this.login.set(player.username);
+          localStorage.setItem('invite', player.membre_id.toString());
+        }
+      });
 
     this.subTitle = this.translate
       .get(
@@ -95,7 +96,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subPlayer.unsubscribe();
     this.socket.removeListener('register');
     this.subTitle.unsubscribe();
   }
@@ -116,6 +116,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.registerForm.controls['server'].value as string
       );
     }
-    this.login = '';
+    this.login.set('');
   }
 }

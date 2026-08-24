@@ -2,14 +2,13 @@ import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -26,7 +25,8 @@ import googleIcon from '@iconify-icons/logos/google-icon';
     MainRightSubComponent,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {

@@ -5,6 +5,8 @@ import { UserComponent as User } from '../../services/user.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
 
+import { LocaleService } from '../../services/locale.service';
+
 @Component({
   template: '',
 })
@@ -13,6 +15,7 @@ export class AttacksSeabattlesAbstractComponent {
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   protected modalService = inject(BsModalService);
 
   public sbData = {

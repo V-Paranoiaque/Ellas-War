@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Message } from '../../services/message.class';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-messages-title',
   templateUrl: './messages-title.sub-component.html',
-  imports: [TranslateModule],
+  imports: [TranslateDirective, TranslatePipe],
 })
 export class MessagesTitleSubComponent {
   @Input() msg!: Message;
 }
+

@@ -3,15 +3,15 @@
     <h5 class="card-title">{{ title }}</h5>
     <p class="card-text">{{ text }}</p>
     @if (currently) {
-      <p class="card-text">
-        <small class="text-muted">
-          <strong translate>Currently</strong>
-          <strong translate>:</strong>
-          {{
-            parseInt(currently) | number: '' : this.translate.getCurrentLang()
-          }}
-        </small>
-      </p>
+    <p class="card-text">
+      <small class="text-muted">
+        <strong translate>Currently</strong>
+        <strong translate>:</strong>
+        {{
+        parseInt(currently) | number: '' : currentLocale()
+        }}
+      </small>
+    </p>
     }
   </div>
   <div class="col-4 text-center fw-bold">

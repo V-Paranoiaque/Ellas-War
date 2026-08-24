@@ -1,18 +1,21 @@
 import { Component, Input, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { MessageContent } from 'src/services/message.class';
+import { MessageContent } from '../../services/message.class';
 import { CommonModule } from '@angular/common';
+
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-sanctuary-message',
   templateUrl: './sanctuary-message.sub-component.html',
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateDirective, TranslatePipe],
 })
 export class SanctuaryMessageSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() info!: MessageContent['content'];
   Tools = Tools;

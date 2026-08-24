@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { AttacksHistorySubComponent } from './attacks-history.sub-component';
 import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
@@ -18,7 +17,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     AttacksStatsSubComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    TranslateModule,
   ],
 })
 export class AttacksStatsComponent implements OnInit {

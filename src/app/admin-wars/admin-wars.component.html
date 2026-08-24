@@ -17,32 +17,28 @@
               </thead>
               <tbody>
                 @for (war of list; track war) {
-                  <tr>
-                    <th scope="row">
-                      <span
-                        [ngClass]="{
+                <tr>
+                  <th scope="row">
+                    <span [ngClass]="{
                           'text-danger': war.win_attacking > war.win_defender,
                         }">
-                        {{ war.attacking }} {{ war.win_attacking }}
-                      </span>
-                      -
-                      <span
-                        [ngClass]="{
+                      {{ war.attacking }} {{ war.win_attacking }}
+                    </span>
+                    -
+                    <span [ngClass]="{
                           'text-danger': war.win_defender > war.win_attacking,
                         }">
-                        {{ war.win_defender }} {{ war.defender }}
-                      </span>
-                    </th>
-                    <td>{{ war.time * 1000 | date: 'dd/MM/yyyy, HH:mm' }}</td>
-                    <td class="text-end">
-                      {{
-                        war.gain | number: '' : this.translate.getCurrentLang()
-                      }}
-                      <app-ew-icon
-                        name="drachma"
-                        class="small-resource"></app-ew-icon>
-                    </td>
-                  </tr>
+                      {{ war.win_defender }} {{ war.defender }}
+                    </span>
+                  </th>
+                  <td>{{ war.time * 1000 | date: 'dd/MM/yyyy, HH:mm' }}</td>
+                  <td class="text-end">
+                    {{
+                    war.gain | number: '' : currentLocale()
+                    }}
+                    <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
+                  </td>
+                </tr>
                 }
               </tbody>
             </table>

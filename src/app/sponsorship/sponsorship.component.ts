@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -21,14 +22,15 @@ import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    RouterModule,
-    TranslateModule,
+    RouterModule, TranslatePipe,
+    TranslateDirective,
   ],
 })
 export class SponsorshipComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   public sponsorList: {
     membre_id: number;

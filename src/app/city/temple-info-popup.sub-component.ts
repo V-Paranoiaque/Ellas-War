@@ -1,24 +1,28 @@
-import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'app-temple-info-popup',
   templateUrl: './temple-info-popup.sub-component.html',
-  imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateDirective, TranslatePipe],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
+  private readonly destroyRef = inject(DestroyRef)
 
   @Input() temple!: {
     id: number;
@@ -46,8 +50,6 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     },
   };
 
-  private sub: Subscription;
-
   Number = Number;
   Tools = Tools;
 
@@ -71,7 +73,6 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       wine: 80000,
       gold: 60000,
     };
-    this.sub = new Subscription();
   }
 
   ngOnInit() {
@@ -104,7 +105,6 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     this.socket.removeListener('wallDefense');
     this.socket.removeListener('myAttacksList');
     this.socket.removeListener('powersUse');
-    this.sub.unsubscribe();
   }
 
   furyBuy(nb: string) {
@@ -118,7 +118,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     for (const res in this.furyCost) {
       if (
         this.furyCost[res as keyof typeof this.furyCost] *
-          parseInt(this.furyNb) >
+        parseInt(this.furyNb) >
         this.user.getPropertyNb(res)
       ) {
         list.push(res);
@@ -139,7 +139,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     for (const res in this.lightningCost) {
       if (
         this.lightningCost[res as keyof typeof this.lightningCost] *
-          parseInt(this.furyNb) >
+        parseInt(this.furyNb) >
         this.user.getPropertyNb(res)
       ) {
         list.push(res);
@@ -166,19 +166,21 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
       const url =
         this.socket.url + '/api/playerProfile/' + this.idToUser + '.json';
 
-      this.sub = this.http.get(url).subscribe(result => {
-        const res = result as { membre_id: number };
-        if (res.membre_id) {
-          info = {
-            id: this.temple.power,
-            param: res.membre_id,
-          };
-          this.socket.emit('powersUse', info);
-        } else {
-          this.idToUser = '';
-          this.temple.error = 2;
-        }
-      });
+      this.http.get(url)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(result => {
+          const res = result as { membre_id: number };
+          if (res.membre_id) {
+            info = {
+              id: this.temple.power,
+              param: res.membre_id,
+            };
+            this.socket.emit('powersUse', info);
+          } else {
+            this.idToUser = '';
+            this.temple.error = 2;
+          }
+        });
     } else {
       this.idToUser = '';
       this.temple.error = 2;

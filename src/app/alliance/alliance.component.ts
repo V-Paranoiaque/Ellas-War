@@ -2,7 +2,7 @@ import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 
@@ -21,8 +21,8 @@ import { AllianceRankPopupSubComponent } from './alliance-rank-popup.sub-compone
 import { AllianceRequestsPopupSubComponent } from './alliance-requests-popup.sub-component';
 import { AllianceTaxesPopupSubComponent } from './alliance-taxes-popup.sub-component';
 import { AllianceWarArchivesPopupSubComponent } from './alliance-war-archives-popup.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
@@ -63,14 +63,14 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
     MainRightSubComponent,
     IcIconComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
 export class AllianceComponent
   extends AllianceAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;

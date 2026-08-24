@@ -2,11 +2,10 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { TranslateModule } from '@ngx-translate/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,7 +17,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
 })
 export class MainPublicTopMenuSubComponent implements OnInit {

@@ -2,11 +2,11 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MessagesAbstractComponent } from './messages-abstract.component';
 
 import plusIcon from '@iconify/icons-bi/plus';
@@ -15,12 +15,11 @@ import xIcon from '@iconify/icons-bi/x';
 @Component({
   selector: 'app-messages-popup',
   templateUrl: './messages-popup.sub-component.html',
-  imports: [FormsModule, IcIconComponent, RouterModule, TranslateModule],
+  imports: [FormsModule, IcIconComponent, RouterModule, TranslateDirective, TranslatePipe],
 })
 export class MessagesPopupSubComponent
   extends MessagesAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   protected route = inject(ActivatedRoute);
 
   private subLoad: Subscription;

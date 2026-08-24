@@ -1,13 +1,15 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { environment } from './../../environments/environment';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
+import { LocaleService } from '../../services/locale.service';
 import { AlliancePactManagePopupSubComponent } from '../alliance/alliance-pact-manage-popup.sub-component';
 import { DiplomacyAllianceCreatePopupSubComponent } from './diplomacy-alliance-create-popup.sub-component';
 import { DiplomacyInvasionHelpPopupSubComponent } from './diplomacy-invasion-help-popup.sub-component';
@@ -15,7 +17,7 @@ import { DiplomacyAllianceJoinPopupSubComponent } from './diplomacy-alliance-joi
 import { DiplomacyPactAskPopupSubComponent } from './diplomacy-pact-ask-popup.sub-component';
 import { DiplomacyWarDeclarePopupSubComponent } from './diplomacy-war-declare-popup.sub-component';
 import { DiplomacyAllianceHelpPopupSubComponent } from './diplomacy-alliance-help-popup.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -27,6 +29,14 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
 import users from '@iconify/icons-fa6-solid/users';
 
+type AllianceProfile = {
+  pact_id: number;
+  alliance_id: number;
+  alliance_name: string;
+  pact: number;
+  started: number;
+  war: number;
+}
 @Component({
   templateUrl: './diplomacy.component.html',
   imports: [
@@ -42,7 +52,8 @@ import users from '@iconify/icons-fa6-solid/users';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class DiplomacyComponent implements OnInit, OnDestroy {
@@ -51,6 +62,8 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
+  private readonly destroyRef = inject(DestroyRef)
 
   public allianceList: {
     alliance_id: number;
@@ -65,20 +78,19 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     pact: number;
     war: number;
   }[];
-  public allianceProfile = {
+  public allianceProfile = signal<AllianceProfile>({
     pact_id: 0,
     alliance_id: 0,
     alliance_name: '',
     pact: 0,
     started: 0,
     war: 0,
-  };
+  });
   public allianceWait = {
     alliance_id: 0,
     alliance_name: '',
   };
   public order: string;
-  private sub: Subscription;
 
   environment = environment;
 
@@ -93,7 +105,6 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
   constructor() {
     this.allianceList = [];
     this.order = '';
-    this.sub = new Subscription();
   }
 
   ngOnInit() {
@@ -131,7 +142,6 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.removeListener('alliancePactAsk');
     this.socket.removeListener('allianceRankingRefresh');
     this.socket.removeListener('allianceWait');
-    this.sub.unsubscribe();
   }
 
   allianceListOrder(order: string) {
@@ -147,16 +157,18 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     const url =
       this.socket.url + '/api/allianceProfile/' + id.toString() + '.json';
 
-    this.sub = this.http.get(url).subscribe(res => {
-      this.allianceProfile = res as typeof this.allianceProfile;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        this.allianceProfile.set(res as AllianceProfile);
+      });
   }
 
   setAlliance(alliance: object) {
     this.allianceProfile = alliance as typeof this.allianceProfile;
-    if (this.allianceProfile.pact_id) {
-      this.socket.emit('alliancePactInfo', this.allianceProfile.pact_id);
+    if (this.allianceProfile().pact_id) {
+      this.socket.emit('alliancePactInfo', this.allianceProfile().pact_id);
     }
-    this.allianceProfile.started = 0;
+    this.allianceProfile().started = 0;
   }
 }

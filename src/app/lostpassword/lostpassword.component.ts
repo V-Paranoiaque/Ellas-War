@@ -1,11 +1,12 @@
 import { RouterModule } from '@angular/router';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +21,8 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class LostpasswordComponent implements OnInit, OnDestroy {
@@ -29,17 +31,14 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
   user = inject(User);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);
+  private readonly destroyRef = inject(DestroyRef);
 
-  public lostpasswordError: number;
-  public lostvalue: string;
+  public lostpasswordError = signal(0);
+  public lostvalue = '';
 
-  private subLost: Subscription;
   private subTitle: Subscription;
 
   constructor() {
-    this.lostpasswordError = 0;
-    this.lostvalue = '';
-    this.subLost = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -52,13 +51,12 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subLost.unsubscribe();
     this.subTitle.unsubscribe();
   }
 
   lostpassword() {
     if (!this.lostvalue) {
-      this.lostpasswordError = 4;
+      this.lostpasswordError.set(4);
       return;
     }
 
@@ -68,13 +66,15 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
       encodeURIComponent(this.lostvalue) +
       '.json';
 
-    this.subLost = this.http.get(url).subscribe(res => {
-      const result = res as { error?: number };
-      if (result.error) {
-        this.lostpasswordError = result.error;
-      } else {
-        this.lostpasswordError = 0;
-      }
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        const result = res as { error?: number };
+        if (result.error) {
+          this.lostpasswordError.set(result.error);
+        } else {
+          this.lostpasswordError.set(0)
+        }
+      });
   }
 }

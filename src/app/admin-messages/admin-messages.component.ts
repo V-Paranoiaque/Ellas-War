@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
     AdminLeftMenuSubComponent,
     FormsModule,
     MainPrivateBottomMenuSubComponent,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminMessagesComponent implements OnInit, OnDestroy {

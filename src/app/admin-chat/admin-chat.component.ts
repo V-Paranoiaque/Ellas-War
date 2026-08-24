@@ -1,12 +1,12 @@
 import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 
 import { AdminLeftMenuSubComponent } from '../admin/admin-left-menu.sub-component';
 import { CommonModule } from '@angular/common';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-bottom-menu.sub-component';
 
 import volumeMute from '@iconify/icons-fa6-solid/volume-xmark';
@@ -22,7 +22,7 @@ import volumeOff from '@iconify/icons-fa6-solid/volume-off';
     IcIconComponent,
     MainPrivateBottomMenuSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
   ],
 })
 export class AdminChatComponent implements OnInit, OnDestroy {

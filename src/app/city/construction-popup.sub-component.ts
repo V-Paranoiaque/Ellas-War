@@ -1,15 +1,16 @@
 import { RouterModule } from '@angular/router';
 import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { LocaleService } from '../../services/locale.service';
 import { environment } from './../../environments/environment';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 
 import chartLine from '@iconify/icons-fa6-solid/chart-line';
 import landFields from '@iconify/icons-mdi/land-fields';
@@ -24,13 +25,15 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
     FormsModule,
     IcIconComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() info!: {
     code: string;
@@ -177,7 +180,7 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
           this.info.cost[res as keyof object] &&
           (this.info.cost[res as keyof object] > this.user.getPropertyNb(res) ||
             this.info.cost[res as keyof object] * parseInt(this.info.buildNb) >
-              this.user.getPropertyNb(res))
+            this.user.getPropertyNb(res))
         ) {
           list.push(res);
         }

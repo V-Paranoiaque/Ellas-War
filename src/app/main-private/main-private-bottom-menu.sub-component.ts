@@ -1,20 +1,22 @@
 import {
   Component,
+  DestroyRef,
   ViewChild,
   ElementRef,
   OnInit,
   OnDestroy,
   inject,
+  signal
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { UserComponent as User } from 'src/services/user.service';
+import { UserComponent as User } from '../../services/user.service';
 import { environment } from './../../environments/environment';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import comments from '@iconify/icons-fa6-solid/comments';
 import discordIcon from '@iconify-icons/logos/discord-icon';
@@ -23,8 +25,9 @@ import times from '@iconify/icons-fa6-solid/xmark';
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import users from '@iconify/icons-fa6-solid/users';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-info-popup.sub-component';
 
 @Component({
@@ -38,7 +41,8 @@ import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-in
     IcIconComponent,
     MainPrivatePlayerInfoPopupSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
@@ -46,9 +50,11 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   user = inject(User);
   protected socket = inject(Socket);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef)
 
-  public chatActive: string;
+  public chatActive = '';
 
   public chat_user_players: {
     user_id: number;
@@ -85,7 +91,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   public chat_alli_nb: number;
   public reported = 0;
   public chat = 0;
-  public selectedMsg: {
+  public selectedMsg = signal<{
     id: number;
     user_id: number;
     rank: number;
@@ -106,8 +112,8 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       location: string;
       inscription: number;
       description: string;
-    };
-  } = {
+    }
+  }>({
     id: 0,
     user_id: 0,
     rank: 0,
@@ -129,8 +135,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       inscription: 0,
       description: '',
     },
-  };
-  private subPlayer: Subscription;
+  });
 
   @ViewChild('chatGeneral') private readonly chatGeneralScroll?: ElementRef;
   @ViewChild('chatAlliance') private readonly chatAllianceScroll?: ElementRef;
@@ -145,8 +150,6 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
   users = users;
 
   constructor() {
-    this.chatActive = '';
-
     this.chat_user_players = [];
     this.chat_user_msgs = [];
     this.chatUserMsg = '';
@@ -156,8 +159,6 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
     this.chat_alli_msgs = [];
     this.chatAlliMsg = '';
     this.chat_alli_nb = 0;
-
-    this.subPlayer = new Subscription();
   }
 
   ngOnInit() {
@@ -244,8 +245,6 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
     this.socket.removeListener('chatAlliPlayersRefresh');
     this.socket.removeListener('chatAlliMsgs');
     this.socket.removeListener('chatAlliMsg');
-
-    this.subPlayer.unsubscribe();
   }
 
   chatUserSend() {
@@ -327,22 +326,40 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       '.json';
     this.socket.emit('accountInfo');
 
-    this.subPlayer = this.http.get(url).subscribe((resPlayer: object) => {
-      this.selectedMsg.profile = resPlayer as typeof this.selectedMsg.profile;
-      this.selectedMsg.id = data.id;
-      this.selectedMsg.user_id = data.user_id;
-      this.selectedMsg.rank = data.rank;
-      this.selectedMsg.time = data.time;
-      this.selectedMsg.username = data.username;
-      this.selectedMsg.msg = data.msg;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((resPlayer: object) => {
+        this.selectedMsg.set({
+          id: data.id,
+          user_id: data.user_id,
+          rank: data.rank,
+          time: data.time,
+          username: data.username,
+          msg: data.msg,
+          profile: resPlayer as {
+            membre_id: number;
+            username: '';
+            level: number;
+            xp: number;
+            victory: number;
+            field: number;
+            featsofstrength: number;
+            alliance: number;
+            alliance_name: string;
+            rank_name: string;
+            location: string;
+            inscription: number;
+            description: string;
+          }
+        });
+      });
   }
 
   report() {
     this.reported = 1;
     this.socket.emit('problemReport', {
       type: 3 + this.chat,
-      id: this.selectedMsg.id,
+      id: this.selectedMsg().id,
     });
   }
 }

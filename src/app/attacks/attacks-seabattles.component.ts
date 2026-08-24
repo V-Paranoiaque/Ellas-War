@@ -1,13 +1,13 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit, inject, signal } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
-import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
 import { AttacksSeabattlesAbstractComponent } from './attacks-seabattles-abstract.component';
@@ -15,7 +15,7 @@ import { AttacksSeabattlesCoinsHelpPopupSubComponent } from './attacks-seabattle
 import { AttacksSeabattlesEngagePopupSubComponent } from './attacks-seabattles-engage-popup.sub-component';
 import { AttacksSeabattlesMovePopupSubComponent } from './attacks-seabattles-move-popup.sub-component';
 import { AttacksSeabattlesMouvementsHelpPopupSubComponent } from './attacks-seabattles-mouvements-help-popup.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
@@ -45,18 +45,19 @@ interface RankingLineSB {
     IcIconComponent,
     MainLeftSubComponent,
     MainRightSubComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
 export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;
+  private readonly destroyRef = inject(DestroyRef)
 
   public currentCase = {
     case_type: -1,
@@ -84,10 +85,9 @@ export class AttacksSeabattlesComponent
   public caseList: string[] = [];
   bsModalRef?: BsModalRef;
 
-  public rankingList: RankingLineSB[] = [];
-  public rankingPage = 1;
-  public rankingMax = 1;
-  private subRank: Subscription;
+  public rankingList = signal<RankingLineSB[]>([]);
+  public rankingPage = signal(1);
+  public rankingMax = signal(1);
 
   questionCircle = questionCircle;
   shieldShaded = shieldShaded;
@@ -109,7 +109,6 @@ export class AttacksSeabattlesComponent
     this.user = user;
     this.translate = translate;
 
-    this.subRank = new Subscription();
     for (let i = 1; i <= 15; i++) {
       for (let j = 1; j <= 15; j++) {
         this.caseList.push('case-' + i.toString() + '-' + j.toString() + '');
@@ -150,8 +149,6 @@ export class AttacksSeabattlesComponent
   }
 
   ngOnDestroy() {
-    this.subRank.unsubscribe();
-
     this.socket.removeListener('sbJoin');
     this.socket.removeListener('sbGet');
     this.socket.removeListener('sbGetCase');
@@ -295,15 +292,17 @@ export class AttacksSeabattlesComponent
       '/api/rankingSeaBattles/' +
       this.rankingPage.toString() +
       '.json';
-    this.subRank = this.http.get(url).subscribe(res => {
-      const result = res as {
-        cPage: number;
-        max: number;
-        ranking: RankingLineSB[];
-      };
-      this.rankingPage = result.cPage;
-      this.rankingMax = result.max;
-      this.rankingList = result.ranking;
-    });
+    this.http.get(url)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(res => {
+        const result = res as {
+          cPage: number;
+          max: number;
+          ranking: RankingLineSB[];
+        };
+        this.rankingPage.set(result.cPage);
+        this.rankingMax.set(result.max);
+        this.rankingList.set(result.ranking);
+      });
   }
 }

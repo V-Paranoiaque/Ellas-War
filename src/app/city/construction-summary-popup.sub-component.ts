@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { CommonModule } from '@angular/common';
 
+import { LocaleService } from '../../services/locale.service';
+
 @Component({
   selector: 'app-construction-summary-popup',
   templateUrl: './construction-summary-popup.sub-component.html',
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateDirective, TranslatePipe],
 })
 export class ConstructionSummaryPopupSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   Tools = Tools;
 

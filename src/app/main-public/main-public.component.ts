@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {
   Component,
   OnInit,
@@ -7,19 +7,18 @@ import {
   inject,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { environment } from './../../environments/environment';
-import { Router } from '@angular/router';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
 
@@ -40,7 +39,8 @@ import googleIcon from '@iconify-icons/logos/google-icon';
     MainRightSubComponent,
     ReactiveFormsModule,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe
   ],
   encapsulation: ViewEncapsulation.None,
 })
@@ -49,6 +49,7 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   private readonly formBuilder = inject(FormBuilder);
   private readonly http = inject(HttpClient);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   user = inject(User);
   private readonly router = inject(Router);
   private readonly titleService = inject(Title);
@@ -63,16 +64,10 @@ export class MainPublicComponent implements OnInit, OnDestroy {
     },
   };
   public menu: number;
-  public newsList: {
-    title: string;
-    news_date: number;
-    link: string;
-  }[];
   public rerror: number;
   public selectedTemple = 'zeus';
 
   private subLang: Subscription;
-  private subNews: Subscription;
   private subTitle: Subscription;
 
   loginForm: FormGroup;
@@ -85,14 +80,11 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   googleIcon = googleIcon;
 
   constructor() {
-    this.newsList = [];
-
     this.loginForm = this.formBuilder.group({});
     this.registerForm = this.formBuilder.group({});
     this.menu = 0;
     this.rerror = 0;
     this.subLang = new Subscription();
-    this.subNews = new Subscription();
     this.subTitle = new Subscription();
   }
 
@@ -101,16 +93,11 @@ export class MainPublicComponent implements OnInit, OnDestroy {
 
     this.subLang = this.http
       .get(
-        './assets/i18n/' + this.translate.getCurrentLang() + '/localevars.json'
+        './assets/i18n/' + this.currentLocale() + '/localevars.json'
       )
       .subscribe(data => {
         this.localevars = data as typeof this.localevars;
       });
-
-    const url = this.socket.url + '/api/news-4.json';
-    this.subNews = this.http.get(url).subscribe(res => {
-      this.newsList = res as typeof this.newsList;
-    });
 
     this.loginForm = this.formBuilder.group({
       server: this.socket.server,
@@ -141,7 +128,6 @@ export class MainPublicComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.socket.removeListener('register');
     this.subLang.unsubscribe();
-    this.subNews.unsubscribe();
     this.subTitle.unsubscribe();
   }
 

@@ -1,22 +1,24 @@
 import { Component, Input, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
-import { MessageContent } from 'src/services/message.class';
+import { MessageContent } from '../../services/message.class';
 import { CommonModule } from '@angular/common';
 
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { LocaleService } from '../../services/locale.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 
 @Component({
   selector: 'app-attacks-message',
   templateUrl: './attacks-message.sub-component.html',
   styleUrls: ['./attacks.component.css'],
-  imports: [CommonModule, EwIconSubComponent, TranslateModule],
+  imports: [CommonModule, EwIconSubComponent, TranslateDirective, TranslatePipe],
 })
 export class AttacksMessageSubComponent {
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
 
   @Input() info!: MessageContent['content'];
   public resources: string[];

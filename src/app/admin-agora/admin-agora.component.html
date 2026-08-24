@@ -13,43 +13,22 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="minRate" translate>Minimum rate</label>
-                  <input
-                    name="minRate"
-                    placeholder="{{ 'Minimum rate' | translate }}"
-                    id="minRate"
-                    class="form-control"
-                    value=""
-                    type="number"
-                    [(ngModel)]="minRate" />
+                  <input name="minRate" placeholder="{{ 'Minimum rate' | translate }}" id="minRate" class="form-control"
+                    value="" type="number" [(ngModel)]="minRate" />
 
                   <label for="maxRate" translate>Maximum rate</label>
-                  <input
-                    name="maxRate"
-                    placeholder="{{ 'Maximum rate' | translate }}"
-                    id="maxRate"
-                    class="form-control"
-                    value=""
-                    type="number"
-                    [(ngModel)]="maxRate" />
+                  <input name="maxRate" placeholder="{{ 'Maximum rate' | translate }}" id="maxRate" class="form-control"
+                    value="" type="number" [(ngModel)]="maxRate" />
 
                   <label for="beginning" translate>Beginning</label>
-                  <input
-                    name="date"
-                    placeholder="{{ 'Beginning' | translate }}"
-                    id="beginning"
-                    class="form-control"
-                    type="text"
-                    [(ngModel)]="beginning" />
+                  <input name="date" placeholder="{{ 'Beginning' | translate }}" id="beginning" class="form-control"
+                    type="text" [(ngModel)]="beginning" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="resource" translate>Research</label>
-                  <select
-                    [(ngModel)]="resource"
-                    name="resource"
-                    id="resource"
-                    class="form-select">
+                  <select [(ngModel)]="resource" name="resource" id="resource" class="form-select">
                     <option value="" translate>Toutes les ressources</option>
                     <option value="food" translate>Food</option>
                     <option value="water" translate>Water</option>
@@ -64,22 +43,10 @@
                   </select>
 
                   <label for="players" translate>Players</label>
-                  <input
-                    name="player1"
-                    placeholder="{{ 'Player' | translate }}"
-                    id="player1"
-                    class="form-control"
-                    value=""
-                    type="text"
-                    [(ngModel)]="player1" />
-                  <input
-                    name="player2"
-                    placeholder="{{ 'Player' | translate }}"
-                    id="player2"
-                    class="form-control"
-                    value=""
-                    type="text"
-                    [(ngModel)]="player2" />
+                  <input name="player1" placeholder="{{ 'Player' | translate }}" id="player1" class="form-control"
+                    value="" type="text" [(ngModel)]="player1" />
+                  <input name="player2" placeholder="{{ 'Player' | translate }}" id="player2" class="form-control"
+                    value="" type="text" [(ngModel)]="player2" />
 
                   <label for="sort" translate>Sort by</label>
                   <select name="sort" id="sort" class="form-select">
@@ -91,71 +58,37 @@
                 </div>
               </div>
               <div class="col-12 text-center">
-                <button
-                  class="btn btn-primary"
-                  translate
-                  type="submit"
-                  (click)="adminTradeList(1)">
+                <button class="btn btn-primary" translate type="submit" (click)="adminTradeList(1)">
                   Research
                 </button>
               </div>
 
               <div class="col-md-12">
                 @if (msgPageNb > 1) {
-                  <div>
-                    <br />
-                    <div class="input-group">
-                      <span
-                        class="input-group-text"
-                        role="button"
-                        (click)="adminAgoraChange(1)"
-                        (keyup.enter)="adminAgoraChange(1)"
-                        tabindex="0"
-                        >&lt;&lt;</span
-                      >
-                      <span
-                        class="input-group-text"
-                        role="button"
-                        (click)="adminAgoraChange(currentPage - 1)"
-                        (keyup.enter)="adminAgoraChange(currentPage - 1)"
-                        tabindex="0"
-                        >&lt;</span
-                      >
-                      <select
-                        class="form-select"
-                        #mySelect
-                        (change)="adminAgoraChange(mySelect.value)"
-                        [ngModel]="currentPage"
-                        title="{{ 'Change page' | translate }}">
-                        @for (id of Tools.range(1, msgPageNb); track id) {
-                          <option value="{{ id }}" translate>
-                            Page {{ id }}
-                          </option>
-                        }
-                      </select>
-                      <span
-                        class="input-group-text"
-                        role="button"
-                        (click)="adminAgoraChange(currentPage + 1)"
-                        (keyup.enter)="adminAgoraChange(currentPage + 1)"
-                        tabindex="0"
-                        >&gt;</span
-                      >
-                      <span
-                        class="input-group-text"
-                        role="button"
-                        (click)="adminAgoraChange(msgPageNb)"
-                        (keyup.enter)="adminAgoraChange(msgPageNb)"
-                        tabindex="0"
-                        >&gt;&gt;</span
-                      >
-                    </div>
+                <div>
+                  <br />
+                  <div class="input-group">
+                    <span class="input-group-text" role="button" (click)="adminAgoraChange(1)"
+                      (keyup.enter)="adminAgoraChange(1)" tabindex="0">&lt;&lt;</span>
+                    <span class="input-group-text" role="button" (click)="adminAgoraChange(currentPage - 1)"
+                      (keyup.enter)="adminAgoraChange(currentPage - 1)" tabindex="0">&lt;</span>
+                    <select class="form-select" #mySelect (change)="adminAgoraChange(mySelect.value)"
+                      [ngModel]="currentPage" title="{{ 'Change page' | translate }}">
+                      @for (id of Tools.range(1, msgPageNb); track id) {
+                      <option value="{{ id }}" translate>
+                        Page {{ id }}
+                      </option>
+                      }
+                    </select>
+                    <span class="input-group-text" role="button" (click)="adminAgoraChange(currentPage + 1)"
+                      (keyup.enter)="adminAgoraChange(currentPage + 1)" tabindex="0">&gt;</span>
+                    <span class="input-group-text" role="button" (click)="adminAgoraChange(msgPageNb)"
+                      (keyup.enter)="adminAgoraChange(msgPageNb)" tabindex="0">&gt;&gt;</span>
                   </div>
+                </div>
                 }
 
-                <table
-                  class="table"
-                  attr.aria-label="{{
+                <table class="table" attr.aria-label="{{
                     'Store room Administration' | translate
                   }}">
                   <thead>
@@ -174,77 +107,63 @@
                   </thead>
                   <tbody>
                     @for (lot of list; track lot) {
-                      <tr>
-                        <td>
-                          <a
-                            href="admin/profile/{{ lot.seller_id }}"
-                            [routerLink]="['/admin/profile/' + lot.seller_id]"
-                            >{{ lot.m1_username }}</a
-                          >
-                        </td>
-                        <td>
-                          <a
-                            href="admin/profile/{{ lot.buyer_id }}"
-                            [routerLink]="['/admin/profile/' + lot.buyer_id]"
-                            >{{ lot.m2_username }}</a
-                          >
-                        </td>
-                        <td class="text-break">
-                          <a
-                            href="admin/ip/{{ lot.deposit_ip }}"
-                            [routerLink]="['/admin/ip/' + lot.deposit_ip]"
-                            >{{ lot.deposit_ip }}</a
-                          >
-                        </td>
-                        <td class="text-break">
-                          <a
-                            href="admin/ip/{{ lot.purchase_ip }}"
-                            [routerLink]="['/admin/ip/' + lot.purchase_ip]"
-                            >{{ lot.purchase_ip }}</a
-                          >
-                        </td>
-                        <td>
-                          {{
-                            (lot.return_time - 3600 * 24 * 7) * 1000
-                              | date
-                                : 'dd MMMM, HH:mm'
-                                : ''
-                                : user.getConfig().locale
-                          }}
-                        </td>
-                        <td>
-                          {{
-                            lot.purchase_date * 1000
-                              | date
-                                : 'dd MMMM, HH:mm'
-                                : ''
-                                : user.getConfig().locale
-                          }}
-                        </td>
-                        <td class="text-center">
-                          <app-ew-icon
-                            name="{{ Tools.getResName(lot.ress_type) }}"
-                            class="small-resource"></app-ew-icon>
-                        </td>
-                        <td>
-                          {{
-                            lot.nbress
-                              | number: '' : this.translate.getCurrentLang()
-                          }}
-                        </td>
-                        <td>
-                          {{
-                            lot.rate
-                              | number: '' : this.translate.getCurrentLang()
-                          }}
-                        </td>
-                        <td>
-                          {{
-                            lot.nbress * lot.rate
-                              | number: '' : this.translate.getCurrentLang()
-                          }}
-                        </td>
-                      </tr>
+                    <tr>
+                      <td>
+                        <a href="admin/profile/{{ lot.seller_id }}"
+                          [routerLink]="['/admin/profile/' + lot.seller_id]">{{ lot.m1_username }}</a>
+                      </td>
+                      <td>
+                        <a href="admin/profile/{{ lot.buyer_id }}" [routerLink]="['/admin/profile/' + lot.buyer_id]">{{
+                          lot.m2_username }}</a>
+                      </td>
+                      <td class="text-break">
+                        <a href="admin/ip/{{ lot.deposit_ip }}" [routerLink]="['/admin/ip/' + lot.deposit_ip]">{{
+                          lot.deposit_ip }}</a>
+                      </td>
+                      <td class="text-break">
+                        <a href="admin/ip/{{ lot.purchase_ip }}" [routerLink]="['/admin/ip/' + lot.purchase_ip]">{{
+                          lot.purchase_ip }}</a>
+                      </td>
+                      <td>
+                        {{
+                        (lot.return_time - 3600 * 24 * 7) * 1000
+                        | date
+                        : 'dd MMMM, HH:mm'
+                        : ''
+                        : user.getConfig().locale
+                        }}
+                      </td>
+                      <td>
+                        {{
+                        lot.purchase_date * 1000
+                        | date
+                        : 'dd MMMM, HH:mm'
+                        : ''
+                        : user.getConfig().locale
+                        }}
+                      </td>
+                      <td class="text-center">
+                        <app-ew-icon name="{{ Tools.getResName(lot.ress_type) }}" class="small-resource"></app-ew-icon>
+                      </td>
+                      <td>
+                        {{
+                        lot.nbress
+                        | number: '' : currentLocale()
+                        }}
+                      </td>
+                      <td>
+                        {{
+                        lot.rate
+                        | number: '' : currentLocale()
+                        }}
+                      </td>
+                      <td>
+                        {{
+                        lot.nbress * lot.rate
+                        | number: '' : currentLocale()
+                        }}
+                      </td>
+                    </tr>
                     }
                   </tbody>
                 </table>

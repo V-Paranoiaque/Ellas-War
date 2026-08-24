@@ -1,15 +1,15 @@
 import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import check from '@iconify/icons-fa6-solid/check';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AllianceAbstractComponent } from './alliance-abstract.component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { UserProfileSubComponent } from '../main/main-user-profile.sub-component';
 
 import times from '@iconify/icons-fa6-solid/xmark';
@@ -22,14 +22,14 @@ import times from '@iconify/icons-fa6-solid/xmark';
     EwIconSubComponent,
     FormsModule,
     IcIconComponent,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
     UserProfileSubComponent,
   ],
 })
 export class AllianceRequestsPopupSubComponent
   extends AllianceAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;

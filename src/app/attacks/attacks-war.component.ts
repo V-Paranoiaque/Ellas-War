@@ -2,21 +2,22 @@ import { RouterModule } from '@angular/router';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
-import { MessageContent } from 'src/services/message.class';
+import { MessageContent } from '../../services/message.class';
 import { FormsModule } from '@angular/forms';
 
+import { LocaleService } from '../../services/locale.service';
 import { AttacksHelpPopupSubComponent } from './attacks-help-popup.sub-component';
 import { AttacksHistorySubComponent } from './attacks-history.sub-component';
 import { AttacksMenuSubComponent } from './attacks-menu.sub-component';
 import { AttacksMessageSubComponent } from './attacks-message.sub-component';
 import { AttacksSpyResourcesHelpPopupSubComponent } from './attacks-spy-resources-help-popup.sub-component';
 import { AttacksUnitHelpPopupSubComponent } from './attacks-unit-help-popup.sub-component';
-import { EwIconSubComponent } from 'src/services/ew-icon.service';
+import { EwIconSubComponent } from '../../services/ew-icon.service';
 import { FuryMessageSubComponent } from './fury-message.sub-component';
-import { IcIconComponent } from 'src/services/ic-icon.service';
+import { IcIconComponent } from '../../services/ic-icon.service';
 import { LostMessageSubComponent } from './lost-message.sub-component';
 import { MainLeftSubComponent } from '../main/main-left.sub-component';
 import { MainRightSubComponent } from '../main/main-right.sub-component';
@@ -51,13 +52,15 @@ import swordIcon from '@iconify/icons-vaadin/sword';
     MainLeftSubComponent,
     MainRightSubComponent,
     RouterModule,
-    TranslateModule,
+    TranslateDirective,
+    TranslatePipe,
   ],
 })
 export class AttacksWarComponent implements OnInit, OnDestroy {
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
+  readonly currentLocale = inject(LocaleService).currentLocale;
   private readonly scroller = inject(ViewportScroller);
 
   public attackInfo = new MessageContent();
