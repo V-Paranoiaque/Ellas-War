@@ -18,7 +18,7 @@
             <input type="file" accept="image/*" (change)="uploadImage($event)" [(ngModel)]="image" />
           </div>
 
-          @if (errorProfileSave === 1) {
+          @if (errorProfileSave() === 1) {
           <div class="text-center fw-bold text-danger" translate>
             Information saved
           </div>

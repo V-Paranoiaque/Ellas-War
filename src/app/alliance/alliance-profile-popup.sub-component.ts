@@ -3,6 +3,7 @@ import {
   Input,
   inject,
   ChangeDetectionStrategy,
+  signal
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -32,7 +33,7 @@ export class AllianceProfilePopupSubComponent {
   };
 
   public description: string;
-  public errorProfileSave: number;
+  public errorProfileSave = signal(0);
   public image: string;
   public imageProfile: string;
 
@@ -40,7 +41,6 @@ export class AllianceProfilePopupSubComponent {
 
   constructor() {
     this.description = '';
-    this.errorProfileSave = 0;
     this.imageProfile = '';
     this.image = '';
   }
@@ -67,7 +67,7 @@ export class AllianceProfilePopupSubComponent {
   }
 
   profileSave() {
-    this.errorProfileSave = 1;
+    this.errorProfileSave.set(1);
     const msg = {
       description: this.allianceProfile.description,
     };
@@ -75,7 +75,7 @@ export class AllianceProfilePopupSubComponent {
     this.socket.emit('myAllianceProfileSave', msg);
 
     setTimeout(() => {
-      this.errorProfileSave = 0;
+      this.errorProfileSave.set(0);
     }, 3000);
   }
 }

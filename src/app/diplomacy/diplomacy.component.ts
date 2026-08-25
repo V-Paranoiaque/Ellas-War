@@ -15,7 +15,6 @@ import {
   TranslatePipe,
   TranslateService,
 } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 import { UserComponent as User } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { environment } from './../../environments/environment';
@@ -41,14 +40,14 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
 import users from '@iconify/icons-fa6-solid/users';
 
-type AllianceProfile = {
+interface AllianceProfile {
   pact_id: number;
   alliance_id: number;
   alliance_name: string;
   pact: number;
   started: number;
   war: number;
-};
+}
 @Component({
   templateUrl: './diplomacy.component.html',
   changeDetection: ChangeDetectionStrategy.Eager,

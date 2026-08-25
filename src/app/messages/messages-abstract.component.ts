@@ -45,7 +45,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   protected destList: { id: number; username: string }[];
   public reported = 0;
   public answerText: string;
-  public linkSaved: number;
+  public linkSaved = signal(0);
   public msgTitle: string;
   public msgText: string;
 
@@ -67,7 +67,6 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     this.newMessageMode = 0;
     this.destList = [];
     this.answerText = '';
-    this.linkSaved = 0;
     this.msgTitle = '';
     this.msgText = '';
 
@@ -195,7 +194,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
   }
 
   messageLoad(msg: Message) {
-    this.linkSaved = 0;
+    this.linkSaved.set(0);
 
     if (msg.msg_id > 0) {
       this.msgSent = 0;

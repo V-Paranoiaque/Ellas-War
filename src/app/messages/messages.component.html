@@ -263,7 +263,7 @@
           </div>
           @if (getCurrentMsg().msg_shared === 1) {
           <div class="card-body text-center">
-            @if (linkSaved === 1) {
+            @if (linkSaved() === 1) {
             <div class="wg-bold text-danger" translate>
               Link saved to clipboard
             </div>

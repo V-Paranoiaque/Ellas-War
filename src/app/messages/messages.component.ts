@@ -51,8 +51,7 @@ import xIcon from '@iconify/icons-bi/x';
 })
 export class MessagesComponent
   extends MessagesAbstractComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   public dummyMsg: Message;
 
   //Icons
@@ -95,10 +94,10 @@ export class MessagesComponent
   }
 
   copyLink() {
-    this.linkSaved = 1;
+    this.linkSaved.set(1);
 
     setTimeout(() => {
-      this.linkSaved = 0;
+      this.linkSaved.set(0);
     }, 2000);
   }
 

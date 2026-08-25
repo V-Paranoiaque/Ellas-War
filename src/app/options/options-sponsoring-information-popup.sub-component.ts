@@ -46,8 +46,7 @@ import link from '@iconify/icons-fa6-solid/link';
   ],
 })
 export class OptionsSponsoringInformationPopupSubComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -56,7 +55,7 @@ export class OptionsSponsoringInformationPopupSubComponent
   private readonly destroyRef = inject(DestroyRef);
 
   public sponsorList: object[] = [];
-  public linkSaved: number = 0;
+  public linkSaved = signal(0);
   public sponsorError = 0;
   public sponsorNew = '';
   public sponsorUsername = signal('');
@@ -105,10 +104,10 @@ export class OptionsSponsoringInformationPopupSubComponent
   }
 
   copyLink() {
-    this.linkSaved = 1;
+    this.linkSaved.set(1);
 
     setTimeout(() => {
-      this.linkSaved = 0;
+      this.linkSaved.set(0);
     }, 2000);
   }
 }

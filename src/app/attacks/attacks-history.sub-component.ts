@@ -4,6 +4,7 @@ import {
   OnDestroy,
   inject,
   ChangeDetectionStrategy,
+  signal
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Message } from '../../services/message.class';
@@ -42,7 +43,7 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
 
   public currentMsg: Message;
   public msgList: Message[];
-  public linkSaved: number;
+  public linkSaved = signal(0);
 
   //Icons
   arrowReturnLeft = arrowReturnLeft;
@@ -52,7 +53,6 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   constructor() {
     this.currentMsg = new Message();
     this.msgList = [];
-    this.linkSaved = 0;
   }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   }
 
   messageLoad(msg: Message) {
-    this.linkSaved = 0;
+    this.linkSaved.set(0);
 
     if (msg.msg_id > 0) {
       if (!msg.msg_read) {
@@ -97,10 +97,10 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
   }
 
   copyLink() {
-    this.linkSaved = 1;
+    this.linkSaved.set(1);
 
     setTimeout(() => {
-      this.linkSaved = 0;
+      this.linkSaved.set(0);
     }, 2000);
   }
 

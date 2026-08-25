@@ -29,7 +29,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 import triangleExclamation from '@iconify/icons-fa6-solid/triangle-exclamation';
 import userPlus from '@iconify/icons-fa6-solid/user-plus';
 
-type AllianceProfile = {
+interface AllianceProfile {
   alliance_id: number;
   alliance_name: string;
   alliance_type: number;
@@ -43,7 +43,7 @@ type AllianceProfile = {
   victories: number;
   defeats: number;
   description: string;
-};
+}
 @Component({
   selector: 'app-allianceprofile',
   templateUrl: './allianceprofile.component.html',

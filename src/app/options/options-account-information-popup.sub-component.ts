@@ -4,6 +4,7 @@ import {
   OnDestroy,
   inject,
   ChangeDetectionStrategy,
+  signal
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -24,21 +25,19 @@ import { FormsModule } from '@angular/forms';
   imports: [ClipboardModule, FormsModule, TranslateDirective, TranslatePipe],
 })
 export class OptionsAccountInformationPopupSubComponent
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
 
   public description: string;
-  public errorAccountSave: number;
+  public errorAccountSave = signal(0);
   public imageProfile: string;
   public location: string;
 
   constructor() {
     this.description = '';
-    this.errorAccountSave = 0;
     this.imageProfile = '';
     this.location = '';
   }
@@ -65,7 +64,7 @@ export class OptionsAccountInformationPopupSubComponent
   }
 
   accountSave() {
-    this.errorAccountSave = 1;
+    this.errorAccountSave.set(1);
     const msg = {
       location: this.location,
       description: this.description,
@@ -74,7 +73,7 @@ export class OptionsAccountInformationPopupSubComponent
     this.socket.emit('accountModify', msg);
 
     setTimeout(() => {
-      this.errorAccountSave = 0;
+      this.errorAccountSave.set(0);
     }, 3000);
   }
 
