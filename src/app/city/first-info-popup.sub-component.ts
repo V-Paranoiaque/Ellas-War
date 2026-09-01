@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import {
   TranslateDirective,
   TranslatePipe,
@@ -10,7 +10,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-first-info-popup',
   templateUrl: './first-info-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     EwIconSubComponent,
     RouterModule,

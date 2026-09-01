@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -43,7 +43,6 @@ interface RankingSBLine {
 @Component({
   selector: 'app-rankingseabattles',
   templateUrl: './rankingseabattles.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -56,6 +55,7 @@ interface RankingSBLine {
   ],
 })
 export class RankingseabattlesComponent implements OnInit, OnDestroy {
+  private readonly rankingseabattlesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -83,6 +83,7 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.rankingseabattlesComponentChangeDetectorRef.markForCheck();
       const page = params.get('id');
 
       if (page) {
@@ -95,6 +96,7 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Watch your enemies on the player rankings')
       .subscribe((res: string) => {
+        this.rankingseabattlesComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }
@@ -114,6 +116,7 @@ export class RankingseabattlesComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.rankingseabattlesComponentChangeDetectorRef.markForCheck();
         const result = res as {
           cPage: number;
           max: number;

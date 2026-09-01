@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -36,7 +36,6 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   selector: 'app-agora',
   templateUrl: './agora.component.html',
   styleUrls: ['./agora.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AgoraBuyPopupSubComponent,
     AgoraRecoverPopupSubComponent,
@@ -54,6 +53,7 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class AgoraComponent implements OnInit, OnDestroy {
+  private readonly agoraComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -124,19 +124,24 @@ export class AgoraComponent implements OnInit, OnDestroy {
     this.socket.emit('tradeMyList');
 
     this.socket.on('tradeList', data => {
+      this.agoraComponentChangeDetectorRef.markForCheck();
       this.tradeList = data as typeof this.tradeList;
     });
     this.socket.on('tradeListReload', () => {
+      this.agoraComponentChangeDetectorRef.markForCheck();
       this.selectRes(this.currentRes);
       this.socket.removeListener('tradeMyList');
     });
     this.socket.on('tradeMyList', data => {
+      this.agoraComponentChangeDetectorRef.markForCheck();
       this.tradeMyList = data as typeof this.tradeMyList;
     });
     this.socket.on('tradeMyListReload', () => {
+      this.agoraComponentChangeDetectorRef.markForCheck();
       this.socket.emit('tradeMyList');
     });
     this.socket.on('tradeSell', (err: number) => {
+      this.agoraComponentChangeDetectorRef.markForCheck();
       this.error = err;
     });
   }

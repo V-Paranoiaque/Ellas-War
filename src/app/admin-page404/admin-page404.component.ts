@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-page404',
   templateUrl: './admin-page404.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -27,6 +26,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminPage404Component implements OnInit, OnDestroy {
+  private readonly adminPage404ComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -44,6 +44,7 @@ export class AdminPage404Component implements OnInit, OnDestroy {
     this.socket.emit('adminList404');
 
     this.socket.on('adminList404', (list: object[]) => {
+      this.adminPage404ComponentChangeDetectorRef.markForCheck();
       this.pageList = list as { url: string; nb: number }[];
     });
   }

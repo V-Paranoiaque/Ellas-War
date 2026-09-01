@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -15,10 +15,10 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-deleteaccount',
   templateUrl: './deleteaccount.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MainLeftSubComponent, MainRightSubComponent, TranslateDirective],
 })
 export class DeleteAccountComponent implements OnInit, OnDestroy {
+  private readonly deleteAccountComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
@@ -30,6 +30,7 @@ export class DeleteAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.translate.get('Game credits').subscribe((res: string) => {
+      this.deleteAccountComponentChangeDetectorRef.markForCheck();
       this.titleService.setTitle(res);
     });
   }

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
   signal
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -26,7 +26,6 @@ import share from '@iconify/icons-bi/share';
   selector: 'app-attacks-history',
   templateUrl: './attacks-history.sub-component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMessageSubComponent,
     ClipboardModule,
@@ -39,6 +38,7 @@ import share from '@iconify/icons-bi/share';
   ],
 })
 export class AttacksHistorySubComponent implements OnInit, OnDestroy {
+  private readonly attacksHistorySubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
 
   public currentMsg: Message;
@@ -57,10 +57,12 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('msgPage', (newMsgList: { list: object[] }) => {
+      this.attacksHistorySubComponentChangeDetectorRef.markForCheck();
       this.msgList = newMsgList.list as typeof this.msgList;
     });
 
     this.socket.on('msgInfo', msgInfo => {
+      this.attacksHistorySubComponentChangeDetectorRef.markForCheck();
       this.currentMsg = msgInfo;
     });
   }
@@ -100,6 +102,7 @@ export class AttacksHistorySubComponent implements OnInit, OnDestroy {
     this.linkSaved.set(1);
 
     setTimeout(() => {
+      this.attacksHistorySubComponentChangeDetectorRef.markForCheck();
       this.linkSaved.set(0);
     }, 2000);
   }

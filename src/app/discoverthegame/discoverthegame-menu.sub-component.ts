@@ -3,7 +3,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -15,7 +14,6 @@ import { IcIconComponent } from '../../services/ic-icon.service';
 @Component({
   selector: 'app-discoverthegame-menu',
   templateUrl: './discoverthegame-menu.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IcIconComponent, RouterModule],
 })
 export class DiscoverthegameMenuSubComponent {

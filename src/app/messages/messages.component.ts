@@ -1,8 +1,8 @@
 import {
+  ChangeDetectorRef, inject,
   Component,
   OnInit,
   OnDestroy,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,6 @@ import xIcon from '@iconify/icons-bi/x';
 @Component({
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClipboardModule,
     CommonModule,
@@ -52,6 +51,7 @@ import xIcon from '@iconify/icons-bi/x';
 export class MessagesComponent
   extends MessagesAbstractComponent
   implements OnInit, OnDestroy {
+  private readonly messagesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   public dummyMsg: Message;
 
   //Icons
@@ -97,6 +97,7 @@ export class MessagesComponent
     this.linkSaved.set(1);
 
     setTimeout(() => {
+      this.messagesComponentChangeDetectorRef.markForCheck();
       this.linkSaved.set(0);
     }, 2000);
   }

@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -24,7 +24,6 @@ import eye from '@iconify/icons-fa6-solid/eye';
 @Component({
   templateUrl: './support.component.html',
   styleUrls: ['./support.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -37,6 +36,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class SupportComponent implements OnInit, OnDestroy {
+  private readonly supportComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   user = inject(User);
   private readonly route = inject(ActivatedRoute);
@@ -85,6 +85,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1, 2, 3, 4, 5]);
 
     this.route.paramMap.subscribe(params => {
+      this.supportComponentChangeDetectorRef.markForCheck();
       const id = params.get('id');
       if (id) {
         this.contactC = parseInt(id);
@@ -106,6 +107,7 @@ export class SupportComponent implements OnInit, OnDestroy {
     this.socket.on(
       'contactList',
       (data: { list: object[]; cPage: number; max: number }) => {
+        this.supportComponentChangeDetectorRef.markForCheck();
         this.contactList = data.list as typeof this.contactList;
         this.contactNb = data.max;
         this.contactC = data.cPage;
@@ -113,15 +115,18 @@ export class SupportComponent implements OnInit, OnDestroy {
     );
 
     this.socket.on('contactListRefresh', () => {
+      this.supportComponentChangeDetectorRef.markForCheck();
       this.socket.emit('contactList');
       this.loadSupport();
     });
 
     this.socket.on('contactNew', (page: number) => {
+      this.supportComponentChangeDetectorRef.markForCheck();
       void this.router.navigate(['/support/1/' + page.toString()]);
     });
 
     this.socket.on('contactInfo', data => {
+      this.supportComponentChangeDetectorRef.markForCheck();
       this.contactInfo = data;
     });
   }

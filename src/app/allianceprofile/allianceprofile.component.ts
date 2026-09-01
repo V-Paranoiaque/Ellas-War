@@ -1,12 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -47,7 +47,6 @@ interface AllianceProfile {
 @Component({
   selector: 'app-allianceprofile',
   templateUrl: './allianceprofile.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
@@ -59,6 +58,7 @@ interface AllianceProfile {
   ],
 })
 export class AllianceprofileComponent implements OnInit, OnDestroy {
+  private readonly allianceprofileComponentChangeDetectorRef = inject(ChangeDetectorRef);
   http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -107,6 +107,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
     this.getProfile();
 
     this.socket.on('allianceMembersRefresh', () => {
+      this.allianceprofileComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
   }
@@ -128,6 +129,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
         .get(url)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(alli => {
+          this.allianceprofileComponentChangeDetectorRef.markForCheck();
           const profile = alli as AllianceProfile;
           if (profile.alliance_id) {
             this.allianceProfile.set(profile);
@@ -135,9 +137,11 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
             this.subProfile1 = this.translate
               .get('Alliance profile')
               .subscribe((res1: string) => {
+                this.allianceprofileComponentChangeDetectorRef.markForCheck();
                 this.subProfile2 = this.translate
                   .get(':')
                   .subscribe((res2: string) => {
+                    this.allianceprofileComponentChangeDetectorRef.markForCheck();
                     this.titleService.setTitle(
                       res1 + res2 + ' ' + this.allianceProfile().alliance_name
                     );
@@ -146,6 +150,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
             this.subDesc = this.translate
               .get('Visualize the statistics of the alliance')
               .subscribe((res: string) => {
+                this.allianceprofileComponentChangeDetectorRef.markForCheck();
                 this.metaService.removeTag('name=description');
                 this.metaService.addTag({
                   name: 'description',
@@ -156,6 +161,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
             this.subProfile1 = this.translate
               .get("This alliance doesn't exist")
               .subscribe((res: string) => {
+                this.allianceprofileComponentChangeDetectorRef.markForCheck();
                 this.allianceProfile().alliance_name = res;
               });
           }
@@ -164,6 +170,7 @@ export class AllianceprofileComponent implements OnInit, OnDestroy {
       this.subProfile1 = this.translate
         .get("This alliance doesn't exist")
         .subscribe((res: string) => {
+          this.allianceprofileComponentChangeDetectorRef.markForCheck();
           this.allianceProfile().alliance_name = res;
         });
     }

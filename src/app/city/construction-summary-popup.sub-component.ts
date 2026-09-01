@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import {
   TranslateDirective,
   TranslatePipe,
@@ -13,7 +13,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-construction-summary-popup',
   templateUrl: './construction-summary-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TranslateDirective, TranslatePipe],
 })
 export class ConstructionSummaryPopupSubComponent {

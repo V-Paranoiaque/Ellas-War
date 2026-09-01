@@ -3,7 +3,6 @@ import {
   Component,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -24,7 +23,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,

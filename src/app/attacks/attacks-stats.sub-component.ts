@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -25,10 +25,10 @@ import swordCross from '@iconify/icons-mdi/sword-cross';
   selector: 'app-attacks-stats',
   templateUrl: './attacks-stats.sub-component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class AttacksStatsSubComponent implements OnInit, OnDestroy {
+  private readonly attacksStatsSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -83,6 +83,7 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
     this.socket.emit('attackStats');
 
     this.socket.on('attackStats', (data: object) => {
+      this.attacksStatsSubComponentChangeDetectorRef.markForCheck();
       this.attackStats = data as typeof this.attackStats;
       const time = Math.round(new Date().getTime() / 1000);
 
@@ -108,6 +109,7 @@ export class AttacksStatsSubComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('attackStatsRefresh', () => {
+      this.attacksStatsSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('attackStats');
     });
   }

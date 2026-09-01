@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -26,7 +26,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
   selector: 'app-admin-alliances',
   templateUrl: './admin-alliances.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -38,6 +37,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class AdminAlliancesComponent implements OnInit, OnDestroy {
+  private readonly adminAlliancesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -73,12 +73,15 @@ export class AdminAlliancesComponent implements OnInit, OnDestroy {
     this.socket.emit('adminAlliancesList');
 
     this.socket.on('adminAlliancesList', (data: object[]) => {
+      this.adminAlliancesComponentChangeDetectorRef.markForCheck();
       this.adminAlliancesList = data as typeof this.adminAlliancesList;
     });
     this.socket.on('adminAlliancesListRefresh', () => {
+      this.adminAlliancesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminAlliancesList');
     });
     this.socket.on('allianceListReload', () => {
+      this.adminAlliancesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminAlliancesList');
     });
   }

@@ -1,12 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -38,7 +38,6 @@ import users from '@iconify/icons-fa6-solid/users';
   selector: 'app-admin-profile',
   templateUrl: './admin-profile.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -52,6 +51,7 @@ import users from '@iconify/icons-fa6-solid/users';
   ],
 })
 export class AdminProfileComponent implements OnInit, OnDestroy {
+  private readonly adminProfileComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   user = inject(User);
   private readonly route = inject(ActivatedRoute);
@@ -230,38 +230,49 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
     this.getProfile();
 
     this.socket.on('adminProfile', (data: { player: object }) => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.adminProfile = data.player as typeof this.adminProfile;
     });
 
     this.socket.on('adminUserBlock', () => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
     this.socket.on('adminUserUnblock', () => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
     this.socket.on('adminChatBlock', () => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
     this.socket.on('adminChatUnblock', () => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
 
     this.socket.on('adminProfileConnections', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileConnections = data;
     });
     this.socket.on('adminProfileIP', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileIP = data;
     });
     this.socket.on('adminProfileTrade', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileTrade = data;
     });
     this.socket.on('adminProfileStoreroom', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileStoreroom = data;
     });
     this.socket.on('adminProfileAttacks', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileAttacks = data;
     });
     this.socket.on('adminProfileNotes', data => {
+      this.adminProfileComponentChangeDetectorRef.markForCheck();
       this.profileNotes = data;
     });
   }
@@ -294,6 +305,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: object) => {
+        this.adminProfileComponentChangeDetectorRef.markForCheck();
         const player = res as {
           membre_id: number;
           username: string;
@@ -307,6 +319,7 @@ export class AdminProfileComponent implements OnInit, OnDestroy {
           this.subTitle = this.translate
             .get('Player profile:')
             .subscribe((res: string) => {
+              this.adminProfileComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res + ' ' + player.username);
             });
         }

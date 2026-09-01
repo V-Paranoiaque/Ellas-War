@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -16,10 +16,10 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 @Component({
   selector: 'app-honor-help-popup',
   templateUrl: './honor-help-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TranslateDirective, UserProfileSubComponent],
 })
 export class HonorHelpPopupSubComponent implements OnInit {
+  private readonly honorHelpPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   private readonly destroyRef = inject(DestroyRef);
@@ -40,6 +40,7 @@ export class HonorHelpPopupSubComponent implements OnInit {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
+        this.honorHelpPopupSubComponentChangeDetectorRef.markForCheck();
         this.list.set(
           result as {
             id: number;

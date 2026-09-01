@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
   TranslateDirective,
@@ -17,7 +17,6 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 @Component({
   selector: 'app-quests-info-popup',
   templateUrl: './quests-info-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -25,7 +25,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-players',
   templateUrl: './admin-players.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -37,6 +36,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminPlayersComponent implements OnInit, OnDestroy {
+  private readonly adminPlayersComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -84,6 +84,7 @@ export class AdminPlayersComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('adminPlayersResearch', list => {
+      this.adminPlayersComponentChangeDetectorRef.markForCheck();
       this.adminPlayersList = list;
     });
   }

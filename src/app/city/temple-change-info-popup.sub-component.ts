@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -20,7 +20,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-temple-change-info-popup',
   templateUrl: './temple-change-info-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -29,6 +28,7 @@ import { LocaleService } from '../../services/locale.service';
   ],
 })
 export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
+  private readonly templeChangeInfoPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -50,10 +50,12 @@ export class TempleChangeInfoPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('templeChange', (data: number) => {
+      this.templeChangeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.templeChangeError = data;
       this.socket.emit('templeChangeHistory');
     });
     this.socket.on('templeChangeHistory', (data: object[]) => {
+      this.templeChangeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.templeChangeHistory = [];
       for (const i in data) {
         this.templeChangeHistory.push(

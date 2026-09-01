@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -15,7 +14,6 @@ import { UserComponent as User } from '../../services/user.service';
 @Component({
   selector: 'app-diplomacy-war-declare-popup',
   templateUrl: './diplomacy-war-declare-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TranslateDirective, TranslatePipe],
 })
 export class DiplomacyWarDeclarePopupSubComponent {

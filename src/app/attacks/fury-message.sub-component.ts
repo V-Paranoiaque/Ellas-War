@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -19,7 +18,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-fury-message',
   templateUrl: './fury-message.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

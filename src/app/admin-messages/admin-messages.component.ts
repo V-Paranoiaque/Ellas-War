@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-messages',
   templateUrl: './admin-messages.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     FormsModule,
@@ -27,6 +26,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminMessagesComponent implements OnInit, OnDestroy {
+  private readonly adminMessagesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
@@ -49,9 +49,11 @@ export class AdminMessagesComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('adminEmailAll', () => {
+      this.adminMessagesComponentChangeDetectorRef.markForCheck();
       this.msgError = 1;
     });
     this.socket.on('adminWriteAll', () => {
+      this.adminMessagesComponentChangeDetectorRef.markForCheck();
       this.msgError = 1;
     });
   }

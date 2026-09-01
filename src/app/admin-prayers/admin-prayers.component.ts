@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -27,7 +27,6 @@ import plusIcon from '@iconify/icons-bi/plus';
   selector: 'app-admin-prayers',
   templateUrl: './admin-prayers.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -40,6 +39,7 @@ import plusIcon from '@iconify/icons-bi/plus';
   ],
 })
 export class AdminPrayersComponent implements OnInit, OnDestroy {
+  private readonly adminPrayersComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -72,9 +72,11 @@ export class AdminPrayersComponent implements OnInit, OnDestroy {
     this.socket.emit('adminPrayersList');
 
     this.socket.on('adminPrayersList', data => {
+      this.adminPrayersComponentChangeDetectorRef.markForCheck();
       this.adminPrayersList = data as typeof this.adminPrayersList;
     });
     this.socket.on('adminPrayersRefresh', () => {
+      this.adminPrayersComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminPrayersList');
     });
   }

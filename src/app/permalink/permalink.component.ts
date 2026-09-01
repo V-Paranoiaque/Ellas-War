@@ -1,10 +1,10 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -19,7 +19,6 @@ import { MessagesIncludeComponent } from '../messages/messages-include.component
 @Component({
   selector: 'app-permalink',
   templateUrl: './permalink.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -28,6 +27,7 @@ import { MessagesIncludeComponent } from '../messages/messages-include.component
   ],
 })
 export class PermalinkComponent implements OnInit, OnDestroy {
+  private readonly permalinkComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);
@@ -45,6 +45,7 @@ export class PermalinkComponent implements OnInit, OnDestroy {
     this.socket.emit('msgInfo', id);
 
     this.socket.on('msgInfo', (msgInfo: object) => {
+      this.permalinkComponentChangeDetectorRef.markForCheck();
       this.currentMsg = msgInfo as typeof this.currentMsg;
     });
   }

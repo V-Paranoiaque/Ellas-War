@@ -2,7 +2,7 @@ import {
   Component,
   Injectable,
   inject,
-  ChangeDetectionStrategy,
+  signal,
 } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
@@ -14,9 +14,18 @@ declare let device: {
   platform: string;
 };
 
+type UserInfo = Record<string, unknown>;
+
+interface UserConfig {
+  fb_page: string;
+  locale: string;
+  url: string;
+  weather: string;
+  development: number;
+}
+
 @Component({
   selector: 'app-user',
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <ng-content></ng-content> `,
 })
 @Injectable()
@@ -25,16 +34,48 @@ export class UserComponent {
   private readonly oauthService = inject(OAuthService);
   private readonly socket = inject(Socket);
 
-  init: number;
-  info: object;
-  config = {
+  private readonly initSignal = signal(0);
+  private readonly infoSignal = signal<UserInfo>({});
+  private readonly configSignal = signal<UserConfig>({
     fb_page: '',
     locale: '',
     url: '',
     weather: 'sun',
     development: 0,
-  };
-  newMsg: number;
+  });
+  private readonly newMsgSignal = signal(0);
+
+  get init(): number {
+    return this.initSignal();
+  }
+
+  set init(value: number) {
+    this.initSignal.set(value);
+  }
+
+  get info(): UserInfo {
+    return this.infoSignal();
+  }
+
+  set info(value: object) {
+    this.infoSignal.set(value as UserInfo);
+  }
+
+  private get configValue(): UserConfig {
+    return this.configSignal();
+  }
+
+  private set configValue(value: UserConfig) {
+    this.configSignal.set(value);
+  }
+
+  get newMsg(): number {
+    return this.newMsgSignal();
+  }
+
+  set newMsg(value: number) {
+    this.newMsgSignal.set(value);
+  }
 
   constructor() {
     this.init = 0;
@@ -98,46 +139,53 @@ export class UserComponent {
   }
 
   setConfig(data: object) {
-    this.config = data as typeof this.config;
+    this.configValue = data as UserConfig;
   }
 
   getConfig() {
     return this.config;
   }
 
+  get config(): UserConfig {
+    return this.configValue;
+  }
+
   setUser(user: object) {
     this.info = user;
   }
+
   setUserRess(ress: object) {
-    for (const i in ress) {
-      (this.info[i as keyof typeof this.info] as number) =
-        ress[i as keyof typeof ress];
-    }
+    this.infoSignal.update(info => ({
+      ...info,
+      ...(ress as UserInfo),
+    }));
   }
 
   getProperty(name: string): string | object {
-    if (Object.hasOwn(this.info, name)) {
-      return this.info[name as keyof typeof this.info];
+    const info = this.info;
+
+    if (Object.hasOwn(info, name)) {
+      return info[name] as string | object;
     } else {
       return '';
     }
   }
 
   getPropertyNb(name: string): number {
-    if (Object.hasOwn(this.info, name)) {
-      return this.info[name as keyof typeof this.info];
+    const info = this.info;
+
+    if (Object.hasOwn(info, name)) {
+      return info[name] as number;
     } else {
       return 0;
     }
   }
 
   setProperty(prop: string, value: number | string | object) {
-    Object.defineProperty(this.info, prop, {
-      value: value,
-      writable: true,
-      enumerable: true,
-      configurable: true,
-    });
+    this.infoSignal.update(info => ({
+      ...info,
+      [prop]: value,
+    }));
   }
 
   getDatas() {
@@ -265,8 +313,10 @@ export class UserComponent {
         this.getPropertyNb('level') >= army.lvlmini ||
         this.getPropertyNb(i) > 0
       ) {
-        army.code = i;
-        list.push(army);
+        list.push({
+          ...army,
+          code: i,
+        });
       }
     }
 
@@ -295,8 +345,10 @@ export class UserComponent {
       };
       //Only if we have the required level
       if (this.getPropertyNb('level') >= building.lvlmini) {
-        building.code = i;
-        list.push(building);
+        list.push({
+          ...building,
+          code: i,
+        });
       }
     }
 
@@ -432,7 +484,7 @@ export class UserComponent {
     if (
       datas.ress_lvl &&
       this.getPropertyNb('level') >=
-        datas.ress_lvl[ress as keyof typeof datas.ress_lvl]
+      datas.ress_lvl[ress as keyof typeof datas.ress_lvl]
     ) {
       return true;
     } else {

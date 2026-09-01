@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { TranslateDirective } from '@ngx-translate/core';
 
@@ -14,7 +14,6 @@ import fileLines from '@iconify/icons-fa6-regular/file-lines';
     '../main-private/main-private.component.css',
     './admin.component.css',
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IcIconComponent, RouterModule, TranslateDirective],
 })
 export class AdminLeftMenuSubComponent {

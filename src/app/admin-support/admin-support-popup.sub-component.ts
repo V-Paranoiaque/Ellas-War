@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 
@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-admin-support-popup',
   templateUrl: './admin-support-popup.sub-component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class AdminSupportPopupSubComponent {

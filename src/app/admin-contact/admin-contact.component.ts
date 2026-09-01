@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -36,7 +36,6 @@ interface ContactList {
   selector: 'app-admin-contact',
   templateUrl: './admin-contact.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -48,6 +47,7 @@ interface ContactList {
   ],
 })
 export class AdminContactComponent implements OnInit, OnDestroy {
+  private readonly adminContactComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private route = inject(ActivatedRoute);
   user = inject(User);
@@ -73,6 +73,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.adminContactComponentChangeDetectorRef.markForCheck();
       const id = params.get('id');
 
       if (id) {
@@ -86,6 +87,7 @@ export class AdminContactComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminContactList',
       (msg: { list: object[]; cPage: number; max: number }) => {
+        this.adminContactComponentChangeDetectorRef.markForCheck();
         this.adminContactList = msg.list as ContactList[];
         this.adminContactPage = msg.cPage;
         this.adminContactMax = msg.max;

@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -28,7 +28,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
 @Component({
   selector: 'app-alliance-requests-popup',
   templateUrl: './alliance-requests-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -43,6 +42,7 @@ export class AllianceRequestsPopupSubComponent
   extends AllianceAbstractComponent
   implements OnInit, OnDestroy
 {
+  private readonly allianceRequestsPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;
@@ -88,6 +88,7 @@ export class AllianceRequestsPopupSubComponent
 
   ngOnInit() {
     this.socket.on('myAllianceAskAccept', (data: number) => {
+      this.allianceRequestsPopupSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceAskAcceptError = data;
     });
     this.socket.on(
@@ -101,6 +102,7 @@ export class AllianceRequestsPopupSubComponent
           username: string;
         }[]
       ) => {
+        this.allianceRequestsPopupSubComponentChangeDetectorRef.markForCheck();
         const res_id = Tools.getResId(this.info.resource);
         this.myAllianceAskList = [];
         for (const row in data) {
@@ -111,9 +113,11 @@ export class AllianceRequestsPopupSubComponent
       }
     );
     this.socket.on('myAllianceAskMy', (data: object[]) => {
+      this.allianceRequestsPopupSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceAskMy = data as typeof this.myAllianceAskMy;
     });
     this.socket.on('myAllianceAskRefresh', () => {
+      this.allianceRequestsPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceAskList');
       this.socket.emit('myAllianceAskAccept');
       this.socket.emit('myAllianceAskMy');

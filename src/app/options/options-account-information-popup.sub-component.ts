@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
   signal
 } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,11 +21,11 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-options-account-information-popup',
   templateUrl: './options-account-information-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ClipboardModule, FormsModule, TranslateDirective, TranslatePipe],
 })
 export class OptionsAccountInformationPopupSubComponent
   implements OnInit, OnDestroy {
+  private readonly optionsAccountInformationPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -46,11 +46,13 @@ export class OptionsAccountInformationPopupSubComponent
     this.socket.emit('accountInfo');
 
     this.socket.on('accountImg', (name: string) => {
+      this.optionsAccountInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.imageProfile = name;
     });
     this.socket.on(
       'accountInfo',
       (info: { membre_img: string; location: string; description: string }) => {
+        this.optionsAccountInformationPopupSubComponentChangeDetectorRef.markForCheck();
         this.imageProfile = info.membre_img;
         this.location = info.location;
         this.description = info.description;
@@ -73,6 +75,7 @@ export class OptionsAccountInformationPopupSubComponent
     this.socket.emit('accountModify', msg);
 
     setTimeout(() => {
+      this.optionsAccountInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.errorAccountSave.set(0);
     }, 3000);
   }

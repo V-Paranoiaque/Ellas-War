@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-pauses',
   templateUrl: './admin-pauses.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -26,6 +25,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminPausesComponent implements OnInit, OnDestroy {
+  private readonly adminPausesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -48,6 +48,7 @@ export class AdminPausesComponent implements OnInit, OnDestroy {
     this.socket.emit('adminPause');
 
     this.socket.on('adminPause', (res: object[]) => {
+      this.adminPausesComponentChangeDetectorRef.markForCheck();
       this.adminPause = res as typeof this.adminPause;
     });
   }

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -23,7 +23,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-resources',
   templateUrl: './admin-resources.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -34,6 +33,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminResourcesComponent implements OnInit, OnDestroy {
+  private readonly adminResourcesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -56,6 +56,7 @@ export class AdminResourcesComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('adminResGive', (error: number) => {
+      this.adminResourcesComponentChangeDetectorRef.markForCheck();
       this.error = error;
     });
   }

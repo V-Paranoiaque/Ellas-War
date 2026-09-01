@@ -1,11 +1,11 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -30,7 +30,6 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 @Component({
   selector: 'app-construction-popup',
   templateUrl: './construction-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -42,6 +41,7 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
   ],
 })
 export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
+  private readonly constructionPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -86,24 +86,29 @@ export class ConstructionPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('buildPossible', (nb: number) => {
+      this.constructionPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rBuildPossible = nb;
     });
     this.socket.on('build', (nb: number) => {
+      this.constructionPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rBuildNb = nb.toString();
       this.info.rDestructNb = '';
 
       this.socket.emit('buildPossible', this.info.code);
     });
     this.socket.on('destruct', (nb: number) => {
+      this.constructionPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rBuildNb = '';
       this.info.rDestructNb = nb.toString();
 
       this.socket.emit('buildPossible', this.info.code);
     });
     this.socket.on('engage', () => {
+      this.constructionPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('buildPossible', this.info.code);
     });
     this.socket.on('liberate', () => {
+      this.constructionPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('buildPossible', this.info.code);
     });
   }

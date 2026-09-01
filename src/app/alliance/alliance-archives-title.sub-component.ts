@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
@@ -10,7 +9,6 @@ import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-alliance-archives-title',
   templateUrl: './alliance-archives-title.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TranslateDirective, TranslatePipe],
 })
 export class AllianceArchivesTitleSubComponent {

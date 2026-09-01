@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { Router, RouterModule } from '@angular/router';
@@ -31,10 +31,10 @@ declare let cordova: {
   standalone: true,
   templateUrl: './app.html',
   imports: [RouterModule],
-  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [TranslateService],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  private readonly appComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   private readonly router = inject(Router);
@@ -64,6 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.sub = this.socket.onChange.subscribe({
       next: (event: { action: string; username: string }) => {
+        this.appComponentChangeDetectorRef.markForCheck();
         if (event.action == 'appReload') {
           this.ngOnDestroy();
           this.ngOnInit();
@@ -107,6 +108,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInitSocket() {
     this.socket.on('ewAuth', (data?: object) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       this.user.setInit();
       const oldStatus = this.user.getPropertyNb('mstatus');
 
@@ -127,6 +129,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('user', (data?: object) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       if (data) {
         this.user.setUser(data);
       }
@@ -136,23 +139,28 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('userRefresh', () => {
+      this.appComponentChangeDetectorRef.markForCheck();
       this.socket.emit('user');
     });
     this.socket.on('ress', (data?: object) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       if (data) {
         this.user.setUserRess(data);
       }
     });
     this.socket.on('redirect', () => {
+      this.appComponentChangeDetectorRef.markForCheck();
       void this.router.navigate(['/']);
     });
 
     this.socket.on('config', (data: object) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       this.user.setConfig(data);
     });
 
     //oauth
     this.socket.on('connectionToken', (data: { token: string }) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       localStorage.removeItem('token');
       if (data.token) {
         const token = data.token;
@@ -163,6 +171,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('oauth2Server', (token: string) => {
+      this.appComponentChangeDetectorRef.markForCheck();
       const url =
         'https://accounts.google.com/o/oauth2/v2/auth/identifier' +
         '?client_id=' +
@@ -185,10 +194,12 @@ export class AppComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('oauth2Close', () => {
+      this.appComponentChangeDetectorRef.markForCheck();
       window.self.close();
     });
 
     this.socket.on('redirect', () => {
+      this.appComponentChangeDetectorRef.markForCheck();
       void this.router.navigate(['/']);
     });
   }

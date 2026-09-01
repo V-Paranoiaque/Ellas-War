@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 import cloudSun from '@iconify/icons-fa6-solid/cloud-sun';
 import cloudRain from '@iconify/icons-fa6-solid/cloud-rain';
@@ -12,7 +12,6 @@ import { IcIconComponent } from '../../services/ic-icon.service';
 @Component({
   selector: 'app-id-to-weather',
   templateUrl: './id-to-weather.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [IcIconComponent],
 })
 export class IdToWeatherSubComponent {

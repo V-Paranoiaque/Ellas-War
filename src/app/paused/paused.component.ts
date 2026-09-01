@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -18,10 +18,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-paused',
   templateUrl: './paused.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, RouterModule, TranslatePipe, TranslateDirective],
 })
 export class PausedComponent implements OnInit, OnDestroy {
+  private readonly pausedComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -30,6 +30,7 @@ export class PausedComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([4]);
 
     this.socket.on('pauseReturn', () => {
+      this.pausedComponentChangeDetectorRef.markForCheck();
       this.user.reload();
     });
   }
@@ -42,6 +43,7 @@ export class PausedComponent implements OnInit, OnDestroy {
     this.socket.emit('pauseReturn');
 
     setTimeout(() => {
+      this.pausedComponentChangeDetectorRef.markForCheck();
       this.user.reload();
     }, 1000);
   }

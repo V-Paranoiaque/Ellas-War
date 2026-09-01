@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   ViewChild,
@@ -7,7 +8,6 @@ import {
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -39,7 +39,6 @@ import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-in
   selector: 'app-main-private-bottom-menu',
   templateUrl: './main-private-bottom-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -52,6 +51,7 @@ import { MainPrivatePlayerInfoPopupSubComponent } from './main-private-player-in
   ],
 })
 export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
+  private readonly mainPrivateBottomMenuSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   user = inject(User);
   protected socket = inject(Socket);
@@ -175,12 +175,15 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
 
     /*** General Chat ***/
     this.socket.on('chatUserPlayers', players => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chat_user_players = players as typeof this.chat_user_players;
     });
     this.socket.on('chatUserPlayersRefresh', () => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('chatUserPlayers');
     });
     this.socket.on('chatUserMsgs', msgs => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chat_user_msgs = msgs as typeof this.chat_user_msgs;
     });
 
@@ -196,6 +199,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
           msg: string;
         }[]
       ) => {
+        this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
         this.chat_user_msgs.push(msg[0]);
         if (!this.chatActive.startsWith('general')) {
           if (msg[0].user_id != this.user.getPropertyNb('id')) {
@@ -209,12 +213,15 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
 
     /*** Alliance chat ***/
     this.socket.on('chatAlliPlayers', players => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chat_alli_players = players as typeof this.chat_alli_players;
     });
     this.socket.on('chatAlliPlayersRefresh', () => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('chatAlliPlayers');
     });
     this.socket.on('chatAlliMsgs', msgs => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chat_alli_msgs = msgs as typeof this.chat_alli_msgs;
     });
     this.socket.on(
@@ -229,6 +236,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
           msg: string;
         }[]
       ) => {
+        this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
         this.chat_alli_msgs.push(msg[0]);
         if (!this.chatActive.startsWith('alliance')) {
           if (msg[0].user_id != this.user.getPropertyNb('id')) {
@@ -270,6 +278,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
 
   scrollAlliance() {
     setTimeout(() => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chatAllianceScroll?.nativeElement.scroll({
         top: 999999,
         left: 0,
@@ -280,6 +289,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
 
   scrollGeneral() {
     setTimeout(() => {
+      this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
       this.chatGeneralScroll?.nativeElement.scroll({
         top: 999999,
         left: 0,
@@ -336,6 +346,7 @@ export class MainPrivateBottomMenuSubComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
+        this.mainPrivateBottomMenuSubComponentChangeDetectorRef.markForCheck();
         this.selectedMsg.set({
           id: data.id,
           user_id: data.user_id,

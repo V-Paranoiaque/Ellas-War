@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -20,7 +20,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-partners',
   templateUrl: './partners.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -29,6 +28,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class PartnersComponent implements OnInit, OnDestroy {
+  private readonly partnersComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
@@ -43,6 +43,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Ellas War Partners')
       .subscribe((res: string) => {
+        this.partnersComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

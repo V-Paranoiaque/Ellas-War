@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-confidentiality',
   templateUrl: './confidentiality.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -25,6 +24,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class ConfidentialityComponent implements OnInit, OnDestroy {
+  private readonly confidentialityComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
@@ -38,6 +38,7 @@ export class ConfidentialityComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Privacy Policy of the game')
       .subscribe((res: string) => {
+        this.confidentialityComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

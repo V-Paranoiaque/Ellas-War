@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 import { LocaleService } from '../../services/locale.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 export class AttacksSeabattlesAbstractComponent {

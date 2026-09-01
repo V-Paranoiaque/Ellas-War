@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-actions',
   templateUrl: './admin-actions.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     FormsModule,
@@ -26,6 +25,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminActionsComponent implements OnInit, OnDestroy {
+  private readonly adminActionsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -56,12 +56,14 @@ export class AdminActionsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminStoreroomAutoList');
 
     this.socket.on('adminAgoraAutoList', (list: object) => {
+      this.adminActionsComponentChangeDetectorRef.markForCheck();
       for (const res in list) {
         this.adminAgora[res as keyof typeof this.adminAgora] =
           list[res as keyof typeof list];
       }
     });
     this.socket.on('adminStoreroomAutoList', (list: object) => {
+      this.adminActionsComponentChangeDetectorRef.markForCheck();
       for (const res in list) {
         this.adminStoreroom[res as keyof typeof this.adminStoreroom] =
           list[res as keyof typeof list];

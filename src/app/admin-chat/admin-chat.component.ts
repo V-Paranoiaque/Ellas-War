@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,6 @@ import volumeOff from '@iconify/icons-fa6-solid/volume-off';
   selector: 'app-admin-chat',
   templateUrl: './admin-chat.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -33,6 +32,7 @@ import volumeOff from '@iconify/icons-fa6-solid/volume-off';
   ],
 })
 export class AdminChatComponent implements OnInit, OnDestroy {
+  private readonly adminChatComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -59,6 +59,7 @@ export class AdminChatComponent implements OnInit, OnDestroy {
     this.socket.emit('adminChatList');
 
     this.socket.on('adminChatList', (msg: object[]) => {
+      this.adminChatComponentChangeDetectorRef.markForCheck();
       this.adminChatList = msg as typeof this.adminChatList;
     });
   }

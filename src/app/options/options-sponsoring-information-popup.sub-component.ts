@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -32,7 +32,6 @@ import link from '@iconify/icons-fa6-solid/link';
 @Component({
   selector: 'app-options-sponsoring-information-popup',
   templateUrl: './options-sponsoring-information-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ClipboardModule,
     CommonModule,
@@ -47,6 +46,7 @@ import link from '@iconify/icons-fa6-solid/link';
 })
 export class OptionsSponsoringInformationPopupSubComponent
   implements OnInit, OnDestroy {
+  private readonly optionsSponsoringInformationPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -68,12 +68,15 @@ export class OptionsSponsoringInformationPopupSubComponent
     this.socket.emit('sponsorList');
 
     this.socket.on('sponsorChoose', (data: number) => {
+      this.optionsSponsoringInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.sponsorError = data;
     });
     this.socket.on('sponsorList', (data: object[]) => {
+      this.optionsSponsoringInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.sponsorList = data;
     });
     this.socket.on('sponsorPlayer', (data: number) => {
+      this.optionsSponsoringInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.getSponsor(data);
     });
     this.getSponsor(this.user.getPropertyNb('sponsor'));
@@ -96,6 +99,7 @@ export class OptionsSponsoringInformationPopupSubComponent
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res: object) => {
+        this.optionsSponsoringInformationPopupSubComponentChangeDetectorRef.markForCheck();
         const player = res as { membre_id: number; username: string };
         if (player.membre_id) {
           this.sponsorUsername.set(player.username);
@@ -107,6 +111,7 @@ export class OptionsSponsoringInformationPopupSubComponent
     this.linkSaved.set(1);
 
     setTimeout(() => {
+      this.optionsSponsoringInformationPopupSubComponentChangeDetectorRef.markForCheck();
       this.linkSaved.set(0);
     }, 2000);
   }

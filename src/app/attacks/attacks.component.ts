@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -50,7 +50,6 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
 @Component({
   templateUrl: './attacks.component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksHelpPopupSubComponent,
     AttacksHistorySubComponent,
@@ -72,6 +71,7 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   ],
 })
 export class AttacksComponent implements OnInit, OnDestroy {
+  private readonly attacksComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -259,51 +259,62 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.attackListInit();
 
     this.socket.on('attack', datas => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackMode = 4;
       this.attackInfo = new MessageContent({ content: datas });
       this.refreshAttacksPage();
     });
 
     this.socket.on('attackClosestMax', datas => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackClosestMax = datas as typeof this.attackClosestMax;
     });
 
     this.socket.on('attackClosestMin', datas => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackClosestMin = datas as typeof this.attackClosestMin;
     });
 
     this.socket.on('attackList', (datas: object) => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackListInfo = datas as typeof this.attackListInfo;
       this.attackPage = this.attackListInfo.cPage;
       this.socket.emit('attackClosestMax');
       this.socket.emit('attackClosestMin');
     });
     this.socket.on('attackSearchError', (data: number) => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackSearchError = data;
     });
     this.socket.on(
       'attackPossible',
       (data: { result: number; error: number }) => {
+        this.attacksComponentChangeDetectorRef.markForCheck();
         this.attackPossible = data.result;
         this.attackPossibleError = data.error;
 
         setTimeout(() => {
+          this.attacksComponentChangeDetectorRef.markForCheck();
           this.scroller.scrollToAnchor('attackPrepareBlock');
         }, 100);
       }
     );
     this.socket.on('eye', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.setSpy(data);
     });
     this.socket.on('fury', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackMode = 6;
       this.furyInfo = new MessageContent({ content: data });
       this.refreshAttacksPage();
     });
     this.socket.on('furyPossible', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.furyPossible = parseInt(data as string);
     });
     this.socket.on('lightning', (data: { lost_build: object }) => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.attackMode = 8;
       const lost_build = {};
       for (const building in data.lost_build) {
@@ -314,11 +325,14 @@ export class AttacksComponent implements OnInit, OnDestroy {
       this.refreshAttacksPage();
     });
     this.socket.on('lightningPossible', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.lightningPossible = parseInt(data as string);
     });
     this.socket.on('profile', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.targetProfile = data;
       setTimeout(() => {
+        this.attacksComponentChangeDetectorRef.markForCheck();
         if (this.attackMode === 5) {
           this.scroller.scrollToAnchor('furyPrepareBlock');
         } else if (this.attackMode === 7) {
@@ -327,9 +341,11 @@ export class AttacksComponent implements OnInit, OnDestroy {
       }, 100);
     });
     this.socket.on('realWaveAttackCheck', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.realWaveAttackCheck = data;
     });
     this.socket.on('realWaveAttackSum', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.realWaveAttackSum = data;
       const newTab = [];
       let j = 0;
@@ -344,13 +360,16 @@ export class AttacksComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('refreshAttacksPage', () => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.refreshAttacksPage();
     });
     this.socket.on('spyInfo', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.setSpy(data);
     });
 
     this.socket.on('waveAttackSum', data => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.waveAttackSum = data;
     });
   }
@@ -554,6 +573,7 @@ export class AttacksComponent implements OnInit, OnDestroy {
     this.spyInfo = data as typeof this.spyInfo;
 
     setTimeout(() => {
+      this.attacksComponentChangeDetectorRef.markForCheck();
       this.scroller.scrollToAnchor('attackEyeBlock');
     }, 100);
   }

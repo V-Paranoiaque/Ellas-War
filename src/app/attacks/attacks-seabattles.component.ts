@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnDestroy,
   OnInit,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -47,7 +47,6 @@ interface RankingLineSB {
 @Component({
   templateUrl: './attacks-seabattles.component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMenuSubComponent,
     AttacksSeabattlesCoinsHelpPopupSubComponent,
@@ -67,6 +66,7 @@ export class AttacksSeabattlesComponent
   extends AttacksSeabattlesAbstractComponent
   implements OnInit, OnDestroy
 {
+  private readonly attacksSeabattlesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
@@ -135,9 +135,11 @@ export class AttacksSeabattlesComponent
     this.getPage();
 
     this.socket.on('sbGet', (data: object) => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.sbData = data as typeof this.sbData;
     });
     this.socket.on('sbGetCase', (data: object) => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.currentCase = data as typeof this.currentCase;
       const name =
         this.currentCase.x.toString() + '_' + this.currentCase.y.toString();
@@ -145,12 +147,15 @@ export class AttacksSeabattlesComponent
         this.currentCase;
     });
     this.socket.on('sbJoin', (data: object) => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.sbData = data as typeof this.sbData;
     });
     this.socket.on('sbRefresh', () => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('sbGet');
     });
     this.socket.on('sbCaseRefresh', () => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('sbGetCase', {
         sb_id: this.sbData.sb_id,
         x: this.currentCase.x,
@@ -158,6 +163,7 @@ export class AttacksSeabattlesComponent
       });
     });
     this.socket.on('sbRankingRefresh', () => {
+      this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
       this.getPage();
     });
   }
@@ -310,6 +316,7 @@ export class AttacksSeabattlesComponent
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.attacksSeabattlesComponentChangeDetectorRef.markForCheck();
         const result = res as {
           cPage: number;
           max: number;

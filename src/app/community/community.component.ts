@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,6 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
 @Component({
   selector: 'app-community',
   templateUrl: './community.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,
@@ -36,6 +35,7 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class CommunityComponent implements OnInit, OnDestroy {
+  private readonly communityComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
@@ -56,6 +56,7 @@ export class CommunityComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Ellas War community')
       .subscribe((res: string) => {
+        this.communityComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

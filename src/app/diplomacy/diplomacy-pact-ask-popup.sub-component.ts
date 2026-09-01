@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,10 +17,10 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-diplomacy-pact-ask-popup',
   templateUrl: './diplomacy-pact-ask-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class DiplomacyPactAskPopupSubComponent implements OnInit, OnDestroy {
+  private readonly diplomacyPactAskPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -36,6 +36,7 @@ export class DiplomacyPactAskPopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAllianceProfile');
 
     this.socket.on('myAllianceProfile', data => {
+      this.diplomacyPactAskPopupSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceProfile = data;
     });
   }

@@ -3,7 +3,6 @@ import {
   Component,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -19,7 +18,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-getfavors',
   templateUrl: './getfavors.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,

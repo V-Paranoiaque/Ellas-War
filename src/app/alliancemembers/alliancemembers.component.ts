@@ -1,12 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -25,7 +25,6 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 @Component({
   selector: 'app-alliancemembers',
   templateUrl: './alliancemembers.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     MainLeftSubComponent,
@@ -36,6 +35,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   ],
 })
 export class AlliancemembersComponent implements OnInit, OnDestroy {
+  private readonly alliancemembersComponentChangeDetectorRef = inject(ChangeDetectorRef);
   http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -84,6 +84,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
     this.getProfile();
 
     this.socket.on('allianceMembersRefresh', () => {
+      this.alliancemembersComponentChangeDetectorRef.markForCheck();
       this.getProfile();
     });
   }
@@ -103,6 +104,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRefMembers))
       .subscribe(res => {
+        this.alliancemembersComponentChangeDetectorRef.markForCheck();
         this.allianceMembers.set(
           res as {
             membre_id: number;
@@ -141,6 +143,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
       }>(url)
       .pipe(takeUntilDestroyed(this.destroyRefProfile))
       .subscribe(alli => {
+        this.alliancemembersComponentChangeDetectorRef.markForCheck();
         const profile = alli as {
           alliance_name: string;
           alliance_id: number;
@@ -151,6 +154,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
           this.subTitle = this.translate
             .get('Alliance members:')
             .subscribe((res: string) => {
+              this.alliancemembersComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(
                 res + ' ' + this.allianceProfile().alliance_name
               );
@@ -161,6 +165,7 @@ export class AlliancemembersComponent implements OnInit, OnDestroy {
               { value: this.allianceProfile().alliance_name }
             )
             .subscribe((res: string) => {
+              this.alliancemembersComponentChangeDetectorRef.markForCheck();
               this.metaService.removeTag('name=description');
               this.metaService.addTag({
                 name: 'description',

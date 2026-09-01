@@ -1,11 +1,11 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -19,7 +19,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -28,6 +27,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class ConfirmComponent implements OnInit {
+  private readonly confirmComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
@@ -52,6 +52,7 @@ export class ConfirmComponent implements OnInit {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result: object) => {
+        this.confirmComponentChangeDetectorRef.markForCheck();
         const res = result as { error: number };
         this.confirmResult.set(res.error);
       });

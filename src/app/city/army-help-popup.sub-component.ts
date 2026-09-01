@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
 import { IcIconComponent } from '../../services/ic-icon.service';
@@ -17,7 +17,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-help-popup',
   templateUrl: './army-help-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class ArmyHelpPopupSubComponent {

@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -33,7 +33,6 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['../register/register.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     IcIconComponent,
@@ -46,6 +45,7 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   ],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  private readonly loginComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   private readonly socket = inject(Socket);
@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([0]);
 
     this.socket.on('connection', (data: string) => {
+      this.loginComponentChangeDetectorRef.markForCheck();
       if (data) {
         this.socket.emit('ewAuth', {
           token: data,
@@ -91,6 +92,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Connect and Join your City')
       .subscribe((res: string) => {
+        this.loginComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

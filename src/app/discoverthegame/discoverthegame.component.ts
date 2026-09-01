@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
@@ -25,7 +25,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-discoverthegame',
   templateUrl: './discoverthegame.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     DiscoverthegameMenuSubComponent,
     IcIconComponent,
@@ -37,6 +36,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class DiscoverthegameComponent implements OnInit, OnDestroy {
+  private readonly discoverthegameComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly titleService = inject(Title);
@@ -56,6 +56,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.discoverthegameComponentChangeDetectorRef.markForCheck();
       this.page = params.get('page') ?? '';
 
       switch (this.page) {
@@ -63,6 +64,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Discover Ellas War and explore the Ancient Greece')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -71,6 +73,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Construct buildings to make up your Greek city')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -79,6 +82,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Hide your drachmas in your treasure')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -87,6 +91,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Build temples and enjoy the powers of the Gods')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -95,6 +100,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Recruit your army to defend your city from invaders')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -103,6 +109,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Build a varied army and make your strategy')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -111,6 +118,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Develop your offensive strategy for attacking other cities')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -119,6 +127,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Defend your city with your army and your towers')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -127,6 +136,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Buy the resources you need')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -135,6 +145,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('Sell resources you do not need')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -143,6 +154,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('The games')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;
@@ -150,6 +162,7 @@ export class DiscoverthegameComponent implements OnInit, OnDestroy {
           this.sub = this.translate
             .get('The tree of the gods')
             .subscribe((res: string) => {
+              this.discoverthegameComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res);
             });
           break;

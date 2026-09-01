@@ -1,5 +1,6 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
@@ -7,7 +8,6 @@ import {
   EventEmitter,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -54,7 +54,6 @@ interface Profile {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
@@ -68,6 +67,7 @@ interface Profile {
   ],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+  private readonly profileComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   user = inject(User);
   protected socket = inject(Socket);
@@ -117,10 +117,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.profileComponentChangeDetectorRef.markForCheck();
       const id = Number.parseInt(params.get('id') ?? '0');
       this.load(id);
     });
     this.socket.on('accountRefresh', () => {
+      this.profileComponentChangeDetectorRef.markForCheck();
       const userId = this.route.snapshot.paramMap.get('id') ?? '';
       this.load(Number.parseInt(userId));
     });
@@ -142,6 +144,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
+        this.profileComponentChangeDetectorRef.markForCheck();
         const player = resPlayer as Profile;
         if (player.membre_id) {
           this.profile.set(player);
@@ -149,11 +152,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.subTitle = this.translate
             .get('Player profile:')
             .subscribe((res: string) => {
+              this.profileComponentChangeDetectorRef.markForCheck();
               this.titleService.setTitle(res + ' ' + player.username);
             });
           this.subDesc = this.translate
             .get('Visualize the statistics of')
             .subscribe((res: string) => {
+              this.profileComponentChangeDetectorRef.markForCheck();
               this.metaService.removeTag('name=description');
               this.metaService.addTag({
                 name: 'description',

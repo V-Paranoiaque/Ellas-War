@@ -1,8 +1,8 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
   signal
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -18,10 +18,10 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-alliance-profile-popup',
   templateUrl: './alliance-profile-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class AllianceProfilePopupSubComponent {
+  private readonly allianceProfilePopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -75,6 +75,7 @@ export class AllianceProfilePopupSubComponent {
     this.socket.emit('myAllianceProfileSave', msg);
 
     setTimeout(() => {
+      this.allianceProfilePopupSubComponentChangeDetectorRef.markForCheck();
       this.errorProfileSave.set(0);
     }, 3000);
   }

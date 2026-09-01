@@ -1,11 +1,11 @@
 import { Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   ViewEncapsulation,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -52,10 +52,10 @@ import googleIcon from '@iconify-icons/logos/google-icon';
     TranslateDirective,
     TranslatePipe,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class MainPublicComponent implements OnInit, OnDestroy {
+  private readonly mainPublicComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   private readonly formBuilder = inject(FormBuilder);
   private readonly http = inject(HttpClient);
@@ -105,6 +105,7 @@ export class MainPublicComponent implements OnInit, OnDestroy {
     this.subLang = this.http
       .get('./assets/i18n/' + this.currentLocale() + '/localevars.json')
       .subscribe(data => {
+        this.mainPublicComponentChangeDetectorRef.markForCheck();
         this.localevars = data as typeof this.localevars;
       });
 
@@ -126,10 +127,12 @@ export class MainPublicComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Ellas War, free online strategy game')
       .subscribe((res: string) => {
+        this.mainPublicComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
 
     this.socket.on('register', (data: { error: number }) => {
+      this.mainPublicComponentChangeDetectorRef.markForCheck();
       this.rerror = data.error;
     });
   }

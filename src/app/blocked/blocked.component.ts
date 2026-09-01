@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -13,10 +13,10 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-blocked',
   templateUrl: './blocked.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, TranslateDirective],
 })
 export class BlockedComponent implements OnInit, OnDestroy {
+  private readonly blockedComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   private readonly router = inject(Router);
@@ -25,6 +25,7 @@ export class BlockedComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([3]);
 
     this.socket.on('reset', () => {
+      this.blockedComponentChangeDetectorRef.markForCheck();
       void this.router.navigate(['/']);
     });
   }

@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
   TranslateDirective,
@@ -16,7 +16,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-temple2-popup',
   templateUrl: './temple2-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

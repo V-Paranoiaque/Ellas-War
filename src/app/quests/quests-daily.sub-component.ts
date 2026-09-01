@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,7 +16,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   selector: 'app-quests-daily',
   templateUrl: './quests-daily.sub-component.html',
   styleUrls: ['./quests.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateDirective],
 })
 export class QuestsDailySubComponent {

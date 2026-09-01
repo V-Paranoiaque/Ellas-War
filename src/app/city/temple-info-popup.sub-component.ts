@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -26,7 +26,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-temple-info-popup',
   templateUrl: './temple-info-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -36,6 +35,7 @@ import { LocaleService } from '../../services/locale.service';
   ],
 })
 export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
+  private readonly templeInfoPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -99,21 +99,26 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAttacksList');
 
     this.socket.on('wallDefense', (def: number) => {
+      this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.wallDefense = def;
     });
     this.socket.on('myAttacksList', result => {
+      this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.preUseList = result;
     });
 
     this.socket.on('powersUse', (result: { error: number }) => {
+      this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.temple.error = result.error;
       this.socket.emit('myAttacksList');
     });
     this.socket.on('attackStats', data => {
+      this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.attackStats = data;
     });
 
     this.socket.on('attackStatsRefresh', () => {
+      this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('attackStats');
     });
   }
@@ -189,6 +194,7 @@ export class TempleInfoPopupSubComponent implements OnInit, OnDestroy {
         .get(url)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(result => {
+          this.templeInfoPopupSubComponentChangeDetectorRef.markForCheck();
           const res = result as { membre_id: number };
           if (res.membre_id) {
             info = {

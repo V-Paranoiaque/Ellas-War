@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserComponent as User } from '../../services/user.service';
@@ -16,10 +16,10 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-attacks-menu',
   templateUrl: './attacks-menu.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateDirective],
 })
 export class AttacksMenuSubComponent implements OnInit, OnDestroy {
+  private readonly attacksMenuSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -36,6 +36,7 @@ export class AttacksMenuSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAllianceWar');
 
     this.socket.on('myAllianceWar', data => {
+      this.attacksMenuSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceWar = data;
     });
   }

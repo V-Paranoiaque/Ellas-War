@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -19,7 +18,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-sanctuary-strength-update-popup',
   templateUrl: './sanctuary-strength-update-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

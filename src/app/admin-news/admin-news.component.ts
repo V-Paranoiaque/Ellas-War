@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -36,7 +36,6 @@ export interface NewsType {
   selector: 'app-admin-news',
   templateUrl: './admin-news.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -48,6 +47,7 @@ export interface NewsType {
   ],
 })
 export class AdminNewsComponent implements OnInit, OnDestroy {
+  private readonly adminNewsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -82,6 +82,7 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.adminNewsComponentChangeDetectorRef.markForCheck();
       const id = params.get('id');
 
       if (id) {
@@ -95,18 +96,22 @@ export class AdminNewsComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminNewsList',
       (msg: { list: object[]; cPage: number; max: number }) => {
+        this.adminNewsComponentChangeDetectorRef.markForCheck();
         this.adminNewsList = msg.list as NewsType[];
         this.adminNewsPage = msg.cPage;
         this.adminNewsMax = msg.max;
       }
     );
     this.socket.on('adminNewsNew', () => {
+      this.adminNewsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminNewsList');
     });
     this.socket.on('adminNewsModify', () => {
+      this.adminNewsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminNewsList');
     });
     this.socket.on('adminNewsDelete', () => {
+      this.adminNewsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminNewsList');
     });
   }

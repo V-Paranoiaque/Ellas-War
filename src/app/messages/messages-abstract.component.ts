@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   DestroyRef,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -17,10 +17,10 @@ import { Message } from '../../services/message.class';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: '',
 })
 export class MessagesAbstractComponent implements OnInit, OnDestroy {
+  private readonly messagesAbstractComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   user = inject(User);
   protected socket = inject(Socket);
@@ -79,16 +79,19 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
 
     this.subMsg = this.socket.onChange.subscribe({
       next: (event: { action: string; username: string }) => {
+        this.messagesAbstractComponentChangeDetectorRef.markForCheck();
         if (event.action === 'addDest') {
           this.addDestGUi(event.username);
         }
       },
     });
     this.socket.on('msgCategoryList', categoryList => {
+      this.messagesAbstractComponentChangeDetectorRef.markForCheck();
       this.categoryList = categoryList;
     });
 
     this.socket.on('msgPage', (newMsgList: { list: object[]; nb: number }) => {
+      this.messagesAbstractComponentChangeDetectorRef.markForCheck();
       this.msgList = newMsgList.list as typeof this.msgList;
       for (const i in newMsgList.list) {
         this.msgList[i].isChecked = true;
@@ -104,18 +107,22 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('msgInfo', (msgInfo: object) => {
+      this.messagesAbstractComponentChangeDetectorRef.markForCheck();
       this.currentMsg = msgInfo as typeof this.currentMsg;
       this.reported = 0;
       setTimeout(() => {
+        this.messagesAbstractComponentChangeDetectorRef.markForCheck();
         this.scroller.scrollToAnchor('msgBlock');
       }, 100);
     });
 
     this.socket.on('msgPrivateNb', msgPrivateNb => {
+      this.messagesAbstractComponentChangeDetectorRef.markForCheck();
       this.msgPrivateNb = msgPrivateNb;
     });
 
     this.socket.on('msgRefresh', () => {
+      this.messagesAbstractComponentChangeDetectorRef.markForCheck();
       this.setPage(this.currentPage);
       this.currentMsg.msg_read = 0;
       this.messageLoad(this.currentMsg);
@@ -164,6 +171,7 @@ export class MessagesAbstractComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
+        this.messagesAbstractComponentChangeDetectorRef.markForCheck();
         const res = result as { membre_id: number; username: string };
         if (res.membre_id) {
           this.removeDest(res.membre_id);

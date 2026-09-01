@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -24,7 +24,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -36,6 +35,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class StatisticsComponent implements OnInit, OnDestroy {
+  private readonly statisticsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -65,15 +65,19 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('tradeMyStats', data => {
+      this.statisticsComponentChangeDetectorRef.markForCheck();
       this.agoraMyStats = data;
     });
     this.socket.on('tradeStats', data => {
+      this.statisticsComponentChangeDetectorRef.markForCheck();
       this.agoraStats = data;
     });
     this.socket.on('storeroomMyStats', data => {
+      this.statisticsComponentChangeDetectorRef.markForCheck();
       this.storeroomMyStats = data;
     });
     this.socket.on('storeroomStats', data => {
+      this.statisticsComponentChangeDetectorRef.markForCheck();
       this.storeroomStats = data;
     });
 

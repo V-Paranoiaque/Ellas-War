@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,6 @@ import brushIcon from '@iconify/icons-bi/brush';
   selector: 'app-admin-permissions',
   templateUrl: './admin-permissions.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -34,6 +33,7 @@ import brushIcon from '@iconify/icons-bi/brush';
   ],
 })
 export class AdminPermissionsComponent implements OnInit, OnDestroy {
+  private readonly adminPermissionsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
@@ -65,14 +65,17 @@ export class AdminPermissionsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminPermissionsList');
 
     this.socket.on('adminPermissionsList', msg => {
+      this.adminPermissionsComponentChangeDetectorRef.markForCheck();
       this.adminPermissionsList = msg;
     });
 
     this.socket.on('adminPermissionsNew', () => {
+      this.adminPermissionsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminPermissionsList');
     });
 
     this.socket.on('adminPermissionsModify', () => {
+      this.adminPermissionsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminPermissionsList');
     });
   }

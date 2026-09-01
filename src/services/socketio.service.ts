@@ -1,23 +1,51 @@
 import {
   Component,
   EventEmitter,
-  ChangeDetectionStrategy,
+  signal,
 } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-socket',
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: ` <ng-content></ng-content> `,
 })
 export class SocketComponent {
   public onChange: EventEmitter<object> = new EventEmitter<object>();
 
   socket: Socket | null = null;
-  server: string;
-  url: string;
-  local: boolean;
+
+  private readonly serverSignal = signal('');
+  private readonly urlSignal = signal('');
+  private readonly localSignal = signal(false);
+
+  /**
+   * Compatibility accessors keep the existing public API unchanged while
+   * making these values reactive for Angular templates and computed signals.
+   */
+  get server(): string {
+    return this.serverSignal();
+  }
+
+  set server(value: string) {
+    this.serverSignal.set(value);
+  }
+
+  get url(): string {
+    return this.urlSignal();
+  }
+
+  set url(value: string) {
+    this.urlSignal.set(value);
+  }
+
+  get local(): boolean {
+    return this.localSignal();
+  }
+
+  set local(value: boolean) {
+    this.localSignal.set(value);
+  }
 
   constructor() {
     if (window.location.port && window.location.port !== '443') {

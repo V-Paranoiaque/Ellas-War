@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { Title } from '@angular/platform-browser';
@@ -26,7 +26,6 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
 @Component({
   selector: 'app-free-game',
   templateUrl: './free-game.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,
@@ -36,6 +35,7 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class FreeGameComponent implements OnInit, OnDestroy {
+  private readonly freeGameComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
@@ -56,6 +56,7 @@ export class FreeGameComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Visit Ancient Greece for free')
       .subscribe((res: string) => {
+        this.freeGameComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

@@ -1,12 +1,12 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
@@ -28,7 +28,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-lostpassword',
   templateUrl: './lostpassword.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     MainLeftSubComponent,
@@ -39,6 +38,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class LostpasswordComponent implements OnInit, OnDestroy {
+  private readonly lostpasswordComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly http = inject(HttpClient);
   private readonly titleService = inject(Title);
   user = inject(User);
@@ -59,6 +59,7 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Forgot your password')
       .subscribe((res: string) => {
+        this.lostpasswordComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }
@@ -83,6 +84,7 @@ export class LostpasswordComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.lostpasswordComponentChangeDetectorRef.markForCheck();
         const result = res as { error?: number };
         if (result.error) {
           this.lostpasswordError.set(result.error);

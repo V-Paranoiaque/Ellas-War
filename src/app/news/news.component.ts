@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -27,7 +27,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     MainLeftSubComponent,
@@ -37,6 +36,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class NewsComponent implements OnInit, OnDestroy {
+  private readonly newsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
@@ -67,6 +67,7 @@ export class NewsComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.newsComponentChangeDetectorRef.markForCheck();
         this.newsList.set(
           res as {
             title: string;
@@ -80,6 +81,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Ellas War news')
       .subscribe((res: string) => {
+        this.newsComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
     this.subDesc = Tools.setDescription(

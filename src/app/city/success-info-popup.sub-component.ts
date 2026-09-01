@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -21,7 +21,6 @@ import { SuccessCardSubComponent } from './success-card.sub-component';
 @Component({
   selector: 'app-success-info-popup',
   templateUrl: './success-info-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     SuccessCardSubComponent,
@@ -30,6 +29,7 @@ import { SuccessCardSubComponent } from './success-card.sub-component';
   ],
 })
 export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
+  private readonly successInfoPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -65,25 +65,30 @@ export class SuccessInfoPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     setTimeout(() => {
+      this.successInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('hfNext');
       this.socket.emit('statsPlayer');
     }, 0);
 
     this.socket.on('statsPlayer', stats => {
+      this.successInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.statsPlayer = stats;
     });
 
     this.socket.on('hfNext', list => {
+      this.successInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.hfNext = list;
       this.socket.emit('hfDisplay');
     });
 
     this.socket.on('hfDisplay', data => {
+      this.successInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.hfDisplay = data;
       this.calculate();
     });
 
     this.socket.on('successRefresh', () => {
+      this.successInfoPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('hfNext');
       this.socket.emit('statsPlayer');
     });

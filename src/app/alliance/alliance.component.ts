@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -52,7 +52,6 @@ import sportsMedal from '@iconify-icons/emojione-monotone/sports-medal';
 @Component({
   templateUrl: './alliance.component.html',
   styleUrls: ['./alliance.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AllianceArchivesPopupSubComponent,
     AllianceCandidatePopupSubComponent,
@@ -83,6 +82,7 @@ export class AllianceComponent
   extends AllianceAbstractComponent
   implements OnInit, OnDestroy
 {
+  private readonly allianceComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected override socket: Socket;
   override user: User;
   override translate: TranslateService;
@@ -233,22 +233,28 @@ export class AllianceComponent
     this.socket.emit('myAllianceWar');
 
     this.socket.on('allianceMembersRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceMembers');
       this.socket.emit('myAllianceAllowLeave');
     });
     this.socket.on('alliancePactAsk', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('alliancePactListAll');
     });
     this.socket.on('alliancePactListAll', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.pactList = data;
     });
     this.socket.on('myAllianceProfile', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.myAllianceProfile = data as typeof this.myAllianceProfile;
     });
     this.socket.on('myAllianceProfileRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceProfile');
     });
     this.socket.on('myAllianceMembers', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.myAllianceMembers = data;
       this.legend = {
         paused: 0,
@@ -263,36 +269,46 @@ export class AllianceComponent
       }
     });
     this.socket.on('myAllianceAllowLeave', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.allowLeave = data;
     });
     this.socket.on('myAllianceWar', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.myAllianceWar = data;
     });
     this.socket.on('myAllianceAllowDissolve', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.allowDissolve = data;
     });
     this.socket.on('myAllianceMembersRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceMembers');
       this.socket.emit('myAllianceAllowLeave');
     });
     this.socket.on('myAllianceAllowLeaveRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceAllowLeave');
       this.socket.emit('myAllianceAllowDissolve');
     });
     this.socket.on('myAllianceAllowDissolveRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceAllowLeave');
       this.socket.emit('myAllianceAllowDissolve');
     });
     this.socket.on('myAllianceWaitList', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.myAllianceWaitList = data;
     });
     this.socket.on('myAllianceWaitListRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceWaitList');
     });
     this.socket.on('myAllianceWaitNb', data => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.myAllianceWaitNb = data;
     });
     this.socket.on('myAllianceWaitNbRefresh', () => {
+      this.allianceComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myAllianceWaitNb');
     });
   }

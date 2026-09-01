@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -16,10 +16,10 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-storeroom-history-popup',
   templateUrl: './storeroom-history-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {
+  private readonly storeroomHistoryPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -36,6 +36,7 @@ export class StoreroomHistoryPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('storeroomHistory', (data: object[]) => {
+      this.storeroomHistoryPopupSubComponentChangeDetectorRef.markForCheck();
       this.list = data.slice().reverse() as typeof this.list;
     });
   }

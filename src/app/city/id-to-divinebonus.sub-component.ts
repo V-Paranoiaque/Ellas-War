@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
 import { ToolsComponent } from '../../services/tools.service';
@@ -14,7 +13,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-id-to-divinebonus',
   templateUrl: './id-to-divinebonus.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class IdToDivineBonusSubComponent {

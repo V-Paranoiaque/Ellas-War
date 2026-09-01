@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -18,7 +17,6 @@ import { LocaleService } from '../../services/locale.service';
   selector: 'app-divinebonus-help-popup',
   templateUrl: './divinebonus-help-popup.sub-component.html',
   styleUrls: ['./city.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

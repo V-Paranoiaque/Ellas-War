@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -22,10 +22,10 @@ import shieldShaded from '@iconify/icons-bi/shield-shaded';
 @Component({
   selector: 'app-defense-wall-popup',
   templateUrl: './defense-wall-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class DefenseWallPopupSubComponent implements OnInit, OnDestroy {
+  private readonly defenseWallPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -45,6 +45,7 @@ export class DefenseWallPopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('defenseWallStrength');
 
     this.socket.on('defenseWallStrength', (data: number) => {
+      this.defenseWallPopupSubComponentChangeDetectorRef.markForCheck();
       this.defenseWallStrength = data;
     });
   }

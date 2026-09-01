@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -26,7 +25,6 @@ import { SanctuaryMessageSubComponent } from './../sanctuary/sanctuary-message.s
   selector: 'app-messages-content',
   templateUrl: './messages-content.sub-component.html',
   styleUrls: ['./messages.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksMessageSubComponent,
     CommonModule,

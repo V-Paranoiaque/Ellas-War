@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnDestroy,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -26,12 +26,12 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   selector: 'app-attacks-seabattles-move-popup',
   templateUrl: './attacks-seabattles-move-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class AttacksSeabattlesMovePopupSubComponent
   implements OnInit, OnDestroy
 {
+  private readonly attacksSeabattlesMovePopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -73,6 +73,7 @@ export class AttacksSeabattlesMovePopupSubComponent
 
   ngOnInit() {
     this.socket.on('sbGetCase', (data: object) => {
+      this.attacksSeabattlesMovePopupSubComponentChangeDetectorRef.markForCheck();
       this.unitSum = 0;
       this.currentCase = data as typeof this.currentCase;
 
@@ -83,6 +84,7 @@ export class AttacksSeabattlesMovePopupSubComponent
         this.moveArray.set(code, this.currentCase[code as keyof object]);
 
         setTimeout(() => {
+          this.attacksSeabattlesMovePopupSubComponentChangeDetectorRef.markForCheck();
           const obj = document.getElementById('move-' + code);
           if (obj) {
             (obj as HTMLInputElement).value =
@@ -99,6 +101,7 @@ export class AttacksSeabattlesMovePopupSubComponent
     this.socket.on(
       'sbAttack',
       (data: { lost: { src: object; dest: object } }) => {
+        this.attacksSeabattlesMovePopupSubComponentChangeDetectorRef.markForCheck();
         this.lost.src = data.lost.src as typeof this.lost.src;
         this.lost.dest = data.lost.dest as typeof this.lost.dest;
         this.lost.init = 1;

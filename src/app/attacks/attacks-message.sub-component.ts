@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -22,7 +21,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   selector: 'app-attacks-message',
   templateUrl: './attacks-message.sub-component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

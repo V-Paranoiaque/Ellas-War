@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -33,7 +33,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   templateUrl: './attacks-diamond.component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksHistorySubComponent,
     AttacksMenuSubComponent,
@@ -48,6 +47,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   ],
 })
 export class AttacksDiamondComponent implements OnInit, OnDestroy {
+  private readonly attacksDiamondComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -154,32 +154,40 @@ export class AttacksDiamondComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('attack', datas => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.attackMode = 4;
       this.attackInfo = new MessageContent({ content: datas });
     });
     this.socket.on(
       'attackPossible',
       (data: { result: number; error: number }) => {
+        this.attacksDiamondComponentChangeDetectorRef.markForCheck();
         this.attackPossible = data.result;
         this.attackPossibleError = data.error;
 
         setTimeout(() => {
+          this.attacksDiamondComponentChangeDetectorRef.markForCheck();
           this.scroller.scrollToAnchor('attackPrepareBlock');
         }, 100);
       }
     );
     this.socket.on('diamondInfo', info => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.diamondInfo = info;
     });
     this.socket.on('diamondRankingPlayers', info => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.diamondRankingPlayers = info;
     });
     this.socket.on('diamondRankingAlliance', info => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.diamondRankingAlliance = info;
     });
     this.socket.on('profile', data => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.targetProfile = data;
       setTimeout(() => {
+        this.attacksDiamondComponentChangeDetectorRef.markForCheck();
         if (this.attackMode === 5) {
           this.scroller.scrollToAnchor('furyPrepareBlock');
         } else if (this.attackMode === 7) {
@@ -188,9 +196,11 @@ export class AttacksDiamondComponent implements OnInit, OnDestroy {
       }, 100);
     });
     this.socket.on('realWaveAttackSum', data => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.realWaveAttackSum = data;
     });
     this.socket.on('waveAttackSum', data => {
+      this.attacksDiamondComponentChangeDetectorRef.markForCheck();
       this.waveAttackSum = data;
     });
   }

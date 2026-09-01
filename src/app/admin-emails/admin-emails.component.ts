@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -19,7 +19,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-emails',
   templateUrl: './admin-emails.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -30,6 +29,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminEmailsComponent implements OnInit, OnDestroy {
+  private readonly adminEmailsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -58,6 +58,7 @@ export class AdminEmailsComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminEmailModification',
       (res: { cPage: number; max: number; list: object[] }) => {
+        this.adminEmailsComponentChangeDetectorRef.markForCheck();
         this.adminemailsPage = res.cPage;
         this.adminemailsMax = res.max;
         this.adminemailsList = res.list as typeof this.adminemailsList;

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -20,7 +20,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-strategy-game',
   templateUrl: './strategy-game.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -29,6 +28,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class StrategyGameComponent implements OnInit, OnDestroy {
+  private readonly strategyGameComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
   user = inject(User);
@@ -43,6 +43,7 @@ export class StrategyGameComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Set up your strategy')
       .subscribe((res: string) => {
+        this.strategyGameComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

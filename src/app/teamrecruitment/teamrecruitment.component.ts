@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import {
@@ -27,7 +27,6 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
 @Component({
   selector: 'app-teamrecruitment',
   templateUrl: './teamrecruitment.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -37,6 +36,7 @@ import githubOctocat from '@iconify-icons/logos/github-octocat';
   ],
 })
 export class TeamrecruitmentComponent implements OnInit, OnDestroy {
+  private readonly teamrecruitmentComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
@@ -60,6 +60,7 @@ export class TeamrecruitmentComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Ellas War Staff recruitment')
       .subscribe((res: string) => {
+        this.teamrecruitmentComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
     this.subDesc = Tools.setDescription(

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
@@ -6,7 +7,6 @@ import {
   ViewChild,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { PlatformLocation } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -26,7 +26,6 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     BlockedComponent,
     CityComponent,
@@ -37,6 +36,7 @@ import { TranslateDirective } from '@ngx-translate/core';
   ],
 })
 export class MainComponent implements OnInit, OnDestroy {
+  private readonly mainComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   protected socket = inject(Socket);
   protected router = inject(Router);
@@ -57,7 +57,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this.localVersion = environment.version;
     this.remoteVersion = 0;
-    platformLocation.onPopState(() => this.closeAll());
+    platformLocation.onPopState(() => { this.mainComponentChangeDetectorRef.markForCheck(); return this.closeAll(); });
   }
 
   ngOnInit() {
@@ -100,6 +100,7 @@ export class MainComponent implements OnInit, OnDestroy {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (apiResult: object) => {
+          this.mainComponentChangeDetectorRef.markForCheck();
           const result = apiResult as {
             min: number;
             maintenance: number;
@@ -123,14 +124,17 @@ export class MainComponent implements OnInit, OnDestroy {
 
           if (this.displayServerModal()) {
             setTimeout(() => {
+              this.mainComponentChangeDetectorRef.markForCheck();
               this.getApi();
             }, 5000);
           }
         },
         error: () => {
+          this.mainComponentChangeDetectorRef.markForCheck();
           this.displayServerModal.set(true);
 
           setTimeout(() => {
+            this.mainComponentChangeDetectorRef.markForCheck();
             this.getApi();
           }, 5000);
         },

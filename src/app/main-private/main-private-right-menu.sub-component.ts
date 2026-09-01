@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import {
   TranslateDirective,
@@ -34,7 +34,6 @@ import trophy from '@iconify/icons-fa6-solid/trophy';
   selector: 'app-main-private-right-menu',
   templateUrl: './main-private-right-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

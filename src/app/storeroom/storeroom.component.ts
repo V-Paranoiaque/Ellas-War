@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -33,7 +33,6 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
 @Component({
   templateUrl: './storeroom.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -49,6 +48,7 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class StoreroomComponent implements OnInit, OnDestroy {
+  private readonly storeroomComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -114,21 +114,26 @@ export class StoreroomComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('storeroomList', data => {
+      this.storeroomComponentChangeDetectorRef.markForCheck();
       this.storeroomList = data;
     });
     this.socket.on('storeroomListReload', () => {
+      this.storeroomComponentChangeDetectorRef.markForCheck();
       this.socket.emit('storeroomList');
       this.storeroomHistory();
     });
     this.socket.on('storeroomMyList', data => {
+      this.storeroomComponentChangeDetectorRef.markForCheck();
       this.storeroomMyList = data;
     });
     this.socket.on('storeroomMyListReload', () => {
+      this.storeroomComponentChangeDetectorRef.markForCheck();
       this.socket.emit('storeroomMyList');
       this.socket.emit('storeroomMin', 1);
       this.storeroomHistory();
     });
     this.socket.on('storeroomMin', data => {
+      this.storeroomComponentChangeDetectorRef.markForCheck();
       this.storeroomMin = data;
     });
 

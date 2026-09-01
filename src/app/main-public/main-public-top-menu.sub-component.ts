@@ -3,7 +3,6 @@ import {
   Input,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -23,7 +22,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-main-public-top-menu',
   templateUrl: './main-public-top-menu.sub-component.html',
   styleUrls: ['./main-public.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,

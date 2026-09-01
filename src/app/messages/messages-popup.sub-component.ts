@@ -1,11 +1,11 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
@@ -21,7 +21,6 @@ import xIcon from '@iconify/icons-bi/x';
 @Component({
   selector: 'app-messages-popup',
   templateUrl: './messages-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     IcIconComponent,
@@ -34,6 +33,7 @@ export class MessagesPopupSubComponent
   extends MessagesAbstractComponent
   implements OnInit, OnDestroy
 {
+  private readonly messagesPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected route = inject(ActivatedRoute);
 
   private subLoad: Subscription;
@@ -50,6 +50,7 @@ export class MessagesPopupSubComponent
     this.user.checkPermissions([0, 1, 2, 3, 4, 5]);
 
     this.subLoad = this.route.paramMap.subscribe(params => {
+      this.messagesPopupSubComponentChangeDetectorRef.markForCheck();
       const id = parseInt(params.get('id') ?? '0');
       this.reinitDest();
       if (id) {

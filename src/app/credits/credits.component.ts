@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
@@ -19,7 +19,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-credits',
   templateUrl: './credits.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -28,6 +27,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class CreditsComponent implements OnInit, OnDestroy {
+  private readonly creditsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
@@ -39,6 +39,7 @@ export class CreditsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.translate.get('Game credits').subscribe((res: string) => {
+      this.creditsComponentChangeDetectorRef.markForCheck();
       this.titleService.setTitle(res);
     });
   }

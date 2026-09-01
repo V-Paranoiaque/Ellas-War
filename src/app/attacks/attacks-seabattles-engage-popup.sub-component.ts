@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnDestroy,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -28,7 +28,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   selector: 'app-attacks-seabattles-engage-popup',
   templateUrl: './attacks-seabattles-engage-popup.sub-component.html',
   styleUrls: ['./attacks.component.css', './attacks-seabattles.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -41,6 +40,7 @@ export class AttacksSeabattlesEngagePopupSubComponent
   extends AttacksSeabattlesAbstractComponent
   implements OnInit, OnDestroy
 {
+  private readonly attacksSeabattlesEngagePopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected override http: HttpClient;
   protected override socket: Socket;
   override user: User;
@@ -94,9 +94,11 @@ export class AttacksSeabattlesEngagePopupSubComponent
 
   ngOnInit() {
     this.socket.on('sbEngage', (data: number) => {
+      this.attacksSeabattlesEngagePopupSubComponentChangeDetectorRef.markForCheck();
       this.unit.error = data;
     });
     this.socket.on('sbGet', (data: object) => {
+      this.attacksSeabattlesEngagePopupSubComponentChangeDetectorRef.markForCheck();
       this.sbData = data as typeof this.sbData;
     });
   }

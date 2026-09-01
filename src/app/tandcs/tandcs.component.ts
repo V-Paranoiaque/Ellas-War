@@ -1,12 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
-  OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
 import {
   TranslateDirective,
   TranslatePipe,
@@ -19,7 +17,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-tandcs',
   templateUrl: './tandcs.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -27,25 +24,17 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
     TranslatePipe,
   ],
 })
-export class TandcsComponent implements OnInit, OnDestroy {
+export class TandcsComponent implements OnInit {
+  private readonly tandcsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
-  private sub: Subscription;
-
-  constructor() {
-    this.sub = new Subscription();
-  }
-
   ngOnInit() {
-    this.sub = this.translate
+    this.translate
       .get('Terms and Conditions of use')
       .subscribe((res: string) => {
+        this.tandcsComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 }

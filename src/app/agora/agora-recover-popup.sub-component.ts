@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -16,7 +15,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   selector: 'app-agora-recover-popup',
   templateUrl: './agora-recover-popup.sub-component.html',
   styleUrls: ['./agora.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, TranslateDirective],
 })
 export class AgoraRecoverPopupSubComponent {

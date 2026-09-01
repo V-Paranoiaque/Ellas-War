@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -25,7 +25,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-alliance-war-archives-popup',
   templateUrl: './alliance-war-archives-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -36,6 +35,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   ],
 })
 export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
+  private readonly allianceWarArchivesPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -81,6 +81,7 @@ export class AllianceWarArchivesPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('myAllianceWarHistory', data => {
+      this.allianceWarArchivesPopupSubComponentChangeDetectorRef.markForCheck();
       this.warInfo = data;
     });
   }

@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -22,7 +22,6 @@ import discordIcon from '@iconify-icons/logos/discord-icon';
 @Component({
   selector: 'app-help',
   templateUrl: './help.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     IcIconComponent,
     MainLeftSubComponent,
@@ -32,6 +31,7 @@ import discordIcon from '@iconify-icons/logos/discord-icon';
   ],
 })
 export class HelpComponent implements OnInit, OnDestroy {
+  private readonly helpComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
@@ -52,6 +52,7 @@ export class HelpComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Do you need help with Ellas War?')
       .subscribe((res: string) => {
+        this.helpComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
     this.subDesc = Tools.setDescription(

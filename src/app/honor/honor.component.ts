@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -45,7 +45,6 @@ interface HonorLine {
 
 @Component({
   templateUrl: './honor.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -63,6 +62,7 @@ interface HonorLine {
   ],
 })
 export class HonorComponent implements OnInit, OnDestroy {
+  private readonly honorComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -89,6 +89,7 @@ export class HonorComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.honorComponentChangeDetectorRef.markForCheck();
       let id = parseInt(params.get('id') ?? '0');
 
       if (!id) {
@@ -98,6 +99,7 @@ export class HonorComponent implements OnInit, OnDestroy {
       this.load(id);
     });
     this.socket.on('rankingHonorRefresh', () => {
+      this.honorComponentChangeDetectorRef.markForCheck();
       this.load(this.id);
     });
   }
@@ -118,12 +120,14 @@ export class HonorComponent implements OnInit, OnDestroy {
       this.subTitle = this.translate
         .get('Honor Ranking, page')
         .subscribe((res: string) => {
+          this.honorComponentChangeDetectorRef.markForCheck();
           this.titleService.setTitle(res + ' ' + this.id.toString());
         });
     } else {
       this.subTitle = this.translate
         .get('Honor ranking, the best fighters')
         .subscribe((res: string) => {
+          this.honorComponentChangeDetectorRef.markForCheck();
           this.titleService.setTitle(res);
         });
     }
@@ -134,6 +138,7 @@ export class HonorComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.honorComponentChangeDetectorRef.markForCheck();
         this.list.set(res as HonorLine[]);
       });
   }

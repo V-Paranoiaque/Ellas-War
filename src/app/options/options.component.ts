@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -35,7 +35,6 @@ import redo from '@iconify/icons-fa6-solid/rotate-right';
 @Component({
   templateUrl: './options.component.html',
   styleUrls: ['./options.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -50,6 +49,7 @@ import redo from '@iconify/icons-fa6-solid/rotate-right';
   ],
 })
 export class OptionsComponent implements OnInit, OnDestroy {
+  private readonly optionsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   private readonly router = inject(Router);
@@ -113,40 +113,50 @@ export class OptionsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('accountRenameCost', (result: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.accountRenameCost = result;
     });
 
     this.socket.on('accountRename', (result: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('accountRenameCost');
       this.renameError = result;
     });
     this.socket.on('pauseAllowed', (result: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.pauseAllowed = result;
     });
     this.socket.on('accountPassword', (nb: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.passwordError = nb;
       this.socket.emit('accountPasswordPossible');
     });
     this.socket.on('accountPasswordPossible', (nb: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.accountPasswordPossible = nb;
       if (nb === 0) {
         this.oldPassword = 'notused';
       }
     });
     this.socket.on('languageModify', (language: string) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.translate.use(language);
     });
     this.socket.on('pause', (data: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       if (data === 1) {
         setTimeout(() => {
+          this.optionsComponentChangeDetectorRef.markForCheck();
           void this.router.navigate(['/']);
         }, 500);
       }
     });
     this.socket.on('reset', () => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       void this.router.navigate(['']);
     });
     this.socket.on('soundModify', (sound: number) => {
+      this.optionsComponentChangeDetectorRef.markForCheck();
       this.sound = sound;
     });
 

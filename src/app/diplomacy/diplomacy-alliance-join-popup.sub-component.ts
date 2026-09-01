@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -17,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-diplomacy-alliance-join-popup',
   templateUrl: './diplomacy-alliance-join-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class DiplomacyAllianceJoinPopupSubComponent {

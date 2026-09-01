@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -30,7 +30,6 @@ import eye from '@iconify/icons-fa6-solid/eye';
   selector: 'app-admin-support',
   templateUrl: './admin-support.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     AdminSupportPopupSubComponent,
@@ -44,6 +43,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class AdminSupportComponent implements OnInit, OnDestroy {
+  private readonly adminSupportComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -79,6 +79,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.adminSupportComponentChangeDetectorRef.markForCheck();
       const id = params.get('id');
 
       if (id) {
@@ -93,6 +94,7 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminSupportList',
       (msg: { list: object[]; cPage: number; max: number }) => {
+        this.adminSupportComponentChangeDetectorRef.markForCheck();
         this.adminSupportList = msg.list as typeof this.adminSupportList;
         this.adminSupportPage = msg.cPage;
         this.adminSupportMax = msg.max;
@@ -100,9 +102,11 @@ export class AdminSupportComponent implements OnInit, OnDestroy {
     );
 
     this.socket.on('adminSupportInfo', () => {
+      this.adminSupportComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminSupportList', this.adminSupportPage);
     });
     this.socket.on('contactListRefresh', () => {
+      this.adminSupportComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminSupportList', this.adminSupportPage);
     });
   }

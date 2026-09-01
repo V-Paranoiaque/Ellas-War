@@ -4,7 +4,6 @@ import {
   OnChanges,
   SimpleChanges,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { IconifyIcon } from 'iconify-icon';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -17,7 +16,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ic-icon',
-  changeDetection: ChangeDetectionStrategy.Eager,
   template:
     '<svg [innerHTML]="iconHtml" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" [attr.viewBox]="viewbox" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);width: inherit;height: inherit;"></svg>',
 })

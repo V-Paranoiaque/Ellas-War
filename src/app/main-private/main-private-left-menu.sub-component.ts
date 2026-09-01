@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -17,10 +17,10 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   selector: 'app-main-private-left-menu',
   templateUrl: './main-private-left-menu.sub-component.html',
   styleUrls: ['./main-private.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateDirective],
 })
 export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
+  private readonly mainPrivateLeftMenuSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   socket = inject(Socket);
   user = inject(User);
 
@@ -36,10 +36,12 @@ export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     setTimeout(() => {
+      this.mainPrivateLeftMenuSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('msgNewNb');
     }, 0);
 
     this.socket.on('msgNewNb', (nb: number) => {
+      this.mainPrivateLeftMenuSubComponentChangeDetectorRef.markForCheck();
       const play = this.user.setNewMsg(nb);
 
       if (nb > 0) {
@@ -53,6 +55,7 @@ export class MainPrivateLeftMenuSubComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('msgRefresh', () => {
+      this.mainPrivateLeftMenuSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('msgNewNb');
     });
   }

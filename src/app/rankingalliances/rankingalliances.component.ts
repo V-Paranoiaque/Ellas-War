@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -36,7 +36,6 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
 @Component({
   selector: 'app-rankingalliances',
   templateUrl: './rankingalliances.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -51,6 +50,7 @@ import sortUP from '@iconify/icons-fa6-solid/sort-up';
   ],
 })
 export class RankingalliancesComponent implements OnInit, OnDestroy {
+  private readonly rankingalliancesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -91,6 +91,7 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.rankingalliancesComponentChangeDetectorRef.markForCheck();
       const page = params.get('id');
       const rankingOrder = params.get('order');
 
@@ -104,12 +105,14 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
       this.getPage();
     });
     this.socket.on('rankingAlliancesRefresh', () => {
+      this.rankingalliancesComponentChangeDetectorRef.markForCheck();
       this.getPage();
     });
 
     this.subTitle = this.translate
       .get('Watch the power of other alliances')
       .subscribe((res: string) => {
+        this.rankingalliancesComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }
@@ -132,6 +135,7 @@ export class RankingalliancesComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resResult: object) => {
+        this.rankingalliancesComponentChangeDetectorRef.markForCheck();
         const result = resResult as {
           cPage: number;
           max: number;

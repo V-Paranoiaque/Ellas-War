@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,10 +17,10 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-main-private-favors-popup',
   templateUrl: './main-private-favors-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, RouterModule, TranslateDirective],
 })
 export class MainPrivateFavorsPopupSunComponent implements OnInit, OnDestroy {
+  private readonly mainPrivateFavorsPopupSunComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -42,6 +42,7 @@ export class MainPrivateFavorsPopupSunComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('favorUse', (id: number) => {
+      this.mainPrivateFavorsPopupSunComponentChangeDetectorRef.markForCheck();
       this.favor.error = id;
     });
   }

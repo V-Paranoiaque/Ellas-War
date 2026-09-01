@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { UserComponent as User } from '../../services/user.service';
@@ -16,7 +15,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   templateUrl: './attacks-stats.component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksHistorySubComponent,
     AttacksMenuSubComponent,

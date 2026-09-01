@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -16,10 +16,10 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective],
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  private readonly contactComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   user = inject(User);
   private readonly socket = inject(Socket);
@@ -50,10 +50,12 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Contact the game team')
       .subscribe((res: string) => {
+        this.contactComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
 
     this.socket.on('contact', data => {
+      this.contactComponentChangeDetectorRef.markForCheck();
       this.contactError = data as typeof this.contactError;
     });
   }

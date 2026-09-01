@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
@@ -61,7 +61,6 @@ import waterWave from '@iconify/icons-emojione-monotone/water-wave';
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ArmyHelpPopupSubComponent,
     ArmyPopupSubComponent,
@@ -98,6 +97,7 @@ import waterWave from '@iconify/icons-emojione-monotone/water-wave';
   ],
 })
 export class CityComponent implements OnInit, OnDestroy {
+  private readonly cityComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -222,6 +222,7 @@ export class CityComponent implements OnInit, OnDestroy {
       this.user.getPropertyNb('quest') === 1
     ) {
       setTimeout(() => {
+        this.cityComponentChangeDetectorRef.markForCheck();
         const element: HTMLElement | null =
           document.getElementById('FirstInfoOpen');
         if (element) {
@@ -235,12 +236,14 @@ export class CityComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Everything about your city')
       .subscribe((res: string) => {
+        this.cityComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }
 
   ngOnInitSocket() {
     this.socket.on('divineBonus', (data: { nb: number; list: object[] }) => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.divineBonusNb = data.nb;
       if (this.divineBonusNb > 0) {
         this.divineBonus = data.list as typeof this.divineBonus;
@@ -250,6 +253,7 @@ export class CityComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('dailyCo', result => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.dailyCo = result as typeof this.dailyCo;
 
       //Check baskets
@@ -270,29 +274,36 @@ export class CityComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('dailyCoCheck', (r: number) => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.dailyCoCheck = r;
       if (r === 1) {
         this.socket.emit('dailyCo');
       }
     });
     this.socket.on('featsOfStrengthNb', nb => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.featsOfStrengthNb = parseInt(nb);
     });
 
     this.socket.on('unitFavoriteList', data => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.unitFavoriteList = data;
     });
     this.socket.on('unitFavoriteListRefresh', () => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.socket.emit('unitFavoriteList');
     });
 
     this.socket.on('waveAttackList', (data: { power: number }) => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.waveAttackPower = data.power;
     });
     this.socket.on('waveDefenseList', (data: { power: number }) => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.waveDefensePower = data.power;
     });
     this.socket.on('waveRefresh', () => {
+      this.cityComponentChangeDetectorRef.markForCheck();
       this.socket.emit('waveAttackList');
       this.socket.emit('waveDefenseList');
     });

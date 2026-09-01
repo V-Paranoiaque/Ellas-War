@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -19,7 +19,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MainLeftSubComponent,
     MainRightSubComponent,
@@ -28,6 +27,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class TeamComponent implements OnInit, OnDestroy {
+  private readonly teamComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
 
@@ -41,6 +41,7 @@ export class TeamComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get("The Ellas War's team")
       .subscribe((res: string) => {
+        this.teamComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -20,7 +19,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-lost-message',
   templateUrl: './lost-message.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

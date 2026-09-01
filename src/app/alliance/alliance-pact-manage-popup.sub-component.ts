@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -14,10 +14,10 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-alliance-pact-manage-popup',
   templateUrl: './alliance-pact-manage-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, TranslateDirective],
 })
 export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
+  private readonly alliancePactManagePopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -41,9 +41,11 @@ export class AlliancePactManagePopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAllianceProfile');
 
     this.socket.on('myAllianceProfile', data => {
+      this.alliancePactManagePopupSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceProfile = data;
     });
     this.socket.on('alliancePactInfo', data => {
+      this.alliancePactManagePopupSubComponentChangeDetectorRef.markForCheck();
       this.alliancePactInfo = data;
     });
   }

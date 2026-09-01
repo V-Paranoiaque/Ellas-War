@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -21,10 +21,10 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-alliance-gift-popup',
   templateUrl: './alliance-gift-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, TranslateDirective, TranslatePipe],
 })
 export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
+  private readonly allianceGiftPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -48,10 +48,12 @@ export class AllianceGiftPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('myAllianceGift', (data: number) => {
+      this.allianceGiftPopupSubComponentChangeDetectorRef.markForCheck();
       this.giftsError = data;
     });
 
     this.socket.on('myAllianceGiftRemain', (data: number) => {
+      this.allianceGiftPopupSubComponentChangeDetectorRef.markForCheck();
       this.giftRemain = data;
     });
   }

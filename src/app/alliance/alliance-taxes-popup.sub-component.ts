@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -19,10 +19,10 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
 @Component({
   selector: 'app-alliance-taxes-popup',
   templateUrl: './alliance-taxes-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, EwIconSubComponent, FormsModule, TranslateDirective],
 })
 export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
+  private readonly allianceTaxesPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -54,6 +54,7 @@ export class AllianceTaxesPopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('myAllianceProfile');
 
     this.socket.on('myAllianceProfile', (data: object) => {
+      this.allianceTaxesPopupSubComponentChangeDetectorRef.markForCheck();
       this.myAllianceProfile = data as typeof this.myAllianceProfile;
     });
   }

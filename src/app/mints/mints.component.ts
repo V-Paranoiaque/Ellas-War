@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 
 @Component({
   templateUrl: './mints.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -27,6 +26,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class MintsComponent implements OnInit, OnDestroy {
+  private readonly mintsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -36,6 +36,7 @@ export class MintsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('mintProduction', (result: number[]) => {
+      this.mintsComponentChangeDetectorRef.markForCheck();
       this.list = result;
     });
 

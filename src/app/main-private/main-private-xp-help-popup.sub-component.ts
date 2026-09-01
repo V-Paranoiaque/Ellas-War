@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { UserComponent as User } from '../../services/user.service';
 import { RouterModule } from '@angular/router';
@@ -13,7 +12,6 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-main-private-xp-help-popup',
   templateUrl: './main-private-xp-help-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, RouterModule, TranslateDirective],
 })
 export class MainPrivateXpHelpPopupSubComponent {

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -28,7 +28,6 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   selector: 'app-quests-missions',
   templateUrl: './quests-missions.sub-component.html',
   styleUrls: ['./quests.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -39,6 +38,7 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
   ],
 })
 export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
+  private readonly questsMissionsSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   private readonly http = inject(HttpClient);
@@ -61,6 +61,7 @@ export class QuestsMissionsSubComponent implements OnInit, OnDestroy {
     this.sub = this.http
       .get('./assets/i18n/' + this.currentLocale() + '/localevars.json')
       .subscribe(data => {
+        this.questsMissionsSubComponentChangeDetectorRef.markForCheck();
         this.localevars = data as typeof this.localevars;
       });
   }

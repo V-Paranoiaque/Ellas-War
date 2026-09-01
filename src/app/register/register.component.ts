@@ -1,12 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -38,7 +38,6 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     IcIconComponent,
@@ -51,6 +50,7 @@ import googleIcon from '@iconify-icons/logos/google-icon';
   ],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
+  private readonly registerComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -86,6 +86,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((resPlayer: object) => {
+        this.registerComponentChangeDetectorRef.markForCheck();
         const player = resPlayer as { membre_id: number; username: string };
         if (player.membre_id) {
           this.login.set(player.username);
@@ -98,6 +99,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         'Register on Ellas War, an ancient Greece free online multiplayer wargame'
       )
       .subscribe((res: string) => {
+        this.registerComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
 
@@ -110,6 +112,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('register', (data: { error: number }) => {
+      this.registerComponentChangeDetectorRef.markForCheck();
       this.rerror = data.error;
     });
   }

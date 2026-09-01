@@ -1,11 +1,11 @@
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -50,7 +50,6 @@ interface AllianceProfile {
 }
 @Component({
   templateUrl: './diplomacy.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AlliancePactManagePopupSubComponent,
     CommonModule,
@@ -69,6 +68,7 @@ interface AllianceProfile {
   ],
 })
 export class DiplomacyComponent implements OnInit, OnDestroy {
+  private readonly diplomacyComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
@@ -126,23 +126,29 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
     this.socket.emit('allianceWait');
 
     this.socket.on('allianceList', data => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       this.allianceList = data;
     });
     this.socket.on('allianceListReload', () => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       this.socket.emit('allianceList', this.order);
     });
     this.socket.on('allianceNew', (data: number) => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       if (data === 1) {
         void this.router.navigate(['/alliance']);
       }
     });
     this.socket.on('alliancePactAsk', () => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       this.socket.emit('alliancePactList');
     });
     this.socket.on('allianceRankingRefresh', () => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       this.socket.emit('allianceList', this.order);
     });
     this.socket.on('allianceWait', (data: object) => {
+      this.diplomacyComponentChangeDetectorRef.markForCheck();
       this.allianceWait = data as typeof this.allianceWait;
     });
   }
@@ -173,6 +179,7 @@ export class DiplomacyComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(res => {
+        this.diplomacyComponentChangeDetectorRef.markForCheck();
         this.allianceProfile.set(res as AllianceProfile);
       });
   }

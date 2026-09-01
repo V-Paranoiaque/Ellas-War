@@ -3,7 +3,6 @@ import {
   Component,
   OnInit,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   TranslateDirective,
@@ -24,7 +23,6 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 
 @Component({
   templateUrl: './details.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,

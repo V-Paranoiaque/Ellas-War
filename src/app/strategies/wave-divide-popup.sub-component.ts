@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -20,7 +19,6 @@ import { LocaleService } from '../../services/locale.service';
 @Component({
   selector: 'app-wave-divide-popup',
   templateUrl: './wave-divide-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, FormsModule, TranslatePipe, TranslateDirective],
 })
 export class WaveDividePopupSubComponent {

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -20,7 +20,6 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   selector: 'app-admin-wars',
   templateUrl: './admin-wars.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -30,6 +29,7 @@ import { EwIconSubComponent } from '../../services/ew-icon.service';
   ],
 })
 export class AdminWarsComponent implements OnInit, OnDestroy {
+  private readonly adminWarsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -53,6 +53,7 @@ export class AdminWarsComponent implements OnInit, OnDestroy {
     this.socket.emit('adminWarList');
 
     this.socket.on('adminWarList', (list: object[]) => {
+      this.adminWarsComponentChangeDetectorRef.markForCheck();
       this.list = list as typeof this.list;
     });
   }

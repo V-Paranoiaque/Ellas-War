@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-duplicateip',
   templateUrl: './admin-duplicateip.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -28,6 +27,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminDuplicateipComponent implements OnInit, OnDestroy {
+  private readonly adminDuplicateipComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -59,6 +59,7 @@ export class AdminDuplicateipComponent implements OnInit, OnDestroy {
     this.socket.emit('adminIPDuplicates');
 
     this.socket.on('adminIPDuplicates', (list: object) => {
+      this.adminDuplicateipComponentChangeDetectorRef.markForCheck();
       this.ips = list as typeof this.ips;
     });
   }

@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Output,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -38,7 +38,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
 
 @Component({
   templateUrl: './strategies.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     ArmyHelpPopupSubComponent,
     ArmyPopupSubComponent,
@@ -58,6 +57,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class StrategiesComponent implements OnInit, OnDestroy {
+  private readonly strategiesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   private readonly route = inject(ActivatedRoute);
   user = inject(User);
@@ -201,6 +201,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.strategiesComponentChangeDetectorRef.markForCheck();
       this.type = params.get('type') ?? '';
 
       if (this.type && this.type === 'defense') {
@@ -215,6 +216,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.socket.on(
       'waveAttackList',
       (data: { list: object[]; power: number }) => {
+        this.strategiesComponentChangeDetectorRef.markForCheck();
         if (data.list.length > 0) {
           this.waveAttackProcess(data);
         } else {
@@ -229,6 +231,7 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     this.socket.on(
       'waveDefenseList',
       (data: { list: object[]; power: number }) => {
+        this.strategiesComponentChangeDetectorRef.markForCheck();
         if (data.list.length > 0) {
           this.waveDefenseProcess(data);
         } else {
@@ -241,16 +244,20 @@ export class StrategiesComponent implements OnInit, OnDestroy {
     );
 
     this.socket.on('defenseWallStrength', (data: number) => {
+      this.strategiesComponentChangeDetectorRef.markForCheck();
       this.defenseWallStrength = data;
     });
     this.socket.on('wallDefense', (data: number) => {
+      this.strategiesComponentChangeDetectorRef.markForCheck();
       this.wallDefense = data;
     });
     this.socket.on('engage', () => {
+      this.strategiesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('waveAttackList');
       this.socket.emit('waveDefenseList');
     });
     this.socket.on('waveRefresh', () => {
+      this.strategiesComponentChangeDetectorRef.markForCheck();
       this.socket.emit('waveAttackList');
       this.socket.emit('waveDefenseList');
     });

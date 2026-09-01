@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -23,10 +23,10 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-summary-popup',
   templateUrl: './army-summary-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CommonModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
+  private readonly armySummaryPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -71,9 +71,11 @@ export class ArmySummaryPopupSubComponent implements OnInit, OnDestroy {
     this.socket.emit('wallDefense');
 
     this.socket.on('defenseWallStrength', (data: number) => {
+      this.armySummaryPopupSubComponentChangeDetectorRef.markForCheck();
       this.defenseWallStrength = data;
     });
     this.socket.on('wallDefense', (data: number) => {
+      this.armySummaryPopupSubComponentChangeDetectorRef.markForCheck();
       this.wallDefense = data;
     });
   }

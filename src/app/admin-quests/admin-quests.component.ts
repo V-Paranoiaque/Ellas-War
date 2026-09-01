@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -31,7 +31,6 @@ import brushIcon from '@iconify/icons-bi/brush';
   selector: 'app-admin-quests',
   templateUrl: './admin-quests.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     AdminQuestsTitleSubComponent,
@@ -45,6 +44,7 @@ import brushIcon from '@iconify/icons-bi/brush';
   ],
 })
 export class AdminQuestsComponent implements OnInit, OnDestroy {
+  private readonly adminQuestsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -108,15 +108,19 @@ export class AdminQuestsComponent implements OnInit, OnDestroy {
     this.resetReward();
 
     this.socket.on('adminQuestList', msg => {
+      this.adminQuestsComponentChangeDetectorRef.markForCheck();
       this.adminQuestList = msg;
     });
     this.socket.on('adminQuestListRefresh', () => {
+      this.adminQuestsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminQuestList');
     });
     this.socket.on('adminQuestReward', msg => {
+      this.adminQuestsComponentChangeDetectorRef.markForCheck();
       this.adminQuestReward = msg as typeof this.adminQuestReward;
     });
     this.socket.on('adminQuestRewardRefresh', () => {
+      this.adminQuestsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminQuestReward');
     });
   }

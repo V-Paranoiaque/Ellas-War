@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
 @Component({
   selector: 'app-admin-aimage',
   templateUrl: './admin-aimage.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     RouterModule,
@@ -25,6 +24,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminAimageComponent implements OnInit, OnDestroy {
+  private readonly adminAimageComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -40,6 +40,7 @@ export class AdminAimageComponent implements OnInit, OnDestroy {
     this.socket.emit('adminImageAlliance');
 
     this.socket.on('adminImageAlliance', res => {
+      this.adminAimageComponentChangeDetectorRef.markForCheck();
       this.adminImageAlliance = res;
     });
   }

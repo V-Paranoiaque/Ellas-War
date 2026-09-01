@@ -1,12 +1,12 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -26,7 +26,6 @@ import eye from '@iconify/icons-fa6-solid/eye';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -37,6 +36,7 @@ import eye from '@iconify/icons-fa6-solid/eye';
   ],
 })
 export class AdminComponent implements OnInit, OnDestroy {
+  private readonly adminComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected http = inject(HttpClient);
   private readonly socket = inject(Socket);
   user = inject(User);
@@ -68,6 +68,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
+        this.adminComponentChangeDetectorRef.markForCheck();
         this.apiInfo.set(
           result as {
             uptime: number;
@@ -78,6 +79,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       });
 
     this.socket.on('adminStats', (msg: object) => {
+      this.adminComponentChangeDetectorRef.markForCheck();
       this.adminStats = msg as typeof this.adminStats;
     });
   }

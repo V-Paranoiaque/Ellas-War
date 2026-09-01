@@ -1,10 +1,10 @@
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslatePipe } from '@ngx-translate/core';
@@ -21,7 +21,6 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
 @Component({
   templateUrl: './admin-support-msg.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -34,6 +33,7 @@ import angellistIcon from '@iconify-icons/fa6-brands/angellist';
   ],
 })
 export class AdminSupportMsgComponent implements OnInit, OnDestroy {
+  private readonly adminSupportMsgComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly socket = inject(Socket);
@@ -67,6 +67,7 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.adminSupportMsgComponentChangeDetectorRef.markForCheck();
       const msg = params.get('msg');
 
       if (msg) {
@@ -79,10 +80,12 @@ export class AdminSupportMsgComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('adminSupportInfo', data => {
+      this.adminSupportMsgComponentChangeDetectorRef.markForCheck();
       this.adminSupportInfo = data as typeof this.adminSupportInfo;
     });
 
     this.socket.on('contactListRefresh', () => {
+      this.adminSupportMsgComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminSupportInfo', this.msg);
     });
   }

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -37,7 +37,6 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
 @Component({
   templateUrl: './attacks-sanctuaries.component.html',
   styleUrls: ['./attacks.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AttacksHistorySubComponent,
     AttacksMenuSubComponent,
@@ -53,6 +52,7 @@ import twotoneFence from '@iconify/icons-ic/twotone-fence';
   ],
 })
 export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
+  private readonly attacksSanctuariesComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -164,10 +164,12 @@ export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
     this.socket.emit('waveAttackSum');
 
     this.socket.on('profile', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.targetProfile = data;
     });
 
     this.socket.on('realWaveAttackSum', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.realWaveAttackSum = data;
       const newTab = [];
       let j = 0;
@@ -184,43 +186,53 @@ export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
       }
     });
     this.socket.on('sanctuariesList', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.sanctuariesList = data;
     });
     this.socket.on('sanctuariesAttack', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.attackMode = 11;
       this.sanctuariesAttackInfo = new MessageContent({ content: data });
 
       this.socket.emit('sanctuariesList');
     });
     this.socket.on('sanctuariesEye', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.attackMode = 9;
       this.sanctuariesSpyInfo = data;
       setTimeout(() => {
+        this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
         this.scroller.scrollToAnchor('sanctuaryEyeBlock');
       }, 100);
     });
     this.socket.on('sanctuariesDefense', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.sanctuariesDefense = data as typeof this.sanctuariesDefense;
       this.socket.emit('waveAttackSum');
       this.socket.emit('realWaveAttackSum');
     });
     this.socket.on('sanctuariesSpy', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.attackMode = 9;
       this.sanctuariesSpyInfo = data;
       setTimeout(() => {
+        this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
         this.scroller.scrollToAnchor('sanctuaryEyeBlock');
       }, 100);
     });
     this.socket.on('sanctuariesInfo', (data: object) => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.sanctuariesInfo = data as typeof this.sanctuariesInfo;
       if (this.sanctuariesInfo.membre_id === this.user.getPropertyNb('id')) {
         this.attackMode = 12;
         setTimeout(() => {
+          this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
           this.scroller.scrollToAnchor('sanctuaryInfoBlock');
         }, 100);
       }
     });
     this.socket.on('sanctuariesInfoRefresh', () => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       if (this.sanctuariesInfo.sanctuaries_id) {
         this.socket.emit(
           'sanctuariesInfo',
@@ -231,6 +243,7 @@ export class AttacksSanctuariesComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('waveAttackSum', data => {
+      this.attacksSanctuariesComponentChangeDetectorRef.markForCheck();
       this.waveAttackSum = data;
     });
   }

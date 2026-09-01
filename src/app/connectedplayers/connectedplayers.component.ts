@@ -1,12 +1,12 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -25,7 +25,6 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
 @Component({
   selector: 'app-connectedplayers',
   templateUrl: './connectedplayers.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     MainLeftSubComponent,
@@ -36,6 +35,7 @@ import { UserProfileSubComponent } from '../main/main-user-profile.sub-component
   ],
 })
 export class ConnectedplayersComponent implements OnInit, OnDestroy {
+  private readonly connectedplayersComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly http = inject(HttpClient);
   private readonly socket = inject(Socket);
@@ -64,6 +64,7 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
     this.getPage();
 
     this.socket.on('chatUserPlayersRefresh', () => {
+      this.connectedplayersComponentChangeDetectorRef.markForCheck();
       this.getPage();
     });
   }
@@ -80,6 +81,7 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
+        this.connectedplayersComponentChangeDetectorRef.markForCheck();
         this.connected.set(
           result as {
             membre_id: number;
@@ -94,6 +96,7 @@ export class ConnectedplayersComponent implements OnInit, OnDestroy {
     this.subTitle = this.translate
       .get('Connected players on the Ancient Greece')
       .subscribe((res: string) => {
+        this.connectedplayersComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

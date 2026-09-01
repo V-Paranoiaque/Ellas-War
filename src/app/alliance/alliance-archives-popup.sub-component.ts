@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -16,7 +16,6 @@ import { AllianceArchivesTitleSubComponent } from './alliance-archives-title.sub
 @Component({
   selector: 'app-alliance-archives-popup',
   templateUrl: './alliance-archives-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AllianceArchivesTextSubComponent,
     AllianceArchivesTitleSubComponent,
@@ -25,6 +24,7 @@ import { AllianceArchivesTitleSubComponent } from './alliance-archives-title.sub
   ],
 })
 export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
+  private readonly allianceArchivesPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -81,12 +81,15 @@ export class AllianceArchivesPopupSubComponent implements OnInit, OnDestroy {
     this.init();
 
     this.socket.on('archiveList', data => {
+      this.allianceArchivesPopupSubComponentChangeDetectorRef.markForCheck();
       this.archiveList = data as typeof this.archiveList;
     });
     this.socket.on('archiveListRefresh', () => {
+      this.allianceArchivesPopupSubComponentChangeDetectorRef.markForCheck();
       this.init();
     });
     this.socket.on('archivePage', (data: number) => {
+      this.allianceArchivesPopupSubComponentChangeDetectorRef.markForCheck();
       this.archivePages = data;
     });
   }

@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -29,7 +29,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
   selector: 'app-altars',
   templateUrl: './altars.component.html',
   styleUrls: ['./altars.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -43,6 +42,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class AltarsComponent implements OnInit, OnDestroy {
+  private readonly altarsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -94,15 +94,19 @@ export class AltarsComponent implements OnInit, OnDestroy {
     this.socket.emit('altarQuestConditionPrometheus');
 
     this.socket.on('altarQuestConditionDivineunits', data => {
+      this.altarsComponentChangeDetectorRef.markForCheck();
       this.altarQuestConditionDivineunits = data;
     });
     this.socket.on('altarQuestConditionGaia', data => {
+      this.altarsComponentChangeDetectorRef.markForCheck();
       this.altarQuestConditionGaia = data;
     });
     this.socket.on('altarQuestConditionHestia', data => {
+      this.altarsComponentChangeDetectorRef.markForCheck();
       this.altarQuestConditionHestia = data;
     });
     this.socket.on('altarQuestConditionPrometheus', data => {
+      this.altarsComponentChangeDetectorRef.markForCheck();
       this.altarQuestConditionPrometheus = data;
     });
   }

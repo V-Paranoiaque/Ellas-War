@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { FormsModule } from '@angular/forms';
 import { TranslateDirective } from '@ngx-translate/core';
@@ -6,7 +6,6 @@ import { TranslateDirective } from '@ngx-translate/core';
 @Component({
   selector: 'app-diplomacy-alliance-create-popup',
   templateUrl: './diplomacy-alliance-create-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, TranslateDirective],
 })
 export class DiplomacyAllianceCreatePopupSubComponent {

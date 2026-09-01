@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-sitemap',
   templateUrl: './sitemap.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     TranslateDirective,
     MainLeftSubComponent,
@@ -26,6 +25,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class SitemapComponent implements OnInit, OnDestroy {
+  private readonly sitemapComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly titleService = inject(Title);
   private readonly metaService = inject(Meta);
   translate = inject(TranslateService);
@@ -42,6 +42,7 @@ export class SitemapComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Find your way and visit ancient Greece')
       .subscribe((res: string) => {
+        this.sitemapComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
     this.subDesc = Tools.setDescription(

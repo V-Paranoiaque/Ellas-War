@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -37,7 +37,6 @@ import swordIcon from '@iconify/icons-vaadin/sword';
 @Component({
   selector: 'app-army-popup',
   templateUrl: './army-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     EwIconSubComponent,
@@ -48,6 +47,7 @@ import swordIcon from '@iconify/icons-vaadin/sword';
   ],
 })
 export class ArmyPopupSubComponent implements OnInit, OnDestroy {
+  private readonly armyPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -113,30 +113,37 @@ export class ArmyPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('engagePossible', (nb: number) => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rEngagePossible = nb;
     });
     this.socket.on('freeUnits', (nb: number) => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.free = nb;
     });
     this.socket.on('build', () => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('engagePossible', this.info.code);
     });
     this.socket.on('destruct', () => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.socket.emit('engagePossible', this.info.code);
       this.socket.emit('freeUnits', this.info.code);
     });
     this.socket.on('engage', (nb: number) => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rEngageNb = nb;
       this.info.rLiberateNb = 0;
       this.socket.emit('engagePossible', this.info.code);
     });
     this.socket.on('liberate', (nb: number) => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.info.rEngageNb = 0;
       this.info.rLiberateNb = nb;
       this.socket.emit('engagePossible', this.info.code);
       this.socket.emit('freeUnits', this.info.code);
     });
     this.socket.on('unitFavoriteList', data => {
+      this.armyPopupSubComponentChangeDetectorRef.markForCheck();
       this.unitFavoriteList = data as object;
     });
   }

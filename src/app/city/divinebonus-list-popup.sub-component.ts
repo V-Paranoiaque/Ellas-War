@@ -1,10 +1,10 @@
 import {
+  ChangeDetectorRef,
   Component,
   Input,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -17,7 +17,6 @@ import { TranslateDirective } from '@ngx-translate/core';
   selector: 'app-divinebonus-list-popup',
   templateUrl: './divinebonus-list-popup.sub-component.html',
   styleUrls: ['./city.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     EwIconSubComponent,
     IdToDivineBonusSubComponent,
@@ -25,6 +24,7 @@ import { TranslateDirective } from '@ngx-translate/core';
   ],
 })
 export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
+  private readonly divineBonusListPopupSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
 
   @Input() divineBonus!: { error: number };
@@ -38,6 +38,7 @@ export class DivineBonusListPopupSubComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.socket.on('divineBonus', (data: { nb: number; list: object[] }) => {
+      this.divineBonusListPopupSubComponentChangeDetectorRef.markForCheck();
       if (data.nb > 0) {
         this.divineBonusList = data.list as typeof this.divineBonusList;
       } else {

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -30,7 +30,6 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
 @Component({
   templateUrl: './quests.component.html',
   styleUrls: ['./quests.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     IcIconComponent,
@@ -46,6 +45,7 @@ import treasureChest from '@iconify-icons/mdi/treasure-chest';
   ],
 })
 export class QuestsComponent implements OnInit, OnDestroy {
+  private readonly questsComponentChangeDetectorRef = inject(ChangeDetectorRef);
   protected socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -73,9 +73,11 @@ export class QuestsComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.socket.on('myQuestList', data => {
+      this.questsComponentChangeDetectorRef.markForCheck();
       this.myQuestList = data as typeof this.myQuestList;
     });
     this.socket.on('myQuestListRefresh', () => {
+      this.questsComponentChangeDetectorRef.markForCheck();
       this.socket.emit('myQuestList');
     });
 

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -16,6 +17,7 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EwIconSubComponent implements OnDestroy {
+  private readonly ewIconSubComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly element = inject(ElementRef);
   translate = inject(TranslateService);
 
@@ -240,6 +242,7 @@ export class EwIconSubComponent implements OnDestroy {
     }
 
     this.sub = this.translate.get(title).subscribe((res: string) => {
+      this.ewIconSubComponentChangeDetectorRef.markForCheck();
       this.element.nativeElement.innerHTML =
         '<img src="assets/' +
         url +

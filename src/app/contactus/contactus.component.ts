@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -23,7 +23,6 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
 @Component({
   selector: 'app-contactus',
   templateUrl: './contactus.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     FormsModule,
     MainLeftSubComponent,
@@ -33,6 +32,7 @@ import { MainRightSubComponent } from '../main/main-right.sub-component';
   ],
 })
 export class ContactusComponent implements OnInit, OnDestroy {
+  private readonly contactusComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   user = inject(User);
   private readonly socket = inject(Socket);
@@ -63,10 +63,12 @@ export class ContactusComponent implements OnInit, OnDestroy {
     this.sub = this.translate
       .get('Contact the game team')
       .subscribe((res: string) => {
+        this.contactusComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
 
     this.socket.on('contact', data => {
+      this.contactusComponentChangeDetectorRef.markForCheck();
       this.contactError = data as typeof this.contactError;
     });
   }

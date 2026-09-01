@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { ToolsComponent as Tools } from '../../services/tools.service';
@@ -26,7 +26,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-agora',
   templateUrl: './admin-agora.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -39,6 +38,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminAgoraComponent implements OnInit, OnDestroy {
+  private readonly adminAgoraComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
@@ -95,6 +95,7 @@ export class AdminAgoraComponent implements OnInit, OnDestroy {
     this.socket.on(
       'adminTradeList',
       (msg: { list: object[]; nbPage: number }) => {
+        this.adminAgoraComponentChangeDetectorRef.markForCheck();
         this.list = msg.list as typeof this.list;
         this.msgPageNb = msg.nbPage;
       }

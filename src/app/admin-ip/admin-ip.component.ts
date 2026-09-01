@@ -1,10 +1,10 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -21,7 +21,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-ip',
   templateUrl: './admin-ip.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -32,6 +31,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminIpComponent implements OnInit, OnDestroy {
+  private readonly adminIpComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   private readonly route = inject(ActivatedRoute);
@@ -106,6 +106,7 @@ export class AdminIpComponent implements OnInit, OnDestroy {
     this.user.checkPermissions([1]);
 
     this.route.paramMap.subscribe(params => {
+      this.adminIpComponentChangeDetectorRef.markForCheck();
       const ip = params.get('ip');
       if (ip) {
         this.socket.emit('adminIPList', ip);
@@ -113,6 +114,7 @@ export class AdminIpComponent implements OnInit, OnDestroy {
     });
 
     this.socket.on('adminIPList', (data: object) => {
+      this.adminIpComponentChangeDetectorRef.markForCheck();
       this.list = data as typeof this.list;
     });
   }

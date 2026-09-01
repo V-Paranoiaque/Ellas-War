@@ -1,12 +1,12 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
   OnDestroy,
   inject,
   signal,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SocketComponent as Socket } from '../../services/socketio.service';
@@ -18,10 +18,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-unsubscribe',
   templateUrl: './unsubscribe.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RouterModule, TranslateDirective],
 })
 export class UnsubscribeComponent implements OnInit, OnDestroy {
+  private readonly unsubscribeComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   private readonly http = inject(HttpClient);
@@ -55,6 +55,7 @@ export class UnsubscribeComponent implements OnInit, OnDestroy {
       .get(url)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(result => {
+        this.unsubscribeComponentChangeDetectorRef.markForCheck();
         this.unsubscribeResult.set(result as { error: number });
       });
   }

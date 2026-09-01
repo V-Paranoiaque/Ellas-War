@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -20,7 +19,6 @@ import questionCircle from '@iconify/icons-fa6-regular/circle-question';
 @Component({
   selector: 'app-alliance-rank-popup',
   templateUrl: './alliance-rank-popup.sub-component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [FormsModule, IcIconComponent, TranslateDirective, TranslatePipe],
 })
 export class AllianceRankPopupSubComponent {

@@ -1,9 +1,9 @@
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
@@ -26,7 +26,6 @@ import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
 
 @Component({
   templateUrl: './sponsorship.component.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     CommonModule,
     FormsModule,
@@ -39,6 +38,7 @@ import coinBagSolid from '@iconify-icons/clarity/coin-bag-solid';
   ],
 })
 export class SponsorshipComponent implements OnInit, OnDestroy {
+  private readonly sponsorshipComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   private readonly titleService = inject(Title);
   translate = inject(TranslateService);
@@ -93,21 +93,25 @@ export class SponsorshipComponent implements OnInit, OnDestroy {
     this.socket.emit('sponsorList');
 
     this.socket.on('sponsorList', (data: object[]) => {
+      this.sponsorshipComponentChangeDetectorRef.markForCheck();
       this.sponsorList = data as typeof this.sponsorList;
     });
     this.socket.on('sponsorGift', (data: number) => {
+      this.sponsorshipComponentChangeDetectorRef.markForCheck();
       this.giftsError = data;
 
       // Update the background list
       this.socket.emit('sponsorList');
     });
     this.socket.on('sponsorGiftRemain', (data: number) => {
+      this.sponsorshipComponentChangeDetectorRef.markForCheck();
       this.currentPlayer.remain = data;
     });
 
     this.subTitle = this.translate
       .get('Sponsorship')
       .subscribe((res: string) => {
+        this.sponsorshipComponentChangeDetectorRef.markForCheck();
         this.titleService.setTitle(res);
       });
   }

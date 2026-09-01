@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { TranslateDirective, TranslateService } from '@ngx-translate/core';
@@ -18,7 +18,6 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   selector: 'app-admin-passwordtry',
   templateUrl: './admin-passwordtry.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -28,6 +27,7 @@ import { MainPrivateBottomMenuSubComponent } from '../main-private/main-private-
   ],
 })
 export class AdminPasswordtryComponent implements OnInit, OnDestroy {
+  private readonly adminPasswordtryComponentChangeDetectorRef = inject(ChangeDetectorRef);
   private readonly socket = inject(Socket);
   user = inject(User);
   translate = inject(TranslateService);
@@ -50,6 +50,7 @@ export class AdminPasswordtryComponent implements OnInit, OnDestroy {
     this.socket.emit('adminSaveTryList');
 
     this.socket.on('adminSaveTryList', (list: object[]) => {
+      this.adminPasswordtryComponentChangeDetectorRef.markForCheck();
       this.userList = list as typeof this.userList;
     });
   }

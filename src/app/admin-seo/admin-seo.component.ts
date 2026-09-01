@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
 import {
+  ChangeDetectorRef,
   Component,
   OnInit,
   OnDestroy,
   inject,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import {
@@ -30,7 +30,6 @@ import times from '@iconify/icons-fa6-solid/xmark';
   selector: 'app-admin-seo',
   templateUrl: './admin-seo.component.html',
   styleUrls: ['../admin/admin.component.css'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     AdminLeftMenuSubComponent,
     CommonModule,
@@ -43,6 +42,7 @@ import times from '@iconify/icons-fa6-solid/xmark';
   ],
 })
 export class AdminSeoComponent implements OnInit, OnDestroy {
+  private readonly adminSeoComponentChangeDetectorRef = inject(ChangeDetectorRef);
   user = inject(User);
   private readonly socket = inject(Socket);
   translate = inject(TranslateService);
@@ -79,9 +79,11 @@ export class AdminSeoComponent implements OnInit, OnDestroy {
     this.socket.emit('adminSeoList');
 
     this.socket.on('adminSeoList', data => {
+      this.adminSeoComponentChangeDetectorRef.markForCheck();
       this.list = data as typeof this.list;
     });
     this.socket.on('adminSeoListRefresh', () => {
+      this.adminSeoComponentChangeDetectorRef.markForCheck();
       this.socket.emit('adminSeoList');
     });
   }
