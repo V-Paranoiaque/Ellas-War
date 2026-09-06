@@ -2,46 +2,46 @@
 <div class="row">
   @if (info.winer === 1 || info.winer === 2) {
   <div class="col-6 text-center">
-    <strong translate>You</strong><strong translate>:</strong>
+    <strong [translate]="'You'"></strong><strong [translate]="':'"></strong>
     @if (info.xp_attack > 0) {
     <span>+</span>
     }
     {{ info.xp_attack | number: '1.0-0' : currentLocale() }}
-    <span translate>XP</span>
+    <span [translate]="'XP'"></span>
   </div>
   }
   @if (info.winer === 1 || info.winer === 2) {
   <div class="col-6 text-center">
-    <strong translate>Your opponent</strong><strong translate>:</strong>
+    <strong [translate]="'Your opponent'"></strong><strong [translate]="':'"></strong>
     @if (info.xp_defense > 0) {
     <span>+</span>
     }
     {{
     info.xp_defense | number: '1.0-0' : currentLocale()
     }}
-    <span translate>XP</span>
+    <span [translate]="'XP'"></span>
   </div>
   }
   @if (info.winer === 3 || info.winer === 4) {
   <div class="col-6 text-center">
-    <strong translate>You</strong><strong translate>:</strong>
+    <strong [translate]="'You'"></strong><strong [translate]="':'"></strong>
     @if (info.xp_defense > 0) {
     <span>+</span>
     }
     {{
     info.xp_defense | number: '1.0-0' : currentLocale()
     }}
-    <span translate>XP</span>
+    <span [translate]="'XP'"></span>
   </div>
   }
   @if (info.winer === 3 || info.winer === 4) {
   <div class="col-6 text-center">
-    <strong translate>Your opponent</strong><strong translate>:</strong>
+    <strong [translate]="'Your opponent'"></strong><strong [translate]="':'"></strong>
     @if (info.xp_attack > 0) {
     <span>+</span>
     }
     {{ info.xp_attack | number: '1.0-0' : currentLocale() }}
-    <span translate>XP</span>
+    <span [translate]="'XP'"></span>
   </div>
   }
   <div class="clearfix"><br /></div>
@@ -50,7 +50,7 @@
 
 @if (getSentUnits().length > 0) {
 <div>
-  <strong translate>Army sent</strong>
+  <strong [translate]="'Army sent'"></strong>
   @for (unit of getSentUnits(); track unit) {
   <div>
     {{ unit.nb | number: '' : currentLocale() }}
@@ -63,20 +63,18 @@
 
 <div class="row">
   @if (info.lost_wall >= 1 && !info.lost_wall_poseidon) {
-  <div translate>The wall protecting the city has been destroyed</div>
+  <div [translate]="'The wall protecting the city has been destroyed'"></div>
   }
   @if (info.lost_wall === 0 && info.lost_wall_poseidon) {
-  <div translate>
-    The wall of Poseidon protecting the city has been destroyed
-  </div>
+  <div [translate]="'The wall of Poseidon protecting the city has been destroyed'"></div>
   }
   @if (info.lost_wall >= 1 && info.lost_wall_poseidon) {
-  <div translate>The walls protecting the city have been destroyed</div>
+  <div [translate]="'The walls protecting the city have been destroyed'"></div>
   }
 
   @if (getAttackLost().length > 0) {
   <div class="col-6">
-    <strong translate>Attacker losses</strong>
+    <strong [translate]="'Attacker losses'"></strong>
     @for (unit of getAttackLost(); track unit) {
     <div>
       {{ unit.nb | number: '' : currentLocale() }}
@@ -89,7 +87,7 @@
 
   @if (getDefenseLost().length > 0) {
   <div class="col-6">
-    <strong translate>Defender losses</strong>
+    <strong [translate]="'Defender losses'"></strong>
     @for (unit of getDefenseLost(); track unit) {
     <div>
       {{ unit.nb | number: '' : currentLocale() }}
@@ -104,10 +102,10 @@
 @if (getLostRes().length > 0) {
 <div class="col-table text-center">
   @if (info.winer === 1 || info.winer === 2) {
-  <strong id="LostResDesc" translate>Ressources won</strong>
+  <strong id="LostResDesc" [translate]="'Ressources won'"></strong>
   }
   @if (info.winer === 3 || info.winer === 4) {
-  <strong id="LostResDesc" translate>Lost resources</strong>
+  <strong id="LostResDesc" [translate]="'Lost resources'"></strong>
   }
   <table class="table" aria-describedby="LostResDesc">
     @for (res of getLostRes(); track res) {
@@ -126,7 +124,7 @@
 
 @if (getLostStoreroom().length > 0) {
 <div class="col-table text-center">
-  <strong id="LostResStoreDesc" translate>Stolen on the agora</strong>
+  <strong id="LostResStoreDesc" [translate]="'Stolen on the agora'"></strong>
   <table class="table" aria-describedby="LostResStoreDesc">
     @for (res of getLostStoreroom(); track res) {
     <tr>
@@ -146,7 +144,7 @@
 
 @if (getLostBuildings().length > 0) {
 <div class="col-table text-center">
-  <strong id="LostBuildingDesc" translate>Lost buildings</strong>
+  <strong id="LostBuildingDesc" [translate]="'Lost buildings'"></strong>
   <table class="table" aria-describedby="LostBuildingDesc">
     @for (building of getLostBuildings(); track building) {
     <tr>
@@ -165,15 +163,15 @@
 @if (info.hades_saving > 0) {
 <div class="text-center">
   <br />
-  <strong translate>Souls saved</strong>
-  <strong translate>:</strong>
+  <strong [translate]="'Souls saved'"></strong>
+  <strong [translate]="':'"></strong>
   {{ info.hades_saving | number: '' : currentLocale() }}
 </div>
 }
 
 @if (getSaved().length > 0) {
 <div class="col-table text-center">
-  <strong id="SavedUnitsDesc" translate>Units saved</strong>
+  <strong id="SavedUnitsDesc" [translate]="'Units saved'"></strong>
   <table class="table" aria-describedby="SavedUnitsDesc">
     @for (unit of getSaved(); track unit) {
     <tr>
@@ -204,7 +202,7 @@
 
 @if (getSavedRes().length > 0) {
 <div class="col-table text-center">
-  <strong id="SavedResDesc" translate>Resources saved</strong>
+  <strong id="SavedResDesc" [translate]="'Resources saved'"></strong>
   <table class="table" aria-describedby="SavedResDesc">
     @for (res of getSavedRes(); track res) {
     <tr>
@@ -224,7 +222,7 @@
 
 @if (getCorruptedRes().length > 0) {
 <div class="col-table text-center">
-  <strong id="CorruptedResDesc" translate>Corrupted resources</strong>
+  <strong id="CorruptedResDesc" [translate]="'Corrupted resources'"></strong>
   <table class="table" aria-describedby="CorruptedResDesc">
     @for (res of getCorruptedRes(); track res) {
     <tr>

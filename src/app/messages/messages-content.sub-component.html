@@ -17,7 +17,7 @@
   @case (2) {
   <span>
     <br /><br />
-    <span translate class="fw-bold">Jackpot:</span>
+    <span [translate]="'Jackpot:'" class="fw-bold"></span>
     {{ msg.content.drachma | number: '' : currentLocale() }}
     <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
   </span>
@@ -75,24 +75,15 @@
   }
   @case (9) {
   <span>
-    <div translate>Hello and welcome on Ellas War</div>
+    <div [translate]="'Hello and welcome on Ellas War'"></div>
     <br />
-    <div translate>
-      You have joined the hostile lands of Ellas War. You will find help
-      symbols to guide you on the game. Drachmas are the sinews of war,
-      honor the Gods and don't forget to protect your city.
-    </div>
-    <div translate>
-      Join the Ellas War's Facebook Page. You'll find advice and answers to
-      your questions.
-    </div>
-    <div translate>
-      In case of problems you can also ask for help on the contact page.
-    </div>
+    <div [translate]="'You have joined the hostile lands of Ellas War. You will find help symbols to guide you on the game. Drachmas are the sinews of war, honor the Gods and don\'t forget to protect your city.'"></div>
+    <div [translate]="'Join the Ellas War\'s Facebook Page. You\'ll find advice and answers to your questions.'"></div>
+    <div [translate]="'In case of problems you can also ask for help on the contact page.'"></div>
     <br />
-    <div translate>Have a good game</div>
+    <div [translate]="'Have a good game'"></div>
     <br />
-    <span translate>The Ellas War's team</span>
+    <span [translate]="'The Ellas War\'s team'"></span>
   </span>
   }
   @case (10) {
@@ -102,12 +93,12 @@
   <span>
     {{ msg.content.qtt | number: '' : currentLocale() }}
     <app-ew-icon name="{{ msg.content.ress }}"></app-ew-icon>
-    <span translate>for</span>
+    <span [translate]="'for'"></span>
     {{ msg.content.price | number: '' : currentLocale() }}
     @if (msg.content.buyer_id > 0) {
     <div>
-      <span translate>Buyer</span>
-      <span translate>:</span>
+      <span [translate]="'Buyer'"></span>
+      <span [translate]="':'"></span>
       {{ msg.content.buyer }}
     </div>
     }
@@ -125,9 +116,9 @@
   }
   @case (13) {
   <span>
-    <div translate>You win the Honor challenge!</div>
+    <div [translate]="'You win the Honor challenge!'"></div>
     <br />
-    <span translate>Reward:</span>
+    <span [translate]="'Reward:'"></span>
     {{ msg.content.reward | number: '' : currentLocale() }}
     <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
   </span>
@@ -139,22 +130,22 @@
       <table class="table" aria-describedby="Message14Desc">
         @if (msg.content.alliance > 0) {
         <tr>
-          <th scope="row" translate>Alliance</th>
+          <th scope="row" [translate]="'Alliance'"></th>
           <td class="text-end">{{ msg.content.alliance_name }}&nbsp;</td>
         </tr>
         }
         @if (msg.content.alliance > 0) {
         <tr>
-          <th scope="row" translate>Rank</th>
+          <th scope="row" [translate]="'Rank'"></th>
           <td class="text-end">{{ msg.content.rank_name }}&nbsp;</td>
         </tr>
         }
         <tr>
-          <th scope="row" translate>Level</th>
+          <th scope="row" [translate]="'Level'"></th>
           <td class="text-end">{{ msg.content.level }}&nbsp;</td>
         </tr>
         <tr>
-          <th scope="row" translate>Field</th>
+          <th scope="row" [translate]="'Field'"></th>
           <td class="text-end">
             {{
             msg.content.field
@@ -163,7 +154,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row" translate>Victories</th>
+          <th scope="row" [translate]="'Victories'"></th>
           <td class="text-end">
             {{
             msg.content.victory
@@ -172,7 +163,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row" translate>Defeats</th>
+          <th scope="row" [translate]="'Defeats'"></th>
           <td class="text-end">
             {{
             msg.content.defeat
@@ -181,7 +172,7 @@
           </td>
         </tr>
         <tr>
-          <th scope="row" translate>XP</th>
+          <th scope="row" [translate]="'XP'"></th>
           <td class="text-end">
             {{
             msg.content.xp | number: '' : currentLocale()
@@ -196,14 +187,14 @@
     msg.content.poseidon_wall === 1 &&
     (!msg.content.defense_wall || msg.content.defense_wall === 0)
     ) {
-    <div translate>The wall of Poseidon protects this city.</div>
+    <div [translate]="'The wall of Poseidon protects this city.'"></div>
     }
     @if (
     msg.content.defense_wall &&
     msg.content.defense_wall >= 1 &&
     (!msg.content.poseidon_wall || msg.content.poseidon_wall === 0)
     ) {
-    <div translate>A wall is protecting this city.</div>
+    <div [translate]="'A wall is protecting this city.'"></div>
     }
     @if (
     msg.content.defense_wall &&
@@ -211,27 +202,24 @@
     msg.content.poseidon_wall &&
     msg.content.poseidon_wall === 1
     ) {
-    <div translate>Many walls are protecting this city.</div>
+    <div [translate]="'Many walls are protecting this city.'"></div>
     }
     <span>
       @switch (msg.content.error) {
       @case (1) {
-      <span translate>Your espionage team was caught and executed in a public
-        place.</span>
+      <span [translate]="'Your espionage team was caught and executed in a public place.'"></span>
       }
       @case (2) {
       <span>
-        <span translate>Information reached your city but unfortunately your spy team
-          was caught, tortured until they denounce you and executed in a
-          public place.</span>
+        <span [translate]="'Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.'"></span>
         <br /><br />
-        <strong translate>Unities</strong><strong translate>:</strong>
+        <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.unitiesNb
         | number: '' : currentLocale()
         }}
         <br />
-        <strong translate>Towers</strong><strong translate>:</strong>
+        <strong [translate]="'Towers'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.defenseNb
         | number: '' : currentLocale()
@@ -240,13 +228,13 @@
       }
       @case (3) {
       <span>
-        <strong translate>Unities</strong><strong translate>:</strong>
+        <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.unitiesNb
         | number: '' : currentLocale()
         }}
         <br />
-        <strong translate>Towers</strong><strong translate>:</strong>
+        <strong [translate]="'Towers'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.defenseNb
         | number: '' : currentLocale()
@@ -254,14 +242,14 @@
       </span>
       }
       @case (4) {
-      <span translate>You do not have spies.</span>
+      <span [translate]="'You do not have spies.'"></span>
       }
       }
     </span>
     <br />
     @if (msg.content.buildings && msg.content.buildings.length > 0) {
     <div>
-      <strong translate>Buildings</strong><strong translate>:</strong>
+      <strong [translate]="'Buildings'"></strong><strong [translate]="':'"></strong>
       @for (build of msg.content.buildings; track build) {
       <div>
         {{ Tools.getName(build) | translate }}
@@ -271,7 +259,7 @@
     }
     @if (msg.content.unities && msg.content.unities.length > 0) {
     <div>
-      <strong translate>Unities</strong><strong translate>:</strong>
+      <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
       @for (unit of msg.content.unities; track unit) {
       <div>
         {{
@@ -286,13 +274,10 @@
   }
   @case (15) {
   <span>
-    <span translate>Hello</span>,<br /><br />
-    <span translate>We inform you that a member of the staff has sent you a message via
-      the contact page.</span>
+    <span [translate]="'Hello'"></span>,<br /><br />
+    <span [translate]="'We inform you that a member of the staff has sent you a message via the contact page.'"></span>
     <br /><br />
-    <a [routerLink]="['/support/' + msg.content.id]" translate>
-      Read the message
-    </a>
+    <a [routerLink]="['/support/' + msg.content.id]" [translate]="'Read the message'"></a>
   </span>
   }
   @case (16) {
@@ -300,17 +285,17 @@
   }
   @case (17) {
   <span>
-    <h3 translate>Result</h3>
-    <strong>{{ full.title.attacker }}</strong><strong translate>:</strong>
+    <h3 [translate]="'Result'"></h3>
+    <strong>{{ full.title.attacker }}</strong><strong [translate]="':'"></strong>
     {{ msg.content.attacker }}
     <br />
-    <strong>{{ full.title.defender }}</strong><strong translate>:</strong>
+    <strong>{{ full.title.defender }}</strong><strong [translate]="':'"></strong>
     {{ msg.content.defender }}
     <br />
     <br />
     @if (msg.content.benefits) {
     <div>
-      <strong translate>Reward:</strong>
+      <strong [translate]="'Reward:'"></strong>
       {{
       msg.content.benefits
       | number: '' : currentLocale()
@@ -322,15 +307,15 @@
   }
   @case (18) {
   <span>
-    <h3 translate>Result</h3>
-    <strong>{{ full.title.attacker }}</strong><strong translate>:</strong>
+    <h3 [translate]="'Result'"></h3>
+    <strong>{{ full.title.attacker }}</strong><strong [translate]="':'"></strong>
     {{ msg.content.attacker }}
     <br />
-    <strong>{{ full.title.defender }}</strong><strong translate>:</strong>
+    <strong>{{ full.title.defender }}</strong><strong [translate]="':'"></strong>
     {{ msg.content.defender }}
     <br />
     <br />
-    <strong translate>Reward:</strong>
+    <strong [translate]="'Reward:'"></strong>
     {{
     msg.content.benefits | number: '' : currentLocale()
     }}
@@ -358,16 +343,13 @@
     <span>
       @switch (msg.content.error) {
       @case (1) {
-      <span translate>Your espionage team was caught and executed in a public
-        place.</span>
+      <span [translate]="'Your espionage team was caught and executed in a public place.'"></span>
       }
       @case (2) {
       <span>
-        <span translate>Information reached your city but unfortunately your spy team
-          was caught, tortured until they denounce you and executed in a
-          public place.</span>
+        <span [translate]="'Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.'"></span>
         <br /><br />
-        <strong translate>Unities</strong><strong translate>:</strong>
+        <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.unitiesNb
         | number: '' : currentLocale()
@@ -387,7 +369,7 @@
       }
       @case (3) {
       <span>
-        <strong translate>Unities</strong><strong translate>:</strong>
+        <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
         {{
         msg.content.unitiesNb
         | number: '' : currentLocale()
@@ -406,7 +388,7 @@
       </span>
       }
       @case (4) {
-      <span translate>You do not have spies.</span>
+      <span [translate]="'You do not have spies.'"></span>
       }
       }
     </span>
@@ -521,7 +503,7 @@
       }
     </p>
     <br />
-    <p translate>The basket to obtain them is available in your city</p>
+    <p [translate]="'The basket to obtain them is available in your city'"></p>
   </span>
   }
   @case (29) {
@@ -532,7 +514,7 @@
     }}
     @if (msg.content.benefits) {
     <div>
-      <strong translate>Reward:</strong>
+      <strong [translate]="'Reward:'"></strong>
       {{
       msg.content.benefits
       | number: '' : currentLocale()
@@ -544,7 +526,7 @@
   }
   @case (30) {
   <span>
-    <div translate>The war has been long, but your alliance has won.</div>
+    <div [translate]="'The war has been long, but your alliance has won.'"></div>
     <strong>{{ msg.content.nameWinner }}:</strong>
     {{ msg.content.vicWinner }}
     <br />
@@ -552,7 +534,7 @@
     {{ msg.content.vicLooser }}
     <br />
     <br />
-    <strong translate>Reward:</strong>
+    <strong [translate]="'Reward:'"></strong>
     {{
     msg.content.benefits | number: '' : currentLocale()
     }}
@@ -561,9 +543,7 @@
   }
   @case (31) {
   <span>
-    <div translate>
-      The battle was long, unfortunately your alliance lost the war.
-    </div>
+    <div [translate]="'The battle was long, unfortunately your alliance lost the war.'"></div>
     <strong>{{ msg.content.nameWinner }}:</strong>
     {{ msg.content.vicWinner }}
     <br />
@@ -571,7 +551,7 @@
     {{ msg.content.vicLooser }}
     <br />
     <br />
-    <strong translate>Reward:</strong>
+    <strong [translate]="'Reward:'"></strong>
     {{
     msg.content.benefits | number: '' : currentLocale()
     }}
@@ -579,7 +559,7 @@
   </span>
   }
   @case (32) {
-  <span translate>Prepare your boats, the Sea Battle starts in 23h! </span>
+  <span [translate]="'Prepare your boats, the Sea Battle starts in 23h!'"></span>
   }
   @case (33) {
   <span>

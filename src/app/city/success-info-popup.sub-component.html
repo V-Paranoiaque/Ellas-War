@@ -4,22 +4,22 @@
       <div class="modal-header">
         @switch (successType.selected) {
         @case (1) {
-        <h5 class="modal-title" translate>General</h5>
+        <h5 class="modal-title" [translate]="'General'"></h5>
         }
         @case (2) {
-        <h5 class="modal-title" translate>Constructions</h5>
+        <h5 class="modal-title" [translate]="'Constructions'"></h5>
         }
         @case (3) {
-        <h5 class="modal-title" translate>Alliance</h5>
+        <h5 class="modal-title" [translate]="'Alliance'"></h5>
         }
         @case (5) {
-        <h5 class="modal-title" translate>Attacks</h5>
+        <h5 class="modal-title" [translate]="'Attacks'"></h5>
         }
         @case (6) {
-        <h5 class="modal-title" translate>Mythology</h5>
+        <h5 class="modal-title" [translate]="'Mythology'"></h5>
         }
         @case (7) {
-        <h5 class="modal-title" translate>Feats of Strength</h5>
+        <h5 class="modal-title" [translate]="'Feats of Strength'"></h5>
         }
         }
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1258,17 +1258,12 @@
         }
 
         @if (successType.selected === 7 && listDisplay[0] === 0) {
-        <div class="text-danger fw-bold text-center" translate>
-          Feats of Strength are reserved for the bravest warriors and bring
-          prestige to your city.
-        </div>
+        <div class="text-danger fw-bold text-center" [translate]="'Feats of Strength are reserved for the bravest warriors and bring prestige to your city.'"></div>
         }
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>

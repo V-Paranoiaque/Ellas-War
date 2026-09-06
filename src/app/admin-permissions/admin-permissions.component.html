@@ -6,7 +6,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Give permissions to a player</h5>
+        <h5 class="modal-title" [translate]="'Give permissions to a player'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -14,7 +14,7 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label class="fw-bold" for="username-new" translate>Player</label>
+        <label class="fw-bold" for="username-new" [translate]="'Player'"></label>
         <input
           class="form-control"
           type="text"
@@ -28,17 +28,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-danger"
           data-bs-dismiss="modal"
           (click)="permissionsNew()"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -52,7 +48,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Modify the player's permissions</h5>
+        <h5 class="modal-title" [translate]="'Modify the player\'s permissions'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -69,7 +65,7 @@
               [value]="1"
               class="form-check-input"
               [(ngModel)]="selectedPlayer.rank" />
-            <span translate>Member</span>
+            <span [translate]="'Member'"></span>
             <br />
             <input
               type="radio"
@@ -77,7 +73,7 @@
               [value]="2"
               class="form-check-input"
               [(ngModel)]="selectedPlayer.rank" />
-            <span translate>Prophet</span>
+            <span [translate]="'Prophet'"></span>
             <br />
             <input
               type="radio"
@@ -85,7 +81,7 @@
               [value]="4"
               class="form-check-input"
               [(ngModel)]="selectedPlayer.rank" />
-            <span translate>High priest</span>
+            <span [translate]="'High priest'"></span>
             <br />
             <input
               type="radio"
@@ -93,7 +89,7 @@
               [value]="5"
               class="form-check-input"
               [(ngModel)]="selectedPlayer.rank" />
-            <span translate>God</span>
+            <span [translate]="'God'"></span>
             <br />
           </div>
         </div>
@@ -103,17 +99,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-danger"
           data-bs-dismiss="modal"
           (click)="permissionsModify()"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -128,7 +120,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="text-center" id="permissionsDescribe">
-              <span translate> Permissions </span>
+              <span [translate]="'Permissions'"></span>
               <button
                 class="btn btn-primary"
                 data-bs-toggle="modal"
@@ -143,8 +135,8 @@
               <thead>
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col" class="text-center" translate>Rank</th>
-                  <th scope="col" class="text-center" translate>Activity</th>
+                  <th scope="col" class="text-center" [translate]="'Rank'"></th>
+                  <th scope="col" class="text-center" [translate]="'Activity'"></th>
                   @if (user.getPropertyNb('rank') > 2) {
                     <th scope="col"></th>
                   }

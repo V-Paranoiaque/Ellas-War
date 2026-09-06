@@ -30,16 +30,16 @@
                         {{ sanctuary.sanctuaries_name | translate }}
                       </h5>
                       <p class="card-text">
-                        <strong translate>Controlled by</strong>
-                        <strong translate>:</strong>
+                        <strong [translate]="'Controlled by'"></strong>
+                        <strong [translate]="':'"></strong>
                         {{ sanctuary.username }}
                         <br />
-                        <strong translate>Victories</strong>
-                        <strong translate>:</strong>
+                        <strong [translate]="'Victories'"></strong>
+                        <strong [translate]="':'"></strong>
                         {{ sanctuary.sanctuaries_victory }}
                         <br />
-                        <strong translate>Strength</strong>
-                        <strong translate>:</strong>
+                        <strong [translate]="'Strength'"></strong>
+                        <strong [translate]="':'"></strong>
                         <span [ngClass]="{
                                 'text-danger':
                                   sanctuary.sanctuaries_power === 0,
@@ -51,40 +51,24 @@
                           <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                         </span>
                         <br />
-                        <strong translate>Power</strong>
-                        <strong translate>:</strong>
+                        <strong [translate]="'Power'"></strong>
+                        <strong [translate]="':'"></strong>
                         <span>
                           @switch (sanctuary.sanctuaries_id) {
                           @case (1) {
-                          <span translate>
-                            Your city is protected against the fury of
-                            Demeter
-                          </span>
+                          <span [translate]="'Your city is protected against the fury of Demeter'"></span>
                           }
                           @case (2) {
-                          <span translate>
-                            The Lernaean Hydra will corrupt your enemies
-                            water, grape and food stocks when they will
-                            plunder your city
-                          </span>
+                          <span [translate]="'The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city'"></span>
                           }
                           @case (3) {
-                          <span translate>
-                            Your city produces 24 additional Ambrosia a
-                            day
-                          </span>
+                          <span [translate]="'Your city produces 24 additional Ambrosia a day'"></span>
                           }
                           @case (4) {
-                          <span translate>
-                            Your city is protected against the Zeus
-                            lightning
-                          </span>
+                          <span [translate]="'Your city is protected against the Zeus lightning'"></span>
                           }
                           @case (5) {
-                          <span translate>
-                            Typhon will help you to protect your city
-                            against the negative effects of the weather
-                          </span>
+                          <span [translate]="'Typhon will help you to protect your city against the negative effects of the weather'"></span>
                           }
                           @default {
                           <span>TODO</span>
@@ -161,23 +145,16 @@
             <span>
               @switch (sanctuariesSpyInfo.error) {
               @case (1) {
-              <div translate>
-                Your espionage team was caught and executed in a public
-                place.
-              </div>
+              <div [translate]="'Your espionage team was caught and executed in a public place.'"></div>
               }
               @case (2) {
               <div>
-                <span translate>
-                  Information reached your city but unfortunately your
-                  spy team was caught, tortured until they denounce you
-                  and executed in a public place.
-                </span>
+                <span [translate]="'Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.'"></span>
                 <br /><br />
               </div>
               }
               @case (4) {
-              <div translate>You do not have spies.</div>
+              <div [translate]="'You do not have spies.'"></div>
               }
               }
             </span>
@@ -189,7 +166,7 @@
             <div>
               @if (sanctuariesSpyInfo.unitiesNb > 0) {
               <div>
-                <strong translate>Unities</strong><strong translate>:</strong>
+                <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
                 {{
                 sanctuariesSpyInfo.unitiesNb
                 | number: '' : currentLocale()
@@ -198,7 +175,7 @@
               }
               @if (sanctuariesSpyInfo.unities.length > 0) {
               <div>
-                <strong translate>Unities</strong><strong translate>:</strong>
+                <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
                 @for (unit of sanctuariesSpyInfo.unities; track unit) {
                 <div>
                   {{ Tools.getName(unit) | translate }}
@@ -211,10 +188,7 @@
               sanctuariesSpyInfo.unitiesNb === 0 &&
               sanctuariesSpyInfo.unities.length === 0
               ) {
-              <div translate>
-                This sancturary is not protected by any army, fight
-                directly the monster!
-              </div>
+              <div [translate]="'This sancturary is not protected by any army, fight directly the monster!'"></div>
               }
             </div>
             }
@@ -241,7 +215,7 @@
             @if (getArmy().length > 0) {
             <div class="text-center">
               <br />
-              <strong translate>Army summary</strong>
+              <strong [translate]="'Army summary'"></strong>
               @for (i of getArmy(); track i) {
               <div>
                 <span [ngClass]="{ 'text-danger': i.all === 0 }">
@@ -259,8 +233,8 @@
               </div>
               }
               <br />
-              <strong translate>Offensive power</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Offensive power'"></strong>
+              <strong [translate]="':'"></strong>
               {{
               getOffensivePower()
               | number: '' : currentLocale()
@@ -269,13 +243,13 @@
               <div class="text-center">
                 <button class="btn btn-success fs-5" (click)="sanctuariesAttack(sanctuariesSpyInfo.id)">
                   <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-                  &nbsp;<span translate>Attack</span>
+                  &nbsp;<span [translate]="'Attack'"></span>
                 </button>
               </div>
             </div>
             }
             @if (getArmy().length === 0) {
-            <div class="text-center" translate>Your army is empty</div>
+            <div class="text-center" [translate]="'Your army is empty'"></div>
             }
           </div>
           }
@@ -293,31 +267,19 @@
             <div class="text-center">
               @switch (sanctuariesInfo.sanctuaries_id) {
               @case (1) {
-              <span translate>
-                Your city is protected against the fury of Demeter
-              </span>
+              <span [translate]="'Your city is protected against the fury of Demeter'"></span>
               }
               @case (2) {
-              <span translate>
-                The Lernaean Hydra will corrupt your enemies water,
-                grape and food stocks when they will plunder your city
-              </span>
+              <span [translate]="'The Lernaean Hydra will corrupt your enemies water, grape and food stocks when they will plunder your city'"></span>
               }
               @case (3) {
-              <span translate>
-                Your city produces 24 additional Ambrosia a day
-              </span>
+              <span [translate]="'Your city produces 24 additional Ambrosia a day'"></span>
               }
               @case (4) {
-              <span translate>
-                Your city is protected against the Zeus lightning
-              </span>
+              <span [translate]="'Your city is protected against the Zeus lightning'"></span>
               }
               @case (5) {
-              <span translate>
-                Typhon will help you to protect your city against the
-                negative effects of the weather
-              </span>
+              <span [translate]="'Typhon will help you to protect your city against the negative effects of the weather'"></span>
               }
               @default {
               <span>TODO</span>
@@ -325,12 +287,12 @@
               }
             </div>
             <div class="text-center">
-              <strong translate>Victories</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Victories'"></strong>
+              <strong [translate]="':'"></strong>
               {{ sanctuariesInfo.sanctuaries_victory }}
               <br />
-              <strong translate>Strength</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Strength'"></strong>
+              <strong [translate]="':'"></strong>
               <span [ngClass]="{
                       'text-danger': sanctuariesInfo.sanctuaries_power === 0,
                     }">
@@ -341,17 +303,14 @@
                 <app-ic-icon [icon]="questionCircle"></app-ic-icon>
               </span>
               <br />
-              <strong translate>Base defense</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Base defense'"></strong>
+              <strong [translate]="':'"></strong>
               {{
               sanctuariesInfo.sanctuaries_defense
               | number: '' : currentLocale()
               }}
             </div>
-            <div class="fw-bold text-danger text-center my-1" id="sanctuariesWaveTabDesc" translate>
-              Units you send to a sanctuary cannot return to your city. They
-              also don't consume any resources.
-            </div>
+            <div class="fw-bold text-danger text-center my-1" id="sanctuariesWaveTabDesc" [translate]="'Units you send to a sanctuary cannot return to your city. They also don\'t consume any resources.'"></div>
             <div class="row">
               <div class="col-6">
                 <table aria-labelledby="sanctuariesWaveTabDesc">
@@ -397,7 +356,7 @@
                           <span class="input-group-text" role="button" (click)="waveNew(i, sanctuariesWave[i])"
                             (keyup.enter)="waveNew(i, sanctuariesWave[i])" tabindex="0">
                             <app-ic-icon [icon]="plusIcon"></app-ic-icon>
-                            <span class="visually-hidden" translate>Add</span>
+                            <span class="visually-hidden" [translate]="'Add'"></span>
                           </span>
                         </div>
                       </td>

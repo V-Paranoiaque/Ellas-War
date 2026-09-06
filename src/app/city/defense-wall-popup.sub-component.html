@@ -3,25 +3,22 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" translate>Defense wall</h5>
+          <h5 class="modal-title" [translate]="'Defense wall'"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div translate>
-            The defense wall is a basic protection for your city. It won't stop
-            your enemies but will delay their armies.
-          </div>
+          <div [translate]="'The defense wall is a basic protection for your city. It won\'t stop your enemies but will delay their armies.'"></div>
           <br />
           <div class="text-center">
-            <strong translate>Defense</strong>
-            <strong translate>:</strong>
+            <strong [translate]="'Defense'"></strong>
+            <strong [translate]="':'"></strong>
             {{
             defenseWallStrength | number: '' : currentLocale()
             }}
             <app-ic-icon [icon]="shieldShaded" title="{{ 'Defense' | translate }}"></app-ic-icon>
             <br />
-            <strong translate>Level</strong>
-            <strong translate>:</strong>
+            <strong [translate]="'Level'"></strong>
+            <strong [translate]="':'"></strong>
             {{
             user.getPropertyNb('defense_wall')
             | number: '' : currentLocale()
@@ -29,9 +26,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         </div>
       </div>
     </div>

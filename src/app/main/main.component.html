@@ -24,28 +24,19 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" translate>Unable to join the server</h4>
+        <h4 class="modal-title" [translate]="'Unable to join the server'"></h4>
       </div>
       <div class="modal-body">
-        <div translate>
-          The server is currently not reachable, possible causes are:
-        </div>
+        <div [translate]="'The server is currently not reachable, possible causes are:'"></div>
         <ul>
-          <li translate>The game is down</li>
-          <li translate>
-            Your application or web browser needs to be restarted
-          </li>
-          <li translate>Your internet connection is down</li>
+          <li [translate]="'The game is down'"></li>
+          <li [translate]="'Your application or web browser needs to be restarted'"></li>
+          <li [translate]="'Your internet connection is down'"></li>
         </ul>
-        <div class="text-danger text-center" translate>
-          This popup will close automatically when the game will be reachable
-          again.
-        </div>
+        <div class="text-danger text-center" [translate]="'This popup will close automatically when the game will be reachable again.'"></div>
         <div class="text-center">
           <br />
-          <button class="btn btn-primary" (click)="refresh()" translate>
-            Refresh
-          </button>
+          <button class="btn btn-primary" (click)="refresh()" [translate]="'Refresh'"></button>
         </div>
       </div>
     </div>
@@ -59,17 +50,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" translate>Your game version is too old</h4>
+        <h4 class="modal-title" [translate]="'Your game version is too old'"></h4>
       </div>
-      <div class="modal-body" translate>
-        The version of the client that you use to access to the game is too
-        old. If you use an application, try to update it, else restart your
-        web browser.
-      </div>
+      <div class="modal-body" [translate]="'The version of the client that you use to access to the game is too old. If you use an application, try to update it, else restart your web browser.'"></div>
       <div class="modal-body text-center">
-        <strong translate>Minimum version:</strong> {{ remoteVersion }}
+        <strong [translate]="'Minimum version:'"></strong> {{ remoteVersion }}
         <br />
-        <strong translate>Your version:</strong> {{ localVersion }}
+        <strong [translate]="'Your version:'"></strong> {{ localVersion }}
       </div>
     </div>
   </div>
@@ -82,22 +69,15 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" translate>Game under maintenance</h4>
+        <h4 class="modal-title" [translate]="'Game under maintenance'"></h4>
       </div>
       <div class="modal-body">
-        <div translate>
-          The game is currently in maintenance, we will be back soon.
-        </div>
+        <div [translate]="'The game is currently in maintenance, we will be back soon.'"></div>
         <br />
-        <div class="text-danger text-center" translate>
-          This popup will close automatically when the game will be reachable
-          again.
-        </div>
+        <div class="text-danger text-center" [translate]="'This popup will close automatically when the game will be reachable again.'"></div>
         <div class="text-center">
           <br />
-          <button class="btn btn-primary" (click)="refresh()" translate>
-            Refresh
-          </button>
+          <button class="btn btn-primary" (click)="refresh()" [translate]="'Refresh'"></button>
         </div>
       </div>
     </div>

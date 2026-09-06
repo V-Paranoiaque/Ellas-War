@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { provideZoneChangeDetection, importProvidersFrom, inject } from '@angular/core';
+import { provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { AppRoutingModule, routes } from './app.routes';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -14,18 +14,19 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import {
-  provideTranslateService,
-  TranslateDirective,
-  TranslatePipe, TranslateService, TranslateStore
-} from '@ngx-translate/core';
-
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService, TranslateDirective, TranslateLoader, TranslatePipe, TranslateStore } from '@ngx-translate/core';
+import { firstValueFrom, of } from 'rxjs';
 
 import { ClipboardModule } from 'ngx-clipboard';
 import { SocketComponent as Socket } from '../services/socketio.service';
 import { ToolsComponent as Tools } from '../services/tools.service';
 import { UserComponent as User } from '../services/user.service';
+
+class FakeTranslateLoader implements TranslateLoader {
+  getTranslation(_lang: string) {
+    return of({});
+  }
+}
 
 export const appConfig = {
   bootstrap: [],
@@ -52,18 +53,22 @@ export const appConfig = {
     provideOAuthClient(),
     provideTranslateService({
       fallbackLang: 'en',
-      loader: provideTranslateHttpLoader({
-        prefix: './assets/i18n/',
-        suffix: '.json',
-        failOnError: true,
-      }),
+      loader: {
+        provide: TranslateLoader,
+        useClass: FakeTranslateLoader,
+      }
     }),
     provideRouter(routes),
     importProvidersFrom(ModalModule),
   ],
 };
 
-export function currentLocale(): string {
-  const translate = inject(TranslateService);
-  return translate.getCurrentLang() ?? 'en';
-}
+describe('FakeTranslateLoader', () => {
+  it('should return an empty translation object', async () => {
+    const loader = new FakeTranslateLoader();
+
+    const result = await firstValueFrom(loader.getTranslation('fr'));
+
+    expect(result).toEqual({});
+  });
+});

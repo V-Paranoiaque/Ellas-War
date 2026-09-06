@@ -12,14 +12,9 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 text-center">
-                <p translate>
-                  The tree of the gods has been removed in Ellas War Next
-                  V2.
-                </p>
+                <p [translate]="'The tree of the gods has been removed in Ellas War Next V2.'"></p>
                 <br />
-                <a [routerLink]="['/discoverthegame']" class="btn btn-primary" translate>
-                  Discover the game
-                </a>
+                <a [routerLink]="['/discoverthegame']" class="btn btn-primary" [translate]="'Discover the game'"></a>
               </div>
             </div>
           </div>
@@ -28,13 +23,9 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 text-center">
-                <p translate>
-                  The games have been removed in Ellas War Next V2.
-                </p>
+                <p [translate]="'The games have been removed in Ellas War Next V2.'"></p>
                 <br />
-                <a [routerLink]="['/discoverthegame']" class="btn btn-primary" translate>
-                  Discover the game
-                </a>
+                <a [routerLink]="['/discoverthegame']" class="btn btn-primary" [translate]="'Discover the game'"></a>
               </div>
             </div>
           </div>
@@ -46,15 +37,13 @@
               <a [routerLink]="['/discoverthegame']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Constructions</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Constructions'"></span>
               <a [routerLink]="['/discoverthegame/treasure']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="constructions"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              The different buildings that make up the city.
-            </div>
+            <div class="fw-bold text-center" [translate]="'The different buildings that make up the city.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -81,18 +70,13 @@
               <a [routerLink]="['/discoverthegame/constructions']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Treasure</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Treasure'"></span>
               <a [routerLink]="['/discoverthegame/temples']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="treasure"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              The treasure will allow you to shelter your wealth, however
-              this service is not without constraints. To level 5 it will be
-              limited from level 6 you will not limit but you will pay a fee
-              for you to retrieve your drachmas.
-            </div>
+            <div class="fw-bold text-center" [translate]="'The treasure will allow you to shelter your wealth, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your drachmas.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -117,7 +101,7 @@
               <a [routerLink]="['/discoverthegame/treasure']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Temples</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Temples'"></span>
               <a [routerLink]="['/discoverthegame/recruitment']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
@@ -153,18 +137,13 @@
               <a [routerLink]="['/discoverthegame/temples']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Recruitment</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Recruitment'"></span>
               <a [routerLink]="['/discoverthegame/army']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="recruitment"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              The hoplites constitute the heavy infantry of the ancient
-              Greek cities, made up of citizens who could not support a
-              horse but who had the means to equip themselves with armor and
-              provide for their families when They were in campaign.
-            </div>
+            <div class="fw-bold text-center" [translate]="'The hoplites constitute the heavy infantry of the ancient Greek cities, made up of citizens who could not support a horse but who had the means to equip themselves with armor and provide for their families when They were in campaign.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -191,7 +170,7 @@
               <a [routerLink]="['/discoverthegame/recruitment']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Army</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Army'"></span>
               <a [routerLink]="['/discoverthegame/attack']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
@@ -224,16 +203,13 @@
               <a [routerLink]="['/discoverthegame/army']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Offensive strategy</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Offensive strategy'"></span>
               <a [routerLink]="['/discoverthegame/defense']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="attack"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              Choose the units that will go to battle and the order in which
-              they will enter the enemy cities.
-            </div>
+            <div class="fw-bold text-center" [translate]="'Choose the units that will go to battle and the order in which they will enter the enemy cities.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -260,16 +236,13 @@
               <a [routerLink]="['/discoverthegame/attack']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Defensive strategy</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Defensive strategy'"></span>
               <a [routerLink]="['/discoverthegame/trade']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="defense"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              Choose the units that will defend your city and the order in
-              which they will go to battle.
-            </div>
+            <div class="fw-bold text-center" [translate]="'Choose the units that will defend your city and the order in which they will go to battle.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -296,15 +269,13 @@
               <a [routerLink]="['/discoverthegame/defense']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Agora</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Agora'"></span>
               <a [routerLink]="['/discoverthegame']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="agora"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              Buy the resources you need for your city or army.
-            </div>
+            <div class="fw-bold text-center" [translate]="'Buy the resources you need for your city or army.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -331,16 +302,13 @@
               <a [routerLink]="['/discoverthegame/trade']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>Sell resources</span>
+              <span class="mx-3 flex-grow-1" [translate]="'Sell resources'"></span>
               <a [routerLink]="['/discoverthegame']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="sell"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              Sell the resources looted during your attacks or from your
-              production.
-            </div>
+            <div class="fw-bold text-center" [translate]="'Sell the resources looted during your attacks or from your production.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +
@@ -367,15 +335,13 @@
               <a [routerLink]="['/discoverthegame/trade']">
                 <app-ic-icon [icon]="arrowLeft"></app-ic-icon>
               </a>
-              <span class="mx-3 flex-grow-1" translate>City</span>
+              <span class="mx-3 flex-grow-1" [translate]="'City'"></span>
               <a [routerLink]="['/discoverthegame/constructions']">
                 <app-ic-icon [icon]="arrowRight"></app-ic-icon>
               </a>
             </h1>
             <app-discoverthegame-menu name="home"></app-discoverthegame-menu>
-            <div class="fw-bold text-center" translate>
-              Visualize your city and quickly access the different actions.
-            </div>
+            <div class="fw-bold text-center" [translate]="'Visualize your city and quickly access the different actions.'"></div>
             <div class="text-center">
               <img src="{{
                       'assets/i18n/' +

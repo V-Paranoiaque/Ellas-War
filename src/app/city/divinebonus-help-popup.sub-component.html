@@ -2,21 +2,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Divine Bonus</h5>
+        <h5 class="modal-title" [translate]="'Divine Bonus'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div translate>
-          The Divine Bonus are awarded when you sign in on the game and reward
-          your loyalty. You can also earn through the activities offered on the
-          facebook page. A bonus with similar effects to see its effect favors
-          accumulate than the favor.
-        </div>
+        <div [translate]="'The Divine Bonus are awarded when you sign in on the game and reward your loyalty. You can also earn through the activities offered on the facebook page. A bonus with similar effects to see its effect favors accumulate than the favor.'"></div>
         <br />
         <div class="text-center">
           <div>
-            <strong translate>Ongoing streak:</strong>
-            {{ user.getPropertyNb('nbdays') }} <span translate>Day(s)</span>
+            <strong [translate]="'Ongoing streak:'"></strong>
+            {{ user.getPropertyNb('nbdays') }} <span [translate]="'Day(s)'"></span>
           </div>
           <div>
             {{
@@ -103,20 +98,18 @@
             <ul class="d-inline-block text-start">
               @if (user.getPropertyNb('level') < 9) { <li>
                 {{ 80 }}
-                <span translate>Spartans</span>
+                <span [translate]="'Spartans'"></span>
                 </li>
                 }
                 @if (user.getPropertyNb('level') >= 9) {
-                <li translate>200 units of your third temple</li>
+                <li [translate]="'200 units of your third temple'"></li>
                 }
             </ul>
             }
             @case (30) {
             <ul class="d-inline-block text-start">
-              <li translate>
-                6 hours of withdrawal without taxes in your treasure
-              </li>
-              <li translate>2 bonus attacks</li>
+              <li [translate]="'6 hours of withdrawal without taxes in your treasure'"></li>
+              <li [translate]="'2 bonus attacks'"></li>
             </ul>
             }
             @case (50) {
@@ -129,10 +122,8 @@
             }
             @case (70) {
             <ul class="d-inline-block text-start">
-              <li translate>
-                6 hours of withdrawal without taxes in your treasure
-              </li>
-              <li translate>2 bonus attacks</li>
+              <li [translate]="'6 hours of withdrawal without taxes in your treasure'"></li>
+              <li [translate]="'2 bonus attacks'"></li>
             </ul>
             }
             @case (99) {
@@ -150,12 +141,8 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#DivineBonusList"
-          data-bs-dismiss="modal" translate>
-          Divine Bonus list
-        </button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+          data-bs-dismiss="modal" [translate]="'Divine Bonus list'"></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>

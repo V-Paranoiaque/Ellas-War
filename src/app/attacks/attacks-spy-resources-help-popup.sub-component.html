@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Resource Espionage</h5>
+        <h5 class="modal-title" [translate]="'Resource Espionage'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -11,16 +11,16 @@
       </div>
       <div class="modal-body container-fluid">
         <app-ic-icon class="vlow me-1" [icon]="dotCircle"></app-ic-icon>
-        <span translate>Very few resources</span>
+        <span [translate]="'Very few resources'"></span>
         <br />
         <app-ic-icon class="low me-1" [icon]="dotCircle"></app-ic-icon>
-        <span translate>Few resources</span>
+        <span [translate]="'Few resources'"></span>
         <br />
         <app-ic-icon class="middle me-1" [icon]="dotCircle"></app-ic-icon>
-        <span translate>Normal quantity of resources</span>
+        <span [translate]="'Normal quantity of resources'"></span>
         <br />
         <app-ic-icon class="high me-1" [icon]="dotCircle"></app-ic-icon>
-        <span translate>Lots of resources</span>
+        <span [translate]="'Lots of resources'"></span>
         <br />
       </div>
       <div class="modal-footer">
@@ -28,9 +28,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

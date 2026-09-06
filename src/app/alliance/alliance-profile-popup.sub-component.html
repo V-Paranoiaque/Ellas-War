@@ -14,17 +14,15 @@
             }
           </div>
           <div class="row text-center">
-            <span translate>Send a picture</span>
+            <span [translate]="'Send a picture'"></span>
             <input type="file" accept="image/*" (change)="uploadImage($event)" [(ngModel)]="image" />
           </div>
 
           @if (errorProfileSave() === 1) {
-          <div class="text-center fw-bold text-danger" translate>
-            Information saved
-          </div>
+          <div class="text-center fw-bold text-danger" [translate]="'Information saved'"></div>
           }
           <br />
-          <strong for="description" translate>Description</strong>
+          <strong for="description" [translate]="'Description'"></strong>
           <textarea class="form-control" placeholder="{{ 'Alliance\'s description' | translate }}"
             [(ngModel)]="allianceProfile.description"></textarea>
           <br />
@@ -34,12 +32,8 @@
             "></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" (click)="profileSave()" translate>
-            Save
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+          <button type="button" class="btn btn-primary" (click)="profileSave()" [translate]="'Save'"></button>
         </div>
       </div>
     </div>

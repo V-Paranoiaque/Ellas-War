@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 id="contactDesc" class="text-center" translate>Contact page</h1>
+            <h1 id="contactDesc" class="text-center" [translate]="'Contact page'"></h1>
             <table class="table" aria-labelledby="contactDesc">
               <tbody>
                 @for (msg of adminContactList; track msg) {
@@ -62,7 +62,7 @@
                     title="{{ 'Change page' | translate }}"
                     #mySelect>
                     @for (id of Tools.range(1, adminContactMax); track id) {
-                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                      <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                     }
                   </select>
                   <span

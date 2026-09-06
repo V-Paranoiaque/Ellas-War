@@ -7,12 +7,12 @@
         <div class="column left-column flex-grow-1"></div>
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center" id="newsTitle" translate>News</h1>
+            <h1 class="text-center" id="newsTitle" [translate]="'News'"></h1>
 
             @if (getNews().length === 0) {
-              <div class="text-center fw-bold" translate>
+              <div class="text-center fw-bold">
                 <br />
-                There is no news published for the moment
+                <span [translate]="'There is no news published for the moment'"></span>
               </div>
             }
 
@@ -22,11 +22,9 @@
                 aria-describedby="newsTitle">
                 <thead>
                   <tr>
-                    <th scope="col" translate>Title</th>
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Author
-                    </th>
-                    <th scope="col" translate>Date</th>
+                    <th scope="col" [translate]="'Title'"></th>
+                    <th scope="col" class="d-none d-sm-table-cell" [translate]="'Author'"></th>
+                    <th scope="col" [translate]="'Date'"></th>
                   </tr>
                 </thead>
                 <tbody>

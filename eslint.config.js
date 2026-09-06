@@ -53,6 +53,14 @@ export default defineConfig([
     },
   },
 
+  // Unit tests
+  {
+    files: ["**/*.spec.ts"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+
   // Angular templates
   {
     files: ["**/*.html"],
@@ -60,6 +68,9 @@ export default defineConfig([
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
+    rules: {
+      "@angular-eslint/template/elements-content": "off",
+    },
   },
 
   // CSS

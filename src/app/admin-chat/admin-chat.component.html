@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h2 id="chatDesc" class="text-center" translate>Chat</h2>
+            <h2 id="chatDesc" class="text-center" [translate]="'Chat'"></h2>
             <table class="table table-sm" aria-labelledby="chatDesc">
               <tbody>
                 @for (p of adminChatList; track p) {

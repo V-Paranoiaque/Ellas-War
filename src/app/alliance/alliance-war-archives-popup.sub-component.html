@@ -17,16 +17,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       @if (warInfo.list.length === 0) {
-      <div class="modal-body container-fluid text-center fw-bold" translate>
-        No attack has been made yet
-      </div>
+      <div class="modal-body container-fluid text-center fw-bold" [translate]="'No attack has been made yet'"></div>
       }
 
       @if (user.getPropertyNb('id') > 0) {
       <div class="modal-body container-fluid text-center">
-        <strong translate>Goal</strong>
-        <strong translate>:</strong>
-        {{ warVictory() }} <span translate>Victories</span>
+        <strong [translate]="'Goal'"></strong>
+        <strong [translate]="':'"></strong>
+        {{ warVictory() }} <span [translate]="'Victories'"></span>
         <br />
         {{
         'The first alliance to reach { value } victories wins the war, be careful, you also need { value2 } victories in
@@ -40,23 +38,21 @@
         <br />
         @if (warInfo.end) {
         <div>
-          <strong translate>End of time</strong>
-          <strong translate>:</strong>
+          <strong [translate]="'End of time'"></strong>
+          <strong [translate]="':'"></strong>
           {{ warInfo.end * 1000 | date: 'dd/MM, HH:mm' }}
         </div>
         }
         @if (warInfo.reward) {
         <div>
           <br />
-          <strong translate>Reward</strong>
-          <strong translate>:</strong>
+          <strong [translate]="'Reward'"></strong>
+          <strong [translate]="':'"></strong>
           {{
           warInfo.reward | number: '' : currentLocale()
           }}
           <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
-          <div translate>
-            The reward is shared in proportion to everyone's victories.
-          </div>
+          <div [translate]="'The reward is shared in proportion to everyone\'s victories.'"></div>
         </div>
         }
       </div>
@@ -66,9 +62,9 @@
         <table class="table table-middle" aria-labelledby="warDesc">
           <thead>
             <tr>
-              <th scope="col" translate>Attacker</th>
-              <th scope="col" translate>Defender</th>
-              <th scope="col" translate></th>
+              <th scope="col" [translate]="'Attacker'"></th>
+              <th scope="col" [translate]="'Defender'"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -99,9 +95,7 @@
       </div>
       }
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>

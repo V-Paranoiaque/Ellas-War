@@ -11,21 +11,14 @@
               @switch (confirmResult()) {
               @case (1) {
               <div>
-                <div class="text-danger" translate>
-                  This link is invalid, if have forgotten your password, ask
-                  a new again.
-                </div>
+                <div class="text-danger" [translate]="'This link is invalid, if have forgotten your password, ask a new again.'"></div>
                 <br /><br />
-                <a [routerLink]="['/lostpassword']" translate>
-                  Forgot your password?
-                </a>
+                <a [routerLink]="['/lostpassword']" [translate]="'Forgot your password?'"></a>
               </div>
               }
               @case (2) {
               <div>
-                <div class="text-danger" translate>
-                  Password changed successfully
-                </div>
+                <div class="text-danger" [translate]="'Password changed successfully'"></div>
               </div>
               }
               }

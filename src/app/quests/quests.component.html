@@ -12,16 +12,12 @@
           <div class="d-flex dail-quest-menu">
             <a href="/quests" [routerLink]="['/quests']" class="btn btn-danger flex-grow-1 design-background" [ngClass]="{
                   'text-warning': user.getPropertyNb('dquest_validated') > 0,
-                }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Quests' | translate }}" translate>
-              Quests
-            </a>
+                }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Quests' | translate }}" [translate]="'Quests'"></a>
             <a href="/altars" [routerLink]="['/altars']" class="btn btn-primary flex-grow-1 design-background"
               [ngClass]="{
                   'text-warning': user.getPropertyNb('altar_available') > 0,
                 }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Altars of the Gods' | translate }}"
-              translate>
-              Altars of the Gods
-            </a>
+              [translate]="'Altars of the Gods'"></a>
           </div>
         </div>
         }
@@ -34,7 +30,7 @@
         <div class="card">
           <div class="card-body">
             <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
-              <span translate> Quest progress </span>
+              <span [translate]="'Quest progress'"></span>
               &nbsp;
               <app-ic-icon [icon]="questionCircle" data-bs-toggle="modal" role="button"
                 data-bs-target="#QuestsInfo"></app-ic-icon>

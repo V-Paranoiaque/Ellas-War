@@ -12,22 +12,22 @@
           <span>
             @switch (user.getConfig().weather) {
             @case ('sun') {
-            <span class="modal-title" translate>Sun</span>
+            <span class="modal-title" [translate]="'Sun'"></span>
             }
             @case ('rain') {
-            <span class="modal-title" translate>Rain</span>
+            <span class="modal-title" [translate]="'Rain'"></span>
             }
             @case ('storm') {
-            <span class="modal-title" translate>Storm</span>
+            <span class="modal-title" [translate]="'Storm'"></span>
             }
             @case ('snow') {
-            <span class="modal-title" translate>Snow</span>
+            <span class="modal-title" [translate]="'Snow'"></span>
             }
             @case ('heatwave') {
-            <span class="modal-title" translate>Heatwave</span>
+            <span class="modal-title" [translate]="'Heatwave'"></span>
             }
             @case ('wind') {
-            <span class="modal-title" translate>Wind</span>
+            <span class="modal-title" [translate]="'Wind'"></span>
             }
             }
           </span>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="modal-body text-center">
-        <strong translate>Cost:</strong>
+        <strong [translate]="'Cost:'"></strong>
         @for (item of getPrice(); track item) {
         <span [ngClass]="{
               'text-danger': user.getPropertyNb(item.res) < item.nb,
@@ -51,12 +51,12 @@
         @if (user.getPropertyNb('active_weather') > 0) {
         <div>
           <br />
-          <span translate>End of immunity</span>
-          <span translate>:</span>
+          <span [translate]="'End of immunity'"></span>
+          <span [translate]="':'"></span>
           {{
           user.getPropertyNb('active_weather') * 1000 | date: 'd/M, HH:mm'
           }}
-          (<a class="pointer" translate (click)="weatherDisableCancel()">Cancel</a>)
+          (<a class="pointer" [translate]="'Cancel'" (click)="weatherDisableCancel()"></a>)
           <br />
         </div>
         }
@@ -65,72 +65,70 @@
         <div>
           <br />
           @if (canEnable()) {
-          <button class="btn btn-success" (click)="weatherDisable()" translate>
-            Turn off the weather
-          </button>
+          <button class="btn btn-success" (click)="weatherDisable()" [translate]="'Turn off the weather'"></button>
           }
         </div>
         }
       </div>
 
       <div class="modal-body text-center">
-        <strong translate>Effects</strong>
-        <strong translate>:</strong>
+        <strong [translate]="'Effects'"></strong>
+        <strong [translate]="':'"></strong>
         <div>
           @switch (user.getConfig().weather) {
           @case ('sun') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>Nothing</li>
+              <li [translate]="'Nothing'"></li>
             </ul>
           </div>
           }
           @case ('rain') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>+20% food production</li>
-              <li translate>+20% grapes production</li>
-              <li translate>+20% wood production</li>
+              <li [translate]="'+20% food production'"></li>
+              <li [translate]="'+20% grapes production'"></li>
+              <li [translate]="'+20% wood production'"></li>
             </ul>
           </div>
           }
           @case ('storm') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>-5% to the attack</li>
+              <li [translate]="'-5% to the attack'"></li>
             </ul>
           </div>
           }
           @case ('snow') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>-20% food production</li>
-              <li translate>-20% water production</li>
-              <li translate>-20% wood production</li>
-              <li translate>-20% iron production</li>
-              <li translate>-20% stone production</li>
-              <li translate>-20% marble production</li>
-              <li translate>-20% grapes production</li>
-              <li translate>-20% wine production</li>
-              <li translate>-20% gold production</li>
-              <li translate>-5% to the defense of the Poseidon Wall</li>
+              <li [translate]="'-20% food production'"></li>
+              <li [translate]="'-20% water production'"></li>
+              <li [translate]="'-20% wood production'"></li>
+              <li [translate]="'-20% iron production'"></li>
+              <li [translate]="'-20% stone production'"></li>
+              <li [translate]="'-20% marble production'"></li>
+              <li [translate]="'-20% grapes production'"></li>
+              <li [translate]="'-20% wine production'"></li>
+              <li [translate]="'-20% gold production'"></li>
+              <li [translate]="'-5% to the defense of the Poseidon Wall'"></li>
             </ul>
           </div>
           }
           @case ('heatwave') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>+20% wine production</li>
-              <li translate>+20% water consumption</li>
-              <li translate>+20% wine consumption</li>
+              <li [translate]="'+20% wine production'"></li>
+              <li [translate]="'+20% water consumption'"></li>
+              <li [translate]="'+20% wine consumption'"></li>
             </ul>
           </div>
           }
           @case ('wind') {
           <div>
             <ul class="d-inline-block text-start">
-              <li translate>-20% wood production</li>
-              <li translate>-5% to the defense</li>
+              <li [translate]="'-20% wood production'"></li>
+              <li [translate]="'-5% to the defense'"></li>
             </ul>
           </div>
           }
@@ -138,28 +136,17 @@
         </div>
       </div>
       <div class="modal-footer">
-        <strong translate>The weather is the will of the gods. It will influence your city,
-          your productions and your consumption. Thanks to it you will be able
-          to win victories impossible but take care, everything can turn against
-          you.</strong>
+        <strong [translate]="'The weather is the will of the gods. It will influence your city, your productions and your consumption. Thanks to it you will be able to win victories impossible but take care, everything can turn against you.'"></strong>
 
         <br /><br />
 
-        <p translate>
-          If you are afraid that this will have a detrimental effect on your
-          city, you can make an offering to the gods. After this offering your
-          city will no longer suffer the weather for a week.
-        </p>
+        <p [translate]="'If you are afraid that this will have a detrimental effect on your city, you can make an offering to the gods. After this offering your city will no longer suffer the weather for a week.'"></p>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weatherHelp"
-          data-bs-dismiss="modal" translate>
-          Weather details
-        </button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+          data-bs-dismiss="modal" [translate]="'Weather details'"></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -200,22 +187,22 @@
           <span>
             @switch (selectedWeather) {
             @case ('sun') {
-            <span translate>Sun</span>
+            <span [translate]="'Sun'"></span>
             }
             @case ('rain') {
-            <span translate>Rain</span>
+            <span [translate]="'Rain'"></span>
             }
             @case ('storm') {
-            <span translate>Storm</span>
+            <span [translate]="'Storm'"></span>
             }
             @case ('snow') {
-            <span translate>Snow</span>
+            <span [translate]="'Snow'"></span>
             }
             @case ('heatwave') {
-            <span translate>Heatwave</span>
+            <span [translate]="'Heatwave'"></span>
             }
             @case ('wind') {
-            <span translate>Wind</span>
+            <span [translate]="'Wind'"></span>
             }
             }
           </span>
@@ -228,56 +215,56 @@
         @case ('sun') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>Nothing</li>
+            <li [translate]="'Nothing'"></li>
           </ul>
         </div>
         }
         @case ('rain') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>+20% food production</li>
-            <li translate>+20% grapes production</li>
-            <li translate>+20% wood production</li>
+            <li [translate]="'+20% food production'"></li>
+            <li [translate]="'+20% grapes production'"></li>
+            <li [translate]="'+20% wood production'"></li>
           </ul>
         </div>
         }
         @case ('storm') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>-5% to the attack</li>
+            <li [translate]="'-5% to the attack'"></li>
           </ul>
         </div>
         }
         @case ('snow') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>-20% food production</li>
-            <li translate>-20% water production</li>
-            <li translate>-20% wood production</li>
-            <li translate>-20% iron production</li>
-            <li translate>-20% stone production</li>
-            <li translate>-20% marble production</li>
-            <li translate>-20% grapes production</li>
-            <li translate>-20% wine production</li>
-            <li translate>-20% gold production</li>
-            <li translate>-5% to the defense of the Poseidon Wall</li>
+            <li [translate]="'-20% food production'"></li>
+            <li [translate]="'-20% water production'"></li>
+            <li [translate]="'-20% wood production'"></li>
+            <li [translate]="'-20% iron production'"></li>
+            <li [translate]="'-20% stone production'"></li>
+            <li [translate]="'-20% marble production'"></li>
+            <li [translate]="'-20% grapes production'"></li>
+            <li [translate]="'-20% wine production'"></li>
+            <li [translate]="'-20% gold production'"></li>
+            <li [translate]="'-5% to the defense of the Poseidon Wall'"></li>
           </ul>
         </div>
         }
         @case ('heatwave') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>+20% wine production</li>
-            <li translate>+20% water consumption</li>
-            <li translate>+20% wine consumption</li>
+            <li [translate]="'+20% wine production'"></li>
+            <li [translate]="'+20% water consumption'"></li>
+            <li [translate]="'+20% wine consumption'"></li>
           </ul>
         </div>
         }
         @case ('wind') {
         <div>
           <ul class="d-inline-block text-start">
-            <li translate>-20% wood production</li>
-            <li translate>-5% to the defense</li>
+            <li [translate]="'-20% wood production'"></li>
+            <li [translate]="'-5% to the defense'"></li>
           </ul>
         </div>
         }
@@ -286,12 +273,8 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#weatherInfo"
-          data-bs-dismiss="modal" translate>
-          Current weather
-        </button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+          data-bs-dismiss="modal" [translate]="'Current weather'"></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -301,31 +284,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 translate>Ambrosia</h5>
+        <h5 [translate]="'Ambrosia'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-        <p translate>
-          Ambrosia is a special resource. It is not possible to trade it or loot
-          it.
-        </p>
-        <strong translate>To obtain it:</strong>
+        <p [translate]="'Ambrosia is a special resource. It is not possible to trade it or loot it.'"></p>
+        <strong [translate]="'To obtain it:'"></strong>
         <ul class="d-inline-block text-start">
-          <li translate>Build temples</li>
-          <li translate>Validate 7 quests and open the chest</li>
-          <li translate>Own the Tantalus Sanctuary</li>
+          <li [translate]="'Build temples'"></li>
+          <li [translate]="'Validate 7 quests and open the chest'"></li>
+          <li [translate]="'Own the Tantalus Sanctuary'"></li>
         </ul>
 
-        <p translate>
-          To use it, visit your temples. Each has one or more powers.
-        </p>
+        <p [translate]="'To use it, visit your temples. Each has one or more powers.'"></p>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -409,8 +385,8 @@
         </div>
       </div>
       <div class="text-center mt-2">
-        <strong translate>Weather</strong>
-        <strong translate>:</strong>
+        <strong [translate]="'Weather'"></strong>
+        <strong [translate]="':'"></strong>
         <app-id-to-weather [weather]="user.getConfig().weather" data-bs-toggle="modal" data-bs-target="#weatherInfo"
           title="{{ 'Weather information' | translate }}" class="mx-1" role="button"></app-id-to-weather>
         <span data-bs-toggle="modal" data-bs-target="#weatherHelp" role="button" title="{{ 'Help' | translate }}">
@@ -497,7 +473,7 @@
     }
 
     <div class="mt-2" id="details-menu">
-      <a href="details" [routerLink]="['/details']" translate>Details</a>
+      <a href="details" [routerLink]="['/details']" [translate]="'Details'"></a>
     </div>
   </div>
   </div>

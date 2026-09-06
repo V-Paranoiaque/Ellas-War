@@ -3,16 +3,16 @@
     <div class="modal-content">
       <div class="modal-header">
         @if (temple === 0) {
-        <h5 translate>Choose your third temple</h5>
+        <h5 [translate]="'Choose your third temple'"></h5>
         }
         @if (temple === 6) {
-        <h5 translate>Artemis</h5>
+        <h5 [translate]="'Artemis'"></h5>
         }
         @if (temple === 7) {
-        <h5 translate>Dionysus</h5>
+        <h5 [translate]="'Dionysus'"></h5>
         }
         @if (temple === 8) {
-        <h5 translate>Hephaestus</h5>
+        <h5 [translate]="'Hephaestus'"></h5>
         }
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -25,7 +25,7 @@
           title="{{ 'Build a new temple' | translate }}" (click)="setTemple(7)"></app-ew-icon>
       </div>
       <div class="modal-body">
-        <strong translate>Price</strong><strong translate>:</strong>
+        <strong [translate]="'Price'"></strong><strong [translate]="':'"></strong>
 
         @for (res of price; track res) {
         <span>
@@ -39,19 +39,17 @@
         }
       </div>
       <div class="modal-body">
-        @if (user.getPropertyNb('level') < 8) { <div class="alert alert-danger" translate>Available at level 8</div>
+        @if (user.getPropertyNb('level') < 8) { <div class="alert alert-danger" [translate]="'Available at level 8'"></div>
       }
       @if (user.getPropertyNb('level') >= 8 && temple === 0) {
-      <div class="text-center text-danger" translate>
-        Click on one of the temples to select it
-      </div>
+      <div class="text-center text-danger" [translate]="'Click on one of the temples to select it'"></div>
       }
       @if (temple > 0) {
       <div>
-        <strong translate>New powers</strong>
+        <strong [translate]="'New powers'"></strong>
         @if (temple === 6) {
         <ul>
-          <li translate>+30% base wood production</li>
+          <li [translate]="'+30% base wood production'"></li>
           <li>
             {{
             'New unity: { unit }'
@@ -62,7 +60,7 @@
         }
         @if (temple === 7) {
         <ul>
-          <li translate>+30% base wine production</li>
+          <li [translate]="'+30% base wine production'"></li>
           <li>
             {{
             'New unity: { unit }'
@@ -73,7 +71,7 @@
         }
         @if (temple === 8) {
         <ul>
-          <li translate>+30% base Drachmas production</li>
+          <li [translate]="'+30% base Drachmas production'"></li>
           <li>
             {{
             'New unity: { unit }'
@@ -82,36 +80,23 @@
           </li>
         </ul>
         }
-        <strong translate>With four temples</strong>
+        <strong [translate]="'With four temples'"></strong>
         @if (temple === 6) {
         <ul>
-          <li translate>Looting is increased by 5 to 15% for 2 hours.</li>
-          <li translate>
-            Your city can not be attacked for 30 min thanks to the immense
-            forest that covers the city.
-          </li>
+          <li [translate]="'Looting is increased by 5 to 15% for 2 hours.'"></li>
+          <li [translate]="'Your city can not be attacked for 30 min thanks to the immense forest that covers the city.'"></li>
         </ul>
         }
         @if (temple === 7) {
         <ul>
-          <li translate>
-            Dionysus increases grape production by 60% for 6 hours.
-          </li>
-          <li translate>
-            Dionysus offers 500 satyrs to help you destroy your enemies.
-          </li>
+          <li [translate]="'Dionysus increases grape production by 60% for 6 hours.'"></li>
+          <li [translate]="'Dionysus offers 500 satyrs to help you destroy your enemies.'"></li>
         </ul>
         }
         @if (temple === 8) {
         <ul>
-          <li translate>
-            Hephaestus improves the defensive power of the automatons by
-            200% for 2 hours.
-          </li>
-          <li translate>
-            The lava falls on the enemies preventing them from building
-            buildings for 30 min.
-          </li>
+          <li [translate]="'Hephaestus improves the defensive power of the automatons by 200% for 2 hours.'"></li>
+          <li [translate]="'The lava falls on the enemies preventing them from building buildings for 30 min.'"></li>
         </ul>
         }
       </div>
@@ -119,13 +104,9 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-        Close
-      </button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       @if (temple > 0 && canBuild()) {
-      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="build()" translate>
-        Build
-      </button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="build()" [translate]="'Build'"></button>
       }
     </div>
   </div>

@@ -6,16 +6,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Set all messages as read</h5>
+        <h5 class="modal-title" [translate]="'Set all messages as read'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" (click)="setAllRead()" data-bs-dismiss="modal" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-primary" (click)="setAllRead()" data-bs-dismiss="modal" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -25,17 +21,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Delete all the selected messages</h5>
+        <h5 class="modal-title" [translate]="'Delete all the selected messages'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="messageDeleteMultiple()"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -45,16 +37,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Delete the selected messages</h5>
+        <h5 class="modal-title" [translate]="'Delete the selected messages'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="messageDelete()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="messageDelete()" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -65,25 +53,20 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" translate>Report the message</h5>
+          <h5 class="modal-title" [translate]="'Report the message'"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           @if (reported === 0) {
-          <span translate>
-            Are you sure that you want to signal this message?</span>
+          <span [translate]="'Are you sure that you want to signal this message?'"></span>
           } @else {
-          <span class="text-danger" translate>The message has been reported, we will check it shortly</span>
+          <span class="text-danger" [translate]="'The message has been reported, we will check it shortly'"></span>
           }
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
           @if (reported === 0) {
-          <button type="button" class="btn btn-primary" (click)="report()" translate>
-            Confirm
-          </button>
+          <button type="button" class="btn btn-primary" (click)="report()" [translate]="'Confirm'"></button>
           }
         </div>
       </div>
@@ -131,14 +114,10 @@
         <div class="card">
           <div class="card-body" [ngClass]="{ 'no-bottom': getMsgPageNb() > 1 }">
             @if (msgSent > 0) {
-            <div class="alert alert-success d-lg-none" translate>
-              Message sent
-            </div>
+            <div class="alert alert-success d-lg-none" [translate]="'Message sent'"></div>
             }
             @if (getMsgList().length === 0) {
-            <div class="text-center mt-2 mb-2" translate>
-              Your message box is empty
-            </div>
+            <div class="text-center mt-2 mb-2" [translate]="'Your message box is empty'"></div>
             }
             @if (categoryList.length > 1) {
             <div class="input-group mb-2">
@@ -151,33 +130,33 @@
               </button>
               }
               <select class="form-select" (change)="setPage(1)" [(ngModel)]="currentCategory">
-                <option value="0" translate>All the messages</option>
+                <option value="0" [translate]="'All the messages'"></option>
                 @if (categoryList.includes(2)) {
-                <option value="2" translate>Private messages</option>
+                <option value="2" [translate]="'Private messages'"></option>
                 }
                 @if (categoryList.includes(3)) {
-                <option value="3" translate>Alliance</option>
+                <option value="3" [translate]="'Alliance'"></option>
                 }
                 @if (categoryList.includes(4)) {
-                <option value="4" translate>Attacks</option>
+                <option value="4" [translate]="'Attacks'"></option>
                 }
                 @if (categoryList.includes(1)) {
-                <option value="1" translate>Spying</option>
+                <option value="1" [translate]="'Spying'"></option>
                 }
                 @if (categoryList.includes(5)) {
-                <option value="5" translate>Weather incidents</option>
+                <option value="5" [translate]="'Weather incidents'"></option>
                 }
                 @if (categoryList.includes(6)) {
-                <option value="6" translate>Agora</option>
+                <option value="6" [translate]="'Agora'"></option>
                 }
                 @if (categoryList.includes(7)) {
-                <option value="7" translate>Sanctuaries</option>
+                <option value="7" [translate]="'Sanctuaries'"></option>
                 }
                 @if (categoryList.includes(8)) {
-                <option value="8" translate>Game messages</option>
+                <option value="8" [translate]="'Game messages'"></option>
                 }
                 @if (categoryList.includes(9)) {
-                <option value="9" translate>Others</option>
+                <option value="9" [translate]="'Others'"></option>
                 }
               </select>
             </div>
@@ -229,7 +208,7 @@
             track item;
             let i = $index
             ) {
-            <option value="{{ i + 1 }}" translate>Page {{ i + 1 }}</option>
+            <option value="{{ i + 1 }}" [translate]="'Page ' + (i + 1)"></option>
             }
           </select>
           <span class="input-group-text" role="button" (click)="setPage(currentPage, 1)"
@@ -264,11 +243,9 @@
           @if (getCurrentMsg().msg_shared === 1) {
           <div class="card-body text-center">
             @if (linkSaved() === 1) {
-            <div class="wg-bold text-danger" translate>
-              Link saved to clipboard
-            </div>
+            <div class="wg-bold text-danger" [translate]="'Link saved to clipboard'"></div>
             }
-            <strong translate>Share link:</strong>
+            <strong [translate]="'Share link:'"></strong>
             {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().msg_id }}
             <span class="badge bg-primary" role="button" (click)="copyLink()" [cbContent]="
                     getCurrentMsg().url + '/permalink/' + getCurrentMsg().msg_id
@@ -283,7 +260,7 @@
               <textarea class="form-control" placeholder="{{ 'Message' | translate }}"
                 [(ngModel)]="answerText"></textarea>
               <span class="input-group-addon btn btn-primary" (click)="answer()" (keyup.enter)="answer()" tabindex="0"
-                translate>Send</span>
+                [translate]="'Send'"></span>
             </div>
           </div>
           }
@@ -301,7 +278,7 @@
         <div class="card card-normal d-flex flex-grow-1">
           <div class="card-body d-flex flex-column">
             @if (msgSent > 0) {
-            <div class="alert alert-success" translate>Message sent</div>
+            <div class="alert alert-success" [translate]="'Message sent'"></div>
             }
             @if (getDestList().length > 0) {
             <div class="mb-2">
@@ -314,7 +291,7 @@
             </div>
             }
             <div class="input-group mb-2">
-              <span class="input-group-text" translate>To: </span>
+              <span class="input-group-text" [translate]="'To:'"></span>
               <input type="text" class="form-control" aria-label="Player" placeholder="{{ 'Player' | translate }}"
                 [(ngModel)]="msgToUser" (keydown.enter)="addDestGUi(msgToUser)" />
               <span class="input-group-text text-center" role="button" (click)="addDestGUi(msgToUser)"
@@ -323,26 +300,20 @@
               </span>
             </div>
             @if (addDestError() > 0) {
-            <div class="alert alert-danger" translate>
-              This player doesn't exist
-            </div>
+            <div class="alert alert-danger" [translate]="'This player doesn\'t exist'"></div>
             }
             @if (addDestError() === 0 && noDestError > 0) {
-            <div class="alert alert-danger" translate>
-              You must add a recipient
-            </div>
+            <div class="alert alert-danger" [translate]="'You must add a recipient'"></div>
             }
             @if (textError === 1) {
-            <div class="alert alert-danger" translate>
-              Your message or its title is empty
-            </div>
+            <div class="alert alert-danger" [translate]="'Your message or its title is empty'"></div>
             }
             <input type="text" class="form-control" placeholder="{{ 'Title' | translate }}" [(ngModel)]="msgTitle" />
             <div class="input-group d-flex flex-grow-1 mt-2">
               <textarea class="form-control" placeholder="{{ 'Message' | translate }}" [(ngModel)]="msgText"></textarea>
               <span class="input-group-addon btn btn-primary d-flex align-items-center" role="button" (click)="send()"
                 (keyup.enter)="send()" tabindex="0">
-                <span translate>Send</span>
+                <span [translate]="'Send'"></span>
               </span>
             </div>
           </div>

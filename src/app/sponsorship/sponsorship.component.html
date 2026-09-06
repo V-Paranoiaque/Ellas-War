@@ -28,24 +28,16 @@
         @if (giftsError > 0) {
         <div class="text-center">
           @if (giftsError === 1) {
-          <div class="alert alert-danger" translate>
-            You can't give Drachmas to this member.
-          </div>
+          <div class="alert alert-danger" [translate]="'You can\'t give Drachmas to this member.'"></div>
           }
           @if (giftsError === 2) {
-          <div class="alert alert-danger" translate>
-            You don't have enough Drachmas.
-          </div>
+          <div class="alert alert-danger" [translate]="'You don\'t have enough Drachmas.'"></div>
           }
           @if (giftsError === 3) {
-          <div class="alert alert-danger" translate>
-            You can't give as much drachmas to this member.
-          </div>
+          <div class="alert alert-danger" [translate]="'You can\'t give as much drachmas to this member.'"></div>
           }
           @if (giftsError === 4) {
-          <div class="alert alert-success" translate>
-            Donation completed successfully.
-          </div>
+          <div class="alert alert-success" [translate]="'Donation completed successfully.'"></div>
           }
           <br />
         </div>
@@ -55,13 +47,9 @@
           [(ngModel)]="qttGiftsRess" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         @if (currentPlayer.remain > 0) {
-        <button type="button" class="btn btn-primary" (click)="confirm()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-primary" (click)="confirm()" [translate]="'Confirm'"></button>
         }
       </div>
     </div>
@@ -76,23 +64,19 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body table-responsive">
-            <h2 class="text-center" id="sponsorListDesc" translate>
-              Sponsorship
-            </h2>
-            <div class="text-center" translate>Donation limits are per day</div>
+            <h2 class="text-center" id="sponsorListDesc" [translate]="'Sponsorship'"></h2>
+            <div class="text-center" [translate]="'Donation limits are per day'"></div>
             <br />
 
             @if (sponsorList.length > 0) {
             <table class="table table-striped table-middle align-middle" aria-labelledby="sponsorListDesc">
               <thead>
                 <tr>
-                  <th scope="col" translate>Player</th>
-                  <th scope="col" class="d-none d-sm-table-cell" translate>
-                    Field
-                  </th>
-                  <th scope="col" translate>Alliance</th>
-                  <th scope="col" translate>Activity</th>
-                  <th scope="col" translate>Donations</th>
+                  <th scope="col" [translate]="'Player'"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" [translate]="'Field'"></th>
+                  <th scope="col" [translate]="'Alliance'"></th>
+                  <th scope="col" [translate]="'Activity'"></th>
+                  <th scope="col" [translate]="'Donations'"></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -112,14 +96,14 @@
                       {{ p.alliance_name }}
                     </a>
                     @if (p.alliance === 0) {
-                    <span translate>None</span>
+                    <span [translate]="'None'"></span>
                     }
                   </td>
                   <td>
                     <span>
                       @switch (p.activity) {
                       @case (1) {
-                      <span translate>Today</span>
+                      <span [translate]="'Today'"></span>
                       }
                       @case (2) {
                       <span>{{
@@ -143,7 +127,7 @@
                       </span>
                       }
                       @case (5) {
-                      <span translate>More than 30 days</span>
+                      <span [translate]="'More than 30 days'"></span>
                       }
                       @default {
                       <span>{{ p.activity }}</span>
@@ -178,13 +162,11 @@
             }
 
             @if (sponsorList.length === 0) {
-            <div class="text-center" translate>
-              You haven't sponsored any player
-            </div>
+            <div class="text-center" [translate]="'You haven\'t sponsored any player'"></div>
             }
             <div class="text-center">
               <br />
-              <a class="link" [routerLink]="['/options']" translate>Back</a>
+              <a class="link" [routerLink]="['/options']" [translate]="'Back'"></a>
             </div>
           </div>
         </div>

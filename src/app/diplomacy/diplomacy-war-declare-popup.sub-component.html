@@ -18,24 +18,14 @@
 
       @if (info.war === 0) {
         <div class="modal-body container-fluid">
-          <div class="fw-bold" translate>
-            You can't start a war with this alliance, possible reasons:
-          </div>
+          <div class="fw-bold" [translate]="'You can\'t start a war with this alliance, possible reasons:'"></div>
           <ul>
-            <li translate>Each alliance needs minimum two members</li>
-            <li translate>Both alliances have a pact</li>
-            <li translate>
-              Both alliances have already a war scheduled or in progress
-            </li>
-            <li translate>
-              The target alliance has less than the half of members than yours
-            </li>
-            <li translate>
-              The target alliance has more than the double of members than yours
-            </li>
-            <li translate>
-              A pact has been broken recently between both alliances
-            </li>
+            <li [translate]="'Each alliance needs minimum two members'"></li>
+            <li [translate]="'Both alliances have a pact'"></li>
+            <li [translate]="'Both alliances have already a war scheduled or in progress'"></li>
+            <li [translate]="'The target alliance has less than the half of members than yours'"></li>
+            <li [translate]="'The target alliance has more than the double of members than yours'"></li>
+            <li [translate]="'A pact has been broken recently between both alliances'"></li>
           </ul>
         </div>
       }
@@ -78,17 +68,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         @if (warPossible()) {
           <button
             type="button"
             class="btn btn-success"
             (click)="allianceWar()"
-            translate>
-            Confirm
-          </button>
+            [translate]="'Confirm'"></button>
         }
       </div>
     </div>

@@ -9,14 +9,14 @@ import {
 import { SocketComponent as Socket } from '../../services/socketio.service';
 import { Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { TranslateDirective, TranslateService } from '@ngx-translate/core';
+import { TranslateDirective, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserComponent as User } from '../../services/user.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  imports: [FormsModule, TranslateDirective],
+  imports: [FormsModule, TranslateDirective, TranslatePipe],
 })
 export class ContactComponent implements OnInit, OnDestroy {
   private readonly contactComponentChangeDetectorRef = inject(ChangeDetectorRef);

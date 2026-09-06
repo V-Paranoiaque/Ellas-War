@@ -9,7 +9,7 @@
         <div class="card">
           <div class="card-body">
             <h1 id="supportDesc" class="text-center">
-              <span translate>Support page</span>
+              <span [translate]="'Support page'"></span>
               <button
                 class="btn btn-primary"
                 data-bs-toggle="modal"
@@ -99,7 +99,7 @@
                     title="{{ 'Change page' | translate }}"
                     #mySelect>
                     @for (id of Tools.range(1, adminSupportMax); track id) {
-                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                      <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                     }
                   </select>
                   <span

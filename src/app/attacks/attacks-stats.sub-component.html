@@ -1,9 +1,7 @@
 <div class="text-center mb-2">
-  <span translate>
-    The done and received attacks are coming back after 23 hours.
-  </span>
+  <span [translate]="'The done and received attacks are coming back after 23 hours.'"></span>
   <br />
-  <span translate>You can do more attacks using a Favor.</span>
+  <span [translate]="'You can do more attacks using a Favor.'"></span>
   <app-ic-icon
     data-bs-toggle="modal"
     data-bs-target="#Favors"
@@ -14,19 +12,19 @@
     role="button"></app-ic-icon>
 </div>
 
-<h2 id="AvailableAttackDesc" translate>Available attacks</h2>
+<h2 id="AvailableAttackDesc" [translate]="'Available attacks'"></h2>
 
 <table class="table align-middle" aria-describedby="AvailableAttackDesc">
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col" class="text-center" translate>Done</th>
-      <th scope="col" class="text-center" translate>Available</th>
+      <th scope="col" class="text-center" [translate]="'Done'"></th>
+      <th scope="col" class="text-center" [translate]="'Available'"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td translate>Out war</td>
+      <td [translate]="'Out war'"></td>
       <td>
         <div class="text-center">
           @for (i of Tools.range(1, attackStats.normal.done); track i) {
@@ -38,18 +36,18 @@
         </div>
         @if (attackStats.normal.time > 0) {
           <span class="fw-lighter">
-            <strong translate>Back</strong>
-            <strong translate>:</strong><br />
+            <strong [translate]="'Back'"></strong>
+            <strong [translate]="':'"></strong><br />
             {{ attackStats.normal.time * 1000 | date: 'dd/MM, HH:mm' }}
             <br />
             @if (countdown.normal.hour > 0) {
-              <span translate>{{ countdown.normal.hour }} h</span>
+              <span [translate]="(countdown.normal.hour) + ' h'"></span>
             }
             @if (countdown.normal.min > 0) {
-              <span translate>{{ countdown.normal.min }} min</span>
+              <span [translate]="(countdown.normal.min) + ' min'"></span>
             }
             @if (countdown.normal.sec > 0) {
-              <span translate>{{ countdown.normal.sec }} s</span>
+              <span [translate]="(countdown.normal.sec) + ' s'"></span>
             }
           </span>
         }
@@ -70,7 +68,7 @@
       </td>
     </tr>
     <tr>
-      <td translate>In war</td>
+      <td [translate]="'In war'"></td>
       <td>
         @for (i of Tools.range(1, attackStats.war.done); track i) {
           <app-ic-icon
@@ -83,13 +81,13 @@
             {{ attackStats.war.time * 1000 | date: 'dd/MM, HH:mm' }}
             <br />
             @if (countdown.war.hour > 0) {
-              <span translate>{{ countdown.war.hour }} h</span>
+              <span [translate]="(countdown.war.hour) + ' h'"></span>
             }
             @if (countdown.war.min > 0) {
-              <span translate>{{ countdown.war.min }} min</span>
+              <span [translate]="(countdown.war.min) + ' min'"></span>
             }
             @if (countdown.war.sec > 0) {
-              <span translate>{{ countdown.war.sec }} s</span>
+              <span [translate]="(countdown.war.sec) + ' s'"></span>
             }
           </span>
         }
@@ -110,7 +108,7 @@
       </td>
     </tr>
     <tr>
-      <td translate>Bonus</td>
+      <td [translate]="'Bonus'"></td>
       <td>
         @for (i of Tools.range(1, attackStats.bonus.done); track i) {
           <app-ic-icon
@@ -123,13 +121,13 @@
             {{ attackStats.bonus.time * 1000 | date: 'dd/MM, HH:mm' }}
             <br />
             @if (countdown.bonus.hour > 0) {
-              <span translate>{{ countdown.bonus.hour }} h</span>
+              <span [translate]="(countdown.bonus.hour) + ' h'"></span>
             }
             @if (countdown.bonus.min > 0) {
-              <span translate>{{ countdown.bonus.min }} min</span>
+              <span [translate]="(countdown.bonus.min) + ' min'"></span>
             }
             @if (countdown.bonus.sec > 0) {
-              <span translate>{{ countdown.bonus.sec }} s</span>
+              <span [translate]="(countdown.bonus.sec) + ' s'"></span>
             }
           </span>
         }
@@ -152,18 +150,18 @@
   </tbody>
 </table>
 
-<h2 id="ReceivedAttackDesc" translate>Received attacks</h2>
+<h2 id="ReceivedAttackDesc" [translate]="'Received attacks'"></h2>
 <table class="table" aria-describedby="ReceivedAttackDesc">
   <thead>
     <tr>
       <th scope="col"></th>
-      <th scope="col" class="text-center" translate>Done</th>
-      <th scope="col" class="text-center" translate>Available</th>
+      <th scope="col" class="text-center" [translate]="'Done'"></th>
+      <th scope="col" class="text-center" [translate]="'Available'"></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td translate>Out war</td>
+      <td [translate]="'Out war'"></td>
       <td>
         @for (i of Tools.range(1, attackStats.receive_normal.done); track i) {
           <app-ic-icon
@@ -176,13 +174,13 @@
             {{ attackStats.receive_normal.time * 1000 | date: 'dd/MM, HH:mm' }}
             <br />
             @if (countdown.receive_normal.hour > 0) {
-              <span translate>{{ countdown.receive_normal.hour }} h</span>
+              <span [translate]="(countdown.receive_normal.hour) + ' h'"></span>
             }
             @if (countdown.receive_normal.min > 0) {
-              <span translate>{{ countdown.receive_normal.min }} min</span>
+              <span [translate]="(countdown.receive_normal.min) + ' min'"></span>
             }
             @if (countdown.receive_normal.sec > 0) {
-              <span translate>{{ countdown.receive_normal.sec }} s</span>
+              <span [translate]="(countdown.receive_normal.sec) + ' s'"></span>
             }
           </span>
         }
@@ -209,7 +207,7 @@
       </td>
     </tr>
     <tr>
-      <td translate>In war</td>
+      <td [translate]="'In war'"></td>
       <td>
         @for (i of Tools.range(1, attackStats.receive_war.done); track i) {
           <app-ic-icon
@@ -222,13 +220,13 @@
             {{ attackStats.receive_war.time * 1000 | date: 'dd/MM, HH:mm' }}
             <br />
             @if (countdown.receive_war.hour > 0) {
-              <span translate>{{ countdown.receive_war.hour }} h</span>
+              <span [translate]="(countdown.receive_war.hour) + ' h'"></span>
             }
             @if (countdown.receive_war.min > 0) {
-              <span translate>{{ countdown.receive_war.min }} min</span>
+              <span [translate]="(countdown.receive_war.min) + ' min'"></span>
             }
             @if (countdown.receive_war.sec > 0) {
-              <span translate>{{ countdown.receive_war.sec }} s</span>
+              <span [translate]="(countdown.receive_war.sec) + ' s'"></span>
             }
           </span>
         }
@@ -261,14 +259,12 @@
       | translate: { value: user.getPropertyNb('bonus_attack') }
   }}
   <br />
-  <span translate
-    >An attack bonus allows you to attack off war even if you no longer have
-    attacks available in the limit of 5 per day.</span
+  <span [translate]="'An attack bonus allows you to attack off war even if you no longer have attacks available in the limit of 5 per day.'"
+    ></span
   >
   <br />
-  <span translate
-    >The player with the diamond can receive an unlimited number of attacks as
-    long as they keep it.</span
+  <span [translate]="'The player with the diamond can receive an unlimited number of attacks as long as they keep it.'"
+    ></span
   >
   <br /><br />
 </div>

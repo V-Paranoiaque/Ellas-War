@@ -1,5 +1,5 @@
 @if (getSentUnits().length > 0) {
-<strong translate>Army sent</strong>
+<strong [translate]="'Army sent'"></strong>
 @for (unit of getSentUnits(); track unit) {
 <div>
   {{ unit.nb | number: '' : currentLocale() }}
@@ -13,7 +13,7 @@
 <div class="row">
   @if (getAttackLost().length > 0) {
   <div class="col-6">
-    <strong translate>Attacker losses</strong>
+    <strong [translate]="'Attacker losses'"></strong>
     @for (unit of getAttackLost(); track unit) {
     <div>
       {{ unit.nb | number: '' : currentLocale() }}
@@ -26,7 +26,7 @@
 
   @if (getDefenseLost().length > 0) {
   <div class="col-6">
-    <strong translate>Defender losses</strong>
+    <strong [translate]="'Defender losses'"></strong>
     @for (unit of getDefenseLost(); track unit) {
     <div>
       {{ unit.nb | number: '' : currentLocale() }}

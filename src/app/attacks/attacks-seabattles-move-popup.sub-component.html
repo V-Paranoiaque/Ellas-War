@@ -25,10 +25,10 @@
   @if (lost.init === 1) {
   <div class="row">
     <div class="col-12 fw-bold mb-2 fs-5 text-center">
-      <strong translate>Lost units</strong>
+      <strong [translate]="'Lost units'"></strong>
     </div>
     <div class="col-6">
-      <div class="text-center fw-bold" translate>Attacker</div>
+      <div class="text-center fw-bold" [translate]="'Attacker'"></div>
       <ul class="list-unstyled">
         @for (info of this.user.getSBUnits(); track info.code) {
         @if (getLostAttacker(info.code) > 0) {
@@ -44,7 +44,7 @@
       </ul>
     </div>
     <div class="col-6">
-      <div class="text-center fw-bold" translate>Defender</div>
+      <div class="text-center fw-bold" [translate]="'Defender'"></div>
       <ul class="list-unstyled">
         @for (info of this.user.getSBUnits(); track info.code) {
         @if (getLostDefender(info.code) > 0) {
@@ -72,21 +72,16 @@
     </div>
   </div>
   } @else if (src_case && dest_case && !sbMovePossible(src_case, dest_case)) {
-  <div class="text-center text-danger" translate>
-    The source and the destionation cases are too far from each other
-  </div>
+  <div class="text-center text-danger" [translate]="'The source and the destionation cases are too far from each other'"></div>
   } @else if (unitSum === 0) {
-  <div class="text-center text-danger" translate>
-    The source case doesn't contain any units that can be moved to this
-    destination
-  </div>
+  <div class="text-center text-danger" [translate]="'The source case doesn\'t contain any units that can be moved to this destination'"></div>
   } @else {
   <table class="table">
     <thead>
       <tr>
-        <th scope="column" translate>Units</th>
+        <th scope="column" [translate]="'Units'"></th>
         <th scope="column"></th>
-        <th scope="column" translate>Strength</th>
+        <th scope="column" [translate]="'Strength'"></th>
       </tr>
     </thead>
     <tbody>
@@ -133,18 +128,12 @@
   }
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()" translate>
-    Close
-  </button>
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="bsModalRef.hide()" [translate]="'Close'"></button>
   @if (unitSum > 0 && lost.init === 0) {
   @if (player_id === 0 || player_id === user.getPropertyNb('id')) {
-  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="send(1)" translate>
-    Send
-  </button>
+  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="send(1)" [translate]="'Send'"></button>
   } @else {
-  <button type="button" class="btn btn-primary" (click)="send(0)" translate>
-    Send
-  </button>
+  <button type="button" class="btn btn-primary" (click)="send(0)" [translate]="'Send'"></button>
   }
   }
 </div>

@@ -6,18 +6,16 @@
       <div class="col-12 col-lg-10 offset-lg-1">
         <div class="card">
           <div class="card-body">
-            <h2 class="text-center" translate>
-              Connection using an external provider
-            </h2>
+            <h2 class="text-center" [translate]="'Connection using an external provider'"></h2>
             <br />
 
             <div class="fw-bold text-center">
               @switch (provider) {
                 @case ('facebook') {
-                  <div translate>Connection using Facebook in progress</div>
+                  <div [translate]="'Connection using Facebook in progress'"></div>
                 }
                 @case ('google') {
-                  <div translate>Connection using Google in progress</div>
+                  <div [translate]="'Connection using Google in progress'"></div>
                 }
                 @default {
                   <div>

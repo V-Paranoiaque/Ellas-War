@@ -33,14 +33,14 @@
               <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#AllianceArchives"
                 title="{{ 'Archives' | translate }}">
                 <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
-                <span class="visually-hidden" translate>Archives</span>
+                <span class="visually-hidden" [translate]="'Archives'"></span>
               </button>
 
               @if (allowLeave === 1) {
               <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AllianceLeave"
                 title="{{ 'Leave your alliance' | translate }}">
                 <app-ic-icon [icon]="times"></app-ic-icon>
-                <span class="visually-hidden" translate>Leave your alliance</span>
+                <span class="visually-hidden" [translate]="'Leave your alliance'"></span>
               </button>
               }
               @if (
@@ -51,50 +51,40 @@
               <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#AllianceEmergency"
                 title="{{ 'Enable emergency exit' | translate }}">
                 <app-ic-icon [icon]="times"></app-ic-icon>
-                <span class="visually-hidden" translate>Enable emergency exit</span>
+                <span class="visually-hidden" [translate]="'Enable emergency exit'"></span>
               </button>
               }
               @if (allowDissolve === 1) {
               <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AllianceDissolve"
                 title="{{ 'Disband your alliance' | translate }}">
                 <app-ic-icon [icon]="times"></app-ic-icon>
-                <span class="visually-hidden" translate>Disband your alliance</span>
+                <span class="visually-hidden" [translate]="'Disband your alliance'"></span>
               </button>
               }
             </h1>
 
             @if (user.getPropertyNb('emergency_exit') > 0) {
             <div class="text-center fw-bold text-danger">
-              <span translate>
-                Emergency exit activated, departure planned:
-              </span>
+              <span [translate]="'Emergency exit activated, departure planned:'"></span>
               {{
               user.getPropertyNb('emergency_exit') * 1000
               | date: 'dd/MM, HH:mm'
               }}
               <span data-bs-toggle="modal" data-bs-target="#AllianceEmergency" role="button">(<span
-                  translate>Cancel</span>)</span>
+                  [translate]="'Cancel'"></span>)</span>
             </div>
             }
 
-            <div class="visually-hidden" id="myAllianceMembersDesc" translate>
-              Alliance members
-            </div>
+            <div class="visually-hidden" id="myAllianceMembersDesc" [translate]="'Alliance members'"></div>
             <table class="table table-striped align-middle" aria-labelledby="myAllianceMembersDesc">
               <thead>
                 <tr class="text-center">
                   <th scope="col"></th>
-                  <th scope="col" class="d-none d-sm-table-cell" translate>
-                    Rank
-                  </th>
-                  <th scope="col" translate>XP</th>
-                  <th scope="col" class="d-none d-sm-table-cell" translate>
-                    Victories
-                  </th>
-                  <th scope="col" class="d-none d-sm-table-cell" translate>
-                    Field
-                  </th>
-                  <th scope="col" translate>Activity</th>
+                  <th scope="col" class="d-none d-sm-table-cell" [translate]="'Rank'"></th>
+                  <th scope="col" [translate]="'XP'"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" [translate]="'Victories'"></th>
+                  <th scope="col" class="d-none d-sm-table-cell" [translate]="'Field'"></th>
+                  <th scope="col" [translate]="'Activity'"></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -229,13 +219,9 @@
               @if (legend.paused === 1 || legend.blocked === 1) {
               <div>
                 <br />
-                <strong translate>Legend</strong><strong translate>:</strong>
-                <div class="text-danger" translate>
-                  The member has been blocked
-                </div>
-                <div class="text-warning" translate>
-                  The member's status is paused
-                </div>
+                <strong [translate]="'Legend'"></strong><strong [translate]="':'"></strong>
+                <div class="text-danger" [translate]="'The member has been blocked'"></div>
+                <div class="text-warning" [translate]="'The member\'s status is paused'"></div>
               </div>
               }
             </table>
@@ -247,7 +233,7 @@
       <div class="col-md-6 col-12">
         <div class="card mb-2">
           <div class="card-header">
-            <span id="resourcesDesc" translate> Resources </span>
+            <span id="resourcesDesc" [translate]="'Resources'"></span>
             <div class="card-header-group card-header-group-right">
               <button class="card-header-button" data-bs-toggle="modal" data-bs-target="#AllianceTaxes"
                 title="{{ 'Taxes management' | translate }}" (click)="taxesInit()" (keyup.enter)="taxesInit()"
@@ -285,11 +271,9 @@
       </div>
       <div class="col-md-6 col-12">
         <div class="card mb-2">
-          <div class="card-header" translate>Recruitment</div>
+          <div class="card-header" [translate]="'Recruitment'"></div>
           @if (myAllianceWaitList.length === 0) {
-          <div class="card-body text-center fw-bold" translate>
-            There is no member waiting to enter in your alliance
-          </div>
+          <div class="card-body text-center fw-bold" [translate]="'There is no member waiting to enter in your alliance'"></div>
           }
           @if (myAllianceWaitList.length > 0) {
           <div class="card-body">
@@ -311,7 +295,7 @@
         </div>
         <div class="card mb-2">
           <div class="card-header">
-            <span id="pactsDesc" translate> Pacts </span>
+            <span id="pactsDesc" [translate]="'Pacts'"></span>
             <div class="card-header-group card-header-group-right">
               <a class="card-header-button" [routerLink]="['/diplomacy']" title="{{ 'Pacts' | translate }}">
                 <app-ic-icon [icon]="flag"></app-ic-icon>
@@ -320,9 +304,7 @@
           </div>
           <div class="card-body">
             @if (pactList.length === 0) {
-            <div class="text-center fw-bold" translate>
-              You don't have any pact
-            </div>
+            <div class="text-center fw-bold" [translate]="'You don\'t have any pact'"></div>
             }
             @if (pactList.length > 0) {
             <table class="table table-striped table-middle align-middle" aria-labelledby="pactsDesc">
@@ -406,7 +388,7 @@
         </div>
         <div class="card mb-2">
           <div class="card-header">
-            <span id="warsDesc" translate> Wars </span>
+            <span id="warsDesc" [translate]="'Wars'"></span>
             <div class="card-header-group card-header-group-right">
               <a class="card-header-button" [routerLink]="['/diplomacy']" title="{{ 'Wars' | translate }}">
                 <app-ic-icon [icon]="swordIcon"></app-ic-icon>
@@ -415,9 +397,7 @@
           </div>
           <div class="card-body">
             @if (myAllianceWar.length === 0) {
-            <div class="text-center fw-bold" translate>
-              You don't have any war
-            </div>
+            <div class="text-center fw-bold" [translate]="'You don\'t have any war'"></div>
             }
 
             @if (myAllianceWar.length > 0) {
@@ -472,7 +452,7 @@
                         <button class="btn btn-primary" title="{{ 'Archives' | translate }}" (click)="warSelect(w)"
                           data-bs-toggle="modal" data-bs-target="#AllianceWarArchives">
                           <app-ic-icon [icon]="filePaper2Line"></app-ic-icon>
-                          <span class="visually-hidden" translate>Archives</span>
+                          <span class="visually-hidden" [translate]="'Archives'"></span>
                         </button>
                         }
                       </div>

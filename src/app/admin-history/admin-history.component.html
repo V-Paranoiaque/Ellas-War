@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h2 id="historyDesc" class="text-center" translate>History</h2>
+            <h2 id="historyDesc" class="text-center" [translate]="'History'"></h2>
             <table class="table table-sm" aria-labelledby="historyDesc">
               <tbody>
                 @for (p of adminUserHistoryList; track p) {

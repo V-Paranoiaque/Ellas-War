@@ -5,9 +5,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="chatProfileDesc" translate>
-            {{ selectedMsg().username }}
-          </h5>
+          <h5 class="modal-title" id="chatProfileDesc">{{ selectedMsg().username }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -16,7 +14,7 @@
               <table class="table-responsive" aria-labelledby="chatProfileDesc">
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Level</strong><strong translate>:</strong>
+                    <strong [translate]="'Level'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -25,7 +23,7 @@
                 </tr>
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>XP</strong><strong translate>:</strong>
+                    <strong [translate]="'XP'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -37,7 +35,7 @@
                 </tr>
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Victories</strong><strong translate>:</strong>
+                    <strong [translate]="'Victories'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -49,7 +47,7 @@
                 </tr>
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Field</strong><strong translate>:</strong>
+                    <strong [translate]="'Field'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -61,7 +59,7 @@
                 </tr>
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Feats of Strength</strong><strong translate>:</strong>
+                    <strong [translate]="'Feats of Strength'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -74,7 +72,7 @@
                 @if (selectedMsg().profile.alliance > 0) {
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Alliance</strong><strong translate>:</strong>
+                    <strong [translate]="'Alliance'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -86,7 +84,7 @@
                 @if (selectedMsg().profile.rank_name !== '') {
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Rank</strong><strong translate>:</strong>
+                    <strong [translate]="'Rank'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -98,7 +96,7 @@
                 @if (selectedMsg().profile.inscription > 0) {
                 <tr>
                   <th class="fw-bold" scope="row">
-                    <strong translate>Register date</strong><strong translate>:</strong>
+                    <strong [translate]="'Register date'"></strong><strong [translate]="':'"></strong>
                   </th>
                   <td>&nbsp;&nbsp;</td>
                   <td class="text-end">
@@ -115,27 +113,22 @@
         </div>
         <div class="modal-body">
           @if (reported === 0) {
-          <span class="text-warning fw-bold" translate>
-            Are you sure that you want to signal this message?</span>
+          <span class="text-warning fw-bold" [translate]="'Are you sure that you want to signal this message?'"></span>
           <br />
           <div class="text-break">
             <strong>{{ selectedMsg().username }}</strong>
-            <strong translate>:</strong>
+            <strong [translate]="':'"></strong>
             {{ selectedMsg().msg }}
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-warning btn-sm" (click)="report()" translate>
-              Confirm
-            </button>
+            <button type="button" class="btn btn-warning btn-sm" (click)="report()" [translate]="'Confirm'"></button>
           </div>
           } @else {
-          <span class="text-danger" translate>The message has been reported, we will check it shortly</span>
+          <span class="text-danger" [translate]="'The message has been reported, we will check it shortly'"></span>
           }
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         </div>
       </div>
     </div>
@@ -152,23 +145,21 @@
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/']" data-bs-dismiss="modal">
               <app-ew-icon name="city" title="{{ 'City' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>City</div>
+                <div class="align-self-center my-1" [translate]="'City'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/attacks']"
               data-bs-dismiss="modal">
               <app-ew-icon name="attacks" title="{{ 'Attacks' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Attacks</div>
+                <div class="align-self-center my-1" [translate]="'Attacks'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/messages']"
               data-bs-dismiss="modal">
               <app-ew-icon name="messages" title="{{ 'Messages' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" [ngClass]="{ 'text-warning': user.getNewMsg() > 0 }" translate>
-                  Messages
-                </div>
+                <div class="align-self-center my-1" [ngClass]="{ 'text-warning': user.getNewMsg() > 0 }" [translate]="'Messages'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/quests']"
@@ -181,9 +172,7 @@
                       (user.getPropertyNb('level') > 0 &&
                         user.getPropertyNb('dquest_validated') > 0) ||
                       user.getPropertyNb('altar_available') > 0,
-                  }" translate>
-                  Quests
-                </div>
+                  }" [translate]="'Quests'"></div>
               </div>
             </a>
             @if (user.getPropertyNb('alliance') > 0) {
@@ -191,7 +180,7 @@
               data-bs-dismiss="modal">
               <app-ew-icon name="alliance" title="{{ 'Alliance' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Alliance</div>
+                <div class="align-self-center my-1" [translate]="'Alliance'"></div>
               </div>
             </a>
             }
@@ -200,7 +189,7 @@
               data-bs-dismiss="modal">
               <app-ew-icon name="alliance" title="{{ 'Alliance' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Alliance</div>
+                <div class="align-self-center my-1" [translate]="'Alliance'"></div>
               </div>
             </a>
             }
@@ -208,14 +197,14 @@
               data-bs-dismiss="modal">
               <app-ew-icon name="agora" title="{{ 'Agora' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Agora</div>
+                <div class="align-self-center my-1" [translate]="'Agora'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column"
               [routerLink]="['/honor/' + user.getPropertyNb('level')]" data-bs-dismiss="modal">
               <app-ew-icon name="rankings" title="{{ 'Rankings' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Rankings</div>
+                <div class="align-self-center my-1" [translate]="'Rankings'"></div>
               </div>
             </a>
           </div>
@@ -226,7 +215,7 @@
               (click)="disconnect()">
               <app-ew-icon name="menu-disconnect" title="{{ 'Disconnect' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Disconnect</div>
+                <div class="align-self-center my-1" [translate]="'Disconnect'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/support']"
@@ -235,14 +224,14 @@
                   'Send a message to the staff' | translate
                 }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Support</div>
+                <div class="align-self-center my-1" [translate]="'Support'"></div>
               </div>
             </a>
             <a class="col menu-block p-1 text-center d-flex flex-column" [routerLink]="['/options']"
               data-bs-dismiss="modal">
               <app-ew-icon name="menu-options" title="{{ 'Game options' | translate }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Options</div>
+                <div class="align-self-center my-1" [translate]="'Options'"></div>
               </div>
             </a>
             @if (user.getPropertyNb('rank') > 1) {
@@ -252,7 +241,7 @@
                     'Administration panel' | translate
                   }}"></app-ew-icon>
               <div class="frame-name flex-grow-1 justify-content-center d-flex border-0">
-                <div class="align-self-center my-1" translate>Admin</div>
+                <div class="align-self-center my-1" [translate]="'Admin'"></div>
               </div>
             </a>
             }
@@ -260,9 +249,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -275,16 +262,16 @@
       <div class="p-1 fs-6 fw-bold">
         @switch (chatActive) {
         @case ('general_text') {
-        <span translate>General Chat</span>
+        <span [translate]="'General Chat'"></span>
         }
         @case ('general_members') {
-        <span translate>Connected members</span>
+        <span [translate]="'Connected members'"></span>
         }
         @case ('alliance_text') {
-        <span translate>Alliance Chat</span>
+        <span [translate]="'Alliance Chat'"></span>
         }
         @case ('alliance_members') {
-        <span translate>Alliance members connected</span>
+        <span [translate]="'Alliance members connected'"></span>
         }
         }
       </div>
@@ -320,7 +307,7 @@
           role="button"></app-ic-icon>
         <a [routerLink]="['/profile/' + msg.user_id]" [ngClass]="{ 'text-danger': msg.rank === 5 }"
           title="{{ msg.time * 1000 | date: 'dd/MM, HH:mm' }}" class="fw-bold">{{ msg.username }}</a>
-        <span translate>:</span>
+        <span [translate]="':'"></span>
         {{ msg.msg }}<br />
       </div>
       }
@@ -343,14 +330,14 @@
           class="form-control" id="chatUserMsg" [(ngModel)]="chatUserMsg" autcomplete="nope" data-lpignore="true"
           (keydown.enter)="chatUserSend()" />
         <span id="chat_user_input" class="input-group-addon btn btn-primary" role="button" (click)="chatUserSend()"
-          (keyup.enter)="chatUserSend()" tabindex="0" translate>Send</span>
+          (keyup.enter)="chatUserSend()" tabindex="0" [translate]="'Send'"></span>
       </div>
       }
     </div>
     @if (user.getPropertyNb('chat_allowed') === 0) {
     <div class="text-center text-danger fw-bold">
       <br />
-      <span translate> You are not allowed to write on the chat </span>
+      <span [translate]="'You are not allowed to write on the chat'"></span>
     </div>
     }
   </div>
@@ -365,7 +352,7 @@
           role="button"></app-ic-icon>
         <a [routerLink]="['/profile/' + msg.user_id]" [ngClass]="{ 'text-danger fw-bold': msg.rank === 5 }"
           title="{{ msg.time * 1000 | date: 'dd/MM, HH:mm' }}" class="fw-bold">{{ msg.username }}</a>
-        <span translate>:</span>
+        <span [translate]="':'"></span>
         {{ msg.msg }}<br />
       </div>
       }
@@ -388,7 +375,7 @@
           class="form-control" id="chatAlliMsg" [(ngModel)]="chatAlliMsg" autcomplete="nope" data-lpignore="true"
           (keydown.enter)="chatAlliSend()" />
         <span id="chat_alliance_input" class="input-group-addon btn btn-success" role="button" (click)="chatAlliSend()"
-          (keyup.enter)="chatAlliSend()" tabindex="0" translate>Send</span>
+          (keyup.enter)="chatAlliSend()" tabindex="0" [translate]="'Send'"></span>
       </div>
     </div>
   </div>
@@ -400,14 +387,14 @@
   <div class="chat-button" role="tablist">
     @if (user.getPropertyNb('alliance') > 0) {
     <button role="tab" class="btn btn-success" (click)="toggle('alliance_text')">
-      <span translate>Alliance Chat</span>
+      <span [translate]="'Alliance Chat'"></span>
       @if (chat_alli_nb > 0) {
       <span> ({{ chat_alli_nb }}) </span>
       }
     </button>
     }
     <button class="btn btn-primary" (click)="toggle('general_text')" role="tab">
-      <span translate>General Chat</span>
+      <span [translate]="'General Chat'"></span>
       @if (chat_user_nb > 0) {
       <span> ({{ chat_user_nb }}) </span>
       }

@@ -1,18 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { provideRouter } from '@angular/router';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { UserComponent as User } from '../../services/user.service';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateDirective } from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { FormBuilder } from '@angular/forms';
+import { appConfig } from '../app.config.spec';
 
 import { ProfileComponent } from './profile.component';
 import { environment } from '../../environments/environment';
@@ -24,24 +13,9 @@ describe('ProfileComponent', () => {
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        TranslateDirective.forRoot({
-          loader: provideTranslateHttpLoader({
-            prefix: './assets/i18n/',
-            suffix: '.json',
-          }),
-        }),
-        OAuthModule.forRoot(),
+        ...appConfig.imports
       ],
-      providers: [
-        provideRouter([]),
-        Socket,
-        User,
-        OAuthService,
-        BsModalService,
-        FormBuilder,
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [...appConfig.providers],
     }).compileComponents();
     socket = TestBed.inject(Socket);
     socket.setupSocketConnection(environment.SERVER_DEV);

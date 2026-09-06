@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="armyDesc" class="modal-title" translate>Army</h5>
+        <h5 id="armyDesc" class="modal-title" [translate]="'Army'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -10,22 +10,20 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        <p class="fw-bold" id="tablesUnits-label" translate>
-          Select a type of unit to see better its strengths and weaknesses.
-        </p>
+        <p class="fw-bold" id="tablesUnits-label" [translate]="'Select a type of unit to see better its strengths and weaknesses.'"></p>
 
         <div class="text-center mb-2">
-          <strong translate>Bonus</strong>
-          <strong translate>:</strong>
+          <strong [translate]="'Bonus'"></strong>
+          <strong [translate]="':'"></strong>
           50%
         </div>
 
         <table class="table table-striped" aria-labelledby="tablesUnits-label">
           <thead>
             <tr>
-              <th scope="col" translate>Attacker</th>
-              <th scope="col" translate>Units</th>
-              <th scope="col" translate>Efficient against</th>
+              <th scope="col" [translate]="'Attacker'"></th>
+              <th scope="col" [translate]="'Units'"></th>
+              <th scope="col" [translate]="'Efficient against'"></th>
             </tr>
           </thead>
           <tbody>
@@ -167,9 +165,7 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
-            translate>
-            Close
-          </button>
+            [translate]="'Close'"></button>
         </div>
       </div>
     </div>

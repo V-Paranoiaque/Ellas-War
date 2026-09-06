@@ -13,15 +13,11 @@
             <a href="/quests" [routerLink]="['/quests']" class="btn btn-primary flex-grow-1 design-background"
               [ngClass]="{
                   'text-warning': user.getPropertyNb('dquest_validated') > 0,
-                }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Quests' | translate }}" translate>
-              Quests
-            </a>
+                }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Quests' | translate }}" [translate]="'Quests'"></a>
             <a href="/altars" [routerLink]="['/altars']" class="btn btn-danger flex-grow-1 design-background" [ngClass]="{
                   'text-warning': user.getPropertyNb('altar_available') > 0,
                 }" data-bs-toggle="modal" data-bs-target="#MsgNew" title="{{ 'Altars of the Gods' | translate }}"
-              translate>
-              Altars of the Gods
-            </a>
+              [translate]="'Altars of the Gods'"></a>
           </div>
         </div>
         }
@@ -34,14 +30,8 @@
           @if (user.getPropertyNb('level') === 10) {
           <div>
             <div class="card-body">
-              <h2 class="text-center fw-bold fs-3 mb-4" translate>
-                Altars of the Gods
-              </h2>
-              <p translate>
-                The Altars of the Gods will grant you the ultimate powers of
-                Ellas War. To obtain them you will have to realize a series
-                of quests and pay a large amount of resources.
-              </p>
+              <h2 class="text-center fw-bold fs-3 mb-4" [translate]="'Altars of the Gods'"></h2>
+              <p [translate]="'The Altars of the Gods will grant you the ultimate powers of Ellas War. To obtain them you will have to realize a series of quests and pay a large amount of resources.'"></p>
             </div>
           </div>
           }
@@ -56,19 +46,16 @@
                 </div>
                 <div class="col-md-8 col-12">
                   <div class="card-header">
-                    <span translate>Gaia's defense</span>
+                    <span [translate]="'Gaia\'s defense'"></span>
                     @if (user.getPropertyNb('gaia_defender') > 0) {
                     <span>({{ user.getPropertyNb('gaia_defender') }})</span>
                     }
                   </div>
                   <div class="card-body">
-                    <p translate>
-                      Find how to honor Gaia and the forces of nature will
-                      defend your city.
-                    </p>
+                    <p [translate]="'Find how to honor Gaia and the forces of nature will defend your city.'"></p>
                     @if (user.getPropertyNb('gaia_defender') < 5) { <div>
-                      <strong translate>Reward:</strong><br />
-                      <div translate>30 Additional Gaia Defenders</div>
+                      <strong [translate]="'Reward:'"></strong><br />
+                      <div [translate]="'30 Additional Gaia Defenders'"></div>
                   </div>
                   }
                   @if (user.getPropertyNb('gaia_defender') >= 5) {
@@ -84,14 +71,12 @@
               </div>
             </div>
             @if (user.getPropertyNb('gaia_defender') < 5) { <div class="card-body">
-              <div class="text-center fw-bold fs-5" id="altarGaiaDesc" translate>
-                Conditions
-              </div>
+              <div class="text-center fw-bold fs-5" id="altarGaiaDesc" [translate]="'Conditions'"></div>
               <table class="table" aria-labelledby="altarGaiaDesc">
                 <tbody>
                   <tr>
                     <th class="fw-normal" scope="row">
-                      <span translate>Sacrify</span>
+                      <span [translate]="'Sacrify'"></span>
                       {{
                       altarQuestConditionGaia.iron.quantity
                       | number: '' : currentLocale()
@@ -121,13 +106,13 @@
                       <span class="btn btn-success" role="button" (click)="validateRes('gaia_defender', 'iron')"
                         (keyup.enter)="
                                   validateRes('gaia_defender', 'iron')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
                       }
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-normal" scope="row">
-                      <span translate>Sacrify</span>
+                      <span [translate]="'Sacrify'"></span>
                       {{
                       altarQuestConditionGaia.grapes.quantity
                       | number: '' : currentLocale()
@@ -157,13 +142,13 @@
                       <span class="btn btn-success" role="button" (click)="validateRes('gaia_defender', 'grapes')"
                         (keyup.enter)="
                                   validateRes('gaia_defender', 'grapes')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
                       }
                     </td>
                   </tr>
                   <tr>
                     <th class="fw-normal" scope="row">
-                      <span translate>Sacrify</span>
+                      <span [translate]="'Sacrify'"></span>
                       {{
                       altarQuestConditionGaia.gold.quantity
                       | number: '' : currentLocale()
@@ -193,7 +178,7 @@
                       <span class="btn btn-success" role="button" (click)="validateRes('gaia_defender', 'gold')"
                         (keyup.enter)="
                                   validateRes('gaia_defender', 'gold')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
                       }
                     </td>
                   </tr>
@@ -212,8 +197,8 @@
                       }}
                       @if (!altarQuestConditionGaia.xp.validated) {
                       <div class="fw-light fst-italic">
-                        <span translate>Currently</span>
-                        <span translate>:</span>
+                        <span [translate]="'Currently'"></span>
+                        <span [translate]="':'"></span>
                         {{
                         altarQuestConditionGaia.xp.currently
                         | number
@@ -248,8 +233,8 @@
                       }}
                       @if (!altarQuestConditionGaia.defense.validated) {
                       <div class="fw-light fst-italic">
-                        <span translate>Currently</span>
-                        <span translate>:</span>
+                        <span [translate]="'Currently'"></span>
+                        <span [translate]="':'"></span>
                         {{
                         altarQuestConditionGaia.defense.currently
                         | number
@@ -273,9 +258,7 @@
               @if (altarCondition('gaia_defender')) {
               <div class="text-center">
                 <div class="btn btn-success" (click)="validate('gaia_defender')"
-                  (keyup.enter)="validate('gaia_defender')" tabindex="0" translate>
-                  Validate
-                </div>
+                  (keyup.enter)="validate('gaia_defender')" tabindex="0" [translate]="'Validate'"></div>
               </div>
               }
           </div>
@@ -291,38 +274,31 @@
             </div>
             <div class="col-md-8 col-12">
               <div class="card-header">
-                <span translate>Hospitality of Hestia</span>
+                <span [translate]="'Hospitality of Hestia'"></span>
                 @if (user.getPropertyNb('hestia') > 0) {
                 <span>({{ user.getPropertyNb('hestia') }})</span>
                 }
               </div>
               <div class="card-body">
-                <p translate>
-                  Satisfy hestia and more units can join your homes.
-                </p>
+                <p [translate]="'Satisfy hestia and more units can join your homes.'"></p>
                 @if (user.getPropertyNb('hestia') < 5) { <div>
-                  <strong translate>Reward:</strong><br />
-                  <div translate>+20% more space in your homes</div>
+                  <strong [translate]="'Reward:'"></strong><br />
+                  <div [translate]="'+20% more space in your homes'"></div>
               </div>
               }
               @if (user.getPropertyNb('hestia') >= 5) {
-              <div class="text-danger text-center" translate>
-                You have satisfied Hestia and got +100% space in your
-                homes
-              </div>
+              <div class="text-danger text-center" [translate]="'You have satisfied Hestia and got +100% space in your homes'"></div>
               }
             </div>
           </div>
         </div>
         @if (user.getPropertyNb('hestia') < 5) { <div class="card-body">
-          <div class="text-center fw-bold fs-5" id="altarHestiaDesc" translate>
-            Conditions
-          </div>
+          <div class="text-center fw-bold fs-5" id="altarHestiaDesc" [translate]="'Conditions'"></div>
           <table class="table" aria-labelledby="altarHestiaDesc">
             <tbody>
               <tr>
                 <th class="fw-normal" scope="row">
-                  <span translate>Sacrify</span>
+                  <span [translate]="'Sacrify'"></span>
                   {{
                   altarQuestConditionHestia.water.quantity
                   | number: '' : currentLocale()
@@ -350,13 +326,13 @@
                   )
                   ) {
                   <span class="btn btn-success" role="button" (click)="validateRes('hestia', 'water')"
-                    (keyup.enter)="validateRes('hestia', 'water')" tabindex="0" translate>Validate</span>
+                    (keyup.enter)="validateRes('hestia', 'water')" tabindex="0" [translate]="'Validate'"></span>
                   }
                 </td>
               </tr>
               <tr>
                 <th class="fw-normal" scope="row">
-                  <span translate>Sacrify</span>
+                  <span [translate]="'Sacrify'"></span>
                   {{
                   altarQuestConditionHestia.food.quantity
                   | number: '' : currentLocale()
@@ -384,13 +360,13 @@
                   )
                   ) {
                   <span class="btn btn-success" role="button" (click)="validateRes('hestia', 'food')"
-                    (keyup.enter)="validateRes('hestia', 'food')" tabindex="0" translate>Validate</span>
+                    (keyup.enter)="validateRes('hestia', 'food')" tabindex="0" [translate]="'Validate'"></span>
                   }
                 </td>
               </tr>
               <tr>
                 <th class="fw-normal" scope="row">
-                  <span translate>Sacrify</span>
+                  <span [translate]="'Sacrify'"></span>
                   {{
                   altarQuestConditionHestia.grapes.quantity
                   | number: '' : currentLocale()
@@ -418,13 +394,13 @@
                   )
                   ) {
                   <span class="btn btn-success" role="button" (click)="validateRes('hestia', 'grapes')"
-                    (keyup.enter)="validateRes('hestia', 'grapes')" tabindex="0" translate>Validate</span>
+                    (keyup.enter)="validateRes('hestia', 'grapes')" tabindex="0" [translate]="'Validate'"></span>
                   }
                 </td>
               </tr>
               <tr>
                 <th class="fw-normal" scope="row">
-                  <span translate>Sacrify</span>
+                  <span [translate]="'Sacrify'"></span>
                   {{
                   altarQuestConditionHestia.wine.quantity
                   | number: '' : currentLocale()
@@ -452,7 +428,7 @@
                   )
                   ) {
                   <span class="btn btn-success" role="button" (click)="validateRes('hestia', 'wine')"
-                    (keyup.enter)="validateRes('hestia', 'wine')" tabindex="0" translate>Validate</span>
+                    (keyup.enter)="validateRes('hestia', 'wine')" tabindex="0" [translate]="'Validate'"></span>
                   }
                 </td>
               </tr>
@@ -474,8 +450,8 @@
                   !altarQuestConditionHestia.placenactu.validated
                   ) {
                   <div class="fw-light fst-italic">
-                    <span translate>Currently</span>
-                    <span translate>:</span>
+                    <span [translate]="'Currently'"></span>
+                    <span [translate]="':'"></span>
                     {{
                     altarQuestConditionHestia.placenactu.currently
                     | number
@@ -516,8 +492,8 @@
                   !altarQuestConditionHestia.placepactu.validated
                   ) {
                   <div class="fw-light fst-italic">
-                    <span translate>Currently</span>
-                    <span translate>:</span>
+                    <span [translate]="'Currently'"></span>
+                    <span [translate]="':'"></span>
                     {{
                     altarQuestConditionHestia.placepactu.currently
                     | number
@@ -558,8 +534,8 @@
                   !altarQuestConditionHestia.placecactu.validated
                   ) {
                   <div class="fw-light fst-italic">
-                    <span translate>Currently</span>
-                    <span translate>:</span>
+                    <span [translate]="'Currently'"></span>
+                    <span [translate]="':'"></span>
                     {{
                     altarQuestConditionHestia.placecactu.currently
                     | number
@@ -600,8 +576,8 @@
                   !altarQuestConditionHestia.totalplace.validated
                   ) {
                   <div class="fw-light fst-italic">
-                    <span translate>Currently</span>
-                    <span translate>:</span>
+                    <span [translate]="'Currently'"></span>
+                    <span [translate]="':'"></span>
                     {{
                     altarQuestConditionHestia.totalplace.currently
                     | number
@@ -629,9 +605,7 @@
           @if (altarCondition('hestia')) {
           <div class="text-center">
             <div class="btn btn-success" (click)="validate('hestia')" (keyup.enter)="validate('hestia')" tabindex="0"
-              translate>
-              Validate
-            </div>
+              [translate]="'Validate'"></div>
           </div>
           }
       </div>
@@ -647,39 +621,31 @@
         </div>
         <div class="col-md-8 col-12">
           <div class="card-header">
-            <span translate>Dream of Prometheus</span>
+            <span [translate]="'Dream of Prometheus'"></span>
             @if (user.getPropertyNb('prometheus') > 0) {
             <span>({{ user.getPropertyNb('prometheus') }})</span>
             }
           </div>
           <div class="card-body">
-            <p translate>
-              Exhume the dark fate of Prometheus and you will be able
-              to engage more mythological units.
-            </p>
+            <p [translate]="'Exhume the dark fate of Prometheus and you will be able to engage more mythological units.'"></p>
             @if (user.getPropertyNb('prometheus') < 5) { <div>
-              <strong translate>Reward:</strong><br />
-              <div translate>+20% more Mythological units</div>
+              <strong [translate]="'Reward:'"></strong><br />
+              <div [translate]="'+20% more Mythological units'"></div>
           </div>
           }
           @if (user.getPropertyNb('prometheus') >= 5) {
-          <div class="text-danger text-center" translate>
-            You have satisfied Prometheus and got +100% of
-            Mythological units
-          </div>
+          <div class="text-danger text-center" [translate]="'You have satisfied Prometheus and got +100% of Mythological units'"></div>
           }
         </div>
       </div>
     </div>
     @if (user.getPropertyNb('prometheus') < 5) { <div class="card-body">
-      <div class="text-center fw-bold fs-5" id="altarPrometheusDesc" translate>
-        Conditions
-      </div>
+      <div class="text-center fw-bold fs-5" id="altarPrometheusDesc" [translate]="'Conditions'"></div>
       <table class="table" aria-labelledby="altarPrometheusDesc">
         <tbody>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionPrometheus.water.quantity
               | number: '' : currentLocale()
@@ -710,13 +676,13 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('prometheus', 'water')" (keyup.enter)="
                                   validateRes('prometheus', 'water')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionPrometheus.wine.quantity
               | number: '' : currentLocale()
@@ -745,13 +711,13 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('prometheus', 'wine')" (keyup.enter)="
                                   validateRes('prometheus', 'wine')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionPrometheus.gold.quantity
               | number: '' : currentLocale()
@@ -780,7 +746,7 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('prometheus', 'gold')" (keyup.enter)="
                                   validateRes('prometheus', 'gold')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
@@ -819,8 +785,8 @@
               !altarQuestConditionPrometheus.victory.validated
               ) {
               <div class="fw-light fst-italic">
-                <span translate>Currently</span>
-                <span translate>:</span>
+                <span [translate]="'Currently'"></span>
+                <span [translate]="':'"></span>
                 {{
                 altarQuestConditionPrometheus.victory
                 .currently
@@ -863,8 +829,8 @@
               !altarQuestConditionPrometheus.hf.validated
               ) {
               <div class="fw-light fst-italic">
-                <span translate>Currently</span>
-                <span translate>:</span>
+                <span [translate]="'Currently'"></span>
+                <span [translate]="':'"></span>
                 {{
                 altarQuestConditionPrometheus.hf.currently
                 | number
@@ -891,9 +857,7 @@
       @if (altarCondition('prometheus')) {
       <div class="text-center">
         <div class="btn btn-success" (click)="validate('prometheus')" (keyup.enter)="validate('prometheus')"
-          tabindex="0" translate>
-          Validate
-        </div>
+          tabindex="0" [translate]="'Validate'"></div>
       </div>
       }
   </div>
@@ -909,72 +873,64 @@
         </div>
         <div class="col-md-8 col-12">
           <div class="card-header">
-            <span translate>Divine units</span>
+            <span [translate]="'Divine units'"></span>
             @if (user.getPropertyNb('divine_units') > 0) {
             <span>({{ user.getPropertyNb('divine_units') }})</span>
             }
           </div>
           <div class="card-body">
-            <p translate>
-              Discover the secrets of divine units and they will serve
-              you.
-            </p>
+            <p [translate]="'Discover the secrets of divine units and they will serve you.'"></p>
             @if (user.getPropertyNb('divine_units') < 5) { <div>
-              <strong translate>Reward:</strong><br />
+              <strong [translate]="'Reward:'"></strong><br />
               <span [ngClass]="{
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 0,
                               'fw-bold':
                                 user.getPropertyNb('divine_units') === 0,
-                            }" translate>Harpies</span>
+                            }" [translate]="'Harpies'"></span>
               <br />
               <span [ngClass]="{
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 1,
                               'fw-bold':
                                 user.getPropertyNb('divine_units') === 1,
-                            }" translate>Griffins</span>
+                            }" [translate]="'Griffins'"></span>
               <br />
               <span [ngClass]="{
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 2,
                               'fw-bold':
                                 user.getPropertyNb('divine_units') === 2,
-                            }" translate>Hecatoncheires</span>
+                            }" [translate]="'Hecatoncheires'"></span>
               <br />
               <span [ngClass]="{
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 3,
                               'fw-bold':
                                 user.getPropertyNb('divine_units') === 3,
-                            }" translate>Manticores</span>
+                            }" [translate]="'Manticores'"></span>
               <br />
               <span [ngClass]="{
                               'text-danger':
                                 user.getPropertyNb('divine_units') <= 4,
                               'fw-bold':
                                 user.getPropertyNb('divine_units') === 4,
-                            }" translate>Lampads</span>
+                            }" [translate]="'Lampads'"></span>
           </div>
           }
           @if (user.getPropertyNb('divine_units') >= 5) {
-          <div class="text-danger text-center" translate>
-            You have satisfied the Divine units and got 5 new
-            units to serve you
-          </div>
+          <div class="text-danger text-center" [translate]="'You have satisfied the Divine units and got 5 new units to serve you'"></div>
           }
         </div>
       </div>
     </div>
     @if (user.getPropertyNb('divine_units') < 5) { <div class="card-body">
-      <div class="text-center fw-bold fs-5" id="altarDivineunitsDesc" translate>
-        Conditions
-      </div>
+      <div class="text-center fw-bold fs-5" id="altarDivineunitsDesc" [translate]="'Conditions'"></div>
       <table class="table" aria-labelledby="altarDivineunitsDesc">
         <tbody>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionDivineunits.food.quantity
               | number: '' : currentLocale()
@@ -1005,13 +961,13 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('divine_units', 'food')" (keyup.enter)="
                                   validateRes('divine_units', 'food')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionDivineunits.grapes.quantity
               | number: '' : currentLocale()
@@ -1044,13 +1000,13 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('divine_units', 'grapes')" (keyup.enter)="
                                   validateRes('divine_units', 'grapes')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionDivineunits.marble.quantity
               | number: '' : currentLocale()
@@ -1083,13 +1039,13 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('divine_units', 'marble')" (keyup.enter)="
                                   validateRes('divine_units', 'marble')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
           <tr>
             <th class="fw-normal" scope="row">
-              <span translate>Sacrify</span>
+              <span [translate]="'Sacrify'"></span>
               {{
               altarQuestConditionDivineunits.gold.quantity
               | number: '' : currentLocale()
@@ -1120,7 +1076,7 @@
               ) {
               <span class="btn btn-success" role="button" (click)="validateRes('divine_units', 'gold')" (keyup.enter)="
                                   validateRes('divine_units', 'gold')
-                                " tabindex="0" translate>Validate</span>
+                                " tabindex="0" [translate]="'Validate'"></span>
               }
             </td>
           </tr>
@@ -1142,8 +1098,8 @@
               !altarQuestConditionDivineunits.mint.validated
               ) {
               <div class="fw-light fst-italic">
-                <span translate>Currently</span>
-                <span translate>:</span>
+                <span [translate]="'Currently'"></span>
+                <span [translate]="':'"></span>
                 {{
                 altarQuestConditionDivineunits.mint.currently
                 | number
@@ -1184,8 +1140,8 @@
               !altarQuestConditionDivineunits.prod.validated
               ) {
               <div class="fw-light fst-italic">
-                <span translate>Currently</span>
-                <span translate>:</span>
+                <span [translate]="'Currently'"></span>
+                <span [translate]="':'"></span>
                 {{
                 altarQuestConditionDivineunits.prod.currently
                 | number
@@ -1239,9 +1195,7 @@
       @if (altarCondition('divine_units')) {
       <div class="text-center">
         <div class="btn btn-success" (click)="validate('divine_units')" (keyup.enter)="validate('divine_units')"
-          tabindex="0" translate>
-          Validate
-        </div>
+          tabindex="0" [translate]="'Validate'"></div>
       </div>
       }
   </div>

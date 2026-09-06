@@ -1,9 +1,9 @@
 @if (getCurrentMsg().msg_id === 0) {
 <div class="card">
-  <div class="card-header" translate>Last attacks</div>
+  <div class="card-header" [translate]="'Last attacks'"></div>
   <div class="card-body">
     @if (msgList.length === 0) {
-    <div class="text-center mt-2 mb-2" translate>This list is empty</div>
+    <div class="text-center mt-2 mb-2" [translate]="'This list is empty'"></div>
     }
     @for (msg of msgList; track msg) {
     <div class="d-flex bd-highlight" role="button" (click)="messageLoad(msg)" (keyup.enter)="messageLoad(msg)"
@@ -33,11 +33,9 @@
   @if (getCurrentMsg().msg_shared === 1) {
   <div class="card-body text-center">
     @if (linkSaved() === 1) {
-    <div class="wg-bold text-danger" translate>
-      Link saved to clipboard
-    </div>
+    <div class="wg-bold text-danger" [translate]="'Link saved to clipboard'"></div>
     }
-    <strong translate>Share link:</strong>
+    <strong [translate]="'Share link:'"></strong>
     {{ getCurrentMsg().url }}/permalink/{{ getCurrentMsg().msg_id }}
     <span class="badge bg-primary" role="button" (click)="copyLink()" [cbContent]="
             getCurrentMsg().url + '/permalink/' + getCurrentMsg().msg_id

@@ -8,9 +8,7 @@
           <div class="card-body">
             <div class="row mt-2 mb-2">
               <div class="col-12 mb-2">
-                <h2 class="text-center" translate>
-                  Your account is currently paused
-                </h2>
+                <h2 class="text-center" [translate]="'Your account is currently paused'"></h2>
                 <br />
                 <br />
                 <p>
@@ -22,7 +20,7 @@
                 </p>
 
                 <div class="text-center my-2">
-                  <span translate>End the</span>
+                  <span [translate]="'End the'"></span>
                   {{
                     user.getPropertyNb('times') * 1000
                       | date: 'dd/MM/yyyy, HH:mm'
@@ -36,9 +34,7 @@
                   role="button"
                   (keyup.enter)="user.disconnect()"
                   tabindex="0"
-                  translate>
-                  Disconnect
-                </div>
+                  [translate]="'Disconnect'"></div>
               </div>
               <div class="col-6 text-center d-grid">
                 @if (user.getPropertyNb('freereturn') === 1) {
@@ -48,9 +44,7 @@
                     role="button"
                     (keyup.enter)="pauseReturn()"
                     tabindex="0"
-                    translate>
-                    Return to the game
-                  </div>
+                    [translate]="'Return to the game'"></div>
                 } @else if (user.getPropertyNb('favor') > 0) {
                   <div
                     class="btn btn-primary p-2"
@@ -58,17 +52,13 @@
                     role="button"
                     (keyup.enter)="pauseReturn()"
                     tabindex="0"
-                    translate>
-                    Return to the game
-                  </div>
+                    [translate]="'Return to the game'"></div>
                 } @else {
                   <div
                     class="btn btn-primary no-android no-ios no-electron p-2"
                     [routerLink]="['/getfavors']"
                     role="button"
-                    translate>
-                    Get a favor and return to the game
-                  </div>
+                    [translate]="'Get a favor and return to the game'"></div>
                 }
               </div>
             </div>

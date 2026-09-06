@@ -9,18 +9,18 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label for="searchType" id="adminPlayersTitle" translate
-                    >Research</label
+                  <label for="searchType" id="adminPlayersTitle" [translate]="'Research'"
+                    ></label
                   >
                   <select
                     class="form-select"
                     id="searchType"
                     [(ngModel)]="searchType"
                     name="type">
-                    <option value="username" translate>Username</option>
-                    <option value="email" translate>Email</option>
-                    <option value="alliance" translate>Alliance</option>
-                    <option value="ip" translate>IP</option>
+                    <option value="username" [translate]="'Username'"></option>
+                    <option value="email" [translate]="'Email'"></option>
+                    <option value="alliance" [translate]="'Alliance'"></option>
+                    <option value="ip" [translate]="'IP'"></option>
                   </select>
                   <input
                     class="form-control"
@@ -31,7 +31,7 @@
                 </div>
               </div>
               <div class="col-6 col-sm-6 col-md-6">
-                <label for="status" translate>Status</label>
+                <label for="status" [translate]="'Status'"></label>
                 <div class="row">
                   <div class="col-6 col-sm-6 col-md-3">
                     <div class="checkbox">
@@ -42,7 +42,7 @@
                         type="checkbox"
                         [(ngModel)]="normal"
                         class="form-check-input" />
-                      <label for="normal" translate>Normal</label>
+                      <label for="normal" [translate]="'Normal'"></label>
                     </div>
                     <div class="checkbox">
                       <input
@@ -52,7 +52,7 @@
                         type="checkbox"
                         [(ngModel)]="pause"
                         class="form-check-input" />
-                      <label for="pause" translate>Paused</label>
+                      <label for="pause" [translate]="'Paused'"></label>
                     </div>
                   </div>
                   <div class="col-6 col-sm-6 col-md-3">
@@ -64,7 +64,7 @@
                         type="checkbox"
                         [(ngModel)]="blocked"
                         class="form-check-input" />
-                      <label for="blocked" translate>Blocked</label>
+                      <label for="blocked" [translate]="'Blocked'"></label>
                     </div>
                     <div class="checkbox">
                       <input
@@ -74,7 +74,7 @@
                         type="checkbox"
                         class="form-check-input"
                         [(ngModel)]="banish" />
-                      <label for="banish" translate>Banished</label>
+                      <label for="banish" [translate]="'Banished'"></label>
                     </div>
                   </div>
                 </div>
@@ -82,10 +82,8 @@
               <div class="col-12 center">
                 <button
                   class="btn btn-primary"
-                  translate
-                  (click)="adminPlayersResearch()">
-                  Research
-                </button>
+                  [translate]="'Research'"
+                  (click)="adminPlayersResearch()"></button>
                 <br />
               </div>
               <div class="col-12">
@@ -96,9 +94,9 @@
                     <tr>
                       <th scope="col"></th>
                       <th scope="col"></th>
-                      <th scope="col" translate>IP</th>
-                      <th scope="col" translate>Alliance</th>
-                      <th scope="col" translate>Activity</th>
+                      <th scope="col" [translate]="'IP'"></th>
+                      <th scope="col" [translate]="'Alliance'"></th>
+                      <th scope="col" [translate]="'Activity'"></th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -177,9 +175,7 @@
                           id of Tools.range(1, adminPlayersList.max);
                           track id
                         ) {
-                          <option value="{{ id }}" translate>
-                            Page {{ id }}
-                          </option>
+                          <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                         }
                       </select>
                       <span

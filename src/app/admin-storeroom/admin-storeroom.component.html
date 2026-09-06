@@ -8,59 +8,55 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 text-center">
-                <h1 translate>Storeroom</h1>
+                <h1 [translate]="'Storeroom'"></h1>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="minRate" translate>Minimum rate</label>
+                  <label for="minRate" [translate]="'Minimum rate'"></label>
                   <input name="minRate" placeholder="{{ 'Minimum rate' | translate }}" id="minRate" class="form-control"
                     value="" type="number" [(ngModel)]="minRate" />
 
-                  <label for="maxRate" translate>Maximum rate</label>
+                  <label for="maxRate" [translate]="'Maximum rate'"></label>
                   <input name="maxRate" placeholder="{{ 'Maximum rate' | translate }}" id="maxRate" class="form-control"
                     value="" type="number" [(ngModel)]="maxRate" />
 
-                  <label for="beginning" translate>Beginning</label>
+                  <label for="beginning" [translate]="'Beginning'"></label>
                   <input name="date" placeholder="{{ 'Beginning' | translate }}" id="beginning" class="form-control"
                     type="text" [(ngModel)]="beginning" />
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="resource" translate>Research</label>
+                  <label for="resource" [translate]="'Research'"></label>
                   <select [(ngModel)]="resource" name="resource" id="resource" class="form-select">
-                    <option value="" translate>Toutes les ressources</option>
-                    <option value="food" translate>Food</option>
-                    <option value="water" translate>Water</option>
-                    <option value="wood" translate>Wood</option>
-                    <option value="iron" translate>Iron</option>
-                    <option value="stone" translate>Stone</option>
-                    <option value="marble" translate>Marble</option>
-                    <option value="grapes" translate>Grapes</option>
-                    <option value="wine" translate>Wine</option>
-                    <option value="gold" translate>Gold</option>
-                    <option value="favor" translate>Favor</option>
+                    <option value="" [translate]="'Toutes les ressources'"></option>
+                    <option value="food" [translate]="'Food'"></option>
+                    <option value="water" [translate]="'Water'"></option>
+                    <option value="wood" [translate]="'Wood'"></option>
+                    <option value="iron" [translate]="'Iron'"></option>
+                    <option value="stone" [translate]="'Stone'"></option>
+                    <option value="marble" [translate]="'Marble'"></option>
+                    <option value="grapes" [translate]="'Grapes'"></option>
+                    <option value="wine" [translate]="'Wine'"></option>
+                    <option value="gold" [translate]="'Gold'"></option>
+                    <option value="favor" [translate]="'Favor'"></option>
                   </select>
 
-                  <label for="players" translate>Players</label>
+                  <label for="players" [translate]="'Players'"></label>
                   <input name="player1" placeholder="{{ 'Player' | translate }}" id="player1" class="form-control"
                     value="" type="text" [(ngModel)]="player1" />
                   <input name="player2" placeholder="{{ 'Player' | translate }}" id="player2" class="form-control"
                     value="" type="text" [(ngModel)]="player2" />
 
-                  <label for="sort" translate>Sort by</label>
+                  <label for="sort" [translate]="'Sort by'"></label>
                   <select name="sort" id="sort" class="form-select">
-                    <option value="depositDate" translate>Deposit date</option>
-                    <option selected="selected" value="purchaseDate" translate>
-                      Purchase date
-                    </option>
+                    <option value="depositDate" [translate]="'Deposit date'"></option>
+                    <option selected="selected" value="purchaseDate" [translate]="'Purchase date'"></option>
                   </select>
                 </div>
               </div>
               <div class="col-12 text-center">
-                <button class="btn btn-primary" translate type="submit" (click)="adminStoreroomList(1)">
-                  Research
-                </button>
+                <button class="btn btn-primary" [translate]="'Research'" type="submit" (click)="adminStoreroomList(1)"></button>
               </div>
 
               <div class="col-md-12">
@@ -75,9 +71,7 @@
                     <select class="form-select" #mySelect (change)="adminStoreroomChange(mySelect.value)"
                       [ngModel]="currentPage" title="{{ 'Change page' | translate }}">
                       @for (id of Tools.range(1, msgPageNb); track id) {
-                      <option value="{{ id }}" translate>
-                        Page {{ id }}
-                      </option>
+                      <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                       }
                     </select>
                     <span class="input-group-text" role="button" (click)="adminStoreroomChange(currentPage + 1)"
@@ -93,16 +87,16 @@
                   }}">
                   <thead>
                     <tr>
-                      <th scope="col" translate>Seller</th>
-                      <th scope="col" translate>Buyer</th>
-                      <th scope="col" translate>Seller IP</th>
-                      <th scope="col" translate>Buyer IP</th>
-                      <th scope="col" translate>Deposit date</th>
-                      <th scope="col" translate>Purchase date</th>
-                      <th scope="col" translate>Resource</th>
-                      <th scope="col" translate>Quantity</th>
-                      <th scope="col" translate>Rate</th>
-                      <th scope="col" translate>Price</th>
+                      <th scope="col" [translate]="'Seller'"></th>
+                      <th scope="col" [translate]="'Buyer'"></th>
+                      <th scope="col" [translate]="'Seller IP'"></th>
+                      <th scope="col" [translate]="'Buyer IP'"></th>
+                      <th scope="col" [translate]="'Deposit date'"></th>
+                      <th scope="col" [translate]="'Purchase date'"></th>
+                      <th scope="col" [translate]="'Resource'"></th>
+                      <th scope="col" [translate]="'Quantity'"></th>
+                      <th scope="col" [translate]="'Rate'"></th>
+                      <th scope="col" [translate]="'Price'"></th>
                     </tr>
                   </thead>
                   <tbody>

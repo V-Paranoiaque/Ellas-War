@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Send a message to the staff</h5>
+        <h5 class="modal-title" [translate]="'Send a message to the staff'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -11,10 +11,7 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div translate>
-          Our staff are volunteers however we will try to answer you as soon as
-          possible.
-        </div>
+        <div [translate]="'Our staff are volunteers however we will try to answer you as soon as possible.'"></div>
         <br />
         <input
           type="text"
@@ -31,12 +28,8 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
-        <button class="btn btn-success" (click)="contactNewSend()" translate>
-          Send
-        </button>
+          [translate]="'Close'"></button>
+        <button class="btn btn-success" (click)="contactNewSend()" [translate]="'Send'"></button>
       </div>
     </div>
   </div>
@@ -53,9 +46,7 @@
             <div class="card-body text-center">
               @if (contactNb === 0) {
                 <div>
-                  <div translate>
-                    You do not have message on the support page
-                  </div>
+                  <div [translate]="'You do not have message on the support page'"></div>
                   <br />
                 </div>
               }
@@ -64,9 +55,7 @@
                 data-bs-toggle="modal"
                 id="contactDesc"
                 data-bs-target="#SupportNewTopic"
-                translate>
-                Send a message to the staff
-              </button>
+                [translate]="'Send a message to the staff'"></button>
               <a
                 href="{{ environment.discord }}"
                 target="_blank"
@@ -82,8 +71,8 @@
                   aria-labelledby="contactDesc">
                   <thead>
                     <tr>
-                      <th scope="column" translate>Subject</th>
-                      <th scope="column" translate>Last message</th>
+                      <th scope="column" [translate]="'Subject'"></th>
+                      <th scope="column" [translate]="'Last message'"></th>
                       <th scope="column"></th>
                     </tr>
                   </thead>
@@ -111,8 +100,8 @@
                               '/support/' + contactC + '/' + info.support_id,
                             ]">
                             <app-ic-icon [icon]="eye"></app-ic-icon>
-                            <span class="visually-hidden" translate
-                              >Read and reply to the message:</span
+                            <span class="visually-hidden" [translate]="'Read and reply to the message:'"
+                              ></span
                             >
                             <span class="visually-hidden">{{
                               info.support_id
@@ -151,9 +140,7 @@
                       title="{{ 'Change page' | translate }}"
                       #mySelect>
                       @for (id of Tools.range(1, contactNb); track id) {
-                        <option value="{{ id }}" translate>
-                          Page {{ id }}
-                        </option>
+                        <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                       }
                     </select>
                     <span
@@ -204,8 +191,8 @@
                   tabindex="0"
                   (click)="contactAnswer()"
                   (keyup.enter)="contactAnswer()"
-                  translate
-                  >Send</span
+                  [translate]="'Send'"
+                  ></span
                 >
               </div>
               @for (msg of contactInfo.msg; track msg) {

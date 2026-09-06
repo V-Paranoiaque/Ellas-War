@@ -2,9 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="storeroomHistoryDesc" translate>
-          Sell resources
-        </h5>
+        <h5 class="modal-title" id="storeroomHistoryDesc" [translate]="'Sell resources'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -13,11 +11,9 @@
       </div>
       <div class="modal-body container-fluid">
         <ul>
-          <li translate>Resources on the Agora can be stollen</li>
-          <li translate>
-            Unsold resources are coming back with a penalty, after 7 days
-          </li>
-          <li translate>For Favors, there is no return penalty</li>
+          <li [translate]="'Resources on the Agora can be stollen'"></li>
+          <li [translate]="'Unsold resources are coming back with a penalty, after 7 days'"></li>
+          <li [translate]="'For Favors, there is no return penalty'"></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -25,9 +21,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

@@ -13,12 +13,8 @@
   <div class="card-body flex-grow-1">
     @if (showDelete === 1) {
     <div class="text-center">
-      <div class="fw-bold text-danger" translate>
-        Do you really want to give up this quest?
-      </div>
-      <button class="btn btn-danger" (click)="questGiveup(quest)" translate>
-        Confirm
-      </button>
+      <div class="fw-bold text-danger" [translate]="'Do you really want to give up this quest?'"></div>
+      <button class="btn btn-danger" (click)="questGiveup(quest)" [translate]="'Confirm'"></button>
     </div>
     }
     <div>
@@ -32,7 +28,7 @@
               'width.%': (100 * quest.quest_current) / quest.quest_goal,
             }"></div>
         <div class="progress-text">
-          <span translate>Progress:</span>
+          <span [translate]="'Progress:'"></span>
           {{
           quest.quest_current
           | number: '' : currentLocale()
@@ -44,7 +40,7 @@
     </div>
     }
     <div class="text-center mt-1 mb-1">
-      <strong translate>Reward:</strong>
+      <strong [translate]="'Reward:'"></strong>
       {{ quest.reward_quantity | number: '' : currentLocale() }}
       <app-ew-icon name="{{ quest.reward_ress }}" class="small-resource"></app-ew-icon>
     </div>
@@ -53,31 +49,28 @@
     @if (quest.quest_validated === 0) {
     <div class="d-flex flex-grow-1">
       @if (link === 'attacks') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" translate>Access to the attacks &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" [translate]="'Access to the attacks >>'"></a>
       }
       @if (link === 'divine') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" translate>Access to the Divine powers &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" [translate]="'Access to the Divine powers >>'"></a>
       }
       @if (link === 'city') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" translate>Access to the city &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/']" [translate]="'Access to the city >>'"></a>
       }
       @if (link === 'lotto') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" translate>Access to the lottery &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" [translate]="'Access to the lottery >>'"></a>
       }
       @if (link === 'sanctuaries') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/attacks']" translate>Access to the sanctuaries
-        &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/attacks']" [translate]="'Access to the sanctuaries >>'"></a>
       }
       @if (link === 'tickets') {
-      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" translate>Access to the tickets &gt;&gt;</a>
+      <a class="btn btn-primary flex-grow-1" [routerLink]="['/' + link]" [translate]="'Access to the tickets >>'"></a>
       }
     </div>
     }
     @if (quest.quest_validated === 1) {
     <div class="btn btn-success flex-grow-1" role="button" (click)="myQuestValidate(quest)"
-      (keyup.enter)="myQuestValidate(quest)" tabindex="0" translate>
-      Validate
-    </div>
+      (keyup.enter)="myQuestValidate(quest)" tabindex="0" [translate]="'Validate'"></div>
     }
   </div>
 </div>

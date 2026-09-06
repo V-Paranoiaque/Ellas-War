@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body" [ngClass]="{ 'no-bottom': user.getPropertyNb('quest_validate') === 1 }">
     <div class="fw-bold justify-content-center d-flex flex-row align-middle fs-5">
-      <span translate> Level quests </span>
+      <span [translate]="'Level quests'"></span>
       <app-ic-icon [icon]="questionCircle" role="button" class="ms-2" data-bs-toggle="modal"
         data-bs-target="#MissionsInfo"></app-ic-icon>
     </div>
@@ -11,7 +11,7 @@
           'width.%': (100 * user.getPropertyNb('quest')) / user.getQuestMax(),
         }"></div>
       <div class="progress-text">
-        <span translate>Progress:</span>
+        <span [translate]="'Progress:'"></span>
         {{ user.getPropertyNb('quest') }}/{{ user.getQuestMax() }}
       </div>
     </div>
@@ -30,7 +30,7 @@
                     "></p>
           <div class="text-center">
             <a class="btn btn-primary" [routerLink]="['/options']">
-              <span translate>Change your username</span> &gt;&gt;
+              <span [translate]="'Change your username'"></span> &gt;&gt;
             </a>
           </div>
         </span>
@@ -42,10 +42,7 @@
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Mints produce Drachmas. Through them you can construct
-                buildings and raise armies.
-              </p>
+              <p [translate]="'Mints produce Drachmas. Through them you can construct buildings and raise armies.'"></p>
               <p>
                 {{
                 'Build a total of { value } { building }.'
@@ -60,7 +57,7 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 5000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 5000 | number: '' : currentLocale() }}
@@ -69,9 +66,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -82,9 +77,7 @@
               <app-ew-icon name="well"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Water is used by your buildings and your army.
-              </p>
+              <p [translate]="'Water is used by your buildings and your army.'"></p>
               <p>
                 {{
                 'Build a total of { value } { building }.'
@@ -99,16 +92,14 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 5000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -119,11 +110,8 @@
               <app-ew-icon name="sawmill"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To build your buildings you'll need wood. Build a total
-                of 6 mills to cover your future wood needs.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'To build your buildings you\'ll need wood. Build a total of 6 mills to cover your future wood needs.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 8000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 5000 | number: '' : currentLocale() }}
@@ -132,9 +120,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -145,10 +131,7 @@
               <app-ew-icon name="ironmine"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Iron mines produce Iron. It's will help you to produce
-                Drachmas and arm your city.
-              </p>
+              <p [translate]="'Iron mines produce Iron. It\'s will help you to produce Drachmas and arm your city.'"></p>
               <p>
                 {{
                 'Build a total of { value } { building }.'
@@ -163,7 +146,7 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 4000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 2000 | number: '' : currentLocale() }}
@@ -172,9 +155,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <a class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </a>
+            role="button" [translate]="'Access to the buildings >>'"></a>
           }
         </span>
         }
@@ -185,12 +166,8 @@
               <app-ew-icon name="agora"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                The weather can influence your city. It can modify the
-                productions, consumptions and the attack/defense of your
-                army.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'The weather can influence your city. It can modify the productions, consumptions and the attack/defense of your army.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 10000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 10000 | number: '' : currentLocale() }}
@@ -200,9 +177,7 @@
           @if (user.getPropertyNb('quest_validate') === 0) {
           <a class="card-button card-button-primary d-block py-2 mt-2" data-bs-toggle="modal"
             data-bs-target="#weatherHelp" data-bs-dismiss="modal" role="button" (click)="user.questValidateAuto()"
-            (keyup.enter)="user.questValidateAuto()" tabindex="0" translate>
-            Access to the weather &gt;&gt;
-          </a>
+            (keyup.enter)="user.questValidateAuto()" tabindex="0" [translate]="'Access to the weather >>'"></a>
           }
         </span>
         }
@@ -213,15 +188,9 @@
               <app-ew-icon name="spartan"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                The Divine Bonus bring you temporary benefits. You can
-                win them by being active on the game or participating in
-                the activities offered on the facebook page.
-              </p>
-              <p translate>
-                Go to City and validate a Divine Bonus to get spartans.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'The Divine Bonus bring you temporary benefits. You can win them by being active on the game or participating in the activities offered on the facebook page.'"></p>
+              <p [translate]="'Go to City and validate a Divine Bonus to get spartans.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 10000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 10000 | number: '' : currentLocale() }}
@@ -230,9 +199,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the divins bonus &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the divins bonus >>'"></div>
           }
         </span>
         }
@@ -243,12 +210,8 @@
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                I offered to you my terrible Spartans, go to the attack
-                page and engage the fight against our common enemy, the
-                Persian city of Hagmatana.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'I offered to you my terrible Spartans, go to the attack page and engage the fight against our common enemy, the Persian city of Hagmatana.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 4000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 10000 | number: '' : currentLocale() }}
@@ -257,9 +220,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -270,11 +231,8 @@
               <app-ew-icon name="spartan"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Go to City, and liberate the Spartans. You can again
-                engage them if you build the temple of Ares, level 6.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'Go to City, and liberate the Spartans. You can again engage them if you build the temple of Ares, level 6.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 20000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 20000 | number: '' : currentLocale() }}
@@ -283,9 +241,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the army &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the army >>'"></div>
           }
         </span>
         }
@@ -297,12 +253,10 @@
             </div>
             <div class="col-lg-10 col-md-8 p-2">
               <p>
-                <span translate>Every week, the player with the most honor earns a
-                  reward.</span>
-                <span translate>You have two ways earn honor, you can build mints and
-                  make victories.</span>
+                <span [translate]="'Every week, the player with the most honor earns a reward.'"></span>
+                <span [translate]="'You have two ways earn honor, you can build mints and make victories.'"></span>
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 20000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 25000 | number: '' : currentLocale() }}
@@ -312,9 +266,7 @@
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/honor/0']"
             data-bs-dismiss="modal" role="button" (click)="user.questValidateAuto()"
-            (keyup.enter)="user.questValidateAuto()" tabindex="0" translate>
-            Access to the honor ranking &gt;&gt;
-          </div>
+            (keyup.enter)="user.questValidateAuto()" tabindex="0" [translate]="'Access to the honor ranking >>'"></div>
           }
         </span>
         }
@@ -325,12 +277,8 @@
               <app-ew-icon name="smenu-stats"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                From the attacks page, there is a stats page that
-                display the information about your attacks. Visit the
-                stats page to validate this quest.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'From the attacks page, there is a stats page that display the information about your attacks. Visit the stats page to validate this quest.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="wood" class="small-resource"></app-ew-icon>
               {{ 25000 | number: '' : currentLocale() }}
@@ -339,9 +287,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -352,15 +298,8 @@
               <app-ew-icon name="treasure"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                The treasure will allow you to protect your Drachmas,
-                however this service is not without constraints. To
-                level 5 it will be limited from level 6 you will not
-                limit but you will pay a fee for you to retrieve your
-                Drachmas. Go to City and put 20,000 Drachmas into your
-                treasure.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'The treasure will allow you to protect your Drachmas, however this service is not without constraints. To level 5 it will be limited from level 6 you will not limit but you will pay a fee for you to retrieve your Drachmas. Go to City and put 20,000 Drachmas into your treasure.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 25000 | number: '' : currentLocale() }}
@@ -369,9 +308,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the treasure &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the treasure >>'"></div>
           }
         </span>
         }
@@ -382,20 +319,15 @@
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Your city will need more drachmas to expand, build a
-                total of 10 mints.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'Your city will need more drachmas to expand, build a total of 10 mints.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -406,20 +338,15 @@
               <app-ew-icon name="watchtower"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Build a total of 10 towers, this will be your first
-                defense.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'Build a total of 10 towers, this will be your first defense.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -430,8 +357,7 @@
               <app-ew-icon name="farm"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <span translate>You can now reach level 1. Before doing so, a few tips
-                from an old warrior:</span>
+              <span [translate]="'You can now reach level 1. Before doing so, a few tips from an old warrior:'"></span>
               <br />-
               <span [innerHTML]="
                           'Build a maximum of mints.' | translate
@@ -448,7 +374,7 @@
                         "></span>
               <br />
               <br />
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 50000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 50000 | number: '' : currentLocale() }}
@@ -480,19 +406,15 @@
               <app-ew-icon name="hut"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Build a total of 10 huts to house your army.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'Build a total of 10 huts to house your army.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 40000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -503,21 +425,15 @@
               <app-ew-icon name="silver_man"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To have a strong city, you will need brave men. Engage
-                at least 50 men in your ranks and return to me. Remember
-                that you must build huts to house them.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'To have a strong city, you will need brave men. Engage at least 50 men in your ranks and return to me. Remember that you must build huts to house them.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -528,21 +444,15 @@
               <app-ew-icon name="spy"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                I like to know as much as possible about my enemies
-                before fighting them. Hire 10 spies to gain information
-                on other cities.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'I like to know as much as possible about my enemies before fighting them. Hire 10 spies to gain information on other cities.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -553,21 +463,19 @@
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>You are still there?</p>
+              <p [translate]="'You are still there?'"></p>
               <p [innerHTML]="
                           'You are stronger than I thought. Show me your skills in combat. Now that you have recruited an army, continue to attack. I advise you to use spies to find the weak cities. Win 5 victories and return to me.'
                             | translate
                         "></p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -578,21 +486,15 @@
               <app-ew-icon name="mint"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                You will have to drachmas to build your city. Build a
-                total of 15 mints. If you lack resources, have a look on
-                the Agora.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'You will have to drachmas to build your city. Build a total of 15 mints. If you lack resources, have a look on the Agora.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -616,7 +518,7 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 20000 | number: '' : currentLocale() }}
@@ -625,9 +527,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the treasure &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the treasure >>'"></div>
           }
         </span>
         }
@@ -651,7 +551,7 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 20000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
               {{ 20000 | number: '' : currentLocale() }}
@@ -660,9 +560,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -673,20 +571,15 @@
               <app-ew-icon name="farm"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                You will need food for your people, build a total of 10
-                farms.
-              </p>
-              <strong translate>Reward:</strong>
+              <p [translate]="'You will need food for your people, build a total of 10 farms.'"></p>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -711,16 +604,14 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -744,16 +635,14 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 25000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -777,16 +666,14 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the treasure &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the treasure >>'"></div>
           }
         </span>
         }
@@ -797,20 +684,18 @@
               <app-ew-icon name="smenu-attacks"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>Engage a stronger defense than 6,000.</p>
-              <strong translate>Current defense:</strong>
+              <p [translate]="'Engage a stronger defense than 6,000.'"></p>
+              <strong [translate]="'Current defense:'"></strong>
               {{ getDefenseCurrent() }}
               <br />
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -834,16 +719,14 @@
                 }
                 }}
               </p>
-              <strong translate>Reward:</strong>
+              <strong [translate]="'Reward:'"></strong>
               {{ 30000 | number: '' : currentLocale() }}
               <app-ew-icon name="drachma" class="small-resource"></app-ew-icon>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -895,9 +778,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -908,17 +789,12 @@
               <app-ew-icon name="quarry"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                You will need stone and marble to build your temples.
-                Build a total of 5 quarries.
-              </p>
+              <p [translate]="'You will need stone and marble to build your temples. Build a total of 5 quarries.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -947,9 +823,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -977,9 +851,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the treasure &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the treasure >>'"></div>
           }
         </span>
         }
@@ -1007,9 +879,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1020,17 +890,12 @@
               <app-ew-icon name="quarry"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                You will need more stone and marble to build your
-                temples. Build a total of 10 quarries.
-              </p>
+              <p [translate]="'You will need more stone and marble to build your temples. Build a total of 10 quarries.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1058,9 +923,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1088,9 +951,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the treasure &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the treasure >>'"></div>
           }
         </span>
         }
@@ -1101,17 +962,12 @@
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To engage new units, you will need to train them. Build
-                a barracks.
-              </p>
+              <p [translate]="'To engage new units, you will need to train them. Build a barracks.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1122,14 +978,12 @@
               <app-ew-icon name="peltast"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>Engage 500 Peltasts</p>
+              <p [translate]="'Engage 500 Peltasts'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1140,17 +994,12 @@
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                This is the last step. Go to City, Temple and build your
-                first temple.
-              </p>
+              <p [translate]="'This is the last step. Go to City, Temple and build your first temple.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1202,9 +1051,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1233,9 +1080,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1264,9 +1109,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1294,9 +1137,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1307,17 +1148,12 @@
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To recruit archers you will need to train them. Update
-                your barracks.
-              </p>
+              <p [translate]="'To recruit archers you will need to train them. Update your barracks.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1328,16 +1164,12 @@
               <app-ew-icon name="slinger"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Engage 1000 Slingers to protect your city.
-              </p>
+              <p [translate]="'Engage 1000 Slingers to protect your city.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1366,9 +1198,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1396,9 +1226,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1450,9 +1278,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1463,16 +1289,12 @@
               <app-ew-icon name="growers"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                You will need grapes, build a total of 10 Growers.
-              </p>
+              <p [translate]="'You will need grapes, build a total of 10 Growers.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1483,14 +1305,12 @@
               <app-ew-icon name="shortbow"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>Engage 2.000 Short bow archeries.</p>
+              <p [translate]="'Engage 2.000 Short bow archeries.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1519,9 +1339,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1549,9 +1367,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1580,9 +1396,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1611,9 +1425,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1641,9 +1453,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1672,9 +1482,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1727,9 +1535,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1757,9 +1563,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1788,9 +1592,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1819,9 +1621,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1850,9 +1650,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1880,9 +1678,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -1917,17 +1713,12 @@
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To get cavalry archers you will need to train them.
-                Update your barracks.
-              </p>
+              <p [translate]="'To get cavalry archers you will need to train them. Update your barracks.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -1956,9 +1747,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -1986,9 +1775,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2017,9 +1804,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2030,18 +1815,12 @@
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                The temples allow you to specialize your city. Choose
-                your second temple and build the temple of Athena or
-                Ares.
-              </p>
+              <p [translate]="'The temples allow you to specialize your city. Choose your second temple and build the temple of Athena or Ares.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2070,9 +1849,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2100,9 +1877,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2154,9 +1929,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2185,9 +1958,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2215,9 +1986,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2246,9 +2015,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2277,9 +2044,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2307,9 +2072,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2361,9 +2124,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2392,9 +2153,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2423,9 +2182,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2453,9 +2210,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2484,9 +2239,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2514,9 +2267,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2545,9 +2296,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2558,17 +2307,12 @@
               <app-ew-icon name="olympus"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                Build your third temple. Choose between Artemis,
-                Dionysus and Hephaestus.
-              </p>
+              <p [translate]="'Build your third temple. Choose between Artemis, Dionysus and Hephaestus.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2596,9 +2340,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2633,17 +2375,12 @@
               <app-ew-icon name="militarycamp"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To engage the elite of your army, you will have to train
-                it, update your barrack.
-              </p>
+              <p [translate]="'To engage the elite of your army, you will have to train it, update your barrack.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2654,17 +2391,12 @@
               <app-ew-icon name="palace"></app-ew-icon>
             </div>
             <div class="col-lg-10 col-md-8 p-2">
-              <p translate>
-                To host your new unities, you will have to build
-                palaces. Build 160 palaces.
-              </p>
+              <p [translate]="'To host your new unities, you will have to build palaces. Build 160 palaces.'"></p>
             </div>
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2693,9 +2425,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2724,9 +2454,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2755,9 +2483,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2786,9 +2512,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2816,9 +2540,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2847,9 +2569,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the city &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the city >>'"></div>
           }
         </span>
         }
@@ -2878,9 +2598,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2909,9 +2627,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2940,9 +2656,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -2970,9 +2684,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -2999,9 +2711,7 @@
               </p>
               @if (user.getPropertyNb('quest_validate') === 0) {
               <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']"
-                data-bs-dismiss="modal" role="button" translate>
-                Access to the city &gt;&gt;
-              </div>
+                data-bs-dismiss="modal" role="button" [translate]="'Access to the city >>'"></div>
               }
             </div>
           </div>
@@ -3032,9 +2742,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -3063,9 +2771,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -3094,9 +2800,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/']" data-bs-dismiss="modal"
-            role="button" translate>
-            Access to the buildings &gt;&gt;
-          </div>
+            role="button" [translate]="'Access to the buildings >>'"></div>
           }
         </span>
         }
@@ -3124,9 +2828,7 @@
           </div>
           @if (user.getPropertyNb('quest_validate') === 0) {
           <div class="card-button card-button-primary d-block py-2 mt-2" [routerLink]="['/attacks']"
-            data-bs-dismiss="modal" role="button" translate>
-            Access to the attacks &gt;&gt;
-          </div>
+            data-bs-dismiss="modal" role="button" [translate]="'Access to the attacks >>'"></div>
           }
         </span>
         }
@@ -3155,8 +2857,6 @@
   </div>
   @if (user.getPropertyNb('quest_validate') === 1) {
   <div class="card-button card-button-success py-2" role="button" (click)="questValidate()"
-    (keyup.enter)="questValidate()" tabindex="0" translate>
-    Validate
-  </div>
+    (keyup.enter)="questValidate()" tabindex="0" [translate]="'Validate'"></div>
   }
 </div>

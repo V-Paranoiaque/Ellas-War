@@ -51,34 +51,27 @@
   @case (9) {
   <span>
     80
-    <span translate>Spartans</span>
+    <span [translate]="'Spartans'"></span>
   </span>
   }
   @case (10) {
-  <span translate> 200 units of your third temple </span>
+  <span [translate]="'200 units of your third temple'"></span>
   }
   @case (11) {
-  <span translate>
-    6 hours of withdrawal without taxes in your treasure
-  </span>
+  <span [translate]="'6 hours of withdrawal without taxes in your treasure'"></span>
   }
   @case (12) {
   <span>
     @if (user.getPropertyNb('hermes') === 0) {
-    <span translate>
-      You are allowed to sell in the Agora today, even if it's
-      Wednesday/Saturday/Sunday
-    </span>
+    <span [translate]="'You are allowed to sell in the Agora today, even if it\'s Wednesday/Saturday/Sunday'"></span>
     }
     @if (user.getPropertyNb('hermes') === 1) {
-    <span translate>
-      You are allowed to sell in the Agora today, even if it's Sunday
-    </span>
+    <span [translate]="'You are allowed to sell in the Agora today, even if it\'s Sunday'"></span>
     }
   </span>
   }
   @case (13) {
-  <span translate> 2 bonus attacks </span>
+  <span [translate]="'2 bonus attacks'"></span>
   }
   @case (14) {
   <span>

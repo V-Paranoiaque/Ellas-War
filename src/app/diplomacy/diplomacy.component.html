@@ -22,22 +22,20 @@
             user.getDatasAlliance().alliance.create
             ) {
             <div class="text-center fw-bold text-danger">
-              <a data-bs-toggle="modal" data-bs-target="#AllianceCreate" role="button" translate>
-                Create an alliance
-              </a>
+              <a data-bs-toggle="modal" data-bs-target="#AllianceCreate" role="button" [translate]="'Create an alliance'"></a>
               <br />
             </div>
             }
             @if (allianceList.length > 0) {
             <div class="text-center">
               <div>
-                <span translate>Need help to find an alliance?</span>
+                <span [translate]="'Need help to find an alliance?'"></span>
                 <span data-bs-toggle="modal" data-bs-target="#AllianceHelp" role="button" class="ms-1"
-                  title="{{ 'Help' | translate }}" translate>
+                  title="{{ 'Help' | translate }}">
                   <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                 </span>
               </div>
-              <span translate>Join us on Discord</span>&nbsp;
+              <span [translate]="'Join us on Discord'"></span>&nbsp;
               <a href="{{ environment.discord }}" target="_blank" id="discord" rel="external nofollow noopener"
                 class="btn" role="tab">
                 <app-ic-icon [icon]="discordIcon" role="button"></app-ic-icon>
@@ -53,7 +51,7 @@
               | translate: { value: allianceWait.alliance_name }
               }}
               <span (click)="allianceWaitCancel()" role="button" (keyup.enter)="allianceWaitCancel()" tabindex="0">
-                (<span translate>Cancel</span>)
+                (<span [translate]="'Cancel'"></span>)
               </span>
               <br />
             </div>
@@ -73,9 +71,7 @@
               <br />
           </div>
           }
-          <div class="visually-hidden" id="allianceListDesc" translate>
-            List of the alliances
-          </div>
+          <div class="visually-hidden" id="allianceListDesc" [translate]="'List of the alliances'"></div>
           @if (allianceList.length > 0) {
           <table class="table table-striped table-middle align-middle" aria-labelledby="allianceListDesc">
             <thead>
@@ -83,19 +79,11 @@
                 <th (click)="allianceListOrder('mbs')" scope="col" class="text-center" role="button">
                   <app-ic-icon [icon]="users"></app-ic-icon>
                 </th>
-                <th (click)="allianceListOrder('name')" scope="col" role="button" translate>
-                  Name
-                </th>
+                <th (click)="allianceListOrder('name')" scope="col" role="button" [translate]="'Name'"></th>
                 <th (click)="allianceListOrder('chief')" scope="col" role="button" class="d-none d-sm-table-cell"
-                  translate>
-                  Chief
-                </th>
-                <th (click)="allianceListOrder('victories')" scope="col" role="button" translate>
-                  V
-                </th>
-                <th (click)="allianceListOrder('defeats')" scope="col" role="button" translate>
-                  D
-                </th>
+                  [translate]="'Chief'"></th>
+                <th (click)="allianceListOrder('victories')" scope="col" role="button" [translate]="'V'"></th>
+                <th (click)="allianceListOrder('defeats')" scope="col" role="button" [translate]="'D'"></th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -117,7 +105,7 @@
                   </a>
                   @if (alli.alliance_type > 0) {
                   <span data-bs-toggle="modal" data-bs-target="#InvasionHelp" role="button"
-                    title="{{ 'Help' | translate }}" translate>
+                    title="{{ 'Help' | translate }}">
                     <app-ic-icon [icon]="questionCircle"></app-ic-icon>
                   </span>
                   }
@@ -323,9 +311,7 @@
           }
 
           @if (allianceList.length === 0) {
-          <div class="text-center" translate>
-            There is no alliance available currently
-          </div>
+          <div class="text-center" [translate]="'There is no alliance available currently'"></div>
           }
         </div>
       </div>

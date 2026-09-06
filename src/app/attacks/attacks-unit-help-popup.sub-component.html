@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>A part of your army can't fight</h5>
+        <h5 class="modal-title" [translate]="'A part of your army can\'t fight'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -10,13 +10,10 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        <span translate>
-          Some of your army won't go to the battlefield. When preparing an
-          attack, units shown in red have one of the following issues:
-        </span>
+        <span [translate]="'Some of your army won\'t go to the battlefield. When preparing an attack, units shown in red have one of the following issues:'"></span>
         <ul>
-          <li translate>Lack of housing</li>
-          <li translate>Lack of consumption resources</li>
+          <li [translate]="'Lack of housing'"></li>
+          <li [translate]="'Lack of consumption resources'"></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -24,9 +21,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

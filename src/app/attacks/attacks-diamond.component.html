@@ -11,34 +11,34 @@
 
           <div class="card-body">
             <div class="text-center">
-              <strong translate>Owner</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Owner'"></strong>
+              <strong [translate]="':'"></strong>
               <a [routerLink]="['/profile/' + diamondInfo.membre_id]">
                 {{ diamondInfo.username }}
               </a>
               <br />
               @if (diamondInfo.alliance > 0) {
               <div>
-                <strong translate>Alliance</strong>
-                <strong translate>:</strong>
+                <strong [translate]="'Alliance'"></strong>
+                <strong [translate]="':'"></strong>
                 {{ diamondInfo.alliance_name }}
               </div>
               }
-              <strong translate>Field</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Field'"></strong>
+              <strong [translate]="':'"></strong>
               {{
               diamondInfo.field | number: '' : currentLocale()
               }}
               <br />
-              <strong translate>Victories</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Victories'"></strong>
+              <strong [translate]="':'"></strong>
               {{
               diamondInfo.victory
               | number: '' : currentLocale()
               }}
               <br />
-              <strong translate>Last week</strong>
-              <strong translate>:</strong>
+              <strong [translate]="'Last week'"></strong>
+              <strong [translate]="':'"></strong>
               <a [routerLink]="['/profile/' + diamondInfo.last_id]">
                 {{ diamondInfo.last_username }}
               </a>
@@ -98,10 +98,7 @@
             </div>
             }
             @if (user.getPropertyNb('id') === diamondInfo.last_id) {
-            <div class="text-center text-danger fw-bold" translate>
-              You won the diamond last week, you can't participate until next
-              week
-            </div>
+            <div class="text-center text-danger fw-bold" [translate]="'You won the diamond last week, you can\'t participate until next week'"></div>
             }
             <div class="row">
               <div class="col-sm-6 col-12">
@@ -110,7 +107,7 @@
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">
-                        <span id="PlayerDesc" translate>Player</span>
+                        <span id="PlayerDesc" [translate]="'Player'"></span>
                       </th>
                       <th scope="col"></th>
                     </tr>
@@ -130,31 +127,31 @@
                         @if (p.days > 0) {
                         <span>
                           {{ p.days }}
-                          <span translate>d</span>,
+                          <span [translate]="'d'"></span>,
                         </span>
                         }
                         @if (p.hours > 0) {
                         <span>
                           {{ p.hours }}
-                          <span translate>h</span>,
+                          <span [translate]="'h'"></span>,
                         </span>
                         }
                         @if (p.minutes > 0) {
                         <span>
                           {{ p.minutes }}
-                          <span translate>m</span>
+                          <span [translate]="'m'"></span>
                           @if (p.seconds > 0) {
                           <span>&nbsp;</span>
                           }
                           @if (p.seconds > 0) {
-                          <span translate>and</span>
+                          <span [translate]="'and'"></span>
                           }
                         </span>
                         }
                         @if (p.seconds > 0) {
                         <span>
                           {{ p.days }}
-                          <span translate>s</span>
+                          <span [translate]="'s'"></span>
                         </span>
                         }
                       </td>
@@ -169,7 +166,7 @@
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">
-                        <span id="AllianceDesc" translate>Alliance</span>
+                        <span id="AllianceDesc" [translate]="'Alliance'"></span>
                       </th>
                       <th scope="col"></th>
                     </tr>
@@ -185,38 +182,38 @@
                           {{ p.alliance_name }}
                         </a>
                         @if (p.alliance === 0) {
-                        <span translate>None</span>
+                        <span [translate]="'None'"></span>
                         }
                       </td>
                       <td>
                         @if (p.days > 0) {
                         <span>
                           {{ p.days }}
-                          <span translate>d</span>,
+                          <span [translate]="'d'"></span>,
                         </span>
                         }
                         @if (p.hours > 0) {
                         <span>
                           {{ p.hours }}
-                          <span translate>h</span>,
+                          <span [translate]="'h'"></span>,
                         </span>
                         }
                         @if (p.minutes > 0) {
                         <span>
                           {{ p.minutes }}
-                          <span translate>m</span>
+                          <span [translate]="'m'"></span>
                           @if (p.seconds > 0) {
                           <span>&nbsp;</span>
                           }
                           @if (p.seconds > 0) {
-                          <span translate>and</span>
+                          <span [translate]="'and'"></span>
                           }
                         </span>
                         }
                         @if (p.seconds > 0) {
                         <span>
                           {{ p.days }}
-                          <span translate>s</span>
+                          <span [translate]="'s'"></span>
                         </span>
                         }
                       </td>
@@ -227,16 +224,8 @@
               </div>
             </div>
             <div class="text-center bold">
-              <div translate>
-                Each week, the player and the alliance that have kept the
-                diamond the longest win 2,500,000 Drachmas. If 4 to 7 players
-                got it, the reward goes to 5'000'000, and to 10'000'000 if 8 or
-                more got it.
-              </div>
-              <div translate>
-                The player with the diamond can receive an unlimited number of
-                attacks as long as they keep it.
-              </div>
+              <div [translate]="'Each week, the player and the alliance that have kept the diamond the longest win 2,500,000 Drachmas. If 4 to 7 players got it, the reward goes to 5\'000\'000, and to 10\'000\'000 if 8 or more got it.'"></div>
+              <div [translate]="'The player with the diamond can receive an unlimited number of attacks as long as they keep it.'"></div>
             </div>
           </div>
         </div>
@@ -251,16 +240,16 @@
             @if (attackPossible > 0 && getArmy().length > 0) {
             <button class="btn btn-primary fs-5" (click)="launchAttack(targetProfile.membre_id)">
               <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-              &nbsp;<span translate>Attack</span>
+              &nbsp;<span [translate]="'Attack'"></span>
             </button>
             } @else if (attackPossible === 0) {
-            <div translate>You can't attack this city</div>
+            <div [translate]="'You can\'t attack this city'"></div>
             }
           </div>
           @if (getArmy().length > 0) {
           <div class="text-center">
             <br />
-            <strong translate>Army summary</strong>
+            <strong [translate]="'Army summary'"></strong>
             @for (i of getArmy(); track i) {
             <div>
               <span [ngClass]="{ 'text-danger': i.all === 0 }">
@@ -276,8 +265,8 @@
             </div>
             }
             <br />
-            <strong translate>Offensive power</strong>
-            <strong translate>:</strong>
+            <strong [translate]="'Offensive power'"></strong>
+            <strong [translate]="':'"></strong>
             {{
             getOffensivePower()
             | number: '' : currentLocale()
@@ -285,7 +274,7 @@
           </div>
           }
           @if (getArmy().length === 0) {
-          <div class="text-center" translate>Your army is empty</div>
+          <div class="text-center" [translate]="'Your army is empty'"></div>
           }
         </div>
         }

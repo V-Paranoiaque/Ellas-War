@@ -9,9 +9,7 @@
             <div class="row">
               <div class="col-12">
                 @if (msgError === 1) {
-                  <div class="fw-bold text-danger text-center" translate>
-                    Message sent
-                  </div>
+                  <div class="fw-bold text-danger text-center" [translate]="'Message sent'"></div>
                 }
 
                 <fieldset aria-labelledby="messageType">
@@ -24,8 +22,8 @@
                       id="msg"
                       [(ngModel)]="messageType"
                       class="form-check-input" />
-                    <label for="msg" class="form-check-label" translate
-                      >Message</label
+                    <label for="msg" class="form-check-label" [translate]="'Message'"
+                      ></label
                     >
                   </div>
                   <div class="col-md-6 col-12 form-check">
@@ -36,14 +34,14 @@
                       id="email"
                       [(ngModel)]="messageType"
                       class="form-check-input" />
-                    <label for="email" class="form-check-label" translate
-                      >Email</label
+                    <label for="email" class="form-check-label" [translate]="'Email'"
+                      ></label
                     >
                   </div>
                 </fieldset>
 
-                <label for="title" class="form-label fw-bold" translate
-                  >Title</label
+                <label for="title" class="form-label fw-bold" [translate]="'Title'"
+                  ></label
                 >
                 <input
                   type="text"
@@ -53,8 +51,8 @@
                   id="title" />
                 <br />
 
-                <label for="message" class="form-label fw-bold" translate
-                  >Message</label
+                <label for="message" class="form-label fw-bold" [translate]="'Message'"
+                  ></label
                 >
                 <textarea
                   class="form-control"
@@ -71,8 +69,8 @@
                     checked="checked"
                     id="test"
                     class="form-check-input" />
-                  <label for="test" class="form-check-label" translate
-                    >Test message</label
+                  <label for="test" class="form-check-label" [translate]="'Test message'"
+                    ></label
                   >
                 </div>
 
@@ -81,9 +79,7 @@
                   <button
                     class="btn btn-success"
                     (click)="sendMessage()"
-                    translate>
-                    Send
-                  </button>
+                    [translate]="'Send'"></button>
                 </div>
               </div>
             </div>

@@ -6,14 +6,14 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center" id="pages404Desc" translate>404 pages</h1>
+            <h1 class="text-center" id="pages404Desc" [translate]="'404 pages'"></h1>
 
             @if (pageList.length > 0) {
             <table class="table" aria-labelledby="pages404Desc">
               <thead>
                 <tr>
-                  <th scope="column" translate>Page</th>
-                  <th scope="column" translate>Occurences</th>
+                  <th scope="column" [translate]="'Page'"></th>
+                  <th scope="column" [translate]="'Occurences'"></th>
                 </tr>
               </thead>
               @for (page of pageList; track page) {
@@ -32,7 +32,7 @@
             @if (pageList.length === 0) {
             <div class="text-center fw-bold">
               <br />
-              <div translate>No 404 page saved</div>
+              <div [translate]="'No 404 page saved'"></div>
             </div>
             }
           </div>

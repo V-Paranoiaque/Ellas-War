@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-body">
             <div class="fw-bold text-center">
-              <span translate> Drag and drop units on a wave to add them </span>
+              <span [translate]="'Drag and drop units on a wave to add them'"></span>
               <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
                 data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
             </div>
@@ -22,17 +22,17 @@
               <a [routerLink]="['/strategies/attack']" class="flex-grow-1 btn" [ngClass]="{
                   'btn-danger': type !== 'defense',
                   'btn-outline-danger': type === 'defense',
-                }" translate>Offensive</a>
+                }" [translate]="'Offensive'"></a>
               <a [routerLink]="['/strategies/defense']" class="flex-grow-1 btn" [ngClass]="{
                   'btn-primary': type === 'defense',
                   'btn-outline-primary': type !== 'defense',
-                }" translate>Defensive</a>
+                }" [translate]="'Defensive'"></a>
             </div>
 
             <!-- Attack -->
             @if (type !== 'defense') {
             <div class="text-center">
-              <strong translate>Total:</strong>
+              <strong [translate]="'Total:'"></strong>
               {{
               waveAttackPower
               | number: '1.0-0' : currentLocale()
@@ -61,7 +61,7 @@
                   <app-ew-icon name="{{ army.code }}"></app-ew-icon>
                 </div>
                 <div class="text-center">
-                  <strong translate>{{
+                  <strong>{{
                     Tools.getName(
                     army.code,
                     user.getPropertyNb(army.code) -
@@ -117,19 +117,14 @@
                       </div>
                       }
                       <div (click)="waveAttackDelete(army.code, i)" (keyup.enter)="waveAttackDelete(army.code, i)"
-                        tabindex="0" class="flex-grow-1 btn btn-danger" translate>
+                        tabindex="0" class="flex-grow-1 btn btn-danger">
                         <app-ic-icon [icon]="times"></app-ic-icon>
                       </div>
                     </div>
                   </div>
                   <div data-bs-toggle="modal" data-bs-target="#ArmyInfo" class="text-center"
                     (click)="selectArmy(army.code)" (keyup.enter)="selectArmy(army.code)" tabindex="0">
-                    <strong translate>{{
-                      Tools.getName(
-                      army.code,
-                      getWaveUnit(wave, army.code)
-                      )
-                      }}</strong>
+                    <strong [translate]="(Tools.getName( army.code, getWaveUnit(wave, army.code) ))"></strong>
                     (<strong>{{
                       getWaveUnit(wave, army.code)
                       }}</strong>)
@@ -152,9 +147,7 @@
               <div cdkDropList class="text-center" id="wave-attack-{{ waveAttackList.length }}"
                 [cdkDropListData]="emptyWave" [cdkDropListConnectedTo]="waveAttackDropList"
                 (cdkDropListDropped)="onDropAttack($event)">
-                <span translate>
-                  Drag and drop units on a wave to add them
-                </span>
+                <span [translate]="'Drag and drop units on a wave to add them'"></span>
                 <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
                   data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
               </div>
@@ -162,15 +155,11 @@
           }
           @if (waveAttackPower === 0) {
           <div>
-            <div class="text-center fw-bold" translate>
-              Your army is empty
-            </div>
+            <div class="text-center fw-bold" [translate]="'Your army is empty'"></div>
             <h3>{{ 'Wave { value }' | translate: { value: 1 } }}</h3>
             <div cdkDropList class="text-center" id="wave-attack-1" [cdkDropListData]="emptyWave"
               [cdkDropListConnectedTo]="waveAttackDropList" (cdkDropListDropped)="onDropAttack($event)">
-              <span translate>
-                Drag and drop units on a wave to add them
-              </span>
+              <span [translate]="'Drag and drop units on a wave to add them'"></span>
               <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
                 data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
             </div>
@@ -181,7 +170,7 @@
           <!-- Defense -->
           @if (type === 'defense') {
           <div class="text-center">
-            <strong translate>Total:</strong>
+            <strong [translate]="'Total:'"></strong>
             {{
             waveDefensePower
             | number: '1.0-0' : currentLocale()
@@ -193,7 +182,7 @@
           user.getPropertyNb('defense_wall') === 0
           ) {
           <div class="text-center">
-            <span translate>The wall of Poseidon protects this city.</span>
+            <span [translate]="'The wall of Poseidon protects this city.'"></span>
             ({{
             wallDefense | number: '' : currentLocale()
             }}
@@ -205,7 +194,7 @@
           user.getPropertyNb('defense_wall') > 0
           ) {
           <div class="text-center">
-            <span translate>A wall is protecting this city.</span>
+            <span [translate]="'A wall is protecting this city.'"></span>
             ({{
             defenseWallStrength
             | number: '' : currentLocale()
@@ -218,7 +207,7 @@
           user.getPropertyNb('defense_wall') > 0
           ) {
           <div class="text-center">
-            <span translate>Many walls are protecting this city.</span>
+            <span [translate]="'Many walls are protecting this city.'"></span>
             ({{
             wallDefense + defenseWallStrength
             | number: '' : currentLocale()
@@ -248,7 +237,7 @@
                 <app-ew-icon name="{{ army.code }}"></app-ew-icon>
               </div>
               <div class="text-center">
-                <strong translate>{{
+                <strong>{{
                   Tools.getName(
                   army.code,
                   user.getPropertyNb(army.code) -
@@ -287,7 +276,7 @@
                 <app-ew-icon name="{{ building.code }}"></app-ew-icon>
               </div>
               <div class="text-center">
-                <strong translate>{{
+                <strong>{{
                   Tools.getName(
                   building.code,
                   user.getPropertyNb(building.code) -
@@ -344,19 +333,14 @@
                     }
                     <div (click)="waveDefenseDelete(army.code, i)" (keyup.enter)="
                                     waveDefenseDelete(army.code, i)
-                                  " tabindex="0" class="flex-grow-1 btn btn-danger" translate>
+                                  " tabindex="0" class="flex-grow-1 btn btn-danger">
                       <app-ic-icon [icon]="times"></app-ic-icon>
                     </div>
                   </div>
                 </div>
                 <div data-bs-toggle="modal" data-bs-target="#ArmyInfo" class="text-center"
                   (click)="selectArmy(army.code)" (keyup.enter)="selectArmy(army.code)" tabindex="0">
-                  <strong translate>{{
-                    Tools.getName(
-                    army.code,
-                    getWaveUnit(wave, army.code)
-                    )
-                    }}</strong>
+                  <strong [translate]="(Tools.getName( army.code, getWaveUnit(wave, army.code) ))"></strong>
                   (<strong>{{
                     getWaveUnit(wave, army.code)
                     }}</strong>)
@@ -396,19 +380,14 @@
                     }
                     <div (click)="waveDefenseDelete(building.code, i)" (keyup.enter)="
                                     waveDefenseDelete(building.code, i)
-                                  " tabindex="0" class="flex-grow-1 btn btn-danger" translate>
+                                  " tabindex="0" class="flex-grow-1 btn btn-danger">
                       <app-ic-icon [icon]="times"></app-ic-icon>
                     </div>
                   </div>
                 </div>
                 <div data-bs-toggle="modal" data-bs-target="#BuildingInfo" class="text-center"
                   (click)="selectBuilding(building.code)" (keyup.enter)="selectBuilding(building.code)" tabindex="0">
-                  <strong translate>{{
-                    Tools.getName(
-                    building.code,
-                    getWaveUnit(wave, building.code)
-                    )
-                    }}</strong>
+                  <strong [translate]="(Tools.getName( building.code, getWaveUnit(wave, building.code) ))"></strong>
                   (<strong>{{
                     getWaveUnit(wave, building.code)
                     }}</strong>)
@@ -431,9 +410,7 @@
             <div cdkDropList class="text-center" id="wave-defense-{{ waveDefenseList.length }}"
               [cdkDropListData]="emptyWave" [cdkDropListConnectedTo]="waveDefenseDropList"
               (cdkDropListDropped)="onDropDefense($event)">
-              <span translate>
-                Drag and drop units on a wave to add them
-              </span>
+              <span [translate]="'Drag and drop units on a wave to add them'"></span>
               <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
                 data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
             </div>
@@ -441,23 +418,16 @@
         }
         @if (waveDefensePower === 0) {
         <div>
-          <div class="text-center fw-bold" translate>
-            Your army is empty
-          </div>
+          <div class="text-center fw-bold" [translate]="'Your army is empty'"></div>
           <div class="text-center text-danger fw-bold">
-            <span translate>
-              Without defense, your resource losses will be greater in
-              the event of an attack
-            </span>
+            <span [translate]="'Without defense, your resource losses will be greater in the event of an attack'"></span>
             <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
               data-bs-target="#DefenseEmpty"></app-ic-icon>
           </div>
           <h3>{{ 'Wave { value }' | translate: { value: 1 } }}</h3>
           <div cdkDropList class="text-center" id="wave-defense-1" [cdkDropListData]="emptyWave"
             [cdkDropListConnectedTo]="waveDefenseDropList" (cdkDropListDropped)="onDropDefense($event)">
-            <span translate>
-              Drag and drop units on a wave to add them
-            </span>
+            <span [translate]="'Drag and drop units on a wave to add them'"></span>
             <app-ic-icon [icon]="questionCircle" role="button" data-bs-toggle="modal"
               data-bs-target="#StrategiesHelpPopup"></app-ic-icon>
           </div>

@@ -13,7 +13,7 @@
       </div>
       @if (candidate.motivations) {
         <div class="modal-body container-fluid">
-          <strong translate>Motivations</strong><strong translate>:</strong>
+          <strong [translate]="'Motivations'"></strong><strong [translate]="':'"></strong>
           <br />
           {{ candidate.motivations }}
         </div>
@@ -23,25 +23,19 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-danger"
           (click)="refuse()"
           data-bs-dismiss="modal"
-          translate>
-          Refuse
-        </button>
+          [translate]="'Refuse'"></button>
         <button
           type="button"
           class="btn btn-success"
           (click)="accept()"
           data-bs-dismiss="modal"
-          translate>
-          Accept
-        </button>
+          [translate]="'Accept'"></button>
       </div>
     </div>
   </div>

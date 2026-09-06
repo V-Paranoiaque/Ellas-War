@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="buildingDesc" class="modal-title" translate>Buildings</h5>
+        <h5 id="buildingDesc" class="modal-title" [translate]="'Buildings'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
@@ -20,8 +20,8 @@
         <table class="table" aria-describedby="buildingDesc">
           <thead class="text-center">
             <th scope="col"></th>
-            <th scope="col" translate>Field</th>
-            <th scope="col" translate>Total</th>
+            <th scope="col" [translate]="'Field'"></th>
+            <th scope="col" [translate]="'Total'"></th>
           </thead>
           <tbody>
             @for (building of user.getBuildings(); track building) {
@@ -63,7 +63,7 @@
             }
             @if (user.getPropertyNb('poseidon_wall') > 0) {
             <tr>
-              <th scope="row" translate>Wall of Poseidon</th>
+              <th scope="row" [translate]="'Wall of Poseidon'"></th>
               <td class="text-end">0</td>
               <td class="text-end">0</td>
             </tr>
@@ -71,7 +71,7 @@
 
             @if (user.getPropertyNb('hermes') === 1) {
             <tr>
-              <th scope="row" translate>Hermes</th>
+              <th scope="row" [translate]="'Hermes'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple1.field
@@ -88,7 +88,7 @@
             }
             @if (user.getPropertyNb('apollo') === 1) {
             <tr>
-              <th scope="row" translate>Apollo</th>
+              <th scope="row" [translate]="'Apollo'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple1.field
@@ -105,7 +105,7 @@
             }
             @if (user.getPropertyNb('demeter') === 1) {
             <tr>
-              <th scope="row" translate>Demeter</th>
+              <th scope="row" [translate]="'Demeter'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple1.field
@@ -123,7 +123,7 @@
 
             @if (user.getPropertyNb('ares') === 1) {
             <tr>
-              <th scope="row" translate>Ares</th>
+              <th scope="row" [translate]="'Ares'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple2.field
@@ -140,7 +140,7 @@
             }
             @if (user.getPropertyNb('athena') === 1) {
             <tr>
-              <th scope="row" translate>Athena</th>
+              <th scope="row" [translate]="'Athena'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple2.field
@@ -158,7 +158,7 @@
 
             @if (user.getPropertyNb('artemis') === 1) {
             <tr>
-              <th scope="row" translate>Artemis</th>
+              <th scope="row" [translate]="'Artemis'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple3.field
@@ -175,7 +175,7 @@
             }
             @if (user.getPropertyNb('dionysus') === 1) {
             <tr>
-              <th scope="row" translate>Dionysus</th>
+              <th scope="row" [translate]="'Dionysus'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple3.field
@@ -192,7 +192,7 @@
             }
             @if (user.getPropertyNb('hephaestus') === 1) {
             <tr>
-              <th scope="row" translate>Hephaestus</th>
+              <th scope="row" [translate]="'Hephaestus'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple3.field
@@ -210,7 +210,7 @@
 
             @if (user.getPropertyNb('zeus') === 1) {
             <tr>
-              <th scope="row" translate>Zeus</th>
+              <th scope="row" [translate]="'Zeus'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple4.field
@@ -227,7 +227,7 @@
             }
             @if (user.getPropertyNb('hades') === 1) {
             <tr>
-              <th scope="row" translate>Hades</th>
+              <th scope="row" [translate]="'Hades'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple4.field
@@ -244,7 +244,7 @@
             }
             @if (user.getPropertyNb('poseidon') === 1) {
             <tr>
-              <th scope="row" translate>Poseidon</th>
+              <th scope="row" [translate]="'Poseidon'"></th>
               <td class="text-end">
                 {{
                 getTempleField().temple4.field
@@ -271,9 +271,7 @@
           </tfoot>
         </table>
         <div class="text-end">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         </div>
       </div>
     </div>

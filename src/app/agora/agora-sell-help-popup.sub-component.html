@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Sell resources on the Agora</h5>
+        <h5 class="modal-title" [translate]="'Sell resources on the Agora'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -16,7 +16,7 @@
               'You can sell a maximum of { value } batches'
                 | translate: { value: 8 + 2 * user.getPropertyNb('hermes') }
             "></li>
-          <li translate>The batch size cannot exceed the limit</li>
+          <li [translate]="'The batch size cannot exceed the limit'"></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -24,9 +24,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

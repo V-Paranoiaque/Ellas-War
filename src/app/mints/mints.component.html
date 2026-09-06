@@ -7,9 +7,7 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <div class="col-12 text-center fw-bold mb-4" translate>
-                Production of drachmas by number of mints
-              </div>
+              <div class="col-12 text-center fw-bold mb-4" [translate]="'Production of drachmas by number of mints'"></div>
               @for (prod of list; track prod; let i = $index) {
               @if (i > 0) {
               <div class="col-lg-3 col-6 d-flex" [ngClass]="{

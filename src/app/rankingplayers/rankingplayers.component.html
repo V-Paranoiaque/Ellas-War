@@ -12,7 +12,7 @@
         <div class="card col-12 mb-2">
           <div class="card-body">
             <h1 class="text-center" id="rankingDesc">
-              <span translate>Player Ranking</span>
+              <span [translate]="'Player Ranking'"></span>
               <app-ic-icon role="button" [icon]="questionCircle" class="fs-3" data-bs-toggle="modal"
                 data-bs-target="#RankingplayersHelpPopup"></app-ic-icon>
             </h1>
@@ -21,37 +21,37 @@
                 <tr class="text-center">
                   <th scope="col"></th>
                   <th scope="col" (click)="rankingChooseOrder('player')">
-                    <span role="button" translate>Player</span>
+                    <span role="button" [translate]="'Player'"></span>
                     @if (rankingOrder() === 'player') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
                   </th>
                   <th scope="col" (click)="rankingChooseOrder('level')" class="d-none d-sm-table-cell">
-                    <span role="button" translate>Level</span>
+                    <span role="button" [translate]="'Level'"></span>
                     @if (rankingOrder() === 'level') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
                   </th>
                   <th scope="col" (click)="rankingChooseOrder('xp')">
-                    <span role="button" translate>XP</span>
+                    <span role="button" [translate]="'XP'"></span>
                     @if (rankingOrder() === 'xp') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
                   </th>
                   <th scope="col" (click)="rankingChooseOrder('victory')">
-                    <span role="button" translate>Victories</span>
+                    <span role="button" [translate]="'Victories'"></span>
                     @if (rankingOrder() === 'victory') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
                   </th>
                   <th scope="col" (click)="rankingChooseOrder('field')" class="d-none d-sm-table-cell">
-                    <span role="button" translate>Field</span>
+                    <span role="button" [translate]="'Field'"></span>
                     @if (rankingOrder() === 'field') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
                   </th>
                   <th scope="col" (click)="rankingChooseOrder('honor')" class="d-none d-sm-table-cell">
-                    <span role="button" translate>Honor</span>
+                    <span role="button" [translate]="'Honor'"></span>
                     @if (rankingOrder() === 'honor') {
                     <app-ic-icon role="button" [icon]="sortUP" title="{{ 'Current order' | translate }}"></app-ic-icon>
                     }
@@ -104,7 +104,7 @@
                 <select class="form-select" #mySelect (change)="rankingPageChange(parseInt(mySelect.value))"
                   [ngModel]="rankingPage()" title="{{ 'Change page' | translate }}">
                   @for (id of Tools.range(1, rankingMax()); track id) {
-                  <option value="{{ id }}" translate>Page {{ id }}</option>
+                  <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                   }
                 </select>
                 <span class="input-group-text" role="button" (click)="rankingPageChange(rankingPage() + 1)"

@@ -2,9 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="storeroomHistoryDesc" translate>
-          Storeroom history
-        </h5>
+        <h5 class="modal-title" id="storeroomHistoryDesc" [translate]="'Storeroom history'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
@@ -12,9 +10,9 @@
         <table class="table align-middle table-middle" aria-labelledby="storeroomHistoryDesc">
           <thead>
             <tr>
-              <th scope="col" class="text-center" translate>Date</th>
-              <th scope="col" class="text-center" translate>Resources</th>
-              <th scope="col" class="text-center" translate>Price</th>
+              <th scope="col" class="text-center" [translate]="'Date'"></th>
+              <th scope="col" class="text-center" [translate]="'Resources'"></th>
+              <th scope="col" class="text-center" [translate]="'Price'"></th>
             </tr>
           </thead>
           <tbody>
@@ -38,13 +36,11 @@
           </tbody>
         </table>
         } @else {
-        <div class="text-center" translate>Your history is empty</div>
+        <div class="text-center" [translate]="'Your history is empty'"></div>
         }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>

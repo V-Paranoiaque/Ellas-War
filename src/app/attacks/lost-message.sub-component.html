@@ -1,10 +1,10 @@
 @if (getLostBuildingsNb() + getLostUnitsNb() + getLostResourcesNb() === 0) {
-<div translate>No loss in the city</div>
+<div [translate]="'No loss in the city'"></div>
 }
 
 @if (getLostUnitsNb() > 0) {
 <div>
-  <strong translate>Lost units</strong><strong translate>:</strong>
+  <strong [translate]="'Lost units'"></strong><strong [translate]="':'"></strong>
   <ul class="list-unstyled">
     @for (unit of getLostUnits(); track unit) {
     <li>
@@ -17,7 +17,7 @@
 }
 @if (getLostBuildingsNb() > 0) {
 <div>
-  <strong translate>Lost buildings</strong><strong translate>:</strong>
+  <strong [translate]="'Lost buildings'"></strong><strong [translate]="':'"></strong>
   <ul class="list-unstyled">
     @for (building of getLostBuildings(); track building) {
     <li>
@@ -31,7 +31,7 @@
 
 @if (getLostResourcesNb() > 0) {
 <div>
-  <strong translate>Lost resources</strong><strong translate>:</strong>
+  <strong [translate]="'Lost resources'"></strong><strong [translate]="':'"></strong>
   <ul class="list-unstyled">
     @for (res of getLostResources(); track res) {
     @if (res.nb > 0) {

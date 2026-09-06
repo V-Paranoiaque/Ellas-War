@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" translate>Report the profile</h5>
+          <h5 class="modal-title" [translate]="'Report the profile'"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -13,17 +13,13 @@
           | translate: { value: allianceProfile().alliance_name }
           }}
           } @else {
-          <span class="text-danger" translate>The profile has been reported, we will check it shortly</span>
+          <span class="text-danger" [translate]="'The profile has been reported, we will check it shortly'"></span>
           }
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
           @if (reported === 0) {
-          <button type="button" class="btn btn-primary" (click)="report()" translate>
-            Confirm
-          </button>
+          <button type="button" class="btn btn-primary" (click)="report()" [translate]="'Confirm'"></button>
           }
         </div>
       </div>
@@ -78,7 +74,7 @@
               <div class="col-sm-6 col-12">
                 <table class="table" aria-labelledby="allianceProfileDesc">
                   <tr>
-                    <th class="fw-bold" scope="row" translate>Chief:</th>
+                    <th class="fw-bold" scope="row" [translate]="'Chief:'"></th>
                     <td>&nbsp;&nbsp;</td>
                     <td [routerLink]="['/profile/' + allianceProfile().chief_id]">
                       <span role="button">
@@ -87,7 +83,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="fw-bold" scope="row" translate>Founder:</th>
+                    <th class="fw-bold" scope="row" [translate]="'Founder:'"></th>
                     <td>&nbsp;&nbsp;</td>
                     <td [routerLink]="['/profile/' + allianceProfile().creator_id]">
                       <span role="button">
@@ -96,26 +92,26 @@
                     </td>
                   </tr>
                   <tr>
-                    <th class="fw-bold" scope="row" translate>Members:</th>
+                    <th class="fw-bold" scope="row" [translate]="'Members:'"></th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
                       <a [routerLink]="[
                           '/alliancemembers/' + allianceProfile().alliance_id,
                         ]" class="link">
                         {{ allianceProfile().nbmembers }}
-                        (<span translate>Consult</span>)
+                        (<span [translate]="'Consult'"></span>)
                       </a>
                     </td>
                   </tr>
                   <tr>
-                    <th class="fw-bold" scope="row" translate>Victories:</th>
+                    <th class="fw-bold" scope="row" [translate]="'Victories:'"></th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
                       <span>{{ allianceProfile().victories }}</span>
                     </td>
                   </tr>
                   <tr>
-                    <th class="fw-bold" scope="row" translate>Defeats:</th>
+                    <th class="fw-bold" scope="row" [translate]="'Defeats:'"></th>
                     <td>&nbsp;&nbsp;</td>
                     <td>
                       <span>{{ allianceProfile().defeats }}</span>

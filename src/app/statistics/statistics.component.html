@@ -7,32 +7,24 @@
         <div class="card">
           <div class="d-flex justify-content-center">
             <a class="btn btn-primary flex-grow-1 design-background" href="/agora" [routerLink]="['/agora']"
-              title="{{ 'Player Ranking' | translate }}" translate>
-              Agora
-            </a>
+              title="{{ 'Player Ranking' | translate }}" [translate]="'Agora'"></a>
             <a class="btn btn-primary flex-grow-1 design-background" href="/storeroom" [routerLink]="['/storeroom']"
-              title="{{ 'Honor Ranking' | translate }}" translate>
-              Storeroom
-            </a>
+              title="{{ 'Honor Ranking' | translate }}" [translate]="'Storeroom'"></a>
             <a class="btn btn-danger flex-grow-1 design-background" href="/statistics" [routerLink]="['/statistics']"
-              title="{{ 'Alliance Ranking' | translate }}" translate>
-              Statistics
-            </a>
+              title="{{ 'Alliance Ranking' | translate }}" [translate]="'Statistics'"></a>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-12 d-flex">
         <div class="card col-12 mb-2">
-          <div class="card-header" translate>Agora statistics</div>
+          <div class="card-header" [translate]="'Agora statistics'"></div>
           <div class="card-body">
             <div class="text-center">
-              <strong id="titleLastWeek" translate>Sales of last week</strong>
+              <strong id="titleLastWeek" [translate]="'Sales of last week'"></strong>
             </div>
             @if (getAgoraStatsNb() === 0) {
-            <div class="text-center" translate>
-              No statistics available about last week
-            </div>
+            <div class="text-center" [translate]="'No statistics available about last week'"></div>
             }
             <div class="table-responsive">
               @if (getAgoraStatsNb() > 0) {
@@ -40,9 +32,9 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col" translate>Average rate</th>
-                    <th scope="col" translate>Deposits</th>
-                    <th scope="col" translate>Sales</th>
+                    <th scope="col" [translate]="'Average rate'"></th>
+                    <th scope="col" [translate]="'Deposits'"></th>
+                    <th scope="col" [translate]="'Sales'"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -93,12 +85,10 @@
           </div>
           <div class="card-body">
             <div class="text-center">
-              <strong id="titleLastWeek" translate>Your sales from last week</strong>
+              <strong id="titleLastWeek" [translate]="'Your sales from last week'"></strong>
             </div>
             @if (getAgoraMyStatsNb() === 0) {
-            <div class="text-center" translate>
-              No statistics available about last week
-            </div>
+            <div class="text-center" [translate]="'No statistics available about last week'"></div>
             }
             <div class="table-responsive">
               @if (getAgoraMyStatsNb() > 0) {
@@ -106,10 +96,10 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col" translate>Average rate</th>
-                    <th scope="col" translate>Deposits</th>
-                    <th scope="col" translate>Sales</th>
-                    <th scope="col" translate>Total</th>
+                    <th scope="col" [translate]="'Average rate'"></th>
+                    <th scope="col" [translate]="'Deposits'"></th>
+                    <th scope="col" [translate]="'Sales'"></th>
+                    <th scope="col" [translate]="'Total'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -169,15 +159,13 @@
 
       <div class="col-md-6 col-12 d-flex">
         <div class="card col-12 mb-2">
-          <div class="card-header" translate>Storeroom statistics</div>
+          <div class="card-header" [translate]="'Storeroom statistics'"></div>
           <div class="card-body">
             <div class="text-center">
-              <strong translate>Sales of last week</strong>
+              <strong [translate]="'Sales of last week'"></strong>
             </div>
             @if (getStoreroomStatsNb() === 0) {
-            <div class="text-center" translate>
-              No statistics available about last week
-            </div>
+            <div class="text-center" [translate]="'No statistics available about last week'"></div>
             }
             <div class="table-responsive">
               @if (getStoreroomStatsNb() > 0) {
@@ -185,9 +173,9 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col" translate>Average rate</th>
-                    <th scope="col" translate>Deposits</th>
-                    <th scope="col" translate>Sales</th>
+                    <th scope="col" [translate]="'Average rate'"></th>
+                    <th scope="col" [translate]="'Deposits'"></th>
+                    <th scope="col" [translate]="'Sales'"></th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -238,12 +226,10 @@
           </div>
           <div class="card-body">
             <div class="text-center">
-              <strong id="titleLastWeek" translate>Your sales from last week</strong>
+              <strong id="titleLastWeek" [translate]="'Your sales from last week'"></strong>
             </div>
             @if (getStoreroomMyStatsNb() === 0) {
-            <div class="text-center" translate>
-              No statistics available about last week
-            </div>
+            <div class="text-center" [translate]="'No statistics available about last week'"></div>
             }
             <div class="table-responsive">
               @if (getStoreroomMyStatsNb() > 0) {
@@ -251,10 +237,10 @@
                 <thead>
                   <tr>
                     <th scope="col"></th>
-                    <th scope="col" translate>Average rate</th>
-                    <th scope="col" translate>Deposits</th>
-                    <th scope="col" translate>Sales</th>
-                    <th scope="col" translate>Total</th>
+                    <th scope="col" [translate]="'Average rate'"></th>
+                    <th scope="col" [translate]="'Deposits'"></th>
+                    <th scope="col" [translate]="'Sales'"></th>
+                    <th scope="col" [translate]="'Total'"></th>
                   </tr>
                 </thead>
                 <tbody>

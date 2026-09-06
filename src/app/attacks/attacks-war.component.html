@@ -15,10 +15,7 @@
         <div class="text-center alert alert-danger">
           @if (Object.keys(realWaveAttackCheck.ress).length > 0) {
           <div>
-            <span translate>
-              You do not have enough resources, the units of your waves can
-              not fight.
-            </span>
+            <span [translate]="'You do not have enough resources, the units of your waves can not fight.'"></span>
             <br />
             @for (res of realWaveAttackCheck.ress | keyvalue; track res) {
             <span>
@@ -30,13 +27,13 @@
           @if (Object.keys(realWaveAttackCheck.habitation).length > 0) {
           <div>
             @if (realWaveAttackCheck.habitation.normal) {
-            <div translate>You do not have enough huts and houses.</div>
+            <div [translate]="'You do not have enough huts and houses.'"></div>
             }
             @if (realWaveAttackCheck.habitation.palace) {
-            <div translate>You do not have enough palaces.</div>
+            <div [translate]="'You do not have enough palaces.'"></div>
             }
             @if (realWaveAttackCheck.habitation.cavern) {
-            <div translate>You do not have enough caverns.</div>
+            <div [translate]="'You do not have enough caverns.'"></div>
             }
           </div>
           }
@@ -52,24 +49,15 @@
 
           @if (getAttackWarsList().length === 0) {
           <div class="card-body text-center">
-            <p translate>
-              Your attack list is empty. You can only see cities who have
-              between 50% and 200% of your field.
-            </p>
-            <p translate>
-              During a war, if your field is under or equal 8'000, you can
-              also see all the cities of the enemis alliances who are also
-              under 8'000. The level rule still applies.
-            </p>
+            <p [translate]="'Your attack list is empty. You can only see cities who have between 50% and 200% of your field.'"></p>
+            <p [translate]="'During a war, if your field is under or equal 8\'000, you can also see all the cities of the enemis alliances who are also under 8\'000. The level rule still applies.'"></p>
           </div>
           } @else {
           <div class="card-body">
-            <div class="visually-hidden" id="getAttackWarsListDesc" translate>
-              Cities available for attack during war
-            </div>
+            <div class="visually-hidden" id="getAttackWarsListDesc" [translate]="'Cities available for attack during war'"></div>
             @if (user.getPropertyNb('level') >= 1) {
             <div class="text-center fw-bold mb-2">
-              <a [routerLink]="['/strategies/attack']" translate>Manage your waves to optimize your losses</a>
+              <a [routerLink]="['/strategies/attack']" [translate]="'Manage your waves to optimize your losses'"></a>
             </div>
             }
             <table class="table align-middle" aria-labelledby="getAttackWarsListDesc">
@@ -77,7 +65,7 @@
                 <tr class="text-center">
                   <th scope="col"></th>
                   <th scope="col" class="d-none d-sm-table-cell" (click)="setOrder('victory')" role="button">
-                    <span translate>V</span>
+                    <span [translate]="'V'"></span>
                     @if (
                     attackOrderReverse === 0 &&
                     attackOrderSort === 'victory'
@@ -98,7 +86,7 @@
                   user.getDatas().attack.level_xp_min
                   ) {
                   <th scope="col" (click)="setOrder('xp')" role="button">
-                    <span translate>XP</span>
+                    <span [translate]="'XP'"></span>
                     @if (
                     attackOrderReverse === 0 && attackOrderSort === 'xp'
                     ) {
@@ -112,7 +100,7 @@
                   </th>
                   }
                   <th scope="col" (click)="setOrder('field')" role="button">
-                    <span translate>Field</span>
+                    <span [translate]="'Field'"></span>
                     @if (
                     attackOrderReverse === 0 && attackOrderSort === 'field'
                     ) {
@@ -240,9 +228,7 @@
                 track item;
                 let i = $index
                 ) {
-                <option value="{{ i + 1 }}" translate>
-                  Page {{ i + 1 }}
-                </option>
+                <option value="{{ i + 1 }}" [translate]="'Page ' + (i + 1)"></option>
                 }
               </select>
               <span class="input-group-text" role="button" (click)="setAttacksWarsPage(attackPage, 1)"
@@ -276,22 +262,22 @@
             <table aria-describedby="playerDesc" class="m-auto">
               @if (targetProfile.alliance > 0) {
               <tr>
-                <th scope="row" translate>Alliance</th>
+                <th scope="row" [translate]="'Alliance'"></th>
                 <td>{{ targetProfile.alliance_name }}&nbsp;</td>
               </tr>
               }
               @if (targetProfile.alliance > 0) {
               <tr>
-                <th scope="row" translate>Rank</th>
+                <th scope="row" [translate]="'Rank'"></th>
                 <td>{{ targetProfile.rank_name }}&nbsp;</td>
               </tr>
               }
               <tr>
-                <th scope="row" translate>Level</th>
+                <th scope="row" [translate]="'Level'"></th>
                 <td>{{ targetProfile.level }}&nbsp;</td>
               </tr>
               <tr>
-                <th scope="row" translate>Field</th>
+                <th scope="row" [translate]="'Field'"></th>
                 <td>
                   {{
                   targetProfile.field
@@ -300,7 +286,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row" class="pe-1" translate>Victories</th>
+                <th scope="row" class="pe-1" [translate]="'Victories'"></th>
                 <td>
                   {{
                   targetProfile.victory
@@ -309,7 +295,7 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row" translate>XP</th>
+                <th scope="row" [translate]="'XP'"></th>
                 <td>
                   {{
                   targetProfile.xp
@@ -324,22 +310,13 @@
               <span class="text-center">
                 @switch (spyInfo.error) {
                 @case (1) {
-                <div translate>
-                  Your espionage team was caught and executed in a
-                  public place.
-                </div>
+                <div [translate]="'Your espionage team was caught and executed in a public place.'"></div>
                 }
                 @case (2) {
-                <div translate>
-                  Information reached your city but unfortunately your
-                  spy team was caught, tortured until they denounce
-                  you and executed in a public place.
-                </div>
+                <div [translate]="'Information reached your city but unfortunately your spy team was caught, tortured until they denounce you and executed in a public place.'"></div>
                 }
                 @case (4) {
-                <div class="text-center" translate>
-                  You do not have spies.
-                </div>
+                <div class="text-center" [translate]="'You do not have spies.'"></div>
                 }
                 }
               </span>
@@ -348,18 +325,14 @@
               spyInfo.poseidon_wall === 1 &&
               (!spyInfo.defense_wall || spyInfo.defense_wall === 0)
               ) {
-              <div class="text-center" translate>
-                The wall of Poseidon protects this city.
-              </div>
+              <div class="text-center" [translate]="'The wall of Poseidon protects this city.'"></div>
               }
               @if (
               spyInfo.defense_wall &&
               spyInfo.defense_wall >= 1 &&
               (!spyInfo.poseidon_wall || spyInfo.poseidon_wall === 0)
               ) {
-              <div class="text-center" translate>
-                A wall is protecting this city.
-              </div>
+              <div class="text-center" [translate]="'A wall is protecting this city.'"></div>
               }
               @if (
               spyInfo.defense_wall &&
@@ -367,23 +340,18 @@
               spyInfo.poseidon_wall &&
               spyInfo.poseidon_wall === 1
               ) {
-              <div class="text-center" translate>
-                Many walls are protecting this city.
-              </div>
+              <div class="text-center" [translate]="'Many walls are protecting this city.'"></div>
               }
               @if (Object.keys(spyInfo).length > 0) {
               <div class="text-center">
                 @if (
                 !isProtected() && [0, 2, 3].includes(spyInfo.error)
                 ) {
-                <div translate>
-                  This city is not protected by any units or defense
-                  towers
-                </div>
+                <div [translate]="'This city is not protected by any units or defense towers'"></div>
                 }
                 @if (spyInfo.unitiesNb > 0) {
                 <div>
-                  <strong translate>Unities</strong><strong translate>:</strong>
+                  <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
                   {{
                   spyInfo.unitiesNb
                   | number: '' : currentLocale()
@@ -393,7 +361,7 @@
                 }
                 @if (spyInfo.defenseNb > 0) {
                 <div>
-                  <strong translate>Towers</strong><strong translate>:</strong>
+                  <strong [translate]="'Towers'"></strong><strong [translate]="':'"></strong>
                   {{
                   spyInfo.defenseNb
                   | number: '' : currentLocale()
@@ -406,7 +374,7 @@
                 spyInfo.buildings && spyInfo.buildings.length > 0
                 ) {
                 <div>
-                  <strong translate>Buildings</strong><strong translate>:</strong>
+                  <strong [translate]="'Buildings'"></strong><strong [translate]="':'"></strong>
                   @for (build of spyInfo.buildings; track build) {
                   <div>
                     {{ Tools.getName(build) | translate }}
@@ -416,7 +384,7 @@
                 }
                 @if (spyInfo.unities && spyInfo.unities.length > 0) {
                 <div>
-                  <strong translate>Unities</strong><strong translate>:</strong>
+                  <strong [translate]="'Unities'"></strong><strong [translate]="':'"></strong>
                   @for (unit of spyInfo.unities; track unit) {
                   <div>
                     {{
@@ -431,8 +399,8 @@
                 @if (spyInfo.ress && spyInfo.ress.food) {
                 <div class="col-table center">
                   <br />
-                  <strong translate>Resources</strong>
-                  <strong translate>:</strong>
+                  <strong [translate]="'Resources'"></strong>
+                  <strong [translate]="':'"></strong>
                   <span data-bs-toggle="modal" data-bs-target="#spyResourcesHelp" role="button"
                     title="{{ 'Help' | translate }}">
                     <app-ic-icon [icon]="questionCircle"></app-ic-icon>
@@ -650,121 +618,85 @@
               <div>
                 @switch (attackPossibleError) {
                 @case (2) {
-                <div translate>Your army is empty</div>
+                <div [translate]="'Your army is empty'"></div>
                 }
                 @case (3) {
-                <div translate>Error in the target</div>
+                <div [translate]="'Error in the target'"></div>
                 }
                 @case (4) {
-                <div translate>
-                  You can't attack a player who is in the same
-                  alliance than you
-                </div>
+                <div [translate]="'You can\'t attack a player who is in the same alliance than you'"></div>
                 }
                 @case (5) {
-                <div translate>
-                  You don't have enough mints to launch an attack
-                </div>
+                <div [translate]="'You don\'t have enough mints to launch an attack'"></div>
                 }
                 @case (7) {
-                <div translate>
-                  This city's field has changed, refresh your attack
-                  list
-                </div>
+                <div [translate]="'This city\'s field has changed, refresh your attack list'"></div>
                 }
                 @case (8) {
-                <div translate>You can't attack an Admin</div>
+                <div [translate]="'You can\'t attack an Admin'"></div>
                 }
                 @case (9) {
-                <div translate>
-                  This player is too low level for you
-                </div>
+                <div [translate]="'This player is too low level for you'"></div>
                 }
                 @case (10) {
-                <div translate>
-                  You have already attacked this player
-                </div>
+                <div [translate]="'You have already attacked this player'"></div>
                 }
                 @case (11) {
-                <div translate>
-                  You have a pact with this player's alliance
-                </div>
+                <div [translate]="'You have a pact with this player\'s alliance'"></div>
                 }
                 @case (12) {
-                <div translate>
-                  This city has suffered a lot, it needs time to
-                  recover
-                </div>
+                <div [translate]="'This city has suffered a lot, it needs time to recover'"></div>
                 }
                 @case (13) {
-                <div translate>
-                  This city is on strike and can't be attacked
-                </div>
+                <div [translate]="'This city is on strike and can\'t be attacked'"></div>
                 }
                 @case (14) {
-                <div translate>
-                  You are on strike, you can't attack in war
-                </div>
+                <div [translate]="'You are on strike, you can\'t attack in war'"></div>
                 }
                 @case (15) {
-                <div translate>
-                  You are in trial period, you can't attack during a
-                  war
-                </div>
+                <div [translate]="'You are in trial period, you can\'t attack during a war'"></div>
                 }
                 @case (16) {
-                <div translate>
-                  You don't have war attacks available
-                </div>
+                <div [translate]="'You don\'t have war attacks available'"></div>
                 }
                 @case (17) {
-                <div translate>
-                  This city has too much or not enoug field
-                </div>
+                <div [translate]="'This city has too much or not enoug field'"></div>
                 }
                 @case (18) {
-                <div translate>
-                  This city has received too many war attacks
-                </div>
+                <div [translate]="'This city has received too many war attacks'"></div>
                 }
                 @case (19) {
-                <div translate>The level of this city is too low</div>
+                <div [translate]="'The level of this city is too low'"></div>
                 }
                 @case (20) {
-                <div translate>
-                  The level of this city is too high
-                </div>
+                <div [translate]="'The level of this city is too high'"></div>
                 }
                 @case (21) {
-                <div translate>Your army is empty</div>
+                <div [translate]="'Your army is empty'"></div>
                 }
                 @case (22) {
-                <div translate>This city's field is too high</div>
+                <div [translate]="'This city\'s field is too high'"></div>
                 }
                 @case (23) {
-                <div translate>This city's field is too low</div>
+                <div [translate]="'This city\'s field is too low'"></div>
                 }
                 @case (24) {
-                <div translate>This city's level is too high</div>
+                <div [translate]="'This city\'s level is too high'"></div>
                 }
                 @case (25) {
-                <div translate>
-                  This city has received too many attacks
-                </div>
+                <div [translate]="'This city has received too many attacks'"></div>
                 }
                 @case (26) {
-                <div translate>Your army is empty</div>
+                <div [translate]="'Your army is empty'"></div>
                 }
                 @case (27) {
-                <div translate>Your army is empty</div>
+                <div [translate]="'Your army is empty'"></div>
                 }
                 @case (28) {
-                <div translate>
-                  You have used all your available attacks
-                </div>
+                <div [translate]="'You have used all your available attacks'"></div>
                 }
                 @case (29) {
-                <div translate>Artemis is protecting this city</div>
+                <div [translate]="'Artemis is protecting this city'"></div>
                 }
                 @default {
                 <div>{{ attackPossibleError }}</div>
@@ -782,17 +714,17 @@
             @if (attackPossible > 0) {
             <button class="btn btn-primary fs-5" (click)="launchAttack(targetProfile.membre_id)">
               <app-ic-icon [icon]="swordIcon"></app-ic-icon>
-              &nbsp;<span translate>Attack</span>
+              &nbsp;<span [translate]="'Attack'"></span>
             </button>
             }
             @if (attackPossible === 0) {
-            <div translate>You can't attack this city</div>
+            <div [translate]="'You can\'t attack this city'"></div>
             }
           </div>
           @if (getArmy().length > 0) {
           <div class="text-center">
             <br />
-            <strong translate>Army summary</strong>
+            <strong [translate]="'Army summary'"></strong>
             @for (i of getArmy(); track i) {
             <div>
               <span [ngClass]="{ 'text-danger': i.all === 0 }">
@@ -810,8 +742,8 @@
             </div>
             }
             <br />
-            <strong translate>Offensive power</strong>
-            <strong translate>:</strong>
+            <strong [translate]="'Offensive power'"></strong>
+            <strong [translate]="':'"></strong>
             {{
             getOffensivePower()
             | number: '' : currentLocale()
@@ -819,7 +751,7 @@
           </div>
           }
           @if (getArmy().length === 0) {
-          <div class="text-center" translate>Your army is empty</div>
+          <div class="text-center" [translate]="'Your army is empty'"></div>
           }
         </div>
         }
@@ -832,22 +764,16 @@
         <!-- Prepare to send a fury -->
         @if (attackMode === 5) {
         <div class="card-body text-center" id="furyPrepareBlock">
-          <div translate>
-            The fury can destroy farms and growers and reserves of grapes
-            and food of your opponents.
-          </div>
+          <div [translate]="'The fury can destroy farms and growers and reserves of grapes and food of your opponents.'"></div>
           <br />
           <br />
           @if (user.getPropertyNb('fury') > 0 && furyPossible === 1) {
           <button class="btn btn-primary" (click)="launchFury(targetProfile.membre_id)">
             <app-ic-icon [icon]="fireIcon"></app-ic-icon>
-            &nbsp;<span translate>Send</span>
+            &nbsp;<span [translate]="'Send'"></span>
           </button>
           } @else {
-          <div class="fw-bold text-danger" translate>
-            You have no furies in stock. Go to the Temple of Demeter to
-            get some.
-          </div>
+          <div class="fw-bold text-danger" [translate]="'You have no furies in stock. Go to the Temple of Demeter to get some.'"></div>
           }
         </div>
         }
@@ -860,10 +786,7 @@
         <!-- Prepare to send a lightning -->
         @if (attackMode === 7) {
         <div class="card-body text-center" id="lightningPrepareBlock">
-          <div translate>
-            The lightning can destroy the buildings of your opponents,
-            including mints.
-          </div>
+          <div [translate]="'The lightning can destroy the buildings of your opponents, including mints.'"></div>
           <br />
           <br />
           @if (
@@ -871,13 +794,10 @@
           ) {
           <button class="btn btn-primary" (click)="launchLightning(targetProfile.membre_id)">
             <app-ic-icon [icon]="boltIcon"></app-ic-icon>
-            &nbsp;<span translate>Send</span>
+            &nbsp;<span [translate]="'Send'"></span>
           </button>
           } @else {
-          <div class="fw-bold text-danger" translate>
-            You have no lightnings in stock. Go to the Temple of Zeus to
-            get some.
-          </div>
+          <div class="fw-bold text-danger" [translate]="'You have no lightnings in stock. Go to the Temple of Zeus to get some.'"></div>
           }
         </div>
         }

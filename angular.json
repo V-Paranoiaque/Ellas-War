@@ -131,7 +131,7 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:jest",
           "options": {
             "polyfills": [
               "zone.js",
@@ -146,7 +146,6 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "karmaConfig": "karma.conf.js"
           }
         },
         "lint": {

@@ -11,7 +11,7 @@
           class="list-group-item list-group-item-action ripple"
           aria-current="true">
           <app-ew-icon name="city"></app-ew-icon>
-          <span class="p-2" translate>City</span>
+          <span class="p-2" [translate]="'City'"></span>
         </a>
         @if (
           user.getPropertyNb('level') > 0 || user.getPropertyNb('quest') >= 8
@@ -22,7 +22,7 @@
             class="list-group-item list-group-item-action ripple"
             aria-current="true">
             <app-ew-icon name="attacks"></app-ew-icon>
-            <span class="p-2" translate>Attacks</span>
+            <span class="p-2" [translate]="'Attacks'"></span>
           </a>
         }
         @if (
@@ -36,7 +36,7 @@
             [ngClass]="{ 'text-warning': user.getNewMsg() > 0 }">
             <app-ew-icon name="messages"></app-ew-icon>
             <span class="p-2">
-              <span translate>Messages</span>
+              <span [translate]="'Messages'"></span>
               @if (user.getNewMsg() > 0) {
                 <span>({{ user.getNewMsg() }})</span>
               }
@@ -57,7 +57,7 @@
           }">
           <app-ew-icon name="quests"></app-ew-icon>
           <span class="p-2">
-            <span translate>Quests</span>
+            <span [translate]="'Quests'"></span>
             @if (
               user.getPropertyNb('level') > 0 &&
               (user.getPropertyNb('quest_validate') > 0 ||
@@ -83,7 +83,7 @@
             class="list-group-item list-group-item-action ripple"
             aria-current="true">
             <app-ew-icon name="alliance"></app-ew-icon>
-            <span class="p-2" translate>Alliance</span>
+            <span class="p-2" [translate]="'Alliance'"></span>
           </a>
         }
         @if (
@@ -96,7 +96,7 @@
             class="list-group-item list-group-item-action ripple"
             aria-current="true">
             <app-ew-icon name="alliance"></app-ew-icon>
-            <span class="p-2" translate>Alliance</span>
+            <span class="p-2" [translate]="'Alliance'"></span>
           </a>
         }
         @if (user.getPropertyNb('level') > 0) {
@@ -106,7 +106,7 @@
             class="list-group-item list-group-item-action ripple"
             aria-current="true">
             <app-ew-icon name="agora"></app-ew-icon>
-            <span class="p-2" translate>Agora</span>
+            <span class="p-2" [translate]="'Agora'"></span>
           </a>
         }
         <a
@@ -115,7 +115,7 @@
           class="list-group-item list-group-item-action ripple"
           aria-current="true">
           <app-ew-icon name="rankings"></app-ew-icon>
-          <span class="p-2" translate>Rankings</span>
+          <span class="p-2" [translate]="'Rankings'"></span>
         </a>
       </div>
     </div>

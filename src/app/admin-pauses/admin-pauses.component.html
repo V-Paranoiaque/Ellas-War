@@ -6,9 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center" id="historyDescription" translate>
-              Pause history
-            </h1>
+            <h1 class="text-center" id="historyDescription" [translate]="'Pause history'"></h1>
             <table class="table table-middle table-striped" aria-describedby="historyDescription">
               <tbody>
                 @for (p of adminPause; track p) {

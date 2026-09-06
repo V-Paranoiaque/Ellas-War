@@ -2,20 +2,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Appoint a new chief</h5>
+        <h5 class="modal-title" [translate]="'Appoint a new chief'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" translate>
-        This player will become the new chief of his alliance.
-      </div>
+      <div class="modal-body" [translate]="'This player will become the new chief of his alliance.'"></div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" (click)="adminAllianceChief()" data-bs-dismiss="modal" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-primary" (click)="adminAllianceChief()" data-bs-dismiss="modal" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -54,39 +48,27 @@
               <button class="btn flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 1,
                   'frame-name btn-primary': menu !== 1,
-                }" (click)="setMenu(1)" (keyup.enter)="setMenu(1)" id="descConnection" translate>
-                Connection
-              </button>
+                }" (click)="setMenu(1)" (keyup.enter)="setMenu(1)" id="descConnection" [translate]="'Connection'"></button>
               <button class="btn btn-secondary flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 2,
                   'frame-name btn-primary': menu !== 2,
-                }" (click)="setMenu(2)" (keyup.enter)="setMenu(2)" tabindex="0" translate>
-                IP
-              </button>
+                }" (click)="setMenu(2)" (keyup.enter)="setMenu(2)" tabindex="0" [translate]="'IP'"></button>
               <button class="btn flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 3,
                   'frame-name btn-primary': menu !== 3,
-                }" (click)="setMenu(3)" (keyup.enter)="setMenu(3)" id="descTrade" translate>
-                Agora
-              </button>
+                }" (click)="setMenu(3)" (keyup.enter)="setMenu(3)" id="descTrade" [translate]="'Agora'"></button>
               <button class="btn flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 4,
                   'frame-name btn-primary': menu !== 4,
-                }" (click)="setMenu(4)" (keyup.enter)="setMenu(4)" translate>
-                Storeroom
-              </button>
+                }" (click)="setMenu(4)" (keyup.enter)="setMenu(4)" [translate]="'Storeroom'"></button>
               <button class="btn flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 5,
                   'frame-name btn-primary': menu !== 5,
-                }" (click)="setMenu(5)" (keyup.enter)="setMenu(5)" id="descAttacks" translate>
-                Attacks
-              </button>
+                }" (click)="setMenu(5)" (keyup.enter)="setMenu(5)" id="descAttacks" [translate]="'Attacks'"></button>
               <button class="btn flex-grow-1 frame-name" [ngClass]="{
                   'btn-danger': menu === 6,
                   'frame-name btn-primary': menu !== 6,
-                }" (click)="setMenu(6)" (keyup.enter)="setMenu(6)" translate>
-                Notes
-              </button>
+                }" (click)="setMenu(6)" (keyup.enter)="setMenu(6)" [translate]="'Notes'"></button>
             </div>
 
             @if (menu === 1) {
@@ -99,16 +81,16 @@
                 id of Tools.range(1, profileConnections.nb);
                 track id
                 ) {
-                <option value="{{ id }}" translate>Page {{ id }}</option>
+                <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                 }
               </select>
               }
               <table class="table table-striped" aria-describedby="descConnection">
                 <thead>
                   <tr>
-                    <th translate>Action</th>
-                    <th translate>Date</th>
-                    <th translate>IP</th>
+                    <th [translate]="'Action'"></th>
+                    <th [translate]="'Date'"></th>
+                    <th [translate]="'IP'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,13 +98,13 @@
                   <tr>
                     @switch (p.action) {
                     @case (1) {
-                    <td translate>Connection</td>
+                    <td [translate]="'Connection'"></td>
                     }
                     @case (2) {
-                    <td translate>Load</td>
+                    <td [translate]="'Load'"></td>
                     }
                     @case (3) {
-                    <td translate>Disconnect</td>
+                    <td [translate]="'Disconnect'"></td>
                     }
                     }
                     <td>
@@ -148,7 +130,7 @@
             <div class="row">
               @if (profileIP.attack_history.length > 0) {
               <div class="col">
-                <strong translate>Attacks</strong>
+                <strong [translate]="'Attacks'"></strong>
                 @for (ip of profileIP.attack_history; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -160,7 +142,7 @@
               }
               @if (profileIP.connection.length > 0) {
               <div class="col">
-                <strong translate>Connection</strong>
+                <strong [translate]="'Connection'"></strong>
                 @for (ip of profileIP.connection; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -172,7 +154,7 @@
               }
               @if (profileIP.email_modification.length > 0) {
               <div class="col">
-                <strong translate>Email modification</strong>
+                <strong [translate]="'Email modification'"></strong>
                 @for (ip of profileIP.email_modification; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -184,7 +166,7 @@
               }
               @if (profileIP.lostpassword.length > 0) {
               <div class="col">
-                <strong translate>Lost password</strong>
+                <strong [translate]="'Lost password'"></strong>
                 @for (ip of profileIP.lostpassword; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -196,7 +178,7 @@
               }
               @if (profileIP.password_modification.length > 0) {
               <div class="col">
-                <strong translate>Password modification</strong>
+                <strong [translate]="'Password modification'"></strong>
                 @for (ip of profileIP.password_modification; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -208,7 +190,7 @@
               }
               @if (profileIP.storeroom.length > 0) {
               <div class="col">
-                <strong translate>Storeroom</strong>
+                <strong [translate]="'Storeroom'"></strong>
                 @for (ip of profileIP.storeroom; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -220,7 +202,7 @@
               }
               @if (profileIP.storeroom_historic.length > 0) {
               <div class="col">
-                <strong translate>Storeroom history</strong>
+                <strong [translate]="'Storeroom history'"></strong>
                 @for (ip of profileIP.storeroom_historic; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -232,7 +214,7 @@
               }
               @if (profileIP.support_msg.length > 0) {
               <div class="col">
-                <strong translate>Support</strong>
+                <strong [translate]="'Support'"></strong>
                 @for (ip of profileIP.support_msg; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -244,7 +226,7 @@
               }
               @if (profileIP.trade_historic_sell.length > 0) {
               <div class="col">
-                <strong translate>Trade selling</strong>
+                <strong [translate]="'Trade selling'"></strong>
                 @for (ip of profileIP.trade_historic_sell; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -256,7 +238,7 @@
               }
               @if (profileIP.trade_historic_buy.length > 0) {
               <div class="col">
-                <strong translate>Trade buying</strong>
+                <strong [translate]="'Trade buying'"></strong>
                 @for (ip of profileIP.trade_historic_buy; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -268,7 +250,7 @@
               }
               @if (profileIP.treasure_history.length > 0) {
               <div class="col">
-                <strong translate>Treasure</strong>
+                <strong [translate]="'Treasure'"></strong>
                 @for (ip of profileIP.treasure_history; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -280,7 +262,7 @@
               }
               @if (profileIP.userrename.length > 0) {
               <div class="col">
-                <strong translate>Account rename</strong>
+                <strong [translate]="'Account rename'"></strong>
                 @for (ip of profileIP.userrename; track ip) {
                 <div>
                   <a href="admin/ip/{{ ip }}" [routerLink]="['/admin/ip/' + ip]">
@@ -299,23 +281,23 @@
               <select class="form-select" #mySelect (change)="profileTradeChange(parseInt(mySelect.value))"
                 title="{{ 'Change page' | translate }}">
                 @for (id of Tools.range(1, profileTrade.nb); track id) {
-                <option value="{{ id }}" translate>Page {{ id }}</option>
+                <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                 }
               </select>
               }
               <table class="table" aria-describedby="descTrade">
                 <thead>
                   <tr>
-                    <th scope="col" translate>Seller</th>
-                    <th scope="col" translate>Buyer</th>
-                    <th scope="col" translate>Seller IP</th>
-                    <th scope="col" translate>Buyer IP</th>
-                    <th scope="col" translate>Deposit date</th>
-                    <th scope="col" translate>Purchase date</th>
-                    <th scope="col" translate>Resource</th>
-                    <th scope="col" translate>Quantity</th>
-                    <th scope="col" translate>Rate</th>
-                    <th scope="col" translate>Price</th>
+                    <th scope="col" [translate]="'Seller'"></th>
+                    <th scope="col" [translate]="'Buyer'"></th>
+                    <th scope="col" [translate]="'Seller IP'"></th>
+                    <th scope="col" [translate]="'Buyer IP'"></th>
+                    <th scope="col" [translate]="'Deposit date'"></th>
+                    <th scope="col" [translate]="'Purchase date'"></th>
+                    <th scope="col" [translate]="'Resource'"></th>
+                    <th scope="col" [translate]="'Quantity'"></th>
+                    <th scope="col" [translate]="'Rate'"></th>
+                    <th scope="col" [translate]="'Price'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -389,7 +371,7 @@
               <select class="form-select" #mySelect (change)="profileStoreroomChange(parseInt(mySelect.value))"
                 title="{{ 'Change page' | translate }}">
                 @for (id of Tools.range(1, profileStoreroom.nb); track id) {
-                <option value="{{ id }}" translate>Page {{ id }}</option>
+                <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                 }
               </select>
               }
@@ -398,16 +380,16 @@
                   }}">
                 <thead>
                   <tr>
-                    <th scope="col" translate>Seller</th>
-                    <th scope="col" translate>Buyer</th>
-                    <th scope="col" translate>Seller IP</th>
-                    <th scope="col" translate>Buyer IP</th>
-                    <th scope="col" translate>Deposit date</th>
-                    <th scope="col" translate>Purchase date</th>
-                    <th scope="col" translate>Resource</th>
-                    <th scope="col" translate>Quantity</th>
-                    <th scope="col" translate>Rate</th>
-                    <th scope="col" translate>Price</th>
+                    <th scope="col" [translate]="'Seller'"></th>
+                    <th scope="col" [translate]="'Buyer'"></th>
+                    <th scope="col" [translate]="'Seller IP'"></th>
+                    <th scope="col" [translate]="'Buyer IP'"></th>
+                    <th scope="col" [translate]="'Deposit date'"></th>
+                    <th scope="col" [translate]="'Purchase date'"></th>
+                    <th scope="col" [translate]="'Resource'"></th>
+                    <th scope="col" [translate]="'Quantity'"></th>
+                    <th scope="col" [translate]="'Rate'"></th>
+                    <th scope="col" [translate]="'Price'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -481,16 +463,16 @@
               <select class="form-select" #mySelect (change)="profileAttacksChange(parseInt(mySelect.value))"
                 title="{{ 'Change page' | translate }}">
                 @for (id of Tools.range(1, profileAttacks.nb); track id) {
-                <option value="{{ id }}" translate>Page {{ id }}</option>
+                <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                 }
               </select>
               }
               <table class="table table-striped" aria-describedby="descAttacks">
                 <thead>
                   <tr>
-                    <th translate>Attacker</th>
-                    <th translate>Defender</th>
-                    <th translate>Date</th>
+                    <th [translate]="'Attacker'"></th>
+                    <th [translate]="'Defender'"></th>
+                    <th [translate]="'Date'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -533,17 +515,13 @@
                 <textarea [(ngModel)]="profileNotes" class="form-control">{{
                     profileNotes
                   }}</textarea>
-                <button class="btn btn-primary" (click)="profileNotesSave()" translate>
-                  Save
-                </button>
+                <button class="btn btn-primary" (click)="profileNotesSave()" [translate]="'Save'"></button>
               </div>
               <div class="col-12 col-md-6 text-center">
-                <strong translate>Displayed message when blocked</strong>
+                <strong [translate]="'Displayed message when blocked'"></strong>
                 <textarea [(ngModel)]="adminProfile.blocked_reason"
                   class="form-control">{{ adminProfile.blocked_reason }}</textarea>
-                <button class="btn btn-primary" (click)="reasonSave()" translate>
-                  Save
-                </button>
+                <button class="btn btn-primary" (click)="reasonSave()" [translate]="'Save'"></button>
               </div>
             </div>
             }

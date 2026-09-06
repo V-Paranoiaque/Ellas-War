@@ -5,8 +5,8 @@
     @if (currently) {
     <p class="card-text">
       <small class="text-muted">
-        <strong translate>Currently</strong>
-        <strong translate>:</strong>
+        <strong [translate]="'Currently'"></strong>
+        <strong [translate]="':'"></strong>
         {{
         parseInt(currently) | number: '' : currentLocale()
         }}

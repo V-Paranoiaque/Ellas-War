@@ -22,24 +22,16 @@
         @if (giftsError > 0) {
         <div class="text-center">
           @if (giftsError === 1) {
-          <div class="alert alert-danger" translate>
-            You can't give Drachmas to this member.
-          </div>
+          <div class="alert alert-danger" [translate]="'You can\'t give Drachmas to this member.'"></div>
           }
           @if (giftsError === 2) {
-          <div class="alert alert-danger" translate>
-            You don't have enough Drachmas.
-          </div>
+          <div class="alert alert-danger" [translate]="'You don\'t have enough Drachmas.'"></div>
           }
           @if (giftsError === 3) {
-          <div class="alert alert-danger" translate>
-            You can't give as much drachmas to this member.
-          </div>
+          <div class="alert alert-danger" [translate]="'You can\'t give as much drachmas to this member.'"></div>
           }
           @if (giftsError === 4) {
-          <div class="alert alert-success" translate>
-            Donation completed successfully.
-          </div>
+          <div class="alert alert-success" [translate]="'Donation completed successfully.'"></div>
           }
           <br />
         </div>
@@ -49,13 +41,9 @@
           [(ngModel)]="qttGiftsRess" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         @if (qttGiftsRess && giftRemain > 0) {
-        <button type="button" class="btn btn-success" (click)="memberGifts()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-success" (click)="memberGifts()" [translate]="'Confirm'"></button>
         }
       </div>
     </div>

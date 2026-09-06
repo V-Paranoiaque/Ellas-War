@@ -5,38 +5,36 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Change game settings</h5>
+        <h5 class="modal-title" [translate]="'Change game settings'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         @if (user.getPropertyNb('rank') >= 5) {
         <div class="mb-3">
           <select class="form-select" (change)="styleChange($event)" [(ngModel)]="currentStyle">
-            <option value="default" translate>Default Style</option>
-            <option value="ewnextv2" translate>Red Theme</option>
-            <option value="ewnextv3" translate>Blue Theme</option>
+            <option value="default" [translate]="'Default Style'"></option>
+            <option value="ewnextv2" [translate]="'Red Theme'"></option>
+            <option value="ewnextv3" [translate]="'Blue Theme'"></option>
           </select>
         </div>
         }
         <div class="mb-3">
-          <label class="fw-bold" for="language" translate>Language</label>
+          <label class="fw-bold" for="language" [translate]="'Language'"></label>
           <select class="form-select" (change)="languageChange($event)" [(ngModel)]="currentLanguage">
-            <option value="fr" translate>French</option>
-            <option value="en" translate>English</option>
+            <option value="fr" [translate]="'French'"></option>
+            <option value="en" [translate]="'English'"></option>
           </select>
         </div>
         <div class="mb-3">
           <div class="form-check form-switch">
             <input id="gameSound" class="form-check-input" type="checkbox" [(ngModel)]="sound" (change)="soundModify()"
               [checked]="sound" />
-            <label class="form-check-label fw-bold" for="gameSound" translate>Sound</label>
+            <label class="form-check-label fw-bold" for="gameSound" [translate]="'Sound'"></label>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -46,46 +44,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Pause your account</h5>
+        <h5 class="modal-title" [translate]="'Pause your account'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p translate>
-          When you pause your account, you become unassailable for a fixed term
-          but in return your resources and those of your alliance will not
-          increase during this period.
-        </p>
+        <p [translate]="'When you pause your account, you become unassailable for a fixed term but in return your resources and those of your alliance will not increase during this period.'"></p>
         <ul>
           <li [ngClass]="{
               'text-danger':
                 user.getPropertyNb('id') === user.getPropertyNb('chief'),
-            }" translate>
-            The leader of an alliance cannot pause.
-          </li>
-          <li translate>
-            You need to wait 11 hours after your last attack to use the pause
-            feature.
-          </li>
+            }" [translate]="'The leader of an alliance cannot pause.'"></li>
+          <li [translate]="'You need to wait 11 hours after your last attack to use the pause feature.'"></li>
         </ul>
       </div>
       @if (pauseAllowed === 0) {
-      <div class="modal-body text-center text-danger" translate>
-        Your are not allowed to put your account in pause.
-      </div>
+      <div class="modal-body text-center text-danger" [translate]="'Your are not allowed to put your account in pause.'"></div>
       }
       @if (pauseAllowed === 1) {
       <div class="modal-body text-center">
-        <strong translate>Between 4 and 100 days including</strong>
+        <strong [translate]="'Between 4 and 100 days including'"></strong>
         <input type="number" [attr.min]="4" [attr.max]="100" class="form-control" [(ngModel)]="pauseNb" />
-        <button class="btn btn-warning mt-1" (click)="accountPause()" data-bs-dismiss="modal" translate>
-          Put your account in pause
-        </button>
+        <button class="btn btn-warning mt-1" (click)="accountPause()" data-bs-dismiss="modal" [translate]="'Put your account in pause'"></button>
       </div>
       }
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -95,7 +78,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Change your username</h5>
+        <h5 class="modal-title" [translate]="'Change your username'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -104,41 +87,37 @@
           <div>
             @switch (getRenameError()) {
             @case (1) {
-            <div translate>
-              Your username must be at least 6 characters.
-            </div>
+            <div [translate]="'Your username must be at least 6 characters.'"></div>
             }
             @case (2) {
-            <div translate>This username is already used</div>
+            <div [translate]="'This username is already used'"></div>
             }
             @case (3) {
-            <div translate>Username modified successfully</div>
+            <div [translate]="'Username modified successfully'"></div>
             }
             @case (4) {
-            <div translate>You don't have enough favors</div>
+            <div [translate]="'You don\'t have enough favors'"></div>
             }
             }
           </div>
         </div>
         }
-        <div translate>
-          At each change the cost is increased, it is reset every 6 months.
-        </div>
+        <div [translate]="'At each change the cost is increased, it is reset every 6 months.'"></div>
         <div>
-          <strong translate>Cost:</strong>
+          <strong [translate]="'Cost:'"></strong>
           {{
           getAccountRenameCost()
           | number: '' : currentLocale()
           }}
-          @if (getAccountRenameCost() <= 1) { <span translate>Favor</span>
+          @if (getAccountRenameCost() <= 1) { <span [translate]="'Favor'"></span>
             }
             @if (getAccountRenameCost() > 1) {
-            <span translate>Favors</span>
+            <span [translate]="'Favors'"></span>
             }
         </div>
 
         @if (user.getPropertyNb('level') === 0) {
-        <div translate>From level 1, the starting cost becomes one Favor</div>
+        <div [translate]="'From level 1, the starting cost becomes one Favor'"></div>
         }
 
         <div>
@@ -147,12 +126,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-primary" (click)="accountRename()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-primary" (click)="accountRename()" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -162,30 +137,24 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Change your email</h5>
+        <h5 class="modal-title" [translate]="'Change your email'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         @if (emailError === 1) {
-        <div class="alert alert-danger center" translate>
-          Your email is empty or invalid
-        </div>
+        <div class="alert alert-danger center" [translate]="'Your email is empty or invalid'"></div>
         }
 
-        <strong for="oldemail" translate>Old email</strong>
+        <strong for="oldemail" [translate]="'Old email'"></strong>
         <input type="text" class="form-control" disabled="" value="{{ user.getProperty('email') }}"
           placeholder="{{ 'Old email' | translate }}" id="oldemail" />
-        <strong for="newemail" translate>New email</strong>
+        <strong for="newemail" [translate]="'New email'"></strong>
         <input type="email" class="form-control" [(ngModel)]="newEmail" placeholder="{{ 'New email' | translate }}"
           id="newemail" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button class="btn btn-primary" (click)="accountEmail()" translate>
-          Change your email
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button class="btn btn-primary" (click)="accountEmail()" [translate]="'Change your email'"></button>
       </div>
     </div>
   </div>
@@ -195,30 +164,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Change your password</h5>
+        <h5 class="modal-title" [translate]="'Change your password'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body" translate>
-        After setting your new password, you will be disconnected from the game.
-      </div>
+      <div class="modal-body" [translate]="'After setting your new password, you will be disconnected from the game.'"></div>
       <div class="modal-body">
         @if (getPasswordError() > 0) {
         <div class="alert alert-danger" role="alert">
           <div>
             @switch (getPasswordError()) {
             @case (1) {
-            <div translate>Both passwords are different</div>
+            <div [translate]="'Both passwords are different'"></div>
             }
             @case (2) {
-            <div translate>
-              Your password must be at least 8 characters.
-            </div>
+            <div [translate]="'Your password must be at least 8 characters.'"></div>
             }
             @case (3) {
-            <div translate>Bad password</div>
+            <div [translate]="'Bad password'"></div>
             }
             @case (4) {
-            <div translate>Password changed successfully</div>
+            <div [translate]="'Password changed successfully'"></div>
             }
             }
           </div>
@@ -227,25 +192,21 @@
 
         @if (accountPasswordPossible === 1) {
         <div>
-          <strong for="oldpassword" translate>Old password</strong>
+          <strong for="oldpassword" [translate]="'Old password'"></strong>
           <input type="password" class="form-control" [(ngModel)]="oldPassword"
             placeholder="{{ 'Old password' | translate }}" id="oldpassword" />
         </div>
         }
-        <strong for="newpassword" translate>New password</strong>
+        <strong for="newpassword" [translate]="'New password'"></strong>
         <input type="password" class="form-control" [(ngModel)]="newPassword"
           placeholder="{{ 'New password' | translate }}" id="newpassword" />
-        <strong for="confirm" translate>Confirmation</strong>
+        <strong for="confirm" [translate]="'Confirmation'"></strong>
         <input type="password" class="form-control" [(ngModel)]="confirm" placeholder="{{ 'Confirmation' | translate }}"
           id="confirm" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button class="btn btn-primary" (click)="accountPassword()" translate>
-          Change your password
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button class="btn btn-primary" (click)="accountPassword()" [translate]="'Change your password'"></button>
       </div>
     </div>
   </div>
@@ -255,20 +216,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Reset your account</h5>
+        <h5 class="modal-title" [translate]="'Reset your account'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-danger" translate>
-        Warning, in case of confirmation your account will be reset
-        definitively. This action can not be undone.
-      </div>
+      <div class="modal-body text-danger" [translate]="'Warning, in case of confirmation your account will be reset definitively. This action can not be undone.'"></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reset()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reset()" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -288,16 +242,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Account</strong>
-                <p translate>
-                  Upload an avatar and add information about your self.
-                </p>
+                <strong [translate]="'Account'"></strong>
+                <p [translate]="'Upload an avatar and add information about your self.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#AccountInformation" role="button">
-                <div class="flex-grow-1" translate>
-                  Change account information
-                </div>
+                <div class="flex-grow-1" [translate]="'Change account information'"></div>
               </div>
             </div>
           </div>
@@ -310,29 +260,21 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Sponsorship</strong>
+                <strong [translate]="'Sponsorship'"></strong>
                 @if (
                 user.getPropertyNb('sponsor') === 0 &&
-                user.getPropertyNb('level') < 5 ) { <p translate>
-                  Until the level 4 you can pick a sponsor, it will both
-                  give you a bonus when you reach the level 5. This player
-                  is also able to send you Drachmas to help your city.
-                  </p>
+                user.getPropertyNb('level') < 5 ) { <p [translate]="'Until the level 4 you can pick a sponsor, it will both give you a bonus when you reach the level 5. This player is also able to send you Drachmas to help your city.'"></p>
                   }
                   @if (
                   user.getPropertyNb('sponsor') > 0 ||
                   user.getPropertyNb('level') >= 5
                   ) {
-                  <p translate>
-                    Share your sponsoring link, when the new player will reach
-                    the level 1 or 5 you will get a bonus. Help to the players
-                    that you have sponsored and send them Drachmas.
-                  </p>
+                  <p [translate]="'Share your sponsoring link, when the new player will reach the level 1 or 5 you will get a bonus. Help to the players that you have sponsored and send them Drachmas.'"></p>
                   }
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#SponsoringInformation" role="button">
-                <div class="flex-grow-1" translate>Sponsorship</div>
+                <div class="flex-grow-1" [translate]="'Sponsorship'"></div>
               </div>
             </div>
           </div>
@@ -344,15 +286,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Parameters</strong>
-                <p translate>
-                  Switch the language, the style of the game and enable/disable
-                  the notifications.
-                </p>
+                <strong [translate]="'Parameters'"></strong>
+                <p [translate]="'Switch the language, the style of the game and enable/disable the notifications.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#GameSettings" role="button">
-                <div class="flex-grow-1" translate>Change game settings</div>
+                <div class="flex-grow-1" [translate]="'Change game settings'"></div>
               </div>
             </div>
           </div>
@@ -364,14 +303,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Pause</strong>
-                <p translate>
-                  Pause your account and come back later on Ellas War.
-                </p>
+                <strong [translate]="'Pause'"></strong>
+                <p [translate]="'Pause your account and come back later on Ellas War.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#AccountPause" role="button">
-                <div class="flex-grow-1" translate>Pause your account</div>
+                <div class="flex-grow-1" [translate]="'Pause your account'"></div>
               </div>
             </div>
           </div>
@@ -384,18 +321,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Username</strong>
+                <strong [translate]="'Username'"></strong>
                 @if (getAccountRenameCost() === 0) {
-                <p translate>
-                  Choose a new Username for your account. While you stay
-                  level 0, your first modification is free!
-                </p>
+                <p [translate]="'Choose a new Username for your account. While you stay level 0, your first modification is free!'"></p>
                 }
                 @if (getAccountRenameCost() === 1) {
-                <p translate>
-                  Choose a new Username for your account. It will cost you 1
-                  favor.
-                </p>
+                <p [translate]="'Choose a new Username for your account. It will cost you 1 favor.'"></p>
                 }
                 @if (getAccountRenameCost() > 1) {
                 <p>
@@ -408,7 +339,7 @@
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#ChangeUsername" role="button">
-                <div class="flex-grow-1" translate>Change your username</div>
+                <div class="flex-grow-1" [translate]="'Change your username'"></div>
               </div>
             </div>
           </div>
@@ -421,12 +352,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Email</strong>
-                <p translate>Modify your email connected to your account.</p>
+                <strong [translate]="'Email'"></strong>
+                <p [translate]="'Modify your email connected to your account.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#ChangeEmail" role="button">
-                <div class="flex-grow-1" translate>Change your email</div>
+                <div class="flex-grow-1" [translate]="'Change your email'"></div>
               </div>
             </div>
           </div>
@@ -438,12 +369,12 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Password</strong>
-                <p translate>Modify your password.</p>
+                <strong [translate]="'Password'"></strong>
+                <p [translate]="'Modify your password.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#ChangePassword" role="button">
-                <div class="flex-grow-1" translate>Change your password</div>
+                <div class="flex-grow-1" [translate]="'Change your password'"></div>
               </div>
             </div>
           </div>
@@ -454,19 +385,18 @@
             </div>
             <div class="flex-grow-1 d-flex flex-column">
               <div class="flex-grow-1">
-                <strong translate>Reset</strong>
-                <p translate>Reset your account and start a new adventure.</p>
+                <strong [translate]="'Reset'"></strong>
+                <p [translate]="'Reset your account and start a new adventure.'"></p>
               </div>
               <div class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal"
                 data-bs-target="#ResetAccount" role="button">
-                <div class="flex-grow-1" translate>Reset your account</div>
+                <div class="flex-grow-1" [translate]="'Reset your account'"></div>
               </div>
             </div>
           </div>
 
           <div class="card-body text-center">
-            <a href="/" [routerLink]="['/']" class="btn btn-primary mt-4" aria-current="true" translate>Back
-            </a>
+            <a href="/" [routerLink]="['/']" class="btn btn-primary mt-4" aria-current="true" [translate]="'Back'"></a>
           </div>
         </div>
       </div>

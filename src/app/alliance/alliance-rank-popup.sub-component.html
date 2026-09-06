@@ -13,8 +13,8 @@
       </div>
       @if (info.help < 5) {
         <div class="modal-body container-fluid">
-          <strong for="rankname" translate>Rank</strong
-          ><strong translate>:</strong>
+          <strong for="rankname" [translate]="'Rank'"></strong
+          ><strong [translate]="':'"></strong>
           @if (
             user.getPropertyNb('second') > 0 &&
             (user.getPropertyNb('id') === user.getPropertyNb('chief') ||
@@ -55,16 +55,16 @@
             <table class="table" aria-labelledby="playerDesc">
               <thead>
                 <tr>
-                  <th scope="col" class="text-center" translate>Power</th>
-                  <th scope="col" class="text-center" translate>Use</th>
-                  <th scope="col" class="text-center" translate>Transmit</th>
-                  <th scope="col" class="text-center" translate>No access</th>
+                  <th scope="col" class="text-center" [translate]="'Power'"></th>
+                  <th scope="col" class="text-center" [translate]="'Use'"></th>
+                  <th scope="col" class="text-center" [translate]="'Transmit'"></th>
+                  <th scope="col" class="text-center" [translate]="'No access'"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row" class="fw-bold" (click)="setHelp(1)">
-                    <span translate>Second</span>&nbsp;
+                    <span [translate]="'Second'"></span>&nbsp;
                     <app-ic-icon
                       role="button"
                       [icon]="questionCircle"></app-ic-icon>
@@ -108,7 +108,7 @@
                 </tr>
                 <tr>
                   <th scope="row" class="fw-bold" (click)="setHelp(2)">
-                    <span translate>Recruiter</span>&nbsp;
+                    <span [translate]="'Recruiter'"></span>&nbsp;
                     <app-ic-icon
                       role="button"
                       [icon]="questionCircle"></app-ic-icon>
@@ -149,7 +149,7 @@
                 </tr>
                 <tr>
                   <th scope="row" class="fw-bold" (click)="setHelp(3)">
-                    <span translate>Strategist</span>&nbsp;
+                    <span [translate]="'Strategist'"></span>&nbsp;
                     <app-ic-icon
                       role="button"
                       [icon]="questionCircle"></app-ic-icon>
@@ -190,7 +190,7 @@
                 </tr>
                 <tr>
                   <th scope="row" class="fw-bold" (click)="setHelp(4)">
-                    <span translate>Treasurer</span>&nbsp;
+                    <span [translate]="'Treasurer'"></span>&nbsp;
                     <app-ic-icon
                       role="button"
                       [icon]="questionCircle"></app-ic-icon>
@@ -233,28 +233,16 @@
             </table>
           }
           @if (info.help === 1) {
-            <div translate>
-              The second rank allows to modify members rank's name. A member
-              with this rank can also be promoted to chief if the current one is
-              inactive.
-            </div>
+            <div [translate]="'The second rank allows to modify members rank\'s name. A member with this rank can also be promoted to chief if the current one is inactive.'"></div>
           }
           @if (info.help === 2) {
-            <div translate>
-              The recruiter is allowed to accept/refuse candidates and eject
-              members.
-            </div>
+            <div [translate]="'The recruiter is allowed to accept/refuse candidates and eject members.'"></div>
           }
           @if (info.help === 3) {
-            <div translate>
-              The strategist is allowed to manage pacts and wars.
-            </div>
+            <div [translate]="'The strategist is allowed to manage pacts and wars.'"></div>
           }
           @if (info.help === 4) {
-            <div translate>
-              The treasurer is allowed to accept/refuse resource requests from
-              membres. He can't accept his own requests.
-            </div>
+            <div [translate]="'The treasurer is allowed to accept/refuse resource requests from membres. He can\'t accept his own requests.'"></div>
           }
         </div>
       }
@@ -271,18 +259,14 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         @if (canSave()) {
           <button
             type="button"
             class="btn btn-primary"
             (click)="save()"
             data-bs-dismiss="modal"
-            translate>
-            Confirm
-          </button>
+            [translate]="'Confirm'"></button>
         }
       </div>
     </div>

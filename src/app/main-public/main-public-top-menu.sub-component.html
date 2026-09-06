@@ -3,7 +3,7 @@
   role="navigation"
   class="navbar navbar-expand-lg navbar-dark navbar-menu">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="['/']" translate>Ellas War</a>
+    <a class="navbar-brand" [routerLink]="['/']" [translate]="'Ellas War'"></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -21,8 +21,8 @@
             class="nav-link"
             [routerLink]="['/discoverthegame']"
             [ngClass]="{ active: active === 'discoverthegame' }"
-            translate
-            >Discover the Game</a
+            [translate]="'Discover the Game'"
+            ></a
           >
         </li>
         <li class="nav-item">
@@ -30,8 +30,8 @@
             class="nav-link"
             [routerLink]="['/contactus']"
             [ngClass]="{ active: active === 'contactus' }"
-            translate
-            >Support</a
+            [translate]="'Support'"
+            ></a
           >
         </li>
       </ul>
@@ -43,8 +43,8 @@
         <fieldset>
           <legend class="visually-hidden">Login to the game</legend>
           <div class="d-flex">
-            <label class="visually-hidden" for="username_top" translate
-              >Username</label
+            <label class="visually-hidden" for="username_top" [translate]="'Username'"
+              ></label
             >
             <input
               class="form-control me-2"
@@ -54,8 +54,8 @@
               name="username"
               formControlName="username"
               required="required" />
-            <label class="visually-hidden" for="password_top" translate
-              >Password</label
+            <label class="visually-hidden" for="password_top" [translate]="'Password'"
+              ></label
             >
             <input
               class="form-control me-2"
@@ -65,9 +65,7 @@
               name="password"
               formControlName="password"
               required="required" />
-            <button class="btn btn-success" type="submit" translate>
-              Connect
-            </button>
+            <button class="btn btn-success" type="submit" [translate]="'Connect'"></button>
           </div>
         </fieldset>
       </form>

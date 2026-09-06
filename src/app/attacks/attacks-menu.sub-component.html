@@ -10,14 +10,14 @@
       class="frame d-flex flex-column flex-grow-1">
       <app-ew-icon name="smenu-war"></app-ew-icon>
       <div class="frame-name flex-grow-1 justify-content-center d-flex">
-        <div class="align-self-center" translate>Wars</div>
+        <div class="align-self-center" [translate]="'Wars'"></div>
       </div>
     </a>
   }
   <a [routerLink]="['/attacks']" class="frame d-flex flex-column flex-grow-1">
     <app-ew-icon name="smenu-attacks"></app-ew-icon>
     <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Attacks</div>
+      <div class="align-self-center" [translate]="'Attacks'"></div>
     </div>
   </a>
   <a
@@ -25,7 +25,7 @@
     class="frame d-flex flex-column flex-grow-1">
     <app-ew-icon name="smenu-stats"></app-ew-icon>
     <div class="frame-name flex-grow-1 justify-content-center d-flex">
-      <div class="align-self-center" translate>Stats</div>
+      <div class="align-self-center" [translate]="'Stats'"></div>
     </div>
   </a>
   @if (user.getPropertyNb('level') >= 10) {
@@ -34,7 +34,7 @@
       class="frame d-flex flex-column flex-grow-1">
       <app-ew-icon name="smenu-diamond"></app-ew-icon>
       <div class="frame-name flex-grow-1 justify-content-center d-flex">
-        <div class="align-self-center" translate>Diamond</div>
+        <div class="align-self-center" [translate]="'Diamond'"></div>
       </div>
     </a>
   }
@@ -44,7 +44,7 @@
       class="frame d-flex flex-column flex-grow-1">
       <app-ew-icon name="smenu-sanctuary"></app-ew-icon>
       <div class="frame-name flex-grow-1 justify-content-center d-flex">
-        <div class="align-self-center" translate>Sanctuaries</div>
+        <div class="align-self-center" [translate]="'Sanctuaries'"></div>
       </div>
     </a>
   }
@@ -54,7 +54,7 @@
       class="frame d-flex flex-column flex-grow-1">
       <app-ew-icon name="menu-seabattle"></app-ew-icon>
       <div class="frame-name flex-grow-1 justify-content-center d-flex">
-        <div class="align-self-center" translate>Sea Battles</div>
+        <div class="align-self-center" [translate]="'Sea Battles'"></div>
       </div>
     </a>
   }

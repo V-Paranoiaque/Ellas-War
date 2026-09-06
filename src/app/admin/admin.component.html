@@ -8,44 +8,44 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 col-md-6">
-                <h2 translate>General</h2>
-                <strong translate>Uptime:</strong>
+                <h2 [translate]="'General'"></h2>
+                <strong [translate]="'Uptime:'"></strong>
                 {{
                 apiInfo().uptime
                 | number: '1.0-0' : currentLocale()
                 }}s
                 <br />
-                <strong translate>Date</strong><strong translate>:</strong>
+                <strong [translate]="'Date'"></strong><strong [translate]="':'"></strong>
                 {{
                 apiInfo().timestamp * 1000
                 | date: 'EEEE dd MMMM, HH:mm' : '' : user.getConfig().locale
                 }}
                 <br />
-                <strong translate>Min version:</strong> {{ apiInfo().min }}
+                <strong [translate]="'Min version:'"></strong> {{ apiInfo().min }}
                 <br />
                 <br />
 
-                <h2 translate>Crons</h2>
-                <strong translate>Last honor reset</strong><strong translate>:</strong>
+                <h2 [translate]="'Crons'"></h2>
+                <strong [translate]="'Last honor reset'"></strong><strong [translate]="':'"></strong>
                 {{
                 adminStats.honor_last_time * 1000
                 | date: 'EEEE dd MMMM, HH:mm' : '' : user.getConfig().locale
                 }}
                 <br />
-                <strong translate>Last diamond reset</strong><strong translate>:</strong>
+                <strong [translate]="'Last diamond reset'"></strong><strong [translate]="':'"></strong>
                 {{
                 adminStats.diamond_last_time * 1000
                 | date: 'EEEE dd MMMM, HH:mm' : '' : user.getConfig().locale
                 }}
                 <br />
 
-                <strong translate>Last daily reset</strong><strong translate>:</strong>
+                <strong [translate]="'Last daily reset'"></strong><strong [translate]="':'"></strong>
                 {{
                 adminStats.daily_last_time * 1000
                 | date: 'EEEE dd MMMM, HH:mm' : '' : user.getConfig().locale
                 }}
                 <br />
-                <strong translate>Last weekly reset</strong><strong translate>:</strong>
+                <strong [translate]="'Last weekly reset'"></strong><strong [translate]="':'"></strong>
                 {{
                 adminStats.weekly_last_time * 1000
                 | date: 'EEEE dd MMMM, HH:mm' : '' : user.getConfig().locale
@@ -55,10 +55,10 @@
               </div>
               @if (user.getPropertyNb('rank') > 1) {
               <div class="col-12 col-md-6">
-                <h2 id="descTools" translate>Tools</h2>
+                <h2 id="descTools" [translate]="'Tools'"></h2>
                 <table class="table table-s" aria-describedby="descTools">
                   <tr>
-                    <th translate>Duplicate Emails</th>
+                    <th [translate]="'Duplicate Emails'"></th>
                     <td>
                       <a [routerLink]="['/admin/duplicateemail']" class="btn btn-primary bg-primary text-light">
                         <app-ic-icon [icon]="eye"></app-ic-icon>
@@ -66,7 +66,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th translate>Duplicated IP</th>
+                    <th [translate]="'Duplicated IP'"></th>
                     <td>
                       <a [routerLink]="['/admin/duplicateip']" class="btn btn-primary bg-primary text-light">
                         <app-ic-icon [icon]="eye"></app-ic-icon>
@@ -74,7 +74,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th translate>Suspicious IP</th>
+                    <th [translate]="'Suspicious IP'"></th>
                     <td>
                       <a [routerLink]="['/admin/suspiciousip']" class="btn btn-primary bg-primary text-light">
                         <app-ic-icon [icon]="eye"></app-ic-icon>
@@ -82,7 +82,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th translate>Connection attempts</th>
+                    <th [translate]="'Connection attempts'"></th>
                     <td>
                       <a [routerLink]="['/admin/passwordtry']" class="btn btn-primary bg-primary text-light">
                         <app-ic-icon [icon]="eye"></app-ic-icon>

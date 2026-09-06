@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Since your last connection</h5>
+        <h5 class="modal-title" [translate]="'Since your last connection'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -12,20 +12,20 @@
       <div class="modal-body container-fluid">
         @if (info.bonus_id > 0) {
           <span>
-            <strong translate>Divine bonus received:</strong>
+            <strong [translate]="'Divine bonus received:'"></strong>
             <app-ew-icon
               name="{{ Tools.getDivineBonus(info.bonus_id) }}"
               class="small-resource ms-1"></app-ew-icon>
             <br />
           </span>
         }
-        <strong translate>New messages:</strong> {{ info.msg }}
+        <strong [translate]="'New messages:'"></strong> {{ info.msg }}
         @if (info.msg) {
           <a [routerLink]="['/messages']" data-bs-dismiss="modal">
-            (<span translate>Read</span>)
+            (<span [translate]="'Read'"></span>)
           </a>
         }
-        <br /><strong translate>Attacks received:</strong> {{ info.attack }}
+        <br /><strong [translate]="'Attacks received:'"></strong> {{ info.attack }}
       </div>
       @if (info.basket > 0) {
         <div class="modal-body container-fluid row">
@@ -34,7 +34,7 @@
               name="{{ Tools.getDivineBonus(info.basket) }}"></app-ew-icon>
           </div>
           <div class="col-9">
-            <div translate>A basket is waiting for you. It contains:</div>
+            <div [translate]="'A basket is waiting for you. It contains:'"></div>
             <app-id-to-divinebonus [id]="info.basket"></app-id-to-divinebonus>
           </div>
         </div>
@@ -44,9 +44,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

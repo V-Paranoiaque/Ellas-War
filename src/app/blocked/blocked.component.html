@@ -8,12 +8,10 @@
           <div class="card-body">
             <div class="row mt-2 mb-2">
               <div class="col-12">
-                <h2 class="text-center" translate>
-                  Your account is currently blocked
-                </h2>
+                <h2 class="text-center" [translate]="'Your account is currently blocked'"></h2>
                 @if (user.getProperty('blocked_reason')) {
                   <div class="m-4 my-6">
-                    <div class="fw-bold" translate>Message from the staff:</div>
+                    <div class="fw-bold" [translate]="'Message from the staff:'"></div>
                     {{ user.getProperty('blocked_reason') }}
                   </div>
                 }
@@ -23,9 +21,7 @@
                   class="btn btn-primary"
                   [routerLink]="['/support']"
                   role="button"
-                  translate>
-                  Contact support
-                </a>
+                  [translate]="'Contact support'"></a>
               </div>
               <div class="col-6 text-center">
                 <div
@@ -33,9 +29,7 @@
                   data-bs-toggle="modal"
                   role="button"
                   data-bs-target="#ResetAccount"
-                  translate>
-                  Reset your account
-                </div>
+                  [translate]="'Reset your account'"></div>
               </div>
             </div>
           </div>

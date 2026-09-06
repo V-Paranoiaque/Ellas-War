@@ -10,20 +10,12 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        <div translate>
-          This member is paused, you can give him a favor to help him to
-          comeback. If the member doesn't take advantage of the given favor,
-          this one is lost.
-        </div>
+        <div [translate]="'This member is paused, you can give him a favor to help him to comeback. If the member doesn\'t take advantage of the given favor, this one is lost.'"></div>
         @if (sent === 1) {
-          <div class="text-center text-danger mt-2" translate>
-            You just sent a favor to this member
-          </div>
+          <div class="text-center text-danger mt-2" [translate]="'You just sent a favor to this member'"></div>
         } @else if (info.freereturn === 0 && user.getPropertyNb('favor') > 0) {
           <div class="text-center mt-2">
-            <button class="btn btn-warning" (click)="give()" translate>
-              Give a favor
-            </button>
+            <button class="btn btn-warning" (click)="give()" [translate]="'Give a favor'"></button>
           </div>
         }
       </div>
@@ -32,9 +24,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

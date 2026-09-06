@@ -18,14 +18,10 @@
                 <thead>
                   <tr class="text-center">
                     <th scope="col"></th>
-                    <th scope="col" class="d-none d-sm-table-cell" translate>
-                      Rank
-                    </th>
-                    <th scope="col" translate>XP</th>
-                    <th scope="col" class="d-none d-md-table-cell" translate>
-                      Victories
-                    </th>
-                    <th scope="col" translate>Field</th>
+                    <th scope="col" class="d-none d-sm-table-cell" [translate]="'Rank'"></th>
+                    <th scope="col" [translate]="'XP'"></th>
+                    <th scope="col" class="d-none d-md-table-cell" [translate]="'Victories'"></th>
+                    <th scope="col" [translate]="'Field'"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -67,18 +63,14 @@
             <div class="text-center fw-bold">
               <a [routerLink]="[
                   '/allianceprofile/' + allianceProfile().alliance_id,
-                ]" translate>Alliance profile</a>
+                ]" [translate]="'Alliance profile'"></a>
             </div>
             <br />
             @if (legend.paused === 1 || legend.blocked === 1) {
             <div>
-              <strong translate>Legend</strong><strong translate>:</strong>
-              <div class="text-danger" translate>
-                The member has been blocked
-              </div>
-              <div class="text-warning" translate>
-                The member's status is paused
-              </div>
+              <strong [translate]="'Legend'"></strong><strong [translate]="':'"></strong>
+              <div class="text-danger" [translate]="'The member has been blocked'"></div>
+              <div class="text-warning" [translate]="'The member\'s status is paused'"></div>
             </div>
             }
           </div>

@@ -10,24 +10,18 @@
         <div class="card">
           <div class="d-flex justify-content-center">
             <a class="btn btn-primary flex-grow-1 design-background" href="/agora" [routerLink]="['/agora']"
-              title="{{ 'Player Ranking' | translate }}" translate>
-              Agora
-            </a>
+              title="{{ 'Player Ranking' | translate }}" [translate]="'Agora'"></a>
             <a class="btn btn-danger flex-grow-1 design-background" href="/storeroom" [routerLink]="['/storeroom']"
-              title="{{ 'Honor Ranking' | translate }}" translate>
-              Storeroom
-            </a>
+              title="{{ 'Honor Ranking' | translate }}" [translate]="'Storeroom'"></a>
             <a class="btn btn-primary flex-grow-1 design-background" href="/statistics" [routerLink]="['/statistics']"
-              title="{{ 'Alliance Ranking' | translate }}" translate>
-              Statistics
-            </a>
+              title="{{ 'Alliance Ranking' | translate }}" [translate]="'Statistics'"></a>
           </div>
         </div>
       </div>
       <div class="col-md-6 col-12 d-flex">
         <div class="card col-12 mb-2">
           <div class="card-header">
-            <span translate> Drop resources to the Storeroom </span>
+            <span [translate]="'Drop resources to the Storeroom'"></span>
             <div class="card-header-group card-header-group-right">
               <div class="card-header-button" role="button" data-bs-toggle="modal" data-bs-target="#StoreroomSellHelp">
                 <app-ic-icon [icon]="questionCircle"></app-ic-icon>
@@ -39,9 +33,7 @@
             parseInt(storeroomQuantity) >
             user.getPropertyNb(Tools.getResName(storeroomRess))
             ) {
-            <div class="alert alert-danger" translate>
-              You don't have enough resources
-            </div>
+            <div class="alert alert-danger" [translate]="'You don\'t have enough resources'"></div>
             }
             @if (
             storeroomRate &&
@@ -59,8 +51,8 @@
           }
           @if (storeroomMin.rate > 0) {
           <div>
-            <strong translate>Current rate</strong>
-            <strong translate>:</strong>
+            <strong [translate]="'Current rate'"></strong>
+            <strong [translate]="':'"></strong>
             {{
             parseFloat(storeroomMin.rate.toString())
             | number
@@ -79,7 +71,7 @@
 
           @if (storeroomMin.you > 0) {
           <div>
-            <strong translate>You</strong><strong translate>:</strong>
+            <strong [translate]="'You'"></strong><strong [translate]="':'"></strong>
             {{
             storeroomMin.you
             | number
@@ -98,9 +90,9 @@
 
           <div class="input-group d-flex flex-row">
             <div class="d-flex flex-column">
-              <span class="input-group-text mt-2" id="aria-quantity" translate>Quantity</span>
+              <span class="input-group-text mt-2" id="aria-quantity" [translate]="'Quantity'"></span>
 
-              <span class="input-group-text mt-2" id="aria-rate" translate>Rate</span>
+              <span class="input-group-text mt-2" id="aria-rate" [translate]="'Rate'"></span>
             </div>
             <div class="d-flex flex-column flex-grow-1">
               <input type="number" placeholder="0" step="1" [attr.min]="0" class="form-control mt-2"
@@ -113,47 +105,39 @@
 
           <select class="form-select text-center mt-2" [(ngModel)]="storeroomRess" (change)="setRess()"
             attr.aria-label="{{ 'Select the resource' | translate }}">
-            <option value="1" translate>Food</option>
-            <option value="2" translate>Water</option>
-            <option value="3" translate>Wood</option>
-            <option value="4" translate>Iron</option>
+            <option value="1" [translate]="'Food'"></option>
+            <option value="2" [translate]="'Water'"></option>
+            <option value="3" [translate]="'Wood'"></option>
+            <option value="4" [translate]="'Iron'"></option>
             @if (user.getPropertyNb('level') >= user.getLevelRess('stone')) {
-            <option value="5" translate>Stone</option>
+            <option value="5" [translate]="'Stone'"></option>
             }
             @if (user.getPropertyNb('level') >= user.getLevelRess('marble')) {
-            <option value="6" translate>Marble</option>
+            <option value="6" [translate]="'Marble'"></option>
             }
             @if (user.getPropertyNb('level') >= user.getLevelRess('grapes')) {
-            <option value="7" translate>Grapes</option>
+            <option value="7" [translate]="'Grapes'"></option>
             }
             @if (user.getPropertyNb('level') >= user.getLevelRess('wine')) {
-            <option value="8" translate>Wine</option>
+            <option value="8" [translate]="'Wine'"></option>
             }
             @if (user.getPropertyNb('level') >= user.getLevelRess('gold')) {
-            <option value="9" translate>Gold</option>
+            <option value="9" [translate]="'Gold'"></option>
             }
-            <option value="10" translate>Favor</option>
+            <option value="10" [translate]="'Favor'"></option>
           </select>
           <br />
-          <button class="btn btn-success" (click)="storeroomSell()" translate>
-            Depose
-          </button>
-          <div class="mt-2" translate>
-            The lots remain on the Storeroom during 7 days
-          </div>
+          <button class="btn btn-success" (click)="storeroomSell()" [translate]="'Depose'"></button>
+          <div class="mt-2" [translate]="'The lots remain on the Storeroom during 7 days'"></div>
         </div>
       </div>
     </div>
     <div class="col-md-6 col-12 d-flex">
       <div class="card col-12 mb-2">
-        <div id="BuyResourcesDesc" class="card-header" translate>
-          Buy resources
-        </div>
+        <div id="BuyResourcesDesc" class="card-header" [translate]="'Buy resources'"></div>
         <div class="card-body">
           @if (getStoreroomList().length === 0) {
-          <div class="text-center" translate>
-            No resource available on the Storeroom
-          </div>
+          <div class="text-center" [translate]="'No resource available on the Storeroom'"></div>
           }
           <div class="table-responsive p-0">
             @if (getStoreroomList().length > 0) {
@@ -161,9 +145,9 @@
               <thead>
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col" translate>Resources</th>
-                  <th scope="col" translate>Rate</th>
-                  <th scope="col" translate>Quantity</th>
+                  <th scope="col" [translate]="'Resources'"></th>
+                  <th scope="col" [translate]="'Rate'"></th>
+                  <th scope="col" [translate]="'Quantity'"></th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -273,7 +257,7 @@
                                   )
                                 " title="{{ 'Buy' | translate }}">
                       <app-ic-icon [icon]="bagIcon"></app-ic-icon>
-                      <span class="visually-hidden" translate>Buy</span>
+                      <span class="visually-hidden" [translate]="'Buy'"></span>
                     </button>
                     }
                   </td>
@@ -292,7 +276,7 @@
     <div class="col-12 d-flex">
       <div class="card col-12 mb-2">
         <div class="card-header" id="MySalesDesc">
-          <span translate> Currently for sale</span>
+          <span [translate]="'Currently for sale'"></span>
           <div class="card-header-group card-header-group-right">
             <div class="card-header-button" role="button" data-bs-toggle="modal" data-bs-target="#StoreroomHistory"
               (click)="storeroomHistory()" (keyup.enter)="storeroomHistory()" tabindex="0">
@@ -302,7 +286,7 @@
         </div>
         <div class="card-body table-responsive">
           <div class="text-center">
-            <span class="fw-bold" translate>Redemption rate:</span>
+            <span class="fw-bold" [translate]="'Redemption rate:'"></span>
             @if (user.getPropertyNb('bonus_trade') === 0) {
             <span>
               {{
@@ -322,7 +306,7 @@
             </span>
             }
             <br />
-            <span class="fw-bold" translate>Return rate:</span>
+            <span class="fw-bold" [translate]="'Return rate:'"></span>
             @if (user.getPropertyNb('bonus_trade') === 0) {
             <span>
               {{
@@ -346,9 +330,7 @@
           @if (getStoreroomMyList().length === 0) {
           <div class="text-center fw-bold">
             <br />
-            <span translate>
-              You currently don't have any batch on sales
-            </span>
+            <span [translate]="'You currently don\'t have any batch on sales'"></span>
           </div>
           }
 
@@ -356,10 +338,10 @@
           <table class="table table-middle" aria-describedby="MySalesDesc">
             <thead>
               <tr>
-                <th scope="col" class="text-center" translate>Resources</th>
-                <th scope="col" class="text-center" translate>Rate</th>
-                <th scope="col" class="text-center" translate>Price</th>
-                <th scope="col" class="text-center" translate>Return</th>
+                <th scope="col" class="text-center" [translate]="'Resources'"></th>
+                <th scope="col" class="text-center" [translate]="'Rate'"></th>
+                <th scope="col" class="text-center" [translate]="'Price'"></th>
+                <th scope="col" class="text-center" [translate]="'Return'"></th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -412,7 +394,7 @@
                             storeroomRedeem(trade.storeroom_id, trade.remaining)
                           " title="{{ 'Recover' | translate }}">
                     <app-ic-icon [icon]="jarIcon"></app-ic-icon>
-                    <span class="visually-hidden" translate>Recover</span>
+                    <span class="visually-hidden" [translate]="'Recover'"></span>
                   </button>
                 </td>
               </tr>

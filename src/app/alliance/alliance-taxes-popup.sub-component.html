@@ -2,13 +2,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="taxesDesc" class="modal-title" translate>Taxes management</h5>
+        <h5 id="taxesDesc" class="modal-title" [translate]="'Taxes management'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body container-fluid">
-        <strong translate>Minimum level</strong>
+        <strong [translate]="'Minimum level'"></strong>
         @if (user.getPropertyNb('treasurer') === 0) {
-        <strong translate>:</strong>
+        <strong [translate]="':'"></strong>
         }
         @if (user.getPropertyNb('treasurer') === 0) {
         <span>{{ myAllianceProfile.fee_min }}</span>
@@ -24,9 +24,9 @@
           <thead>
             <tr>
               <th scope="col"></th>
-              <th scope="col" translate>Quantity</th>
+              <th scope="col" [translate]="'Quantity'"></th>
               @if (user.getPropertyNb('treasurer') > 0) {
-              <th scope="col" translate>Max</th>
+              <th scope="col" [translate]="'Max'"></th>
               }
             </tr>
           </thead>
@@ -295,13 +295,9 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         @if (user.getPropertyNb('treasurer') > 0) {
-        <button type="button" class="btn btn-primary" (click)="saveTaxes()" data-bs-dismiss="modal" translate>
-          Save
-        </button>
+        <button type="button" class="btn btn-primary" (click)="saveTaxes()" data-bs-dismiss="modal" [translate]="'Save'"></button>
         }
       </div>
     </div>

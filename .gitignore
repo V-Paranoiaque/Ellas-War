@@ -70,6 +70,7 @@ build.json
 # SonarQube
 .scannerwork
 .sonar
+reports
 sonar-project.properties
 
 # Generated images

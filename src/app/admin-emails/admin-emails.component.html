@@ -6,18 +6,16 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center" id="emailLabel" translate>
-              Email modification
-            </h1>
+            <h1 class="text-center" id="emailLabel" [translate]="'Email modification'"></h1>
 
             <table class="table" aria-describedby="emailLabel">
               <thead>
                 <tr>
-                  <th scope="col" translate>Player</th>
-                  <th scope="col" translate>Previous email</th>
-                  <th scope="col" translate>New email</th>
-                  <th scope="col" translate>IP</th>
-                  <th scope="col" translate>Date</th>
+                  <th scope="col" [translate]="'Player'"></th>
+                  <th scope="col" [translate]="'Previous email'"></th>
+                  <th scope="col" [translate]="'New email'"></th>
+                  <th scope="col" [translate]="'IP'"></th>
+                  <th scope="col" [translate]="'Date'"></th>
                 </tr>
               </thead>
               <tbody>
@@ -68,9 +66,7 @@
                     track item;
                     let i = $index
                   ) {
-                    <option value="{{ i + 1 }}" translate>
-                      Page {{ i + 1 }}
-                    </option>
+                    <option value="{{ i + 1 }}" [translate]="'Page ' + (i + 1)"></option>
                   }
                 </select>
                 <span

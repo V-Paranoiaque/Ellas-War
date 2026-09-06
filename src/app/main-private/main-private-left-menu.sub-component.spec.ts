@@ -1,18 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { jest } from '@jest/globals';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SocketComponent as Socket } from '../../services/socketio.service';
-import { UserComponent as User } from '../../services/user.service';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateDirective } from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { FormBuilder } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { appConfig } from '../app.config.spec';
 
 import { MainPrivateLeftMenuSubComponent } from './main-private-left-menu.sub-component';
 import { environment } from '../../environments/environment';
@@ -21,30 +11,22 @@ describe('MainPrivateLeftMenuSubComponent', () => {
   let socket: Socket;
 
   beforeEach(async () => {
+    jest.spyOn(HTMLMediaElement.prototype, 'load').mockImplementation(() => {
+      return;
+    });
     await TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [
-        RouterModule.forRoot([]),
-        TranslateDirective.forRoot({
-          loader: provideTranslateHttpLoader({
-            prefix: './assets/i18n/',
-            suffix: '.json',
-          }),
-        }),
-        OAuthModule.forRoot(),
+        ...appConfig.imports
       ],
-      providers: [
-        Socket,
-        User,
-        OAuthService,
-        BsModalService,
-        FormBuilder,
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [...appConfig.providers],
     }).compileComponents();
     socket = TestBed.inject(Socket);
     socket.setupSocketConnection(environment.SERVER_DEV);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 
   it('should create the service', () => {

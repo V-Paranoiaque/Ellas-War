@@ -2,25 +2,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 translate>Legend</h5>
+        <h5 [translate]="'Legend'"></h5>
       </div>
       <div class="modal-body">
-        <div translate>
-          You don't have enough resources to maintain your production.
-        </div>
-        <div translate>
-          The productions in yellow are degraded and those in red stopped.
-        </div>
-        <div translate>
-          Check your resources to restore your production, it is probably
-          currently at zero.
-        </div>
+        <div [translate]="'You don\'t have enough resources to maintain your production.'"></div>
+        <div [translate]="'The productions in yellow are degraded and those in red stopped.'"></div>
+        <div [translate]="'Check your resources to restore your production, it is probably currently at zero.'"></div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>
@@ -36,38 +27,30 @@
           <button class="btn btn-primary p-2 flex-fill design-background" (click)="setMenuMode(0)" [ngClass]="{
               'btn-danger': menuMode === 0,
               'btn-primary': menuMode !== 0,
-            }" translate>
-            Production
-          </button>
+            }" [translate]="'Production'"></button>
           <button class="btn btn-primary p-2 flex-fill design-background" (click)="setMenuMode(1)" [ngClass]="{
               'btn-danger': menuMode === 1,
               'btn-primary': menuMode !== 1,
-            }" translate>
-            Consumption
-          </button>
+            }" [translate]="'Consumption'"></button>
           <button class="btn btn-primary p-2 flex-fill design-background" (click)="setMenuMode(2)" [ngClass]="{
               'btn-danger': menuMode === 2,
               'btn-primary': menuMode !== 2,
-            }" translate>
-            Evolution
-          </button>
+            }" [translate]="'Evolution'"></button>
         </div>
         <div class="card">
           <div class="card-body">
-            <div class="visually-hidden" id="detailsDesc" translate>
-              Details of the comsumptions and productions
-            </div>
+            <div class="visually-hidden" id="detailsDesc" [translate]="'Details of the comsumptions and productions'"></div>
             <table class="table align-middle" aria-labelledby="detailsDesc">
               <thead class="text-center">
                 <tr>
                   <th scope="col" [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 0 }">
-                    <span translate>Production</span>/<span translate>Day</span>
+                    <span [translate]="'Production'"></span>/<span [translate]="'Day'"></span>
                   </th>
                   <th scope="col" [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 1 }">
-                    <span translate>Consumption</span>/<span translate>Day</span>
+                    <span [translate]="'Consumption'"></span>/<span [translate]="'Day'"></span>
                   </th>
                   <th scope="col" [ngClass]="{ 'd-none d-sm-table-cell': menuMode !== 2 }">
-                    <span translate>Evolution</span>/<span translate>Day</span>
+                    <span [translate]="'Evolution'"></span>/<span [translate]="'Day'"></span>
                   </th>
                 </tr>
               </thead>
@@ -206,85 +189,74 @@
                     @if (user.getPropertyNb('apollo') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Apollo</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Apollo'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('demeter') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Demeter</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Demeter'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('hermes') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Hermes</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Hermes'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('ares') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Ares</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Ares'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('athena') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Athena</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Athena'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('artemis') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Artemis</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Artemis'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('dionysus') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Dionysus</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Dionysus'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('hephaestus') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Hephaestus</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Hephaestus'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('hades') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Hades</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Hades'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('poseidon') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Poseidon</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Poseidon'"></span>
                     </div>
                     }
                     @if (user.getPropertyNb('zeus') === 1) {
                     <div>
                       + 4
-                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span translate>Temple of
-                        Zeus</span>
+                      <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span [translate]="'Temple of Zeus'"></span>
                     </div>
                     }
                     @if (user.getSanctuary(3) > 0) {
                     <div>
                       + 24
                       <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>&nbsp;<span
-                        translate>Tantalus</span>
+                        [translate]="'Tantalus'"></span>
                     </div>
                     }
                   </td>

@@ -9,7 +9,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService, TranslateStore } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder } from '@angular/forms';
@@ -25,12 +25,6 @@ describe('UserComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [],
       imports: [
-        TranslateModule.forRoot({
-          loader: provideTranslateHttpLoader({
-            prefix: './assets/i18n/',
-            suffix: '.json',
-          }),
-        }),
         OAuthModule.forRoot(),
       ],
       providers: [
@@ -42,6 +36,14 @@ describe('UserComponent', () => {
         FormBuilder,
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
+        TranslateStore,
+        provideTranslateService({
+          fallbackLang: 'en',
+          loader: provideTranslateHttpLoader({
+            prefix: './assets/i18n/',
+            suffix: '.json',
+          }),
+        }),
       ],
     }).compileComponents();
     socket = TestBed.inject(Socket);

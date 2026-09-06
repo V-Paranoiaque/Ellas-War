@@ -2,16 +2,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Request a prayer for a player</h5>
+        <h5 class="modal-title" [translate]="'Request a prayer for a player'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="input-group" style="width: 100%">
-          <span class="input-group-text" id="ask_target" translate>Player</span>
+          <span class="input-group-text" id="ask_target" [translate]="'Player'"></span>
           <input type="text" class="form-control" [(ngModel)]="request.player" />
         </div>
         <div class="input-group" style="width: 100%">
-          <span class="input-group-text" id="ask_nb" translate>Quantity</span>
+          <span class="input-group-text" id="ask_nb" [translate]="'Quantity'"></span>
           <input type="number" step="1" [(ngModel)]="request.quantity" placeholder="0" class="form-control" />
         </div>
         <select name="ask_type" [(ngModel)]="request.type" class="form-control">
@@ -48,14 +48,10 @@
             {{ 80 | number: '' : currentLocale() }}
             {{ 'Spartans' | translate }}
           </option>
-          <option value="10" translate>200 units of your third temple</option>
-          <option value="11" translate>
-            6 hours of withdrawal without taxes in your treasure
-          </option>
-          <option value="12" translate>
-            A license to sell in the Agora a forbidden day
-          </option>
-          <option value="13" translate>2 bonus attacks</option>
+          <option value="10" [translate]="'200 units of your third temple'"></option>
+          <option value="11" [translate]="'6 hours of withdrawal without taxes in your treasure'"></option>
+          <option value="12" [translate]="'A license to sell in the Agora a forbidden day'"></option>
+          <option value="13" [translate]="'2 bonus attacks'"></option>
           <option value="14">
             {{ 20000 | number: '' : currentLocale() }}
             {{ 'Drachmas' | translate }}
@@ -110,12 +106,8 @@
         </select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="prayersAsk()" translate>
-          Confirm
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="prayersAsk()" [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -130,7 +122,7 @@
         <div class="card">
           <div class="card-body">
             <h2 class="text-center" id="prayersDesc">
-              <span translate>Prayers</span>
+              <span [translate]="'Prayers'"></span>
               <span class="btn btn-primary" role="button" data-bs-toggle="modal" data-bs-target="#AdminPrayersRequest">
                 <app-ic-icon [icon]="plusIcon"></app-ic-icon>
               </span>
@@ -138,12 +130,12 @@
 
             <table class="table table-middle align-middle" aria-describedby="prayersDesc">
               <thead>
-                <th scope="col" translate>Date</th>
-                <th scope="col" translate>Applicant</th>
-                <th scope="col" translate>Beneficiary</th>
-                <th scope="col" translate>Type</th>
-                <th scope="col" translate>Quantity</th>
-                <th scope="col" translate>Status</th>
+                <th scope="col" [translate]="'Date'"></th>
+                <th scope="col" [translate]="'Applicant'"></th>
+                <th scope="col" [translate]="'Beneficiary'"></th>
+                <th scope="col" [translate]="'Type'"></th>
+                <th scope="col" [translate]="'Quantity'"></th>
+                <th scope="col" [translate]="'Status'"></th>
                 @if (user.getPropertyNb('rank') > 4) {
                 <th scope="col"></th>
                 }
@@ -239,26 +231,20 @@
                       {{
                       80 | number: '' : currentLocale()
                       }}
-                      <span translate>Spartans</span>
+                      <span [translate]="'Spartans'"></span>
                     </span>
                     }
                     @case (10) {
-                    <span translate>
-                      200 units of your third temple
-                    </span>
+                    <span [translate]="'200 units of your third temple'"></span>
                     }
                     @case (11) {
-                    <span translate>
-                      6 hours of withdrawal without taxes in your treasure
-                    </span>
+                    <span [translate]="'6 hours of withdrawal without taxes in your treasure'"></span>
                     }
                     @case (12) {
-                    <span translate>
-                      A license to sell in the Agora a forbidden day
-                    </span>
+                    <span [translate]="'A license to sell in the Agora a forbidden day'"></span>
                     }
                     @case (13) {
-                    <span translate> 2 bonus attacks </span>
+                    <span [translate]="'2 bonus attacks'"></span>
                     }
                     @case (14) {
                     <span>
@@ -433,16 +419,16 @@
                     <span>
                       @switch (p.ask_status) {
                       @case (1) {
-                      <span translate>Waiting</span>
+                      <span [translate]="'Waiting'"></span>
                       }
                       @case (2) {
-                      <span translate>Validated</span>
+                      <span [translate]="'Validated'"></span>
                       }
                       @case (3) {
-                      <span translate>Refused</span>
+                      <span [translate]="'Refused'"></span>
                       }
                       @case (4) {
-                      <span translate>Canceled</span>
+                      <span [translate]="'Canceled'"></span>
                       }
                       }
                     </span>
@@ -451,15 +437,11 @@
                   <td>
                     @if (p.ask_status === 1) {
                     <button class="btn btn-success" (click)="prayersValide(p.divinebonus_ask_id, 2)"
-                      title="{{ 'Validate' | translate }}" translate>
-                      Validate
-                    </button>
+                      title="{{ 'Validate' | translate }}" [translate]="'Validate'"></button>
                     }
                     @if (p.ask_status === 1) {
                     <button class="btn btn-danger" (click)="prayersValide(p.divinebonus_ask_id, 3)"
-                      title="{{ 'Refuse' | translate }}" translate>
-                      Refuse
-                    </button>
+                      title="{{ 'Refuse' | translate }}" [translate]="'Refuse'"></button>
                     }
                   </td>
                   }

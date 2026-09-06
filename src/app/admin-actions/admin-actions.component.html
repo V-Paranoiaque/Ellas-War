@@ -6,29 +6,19 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body text-center">
-            <h1 translate>Run an action</h1>
+            <h1 [translate]="'Run an action'"></h1>
 
             <select class="form-select" [(ngModel)]="adminActions">
-              <option value="" translate>Select an action</option>
-              <option value="Diamondrun" translate>Run the diamond</option>
-              <option value="HonorRanking" translate>
-                Run the Honor Ranking
-              </option>
-              <option value="reinitStatsDaily" translate>
-                Reinitialize daily stats
-              </option>
-              <option value="reinitStatsWeekly" translate>
-                Reinitialize weekly stats
-              </option>
-              <option value="adminAutosell" translate>Run the autosell</option>
-              <option value="questDivideAll" translate>
-                Distribute the quests
-              </option>
-              <option value="seasonRun" translate>
-                Start a new season (XP)
-              </option>
-              <option value="adminLog" translate>Write a log</option>
-              <option value="cleanMysql" translate>Clean the Database</option>
+              <option value="" [translate]="'Select an action'"></option>
+              <option value="Diamondrun" [translate]="'Run the diamond'"></option>
+              <option value="HonorRanking" [translate]="'Run the Honor Ranking'"></option>
+              <option value="reinitStatsDaily" [translate]="'Reinitialize daily stats'"></option>
+              <option value="reinitStatsWeekly" [translate]="'Reinitialize weekly stats'"></option>
+              <option value="adminAutosell" [translate]="'Run the autosell'"></option>
+              <option value="questDivideAll" [translate]="'Distribute the quests'"></option>
+              <option value="seasonRun" [translate]="'Start a new season (XP)'"></option>
+              <option value="adminLog" [translate]="'Write a log'"></option>
+              <option value="cleanMysql" [translate]="'Clean the Database'"></option>
             </select>
 
             <button
@@ -36,27 +26,23 @@
               (click)="run()"
               (keyup.enter)="run()"
               tabindex="0"
-              translate>
-              Run
-            </button>
+              [translate]="'Run'"></button>
             <div class="row">
               <div class="col-12 col-md-6">
-                <h1 class="text-center" id="adminActionsAgoraDesc" translate>
-                  Agora
-                </h1>
+                <h1 class="text-center" id="adminActionsAgoraDesc" [translate]="'Agora'"></h1>
 
                 <table class="table" aria-labelledby="adminActionsAgoraDesc">
                   <thead>
                     <tr>
                       <th scope="column"></th>
-                      <th scope="column" translate>Quantity</th>
-                      <th scope="column" translate>Price</th>
-                      <th scope="column" translate>Rate</th>
+                      <th scope="column" [translate]="'Quantity'"></th>
+                      <th scope="column" [translate]="'Price'"></th>
+                      <th scope="column" [translate]="'Rate'"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row" translate>Food</th>
+                      <th scope="row" [translate]="'Food'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -76,7 +62,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Water</th>
+                      <th scope="row" [translate]="'Water'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -96,7 +82,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Wood</th>
+                      <th scope="row" [translate]="'Wood'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -116,7 +102,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Iron</th>
+                      <th scope="row" [translate]="'Iron'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -136,7 +122,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Stone</th>
+                      <th scope="row" [translate]="'Stone'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -156,7 +142,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Marble</th>
+                      <th scope="row" [translate]="'Marble'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -178,7 +164,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Grapes</th>
+                      <th scope="row" [translate]="'Grapes'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -200,7 +186,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Wine</th>
+                      <th scope="row" [translate]="'Wine'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -220,7 +206,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Gold</th>
+                      <th scope="row" [translate]="'Gold'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -245,18 +231,14 @@
                   <button
                     class="btn btn-success"
                     (click)="agoraSave()"
-                    translate>
-                    Save
-                  </button>
+                    [translate]="'Save'"></button>
                 </div>
               </div>
               <div class="col-12 col-md-6">
                 <h1
                   class="text-center"
                   id="adminActionsStoreroomDesc"
-                  translate>
-                  Storeroom
-                </h1>
+                  [translate]="'Storeroom'"></h1>
 
                 <table
                   class="table"
@@ -264,14 +246,14 @@
                   <thead>
                     <tr>
                       <th scope="column"></th>
-                      <th scope="column" translate>Quantity</th>
-                      <th scope="column" translate>Price</th>
-                      <th scope="column" translate>Rate</th>
+                      <th scope="column" [translate]="'Quantity'"></th>
+                      <th scope="column" [translate]="'Price'"></th>
+                      <th scope="column" [translate]="'Rate'"></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope="row" translate>Food</th>
+                      <th scope="row" [translate]="'Food'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -294,7 +276,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Water</th>
+                      <th scope="row" [translate]="'Water'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -317,7 +299,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Wood</th>
+                      <th scope="row" [translate]="'Wood'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -340,7 +322,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Iron</th>
+                      <th scope="row" [translate]="'Iron'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -363,7 +345,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Stone</th>
+                      <th scope="row" [translate]="'Stone'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -386,7 +368,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Marble</th>
+                      <th scope="row" [translate]="'Marble'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -409,7 +391,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Grapes</th>
+                      <th scope="row" [translate]="'Grapes'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -432,7 +414,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Wine</th>
+                      <th scope="row" [translate]="'Wine'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -455,7 +437,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row" translate>Gold</th>
+                      <th scope="row" [translate]="'Gold'"></th>
                       <td>
                         <input
                           class="form-control"
@@ -483,9 +465,7 @@
                   <button
                     class="btn btn-success"
                     (click)="storeroomSave()"
-                    translate>
-                    Save
-                  </button>
+                    [translate]="'Save'"></button>
                 </div>
               </div>
             </div>

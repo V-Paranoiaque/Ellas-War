@@ -27,20 +27,13 @@
               }}
             </div>
             <br /><br />
-            <strong translate>Possible reasons:</strong>
+            <strong [translate]="'Possible reasons:'"></strong>
             <ul>
-              <li translate>This member has a too high rank</li>
-              <li translate>
-                A war will start soon and you are only two in the alliance
-              </li>
-              <li translate>
-                Your alliance is involved in a war with another alliance
-              </li>
+              <li [translate]="'This member has a too high rank'"></li>
+              <li [translate]="'A war will start soon and you are only two in the alliance'"></li>
+              <li [translate]="'Your alliance is involved in a war with another alliance'"></li>
             </ul>
-            <div translate>
-              If the member is inactive during more than 30 days, the rules
-              linked to the wars don't apply anymore
-            </div>
+            <div [translate]="'If the member is inactive during more than 30 days, the rules linked to the wars don\'t apply anymore'"></div>
           </div>
         }
       </div>
@@ -49,18 +42,14 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         @if (possible()) {
           <button
             type="button"
             class="btn btn-danger"
             (click)="memberEject()"
             data-bs-dismiss="modal"
-            translate>
-            Confirm
-          </button>
+            [translate]="'Confirm'"></button>
         }
       </div>
     </div>

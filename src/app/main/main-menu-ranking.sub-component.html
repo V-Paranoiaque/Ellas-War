@@ -9,9 +9,7 @@
       }"
       [routerLink]="['/rankingplayers/1']"
       title="{{ 'Player Ranking' | translate }}"
-      translate>
-      Players
-    </a>
+      [translate]="'Players'"></a>
     <a
       class="btn flex-grow-1 design-background"
       href="/honor"
@@ -21,9 +19,7 @@
         'btn-primary': localPage !== 'honor',
       }"
       title="{{ 'Honor Ranking' | translate }}"
-      translate>
-      Honor
-    </a>
+      [translate]="'Honor'"></a>
     <a
       class="btn flex-grow-1 design-background"
       href="/rankingalliances/1"
@@ -33,9 +29,7 @@
       }"
       [routerLink]="['/rankingalliances/1']"
       title="{{ 'Alliance Ranking' | translate }}"
-      translate>
-      Alliances
-    </a>
+      [translate]="'Alliances'"></a>
     <a
       class="btn flex-grow-1 design-background"
       href="/rankingseabattles/1"
@@ -45,8 +39,6 @@
       }"
       [routerLink]="['/rankingseabattles/1']"
       title="{{ 'Sea Battles Ranking' | translate }}"
-      translate>
-      Sea Battles
-    </a>
+      [translate]="'Sea Battles'"></a>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Quest progress</h5>
+        <h5 class="modal-title" [translate]="'Quest progress'"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -17,16 +17,16 @@
           }
           @if (
           user.getPropertyNb('quest_today') === 0 &&
-          user.getPropertyNb('quest_step') < 7 ) { <p translate>Don't forget to validate your daily quest</p>
+          user.getPropertyNb('quest_step') < 7 ) { <p [translate]="'Don\'t forget to validate your daily quest'"></p>
             }
             @if (user.getPropertyNb('quest_step') >= 7) {
-            <p translate>Open the chest and get your reward</p>
+            <p [translate]="'Open the chest and get your reward'"></p>
             }
             <div class="text-center">
               <app-ic-icon class="fs-1" [icon]="treasureChest" data-bs-toggle="modal" data-bs-target="#QuestsInfo"
                 role="button"></app-ic-icon>
             </div>
-            <div class="fw-bold" translate>The chest contains:</div>
+            <div class="fw-bold" [translate]="'The chest contains:'"></div>
 
             <ul>
               @if (
@@ -35,27 +35,25 @@
               user.getPropertyNb('hephaestus') > 0
               ) {
               <li>
-                <span translate>200 units of your third temple</span>
+                <span [translate]="'200 units of your third temple'"></span>
                 <span class="text-danger">*</span>
               </li>
               }
               <li>
-                <span translate>
-                  6 hours of withdrawal without taxes in your treasure
-                </span>
+                <span [translate]="'6 hours of withdrawal without taxes in your treasure'"></span>
                 <span class="text-danger">*</span>
               </li>
               <li>
-                <span translate>10 bonus attacks</span>
+                <span [translate]="'10 bonus attacks'"></span>
                 <span class="text-danger">*</span>
               </li>
               @if (
               user.getPropertyNb('level') >= user.getDatas().ress_lvl.ambrosia
               ) {
-              <li translate>
-                40
+              <li>
+                <span [translate]="'40'"></span>
                 <app-ew-icon name="ambrosia" class="small-resource"></app-ew-icon>
-                (<span translate>you can't have more than 400 of Ambrosia</span>)
+                <span [translate]="'('"></span><span [translate]="'you can\'t have more than 400 of Ambrosia'"></span><span [translate]="')'"></span>
               </li>
               }
               @if (
@@ -67,29 +65,17 @@
             </ul>
       </div>
       <div class="modal-body">
-        <div translate>
-          Complete at least one quest per day. After 7 days, you will be able to
-          obtain the reward contained in the chest.
-        </div>
-        <div translate>
-          You get a new quest every hour and you can store a maximum of 10
-          quests.
-        </div>
+        <div [translate]="'Complete at least one quest per day. After 7 days, you will be able to obtain the reward contained in the chest.'"></div>
+        <div [translate]="'You get a new quest every hour and you can store a maximum of 10 quests.'"></div>
         <div>
           <span class="text-danger">*</span>
-          <span translate>
-            The following rewards are granted as divine bonuses
-          </span>
+          <span [translate]="'The following rewards are granted as divine bonuses'"></span>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
         @if (user.getPropertyNb('quest_step') >= 7) {
-        <button type="button" class="btn btn-success" (click)="myQuestReward()" data-bs-dismiss="modal" translate>
-          Validate
-        </button>
+        <button type="button" class="btn btn-success" (click)="myQuestReward()" data-bs-dismiss="modal" [translate]="'Validate'"></button>
         }
       </div>
     </div>

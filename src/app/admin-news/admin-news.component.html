@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Write a new news</h5>
+        <h5 class="modal-title" [translate]="'Write a new news'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -10,10 +10,10 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <strong translate>Title</strong>
+        <strong [translate]="'Title'"></strong>
         <input class="form-control" [(ngModel)]="newsSelected.title" />
 
-        <strong translate>Link</strong>
+        <strong [translate]="'Link'"></strong>
         <input class="form-control" [(ngModel)]="newsSelected.link" />
       </div>
       <div class="modal-footer">
@@ -21,17 +21,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-primary"
           (click)="newsNew()"
           data-bs-dismiss="modal"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -41,7 +37,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Modify a news</h5>
+        <h5 class="modal-title" [translate]="'Modify a news'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -49,13 +45,13 @@
           aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <strong translate>Title</strong>
+        <strong [translate]="'Title'"></strong>
         <input class="form-control" [(ngModel)]="newsSelected.title" />
 
-        <strong translate>Link</strong>
+        <strong [translate]="'Link'"></strong>
         <input class="form-control" [(ngModel)]="newsSelected.link" />
 
-        <strong translate>Author</strong>
+        <strong [translate]="'Author'"></strong>
         <input class="form-control" [(ngModel)]="newsSelected.author" />
       </div>
       <div class="modal-footer">
@@ -63,17 +59,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-primary"
           (click)="newsModify()"
           data-bs-dismiss="modal"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -83,7 +75,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" translate>Delete a news</h5>
+        <h5 class="modal-title" [translate]="'Delete a news'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -100,17 +92,13 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
         <button
           type="button"
           class="btn btn-danger"
           (click)="newsDelete()"
           data-bs-dismiss="modal"
-          translate>
-          Confirm
-        </button>
+          [translate]="'Confirm'"></button>
       </div>
     </div>
   </div>
@@ -124,7 +112,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="text-center" id="newsTitle" translate>News</h1>
+            <h1 class="text-center" id="newsTitle" [translate]="'News'"></h1>
 
             <div class="text-center">
               <button
@@ -132,9 +120,7 @@
                 data-bs-toggle="modal"
                 (click)="setNews({ title: '', link: '' })"
                 data-bs-target="#NewsNew"
-                translate>
-                Write a new news
-              </button>
+                [translate]="'Write a new news'"></button>
             </div>
             <table class="table" aria-describedby="newsTitle">
               <tbody>
@@ -168,8 +154,8 @@
                         data-bs-target="#NewsModify"
                         title="{{ 'Modify a news' | translate }}">
                         <app-ic-icon [icon]="brushIcon"></app-ic-icon>
-                        <span class="visually-hidden" translate
-                          >Modify a news</span
+                        <span class="visually-hidden" [translate]="'Modify a news'"
+                          ></span
                         >
                       </button>
                       <button
@@ -179,8 +165,8 @@
                         data-bs-target="#NewsDelete"
                         title="{{ 'Delete a news' | translate }}">
                         <app-ic-icon [icon]="trash2Icon"></app-ic-icon>
-                        <span class="visually-hidden" translate
-                          >Delete a news</span
+                        <span class="visually-hidden" [translate]="'Delete a news'"
+                          ></span
                         >
                       </button>
                     </td>
@@ -215,7 +201,7 @@
                     title="{{ 'Change page' | translate }}"
                     #mySelect>
                     @for (id of Tools.range(1, adminNewsMax); track id) {
-                      <option value="{{ id }}" translate>Page {{ id }}</option>
+                      <option value="{{ id }}" [translate]="'Page ' + (id)"></option>
                     }
                   </select>
                   <span

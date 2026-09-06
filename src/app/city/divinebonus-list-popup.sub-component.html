@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 id="divinebonusDesc" translate>Divine Bonus</h5>
+        <h5 id="divinebonusDesc" [translate]="'Divine Bonus'"></h5>
         <button
           type="button"
           class="btn-close"
@@ -11,9 +11,7 @@
       </div>
       <div class="modal-body">
         @if (divineBonus.error > 0) {
-          <div class="alert alert-success" role="alert" translate>
-            Divine Bonus validated
-          </div>
+          <div class="alert alert-success" role="alert" [translate]="'Divine Bonus validated'"></div>
         }
 
         <table
@@ -40,9 +38,7 @@
                     (click)="divineBonusUse(bonus.bonus_id)"
                     type="button"
                     class="btn btn-primary"
-                    translate>
-                    Use
-                  </button>
+                    [translate]="'Use'"></button>
                 </td>
               </tr>
             }
@@ -55,9 +51,7 @@
           type="button"
           class="btn btn-secondary"
           data-bs-dismiss="modal"
-          translate>
-          Close
-        </button>
+          [translate]="'Close'"></button>
       </div>
     </div>
   </div>

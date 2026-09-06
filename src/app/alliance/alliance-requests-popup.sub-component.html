@@ -3,38 +3,32 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          <span translate>Request resources</span>
-          <span translate>:</span>
+          <span [translate]="'Request resources'"></span>
+          <span [translate]="':'"></span>
           <app-ew-icon name="{{ info.resource }}" class="small-resource"></app-ew-icon>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="text-center fw-bold mb-2">
-          <span translate>Stocks:</span>
+          <span [translate]="'Stocks:'"></span>
           {{ info.stock | number: '1.0-0' : currentLocale() }}
           <app-ew-icon name="{{ info.resource }}" class="small-resource"></app-ew-icon>
         </div>
 
         <div class="input-group">
           <input type="number" class="form-control" [attr.min]="0" [(ngModel)]="info.quantity" />
-          <span class="input-group-text btn btn-primary" (click)="askRess()" translate>Request</span>
+          <span class="input-group-text btn btn-primary" (click)="askRess()" [translate]="'Request'"></span>
         </div>
       </div>
       @if (myAllianceAskList.length > 0) {
       <div class="modal-body">
-        <div class="text-center fw-bold" id="myAllianceAskListDesc" translate>
-          Waiting requests
-        </div>
+        <div class="text-center fw-bold" id="myAllianceAskListDesc" [translate]="'Waiting requests'"></div>
         @if (myAllianceAskAcceptError === 1) {
-        <div class="alert alert-danger text-center" translate>
-          You don't have the permissions to accept this request
-        </div>
+        <div class="alert alert-danger text-center" [translate]="'You don\'t have the permissions to accept this request'"></div>
         }
         @if (myAllianceAskAcceptError === 2) {
-        <div class="alert alert-danger center" translate>
-          Your alliance doesn't have enough resources
-        </div>
+        <div class="alert alert-danger center" [translate]="'Your alliance doesn\'t have enough resources'"></div>
         }
         <table class="table table-striped table-middle" aria-labelledby="myAllianceAskListDesc">
           <tbody>
@@ -76,9 +70,7 @@
       }
       @if (myAllianceAskMy.length > 0) {
       <div class="modal-body">
-        <div class="text-center fw-bold" id="requestsDesc" translate>
-          Your requests
-        </div>
+        <div class="text-center fw-bold" id="requestsDesc" [translate]="'Your requests'"></div>
         <table class="table table-striped table-middle align-middle" aria-labelledby="requestsDesc">
           <tbody>
             @for (req of myAllianceAskMy; track req) {
@@ -107,9 +99,7 @@
       }
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" translate>
-          Close
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [translate]="'Close'"></button>
       </div>
     </div>
   </div>

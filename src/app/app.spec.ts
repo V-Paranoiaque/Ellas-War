@@ -1,44 +1,27 @@
 import { TestBed } from '@angular/core/testing';
+import { jest } from '@jest/globals';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { AppComponent } from './app';
-import { SocketComponent as Socket } from '../services/socketio.service';
-import { UserComponent as User } from '../services/user.service';
-import {
-  OAuthModule,
-  OAuthService,
-  UrlHelperService,
-} from 'angular-oauth2-oidc';
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { TranslateDirective } from '@ngx-translate/core';
-import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { appConfig } from './app.config.spec';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
-        TranslateDirective.forRoot({
-          loader: provideTranslateHttpLoader({
-            prefix: './assets/i18n/',
-            suffix: '.json',
-          }),
-        }),
-        OAuthModule.forRoot(),
+        ...appConfig.imports
       ],
-      providers: [
-        Socket,
-        User,
-        OAuthService,
-        UrlHelperService,
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-      ],
+      providers: [...appConfig.providers],
     }).compileComponents();
+    jest.spyOn(TestBed.inject(OAuthService), 'loadDiscoveryDocumentAndTryLogin')
+      .mockResolvedValue(false);
   });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
