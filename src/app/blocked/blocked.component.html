@@ -10,26 +10,23 @@
               <div class="col-12">
                 <h2 class="text-center" [translate]="'Your account is currently blocked'"></h2>
                 @if (user.getProperty('blocked_reason')) {
-                  <div class="m-4 my-6">
-                    <div class="fw-bold" [translate]="'Message from the staff:'"></div>
-                    {{ user.getProperty('blocked_reason') }}
-                  </div>
+                <div class="m-4 my-6">
+                  <div class="fw-bold" [translate]="'Message from the staff:'"></div>
+                  {{ user.getProperty('blocked_reason') }}
+                </div>
                 }
               </div>
               <div class="col-6 text-center">
-                <a
-                  class="btn btn-primary"
-                  [routerLink]="['/support']"
-                  role="button"
+                <a class="btn btn-primary" [routerLink]="['/support']" role="button"
                   [translate]="'Contact support'"></a>
               </div>
               <div class="col-6 text-center">
-                <div
-                  class="btn btn-danger"
-                  data-bs-toggle="modal"
-                  role="button"
-                  data-bs-target="#ResetAccount"
+                <div class="btn btn-danger" data-bs-toggle="modal" role="button" data-bs-target="#ResetAccount"
                   [translate]="'Reset your account'"></div>
+              </div>
+              <div class="col-12 text-center mt-4">
+                <div class="btn btn-primary" (click)="user.disconnect()" role="button" (keyup.enter)="user.disconnect()"
+                  tabindex="0" [translate]="'Disconnect'"></div>
               </div>
             </div>
           </div>
