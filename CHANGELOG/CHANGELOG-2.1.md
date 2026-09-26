@@ -37,3 +37,10 @@
 
 # 2.1.10
 * Fix in the waves
+
+# 2.1.11
+* Change test framework
+* Fix changing temple
+* Fix in the storeroom
+* New button to disconnect when the account is blocked
+* Upgrade Angular to 22
