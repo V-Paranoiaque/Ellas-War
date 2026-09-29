@@ -93,6 +93,7 @@ jobs:
         run: |
           npm install -g cordova
           npm install
+          npm install --save electron@43
 
       - name: Download the project
         uses: robinraju/release-downloader@v1.9

@@ -45,6 +45,7 @@ jobs:
           sudo apt install -y -qq rpm 
           npm install -g cordova
           npm install
+          npm install --save electron@43
       
       - name: Build packages
         run: |
