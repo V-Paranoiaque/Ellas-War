@@ -487,6 +487,7 @@ export class CityComponent implements OnInit, OnDestroy {
   selectArmy(name: string) {
     const datas = this.user.getProperty('datas') as object as { army: object };
     this.armyInfo = datas.army[name as keyof typeof datas.army];
+    this.armyInfo.code = name;
     this.armyInfo.engageNb = '';
     this.armyInfo.liberatenb = '';
     this.armyInfo.resaler = new Map();
@@ -508,6 +509,7 @@ export class CityComponent implements OnInit, OnDestroy {
       building: object;
     };
     this.buildingInfo = datas.building[name as keyof typeof datas.building];
+    this.buildingInfo.code = name;
     this.buildingInfo.buildNb = '';
     this.buildingInfo.destructNb = '';
     this.buildingInfo.destruct = new Map();
