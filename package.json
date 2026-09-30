@@ -1,7 +1,7 @@
 {
   "name": "@v-paranoiaque/ew",
   "description": "Front-end of the Ellas War Game",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "homepage": "https://ellaswar.eu",
   "author": {
     "name": "Ellas War Team",
@@ -55,7 +55,7 @@
     "@angular-eslint/schematics": "22.5.0",
     "@angular-eslint/template-parser": "22.5.0",
     "@angular/build": "^22.2.0",
-    "@angular/cdk": "^22.2.0",
+    "@angular/cdk": "^22.2.1",
     "@angular/cli": "~22.2.0",
     "@angular/compiler-cli": "^22.2.0",
     "@eslint/css": "^2.0.0",
@@ -66,7 +66,7 @@
     "@iconify-icons/fa6-brands": "^2.0.0",
     "@iconify-icons/ic": "^2.0.0",
     "@iconify-icons/ion": "^2.0.1",
-    "@iconify-icons/logos": "^2.0.1",
+    "@iconify-icons/logos": "^2.0.2",
     "@iconify-icons/mdi": "^2.0.0",
     "@iconify-icons/ri": "^2.0.0",
     "@iconify-icons/whh": "^2.0.0",
@@ -82,11 +82,11 @@
     "@iconify/icons-whh": "^1.2.3",
     "@sonar/scan": "^5.0.1",
     "@types/bootstrap": "^5.2.11",
-    "@types/jasmine": "~6.0.0",
+    "@types/jasmine": "~7.0.0",
     "@types/jest": "^30.0.0",
     "@types/jest-axe": "^3.5.9",
-    "@typescript-eslint/eslint-plugin": "8.70.1",
-    "@typescript-eslint/parser": "8.70.1",
+    "@typescript-eslint/eslint-plugin": "8.71.0",
+    "@typescript-eslint/parser": "8.71.0",
     "angular-eslint": "^22.5.0",
     "cordova-android": "^15.1.0",
     "cordova-electron": "^4.0.0",
@@ -95,15 +95,15 @@
     "cordova-plugin-googleplus": "8.5.2",
     "cordova-plugin-inappbrowser": "^7.0.0",
     "cordova-plugin-statusbar": "^4.0.0",
-    "electron": "^44.4.5",
-    "electron-builder": "^26.16.0",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.17.0",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-filenames": "^1.3.2",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-security": "^4.1.0",
-    "eslint-plugin-sonarjs": "^4.2.1",
+    "eslint-plugin-sonarjs": "^4.2.2",
     "iconify-icon": "^3.0.3",
     "jasmine-core": "~7.0.2",
     "jest": "^30.5.2",
@@ -113,7 +113,7 @@
     "jest-preset-angular": "^17.0.1",
     "prettier": "^3.9.9",
     "prettier-eslint": "^17.1.2",
-    "typescript-eslint": "^8.70.1"
+    "typescript-eslint": "^8.71.0"
   },
   "overrides": {
     "electron@<=33.0.0": "$electron",
@@ -136,10 +136,12 @@
       "cordova-plugin-statusbar": {}
     }
   },
+  "desktopName": "com.ellaswar.ewnext",
   "build": {
     "linux": {
       "appId": "com.ellaswar.ewnext",
-      "category": "Game"
+      "category": "Game",
+      "syncDesktopName": true
     },
     "appx": {
       "applicationId": "PearlDev.EllasWar",
@@ -156,7 +158,7 @@
       "baseVersion": "23.08",
       "runtimeVersion": "23.08"
     },
-    "snap": {
+    "snapcraft": {
       "base": "core22"
     }
   }

@@ -44,3 +44,6 @@
 * Fix in the storeroom
 * New button to disconnect when the account is blocked
 * Upgrade Angular to 22
+
+# 2.1.12
+* UI Fix
