@@ -47,3 +47,6 @@
 
 # 2.1.12
 * UI Fix
+
+# 2.1.13
+* Fix UI in waves
