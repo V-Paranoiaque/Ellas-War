@@ -41,7 +41,7 @@
             </div>
             <div class="row d-flex" cdkDropList id="wave-attack-0" [cdkDropListData]="user.getArmy()"
               [cdkDropListConnectedTo]="waveAttackDropList" (cdkDropListDropped)="onDropAttack($event)">
-              @for (army of user.getArmy(); track army) {
+              @for (army of user.getArmy(); track army.code) {
               @if (
               waveAttackUnit &&
               army.attack > 0 &&
@@ -87,7 +87,7 @@
               [cdkDropListConnectedTo]="waveAttackDropList" (cdkDropListDropped)="onDropAttack($event)">
               <h3>{{ 'Wave { value }' | translate: { value: i } }}</h3>
               <div class="d-flex row">
-                @for (army of user.getArmy(); track army) {
+                @for (army of user.getArmy(); track army.code) {
                 @if (getWaveUnit(wave, army.code) > 0) {
                 <div role="button" id="{{ army.code }}-{{ i }}-{{
                               getWaveUnit(wave, army.code)
@@ -217,7 +217,7 @@
           }
           <div class="row d-flex" cdkDropList id="wave-defense-0" [cdkDropListData]="user.getArmy()"
             [cdkDropListConnectedTo]="waveDefenseDropList" (cdkDropListDropped)="onDropDefense($event)">
-            @for (army of user.getArmy(); track army) {
+            @for (army of user.getArmy(); track army.code) {
             @if (
             waveDefenseUnit &&
             army.defense > 0 &&
@@ -256,7 +256,7 @@
             </div>
             }
             }
-            @for (building of user.getBuildings(); track building) {
+            @for (building of user.getBuildings(); track building.code) {
             @if (
             waveDefenseUnit &&
             building.type === 2 &&
@@ -302,7 +302,7 @@
             [cdkDropListConnectedTo]="waveDefenseDropList" (cdkDropListDropped)="onDropDefense($event)">
             <h3>{{ 'Wave { value }' | translate: { value: i } }}</h3>
             <div class="d-flex row">
-              @for (army of user.getArmy(); track army) {
+              @for (army of user.getArmy(); track army.code) {
               @if (getWaveUnit(wave, army.code) > 0) {
               <div role="button" id="{{ army.code }}-{{ i }}-{{
                               getWaveUnit(wave, army.code)
@@ -348,7 +348,7 @@
               </div>
               }
               }
-              @for (building of user.getBuildings(); track building) {
+              @for (building of user.getBuildings(); track building.code) {
               @if (getWaveUnit(wave, building.code) > 0) {
               <div role="button" id="{{ building.code }}-{{ i }}-{{
                               getWaveUnit(wave, building.code)
