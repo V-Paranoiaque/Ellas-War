@@ -50,3 +50,6 @@
 
 # 2.1.13
 * Fix UI in waves
+
+# 2.1.14
+* Fix joining an alliance
